@@ -563,17 +563,28 @@
             document.getElementById('mainInterface').style.display = 'none';
         }
         
+        // Variable pour éviter la réinitialisation multiple
+        let systemInitialized = false;
+        
         // Initialiser les révisions avec les mots personnalisés
         function initializePersonalizedRevisions() {
-            // Nettoyer l'ancien stockage UNE SEULE FOIS
+            // Éviter la réinitialisation multiple
+            if (systemInitialized) {
+                console.log('🔄 Système déjà initialisé, pas de réinitialisation');
+                return;
+            }
+            
+            // Nettoyer l'ancien stockage UNE SEULE FOIS VRAIMENT
             if (localStorage.getItem('masteredTerms')) {
                 localStorage.removeItem('masteredTerms');
-                console.log('🧹 Ancien stockage global supprimé (une seule fois)');
+                console.log('🧹 Migration: ancien stockage global supprimé');
             }
             
             // Attendre que les termes soient chargés
             if (window.allTerms && window.allTerms.length > 0) {
                 setupPersonalizedSystem();
+                systemInitialized = true;
+                console.log('✅ Système personnalisé initialisé (unique)');
             } else {
                 // Réessayer dans 100ms
                 setTimeout(initializePersonalizedRevisions, 100);
