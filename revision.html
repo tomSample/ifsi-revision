@@ -313,14 +313,210 @@
     </div>
     </div> <!-- Fin mainInterface -->
 
-    <script src="user-auth.js"></script>
-    <script src="user-rotation.js"></script>
     <script src="revision.js"></script>
     
     <script>
-        // Fonctions d'authentification et de gestion utilisateur
-        let userManager;
-        let userRotation;
+        // ===== SYSTÈME D'ISOLATION PAR UTILISATEUR =====
+        
+        class SimpleUserManager {
+            constructor() {
+                this.storageKey = 'ifsi_users_data';
+                this.currentUserKey = 'ifsi_current_user';
+                this.currentUser = null;
+            }
+            
+            // Obtenir toutes les données utilisateurs
+            getAllUsersData() {
+                try {
+                    const data = localStorage.getItem(this.storageKey);
+                    return data ? JSON.parse(data) : {};
+                } catch (error) {
+                    console.error('Erreur chargement données:', error);
+                    return {};
+                }
+            }
+            
+            // Sauvegarder toutes les données utilisateurs
+            saveAllUsersData(usersData) {
+                try {
+                    localStorage.setItem(this.storageKey, JSON.stringify(usersData));
+                    return true;
+                } catch (error) {
+                    console.error('Erreur sauvegarde:', error);
+                    return false;
+                }
+            }
+            
+            // Obtenir les données d'un utilisateur spécifique
+            getUserData(username) {
+                const allData = this.getAllUsersData();
+                return allData[username] || null;
+            }
+            
+            // Créer un nouvel utilisateur
+            createUser(username) {
+                const allData = this.getAllUsersData();
+                const today = new Date().toISOString().split('T')[0];
+                
+                allData[username] = {
+                    created: today,
+                    lastSession: today,
+                    stats: {
+                        totalSessions: 0,
+                        correctAnswers: 0,
+                        partialAnswers: 0,
+                        wrongAnswers: 0,
+                        seenTerms: 0
+                    },
+                    progress: {}, // terme_id: true/false pour maîtrisé
+                    dailyRotation: {
+                        date: today,
+                        seed: this.generateUserSeed(username, today),
+                        completedToday: 0
+                    }
+                };
+                
+                this.saveAllUsersData(allData);
+                console.log(`✨ Nouvel utilisateur créé: ${username}`);
+                return allData[username];
+            }
+            
+            // Générer une graine unique par utilisateur et par jour
+            generateUserSeed(username, date) {
+                let hash = 0;
+                const str = username + date;
+                for (let i = 0; i < str.length; i++) {
+                    const char = str.charCodeAt(i);
+                    hash = ((hash << 5) - hash) + char;
+                    hash = hash & hash; // Convertir en 32-bit integer
+                }
+                return Math.abs(hash);
+            }
+            
+            // Se connecter avec un utilisateur
+            login(username) {
+                const normalizedUsername = username.toLowerCase().trim();
+                
+                let userData = this.getUserData(normalizedUsername);
+                if (!userData) {
+                    userData = this.createUser(normalizedUsername);
+                }
+                
+                // Vérifier si c'est un nouveau jour
+                const today = new Date().toISOString().split('T')[0];
+                if (userData.dailyRotation.date !== today) {
+                    userData.dailyRotation = {
+                        date: today,
+                        seed: this.generateUserSeed(normalizedUsername, today),
+                        completedToday: 0
+                    };
+                    userData.lastSession = today;
+                    
+                    const allData = this.getAllUsersData();
+                    allData[normalizedUsername] = userData;
+                    this.saveAllUsersData(allData);
+                }
+                
+                this.currentUser = normalizedUsername;
+                localStorage.setItem(this.currentUserKey, normalizedUsername);
+                
+                console.log(`🔑 Connexion utilisateur: ${normalizedUsername}`);
+                return userData;
+            }
+            
+            // Obtenir les mots du jour pour l'utilisateur actuel
+            getTodayWords() {
+                if (!this.currentUser || !window.allTerms) return [];
+                
+                const userData = this.getUserData(this.currentUser);
+                if (!userData) return [];
+                
+                // Utiliser la graine pour générer une rotation reproductible
+                const seed = userData.dailyRotation.seed;
+                const shuffled = this.shuffleWithSeed([...window.allTerms], seed);
+                
+                // Prioriser les termes non maîtrisés
+                const unmastered = shuffled.filter(term => !userData.progress[term.term]);
+                const mastered = shuffled.filter(term => userData.progress[term.term]);
+                
+                // Prendre 10 termes (priorité aux non maîtrisés)
+                const todayWords = [
+                    ...unmastered.slice(0, 10),
+                    ...mastered.slice(0, Math.max(0, 10 - unmastered.length))
+                ].slice(0, 10);
+                
+                console.log(`📚 Mots du jour pour ${this.currentUser}:`, todayWords.length);
+                return todayWords;
+            }
+            
+            // Mélanger un tableau avec une graine
+            shuffleWithSeed(array, seed) {
+                let currentIndex = array.length;
+                let temporaryValue, randomIndex;
+                
+                // Générateur de nombres pseudo-aléatoires basé sur la graine
+                const rng = (seed) => {
+                    let x = Math.sin(seed) * 10000;
+                    return x - Math.floor(x);
+                };
+                
+                while (0 !== currentIndex) {
+                    seed = (seed * 9301 + 49297) % 233280;
+                    randomIndex = Math.floor(rng(seed) * currentIndex);
+                    currentIndex -= 1;
+                    
+                    temporaryValue = array[currentIndex];
+                    array[currentIndex] = array[randomIndex];
+                    array[randomIndex] = temporaryValue;
+                }
+                
+                return array;
+            }
+            
+            // Mettre à jour la progression d'un terme
+            updateProgress(termId, isCorrect) {
+                if (!this.currentUser) return;
+                
+                const allData = this.getAllUsersData();
+                const userData = allData[this.currentUser];
+                
+                if (userData) {
+                    // Mettre à jour la progression du terme
+                    userData.progress[termId] = isCorrect;
+                    
+                    // Mettre à jour les statistiques
+                    if (isCorrect) {
+                        userData.stats.correctAnswers++;
+                    } else {
+                        userData.stats.wrongAnswers++;
+                    }
+                    userData.stats.seenTerms++;
+                    
+                    // Compter les mots complétés aujourd'hui
+                    userData.dailyRotation.completedToday++;
+                    
+                    this.saveAllUsersData(allData);
+                }
+            }
+            
+            // Obtenir la progression du jour
+            getTodayProgress() {
+                if (!this.currentUser) return 0;
+                const userData = this.getUserData(this.currentUser);
+                return userData ? userData.dailyRotation.completedToday : 0;
+            }
+            
+            // Déconnexion
+            logout() {
+                this.currentUser = null;
+                localStorage.removeItem(this.currentUserKey);
+            }
+        }
+        
+        // Instance globale
+        const userManager = new SimpleUserManager();
+        
+        // ===== INTERFACE D'AUTHENTIFICATION =====
         
         function handleAuth() {
             const username = document.getElementById('usernameInput').value.trim();
@@ -335,44 +531,136 @@
                 return;
             }
             
-            // Créer ou charger l'utilisateur
-            userManager = new UserManager(username);
-            userRotation = new UserRotation(userManager);
+            // Se connecter avec le système d'isolation
+            const userData = userManager.login(username);
             
             // Mettre à jour l'interface
             document.getElementById('currentUser').textContent = username;
-            document.getElementById('dailyProgress').textContent = `📚 Mots du jour : ${userRotation.getTodayProgress()}/10`;
+            document.getElementById('dailyProgress').textContent = 
+                `📚 Mots du jour : ${userData.dailyRotation.completedToday}/10`;
             
             // Masquer l'authentification et afficher l'interface principale
             document.getElementById('authOverlay').style.display = 'none';
             document.getElementById('mainInterface').style.display = 'block';
             
-            // Initialiser les révisions avec les mots personnalisés
-            initializePersonalizedRevision();
+            // Initialiser les révisions personnalisées
+            initializePersonalizedRevisions();
+            
+            // Forcer la mise à jour des statistiques utilisateur
+            setTimeout(() => {
+                if (window.updateStatsDisplay) {
+                    window.updateStatsDisplay();
+                }
+            }, 200);
         }
         
         function logout() {
-            // Sauvegarder les données utilisateur
-            if (userManager) {
-                userManager.saveProgress();
-            }
+            // Déconnexion propre
+            userManager.logout();
             
             // Réinitialiser l'interface
             document.getElementById('usernameInput').value = '';
             document.getElementById('authOverlay').style.display = 'flex';
             document.getElementById('mainInterface').style.display = 'none';
-            
-            // Réinitialiser les variables globales
-            userManager = null;
-            userRotation = null;
         }
         
-        function initializePersonalizedRevision() {
-            // Cette fonction sera appelée depuis revision.js
-            // Elle utilisera userRotation.getTodayWords() au lieu du randomSample global
-            if (typeof updateRevisionForUser === 'function') {
-                updateRevisionForUser(userRotation);
+        // Initialiser les révisions avec les mots personnalisés
+        function initializePersonalizedRevisions() {
+            // Attendre que les termes soient chargés
+            if (window.allTerms && window.allTerms.length > 0) {
+                setupPersonalizedSystem();
+            } else {
+                // Réessayer dans 100ms
+                setTimeout(initializePersonalizedRevisions, 100);
             }
+        }
+        
+        function setupPersonalizedSystem() {
+            // Sauvegarder les fonctions originales
+            const originalSelectTermsForSession = window.selectTermsForSession;
+            const originalProcessAnswer = window.processAnswer;
+            const originalIsMasteredTerm = window.isMasteredTerm;
+            const originalUpdateStatsDisplay = window.updateStatsDisplay;
+            
+            // Remplacer la sélection des termes par la rotation personnalisée
+            window.selectTermsForSession = function() {
+                return userManager.getTodayWords();
+            };
+            
+            // Remplacer isMasteredTerm pour utiliser les données utilisateur
+            window.isMasteredTerm = function(term) {
+                if (!userManager.currentUser) return false;
+                const userData = userManager.getUserData(userManager.currentUser);
+                return userData && userData.progress[term.term] === true;
+            };
+            
+            // Remplacer updateStatsDisplay pour utiliser les stats utilisateur
+            window.updateStatsDisplay = function() {
+                if (!userManager.currentUser || !window.allTerms) {
+                    // Fallback vers l'ancien système si pas d'utilisateur connecté
+                    if (originalUpdateStatsDisplay) {
+                        originalUpdateStatsDisplay();
+                    }
+                    return;
+                }
+                
+                const userData = userManager.getUserData(userManager.currentUser);
+                if (!userData) return;
+                
+                const totalTerms = window.allTerms.length;
+                const masteredCount = Object.values(userData.progress).filter(Boolean).length;
+                const priorityCount = totalTerms - masteredCount;
+                const masteryRate = totalTerms > 0 ? Math.round((masteredCount / totalTerms) * 100) : 0;
+                
+                // Mettre à jour tous les éléments de statistiques
+                const totalTermsElement = document.getElementById('totalTermsPreview');
+                const masteredTermsElement = document.getElementById('masteredTerms');
+                const priorityTermsElement = document.getElementById('priorityTerms');
+                const globalProgressElement = document.getElementById('globalProgress');
+                
+                if (totalTermsElement) totalTermsElement.textContent = totalTerms;
+                if (masteredTermsElement) masteredTermsElement.textContent = masteredCount;
+                if (priorityTermsElement) priorityTermsElement.textContent = priorityCount;
+                if (globalProgressElement) {
+                    globalProgressElement.textContent = `Maîtrise : ${masteryRate}% (${masteredCount}/${totalTerms})`;
+                }
+                
+                console.log(`📊 Stats utilisateur ${userManager.currentUser}: ${masteredCount}/${totalTerms} (${masteryRate}%)`);
+            };
+            
+            // Intercepter les réponses pour sauvegarder la progression
+            const newProcessAnswer = function(evaluation) {
+                // Appeler la fonction originale
+                if (originalProcessAnswer) {
+                    originalProcessAnswer(evaluation);
+                }
+                
+                // Sauvegarder la progression utilisateur
+                if (window.currentSession && window.currentTermIndex > 0) {
+                    const currentTerm = window.currentSession[window.currentTermIndex - 1];
+                    if (currentTerm) {
+                        userManager.updateProgress(currentTerm.term, evaluation === 'correct');
+                        
+                        // Mettre à jour l'affichage de progression quotidienne
+                        const progress = userManager.getTodayProgress();
+                        document.getElementById('dailyProgress').textContent = 
+                            `📚 Mots du jour : ${progress}/10`;
+                        
+                        // Mettre à jour les statistiques globales avec les nouvelles données
+                        window.updateStatsDisplay();
+                    }
+                }
+            };
+            
+            // Remplacer la fonction globalement
+            window.processAnswer = newProcessAnswer;
+            
+            // Forcer la mise à jour des statistiques après la configuration
+            setTimeout(() => {
+                window.updateStatsDisplay();
+            }, 100);
+            
+            console.log('🎯 Système de révisions personnalisées initialisé avec stats utilisateur');
         }
         
         // Vérifier si un utilisateur est déjà connecté au chargement
