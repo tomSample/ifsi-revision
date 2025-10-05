@@ -3,16 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IFSI Lannion - Révisions Quotidiennes</title>
+    <title>IFSI Lannion - Révisions Personnalisées</title>
     <link rel="stylesheet" href="style-revision.css">
+    <style>
+        /* Styles pour l'authentification intégrée */
+        .auth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .auth-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+        }
+
+        .auth-card h1 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .auth-card h2 {
+            color: #6c757d;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .auth-form {
+            margin-bottom: 2rem;
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+
+        .auth-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .privacy-note {
+            color: #6c757d;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Header utilisateur */
+        .user-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .user-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .user-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .user-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Interface d'authentification -->
+    <div id="authOverlay" class="auth-overlay">
+        <div class="auth-card">
+            <h1>🎓 IFSI Lannion</h1>
+            <h2>Révisions Personnalisées</h2>
+            <div class="auth-form">
+                <input type="text" id="usernameInput" class="auth-input" 
+                       placeholder="Votre prénom" maxlength="20" autocomplete="off">
+                <button onclick="handleAuth()" class="auth-btn">Commencer mes révisions</button>
+            </div>
+            <div class="privacy-note">
+                💡 Votre progression est sauvegardée localement sur votre appareil.<br>
+                Aucune donnée personnelle n'est collectée.
+            </div>
+        </div>
+    </div>
+
+    <!-- Interface principale (cachée initialement) -->
+    <div id="mainInterface" style="display: none;">
+        <!-- Header utilisateur -->
+        <div class="user-header">
+            <div class="user-info">
+                <span class="user-badge">👤 <span id="currentUser">Utilisateur</span></span>
+                <span id="dailyProgress">📚 Mots du jour : 0/10</span>
+            </div>
+            <button onclick="logout()" class="logout-btn">🚪 Changer d'utilisateur</button>
+        </div>
     <div class="container">
         <header>
             <h1>📚 IFSI Lannion 2025</h1>
-            <h2>Révisions - Test de connaissances</h2>
+            <h2>Révisions - Test de connaissances personnalisé</h2>
             <nav class="breadcrumb">
-                <a href="navigation.html">🏠 Accueil</a> › <span class="current">Révisions Quotidiennes</span>
+                <a href="navigation.html">🏠 Accueil</a> › <span class="current">Révisions Personnalisées</span>
             </nav>
             <div class="progress-info">
                 <span id="sessionProgress">Session : 0/10</span>
@@ -151,7 +311,84 @@
             </div>
         </main>
     </div>
+    </div> <!-- Fin mainInterface -->
 
+    <script src="user-auth.js"></script>
+    <script src="user-rotation.js"></script>
     <script src="revision.js"></script>
+    
+    <script>
+        // Fonctions d'authentification et de gestion utilisateur
+        let userManager;
+        let userRotation;
+        
+        function handleAuth() {
+            const username = document.getElementById('usernameInput').value.trim();
+            
+            if (!username) {
+                alert('Veuillez entrer votre prénom');
+                return;
+            }
+            
+            if (username.length < 2) {
+                alert('Le prénom doit contenir au moins 2 caractères');
+                return;
+            }
+            
+            // Créer ou charger l'utilisateur
+            userManager = new UserManager(username);
+            userRotation = new UserRotation(userManager);
+            
+            // Mettre à jour l'interface
+            document.getElementById('currentUser').textContent = username;
+            document.getElementById('dailyProgress').textContent = `📚 Mots du jour : ${userRotation.getTodayProgress()}/10`;
+            
+            // Masquer l'authentification et afficher l'interface principale
+            document.getElementById('authOverlay').style.display = 'none';
+            document.getElementById('mainInterface').style.display = 'block';
+            
+            // Initialiser les révisions avec les mots personnalisés
+            initializePersonalizedRevision();
+        }
+        
+        function logout() {
+            // Sauvegarder les données utilisateur
+            if (userManager) {
+                userManager.saveProgress();
+            }
+            
+            // Réinitialiser l'interface
+            document.getElementById('usernameInput').value = '';
+            document.getElementById('authOverlay').style.display = 'flex';
+            document.getElementById('mainInterface').style.display = 'none';
+            
+            // Réinitialiser les variables globales
+            userManager = null;
+            userRotation = null;
+        }
+        
+        function initializePersonalizedRevision() {
+            // Cette fonction sera appelée depuis revision.js
+            // Elle utilisera userRotation.getTodayWords() au lieu du randomSample global
+            if (typeof updateRevisionForUser === 'function') {
+                updateRevisionForUser(userRotation);
+            }
+        }
+        
+        // Vérifier si un utilisateur est déjà connecté au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            const lastUser = localStorage.getItem('lastUser');
+            if (lastUser) {
+                document.getElementById('usernameInput').value = lastUser;
+            }
+        });
+        
+        // Permettre la connexion avec Entrée
+        document.getElementById('usernameInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleAuth();
+            }
+        });
+    </script>
 </body>
 </html>
