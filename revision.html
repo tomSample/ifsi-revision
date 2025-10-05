@@ -506,6 +506,24 @@
                 return userData ? userData.dailyRotation.completedToday : 0;
             }
             
+            // Obtenir les statistiques complètes de l'utilisateur
+            getUserStats() {
+                if (!this.currentUser) return null;
+                const userData = this.getUserData(this.currentUser);
+                if (!userData) return null;
+                
+                const masteredCount = Object.values(userData.progress).filter(Boolean).length;
+                
+                return {
+                    masteredTerms: masteredCount,
+                    correctAnswers: userData.stats.correctAnswers,
+                    wrongAnswers: userData.stats.wrongAnswers,
+                    partialAnswers: userData.stats.partialAnswers,
+                    seenTerms: userData.stats.seenTerms,
+                    totalSessions: userData.stats.totalSessions
+                };
+            }
+            
             // Déconnexion
             logout() {
                 this.currentUser = null;
@@ -696,20 +714,36 @@
             
             // Intercepter les réponses pour sauvegarder la progression
             const newProcessAnswer = function(evaluation) {
-                // Appeler la fonction originale
-                if (originalProcessAnswer) {
-                    originalProcessAnswer(evaluation);
-                }
+                console.log(`🎯 Réponse interceptée: ${evaluation}`);
                 
-                // Sauvegarder la progression utilisateur
+                // NE PAS appeler la fonction originale pour éviter le double comptage
+                // if (originalProcessAnswer) {
+                //     originalProcessAnswer(evaluation);
+                // }
+                
+                // Gérer nous-mêmes tout le processus de réponse
                 if (window.currentSession && window.currentTermIndex > 0) {
                     const currentTerm = window.currentSession[window.currentTermIndex - 1];
                     if (currentTerm) {
+                        console.log(`📝 Traitement réponse pour: ${currentTerm.term} = ${evaluation}`);
+                        
+                        // Sauvegarder dans les résultats de session (pour l'affichage de révision)
+                        if (window.sessionResults) {
+                            window.sessionResults.push({
+                                term: currentTerm,
+                                userAnswer: document.getElementById('userAnswer')?.value || '',
+                                evaluation: evaluation
+                            });
+                        }
+                        
+                        // Sauvegarder la progression utilisateur
                         userManager.updateProgress(currentTerm.term, evaluation === 'correct');
                         
                         // Marquer le terme comme maîtrisé ou non selon la réponse
                         if (evaluation === 'correct') {
                             window.markTermAsMastered(currentTerm);
+                        } else {
+                            window.unmarkTermAsMastered(currentTerm);
                         }
                         
                         // Mettre à jour l'affichage de progression quotidienne
@@ -719,6 +753,8 @@
                         
                         // Mettre à jour les statistiques globales avec les nouvelles données
                         window.updateStatsDisplay();
+                        
+                        console.log(`✅ Progression sauvegardée pour ${userManager.currentUser}`);
                     }
                 }
             };
