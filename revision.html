@@ -361,13 +361,6 @@
                 allData[username] = {
                     created: today,
                     lastSession: today,
-                    stats: {
-                        totalSessions: 0,
-                        correctAnswers: 0,
-                        partialAnswers: 0,
-                        wrongAnswers: 0,
-                        seenTerms: 0
-                    },
                     progress: {}, // terme_id: true/false pour maîtrisé
                     dailyRotation: {
                         date: today,
@@ -474,28 +467,16 @@
             }
             
             // Mettre à jour la progression d'un terme
-            updateProgress(termId, isCorrect) {
+            markTermAsMastered(termId) {
                 if (!this.currentUser) return;
                 
                 const allData = this.getAllUsersData();
                 const userData = allData[this.currentUser];
                 
                 if (userData) {
-                    // Mettre à jour la progression du terme
-                    userData.progress[termId] = isCorrect;
-                    
-                    // Mettre à jour les statistiques
-                    if (isCorrect) {
-                        userData.stats.correctAnswers++;
-                    } else {
-                        userData.stats.wrongAnswers++;
-                    }
-                    userData.stats.seenTerms++;
-                    
-                    // Compter les mots complétés aujourd'hui
-                    userData.dailyRotation.completedToday++;
-                    
+                    userData.progress[termId] = true;
                     this.saveAllUsersData(allData);
+                    console.log(`✅ ${termId} maîtrisé par ${this.currentUser}`);
                 }
             }
             
@@ -506,22 +487,17 @@
                 return userData ? userData.dailyRotation.completedToday : 0;
             }
             
-            // Obtenir les statistiques complètes de l'utilisateur
-            getUserStats() {
-                if (!this.currentUser) return null;
-                const userData = this.getUserData(this.currentUser);
-                if (!userData) return null;
+            // Incrémenter le compteur quotidien
+            incrementTodayProgress() {
+                if (!this.currentUser) return;
                 
-                const masteredCount = Object.values(userData.progress).filter(Boolean).length;
+                const allData = this.getAllUsersData();
+                const userData = allData[this.currentUser];
                 
-                return {
-                    masteredTerms: masteredCount,
-                    correctAnswers: userData.stats.correctAnswers,
-                    wrongAnswers: userData.stats.wrongAnswers,
-                    partialAnswers: userData.stats.partialAnswers,
-                    seenTerms: userData.stats.seenTerms,
-                    totalSessions: userData.stats.totalSessions
-                };
+                if (userData) {
+                    userData.dailyRotation.completedToday++;
+                    this.saveAllUsersData(allData);
+                }
             }
             
             // Déconnexion
@@ -566,8 +542,8 @@
             
             // Forcer la mise à jour des statistiques utilisateur
             setTimeout(() => {
-                if (window.updateStatsDisplay) {
-                    window.updateStatsDisplay();
+                if (window.updateUserStats) {
+                    window.updateUserStats();
                 }
             }, 200);
         }
@@ -584,8 +560,11 @@
         
         // Initialiser les révisions avec les mots personnalisés
         function initializePersonalizedRevisions() {
-            // Nettoyer l'ancien système global si nécessaire
-            cleanupOldGlobalSystem();
+            // Nettoyer l'ancien stockage s'il existe
+            if (localStorage.getItem('masteredTerms')) {
+                localStorage.removeItem('masteredTerms');
+                console.log('🧹 Ancien stockage global supprimé');
+            }
             
             // Attendre que les termes soient chargés
             if (window.allTerms && window.allTerms.length > 0) {
@@ -596,178 +575,83 @@
             }
         }
         
-        // Nettoyer l'ancien système global pour éviter les conflits
-        function cleanupOldGlobalSystem() {
-            // Sauvegarder les données de l'ancien système si elles existent
-            const oldMasteredTerms = localStorage.getItem('masteredTerms');
-            if (oldMasteredTerms && oldMasteredTerms !== '[]') {
-                console.log('🔧 Migration de l\'ancien système global détectée');
-                
-                // Si l'utilisateur actuel n'a pas de données, migrer les anciennes
-                const userData = userManager.getUserData(userManager.currentUser);
-                if (userData && Object.keys(userData.progress).length === 0) {
-                    try {
-                        const oldTerms = JSON.parse(oldMasteredTerms);
-                        console.log(`📦 Migration de ${oldTerms.length} termes de l'ancien système`);
-                        
-                        // Convertir les anciennes clés en progression utilisateur
-                        for (const termKey of oldTerms) {
-                            // Extraire le nom du terme de la clé (format probable: "terme_ue")
-                            const termName = termKey.split('_')[0];
-                            if (termName) {
-                                userData.progress[termName] = true;
-                            }
-                        }
-                        
-                        // Sauvegarder les données migrées
-                        const allData = userManager.getAllUsersData();
-                        allData[userManager.currentUser] = userData;
-                        userManager.saveAllUsersData(allData);
-                    } catch (error) {
-                        console.warn('Erreur lors de la migration:', error);
-                    }
-                }
-                
-                // Supprimer l'ancien système pour éviter les conflits
-                localStorage.removeItem('masteredTerms');
-            }
-        }
-        
         function setupPersonalizedSystem() {
-            // Sauvegarder les fonctions originales
-            const originalSelectTermsForSession = window.selectTermsForSession;
-            const originalProcessAnswer = window.processAnswer;
-            const originalIsMasteredTerm = window.isMasteredTerm;
-            const originalUpdateStatsDisplay = window.updateStatsDisplay;
-            const originalMarkTermAsMastered = window.markTermAsMastered;
-            const originalUnmarkTermAsMastered = window.unmarkTermAsMastered;
+            console.log('🎯 Configuration du système personnalisé simple');
             
-            // Remplacer la sélection des termes par la rotation personnalisée
+            // Remplacer UNIQUEMENT la sélection des termes
             window.selectTermsForSession = function() {
                 return userManager.getTodayWords();
             };
             
-            // Remplacer isMasteredTerm pour utiliser les données utilisateur
-            window.isMasteredTerm = function(term) {
-                if (!userManager.currentUser) return false;
-                const userData = userManager.getUserData(userManager.currentUser);
-                return userData && userData.progress[term.term] === true;
-            };
-            
-            // Remplacer markTermAsMastered pour utiliser les données utilisateur
-            window.markTermAsMastered = function(term) {
-                if (!userManager.currentUser) return;
-                const allData = userManager.getAllUsersData();
-                const userData = allData[userManager.currentUser];
-                if (userData) {
-                    userData.progress[term.term] = true;
-                    userManager.saveAllUsersData(allData);
-                    console.log(`✅ Terme marqué comme maîtrisé pour ${userManager.currentUser}: ${term.term}`);
-                }
-            };
-            
-            // Remplacer unmarkTermAsMastered pour utiliser les données utilisateur
-            window.unmarkTermAsMastered = function(term) {
-                if (!userManager.currentUser) return;
-                const allData = userManager.getAllUsersData();
-                const userData = allData[userManager.currentUser];
-                if (userData) {
-                    userData.progress[term.term] = false;
-                    userManager.saveAllUsersData(allData);
-                    console.log(`❌ Terme non maîtrisé pour ${userManager.currentUser}: ${term.term}`);
-                }
-            };
-            
-            // Remplacer updateStatsDisplay pour utiliser les stats utilisateur
-            window.updateStatsDisplay = function() {
-                if (!userManager.currentUser || !window.allTerms) {
-                    // Fallback vers l'ancien système si pas d'utilisateur connecté
-                    if (originalUpdateStatsDisplay) {
-                        originalUpdateStatsDisplay();
-                    }
-                    return;
-                }
+            // Système de statistiques simple et unifié
+            window.updateUserStats = function() {
+                if (!userManager.currentUser || !window.allTerms) return;
                 
                 const userData = userManager.getUserData(userManager.currentUser);
                 if (!userData) return;
                 
                 const totalTerms = window.allTerms.length;
                 const masteredCount = Object.values(userData.progress).filter(Boolean).length;
-                const priorityCount = totalTerms - masteredCount;
                 const masteryRate = totalTerms > 0 ? Math.round((masteredCount / totalTerms) * 100) : 0;
                 
-                // Mettre à jour tous les éléments de statistiques
-                const totalTermsElement = document.getElementById('totalTermsPreview');
-                const masteredTermsElement = document.getElementById('masteredTerms');
-                const priorityTermsElement = document.getElementById('priorityTerms');
+                // Mettre à jour l'affichage
                 const globalProgressElement = document.getElementById('globalProgress');
-                
-                if (totalTermsElement) totalTermsElement.textContent = totalTerms;
-                if (masteredTermsElement) masteredTermsElement.textContent = masteredCount;
-                if (priorityTermsElement) priorityTermsElement.textContent = priorityCount;
                 if (globalProgressElement) {
                     globalProgressElement.textContent = `Maîtrise : ${masteryRate}% (${masteredCount}/${totalTerms})`;
                 }
                 
-                console.log(`📊 Stats utilisateur ${userManager.currentUser}: ${masteredCount}/${totalTerms} (${masteryRate}%)`);
+                // Mettre à jour l'écran d'accueil
+                const totalTermsElement = document.getElementById('totalTermsPreview');
+                const masteredTermsElement = document.getElementById('masteredTerms');
+                const priorityTermsElement = document.getElementById('priorityTerms');
+                
+                if (totalTermsElement) totalTermsElement.textContent = totalTerms;
+                if (masteredTermsElement) masteredTermsElement.textContent = masteredCount;
+                if (priorityTermsElement) priorityTermsElement.textContent = totalTerms - masteredCount;
+                
+                console.log(`📊 Stats mises à jour: ${masteredCount}/${totalTerms} (${masteryRate}%)`);
             };
             
-            // Intercepter les réponses pour sauvegarder la progression
-            const newProcessAnswer = function(evaluation) {
-                console.log(`🎯 Réponse interceptée: ${evaluation}`);
+            // Hook simple pour capturer les bonnes réponses
+            const originalProcessAnswer = window.processAnswer;
+            window.processAnswer = function(evaluation) {
+                console.log(`🎯 Réponse: ${evaluation}`);
                 
-                // NE PAS appeler la fonction originale pour éviter le double comptage
-                // if (originalProcessAnswer) {
-                //     originalProcessAnswer(evaluation);
-                // }
+                // Appeler l'original pour gérer l'affichage normal
+                if (originalProcessAnswer) {
+                    originalProcessAnswer(evaluation);
+                }
                 
-                // Gérer nous-mêmes tout le processus de réponse
+                // Sauvegarder UNIQUEMENT pour l'utilisateur actuel
                 if (window.currentSession && window.currentTermIndex > 0) {
                     const currentTerm = window.currentSession[window.currentTermIndex - 1];
-                    if (currentTerm) {
-                        console.log(`📝 Traitement réponse pour: ${currentTerm.term} = ${evaluation}`);
-                        
-                        // Sauvegarder dans les résultats de session (pour l'affichage de révision)
-                        if (window.sessionResults) {
-                            window.sessionResults.push({
-                                term: currentTerm,
-                                userAnswer: document.getElementById('userAnswer')?.value || '',
-                                evaluation: evaluation
-                            });
+                    if (currentTerm && evaluation === 'correct') {
+                        // Marquer comme maîtrisé dans les données utilisateur
+                        const allData = userManager.getAllUsersData();
+                        const userData = allData[userManager.currentUser];
+                        if (userData) {
+                            userData.progress[currentTerm.term] = true;
+                            userData.dailyRotation.completedToday++;
+                            userManager.saveAllUsersData(allData);
+                            
+                            // Mettre à jour l'affichage
+                            const progress = userManager.getTodayProgress();
+                            document.getElementById('dailyProgress').textContent = 
+                                `📚 Mots du jour : ${progress}/10`;
+                            
+                            // Mettre à jour les stats
+                            window.updateUserStats();
                         }
-                        
-                        // Sauvegarder la progression utilisateur
-                        userManager.updateProgress(currentTerm.term, evaluation === 'correct');
-                        
-                        // Marquer le terme comme maîtrisé ou non selon la réponse
-                        if (evaluation === 'correct') {
-                            window.markTermAsMastered(currentTerm);
-                        } else {
-                            window.unmarkTermAsMastered(currentTerm);
-                        }
-                        
-                        // Mettre à jour l'affichage de progression quotidienne
-                        const progress = userManager.getTodayProgress();
-                        document.getElementById('dailyProgress').textContent = 
-                            `📚 Mots du jour : ${progress}/10`;
-                        
-                        // Mettre à jour les statistiques globales avec les nouvelles données
-                        window.updateStatsDisplay();
-                        
-                        console.log(`✅ Progression sauvegardée pour ${userManager.currentUser}`);
                     }
                 }
             };
             
-            // Remplacer la fonction globalement
-            window.processAnswer = newProcessAnswer;
-            
-            // Forcer la mise à jour des statistiques après la configuration
+            // Forcer la mise à jour initiale
             setTimeout(() => {
-                window.updateStatsDisplay();
+                window.updateUserStats();
             }, 100);
             
-            console.log('🎯 Système de révisions personnalisées initialisé avec toutes les fonctions remplacées');
+            console.log('✅ Système personnalisé configuré');
         }
         
         // Vérifier si un utilisateur est déjà connecté au chargement
