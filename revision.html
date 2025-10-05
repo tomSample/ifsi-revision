@@ -550,15 +550,7 @@
             // Initialiser les révisions personnalisées
             initializePersonalizedRevisions();
             
-            // Forcer la mise à jour des statistiques utilisateur
-            setTimeout(() => {
-                console.log('⏰ Mise à jour stats différée');
-                if (window.updateUserStats) {
-                    window.updateUserStats();
-                } else {
-                    console.log('❌ updateUserStats non disponible');
-                }
-            }, 200);
+            console.log('✅ Connexion utilisateur terminée');
         }
         
         function logout() {
@@ -573,10 +565,10 @@
         
         // Initialiser les révisions avec les mots personnalisés
         function initializePersonalizedRevisions() {
-            // Nettoyer l'ancien stockage s'il existe
+            // Nettoyer l'ancien stockage UNE SEULE FOIS
             if (localStorage.getItem('masteredTerms')) {
                 localStorage.removeItem('masteredTerms');
-                console.log('🧹 Ancien stockage global supprimé');
+                console.log('🧹 Ancien stockage global supprimé (une seule fois)');
             }
             
             // Attendre que les termes soient chargés
@@ -589,25 +581,20 @@
         }
         
         function setupPersonalizedSystem() {
-            console.log('🎯 Configuration du système personnalisé simple');
+            console.log('🎯 Configuration du système personnalisé FIXÉ');
             
-            // Remplacer UNIQUEMENT la sélection des termes
-            window.selectTermsForSession = function() {
-                return userManager.getTodayWords();
-            };
-            
-            // Système de statistiques simple et unifié
+            // 1. DÉFINIR LA FONCTION updateUserStats EN PREMIER
             window.updateUserStats = function() {
                 console.log('🔄 updateUserStats() appelée');
                 
                 if (!userManager.currentUser || !window.allTerms) {
-                    console.log('❌ updateUserStats: Pas d\'utilisateur connecté ou termes non chargés');
+                    console.log('❌ Pas d\'utilisateur ou termes non chargés');
                     return;
                 }
                 
                 const userData = userManager.getUserData(userManager.currentUser);
                 if (!userData) {
-                    console.log('❌ updateUserStats: Données utilisateur non trouvées');
+                    console.log('❌ Données utilisateur non trouvées');
                     return;
                 }
                 
@@ -615,118 +602,101 @@
                 const masteredCount = Object.values(userData.progress).filter(Boolean).length;
                 const masteryRate = totalTerms > 0 ? Math.round((masteredCount / totalTerms) * 100) : 0;
                 
-                console.log('📊 CALCUL DES STATISTIQUES:');
-                console.log(`   👤 Utilisateur: ${userManager.currentUser}`);
-                console.log(`   📚 Total termes: ${totalTerms}`);
-                console.log(`   ✅ Termes maîtrisés: ${masteredCount}`);
-                console.log(`   📈 Taux de maîtrise: ${masteryRate}%`);
-                console.log('   📋 Progress data:', userData.progress);
+                console.log(`📊 STATS CALCULÉES: ${masteredCount}/${totalTerms} (${masteryRate}%)`);
                 
-                // Mettre à jour l'affichage - HEADER (progress-info)
-                const globalProgressElement = document.getElementById('globalProgress');
-                if (globalProgressElement) {
-                    const newText = `Maîtrise : ${masteryRate}% (${masteredCount}/${totalTerms})`;
-                    globalProgressElement.textContent = newText;
-                    console.log(`   🎯 Header mis à jour: "${newText}"`);
-                } else {
-                    console.log('   ❌ Element globalProgress non trouvé');
+                // Mettre à jour l'affichage
+                const globalProgress = document.getElementById('globalProgress');
+                if (globalProgress) {
+                    globalProgress.textContent = `Maîtrise : ${masteryRate}% (${masteredCount}/${totalTerms})`;
+                    console.log(`✅ Header mis à jour: ${masteryRate}%`);
                 }
                 
-                // Mettre à jour l'écran d'accueil - STATS PREVIEW
-                const totalTermsElement = document.getElementById('totalTermsPreview');
-                const masteredTermsElement = document.getElementById('masteredTerms');
-                const priorityTermsElement = document.getElementById('priorityTerms');
-                
-                if (totalTermsElement) {
-                    totalTermsElement.textContent = totalTerms;
-                    console.log(`   📚 Total termes affiché: ${totalTerms}`);
-                } else {
-                    console.log('   ❌ Element totalTermsPreview non trouvé');
+                const masteredElement = document.getElementById('masteredTerms');
+                if (masteredElement) {
+                    masteredElement.textContent = masteredCount;
+                    console.log(`✅ Termes maîtrisés affiché: ${masteredCount}`);
                 }
                 
-                if (masteredTermsElement) {
-                    masteredTermsElement.textContent = masteredCount;
-                    console.log(`   ✅ Termes maîtrisés affichés: ${masteredCount}`);
-                } else {
-                    console.log('   ❌ Element masteredTerms non trouvé');
-                }
+                const totalElement = document.getElementById('totalTermsPreview');
+                if (totalElement) totalElement.textContent = totalTerms;
                 
-                if (priorityTermsElement) {
-                    const priorityCount = totalTerms - masteredCount;
-                    priorityTermsElement.textContent = priorityCount;
-                    console.log(`   ⚡ Termes prioritaires affichés: ${priorityCount}`);
-                } else {
-                    console.log('   ❌ Element priorityTerms non trouvé');
-                }
+                const priorityElement = document.getElementById('priorityTerms');
+                if (priorityElement) priorityElement.textContent = totalTerms - masteredCount;
                 
-                console.log('✅ updateUserStats() terminée');
+                console.log('✅ updateUserStats() terminée avec succès');
             };
             
-            // Hook simple pour capturer les bonnes réponses
+            // 2. DÉSACTIVER COMPLÈTEMENT L'ANCIEN SYSTÈME
+            window.markTermAsMastered = function(term) {
+                console.log(`🔇 Ancien markTermAsMastered DÉSACTIVÉ pour: ${term.term || term}`);
+                // Ne rien faire - on gère tout dans le nouveau système
+            };
+            
+            window.markTermAsWrong = function(term) {
+                console.log(`🔇 Ancien markTermAsWrong DÉSACTIVÉ pour: ${term.term || term}`);
+                // Ne rien faire - on gère tout dans le nouveau système
+            };
+            
+            // 3. REMPLACER LA SÉLECTION DES TERMES
+            window.selectTermsForSession = function() {
+                console.log('📚 Sélection des termes personnalisés');
+                return userManager.getTodayWords();
+            };
+            
+            // 4. INTERCEPTER LA VRAIE FONCTION D'ÉVALUATION
             const originalProcessAnswer = window.processAnswer;
             window.processAnswer = function(evaluation) {
-                console.log(`🎯 RÉPONSE DÉTECTÉE: ${evaluation}`);
+                console.log(`🎯 RÉPONSE INTERCEPTÉE: ${evaluation}`);
                 
-                // Appeler l'original pour gérer l'affichage normal
+                // Appeler l'original pour l'affichage
                 if (originalProcessAnswer) {
                     originalProcessAnswer(evaluation);
-                    console.log('   ✅ Fonction originalProcessAnswer appelée');
                 }
                 
-                // Sauvegarder UNIQUEMENT pour l'utilisateur actuel
+                // Gérer la progression utilisateur
                 if (window.currentSession && window.currentTermIndex > 0) {
                     const currentTerm = window.currentSession[window.currentTermIndex - 1];
                     if (currentTerm) {
-                        console.log(`   📝 Terme traité: "${currentTerm.term}"`);
+                        console.log(`📝 Traitement terme: "${currentTerm.term}"`);
                         
                         if (evaluation === 'correct') {
-                            console.log('   ✅ Réponse correcte - Marquage comme maîtrisé');
+                            console.log('✅ Réponse correcte - Sauvegarde');
                             
-                            // Marquer comme maîtrisé dans les données utilisateur
+                            // Sauvegarder dans le système utilisateur
                             const allData = userManager.getAllUsersData();
                             const userData = allData[userManager.currentUser];
+                            
                             if (userData) {
-                                console.log(`   📊 AVANT: ${Object.values(userData.progress).filter(Boolean).length} termes maîtrisés`);
-                                
+                                const avant = Object.values(userData.progress).filter(Boolean).length;
                                 userData.progress[currentTerm.term] = true;
                                 userData.dailyRotation.completedToday++;
                                 userManager.saveAllUsersData(allData);
+                                const apres = Object.values(userData.progress).filter(Boolean).length;
                                 
-                                console.log(`   📊 APRÈS: ${Object.values(userData.progress).filter(Boolean).length} termes maîtrisés`);
-                                console.log('   💾 Données sauvegardées');
+                                console.log(`� Termes maîtrisés: ${avant} → ${apres}`);
                                 
-                                // Mettre à jour l'affichage quotidien
+                                // Mettre à jour l'affichage
                                 const progress = userManager.getTodayProgress();
                                 document.getElementById('dailyProgress').textContent = 
                                     `📚 Mots du jour : ${progress}/10`;
-                                console.log(`   📅 Progression quotidienne: ${progress}/10`);
                                 
                                 // Mettre à jour les stats
-                                console.log('   🔄 Appel updateUserStats()');
                                 window.updateUserStats();
-                            } else {
-                                console.log('   ❌ userData non trouvée');
                             }
                         } else {
-                            console.log('   ❌ Réponse incorrecte - Pas de marquage');
+                            console.log('❌ Réponse incorrecte - Pas de sauvegarde');
                         }
-                    } else {
-                        console.log('   ❌ currentTerm non trouvé');
                     }
-                } else {
-                    console.log('   ❌ currentSession ou currentTermIndex invalide');
-                    console.log(`   🔍 currentSession: ${!!window.currentSession}, currentTermIndex: ${window.currentTermIndex}`);
                 }
-                
-                console.log('🏁 processAnswer() terminé');
             };
             
-            // Forcer la mise à jour initiale
+            // 5. Mettre à jour immédiatement les stats
             setTimeout(() => {
+                console.log('🔄 Mise à jour stats initiale');
                 window.updateUserStats();
             }, 100);
             
-            console.log('✅ Système personnalisé configuré');
+            console.log('✅ Système personnalisé configuré avec succès');
         }
         
         // Vérifier si un utilisateur est déjà connecté au chargement
