@@ -1,5 +1,19 @@
 {
-  "images": [],
+  "images": [
+    {
+      "id": "img_001",
+      "filename": "Membre-superieur.png",
+      "original_name": "Membre-supérieur.png",
+      "category": "anatomie-physiologie",
+      "subcategory": null,
+      "title": "membre sup",
+      "description": "asadadadc",
+      "tags": [],
+      "uploaded_date": "2025-10-06",
+      "size": "125.7KB",
+      "type": "png"
+    }
+  ],
   "categories": {
     "anatomie-physiologie": {
       "name": "Anatomie & Physiologie",

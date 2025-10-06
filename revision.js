@@ -4,6 +4,10 @@ let currentSession = [];
 let currentTermIndex = 0;
 let sessionResults = [];
 let coursesData = null;
+let sessionStartTime = null;
+
+// État de la révision actuelle
+let currentState = 'thinking'; // 'thinking' → 'revealed' → 'ready'
 
 // Statistiques globales
 let globalStats = {
@@ -12,11 +16,102 @@ let globalStats = {
     wrongAnswers: 0
 };
 
+// Système de signalement
+let reportedTerms = [];
+let pendingReports = [];
+
 // Initialisation au chargement de la page
 document.addEventListener('DOMContentLoaded', function() {
     loadCoursesData();
     loadUserProgress();
+    loadReportedTerms();
+    setupEventListeners();
 });
+
+// Charger les signalements existants
+function loadReportedTerms() {
+    const savedReports = localStorage.getItem('reportedTerms');
+    if (savedReports) {
+        try {
+            reportedTerms = JSON.parse(savedReports);
+        } catch (e) {
+            console.error('Erreur lors du chargement des signalements:', e);
+            reportedTerms = [];
+        }
+    } else {
+        reportedTerms = [];
+    }
+}
+
+// Afficher une notification
+function showNotification(message, type = 'info') {
+    // Supprimer les anciennes notifications
+    const existingNotifs = document.querySelectorAll('.notification');
+    existingNotifs.forEach(notif => notif.remove());
+    
+    // Créer la nouvelle notification
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            ${message}
+        </div>
+    `;
+    
+    // Ajouter au body
+    document.body.appendChild(notification);
+    
+    // Afficher avec animation
+    setTimeout(() => {
+        notification.classList.add('notification-active');
+    }, 10);
+    
+    // Masquer après 3 secondes
+    setTimeout(() => {
+        notification.classList.remove('notification-active');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 3000);
+}
+
+// Configuration des événements
+function setupEventListeners() {
+    // Boutons de la révision - nouveaux IDs
+    const checkAnswerBtn = document.getElementById('checkAnswerBtn');
+    const nextTermBtn = document.getElementById('nextTermBtn');
+    const reportTermBtn = document.getElementById('reportTermBtn');
+    
+    if (checkAnswerBtn) checkAnswerBtn.addEventListener('click', revealDefinition);
+    if (nextTermBtn) nextTermBtn.addEventListener('click', nextTerm);
+    if (reportTermBtn) reportTermBtn.addEventListener('click', showReportModal);
+    
+    // Raccourcis clavier
+    document.addEventListener('keydown', function(event) {
+        if (event.target.tagName === 'TEXTAREA' || event.target.tagName === 'INPUT') {
+            return; // Ne pas intercepter si on tape dans un champ
+        }
+        
+        switch(event.key) {
+            case ' ':
+            case 'Enter':
+                event.preventDefault();
+                if (currentState === 'thinking') {
+                    revealDefinition();
+                } else if (currentState === 'revealed') {
+                    nextTerm();
+                }
+                break;
+            case 'r':
+            case 'R':
+                if (currentState === 'revealed') {
+                    event.preventDefault();
+                    showReportModal();
+                }
+                break;
+        }
+    });
+}
 
 // Charger les données des cours
 async function loadCoursesData() {
@@ -99,6 +194,7 @@ function startRevision() {
     currentSession = selectTermsForSession();
     currentTermIndex = 0;
     sessionResults = [];
+    sessionStartTime = new Date();
     
     // Masquer l'écran de démarrage et afficher l'écran de révision
     document.getElementById('startScreen').style.display = 'none';
@@ -157,16 +253,85 @@ function showCurrentTerm() {
     document.getElementById('termNumber').textContent = `${currentTermIndex + 1}/${currentSession.length}`;
     document.getElementById('termName').textContent = currentTerm.term;
     document.getElementById('sessionProgress').textContent = `Session : ${currentTermIndex + 1}/${currentSession.length}`;
+    document.getElementById('termDefinition').textContent = currentTerm.definition;
     
-    // Réinitialiser l'interface
+    // Reset de l'interface à l'état initial
+    setThinkingState();
+}
+
+// État initial : réflexion
+function setThinkingState() {
+    currentState = 'thinking';
+    
+    // Réinitialiser la zone de réponse
     document.getElementById('userAnswer').value = '';
-    document.getElementById('correctionSection').style.display = 'none';
     document.getElementById('userAnswer').disabled = false;
     
-    // Focus sur le textarea
+    // Masquer la section de correction
+    document.getElementById('correctionSection').style.display = 'none';
+    
+    // Afficher le bouton de vérification
+    document.getElementById('checkAnswerBtn').style.display = 'inline-block';
+    document.getElementById('checkAnswerBtn').disabled = false;
+    
+    // Focus sur la zone de réponse
     setTimeout(() => {
         document.getElementById('userAnswer').focus();
     }, 100);
+}
+
+// Révéler la définition
+function revealDefinition() {
+    if (currentState !== 'thinking') return;
+    
+    const userAnswer = document.getElementById('userAnswer').value.trim();
+    if (!userAnswer) {
+        alert('Veuillez saisir votre réponse avant de vérifier.');
+        return;
+    }
+    
+    currentState = 'revealed';
+    
+    const currentTerm = currentSession[currentTermIndex];
+    
+    // Afficher les réponses
+    document.getElementById('userAnswerDisplay').textContent = userAnswer;
+    document.getElementById('correctAnswerDisplay').textContent = currentTerm.definition;
+    
+    // Désactiver le textarea et masquer le bouton
+    document.getElementById('userAnswer').disabled = true;
+    document.getElementById('checkAnswerBtn').style.display = 'none';
+    
+    // Afficher la section de correction
+    document.getElementById('correctionSection').style.display = 'block';
+    
+    // Enregistrer dans les résultats de session
+    sessionResults.push({
+        term: currentTerm,
+        userReflection: userAnswer,
+        timestamp: new Date().toISOString(),
+        reported: false
+    });
+    
+    // Faire défiler vers la correction
+    document.getElementById('correctionSection').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+    });
+}
+
+// Passer au terme suivant
+function nextTerm() {
+    if (currentState !== 'revealed') return;
+    
+    // Passer au terme suivant
+    currentTermIndex++;
+    
+    if (currentTermIndex < currentSession.length) {
+        showCurrentTerm();
+    } else {
+        showSessionSummary();
+    }
 }
 
 // Vérifier la réponse de l'utilisateur
@@ -195,162 +360,338 @@ function checkAnswer() {
     });
 }
 
-// Auto-évaluation de l'utilisateur
-function evaluateTerm(evaluation) {
-    const currentTerm = currentSession[currentTermIndex];
+// Afficher le résumé de session
+function showSessionSummary() {
+    // Calculer les statistiques
+    const totalTerms = sessionResults.length;
     
-    // Enregistrer le résultat pour cette session uniquement
-    sessionResults.push({
-        term: currentTerm,
-        userAnswer: document.getElementById('userAnswer').value.trim(),
-        evaluation: evaluation
+    // Créer le contenu du résumé
+    let summaryContent = `
+        <div class="session-stats">
+            <h3>Résumé de votre session</h3>
+            <p><strong>Termes étudiés :</strong> ${totalTerms}</p>
+            <p><strong>Termes signalés :</strong> ${reportedTerms.length}</p>
+        </div>
+        
+        <div class="terms-review">
+            <h4>Récapitulatif des termes</h4>
+            <div class="terms-list">
+    `;
+    
+    sessionResults.forEach((result, index) => {
+        summaryContent += `
+            <div class="term-summary">
+                <h5>${result.term.term}</h5>
+                <p><strong>Votre réflexion :</strong> ${result.userReflection || 'Aucune réflexion saisie'}</p>
+                <p><strong>Définition :</strong> ${result.term.definition}</p>
+                ${result.reported ? '<span class="reported-badge">Signalé</span>' : ''}
+            </div>
+        `;
     });
     
-    // Mettre à jour uniquement les stats de session (pas de persistance)
-    if (evaluation === 'correct') {
-        markTermAsMastered(currentTerm);
-        globalStats.correctAnswers++;
-    } else {
-        markTermAsNotMastered(currentTerm);
-        globalStats.wrongAnswers++;
-    }
+    summaryContent += `
+            </div>
+        </div>
+        
+        <div class="summary-actions">
+            <button onclick="startNewSession()">Nouvelle session</button>
+            <button onclick="returnToMenu()">Retour au menu</button>
+        </div>
+    `;
     
-    // Mettre à jour les statistiques de session
-    globalStats.correctAnswers = (globalStats.correctAnswers || 0) + (evaluation === 'correct' ? 1 : 0);
-    globalStats.wrongAnswers = (globalStats.wrongAnswers || 0) + (evaluation !== 'correct' ? 1 : 0);
-    
-    // Passer au terme suivant ou terminer la session
-    currentTermIndex++;
-    
-    if (currentTermIndex < currentSession.length) {
-        // Terme suivant après un délai
-        setTimeout(() => {
-            showCurrentTerm();
-        }, 1000);
-    } else {
-        // Fin de session
-        setTimeout(() => {
-            showResults();
-        }, 1000);
-    }
-    
-    // Sauvegarder les stats de session
-    saveUserProgress();
+    // Afficher le résumé
+    document.getElementById('revisionScreen').style.display = 'none';
+    document.getElementById('resultsScreen').innerHTML = summaryContent;
+    document.getElementById('resultsScreen').style.display = 'block';
 }
 
-// Afficher les résultats de la session
-function showResults() {
-    // Calculer les statistiques de la session
-    const correct = sessionResults.filter(r => r.evaluation === 'correct').length;
-    const partial = sessionResults.filter(r => r.evaluation === 'partial').length;
-    const wrong = sessionResults.filter(r => r.evaluation === 'wrong').length;
-    const scorePercentage = Math.round(((correct + partial * 0.5) / sessionResults.length) * 100);
+// Afficher la modal de signalement
+function showReportModal() {
+    if (!validateSessionState()) return;
     
-    // Mettre à jour l'affichage
-    document.getElementById('scorePercentage').textContent = `${scorePercentage}%`;
-    document.getElementById('correctCount').textContent = correct;
-    document.getElementById('partialCount').textContent = partial;
-    document.getElementById('wrongCount').textContent = wrong;
+    return safeExecute(() => {
+        const currentTerm = currentSession[currentTermIndex];
+        
+        // Supprimer l'ancienne modal si elle existe
+        const existingModal = document.getElementById('reportModal');
+        if (existingModal) {
+            existingModal.remove();
+        }
+        
+        // Créer la nouvelle modal
+        const modal = document.createElement('div');
+        modal.id = 'reportModal';
+        modal.className = 'modal-overlay';
+        modal.innerHTML = `
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h3>⚠️ Signaler cette définition</h3>
+                    <button class="modal-close" onclick="closeReportModal()">&times;</button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="term-info">
+                        <p><strong>Terme :</strong> ${currentTerm.term}</p>
+                        <p><strong>Définition actuelle :</strong></p>
+                        <div class="current-definition">${currentTerm.definition}</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reportReason">Raison du signalement :</label>
+                        <select id="reportReason" class="form-select">
+                            <option value="inexact">Définition inexacte</option>
+                            <option value="incomplete">Définition incomplète</option>
+                            <option value="unclear">Définition peu claire</option>
+                            <option value="error">Erreur dans la définition</option>
+                            <option value="typo">Faute de frappe/orthographe</option>
+                            <option value="other">Autre</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reportComment">Votre commentaire :</label>
+                        <textarea 
+                            id="reportComment" 
+                            class="form-textarea"
+                            placeholder="Décrivez le problème ou proposez une amélioration..."
+                            rows="4"
+                        ></textarea>
+                    </div>
+                    
+                    <div class="info-box">
+                        <p><strong>📋 Processus :</strong></p>
+                        <p>En cliquant sur "Ouvrir le formulaire", le Google Form s'ouvrira avec le terme et l'UE pré-remplis. Votre commentaire sera également intégré. Vous n'aurez qu'à valider l'envoi.</p>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button class="btn btn-primary" onclick="submitReport()">
+                        📤 Ouvrir le formulaire
+                    </button>
+                    <button class="btn btn-secondary" onclick="closeReportModal()">
+                        ❌ Annuler
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        // Ajouter la modal au body
+        document.body.appendChild(modal);
+        
+        // Afficher la modal avec animation
+        setTimeout(() => {
+            modal.classList.add('modal-active');
+        }, 10);
+        
+        // Focus sur le textarea
+        setTimeout(() => {
+            const commentField = document.getElementById('reportComment');
+            if (commentField) commentField.focus();
+        }, 100);
+        
+        return true;
+    }, 'Impossible d\'ouvrir la modal de signalement');
+}
+
+// Fermer la modal de signalement
+function closeReportModal() {
+    const modal = document.getElementById('reportModal');
+    if (modal) {
+        modal.classList.remove('modal-active');
+        setTimeout(() => {
+            modal.remove();
+        }, 300);
+    }
+}
+
+// Soumettre le signalement via Google Forms
+function submitReport() {
+    const currentTerm = currentSession[currentTermIndex];
+    const reasonElement = document.getElementById('reportReason');
+    const commentElement = document.getElementById('reportComment');
     
-    // Modifier la couleur du cercle selon le score
-    const circle = document.getElementById('scoreCircle');
-    if (scorePercentage >= 80) {
-        circle.style.background = 'conic-gradient(from 0deg, #4caf50 0%, #66bb6a 100%)';
-    } else if (scorePercentage >= 60) {
-        circle.style.background = 'conic-gradient(from 0deg, #ffca28 0%, #ffd54f 100%)';
-    } else {
-        circle.style.background = 'conic-gradient(from 0deg, #ef5350 0%, #e57373 100%)';
+    if (!reasonElement || !commentElement) {
+        showNotification('❌ Erreur : formulaire non trouvé', 'error');
+        return;
     }
     
-    // Masquer l'écran de révision et afficher les résultats
-    document.getElementById('revisionScreen').style.display = 'none';
-    document.getElementById('resultsScreen').style.display = 'block';
+    const reason = reasonElement.value;
+    const comment = commentElement.value.trim();
     
-    // Mettre à jour les statistiques globales
-    updateStatsDisplay();
+    if (!comment) {
+        showNotification('⚠️ Veuillez ajouter un commentaire pour expliquer le problème', 'warning');
+        document.getElementById('reportComment').focus();
+        return;
+    }
+    
+    // Créer l'URL Google Forms avec pré-remplissage
+    const googleFormUrl = createGoogleFormUrl({
+        term: currentTerm.term,
+        definition: currentTerm.definition,
+        ue: currentTerm.ue || 'Non spécifiée',
+        category: currentTerm.category || 'Général',
+        reason: reason,
+        comment: comment,
+        timestamp: new Date().toLocaleString('fr-FR')
+    });
+    
+    // Ouvrir Google Forms dans un nouvel onglet
+    window.open(googleFormUrl, '_blank');
+    
+    // Marquer comme signalé pour éviter les doublons
+    markTermAsReported(currentTerm);
+    
+    // Afficher confirmation
+    showNotification('📝 Google Form ouvert ! Vérifiez l\'onglet et validez l\'envoi.', 'success');
+    
+    // Fermer la modal
+    closeReportModal();
+}
+
+// Créer l'URL Google Forms avec pré-remplissage
+function createGoogleFormUrl(data) {
+    // URL de base du Google Form
+    const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSe04vxWBsFmPrrEVdQsFwvsrt0konBbrd4iNncbRb8Z99N0UA/viewform';
+    
+    // Configuration des champs (vos vrais entry IDs)
+    const fieldMappings = {
+        terme: 'entry.987196451',           // Champ "Terme signalé"
+        ue: 'entry.46296924',              // Champ "Unité d'enseignement"
+        commentaire: 'entry.980958767'     // Champ "Suggestion/commentaire"
+    };
+    
+    // Construire le commentaire complet avec toutes les infos
+    const fullComment = `
+PROBLÈME: ${getReasonLabel(data.reason)}
+
+COMMENTAIRE/SUGGESTION:
+${data.comment}
+
+DÉFINITION ACTUELLE:
+${data.definition}
+
+Date: ${data.timestamp}
+`.trim();
+    
+    // Construire les paramètres d'URL
+    const params = new URLSearchParams({
+        'usp': 'pp_url',
+        [fieldMappings.terme]: data.term,
+        [fieldMappings.ue]: data.ue,
+        [fieldMappings.commentaire]: fullComment
+    });
+    
+    return `${baseUrl}?${params.toString()}`;
+}
+
+// Supprimer la fonction fallback email (plus nécessaire)
+// function createEmailFallback(data) { ... } - SUPPRIMÉE
+
+// Marquer un terme comme signalé
+function markTermAsReported(term) {
+    if (!reportedTerms.includes(term.term)) {
+        reportedTerms.push(term.term);
+        localStorage.setItem('reportedTerms', JSON.stringify(reportedTerms));
+    }
+    
+    // Marquer dans les résultats de session
+    const sessionResult = sessionResults.find(r => r.term.id === term.id);
+    if (sessionResult) {
+        sessionResult.reported = true;
+    }
+}
+
+// Obtenir le libellé français de la raison
+function getReasonLabel(reason) {
+    const labels = {
+        'inexact': 'Définition inexacte',
+        'incomplete': 'Définition incomplète',
+        'unclear': 'Définition peu claire',
+        'error': 'Erreur dans la définition',
+        'typo': 'Faute de frappe/orthographe',
+        'other': 'Autre'
+    };
+    return labels[reason] || reason;
 }
 
 // Démarrer une nouvelle session
 function startNewSession() {
-    // Réinitialiser l'affichage
+    // Réinitialiser les variables de session
+    currentTermIndex = 0;
+    sessionResults = [];
+    currentState = 'thinking';
+    
+    // Réafficher l'écran de démarrage
     document.getElementById('resultsScreen').style.display = 'none';
-    document.getElementById('reviewScreen').style.display = 'none';
+    document.getElementById('revisionScreen').style.display = 'none';
     document.getElementById('startScreen').style.display = 'block';
     
     // Mettre à jour les statistiques
     updateStatsDisplay();
 }
 
-// Revoir les réponses de la session
-function reviewSession() {
-    const reviewContent = document.getElementById('reviewContent');
-    
-    // Générer le contenu de révision
-    reviewContent.innerHTML = sessionResults.map((result, index) => {
-        const evaluationClass = result.evaluation;
-        const evaluationText = {
-            'correct': '✅ Correcte',
-            'partial': '🟡 Partielle',
-            'wrong': '❌ Incorrecte'
-        }[result.evaluation];
-        
-        return `
-            <div class="review-item ${evaluationClass}">
-                <h4>${index + 1}. ${result.term.term} (UE ${result.term.ue})</h4>
-                <div class="review-answer">
-                    <strong>Votre réponse :</strong>
-                    ${result.userAnswer}
-                </div>
-                <div class="review-answer">
-                    <strong>Définition correcte :</strong>
-                    ${result.term.definition}
-                </div>
-                <div class="review-evaluation">
-                    <strong>Évaluation :</strong> ${evaluationText}
-                </div>
-            </div>
-        `;
-    }).join('');
-    
-    // Afficher l'écran de révision
-    document.getElementById('resultsScreen').style.display = 'none';
-    document.getElementById('reviewScreen').style.display = 'block';
+// Retourner au menu principal
+function returnToMenu() {
+    window.location.href = 'index.html';
 }
 
-// Fermer l'écran de révision
-function closeReview() {
-    document.getElementById('reviewScreen').style.display = 'none';
-    document.getElementById('resultsScreen').style.display = 'block';
-}
-
-// Gestion du clavier
+// Mise à jour des raccourcis clavier
 document.addEventListener('keydown', function(event) {
-    // Entrée pour vérifier la réponse si on est dans le textarea
-    if (event.key === 'Enter' && event.ctrlKey) {
-        const textarea = document.getElementById('userAnswer');
-        if (document.activeElement === textarea && !textarea.disabled) {
-            checkAnswer();
+    // Gestion des raccourcis dans l'interface de révision
+    if (document.getElementById('revisionScreen').style.display === 'block') {
+        // Ne pas intercepter si on est dans un textarea, input ou modal
+        if (event.target.tagName === 'TEXTAREA' || 
+            event.target.tagName === 'INPUT' || 
+            event.target.tagName === 'SELECT' ||
+            document.querySelector('.modal-overlay.modal-active')) {
+            return;
+        }
+        
+        if (event.key === ' ' || event.key === 'Enter') {
+            event.preventDefault();
+            
+            // Actions selon l'état actuel
+            if (currentState === 'thinking') {
+                revealDefinition();
+            } else if (currentState === 'revealed') {
+                nextTerm();
+            }
+        } else if (event.key === 'r' || event.key === 'R') {
+            event.preventDefault();
+            if (currentState === 'revealed') {
+                showReportModal();
+            }
         }
     }
     
-    // Échap pour fermer la révision
+    // Échap pour fermer les modals
     if (event.key === 'Escape') {
-        const reviewScreen = document.getElementById('reviewScreen');
-        if (reviewScreen.style.display === 'block') {
-            closeReview();
-        }
+        closeReportModal();
     }
 });
 
-// Ajouter un raccourci clavier dans le textarea
-document.addEventListener('DOMContentLoaded', function() {
-    const textarea = document.getElementById('userAnswer');
-    if (textarea) {
-        textarea.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter' && event.ctrlKey) {
-                event.preventDefault();
-                checkAnswer();
-            }
-        });
+// Fonction utilitaire pour valider l'état de la session
+function validateSessionState() {
+    if (!currentSession || currentSession.length === 0) {
+        showNotification('❌ Erreur : Aucune session active', 'error');
+        return false;
     }
-});
+    
+    if (currentTermIndex >= currentSession.length) {
+        showNotification('❌ Erreur : Index de terme invalide', 'error');
+        return false;
+    }
+    
+    return true;
+}
+
+// Gestion d'erreur globale pour les fonctions principales
+function safeExecute(func, errorMessage = 'Une erreur est survenue') {
+    try {
+        return func();
+    } catch (error) {
+        console.error('Erreur:', error);
+        showNotification(`❌ ${errorMessage}`, 'error');
+        return false;
+    }
+}

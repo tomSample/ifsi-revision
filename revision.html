@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"t="width=device-width, initial-scale=1.0">
     <title>IFSI Lannion - Révisions Quotidiennes</title>
     <link rel="stylesheet" href="style-revision.css">
 </head>
@@ -54,86 +54,77 @@
                         <span class="term-number" id="termNumber">1/10</span>
                     </div>
                     
+                    <!-- Étape 1: Terme à définir -->
                     <div class="term-question">
                         <h3 id="termName">Terme à définir</h3>
-                        <p class="instruction">Écrivez votre définition ci-dessous :</p>
+                        <p class="instruction">Donnez votre définition :</p>
                     </div>
 
+                    <!-- Zone de réponse utilisateur -->
                     <div class="answer-section">
                         <textarea 
                             id="userAnswer" 
-                            placeholder="Tapez votre définition ici..."
+                            placeholder="Écrivez votre définition ici..."
                             rows="4"
                         ></textarea>
+                        <button id="checkAnswerBtn" class="btn-primary" onclick="revealDefinition()">
+                            Vérifier ma réponse
+                        </button>
+                    </div>
+
+                    <!-- Section de correction (cachée) -->
+                    <div id="correctionSection" class="correction-section" style="display: none;">
+                        <div class="user-answer">
+                            <h4>Votre réponse :</h4>
+                            <div id="userAnswerDisplay" class="answer-display"></div>
+                        </div>
                         
-                        <div class="answer-actions">
-                            <button class="check-btn" onclick="checkAnswer()">
-                                ✅ Vérifier ma réponse
+                        <div class="correct-answer">
+                            <h4>Définition officielle :</h4>
+                            <div id="correctAnswerDisplay" class="answer-display"></div>
+                        </div>
+                        
+                        <div class="evaluation-buttons">
+                            <button id="nextTermBtn" class="btn-next" onclick="nextTerm()">
+                                Terme suivant
+                            </button>
+                            <button id="reportTermBtn" class="btn-report" onclick="showReportModal()">
+                                Signaler cette définition
                             </button>
                         </div>
                     </div>
 
-                    <!-- Section de correction -->
-                    <div class="correction-section" id="correctionSection" style="display: none;">
-                        <div class="user-answer-display">
-                            <h4>📝 Votre réponse :</h4>
-                            <div class="answer-box user" id="userAnswerDisplay"></div>
-                        </div>
-                        
-                        <div class="correct-answer-display">
-                            <h4>✅ Définition correcte :</h4>
-                            <div class="answer-box correct" id="correctAnswerDisplay"></div>
-                        </div>
-
-                        <div class="self-evaluation">
-                            <p>Maîtrisez-vous ce terme ?</p>
-                            <div class="evaluation-buttons">
-                                <button class="eval-btn incorrect" onclick="evaluateTerm('incorrect')">
-                                    🔄 Non maîtrisé - Revoir plus tard
-                                </button>
-                                <button class="eval-btn correct" onclick="evaluateTerm('correct')">
-                                    ✅ Maîtrisé - Terme acquis
-                                </button>
-                            </div>
+                    <!-- Étape 2: Définition cachée -->
+                    <div id="definitionSection" class="definition-hidden">
+                        <div class="definition-content">
+                            <h4>� Définition officielle :</h4>
+                            <div class="definition-text" id="termDefinition"></div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
 
             <!-- Écran de résultats -->
             <div class="results-screen" id="resultsScreen" style="display: none;">
                 <div class="results-card">
-                    <h3>🎉 Session terminée !</h3>
-                    <div class="session-stats">
-                        <div class="stat-circle">
-                            <div class="circle-progress" id="scoreCircle">
-                                <span id="scorePercentage">0%</span>
-                            </div>
-                            <p>Score de la session</p>
-                        </div>
-                        
-                        <div class="detailed-stats">
-                            <div class="stat-row">
-                                <span>✅ Correctes :</span>
-                                <span id="correctCount">0</span>
-                            </div>
-                            <div class="stat-row">
-                                <span>🟡 Partielles :</span>
-                                <span id="partialCount">0</span>
-                            </div>
-                            <div class="stat-row">
-                                <span>❌ Incorrectes :</span>
-                                <span id="wrongCount">0</span>
-                            </div>
-                        </div>
+                    <h3>📚 Récapitulatif de votre session</h3>
+                    <p class="session-stats-text">
+                        Vous avez étudié <strong id="sessionTermCount">10 termes</strong> 
+                        en <strong id="sessionDuration">-</strong>
+                    </p>
+                    
+                    <div class="terms-summary" id="termsSummary">
+                        <!-- Le contenu sera généré dynamiquement -->
                     </div>
 
                     <div class="action-buttons">
                         <button class="new-session-btn" onclick="startNewSession()">
                             🔄 Nouvelle session (10 termes)
                         </button>
-                        <button class="review-btn" onclick="reviewSession()">
-                            📋 Revoir les réponses
+                        <button class="export-btn" onclick="exportSession()">
+                            � Exporter cette session
                         </button>
                     </div>
                 </div>
@@ -150,6 +141,38 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- Modal de signalement -->
+    <div class="report-modal" id="reportModal" style="display: none;">
+        <div class="report-content">
+            <div class="report-header">
+                <h3>⚠️ Signaler la définition</h3>
+                <button class="close-report" onclick="closeReport()">✖</button>
+            </div>
+            
+            <div class="report-body">
+                <p><strong>Terme :</strong> <span id="reportTermName"></span></p>
+                <p><strong>Définition actuelle :</strong></p>
+                <div class="current-definition" id="reportCurrentDefinition"></div>
+                
+                <label for="reportType">Que souhaitez-vous signaler ?</label>
+                <select id="reportType">
+                    <option value="unclear">Définition peu claire</option>
+                    <option value="incomplete">Définition incomplète</option>
+                    <option value="error">Erreur dans la définition</option>
+                    <option value="suggestion">Suggestion d'amélioration</option>
+                </select>
+                
+                <label for="reportComment">Votre commentaire :</label>
+                <textarea id="reportComment" placeholder="Décrivez le problème ou votre suggestion..." rows="4"></textarea>
+            </div>
+            
+            <div class="report-actions">
+                <button onclick="submitReport()" class="action-btn primary">📤 Envoyer le signalement</button>
+                <button onclick="closeReport()" class="action-btn secondary">❌ Annuler</button>
+            </div>
+        </div>
     </div>
 
     <script src="revision.js"></script>
