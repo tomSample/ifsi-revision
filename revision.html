@@ -5,166 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IFSI Lannion - Révisions Quotidiennes</title>
     <link rel="stylesheet" href="style-revision.css">
-    
-    <!-- Styles pour l'authentification utilisateur -->
-    <style>
-        .user-auth {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        
-        .auth-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-        }
-        
-        .auth-card h1 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-        
-        .auth-card h2 {
-            color: #6c757d;
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-        
-        .auth-input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            box-sizing: border-box;
-        }
-        
-        .auth-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-        
-        .auth-btn {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 1rem;
-        }
-        
-        .auth-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-        }
-        
-        .user-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 2rem;
-            margin-bottom: 2rem;
-            border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-        
-        .user-badge {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-        
-        .logout-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .logout-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .sync-status {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        @media (max-width: 768px) {
-            .user-header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .user-info {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-        }
-    </style>
 </head>
 <body>
-    <!-- Interface d'authentification -->
-    <div id="userAuth" class="user-auth">
-        <div class="auth-card">
-            <h1>🎓 IFSI Lannion</h1>
-            <h2>Révisions Personnalisées</h2>
-            <div class="auth-form">
-                <input type="text" id="usernameInput" class="auth-input" 
-                       placeholder="Votre prénom" maxlength="20" autocomplete="off">
-                <button onclick="loginUser()" class="auth-btn">🚀 Commencer mes révisions</button>
-                <button onclick="showOfflineMode()" class="auth-btn" style="background: #6c757d;">📱 Mode hors ligne</button>
-            </div>
-            <div style="color: #6c757d; font-size: 0.9rem; line-height: 1.4;">
-                💡 Vos données sont synchronisées entre vos appareils<br>
-                et sauvegardées localement pour un accès hors ligne.
-            </div>
-        </div>
-    </div>
-
-    <!-- Interface principale (cachée initialement) -->
-    <div id="mainApp" style="display: none;">
-        <!-- Header utilisateur -->
-        <div class="user-header">
-            <div class="user-info">
-                <span class="user-badge">👤 <span id="currentUserName">Utilisateur</span></span>
-                <span class="sync-status" id="syncStatus">🔄 Synchronisation...</span>
-            </div>
-            <button onclick="logoutUser()" class="logout-btn">🚪 Changer d'utilisateur</button>
-        </div>
-
     <div class="container">
         <header>
             <h1>📚 IFSI Lannion 2025</h1>
@@ -187,15 +29,15 @@
                     <div class="stats-preview" id="statsPreview">
                         <div class="stat-item">
                             <span class="stat-number" id="totalTermsPreview">-</span>
-                            <span class="stat-label">Termes total</span>
+                            <span class="stat-label">Termes disponibles</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number" id="masteredTerms">-</span>
-                            <span class="stat-label">Maîtrisés</span>
+                            <span class="stat-number">10</span>
+                            <span class="stat-label">Par session</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number" id="priorityTerms">-</span>
-                            <span class="stat-label">Prioritaires</span>
+                            <span class="stat-label">Sessions complétées</span>
                         </div>
                     </div>
                     <button class="start-btn" onclick="startRevision()">
@@ -309,40 +151,7 @@
             </div>
         </main>
     </div>
-    </div> <!-- Fin mainApp -->
-
-    <!-- Firebase SDKs -->
-    <script type="module">
-        // Import des modules Firebase
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
-        import { getFirestore, doc, setDoc, getDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
-        
-        // Configuration Firebase (remplacer par votre config)
-        const firebaseConfig = {
-            apiKey: "AIzaSyBTemporary", // À remplacer
-            authDomain: "ifsi-lannion.firebaseapp.com", // À remplacer
-            projectId: "ifsi-lannion", // À remplacer
-            storageBucket: "ifsi-lannion.appspot.com", // À remplacer
-            messagingSenderId: "123456789", // À remplacer
-            appId: "1:123456789:web:abcdef123456" // À remplacer
-        };
-        
-        // Initialiser Firebase (temporairement désactivé)
-        let app, db;
-        try {
-            // app = initializeApp(firebaseConfig);
-            // db = getFirestore(app);
-            console.log('🔥 Firebase configuré (en attente de vraie config)');
-        } catch (error) {
-            console.log('📱 Mode hors ligne - Firebase non disponible');
-        }
-        
-        // Rendre Firebase disponible globalement
-        window.firebaseApp = app;
-        window.firebaseDb = db;
-    </script>
 
     <script src="revision.js"></script>
-    <script src="user-firebase.js"></script>
 </body>
 </html>
