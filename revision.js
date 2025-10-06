@@ -56,22 +56,15 @@ async function loadCoursesData() {
 
 // Charger la progression de l'utilisateur depuis localStorage
 function loadUserProgress() {
-    const savedProgress = localStorage.getItem('ifsi_revision_progress');
-    if (savedProgress) {
-        const progress = JSON.parse(savedProgress);
-        usedTerms = progress.usedTerms || [];
-        globalStats = { ...globalStats, ...progress.stats };
-    }
+    // Le système de progression est maintenant géré via masteredTerms
+    // Cette fonction est conservée pour la compatibilité
     updateStatsDisplay();
 }
 
 // Sauvegarder la progression de l'utilisateur
 function saveUserProgress() {
-    const progress = {
-        usedTerms: usedTerms,
-        stats: globalStats
-    };
-    localStorage.setItem('ifsi_revision_progress', JSON.stringify(progress));
+    // La sauvegarde est maintenant automatique via markTermAsMastered
+    // Cette fonction est conservée pour la compatibilité
 }
 
 // Mettre à jour l'affichage des statistiques
@@ -407,54 +400,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-// ===== INTÉGRATION SYSTÈME UTILISATEUR =====
-
-// Fonction appelée depuis l'interface d'authentification
-function updateRevisionForUser(userRotationInstance) {
-    // Remplacer la fonction de sélection des termes pour utiliser la rotation personnalisée
-    const originalSelectTermsForSession = selectTermsForSession;
-    
-    selectTermsForSession = function() {
-        // Utiliser les mots personnalisés de l'utilisateur
-        const todayWords = userRotationInstance.getTodayWords();
-        console.log(`Utilisation des mots personnalisés de l'utilisateur: ${todayWords.length} mots`);
-        return todayWords;
-    };
-    
-    // Sauvegarder la progression utilisateur après chaque réponse
-    const originalProcessAnswer = processAnswer;
-    
-    window.processAnswer = function(evaluation) {
-        originalProcessAnswer(evaluation);
-        
-        // Sauvegarder la progression de l'utilisateur
-        if (userManager && currentSession[currentTermIndex - 1]) {
-            const term = currentSession[currentTermIndex - 1];
-            userManager.updateTermProgress(term.term, evaluation === 'correct');
-            userManager.saveProgress();
-            
-            // Mettre à jour le compteur de mots du jour
-            const progress = userRotationInstance.getTodayProgress();
-            document.getElementById('dailyProgress').textContent = `📚 Mots du jour : ${progress}/10`;
-        }
-    };
-    
-    // Charger les statistiques utilisateur
-    const userStats = userManager.getGlobalStats();
-    globalStats.seenTerms = userStats.seenTerms;
-    globalStats.correctAnswers = userStats.correctAnswers;
-    globalStats.partialAnswers = userStats.partialAnswers;
-    globalStats.wrongAnswers = userStats.wrongAnswers;
-    
-    updateStatsDisplay();
-}
-
-// Redéfinir isMasteredTerm pour utiliser les données utilisateur
-const originalIsMasteredTerm = window.isMasteredTerm;
-window.isMasteredTerm = function(term) {
-    if (userManager) {
-        return userManager.isTermMastered(term.term);
-    }
-    return originalIsMasteredTerm ? originalIsMasteredTerm(term) : false;
-};
