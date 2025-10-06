@@ -153,13 +153,29 @@ function selectTermsForSession() {
 // Vérifier si un terme est maîtrisé
 function isMasteredTerm(term) {
     const termKey = generateTermKey(term);
+    
+    // Utiliser le système utilisateur s'il est disponible
+    if (window.userManager && window.userManager.currentUser) {
+        return window.userManager.isMasteredTerm(termKey);
+    }
+    
+    // Fallback vers localStorage global
     const masteredTerms = JSON.parse(localStorage.getItem('masteredTerms') || '[]');
     return masteredTerms.includes(termKey);
 }
 
 // Marquer un terme comme maîtrisé
-function markTermAsMastered(term) {
+async function markTermAsMastered(term) {
     const termKey = generateTermKey(term);
+    
+    // Utiliser le système utilisateur s'il est disponible
+    if (window.userManager && window.userManager.currentUser) {
+        await window.userManager.markTermAsMastered(termKey);
+        console.log(`Terme marqué comme maîtrisé pour ${window.userManager.currentUser}: ${term.term}`);
+        return;
+    }
+    
+    // Fallback vers localStorage global
     let masteredTerms = JSON.parse(localStorage.getItem('masteredTerms') || '[]');
     
     if (!masteredTerms.includes(termKey)) {
@@ -170,8 +186,17 @@ function markTermAsMastered(term) {
 }
 
 // Marquer un terme comme non maîtrisé (retirer de la liste des maîtrisés)
-function markTermAsNotMastered(term) {
+async function markTermAsNotMastered(term) {
     const termKey = generateTermKey(term);
+    
+    // Utiliser le système utilisateur s'il est disponible
+    if (window.userManager && window.userManager.currentUser) {
+        await window.userManager.markTermAsNotMastered(termKey);
+        console.log(`Terme marqué comme non maîtrisé pour ${window.userManager.currentUser}: ${term.term}`);
+        return;
+    }
+    
+    // Fallback vers localStorage global
     let masteredTerms = JSON.parse(localStorage.getItem('masteredTerms') || '[]');
     
     masteredTerms = masteredTerms.filter(key => key !== termKey);
@@ -238,7 +263,7 @@ function checkAnswer() {
 }
 
 // Auto-évaluation de l'utilisateur
-function evaluateTerm(evaluation) {
+async function evaluateTerm(evaluation) {
     const currentTerm = currentSession[currentTermIndex];
     
     // Enregistrer le résultat
@@ -250,10 +275,10 @@ function evaluateTerm(evaluation) {
     
     // Gérer le statut de maîtrise
     if (evaluation === 'correct') {
-        markTermAsMastered(currentTerm);
+        await markTermAsMastered(currentTerm);
         globalStats.correctAnswers++;
     } else {
-        markTermAsNotMastered(currentTerm);
+        await markTermAsNotMastered(currentTerm);
         globalStats.wrongAnswers++;
     }
     
@@ -264,6 +289,9 @@ function evaluateTerm(evaluation) {
     
     // Mettre à jour les statistiques globales
     globalStats.seenTerms++;
+    
+    // Mettre à jour l'affichage
+    updateStatsDisplay();
     
     // Passer au terme suivant ou terminer la session
     currentTermIndex++;
@@ -285,12 +313,18 @@ function evaluateTerm(evaluation) {
 }
 
 // Afficher les résultats de la session
-function showResults() {
+async function showResults() {
     // Calculer les statistiques de la session
     const correct = sessionResults.filter(r => r.evaluation === 'correct').length;
     const partial = sessionResults.filter(r => r.evaluation === 'partial').length;
     const wrong = sessionResults.filter(r => r.evaluation === 'wrong').length;
     const scorePercentage = Math.round(((correct + partial * 0.5) / sessionResults.length) * 100);
+    
+    // Enregistrer les statistiques de session pour l'utilisateur
+    if (window.userManager && window.userManager.currentUser) {
+        await window.userManager.updateSessionStats(correct + partial * 0.5, sessionResults.length);
+        console.log(`📊 Statistiques sauvegardées pour ${window.userManager.currentUser}`);
+    }
     
     // Mettre à jour l'affichage
     document.getElementById('scorePercentage').textContent = `${scorePercentage}%`;
