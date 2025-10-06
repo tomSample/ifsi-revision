@@ -287,21 +287,19 @@ async function uploadImage() {
     }
     
     const category = document.getElementById('categorySelect').value;
-    const subcategory = document.getElementById('subcategoryInput').value.trim();
+    const title = document.getElementById('titleInput').value.trim();
     const description = document.getElementById('descriptionInput').value.trim();
-    const tagsInput = document.getElementById('tagsInput').value.trim();
     
-    if (!category || !description) {
-        showStatus('Veuillez remplir au minimum la catégorie et la description', 'error');
+    if (!category || !title) {
+        showStatus('Veuillez remplir au minimum la catégorie et le titre', 'error');
         return;
     }
     
     const formData = new FormData();
     formData.append('file', selectedImageFile);
     formData.append('category', category);
-    formData.append('subcategory', subcategory);
+    formData.append('title', title);
     formData.append('description', description);
-    formData.append('tags', tagsInput);
     
     try {
         showStatus('Upload de l\'image en cours...', 'info');
@@ -314,7 +312,7 @@ async function uploadImage() {
         const result = await response.json();
         
         if (response.ok && result.success) {
-            showStatus(`✅ Image "${description}" uploadée avec succès !`, 'success');
+            showStatus(`✅ Image "${title}" uploadée avec succès !`, 'success');
             resetImageForm();
         } else {
             throw new Error(result.error || 'Erreur inconnue');
@@ -338,9 +336,8 @@ function resetImageForm() {
 
 function resetImageFormFields() {
     document.getElementById('categorySelect').value = '';
-    document.getElementById('subcategoryInput').value = '';
+    document.getElementById('titleInput').value = '';
     document.getElementById('descriptionInput').value = '';
-    document.getElementById('tagsInput').value = '';
 }
 
 // ========================================

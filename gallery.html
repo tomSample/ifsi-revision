@@ -103,6 +103,12 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .image-thumbnail:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .image-thumbnail img {
@@ -267,6 +273,97 @@
             border-radius: 8px;
             text-align: center;
             max-width: 80%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-info.hidden {
+            opacity: 0;
+            transform: translateX(-50%) translateY(20px);
+            pointer-events: none;
+        }
+
+        .description-toggle {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .description-toggle:hover {
+            background: rgba(0, 0, 0, 0.9);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .description-toggle.show {
+            background: rgba(76, 175, 80, 0.8);
+            border-color: rgba(76, 175, 80, 0.6);
+        }
+
+        .description-toggle.hide {
+            background: rgba(244, 67, 54, 0.8);
+            border-color: rgba(244, 67, 54, 0.6);
+        }
+
+        /* Barre de recherche */
+        .search-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        #searchInput:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .clear-search {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .clear-search:hover {
+            background: #f5f5f5;
+            color: #333;
         }
 
         /* Confirmation de suppression */
@@ -390,6 +487,14 @@
         <section class="gallery-section">
             <h3>📁 Images par catégorie</h3>
             
+            <!-- Barre de recherche -->
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Rechercher par titre..." oninput="searchImages()">
+                    <button class="clear-search" onclick="clearSearch()" style="display: none;">✖</button>
+                </div>
+            </div>
+            
             <div class="category-tabs">
                 <button class="category-tab active" onclick="showCategory('all')">
                     📚 Toutes les images
@@ -424,9 +529,14 @@
             <button class="modal-nav modal-prev" onclick="previousImage()">‹</button>
             <img class="modal-image" id="modalImage" src="" alt="">
             <button class="modal-nav modal-next" onclick="nextImage()">›</button>
-            <div class="modal-info" id="modalInfo">
+            <button class="description-toggle show" id="descriptionToggle" onclick="toggleDescription()">
+                📝 Afficher description
+            </button>
+            <div class="modal-info hidden" id="modalInfo">
                 <h4 id="modalTitle"></h4>
-                <p id="modalDescription"></p>
+                <div id="modalDescriptionContainer" style="display: none;">
+                    <p id="modalDescription"></p>
+                </div>
             </div>
         </div>
     </div>

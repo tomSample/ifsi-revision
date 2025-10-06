@@ -801,15 +801,14 @@ def upload_image():
         
         # Récupérer les métadonnées
         category = request.form.get('category')
-        subcategory = request.form.get('subcategory', '').strip()
+        title = request.form.get('title', '').strip()
         description = request.form.get('description', '').strip()
-        tags_input = request.form.get('tags', '').strip()
         
-        if not category or not description:
-            return jsonify({'error': 'Catégorie et description obligatoires'}), 400
+        if not category or not title:
+            return jsonify({'error': 'Catégorie et titre obligatoires'}), 400
         
-        # Traiter les tags
-        tags = [tag.strip() for tag in tags_input.split(',') if tag.strip()] if tags_input else []
+        # Traiter les tags (vide par défaut)
+        tags = []
         
         # Créer le dossier de catégorie si nécessaire
         category_folder = os.path.join(IMAGES_FOLDER, category)
@@ -838,8 +837,9 @@ def upload_image():
             'filename': filename,
             'original_name': file.filename,
             'category': category,
-            'subcategory': subcategory if subcategory else None,
-            'description': description,
+            'subcategory': None,
+            'title': title,
+            'description': description if description else None,
             'tags': tags,
             'uploaded_date': datetime.now().strftime('%Y-%m-%d'),
             'size': f"{os.path.getsize(filepath)/1024:.1f}KB",
@@ -852,7 +852,7 @@ def upload_image():
         
         return jsonify({
             'success': True,
-            'message': f'Image "{description}" uploadée avec succès !',
+            'message': f'Image "{title}" uploadée avec succès !',
             'image': new_image
         })
         

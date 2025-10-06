@@ -1,6 +1,9 @@
 // Variables globales
 let imagesData = { images: [], categories: {} };
 let selectedFile = null;
+let currentImagesList = [];
+let currentImageIndex = 0;
+let currentCategory = 'all';
 
 // Initialisation au chargement
 document.addEventListener('DOMContentLoaded', function() {
@@ -121,11 +124,12 @@ async function uploadImage() {
     
     const category = document.getElementById('categorySelect').value;
     const subcategory = document.getElementById('subcategoryInput').value.trim();
+    const title = document.getElementById('titleInput').value.trim();
     const description = document.getElementById('descriptionInput').value.trim();
     const tagsInput = document.getElementById('tagsInput').value.trim();
     
-    if (!category || !description) {
-        showStatus('Veuillez remplir au minimum la catégorie et la description', 'error');
+    if (!category || !title) {
+        showStatus('Veuillez remplir au minimum la catégorie et le titre', 'error');
         return;
     }
     
@@ -133,6 +137,7 @@ async function uploadImage() {
     formData.append('file', selectedFile);
     formData.append('category', category);
     formData.append('subcategory', subcategory);
+    formData.append('title', title);
     formData.append('description', description);
     formData.append('tags', tagsInput);
     
@@ -254,14 +259,14 @@ function displayImages(categoryFilter) {
     
     grid.innerHTML = filteredImages.map(img => `
         <div class="image-card">
-            <div class="image-thumbnail">
+            <div class="image-thumbnail" onclick="viewImageInModal('images/${img.category}/${img.filename}', ${JSON.stringify(img).replace(/"/g, '&quot;')})" style="cursor: pointer;">
                 ${img.type === 'pdf' ? 
                     '<div class="pdf-thumbnail">📄</div>' :
                     `<img src="images/${img.category}/${img.filename}" alt="${img.description}">`
                 }
             </div>
             <div class="image-info">
-                <h4>${img.description}</h4>
+                <h4>${img.title || img.description}</h4>
                 <div class="image-meta">
                     ${imagesData.categories[img.category]?.icon || '📁'} ${imagesData.categories[img.category]?.name || img.category}
                     ${img.subcategory ? ` • ${img.subcategory}` : ''}
@@ -423,6 +428,7 @@ function resetUploadForm() {
 function resetForm() {
     document.getElementById('categorySelect').value = '';
     document.getElementById('subcategoryInput').value = '';
+    document.getElementById('titleInput').value = '';
     document.getElementById('descriptionInput').value = '';
     document.getElementById('tagsInput').value = '';
 }
@@ -454,21 +460,24 @@ document.addEventListener('keydown', function(event) {
 });
 
 // Variables pour la navigation d'images
-let currentImageIndex = 0;
-let currentImagesList = [];
 let imageToDelete = null;
 
 // Fonction pour visualiser l'image dans la modal
 function viewImageInModal(imagePath, imageData) {
-    openImageModal(imagePath, imageData);
-}
-
-// Fonction pour ouvrir l'image avec navigation
-function openImageModal(imagePath, imageData) {
-    // Mettre à jour la liste des images actuelles
-    const currentCategory = document.querySelector('.category-tab.active').dataset.category || 
-                           document.querySelector('.category-tab.active').onclick.toString().match(/showCategory\('(.+?)'\)/)[1];
+    // Obtenir la catégorie actuelle de l'onglet actif
+    const activeTab = document.querySelector('.category-tab.active');
+    let currentCategory = 'all';
     
+    if (activeTab) {
+        if (activeTab.dataset.category) {
+            currentCategory = activeTab.dataset.category;
+        } else {
+            const categoryMatch = activeTab.onclick.toString().match(/showCategory\('(.+?)'\)/);
+            currentCategory = categoryMatch ? categoryMatch[1] : 'all';
+        }
+    }
+    
+    // Mettre à jour la liste des images actuelles selon la catégorie
     if (currentCategory === 'all') {
         currentImagesList = imagesData.images;
     } else {
@@ -476,17 +485,35 @@ function openImageModal(imagePath, imageData) {
     }
     
     // Trouver l'index de l'image actuelle
-    currentImageIndex = currentImagesList.findIndex(img => img.path === imagePath);
+    currentImageIndex = currentImagesList.findIndex(img => `images/${img.category}/${img.filename}` === imagePath);
+    if (currentImageIndex === -1) {
+        // Si on ne trouve pas l'image par le path, essayer par l'ID
+        currentImageIndex = currentImagesList.findIndex(img => img.id === imageData.id);
+    }
     
     // Afficher la modal
     const modal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
     const modalTitle = document.getElementById('modalTitle');
     const modalDescription = document.getElementById('modalDescription');
+    const modalDescriptionContainer = document.getElementById('modalDescriptionContainer');
+    const modalInfo = document.getElementById('modalInfo');
+    
+    // Retirer la classe hidden du modalInfo pour qu'il soit visible
+    modalInfo.classList.remove('hidden');
     
     modalImage.src = imagePath;
-    modalTitle.textContent = imageData.description || imageData.filename;
-    modalDescription.textContent = `Catégorie: ${imageData.category} | Tags: ${(imageData.tags || []).join(', ')}`;
+    modalTitle.textContent = imageData.title || imageData.description || imageData.filename;
+    modalDescription.textContent = imageData.description || 'Aucune description disponible';
+    
+    // Masquer la description par défaut
+    modalDescriptionContainer.style.display = 'none';
+    
+    // Mettre à jour le bouton toggle
+    const toggleButton = document.getElementById('descriptionToggle');
+    toggleButton.textContent = '📝 Afficher description';
+    toggleButton.classList.remove('hide');
+    toggleButton.classList.add('show');
     
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -495,11 +522,32 @@ function openImageModal(imagePath, imageData) {
 // Fermer la modal d'image
 function closeImageModal() {
     const modal = document.getElementById('imageModal');
+    const modalInfo = document.getElementById('modalInfo');
+    
     modal.style.display = 'none';
+    modalInfo.classList.add('hidden'); // Remettre la classe hidden
     document.body.style.overflow = 'auto';
 }
 
 // Navigation vers l'image précédente
+// Fonction pour afficher/masquer la description
+function toggleDescription() {
+    const descriptionContainer = document.getElementById('modalDescriptionContainer');
+    const toggleButton = document.getElementById('descriptionToggle');
+    
+    if (descriptionContainer.style.display === 'none') {
+        descriptionContainer.style.display = 'block';
+        toggleButton.textContent = '📝 Masquer description';
+        toggleButton.classList.remove('show');
+        toggleButton.classList.add('hide');
+    } else {
+        descriptionContainer.style.display = 'none';
+        toggleButton.textContent = '📝 Afficher description';
+        toggleButton.classList.remove('hide');
+        toggleButton.classList.add('show');
+    }
+}
+
 function previousImage() {
     if (currentImagesList.length === 0) return;
     
@@ -509,10 +557,18 @@ function previousImage() {
     const modalImage = document.getElementById('modalImage');
     const modalTitle = document.getElementById('modalTitle');
     const modalDescription = document.getElementById('modalDescription');
+    const modalDescriptionContainer = document.getElementById('modalDescriptionContainer');
     
-    modalImage.src = currentImage.path;
-    modalTitle.textContent = currentImage.description || currentImage.filename;
-    modalDescription.textContent = `Catégorie: ${currentImage.category} | Tags: ${(currentImage.tags || []).join(', ')}`;
+    modalImage.src = `images/${currentImage.category}/${currentImage.filename}`;
+    modalTitle.textContent = currentImage.title || currentImage.description || currentImage.filename;
+    modalDescription.textContent = currentImage.description || 'Aucune description disponible';
+    
+    // Réinitialiser l'état de la description (masquée par défaut)
+    modalDescriptionContainer.style.display = 'none';
+    const toggleButton = document.getElementById('descriptionToggle');
+    toggleButton.textContent = '📝 Afficher description';
+    toggleButton.classList.remove('hide');
+    toggleButton.classList.add('show');
 }
 
 // Navigation vers l'image suivante
@@ -525,10 +581,18 @@ function nextImage() {
     const modalImage = document.getElementById('modalImage');
     const modalTitle = document.getElementById('modalTitle');
     const modalDescription = document.getElementById('modalDescription');
+    const modalDescriptionContainer = document.getElementById('modalDescriptionContainer');
     
-    modalImage.src = currentImage.path;
-    modalTitle.textContent = currentImage.description || currentImage.filename;
-    modalDescription.textContent = `Catégorie: ${currentImage.category} | Tags: ${(currentImage.tags || []).join(', ')}`;
+    modalImage.src = `images/${currentImage.category}/${currentImage.filename}`;
+    modalTitle.textContent = currentImage.title || currentImage.description || currentImage.filename;
+    modalDescription.textContent = currentImage.description || 'Aucune description disponible';
+    
+    // Réinitialiser l'état de la description (masquée par défaut)
+    modalDescriptionContainer.style.display = 'none';
+    const toggleButton = document.getElementById('descriptionToggle');
+    toggleButton.textContent = '📝 Afficher description';
+    toggleButton.classList.remove('hide');
+    toggleButton.classList.add('show');
 }
 
 // Fonction pour initier la suppression d'image
@@ -586,4 +650,88 @@ async function confirmDelete() {
         console.error('Erreur:', error);
         showStatus('Erreur lors de la suppression', 'error');
     }
+}
+
+// Fonctions de recherche
+function searchImages() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+    const clearButton = document.querySelector('.clear-search');
+    
+    // Afficher/masquer le bouton de suppression
+    if (searchTerm) {
+        clearButton.style.display = 'block';
+    } else {
+        clearButton.style.display = 'none';
+    }
+    
+    // Filtrer les images par titre
+    if (searchTerm) {
+        const filteredImages = imagesData.images.filter(img => {
+            const title = (img.title || img.description || '').toLowerCase();
+            return title.includes(searchTerm);
+        });
+        displayFilteredImages(filteredImages, `Résultats de recherche pour "${document.getElementById('searchInput').value}"`);
+        
+        // Désactiver les onglets de catégorie pendant la recherche
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+    } else {
+        // Retourner à l'affichage normal
+        showCategory('all');
+    }
+}
+
+function clearSearch() {
+    document.getElementById('searchInput').value = '';
+    document.querySelector('.clear-search').style.display = 'none';
+    showCategory('all');
+}
+
+function displayFilteredImages(filteredImages, title) {
+    const grid = document.getElementById('imagesGrid');
+    
+    if (filteredImages.length === 0) {
+        grid.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">🔍</div>
+                <h4>Aucun résultat trouvé</h4>
+                <p>Essayez avec d'autres mots-clés</p>
+            </div>
+        `;
+        return;
+    }
+    
+    grid.innerHTML = filteredImages.map(img => `
+        <div class="image-card">
+            <div class="image-thumbnail" onclick="viewImageInModal('images/${img.category}/${img.filename}', ${JSON.stringify(img).replace(/"/g, '&quot;')})" style="cursor: pointer;">
+                ${img.type === 'pdf' ? 
+                    '<div class="pdf-thumbnail">📄</div>' :
+                    `<img src="images/${img.category}/${img.filename}" alt="${img.description}">`
+                }
+            </div>
+            <div class="image-info">
+                <h4>${img.title || img.description}</h4>
+                <div class="image-meta">
+                    ${imagesData.categories[img.category]?.icon || '📁'} ${imagesData.categories[img.category]?.name || img.category}
+                    ${img.subcategory ? ` • ${img.subcategory}` : ''}
+                    <br>
+                    📅 ${img.uploaded_date} • 📏 ${img.size}
+                </div>
+                ${img.tags && img.tags.length > 0 ? `
+                    <div class="image-tags">
+                        ${img.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                ` : ''}
+                <div class="image-actions">
+                    <button class="action-btn view-btn" onclick="viewImageInModal('images/${img.category}/${img.filename}', ${JSON.stringify(img).replace(/"/g, '&quot;')})">
+                        👁️ Voir
+                    </button>
+                    <button class="action-btn download-btn" onclick="downloadImage('${img.id}')">
+                        ⬇️ Télécharger
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
 }
