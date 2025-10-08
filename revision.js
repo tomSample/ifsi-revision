@@ -165,7 +165,6 @@ function saveUserProgress() {
 function updateStatsDisplay() {
     const totalTermsElement = document.getElementById('totalTermsPreview');
     const priorityTermsElement = document.getElementById('priorityTerms');
-    const globalProgressElement = document.getElementById('globalProgress');
     
     if (totalTermsElement) {
         totalTermsElement.textContent = globalStats.totalTerms;
@@ -175,11 +174,6 @@ function updateStatsDisplay() {
     if (priorityTermsElement) {
         const totalSessions = parseInt(localStorage.getItem('totalSessions') || '0');
         priorityTermsElement.textContent = totalSessions;
-    }
-    
-    if (globalProgressElement) {
-        const totalSessions = parseInt(localStorage.getItem('totalSessions') || '0');
-        globalProgressElement.textContent = `${globalStats.totalTerms} termes disponibles - ${totalSessions} sessions complétées`;
     }
 }
 
@@ -252,7 +246,6 @@ function showCurrentTerm() {
     document.getElementById('termUE').textContent = `UE ${currentTerm.ue}`;
     document.getElementById('termNumber').textContent = `${currentTermIndex + 1}/${currentSession.length}`;
     document.getElementById('termName').textContent = currentTerm.term;
-    document.getElementById('sessionProgress').textContent = `Session : ${currentTermIndex + 1}/${currentSession.length}`;
     document.getElementById('termDefinition').textContent = currentTerm.definition;
     
     // Reset de l'interface à l'état initial
