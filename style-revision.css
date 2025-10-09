@@ -102,6 +102,108 @@ header h2 {
     line-height: 1.6;
 }
 
+/* Filtre UE simple et élégant */
+.ue-filter-simple {
+    margin: 1.5rem 0;
+}
+
+.ue-filter-simple label {
+    display: block;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.ue-dropdown {
+    background: white;
+    border: 2px solid #667eea;
+    border-radius: 10px;
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.ue-dropdown:hover {
+    border-color: #5a67d8;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+.ue-dropdown.active {
+    border-radius: 10px 10px 0 0;
+    border-bottom-color: transparent;
+}
+
+#ueFilterText {
+    font-weight: 600;
+    color: #333;
+}
+
+.dropdown-arrow {
+    color: #667eea;
+    transition: transform 0.2s ease;
+}
+
+.ue-dropdown.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.ue-options {
+    background: white;
+    border: 2px solid #667eea;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ue-option {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #f1f3f4;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: background-color 0.2s ease;
+}
+
+.ue-option:hover {
+    background: #f8f9fa;
+}
+
+.ue-option:last-child {
+    border-bottom: none;
+}
+
+.ue-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.ue-name {
+    flex: 1;
+    font-weight: 500;
+}
+
+.ue-count {
+    color: #6c757d;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.ue-option.all .ue-name {
+    font-weight: 600;
+    color: #667eea;
+}
+
 /* Sélecteur de nombre de termes */
 .term-selector {
     margin: 2rem 0;
@@ -1285,6 +1387,32 @@ header h2 {
     .term-card,
     .results-card {
         padding: 2rem;
+    }
+    
+    /* Filtre UE responsive */
+    .ue-filter-simple {
+        margin: 1rem 0;
+    }
+    
+    .ue-dropdown {
+        padding: 0.8rem;
+        font-size: 0.95rem;
+    }
+    
+    .ue-options {
+        max-height: 200px;
+    }
+    
+    .ue-option {
+        padding: 0.7rem 0.8rem;
+    }
+    
+    .ue-name {
+        font-size: 0.9rem;
+    }
+    
+    .ue-count {
+        font-size: 0.8rem;
     }
     
     /* Sélecteur de termes en responsive */

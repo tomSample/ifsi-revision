@@ -39,10 +39,26 @@
                         </div>
                     </div>
                     
+                    <!-- Filtre UE simple -->
+                    <div class="ue-filter-simple">
+                        <label>📚 Unités d'Enseignement</label>
+                        <div class="ue-dropdown" onclick="toggleUEDropdown()">
+                            <span id="ueFilterText">Toutes les UE</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="ue-options" id="ueOptions" style="display: none;">
+                            <!-- Généré par JavaScript -->
+                        </div>
+                    </div>
+                    
                     <div class="stats-preview" id="statsPreview">
                         <div class="stat-item">
+                            <span class="stat-number" id="filteredTermsCount">-</span>
+                            <span class="stat-label">Termes sélectionnés</span>
+                        </div>
+                        <div class="stat-item">
                             <span class="stat-number" id="totalTermsPreview">-</span>
-                            <span class="stat-label">Termes disponibles</span>
+                            <span class="stat-label">Termes total</span>
                         </div>
                     </div>
                     <button class="start-btn" onclick="startRevision()">

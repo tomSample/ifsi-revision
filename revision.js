@@ -1,5 +1,8 @@
 // Variables globales pour la gestion des révisions
 let allTerms = [];
+let filteredTerms = []; // Termes filtrés selon les UE
+let availableUEs = []; // Liste des UE disponibles
+let selectedUEs = []; // UE sélectionnées
 let currentSession = [];
 let currentTermIndex = 0;
 let sessionResults = [];
@@ -119,11 +122,14 @@ async function loadCoursesData() {
         const response = await fetch('ifsi_courses_2025-09-23.json');
         coursesData = await response.json();
         
-        // Extraire tous les termes de tous les cours
+        // Extraire tous les termes et UE
         allTerms = [];
+        const ueSet = new Set();
+        
         coursesData.courses.forEach(course => {
             const [courseKey, courseData] = course;
             if (courseData.definitions) {
+                ueSet.add(courseData.ue);
                 courseData.definitions.forEach(def => {
                     allTerms.push({
                         term: def.term,
@@ -135,10 +141,33 @@ async function loadCoursesData() {
             }
         });
         
+        // Trier les UE
+        availableUEs = Array.from(ueSet).sort((a, b) => {
+            const parseUE = (ue) => {
+                const match = ue.match(/(\d+)\.(\d+)\.S(\d+)/);
+                return match ? [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])] : [999, 999, 999];
+            };
+            
+            const [a1, a2, a3] = parseUE(a);
+            const [b1, b2, b3] = parseUE(b);
+            
+            if (a1 !== b1) return a1 - b1;
+            if (a2 !== b2) return a2 - b2;
+            return a3 - b3;
+        });
+        
+        // Initialiser avec toutes les UE sélectionnées
+        selectedUEs = [...availableUEs];
+        filteredTerms = [...allTerms];
+        
         globalStats.totalTerms = allTerms.length;
+        
+        // Initialiser le filtre UE
+        initUEFilter();
         updateStatsDisplay();
         
         console.log(`${allTerms.length} termes chargés depuis ${coursesData.courses.length} cours`);
+        console.log(`${availableUEs.length} UE disponibles:`, availableUEs);
         
     } catch (error) {
         console.error('Erreur lors du chargement des données:', error);
@@ -164,16 +193,169 @@ function saveUserProgress() {
 // Mettre à jour l'affichage des statistiques
 function updateStatsDisplay() {
     const totalTermsElement = document.getElementById('totalTermsPreview');
+    const filteredTermsElement = document.getElementById('filteredTermsCount');
     
     if (totalTermsElement) {
         totalTermsElement.textContent = globalStats.totalTerms;
+    }
+    
+    if (filteredTermsElement) {
+        filteredTermsElement.textContent = filteredTerms.length;
+    }
+}
+
+// ===== FILTRAGE UE SIMPLE =====
+
+// Initialiser le filtre UE
+function initUEFilter() {
+    generateUEOptions();
+    updateUEDisplay();
+}
+
+// Générer les options UE
+function generateUEOptions() {
+    const container = document.getElementById('ueOptions');
+    if (!container) return;
+    
+    const totalTerms = allTerms.length;
+    
+    let html = `
+        <div class="ue-option all" onclick="toggleAllUEs()">
+            <input type="checkbox" class="ue-checkbox" id="allUEs" checked>
+            <span class="ue-name">✅ Toutes les UE</span>
+            <span class="ue-count">(${totalTerms} termes)</span>
+        </div>
+    `;
+    
+    availableUEs.forEach(ue => {
+        const count = getTermCountForUE(ue);
+        const checked = selectedUEs.includes(ue) ? 'checked' : '';
+        html += `
+            <div class="ue-option" onclick="toggleUE('${ue}')">
+                <input type="checkbox" class="ue-checkbox" id="ue_${ue.replace(/\./g, '_')}" ${checked}>
+                <span class="ue-name">UE ${ue}</span>
+                <span class="ue-count">(${count} termes)</span>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+}
+
+// Compter les termes pour une UE
+function getTermCountForUE(ue) {
+    return allTerms.filter(term => term.ue === ue).length;
+}
+
+// Basculer le dropdown UE
+function toggleUEDropdown() {
+    const dropdown = document.querySelector('.ue-dropdown');
+    const options = document.getElementById('ueOptions');
+    
+    if (options.style.display === 'none') {
+        options.style.display = 'block';
+        dropdown.classList.add('active');
+    } else {
+        options.style.display = 'none';
+        dropdown.classList.remove('active');
+    }
+}
+
+// Fermer le dropdown si on clique ailleurs
+document.addEventListener('click', function(event) {
+    const ueFilter = document.querySelector('.ue-filter-simple');
+    if (ueFilter && !ueFilter.contains(event.target)) {
+        const options = document.getElementById('ueOptions');
+        const dropdown = document.querySelector('.ue-dropdown');
+        if (options && dropdown) {
+            options.style.display = 'none';
+            dropdown.classList.remove('active');
+        }
+    }
+});
+
+// Basculer toutes les UE
+function toggleAllUEs() {
+    const allCheckbox = document.getElementById('allUEs');
+    const isChecked = !allCheckbox.checked;
+    
+    allCheckbox.checked = isChecked;
+    
+    // Mettre à jour toutes les autres checkboxes
+    availableUEs.forEach(ue => {
+        const checkbox = document.getElementById(`ue_${ue.replace(/\./g, '_')}`);
+        if (checkbox) checkbox.checked = isChecked;
+    });
+    
+    // Mettre à jour la sélection
+    selectedUEs = isChecked ? [...availableUEs] : [];
+    updateFilteredTerms();
+    updateUEDisplay();
+    
+    event.stopPropagation();
+}
+
+// Basculer une UE spécifique
+function toggleUE(ue) {
+    const checkbox = document.getElementById(`ue_${ue.replace(/\./g, '_')}`);
+    const allCheckbox = document.getElementById('allUEs');
+    
+    // Inverser l'état de la checkbox
+    checkbox.checked = !checkbox.checked;
+    
+    if (checkbox.checked) {
+        // Ajouter l'UE si elle n'est pas déjà sélectionnée
+        if (!selectedUEs.includes(ue)) {
+            selectedUEs.push(ue);
+        }
+        // Vérifier si toutes les UE sont sélectionnées
+        if (selectedUEs.length === availableUEs.length) {
+            allCheckbox.checked = true;
+        }
+    } else {
+        // Retirer l'UE
+        selectedUEs = selectedUEs.filter(selectedUE => selectedUE !== ue);
+        allCheckbox.checked = false;
+    }
+    
+    updateFilteredTerms();
+    updateUEDisplay();
+    
+    event.stopPropagation();
+}
+
+// Mettre à jour les termes filtrés
+function updateFilteredTerms() {
+    if (selectedUEs.length === 0) {
+        filteredTerms = [];
+    } else {
+        filteredTerms = allTerms.filter(term => selectedUEs.includes(term.ue));
+    }
+    updateStatsDisplay();
+}
+
+// Mettre à jour l'affichage UE
+function updateUEDisplay() {
+    const text = document.getElementById('ueFilterText');
+    if (!text) return;
+    
+    const filteredCount = filteredTerms.length;
+    
+    if (selectedUEs.length === availableUEs.length) {
+        text.textContent = `Toutes les UE (${filteredCount} termes)`;
+    } else if (selectedUEs.length === 1) {
+        text.textContent = `UE ${selectedUEs[0]} (${filteredCount} termes)`;
+    } else if (selectedUEs.length === 0) {
+        text.textContent = 'Aucune UE sélectionnée (0 termes)';
+    } else {
+        text.textContent = `${selectedUEs.length} UE sélectionnées (${filteredCount} termes)`;
     }
 }
 
 // Démarrer une session de révision
 function startRevision() {
-    if (allTerms.length === 0) {
-        alert('Aucun terme disponible. Vérifiez le chargement des données.');
+    if (filteredTerms.length === 0) {
+        alert('Aucun terme disponible avec les UE sélectionnées. Veuillez sélectionner au moins une UE.');
         return;
     }
     
@@ -181,13 +363,14 @@ function startRevision() {
     const termCountInput = document.getElementById('termCount');
     const termCount = parseInt(termCountInput.value) || 10;
     
-    // Validation du nombre de termes
-    if (termCount < 1 || termCount > Math.min(50, allTerms.length)) {
-        alert(`Veuillez choisir entre 1 et ${Math.min(50, allTerms.length)} termes.`);
+    // Validation du nombre de termes par rapport aux termes filtrés
+    const maxTerms = Math.min(50, filteredTerms.length);
+    if (termCount < 1 || termCount > maxTerms) {
+        alert(`Veuillez choisir entre 1 et ${maxTerms} termes avec la sélection d'UE actuelle.`);
         return;
     }
     
-    // Sélectionner les termes pour cette session
+    // Sélectionner les termes pour cette session depuis les termes filtrés
     currentSession = selectTermsForSession(termCount);
     currentTermIndex = 0;
     sessionResults = [];
@@ -201,20 +384,20 @@ function startRevision() {
     showCurrentTerm();
 }
 
-// Sélectionner des termes pour la session (complètement aléatoire)
+// Sélectionner des termes pour la session (depuis les termes filtrés)
 function selectTermsForSession(count = 10) {
-    if (allTerms.length === 0) {
-        console.log('Aucun terme disponible');
+    if (filteredTerms.length === 0) {
+        console.log('Aucun terme disponible avec les filtres actuels');
         return [];
     }
     
-    // Mélanger tous les termes de façon aléatoire
-    const shuffledTerms = [...allTerms].sort(() => 0.5 - Math.random());
+    // Mélanger les termes filtrés de façon aléatoire
+    const shuffledTerms = [...filteredTerms].sort(() => 0.5 - Math.random());
     
     // Prendre le nombre demandé (ou moins s'il y a moins de termes disponibles)
-    const sessionTerms = shuffledTerms.slice(0, Math.min(count, allTerms.length));
+    const sessionTerms = shuffledTerms.slice(0, Math.min(count, filteredTerms.length));
     
-    console.log(`Session générée avec ${sessionTerms.length} termes aléatoires`);
+    console.log(`Session générée avec ${sessionTerms.length} termes aléatoires depuis ${filteredTerms.length} termes filtrés`);
     return sessionTerms;
 }
 
