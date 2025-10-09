@@ -453,13 +453,13 @@ function showReportModal() {
                     
                     <div class="info-box">
                         <p><strong>📋 Processus :</strong></p>
-                        <p>En cliquant sur "Ouvrir le formulaire", le Google Form s'ouvrira avec le terme et l'UE pré-remplis. Votre commentaire sera également intégré. Vous n'aurez qu'à valider l'envoi.</p>
+                        <p>En cliquant sur "Envoyer", votre commentaire sera envoyé.</p>
                     </div>
                 </div>
                 
                 <div class="modal-footer">
                     <button class="btn btn-primary" onclick="submitReport()">
-                        📤 Ouvrir le formulaire
+                        📤 Envoyer
                     </button>
                     <button class="btn btn-secondary" onclick="closeReportModal()">
                         ❌ Annuler
@@ -497,7 +497,7 @@ function closeReportModal() {
     }
 }
 
-// Soumettre le signalement via Google Forms
+// Soumettre le signalement via Google Forms (iframe cachée)
 function submitReport() {
     const currentTerm = currentSession[currentTermIndex];
     const reasonElement = document.getElementById('reportReason');
@@ -517,68 +517,78 @@ function submitReport() {
         return;
     }
     
-    // Créer l'URL Google Forms avec pré-remplissage
-    const googleFormUrl = createGoogleFormUrl({
-        term: currentTerm.term,
-        definition: currentTerm.definition,
-        ue: currentTerm.ue || 'Non spécifiée',
-        category: currentTerm.category || 'Général',
-        reason: reason,
-        comment: comment,
-        timestamp: new Date().toLocaleString('fr-FR')
+    // Construire le commentaire enrichi
+    const enrichedComment = `PROBLÈME: ${getReasonLabel(reason)}
+
+COMMENTAIRE/SUGGESTION:
+${comment}
+
+DÉFINITION ACTUELLE:
+${currentTerm.definition}
+
+Date: ${new Date().toLocaleString('fr-FR')}`;
+
+    // Créer une iframe cachée pour la soumission
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.name = 'hidden-form-target';
+    document.body.appendChild(iframe);
+    
+    // Créer le formulaire qui cible l'iframe
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'https://docs.google.com/forms/d/e/1FAIpQLSe04vxWBsFmPrrEVdQsFwvsrt0konBbrd4iNncbRb8Z99N0UA/formResponse';
+    form.target = 'hidden-form-target';
+    form.style.display = 'none';
+    
+    // Ajouter les champs avec vos vrais entry IDs
+    const formFields = {
+        'entry.987196451': currentTerm.term,                    // Terme signalé
+        'entry.46296924': currentTerm.ue || 'Non spécifiée',   // Unité d'enseignement
+        'entry.980958767': enrichedComment                     // Commentaire complet
+    };
+    
+    Object.entries(formFields).forEach(([name, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        form.appendChild(input);
     });
     
-    // Ouvrir Google Forms dans un nouvel onglet
-    window.open(googleFormUrl, '_blank');
+    document.body.appendChild(form);
+    
+    // Soumettre le formulaire
+    form.submit();
+    
+    // Nettoyer après 3 secondes
+    setTimeout(() => {
+        if (document.body.contains(form)) {
+            document.body.removeChild(form);
+        }
+        if (document.body.contains(iframe)) {
+            document.body.removeChild(iframe);
+        }
+    }, 3000);
     
     // Marquer comme signalé pour éviter les doublons
     markTermAsReported(currentTerm);
     
-    // Afficher confirmation
-    showNotification('📝 Google Form ouvert ! Vérifiez l\'onglet et validez l\'envoi.', 'success');
+    // Feedback immédiat à l'utilisateur
+    showNotification('✅ Signalement envoyé ! Merci pour votre contribution.', 'success');
     
     // Fermer la modal
     closeReportModal();
+    
+    // Analytics si disponible
+    if (window.gtag) {
+        window.gtag('event', 'term_reported', {
+            event_category: 'User Interaction',
+            event_label: currentTerm.term,
+            custom_parameter_1: reason
+        });
+    }
 }
-
-// Créer l'URL Google Forms avec pré-remplissage
-function createGoogleFormUrl(data) {
-    // URL de base du Google Form
-    const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSe04vxWBsFmPrrEVdQsFwvsrt0konBbrd4iNncbRb8Z99N0UA/viewform';
-    
-    // Configuration des champs (vos vrais entry IDs)
-    const fieldMappings = {
-        terme: 'entry.987196451',           // Champ "Terme signalé"
-        ue: 'entry.46296924',              // Champ "Unité d'enseignement"
-        commentaire: 'entry.980958767'     // Champ "Suggestion/commentaire"
-    };
-    
-    // Construire le commentaire complet avec toutes les infos
-    const fullComment = `
-PROBLÈME: ${getReasonLabel(data.reason)}
-
-COMMENTAIRE/SUGGESTION:
-${data.comment}
-
-DÉFINITION ACTUELLE:
-${data.definition}
-
-Date: ${data.timestamp}
-`.trim();
-    
-    // Construire les paramètres d'URL
-    const params = new URLSearchParams({
-        'usp': 'pp_url',
-        [fieldMappings.terme]: data.term,
-        [fieldMappings.ue]: data.ue,
-        [fieldMappings.commentaire]: fullComment
-    });
-    
-    return `${baseUrl}?${params.toString()}`;
-}
-
-// Supprimer la fonction fallback email (plus nécessaire)
-// function createEmailFallback(data) { ... } - SUPPRIMÉE
 
 // Marquer un terme comme signalé
 function markTermAsReported(term) {
