@@ -1,5 +1,5 @@
 {
-  "exportDate": "2025-10-06T15:37:45.108726",
+  "exportDate": "2025-10-09T14:35:01.725451",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -429,7 +429,6 @@
       "ue_2_2_s1_molcules_constitutives_du_vivant",
       {
         "title": "Molécules constitutives du vivant",
-        "date": "13/09/2025",
         "ue": "2.2.S1",
         "author": "capsule",
         "definitions": [
@@ -494,7 +493,7 @@
             "term": "Règle de l'Octet/Duet"
           },
           {
-            "definition": "C'est la capacité d'un atome à attirer à lui les électrons. Plus un atome est électronégatif, plus il \"tire\" le doublet d'électrons vers lui. Elle est mesurée sur des échelles (comme l'échelle de Pauling). En moyenne, les éléments à gauche dans le tableau périodique sont moins électronégatif et les éléments situés à gauche sont les plus électronégatifs. Le Fluor (F) est l'élément le plus électronégatif.",
+            "definition": "C'est la capacité d'un atome à attirer à lui les électrons. Plus un atome est électronégatif, plus il \"tire\" le doublet d'électrons vers lui. Elle est mesurée sur des échelles (comme l'échelle de Pauling). En moyenne, les éléments à gauche dans le tableau périodique sont moins électronégatif et les éléments situés à droite sont les plus électronégatifs. Le Fluor (F) est l'élément le plus électronégatif.",
             "term": "Électronégativité"
           },
           {
@@ -566,6 +565,7 @@
             "term": "ARN"
           }
         ],
+        "date": "13/09/2025",
         "filename": "Molécules constitutives du vivant.odt"
       }
     ],
@@ -941,7 +941,6 @@
       "ue_3_10_s1_les_bactries",
       {
         "title": "Les bactéries",
-        "date": "19/09/2025",
         "ue": "3.10.S1",
         "author": "EXT",
         "definitions": [
@@ -994,7 +993,7 @@
             "term": "Multirésistance"
           },
           {
-            "definition": "Staph Aureus Résistant à la Méticilline (infection urinaire ++, cutanée, site opérateoire…)",
+            "definition": "Staph Aureus Résistant à la Méticilline (infection urinaire ++, cutanée, site opératoire…)",
             "term": "SARM"
           },
           {
@@ -1022,55 +1021,8 @@
             "term": "Epidémie"
           }
         ],
+        "date": "19/09/2025",
         "filename": "Les bactéries.odt"
-      }
-    ],
-    [
-      "ue_3_10_s1_virologie_mycoparasitologie_atnc_23092025_ext",
-      {
-        "title": "Virologie, Myco-parasitologie, ATNC 23/09/2025 EXT",
-        "ue": "3.10.S1",
-        "author": "EXT",
-        "definitions": [
-          {
-            "definition": "fixation → pénétration → décapsidation → multiplication (réplication du génome, synthèse des protéines virales) → assemblage → libération des nouveaux virions",
-            "term": "Réplication virale (étapes)"
-          },
-          {
-            "definition": "respiratoire (grippe, VZV, coronavirus…), digestive (rotavirus, entérovirus, hépatites), cutanée (piqûres, contacts), génito-urinaire (VIH, HSV), conjonctive",
-            "term": "Portes d’entrées virales"
-          },
-          {
-            "definition": "quasiment tout le corps (SNC, sang, peau, appareil respiratoire, digestif, urinaire, foie, embryon…)",
-            "term": "Organes cibles virales"
-          },
-          {
-            "definition": "organismes eucaryotes uni/pluricellulaires, noyau entouré d’une enveloppe",
-            "term": "Champignons"
-          },
-          {
-            "definition": "Candida albicans) : candidose cutanée, muqueuses (bouche, vagin, œsophage), urgence vitale si hémoculture positive ; traitement = antifongique IV si grave",
-            "term": "Levures (champignons unicellulaires, ex"
-          },
-          {
-            "definition": "peau, cheveux, ongles (herpès circiné, pied d’athlète, teigne, onyxis…)",
-            "term": "Dermatophytes (champignons kératinophiles)"
-          },
-          {
-            "definition": "Aspergillus) : pathogènes chez immunodéprimés (aspergillose broncho-pulmonaire)",
-            "term": "Moisissures (champignons filamenteux, ex"
-          },
-          {
-            "definition": "Organismes vivant au dépens de leur hôte sans forcément le détruire // Ectoparasites : à l’extérieur (ex : gale, poux, puces, morpions) // Endoparasites : à l’intérieur (sang, intestin…)",
-            "term": "Parasites"
-          },
-          {
-            "definition": "parasite. Plasmodium (paludisme) : transmission par femelle moustique Anopheles, diagnostic par frottis sanguin ou présence d’antigène. Complications : anémie, thrombopénie, défaillance multiviscérale. // Toxoplasma gondii (toxoplasmose) : surtout via excréments de chats ; peut franchir la barrière placentaire et infecter le fœtus ; diagnostic par PCR sur liquide amniotique",
-            "term": "Protozoaires"
-          }
-        ],
-        "date": "23/09/2025",
-        "filename": "Virologie, Myco-parasitologie, ATNC 23/09/2025 EXT.odt"
       }
     ],
     [
@@ -1209,7 +1161,6 @@
       "ue_4_4_s1_introduction_la_pharmacologie",
       {
         "title": "Introduction à la pharmacologie",
-        "date": "03/09/2025",
         "ue": "4.4.S1",
         "author": "GN",
         "definitions": [
@@ -1246,7 +1197,7 @@
             "term": "DCI"
           },
           {
-            "definition": "systémique ou locale",
+            "definition": "systémique (IV, entérale...) ou locale (crème, pommade)",
             "term": "Voies d’administration"
           },
           {
@@ -1266,14 +1217,19 @@
             "term": "Pulmonaire"
           },
           {
-            "definition": "pommage, crème",
-            "term": "Percutané"
+            "definition": "patch, implant hormonal sous-cutané (action systémique)",
+            "term": "Percutané  ou Transdermique"
           },
           {
             "definition": "préventif, substitutif, étiologique/curatif (ATB), symptomatique, additif, diagnostic (pduit de contraste), placebo",
             "term": "Effets"
+          },
+          {
+            "term": "Cutané (voie d'administration)",
+            "definition": "crème, pommade (action locale)"
           }
         ],
+        "date": "03/09/2025",
         "filename": "Introduction à la pharmacologie.odt"
       }
     ],
@@ -1504,10 +1460,370 @@
         "date": "03/10/2025",
         "filename": "isolement protecteur (pose et dépose EPI).odt"
       }
+    ],
+    [
+      "ue_3_10_s1_virologie_mycoparasitologie_atnc",
+      {
+        "title": "Virologie, Myco-parasitologie, ATNC",
+        "date": "23/09/2025",
+        "ue": "3.10.S1",
+        "author": "EXT",
+        "definitions": [
+          {
+            "definition": "fixation → pénétration → décapsidation → multiplication (réplication du génome, synthèse des protéines virales) → assemblage → libération des nouveaux virions",
+            "term": "Réplication virale (étapes)"
+          },
+          {
+            "definition": "respiratoire (grippe, VZV, coronavirus…), digestive (rotavirus, entérovirus, hépatites), cutanée (piqûres, contacts), génito-urinaire (VIH, HSV), conjonctive",
+            "term": "Portes d’entrées virales"
+          },
+          {
+            "definition": "quasiment tout le corps (SNC, sang, peau, appareil respiratoire, digestif, urinaire, foie, embryon…)",
+            "term": "Organes cibles virales"
+          },
+          {
+            "definition": "organismes eucaryotes uni/pluricellulaires, noyau entouré d’une enveloppe",
+            "term": "Champignons"
+          },
+          {
+            "definition": "Candida albicans) : candidose cutanée, muqueuses (bouche, vagin, œsophage), urgence vitale si hémoculture positive ; traitement = antifongique IV si grave",
+            "term": "Levures (champignons unicellulaires, ex"
+          },
+          {
+            "definition": "peau, cheveux, ongles (herpès circiné, pied d’athlète, teigne, onyxis…)",
+            "term": "Dermatophytes (champignons kératinophiles)"
+          },
+          {
+            "definition": "Aspergillus) : pathogènes chez immunodéprimés (aspergillose broncho-pulmonaire)",
+            "term": "Moisissures (champignons filamenteux, ex"
+          },
+          {
+            "definition": "Organismes vivant au dépens de leur hôte sans forcément le détruire // Ectoparasites : à l’extérieur (ex : gale, poux, puces, morpions) // Endoparasites : à l’intérieur (sang, intestin…)",
+            "term": "Parasites"
+          },
+          {
+            "definition": "parasite comme le Plasmodium (paludisme) : transmission par femelle moustique Anopheles, diagnostic par frottis sanguin ou présence d’antigène. Complications : anémie, thrombopénie, défaillance multiviscérale. // Toxoplasma gondii (toxoplasmose) : surtout via excréments de chats ; peut franchir la barrière placentaire et infecter le fœtus ; diagnostic par PCR sur liquide amniotique",
+            "term": "Protozoaires"
+          },
+          {
+            "definition": "parasite. Vers (helminthes) : oxyures, ténia // arthropodes (insectes, acariens = scabiose/gale, creuse sillons, prurit, très contagieux, inefficacité SHA, lavage mains strict)",
+            "term": "Métazoaires"
+          },
+          {
+            "definition": "Agents Transmissibles Non Conventionnels. Protéines pathogènes très résistantes, responsables d’encéphalopathie spongiforme subaiguë transmissible (EST, ex : maladie de Creutzfeld-Jacob). Incubation très longue (ex : 35 ans chez l’humain), maladie toujours mortelle. Pas de réaction inflammatoire ni immunitaire, absence d’anticorps",
+            "term": "ANTC / Prions"
+          },
+          {
+            "definition": "organismes procaryotes, parasites obligatoires intracellulaires, impossibles à répliquer seuls. Génome : soit ADN, soit ARN (un seul type par virus). Structure possibles :  protégeant le génome (nuclocapside) / Virus nu (sans enveloppe) : très résistant dans l’environnement (ex : rotavirus, norovirus gastro-entérites) / Virus enveloppé : plus fragile, enveloppe hérissée de spicules (codées par le génome viral), ex : VIH, nécessitant contact rapproché.",
+            "term": "Virus"
+          },
+          {
+            "definition": "Prions < Virus < Bactéries < Champignons <Parasites (souvent visibles à l’œil nu)",
+            "term": "Taille agents infectieux"
+          }
+        ],
+        "filename": "Virologie, Myco-parasitologie, ATNC.odt"
+      }
+    ],
+    [
+      "ue_5_9_s1_droit_linformation_confidentialit_secret_professionnel",
+      {
+        "title": "Droit à l’information, confidentialité, secret professionnel",
+        "date": "29/09/2025",
+        "ue": "5.9.S1",
+        "author": "KM",
+        "definitions": [
+          {
+            "definition": "Qui n'est connu que d'un nombre limité de personnes ou qui est ou doit être caché aux autres.",
+            "term": "Secret"
+          },
+          {
+            "definition": "Obligation légale imposée à tout professionnel de santé de respecter la vie privée et le secret des informations concernant toute personne prise en charge.",
+            "term": "Secret Professionnel"
+          },
+          {
+            "definition": "Délit pénal (Art 226-13 du Code pénal) sanctionnant la révélation d'une information à caractère secret par un dépositaire, puni d'un an d'emprisonnement et de 15 000 € d'amende.",
+            "term": "Violation du Secret Professionnel"
+          },
+          {
+            "definition": "Cas particuliers où la loi permet de lever le secret professionnel sans sanction, notamment pour signaler au procureur des sévices ou privations constatés, ou des violences conjugales en danger imminent.",
+            "term": "Dérogations Légales"
+          },
+          {
+            "definition": "Situations où la loi exige une déclaration, telles que les naissances, les décès, les maladies contagieuses (gérées par l'ARS), les IST, les accidents de travail, et les maladies professionnelles.",
+            "term": "Dérogations Obligatoires"
+          },
+          {
+            "definition": "Mécanisme permettant aux professionnels de santé qui participent à la prise en soin de faire circuler les informations entre eux au nom de la continuité des soins.",
+            "term": "Secret Partagé"
+          },
+          {
+            "definition": "Le Code de la Santé Publique (CSP) permet au mineur d'opposer le secret à ses parents, bien que ces derniers disposent de l'autorité parentale pour la prise de décision.",
+            "term": "Mineur et Secret"
+          },
+          {
+            "definition": "Caractère de ce qui est réservé à un nombre restreint de personnes, impliquant une obligation de discrétion quant à l'information partagée, et ne couvrant pas que l'information médicale.",
+            "term": "Confidentialité"
+          },
+          {
+            "definition": "Obligation faite à l'infirmier(e) et à tout agent public de ne pas révéler les faits, documents ou informations à caractère administratif (fonctionnement, organisation de l'établissement, etc.) dont il a connaissance, sous peine de sanction disciplinaire.",
+            "term": "Discrétion Professionnelle (Devoir de Réserve)"
+          },
+          {
+            "definition": "Personne désignée par le patient pour l'accompagner dans ses démarches de santé et être consultée par le médecin si le patient n'est pas en mesure de prendre une décision.",
+            "term": "Personne de Confiance"
+          },
+          {
+            "definition": "Personne dont le rôle se limite à être informée, à la différence de la personne de confiance.",
+            "term": "Personne à Prévenir"
+          }
+        ],
+        "filename": "Droit à l’information, confidentialité, secret professionnel.odt"
+      }
+    ],
+    [
+      "ue_4_4_s1_formes_galniques_voies_dadministration_dfinitions_cls",
+      {
+        "title": "Formes galéniques, voies d’administration, définitions clés",
+        "ue": "4.4.S1",
+        "author": "Dr Gauthier",
+        "definitions": [
+          {
+            "definition": "Étude du devenir du médicament dans l'organisme (ADME : Absorption, Distribution, Métabolisme, Élimination/Excrétion).",
+            "term": "Pharmacocinétique"
+          },
+          {
+            "definition": "La dose multipliée par le rythme d'administration, pendant une durée et selon une voie d’administration.",
+            "term": "Posologie"
+          },
+          {
+            "definition": "Étape préalable à l'absorption, où le Principe Actif (PA) est dispersé pour traverser les membranes biologiques.",
+            "term": "Libération"
+          },
+          {
+            "definition": "Passage d’un Principe Actif (PA) sans modification, du site d’administration à la circulation générale.",
+            "term": "Absorption / Résorption"
+          },
+          {
+            "definition": "Fraction de la dose administrée qui atteint la circulation générale et la vitesse avec laquelle elle y parvient. (100 % par voie IV).",
+            "term": "Biodisponibilité"
+          },
+          {
+            "definition": "Dégradation partielle ou complète d’une molécule au niveau du foie (ou tube digestif) avant d’atteindre la circulation générale (concerne surtout la voie orale).",
+            "term": "EPP (Effet Premier Passage)"
+          },
+          {
+            "definition": "Substance formée lors de la biotransformation chimique du PA (via le Métabolisme). Peut être inactif, actif ou toxique.",
+            "term": "Métabolite"
+          },
+          {
+            "definition": "Répartition du PA dans l’organisme via la circulation générale, puis pénétration des tissus.",
+            "term": "Distribution"
+          },
+          {
+            "definition": "Barrière physiologique protégeant le Système Nerveux Central (SNC) et limitant la distribution de nombreux médicaments.",
+            "term": "BHC (Barrière Hémato-Encéphalique)"
+          },
+          {
+            "definition": "Protéine capable de modifier (accélérer ou ralentir) des réactions chimiques (essentielle au Métabolisme, notamment hépatique).",
+            "term": "Enzyme"
+          },
+          {
+            "definition": "Capacité à éliminer une substance. Volume de solution totalement épuré de cette substance par unité de temps (ml/min).",
+            "term": "Clairance"
+          },
+          {
+            "definition": "Indice utilisé pour évaluer la fonction rénale.",
+            "term": "Clairance de la créatinine (CKD)"
+          },
+          {
+            "definition": "Temps nécessaire à l’élimination de la moitié de la concentration du médicament. (Estimation de 5 à 7 demi-vies pour l'élimination totale).",
+            "term": "Demi-vie d’élimination"
+          },
+          {
+            "definition": "Intervalle entre le seuil de concentration minimale efficace et le seuil de toxicité du médicament.",
+            "term": "Marge thérapeutique"
+          },
+          {
+            "definition": "Qualité d'une solution (ex: injectable) dont la pression osmotique est identique à celle du plasma sanguin.",
+            "term": "Isotonie"
+          },
+          {
+            "definition": "La forme finale sous laquelle est présenté un médicament (comprimé, gélule, sirop, etc.), contenant le PA et les excipients.",
+            "term": "Forme Galénique"
+          },
+          {
+            "definition": "Substance sans activité thérapeutique propre, ajoutée au PA pour faciliter la fabrication, la stabilité, l'acceptabilité ou moduler le profil pharmacocinétique.",
+            "term": "Excipient"
+          },
+          {
+            "definition": "Excipients à Effet Notoire listés par l'ANSM, dont il faut connaître la présence (ex : lactose, colorants, sucre, etc.).",
+            "term": "EEN"
+          },
+          {
+            "definition": "Comprimé qui garantit une répartition homogène du PA lorsqu'il est divisé (doit être inscrit sur la boîte).",
+            "term": "Comprimé sécable"
+          },
+          {
+            "definition": "Forme galénique conçue pour ne pas libérer le PA dans l’estomac acide, mais dans l’intestin.",
+            "term": "Comprimé Gastro-résistant / Entérosoluble"
+          },
+          {
+            "definition": "Forme spéciale permettant une diffusion lente et continue du PA. Ne jamais écraser (risque de surdosage).",
+            "term": "Comprimé à Libération Prolongée (LP)"
+          },
+          {
+            "definition": "Comprimé obtenu par lyophilisation. Peut être orodispersible (délité par la salive, absorption digestive) ou sublingual (délité sous la langue, absorption directe dans la bouche).",
+            "term": "Lyocs (Lyophilisat Oral)"
+          },
+          {
+            "definition": "Forme constituée de deux demi-capsules de gélatine contenant le plus souvent une poudre.",
+            "term": "Gélule"
+          },
+          {
+            "definition": "Écrasement ou mastication d'une forme orale sèche, ce qui constitue un changement de forme galénique.",
+            "term": "Broyage"
+          },
+          {
+            "definition": "Préparation hydrophile (plutôt pour les muqueuses).",
+            "term": "Crème"
+          },
+          {
+            "definition": "Préparation lipophile (plutôt pour la peau très sèche).",
+            "term": "Pommade"
+          },
+          {
+            "definition": "Préparation très lipophile.",
+            "term": "Gels"
+          },
+          {
+            "definition": "Administration utilisant le tube digestif (ex : Per os/voie orale, Sonde nasogastrique, Rectale).",
+            "term": "Voie Entérale"
+          },
+          {
+            "definition": "Administration qui contourne le tube digestif (ex : IV, IM, SC, ID).",
+            "term": "Voie Parentérale"
+          },
+          {
+            "definition": "Synonyme de voie orale.",
+            "term": "Per os (VO)"
+          },
+          {
+            "definition": "Injection directe dans la veine. Assure une biodisponibilité de 100 % (voie d'urgence).",
+            "term": "Voie IV (IntraVeineuse)"
+          },
+          {
+            "definition": "Injection intraveineuse réalisée rapidement (maxi 3-4 min).",
+            "term": "IVD (IntraVeineuse Directe)"
+          },
+          {
+            "definition": "Administration IV continue ou discontinue, souvent après dilution dans une poche de solution.",
+            "term": "Perfusion"
+          },
+          {
+            "definition": "Injection dans un muscle (fesse, deltoïde, cuisse). Diffusion rapide car richement irriguée.",
+            "term": "Voie IM (IntraMusculaire)"
+          },
+          {
+            "definition": "Injection dans l'hypoderme (petits volumes).",
+            "term": "Voie SC (Sous-Cutanée)"
+          },
+          {
+            "definition": "Application cutanée ayant une action générale (ex : patch).",
+            "term": "Voie Transdermique"
+          },
+          {
+            "definition": "Application cutanée ayant une action locale (ex : crème anti-inflammatoire).",
+            "term": "Voie Cutanée"
+          }
+        ],
+        "date": "2025-10-09",
+        "filename": "Formes galéniques, voies d’administration, définitions clés.odt"
+      }
+    ],
+    [
+      "ue_3_10_s1_circuit_propre_circuit_sale_en_tablissement_de_soins",
+      {
+        "title": "Circuit propre & circuit sale en établissement de soins",
+        "date": "23/09/2025",
+        "ue": "3.10.S1",
+        "author": "KM",
+        "definitions": [
+          {
+            "definition": "Ensemble des parcours/flux réservés à la circulation des éléments non contaminés (linge propre, médicaments, matériel stérile), totalement séparé du circuit sale pour éviter la contamination croisée.",
+            "term": "Circuit propre"
+          },
+          {
+            "definition": "Parcours réservé à la circulation des objets et matières potentiellement contaminants (linge sale, déchets, matériel usagé), séparé du circuit propre.",
+            "term": "Circuit sale"
+          },
+          {
+            "definition": "Déchets provenant des activités médicales (diagnostic, traitement, prévention) dans un établissement de soins.",
+            "term": "DAS (Déchets d’Activité de Soins)"
+          },
+          {
+            "definition": "Déchets non à risque, éliminés avec les ordures ménagères classiques (représentent env. 80 % des déchets hospitaliers).",
+            "term": "DAOM (Déchets Assimilés aux Ordures Ménagères)"
+          },
+          {
+            "definition": "Déchets infectieux provenant des soins, nécessitant une filière d’élimination spécifique (sacs ou containers jaunes – env. 20 % des déchets).",
+            "term": "DASRI (Déchets d’Activité de Soins à Risque Infectieux)"
+          },
+          {
+            "definition": "Contenants spécifiques pour aiguilles, scalpels, etc. Ces boîtes sont rigides, inviolables, limitées en remplissage, datées et jetées après 7 jours d’usage maxi.",
+            "term": "OPCT (Objet Pointu Coupant Tranchant)"
+          },
+          {
+            "definition": "Déchets issus de produits cytotoxiques, de chimiothérapie ou autres substances dangereuses, éliminés dans des réceptacles spécifiques étanches ou fûts rigides.",
+            "term": "DCRT (Déchets Chimiques et Toxiques)"
+          },
+          {
+            "definition": "Déchets provenant d’activités utilisant des sources radioactives, avec une filière d’élimination dédiée.",
+            "term": "DRR (Déchets à Risque Radioactif)"
+          },
+          {
+            "definition": "Action de séparer les déchets selon leur nature et niveau de risque afin de protéger le personnel, respecter la législation et l’environnement.",
+            "term": "Tri des déchets"
+          },
+          {
+            "definition": "Organisation séparée du transport, du stockage, et de la gestion du linge propre et sale pour limiter les contaminations. Manipulation stricte avec règles d’hygiène et bionettoyage régulier.",
+            "term": "Circuit du linge"
+          },
+          {
+            "definition": "Méthode d’analyse et de contrôle du risque de contamination biologique pour garantir l’hygiène du linge, principalement en blanchisserie.",
+            "term": "RABC (Risk Analysis Biocontamination Control)"
+          },
+          {
+            "definition": "Équipe dédiée à la surveillance, au prélèvement et au contrôle des risques infectieux liés à l’eau, en lien avec le comité d’hygiène hospitalier.",
+            "term": "UGRI (Unité de Gestion des Risques Infectieux)"
+          },
+          {
+            "definition": "Infection contractée dans un établissement de soins, non présente ni en incubation à l’admission.",
+            "term": "Infection nosocomiale"
+          },
+          {
+            "definition": "Infection survenant en lien direct avec la réalisation d’un acte de soin, même hors établissement de santé.",
+            "term": "Infection associée aux soins"
+          },
+          {
+            "definition": "Flux et installations (douches, fontaines, bains, etc.) à risque de contamination (par exemple legionella), surveillés par prélèvements réguliers.",
+            "term": "Circuits de l’eau"
+          },
+          {
+            "definition": "Zones du bâtiment où la maîtrise de l’empoussièrement et le contrôle microbien sont cruciaux (blocs opératoires, salles stériles, SSPI…), nécessitant des prélèvements et contrôles périodiques.",
+            "term": "Circuits de l’air"
+          },
+          {
+            "definition": "Structure coordinatrice des actions de prévention et de surveillance des infections liées aux soins.",
+            "term": "CLIAS (Comité de Lutte contre les Infections Associées aux Soins)"
+          }
+        ],
+        "filename": "Circuit propre & circuit sale en établissement de soins.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 325,
+    "totalTerms": 395,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0
