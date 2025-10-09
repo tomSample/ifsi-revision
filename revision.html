@@ -21,19 +21,28 @@
             <div class="start-screen" id="startScreen">
                 <div class="welcome-card">
                     <h3>🎯 Prêt pour vos révisions ?</h3>
-                    <p>Vous allez être testé sur <strong>10 termes</strong> tirés aléatoirement de toutes les UE.</p>
+                    <p>Testez vos connaissances sur des termes tirés aléatoirement de toutes les UE.</p>
+                    
+                    <!-- Sélecteur du nombre de termes -->
+                    <div class="term-selector">
+                        <label for="termCount">Nombre de termes :</label>
+                        <div class="term-count-controls">
+                            <button type="button" class="count-btn minus" onclick="adjustTermCount(-1)">−</button>
+                            <input type="number" id="termCount" value="10" min="1" max="50" class="term-count-input">
+                            <button type="button" class="count-btn plus" onclick="adjustTermCount(1)">+</button>
+                        </div>
+                        <div class="term-count-presets">
+                            <button class="preset-btn" onclick="setTermCount(5)">5</button>
+                            <button class="preset-btn active" onclick="setTermCount(10)">10</button>
+                            <button class="preset-btn" onclick="setTermCount(15)">15</button>
+                            <button class="preset-btn" onclick="setTermCount(20)">20</button>
+                        </div>
+                    </div>
+                    
                     <div class="stats-preview" id="statsPreview">
                         <div class="stat-item">
                             <span class="stat-number" id="totalTermsPreview">-</span>
                             <span class="stat-label">Termes disponibles</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">10</span>
-                            <span class="stat-label">Par session</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" id="priorityTerms">-</span>
-                            <span class="stat-label">Sessions complétées</span>
                         </div>
                     </div>
                     <button class="start-btn" onclick="startRevision()">

@@ -164,16 +164,9 @@ function saveUserProgress() {
 // Mettre à jour l'affichage des statistiques
 function updateStatsDisplay() {
     const totalTermsElement = document.getElementById('totalTermsPreview');
-    const priorityTermsElement = document.getElementById('priorityTerms');
     
     if (totalTermsElement) {
         totalTermsElement.textContent = globalStats.totalTerms;
-    }
-    
-    // Affichage du nombre de sessions complétées
-    if (priorityTermsElement) {
-        const totalSessions = parseInt(localStorage.getItem('totalSessions') || '0');
-        priorityTermsElement.textContent = totalSessions;
     }
 }
 
@@ -184,8 +177,18 @@ function startRevision() {
         return;
     }
     
-    // Sélectionner 10 termes pour cette session
-    currentSession = selectTermsForSession();
+    // Récupérer le nombre de termes choisi
+    const termCountInput = document.getElementById('termCount');
+    const termCount = parseInt(termCountInput.value) || 10;
+    
+    // Validation du nombre de termes
+    if (termCount < 1 || termCount > Math.min(50, allTerms.length)) {
+        alert(`Veuillez choisir entre 1 et ${Math.min(50, allTerms.length)} termes.`);
+        return;
+    }
+    
+    // Sélectionner les termes pour cette session
+    currentSession = selectTermsForSession(termCount);
     currentTermIndex = 0;
     sessionResults = [];
     sessionStartTime = new Date();
@@ -198,8 +201,8 @@ function startRevision() {
     showCurrentTerm();
 }
 
-// Sélectionner 10 termes pour la session (complètement aléatoire)
-function selectTermsForSession() {
+// Sélectionner des termes pour la session (complètement aléatoire)
+function selectTermsForSession(count = 10) {
     if (allTerms.length === 0) {
         console.log('Aucun terme disponible');
         return [];
@@ -208,8 +211,8 @@ function selectTermsForSession() {
     // Mélanger tous les termes de façon aléatoire
     const shuffledTerms = [...allTerms].sort(() => 0.5 - Math.random());
     
-    // Prendre les 10 premiers (ou moins s'il y a moins de 10 termes)
-    const sessionTerms = shuffledTerms.slice(0, Math.min(10, allTerms.length));
+    // Prendre le nombre demandé (ou moins s'il y a moins de termes disponibles)
+    const sessionTerms = shuffledTerms.slice(0, Math.min(count, allTerms.length));
     
     console.log(`Session générée avec ${sessionTerms.length} termes aléatoires`);
     return sessionTerms;
@@ -361,9 +364,8 @@ function showSessionSummary() {
     // Créer le contenu du résumé
     let summaryContent = `
         <div class="session-stats">
-            <h3>Résumé de votre session</h3>
-            <p><strong>Termes étudiés :</strong> ${totalTerms}</p>
-            <p><strong>Termes signalés :</strong> ${reportedTerms.length}</p>
+            <h3>🎉 Félicitations !</h3>
+            <p>Vous avez terminé votre session de révision.</p>
         </div>
         
         <div class="terms-review">
@@ -698,3 +700,69 @@ function safeExecute(func, errorMessage = 'Une erreur est survenue') {
         return false;
     }
 }
+
+// 🎯 Fonctions pour le sélecteur de nombre de termes
+
+// Ajuster le nombre de termes avec les boutons + et -
+function adjustTermCount(delta) {
+    const input = document.getElementById('termCount');
+    const currentValue = parseInt(input.value) || 10;
+    const newValue = Math.max(1, Math.min(50, currentValue + delta));
+    
+    input.value = newValue;
+    updateActivePreset(newValue);
+    
+    // Analytics pour le choix du nombre de termes
+    if (window.IFSIAnalytics) {
+        window.IFSIAnalytics.trackTermCountChanged(newValue);
+    }
+}
+
+// Définir directement le nombre de termes
+function setTermCount(count) {
+    const input = document.getElementById('termCount');
+    input.value = Math.max(1, Math.min(50, count));
+    updateActivePreset(count);
+    
+    // Analytics pour le choix du nombre de termes
+    if (window.IFSIAnalytics) {
+        window.IFSIAnalytics.trackTermCountChanged(count);
+    }
+}
+
+// Mettre à jour le bouton preset actif
+function updateActivePreset(count) {
+    const presetButtons = document.querySelectorAll('.preset-btn');
+    presetButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (parseInt(btn.textContent) === count) {
+            btn.classList.add('active');
+        }
+    });
+}
+
+// Initialisation du sélecteur au chargement de la page
+document.addEventListener('DOMContentLoaded', function() {
+    const termCountInput = document.getElementById('termCount');
+    
+    if (termCountInput) {
+        // Gérer les changements manuels dans l'input
+        termCountInput.addEventListener('input', function() {
+            const value = parseInt(this.value) || 10;
+            const clampedValue = Math.max(1, Math.min(50, value));
+            
+            if (value !== clampedValue) {
+                this.value = clampedValue;
+            }
+            
+            updateActivePreset(clampedValue);
+        });
+        
+        // Empêcher la saisie de caractères non numériques
+        termCountInput.addEventListener('keypress', function(e) {
+            if (!/[0-9]/.test(e.key) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)) {
+                e.preventDefault();
+            }
+        });
+    }
+});

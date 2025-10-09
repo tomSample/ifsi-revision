@@ -102,6 +102,110 @@ header h2 {
     line-height: 1.6;
 }
 
+/* Sélecteur de nombre de termes */
+.term-selector {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 15px;
+    border: 2px solid #e9ecef;
+}
+
+.term-selector label {
+    display: block;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.term-count-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 1rem;
+}
+
+.count-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.count-btn:hover {
+    background: #5a67d8;
+    transform: scale(1.05);
+}
+
+.count-btn:active {
+    transform: scale(0.95);
+}
+
+.term-count-input {
+    width: 80px;
+    height: 45px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 2px solid #667eea;
+    border-radius: 10px;
+    margin: 0 8px;
+    background: white;
+    color: #333;
+}
+
+.term-count-input:focus {
+    outline: none;
+    border-color: #5a67d8;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.term-count-presets {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.preset-btn {
+    background: #e9ecef;
+    color: #495057;
+    border: 2px solid #dee2e6;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 45px;
+}
+
+.preset-btn:hover {
+    background: #dee2e6;
+    border-color: #adb5bd;
+}
+
+.preset-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.preset-btn.active:hover {
+    background: #5a67d8;
+    border-color: #5a67d8;
+}
+
 .stats-preview {
     display: flex;
     justify-content: center;
@@ -1181,6 +1285,33 @@ header h2 {
     .term-card,
     .results-card {
         padding: 2rem;
+    }
+    
+    /* Sélecteur de termes en responsive */
+    .term-selector {
+        padding: 1rem;
+        margin: 1.5rem 0;
+    }
+    
+    .count-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+    
+    .term-count-input {
+        width: 70px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .term-count-presets {
+        gap: 6px;
+    }
+    
+    .preset-btn {
+        padding: 6px 12px;
+        font-size: 0.9rem;
     }
     
     .action-buttons {
