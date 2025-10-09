@@ -1387,6 +1387,17 @@ header h2 {
     gap: 8px;
 }
 
+.term-count-input::-webkit-outer-spin-button,
+.term-count-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.term-count-input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
 /* Responsive pour les notifications */
 @media (max-width: 768px) {
     .notification {
