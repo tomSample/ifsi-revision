@@ -1,5 +1,5 @@
 {
-  "exportDate": "2025-10-09T14:35:01.725451",
+  "exportDate": "2025-10-10T20:28:23.090504",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -1820,10 +1820,254 @@
         ],
         "filename": "Circuit propre & circuit sale en établissement de soins.odt"
       }
+    ],
+    [
+      "ue_3_10_s1_prcautions_complmentaires",
+      {
+        "title": "Précautions complémentaires",
+        "date": "10/10/2025",
+        "ue": "3.10.S1",
+        "author": "ext",
+        "definitions": [
+          {
+            "definition": "Ensemble de mesures visant à prévenir la transmission croisée des agents infectieux entre patients, personnel et environnement lors de tout soin, quel que soit le statut infectieux du patient.",
+            "term": "Précautions Standard"
+          },
+          {
+            "definition": "Nettoyage des mains qui permet de limiter la transmission des microorganismes, incluant lavage simple et friction hydro-alcoolique selon le contexte.",
+            "term": "Hygiène des mains"
+          },
+          {
+            "definition": "Matériel (gants, surblouse, masque, lunettes) porté pour protéger le soignant contre l’exposition aux agents infectieux.",
+            "term": "Equipement de Protection Individuelle (EPI)"
+          },
+          {
+            "definition": "Ensemble de gestes visant à limiter la transmission des agents infectieux par voie respiratoire, notamment lors de toux ou éternuements.",
+            "term": "Hygiène respiratoire"
+          },
+          {
+            "definition": "Mesures additionnelles aux Précautions Standard, prescrites par un médecin selon le microorganisme et la voie de transmission (contact inter-humain, gouttelettes oro-tracheo-bronchique, air). Si pas de médecin, peuvent être mises en place avec PM a posteriori. Levées par PM également.",
+            "term": "Précautions complémentaires (3)"
+          },
+          {
+            "definition": "instaurées/levées sur PM, information patient/famille, traçabilité dans le dossier patient. Affichage des procédures sur la porte de la chambre.",
+            "term": "Mise en œuvre des Précautions Complémentaires"
+          },
+          {
+            "definition": "parmis les Précautions complémentaires contact, il existe des spécifique gale, BHRe, BMR.",
+            "term": "Précautions spécifiques"
+          },
+          {
+            "definition": "Modes par lesquels un agent infectieux se transmet (contact direct/indirect, gouttelettes, air, manuportage).",
+            "term": "Voies de transmission"
+          },
+          {
+            "definition": "Bactérie résistante à plusieurs familles d’antibiotiques, nécessitant des précautions renforcées.",
+            "term": "Bactérie Multirésistante (BMR)"
+          },
+          {
+            "definition": "Bactérie commensale du tube digestif résistante à des antibiotiques majeurs (bactéries productrices de carbapénémases et bactéries résistantes aux glycopeptides), à haut risque de transmission et de difficulté thérapeutique.",
+            "term": "BHRe (Bactérie Hautement Résistante émergente)"
+          },
+          {
+            "definition": "Patient chez qui la présence de BHRe a été détectée lors d’un prélèvement de dépistage ou une infection clinique.",
+            "term": "Patient porteur (BHRe)"
+          },
+          {
+            "definition": "Patient pris en charge par la même équipe que le patient porteur de BHRe, exposé au risque de transmission.",
+            "term": "Patient contact (BHRe)"
+          },
+          {
+            "definition": "Isolement en chambre seule, porte fermée, destiné à établir une protection réciproque entre le personnel, des visiteurs ou d’autres patients/résidents et le patient porteur/contact contre les risques infectieux.",
+            "term": "Isolement protecteur"
+          },
+          {
+            "definition": "Dermatose parasitaire très contagieuse due à un acarien, responsable de prurit nocturne et lésions cutanées.",
+            "term": "Gale"
+          },
+          {
+            "definition": "Parasite de la peau ou des cheveux, responsable de la pédiculose ; survit seulement lorsqu'il est gorgé de sang et transmet par contact direct.",
+            "term": "Poux"
+          },
+          {
+            "definition": "Bactérie responsable de diarrhées nosocomiales malodorantes, principalement post-antibiotiques, dont la contamination se fait par voie oro-fécale ou manuportage. Très résistantes dans l’environnement.",
+            "term": "Clostridium difficile"
+          },
+          {
+            "definition": "Virus responsable d’épidémies de gastro-entérite aiguë, à symptomatologie brutale et transmissible par contact direct ou indirect, et par l’alimentation.",
+            "term": "Norovirus"
+          },
+          {
+            "definition": "précautions standards + mesures appliquées pour limiter la transmission de microorganismes par des gouttelettes respiratoires (>5µm) lors de la toux, la parole, expectorations. (grippe, covid, bronchiolite, coqueluche...). Aération régulière de la chambre, lavage des mains, masque chirurgical avant entrée en chambre et retrait aprèès être sorti (voire FFP2 pour soin rapproché long) pour le soignant et si possible le patient. Isolement protecteur avec porte chambre fermée.",
+            "term": "Précautions Gouttelettes"
+          },
+          {
+            "definition": "précautions standards + mesures adaptées aux agents infectieux transmissibles par aérosols (<5µm), telles que tuberculose, rougeole, varicelle, nécessitant port de masque FFP2 (pose et retrait hors de la chambre) et isolement. Aération régulière de la chambre. Isolement protecteur avec porte chambre fermée.",
+            "term": "Précautions Air"
+          },
+          {
+            "definition": "Mesures destinées à limiter la transmission d’agents infectieux par contact direct (inter-humain) ou indirect (environnement : surfaces, poignées porte...)",
+            "term": "Précautions Contact"
+          },
+          {
+            "definition": "précautions standards + isolement du patient si possible et équipement spécifique en fonction du soin. Indication ⇒ SARM (cutané) et BLSe (entérobactérie)",
+            "term": "Précautions Contact BMR"
+          },
+          {
+            "definition": "précautions standards + isolement du patient obligatoire, porte fermée. Individualisation du matériel, gestion des excreta, limitation des visites et des déplacements du patient.",
+            "term": "Précautions Contact BHRe"
+          },
+          {
+            "definition": "précautions standards + lavage des mains obligatoire +++ et complétée par friction SHA à la sortie de la chambre, port de gants à l’entrée dans la chambre, surblouse longue éliminée avant la sortie de la chambre, housse de bassin à usage unique, utilisation d’un produit désinfectant sporicide pour les sols et les surfaces",
+            "term": "Précautions Contact clostridium difficile"
+          },
+          {
+            "definition": "précautions standards + application protocole adapté pour bio-nettoyage, pour le reste idem clostridium",
+            "term": "Précautions Contact spécifiques GEA (gastro-entérite aiguë)"
+          },
+          {
+            "definition": "précautions standards + lavage de main + gants + surblouse à éliminer avant sortie de chambre ⇒ couverture peau intégrale, individualisation du matériel de soins, produit acaricide pour le linge, vérification housse du matelas intègre sinon jeter le matelas, port de gants dès l’entrée en chambre",
+            "term": "Précautions Contact spécifiques gale"
+          }
+        ],
+        "filename": "Précautions complémentaires.odt"
+      }
+    ],
+    [
+      "ue_3_10_s1_bio_nettoyage_antiseptiques_dsinfectants",
+      {
+        "title": "bio nettoyage - antiseptiques & désinfectants",
+        "date": "10/10/2025",
+        "ue": "3.10.S1",
+        "author": "SC",
+        "definitions": [
+          {
+            "definition": "nettoyage et désinfection des surfaces et des locaux. Démarrer par les chambres à moindre risque pour finir par les chambres au plus grand risque infectieux. Dans la chambre démarrer du plus propre au plus sale.",
+            "term": "Bio-nettoyage"
+          },
+          {
+            "definition": "Action mécanique permettant l’élimination des souillures macroscopiques et des déchets.",
+            "term": "Nettoyage"
+          },
+          {
+            "definition": "application d’un produit désinfectant visant à éliminer ou tuer des MO, à inactiver des virus = élimination des germes microscopiques. Temps de contact avec le produit important.",
+            "term": "Désinfection"
+          },
+          {
+            "definition": "4 principes (1/4 température, 1/4 chimie, 1/4 temps, 1/4 mécanique) pour atteindre l’efficacité du nettoyage. Si un des principes est absent, les autres doivent combler en proportion.",
+            "term": "Cercle de Sinner"
+          },
+          {
+            "definition": "eau (ex : légionellose), air (aspergillose), surfaces ont 2 origines, humaine ou spécifiquement environnementale.",
+            "term": "Contamination de l’environnement (à l’hôpital)"
+          },
+          {
+            "definition": "bactéries peau et muqueuses, levures (ex : candida albicans), virus (ex : coronavirus), parasites (ex : gale).",
+            "term": "Contaminations d’origine humaine"
+          },
+          {
+            "definition": "Présence de micro‑organismes ou de substances indésirables dans les réseaux ou points d’eau.Solution ⇒ purger régulièrement les points d’eau et entretenir les réseaux pour prévenir la stagnation et la prolifération microbienne.",
+            "term": "Contaminations de l’eau"
+          },
+          {
+            "definition": "Présence de moisissures ou de champignons dont les spores sont inhalées, pouvant entraîner une atteinte des poumons et des voies aériennes supérieures.Solution ⇒ lutter contre l’empoussièrement et maintenir un bon renouvellement de l’air.",
+            "term": "Contaminations de l’air"
+          },
+          {
+            "definition": "biofilm de micro-organismes (bactéries, champignons…) fixée sur une surface maintenu par une matrice. Peut se constituer en 3h. Peut aussi se retrouver sur le corps humain (plaque dentaire, peau, valves cardiaques…) ou des objets domestiques (éponge, serviette de toilette…) mais aussi les dispositifs médicaux, les adaptables, etc.",
+            "term": "Contaminations des surfaces"
+          },
+          {
+            "definition": "Zone 1 (absence de risque de bio-contamination) ⇒ Zone 4 (risque élevé de bio-contamination).",
+            "term": "Classification des zones en établissement de santé"
+          },
+          {
+            "definition": "propreté visuelle (pas de déchets, pas de poussière, pas de traces…) + propreté microbiologique (prélèvement vierge de microbes),",
+            "term": "Double propreté"
+          },
+          {
+            "definition": "réduire nombre de micro-organismes, diminuer le risque de contamination croisée, réduire le nombre d’infections associées aux soins, atteindre les niveaux de contamination les plus bas possibles dans l’environnement.",
+            "term": "Objectifs du bio-nettoyage"
+          },
+          {
+            "definition": "agent nettoyant par action mécanique et chimique. A rincer (le plus souvent)",
+            "term": "Produit détergent"
+          },
+          {
+            "definition": "diminue fortement les populations de bactérie, champignons, virus, mycobactérie, spores. (laisser sécher)",
+            "term": "Produit désinfectant"
+          },
+          {
+            "definition": "2 en 1 nettoyage + désinfection, à laisser sécher.",
+            "term": "Produit détergent-désinfectant"
+          },
+          {
+            "definition": "éliminer les poussières et les salissures sans les aérosoliser en humidifiant la lavette. Méthode de la godille. Lavage du sol réalisé après le balayage humide.",
+            "term": "Essuyage humide surface/sol"
+          },
+          {
+            "definition": "essuyage humide surfaces / entretien sanitaire / balayage humide sol / nettoyage-désinfection sol",
+            "term": "Étapes nettoyage chambre"
+          },
+          {
+            "definition": "nettoyage intensif avec par exemple nettoyage/désinfection des murs, grille VMC, siphons de douche et lavabo…",
+            "term": "Entretien chambre au départ d’un patient"
+          },
+          {
+            "definition": "Produit appliqué sur des tissus vivants (peau saine ou lésée) pour éliminer ou tuer les micro‑organismes et/ou inactiver les virus selon l’objectif fixé ⇒ AMM nécessaire. Existe les bactéricides, virucide, sporicide, fongicide, bactériostatique, fongistatique.",
+            "term": "Antiseptique"
+          },
+          {
+            "definition": "Produit destiné à réduire fortement une population de micro‑organismes et/ou à inactiver les virus, utilisé sur des surfaces inertes ou sur la peau saine.",
+            "term": "Désinfectant"
+          },
+          {
+            "definition": "Opération momentanée visant à éliminer ou tuer les micro‑organismes et/ou inactiver les virus sur des surfaces ou milieux inertes contaminés, limitée aux agents présents au moment de l’intervention.",
+            "term": "Désinfection"
+          },
+          {
+            "definition": "Opération réalisée sur des tissus vivants dans leur limite de tolérance, visant à éliminer ou tuer les micro‑organismes et/ou inactiver les virus, limitée aux agents présents au moment de l’intervention.",
+            "term": "Antisepsie"
+          },
+          {
+            "definition": "ensemble des mesures pour éviter l’apport exogène de micro-organismes ⇒ conserver l’état de stérilité (gants stériles, tenue stérile, matériel stérile + utilisation adaptée des antiseptiques).",
+            "term": "Asepsie"
+          },
+          {
+            "definition": "micro-organismes cibles de cet antiseptique, ceux sur lequel l’antiseptique est efficace. Peut-être large ou étroit. Peut être létal (bactéricide / virucide / sporicide / fongicide) ou inhibe sa croissance/multiplication (bactériostatique / fongistatique).",
+            "term": "Spectre d’activité d’un antiseptique"
+          },
+          {
+            "definition": "persistance de l’effet anti-microbien de l’antiseptique sur la peau après l’avoir appliqué (reste présent sur la peau ou dans les couches supérieures après application et séchage). Effet pervers : une rémanence élevée peut être toxique pour la peau saine.",
+            "term": "Rémanence"
+          },
+          {
+            "definition": "en 2 temps par exemple pour un prélèvement sanguin (application antiseptique/désinfectant) / séchage air libre) ou en 5 temps (détersion savon doux ou antiseptique / rinçage / séchage tamponnement / 1-2 applications de l’antiseptique/désinfectant / séchage)",
+            "term": "Phases de l’antisepsie"
+          },
+          {
+            "definition": "4 grandes familles, bactéricides à spectre large (Halogénés chlorés = hypochlorite de sodium = Dakin // Halogénés iodés = Povidone iodée = Bétadine // Biguanides = Chlorhexidine // Alcools = alcool éthylique dénaturé à 70°)",
+            "term": "Antiseptiques majeurs"
+          },
+          {
+            "definition": "bactéricides à spectre étroit",
+            "term": "Antiseptiques intermédiaire"
+          },
+          {
+            "definition": "bactériostatiques à spectre étroit",
+            "term": "Antiseptiques mineurs"
+          },
+          {
+            "definition": "spectre large, bactéricide, délai d’action rapide, action locale, bonne tolérance, être stable, conditionnement adapté à la pratique, intérêt des gammes disponible (variété : alcoolique, aqueuse…)",
+            "term": "Critères de choix d’un antiseptique (en rôle autonome)"
+          }
+        ],
+        "filename": "bio nettoyage - antiseptiques & désinfectants.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 395,
+    "totalTerms": 450,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0
