@@ -1,5 +1,5 @@
 {
-  "exportDate": "2025-10-10T20:28:23.090504",
+  "exportDate": "2025-11-01T14:43:23.029677",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -2064,10 +2064,386 @@
         ],
         "filename": "bio nettoyage - antiseptiques & désinfectants.odt"
       }
+    ],
+    [
+      "ue_3_1_s1_mthode_et_outils_de_mesure_de_lautonomie",
+      {
+        "title": "méthode et outils de mesure de l’autonomie",
+        "date": "23/10/2025",
+        "ue": "3.1.S1",
+        "author": "EC",
+        "definitions": [
+          {
+            "definition": "être capable d’agir sans dépendre d’autrui et de se décider par soi même aujourd’hui. Principe que personne ne peut contraindre ou obliger une personne à agir différemment sous prétexte que cela serait meilleur pour lui.",
+            "term": "Autonomie"
+          },
+          {
+            "definition": "pouvoir faire / réaliser et savoir utiliser les moyens pour faire",
+            "term": "Autonomie fonctionnelle"
+          },
+          {
+            "definition": "savoir faire / décider de faire / capacité à choisir par soi-même",
+            "term": "Autonomie cognitive"
+          },
+          {
+            "definition": "vouloir faire / consentement",
+            "term": "Autonomie décisionnelle"
+          },
+          {
+            "definition": "apprécier la capacité de la personne à réaliser des actes de la vie quotidienne (AVQ) et l’accompagner dans les soins en favorisant sa participation et celle de son entourage / adapter les soins quotidiens en tenant compte des ressources / évaluer, anticiper et prévenir les risques liés à la diminution ou la perte de l’autonomie",
+            "term": "Mesure de l’autonomie"
+          },
+          {
+            "definition": "Observation clinique (recueil) / Écoute du patient",
+            "term": "Méthodes de mesure"
+          },
+          {
+            "definition": "échelles",
+            "term": "Outils de mesure"
+          },
+          {
+            "definition": "de 0 (dépendance) à 6 (autonome). Indication principale : maladie d’Alzheimer, retour à domicile, mettre en place les aides à domicile. Activites of Daily Living ou Katz mesure 6 activités de base de la vie quotidienne : hygiène corporelle, habillage, aller aux toilettes, transfert, continence, repas",
+            "term": "Échelle ADL"
+          },
+          {
+            "definition": "de 0 (dépendance) à 8 (autonome). Indication principale : retour à domicile, mettre en place les aides à domicile. Instrumental Activites of Daily Living mesure 8 activités plus complexes : utilisation téléphone, courses, préparation aliments, entretien ménager, lessive, moyen de transport, gestion des médicaments, gestion budget.",
+            "term": "Échelle IADL"
+          },
+          {
+            "definition": "Autonomie Gérontologie Groupe Iso Ressources crée en France en 1996. évalue le niveau de perte d’autonomie. Déterminer un groupe GIR 1 (dépendant) à 6 (autonome). Permet l’éligibilité à l’APA des groupes 1 à 4 (Allocation Personnalisée à l’Autonomie).17 critères = 10 variables physique et psychique (calcul du GIR) + 7 variables domestique et sociale (élaborer plan d’aide à domicile).Variable = A (acte accomplit seul, spontanément totalement habituellement et correctement), B (acte accomplit seul, non spontanément et/ou partiellement habituellement, correctement), C (acte n’accomplit pas seul ni spontanément, ni habituellement, ni correctement)",
+            "term": "Échelle AGGIR"
+          },
+          {
+            "definition": "adapter les soins en préservant l’autonomie +++, ne pas faire à la place de la personne en soin",
+            "term": "Application clinique infirmière"
+          }
+        ],
+        "filename": "méthode et outils de mesure de l’autonomie.odt"
+      }
+    ],
+    [
+      "ue_4_4_s1_fondamentaux_ide_dans_lapplication_de_la_pm",
+      {
+        "title": "fondamentaux IDE dans l’application de la PM",
+        "date": "",
+        "ue": "4.4.S1",
+        "author": "KM",
+        "definitions": [
+          {
+            "definition": "ne pas préparer à l’avance les traitements, effectuée exclusivement par l’IDE (encadré par texte et décrets)",
+            "term": "Préparation médicament extemporanée"
+          },
+          {
+            "definition": "préparation / contrôle préalable produit-patient-prescription (aspect flacon, condition de conservation respectée, forme galénique, concentration, voie d’administration...) en salle de soin / administration / enregistrement de l’administration (traçabilité) / surveillance. L’IDE qui prépare est l’IDE qui administre. Ne pas retirer les blister des médicaments en amont",
+            "term": "Étapes préparation médicamenteuses"
+          },
+          {
+            "definition": "PA + pathologie + voie d’administration + paramètres patient (age, poids…)",
+            "term": "Posologie"
+          },
+          {
+            "definition": "délivrance d’un médicament en continu sur une période (ml/h)",
+            "term": "Pousse seringue électrique ou autopulsée"
+          },
+          {
+            "definition": "qté de PA par unité de traitement (cp, gellule, sachet…) . Ex : Doliprane cp 500mg",
+            "term": "Dosage (médicament)"
+          },
+          {
+            "definition": "quantité prescrite à administrer en 1 prise. Ex : 1g de paracétamol",
+            "term": "Dose (prescrite)"
+          },
+          {
+            "definition": "proportion d’un PA dans une solution = qté de PA dans une volume",
+            "term": "Concentration"
+          },
+          {
+            "definition": "réalisée par l’IDE, règles des 5B, 7B, 3P et 10B. Vigilance au traitement personnel du patient et automédication ⇒ à l’entrée en service les médicaments sont retirés au patient + tracer dans le dossier",
+            "term": "Distribution"
+          },
+          {
+            "definition": "bon patient, médicament (absence d’allergie), dose (calcul de dose à vérifier), voie (s’assurer que la voie est appropriée/sécurisée, possible de décapsuler gélule ? ⇒ OMEDIT), moment (cours du repas, a jeun… + tracer en tps réel)",
+            "term": "5B"
+          },
+          {
+            "definition": "+ bon débit + bon professionnel",
+            "term": "7B"
+          },
+          {
+            "definition": "+ bon solvant de reconstitution de solution + bonne concentration + bonne compatibilité",
+            "term": "10B"
+          },
+          {
+            "definition": "concordance Patient-Prescription-Produit pour sécuriser l’administration",
+            "term": "3P"
+          },
+          {
+            "definition": "événements évitables qui n’auraient pas dû survenir s des mesures de prévention adéquates avaient été mis en œuvre (identifiées par le Ministère de la Santé et l’ANSM). 16 sont actuellement recensés.",
+            "term": "Never events"
+          },
+          {
+            "definition": "risque hémorragique majeur.",
+            "term": "Erreur avec des anticoagulantsformeorale ou injectable"
+          },
+          {
+            "definition": "risque d’arrêt cardiaque(hyperkaliémie).",
+            "term": "Erreur d’administration de chlorure de potassium injectable"
+          },
+          {
+            "definition": "le mode de préparation est à risque notamment erreur de calcul de dose ou de concentration",
+            "term": "Erreur depréparation de spécialités injectables"
+          },
+          {
+            "definition": "au lieu de l’IV",
+            "term": "Erreur de voie d’administration intrathécale"
+          },
+          {
+            "definition": "au lieu de per os ou entérale",
+            "term": "Erreur de voie d’administrationparentérale"
+          },
+          {
+            "definition": "surdosage en cas de prise quotidienne au lieu d’hebdomadaire(néphrotoxicité, insuff rénale aigüe)",
+            "term": "Erreur de dosage du méthotrexate oral"
+          },
+          {
+            "definition": "confusion de type ou de dose.(hypoglycémie profonde ⇒séquelle neuro grave voire décès)",
+            "term": "Erreur d’administration d’insuline"
+          },
+          {
+            "definition": "notamment confusion dedosage (surdosage), devoie ou de produit(faible index thérapeutique et uneforte toxicitécombiné à erreur de voie ⇒ toxicité sévère des tissus non visés)",
+            "term": "Erreur d’administration d’une chimiothérapie antinéoplasique"
+          },
+          {
+            "definition": "décès liés à la prise non indiquée du protoxyde d’azote",
+            "term": "Erreur d’administration de gaz à usage médical"
+          },
+          {
+            "definition": "seringue électrique, pompe à perfusion notamment pour les morphiniques, insuline et médicaments à action sédative",
+            "term": "Erreur de programmation des dispositifs d’administration"
+          },
+          {
+            "definition": "erreur dosage",
+            "term": "Erreur surdosage lidocaïne"
+          },
+          {
+            "definition": "notamment pendant la période d’initiation du ttmt ou lors d’augmentation de dose ou reprise de ttmt",
+            "term": "Erreur surdosage méthadone"
+          },
+          {
+            "definition": "en l’absence de recherche de déficit en dihydropyrimidine déshydrogénase (absence de l’enzymedégradant ce médicament)",
+            "term": "Erreur d’administration de fluoropyrimidines"
+          },
+          {
+            "definition": "liée au non respect des schémas posologiques et/ou des CI dont les interactions ou en cas d’insuffisance rénale ou hépatique",
+            "term": "Erreur lors de l’utilisation de colchicine"
+          },
+          {
+            "definition": "notamment à la maternité ou en pédiatrie",
+            "term": "Erreur lors de l’administration/utilisation de petits conditionnements unidoses en matière plastique"
+          },
+          {
+            "definition": "notament en anesthésie réanimation",
+            "term": "Erreur de médicament look-alike/sound-alike (médicaments dont le nom ou l’apparence se ressemblent)"
+          },
+          {
+            "definition": "vérifier les renseignements de la Rx, ne pas retranscrire, conserver les médicaments dans leur conditionnement (blister…), tracer l’administration et la non-administration, informer le patient sur son traitement, prendre en compte le patient et ses particularités (âge, compréhension…) + double vérification pour les médicaments à risque + double vérification calcul de dose/débit + surveillance effets\"",
+            "term": "Sécurisation du circuit du médicament"
+          }
+        ],
+        "filename": "fondamentaux IDE dans l’application de la PM.odt"
+      }
+    ],
+    [
+      "ue_3_1_s1_dossier_patient",
+      {
+        "title": "dossier patient",
+        "date": "24/10/2025",
+        "ue": "3.1.S1",
+        "author": "KM",
+        "definitions": [
+          {
+            "definition": "Données administratives, médicales, paramédicales (CR, observations AS – IDE…), autres éléments (CS anesthésie, chir, transfusion…). Dossier médical est différent du dossier infirmier. Constitution obligatoire sur décret depuis 2003.",
+            "term": "Composition du dossier"
+          },
+          {
+            "definition": "complémentaire du dossier médical, fait partie du dossier patient et contient des éléments spécifiques à la pratique infirmière. Permet d’obtenir une représentation du patient, traçabilité des actes de soin, planification, évaluation activité en soin, juridique. Ne formuler aucun jugement de valeur.",
+            "term": "Dossier de soin"
+          },
+          {
+            "definition": "Outil de planification décrivant les soins à réaliser, leurs objectifs et leur suivi.",
+            "term": "Diagramme de soin IDE AS (= plan de soins)"
+          },
+          {
+            "definition": "formuler sa demande de manière écrite, à la direction établissement, préciser son identité, délai de réflexion de 48h et maxi 8 jours pour communiquer le dossier. Si dossier date >5ans le délai est porté à 1 mois. (loi 4 mars 2002)",
+            "term": "Demande du dossier par le patient"
+          },
+          {
+            "definition": "lieu de recueil et de conservation des informations administratives, médicales et paramédicales, formalisées et actualisées, enregistrées pour tout patient accueilli.",
+            "term": "dossier patient"
+          },
+          {
+            "definition": "partie du dossier patient tenue par le médecin, intégrant observations, interventions et prescriptions.",
+            "term": "dossier médical"
+          },
+          {
+            "definition": "partie du dossier patient tenue par l’infirmier, contenant les informations nécessaires à la prise en charge soignante et au suivi.",
+            "term": "dossier de soins infirmiers"
+          },
+          {
+            "definition": "informations d’identité, coordonnées, personne de confiance, couverture sociale et consentements.",
+            "term": "données administratives"
+          },
+          {
+            "definition": "antécédents, diagnostics, comptes rendus, prescriptions, résultats d’examens et protocoles thérapeutiques.",
+            "term": "données médicales"
+          },
+          {
+            "definition": "transmissions ciblées, plans de soins, diagrammes, observations et suivi des actes réalisés par les soignants.",
+            "term": "données paramédicales"
+          },
+          {
+            "definition": "système numérique regroupant les informations de santé du patient, structuré et sécurisé.",
+            "term": "DPI (dossier patient informatisé)"
+          },
+          {
+            "definition": "accord donné par le patient après information sur les traitements, interventions ou études le concernant.",
+            "term": "consentement éclairé"
+          },
+          {
+            "definition": "méthode d’écriture soignante organisée autour d’un ou plusieurs problèmes identifiés chez le patient.",
+            "term": "transmissions ciblées"
+          },
+          {
+            "definition": "obligation pour chaque professionnel d’assumer les écrits et actes consignés dans le dossier.",
+            "term": "responsabilité juridique"
+          },
+          {
+            "definition": "devoir de discrétion du soignant sur toutes les informations concernant le patient.",
+            "term": "secret professionnel"
+          },
+          {
+            "definition": "protection des données personnelles et médicales du patient contre tout accès non autorisé.",
+            "term": "confidentialité"
+          },
+          {
+            "definition": "loi instituant le droit d’accès direct du patient à son dossier médical.",
+            "term": "loi du 4 mars 2002"
+          },
+          {
+            "definition": "reconnaissance juridique du dossier comme élément de preuve écrite en cas de litige.",
+            "term": "valeur probante"
+          },
+          {
+            "definition": "indicateur évaluant la conformité des dossiers patients et la continuité de la prise en charge.",
+            "term": "qualité et sécurité des soins (IQSS)"
+          },
+          {
+            "definition": "combinaison du dossier médical et du dossier de soins assurant une prise en charge coordonnée.",
+            "term": "dossier unique du patient"
+          },
+          {
+            "definition": "principe garantissant la transmission et la permanence des informations entre professionnels.",
+            "term": "continuité des soins"
+          },
+          {
+            "definition": "processus structuré d’analyse des besoins et planification des interventions de soins.",
+            "term": "démarche clinique infirmière"
+          },
+          {
+            "definition": "étape initiale d’observation et d’enregistrement des informations cliniques du patient.",
+            "term": "recueil de données"
+          },
+          {
+            "definition": "document de transmission entre unités ou services à la sortie ou au transfert du patient.",
+            "term": "fiche de liaison"
+          },
+          {
+            "definition": "ensemble de mesures destinées à protéger le dossier patient informatisé (DPI).",
+            "term": "secret et sécurité informatique"
+          },
+          {
+            "definition": "assurer la conception, la tenue, la mise à jour et la confidentialité du dossier de soins infirmiers.",
+            "term": "rôle de l’IDE"
+          }
+        ],
+        "filename": "dossier patient.odt"
+      }
+    ],
+    [
+      "ue_2_4_s1_prise_en_charge_de_la_douleur_aigu",
+      {
+        "title": "Prise en charge de la douleur aiguë",
+        "date": "22/09/2025",
+        "ue": "2.4.S1",
+        "author": "KM",
+        "definitions": [
+          {
+            "definition": "expérience sensorielle et émotionnelle désagréable associée à une lésion réelle ou potentielle ou décrite en termes évoquant cette lésion.",
+            "term": "douleur"
+          },
+          {
+            "definition": "ensemble des phénomènes mis en jeu dans le système nerveux central en réaction à un stimulus douloureux activant les nocicepteurs, mécanisme physiologique de perception du stimulus douloureux.",
+            "term": "nociception"
+          },
+          {
+            "definition": "loi du 4 mars 2002 qui reconnaît le soulagement de la douleur comme un droit fondamental de toute personne.",
+            "term": "loi Kouchner"
+          },
+          {
+            "definition": "processus systématique d’écoute, d’évaluation et de prise en compte de la douleur avec traçabilité dans le dossier patient informatisé.",
+            "term": "évaluation de la douleur"
+          },
+          {
+            "definition": "écouter le patient, évaluer la douleur, croire le patient.",
+            "term": "principes de la prise en charge de la douleur"
+          },
+          {
+            "definition": "sensorielle (décodage du message nociceptif), affective et émotionnelle (ressenti pénible, anxiété, tristesse), cognitive (connaissance et compréhension de la douleur), comportementale (manifestations verbales et non verbales telles que cris, plaintes).",
+            "term": "composantes de la douleur"
+          },
+          {
+            "definition": "transmission du stimulus douloureux des nocicepteurs (récepteurs sensoriels de la douleur situés en surface et en profondeur) jusqu’au cortex cérébral par un courant électrique nerveux.",
+            "term": "voies de la douleur"
+          },
+          {
+            "definition": "douleur aiguë (intense, brutale, de courte durée, liée à une pathologie ou soin, signal d’alarme), douleur chronique (persistante depuis plus de 3 à 6 mois, retentissement sur la vie quotidienne, maladie), douleur neuropathique (due à une lésion ou irritation nerveuse, sensations de brûlure, décharges électriques), douleur psychogène (douleur réelle sans lésion visible, origine psychologique ou psychiatrique).",
+            "term": "types de douleur"
+          },
+          {
+            "definition": "outils mnémotechnique pour décrire la douleur selon Type, Intensité, Localisation, Temps.",
+            "term": "échelle TILT"
+          },
+          {
+            "definition": "auto-évaluation (EVA, EN, EVS, échelle des visages), hétéro-évaluation (Evendol, Algoplus, Doloplus, DN4 pour neuropathique).",
+            "term": "échelles d’évaluation"
+          },
+          {
+            "definition": "état comparable à un sommeil artificiel.",
+            "term": "anesthésie générale (AG)"
+          },
+          {
+            "definition": "abolition transitoire de la conduction nerveuse dans un territoire corporel tout en conservant la conscience, médullaire (rachianesthésie, péridurale) ou périphérique (bloc plexique).",
+            "term": "anesthésie loco-régionale (ALR)"
+          },
+          {
+            "definition": "injection sous la peau pour anesthésier une zone précise.",
+            "term": "anesthésie locale (AL)"
+          },
+          {
+            "definition": "évaluation régulière de la douleur, paramètres vitaux, nausées, motricité, sensibilité, site d’injection.",
+            "term": "surveillance post anesthésie"
+          },
+          {
+            "definition": "rétention urinaire, hypotension, bradycardie, paralysie temporaire ou permanente, accident vasculaire cérébral.",
+            "term": "complications ALR"
+          }
+        ],
+        "filename": "Prise en charge de la douleur aiguë.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 450,
+    "totalTerms": 532,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0
