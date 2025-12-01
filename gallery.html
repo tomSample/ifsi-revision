@@ -472,12 +472,17 @@
     </style>
 </head>
 <body>
+    <!-- Firebase Config -->
+    <script src="firebase-config.js"></script>
+    
+    <!-- Auth Guard: Rediriger si non connecté -->
+    <script src="auth-guard.js"></script>
     <script src="auth.js"></script>
     <div class="gallery-container">
         <header>
             <h1>🖼️ Galerie d'Images IFSI Lannion</h1>
             <nav class="breadcrumb">
-                <a href="navigation.html">🏠 Accueil</a>
+                <a href="home.html">🏠 Hub</a>
                 <span class="separator">›</span>
                 <span class="current">Galerie d'Images</span>
             </nav>

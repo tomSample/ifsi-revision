@@ -35,3 +35,6 @@ env/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Firebase configuration (ne pas commit la vraie config)
+firebase-config.js

@@ -32,7 +32,7 @@
             <h1>📚 IFSI Lannion 2025</h1>
             <h2>Révisions - Test de connaissances</h2>
             <nav class="breadcrumb">
-                <a href="navigation.html">🏠 Accueil</a> › <span class="current">Révisions Quotidiennes</span>
+                <a href="home.html">🏠 Hub</a> › <span class="current">Révisions Quotidiennes</span>
             </nav>
         </header>
 
@@ -125,10 +125,30 @@
                             <div id="correctAnswerDisplay" class="answer-display"></div>
                         </div>
                         
+                        <!-- Notation de difficulté -->
+                        <div class="difficulty-rating">
+                            <h4>💭 Comment avez-vous trouvé ce terme ?</h4>
+                            <p class="difficulty-hint">Votre réponse permet d'optimiser vos prochaines révisions</p>
+                            <div class="difficulty-buttons">
+                                <button class="difficulty-btn btn-hard" onclick="rateDifficulty('difficile')" title="Je n'ai pas su répondre ou j'ai eu beaucoup de mal">
+                                    <span class="difficulty-emoji">😓</span>
+                                    <span class="difficulty-label">Difficile</span>
+                                    <span class="difficulty-interval">Revoir dans 1 jour</span>
+                                </button>
+                                <button class="difficulty-btn btn-medium" onclick="rateDifficulty('moyen')" title="J'ai su répondre mais avec quelques hésitations">
+                                    <span class="difficulty-emoji">🤔</span>
+                                    <span class="difficulty-label">Moyen</span>
+                                    <span class="difficulty-interval">Revoir dans ~3 jours</span>
+                                </button>
+                                <button class="difficulty-btn btn-easy" onclick="rateDifficulty('facile')" title="J'ai parfaitement su répondre">
+                                    <span class="difficulty-emoji">😊</span>
+                                    <span class="difficulty-label">Facile</span>
+                                    <span class="difficulty-interval">Revoir dans ~6 jours</span>
+                                </button>
+                            </div>
+                        </div>
+                        
                         <div class="evaluation-buttons">
-                            <button id="nextTermBtn" class="btn-next" onclick="nextTerm()">
-                                Terme suivant
-                            </button>
                             <button id="reportTermBtn" class="btn-report" onclick="showReportModal()">
                                 Signaler cette définition
                             </button>
@@ -216,6 +236,22 @@
         </div>
     </div>
 
+    <!-- Firebase -->
+    <script src="firebase-config.js"></script>
+    
+    <!-- Auth Guard - Protection de la page -->
+    <script src="auth-guard.js"></script>
+    <script>
+        // Protéger la page - rediriger si non connecté
+        const authGuard = new AuthGuard();
+        authGuard.initialize();
+    </script>
+    
+    <!-- Modules de gestion de progression -->
+    <script src="sync-manager.js"></script>
+    <script src="spaced-repetition.js"></script>
+    
+    <!-- Script principal de révision -->
     <script src="revision.js"></script>
 </body>
 </html>

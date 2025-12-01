@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon compte - IFSI Lannion 2025</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .account-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .account-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .account-header h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .account-header p {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        .account-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .account-card h2 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #495057;
+            font-size: 14px;
+        }
+
+        .info-value {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #495057;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .error-message, .success-message {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .danger-zone {
+            border: 2px solid #dc3545;
+            background: #fff5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .danger-zone h3 {
+            color: #dc3545;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .danger-zone p {
+            color: #721c24;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.6s linear infinite;
+            margin-left: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .back-link {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .info-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn-group .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Firebase Config -->
+    <script src="firebase-config.js"></script>
+    
+    <!-- Auth Guard: Rediriger si non connecté -->
+    <script src="auth-guard.js"></script>
+    <div class="account-container">
+        <a href="javascript:history.back()" class="back-link">← Retour</a>
+
+        <div class="account-header">
+            <h1>⚙️ Mon compte</h1>
+            <p>Gérez vos informations et paramètres</p>
+        </div>
+
+        <!-- Informations du compte -->
+        <div class="account-card">
+            <h2>📧 Informations du compte</h2>
+            <div class="info-row">
+                <span class="info-label">Adresse email</span>
+                <span class="info-value" id="userEmail">Chargement...</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Compte créé le</span>
+                <span class="info-value" id="userCreatedAt">Chargement...</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Dernière connexion</span>
+                <span class="info-value" id="lastLogin">Chargement...</span>
+            </div>
+        </div>
+
+        <!-- Changer l'email -->
+        <div class="account-card">
+            <h2>✉️ Changer l'adresse email</h2>
+            <div id="emailMessage" class="error-message"></div>
+            <div id="emailSuccess" class="success-message"></div>
+            
+            <form id="changeEmailForm">
+                <div class="form-group">
+                    <label for="newEmail">Nouvelle adresse email</label>
+                    <input type="email" id="newEmail" placeholder="nouvelle@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="emailPassword">Mot de passe actuel (pour confirmer)</label>
+                    <input type="password" id="emailPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="changeEmailBtn">
+                    Modifier l'email
+                </button>
+            </form>
+        </div>
+
+        <!-- Changer le mot de passe -->
+        <div class="account-card">
+            <h2>🔒 Changer le mot de passe</h2>
+            <div id="passwordMessage" class="error-message"></div>
+            <div id="passwordSuccess" class="success-message"></div>
+            
+            <form id="changePasswordForm">
+                <div class="form-group">
+                    <label for="currentPassword">Mot de passe actuel</label>
+                    <input type="password" id="currentPassword" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Nouveau mot de passe</label>
+                    <input type="password" id="newPassword" placeholder="Minimum 6 caractères" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="confirmNewPassword">Confirmer le nouveau mot de passe</label>
+                    <input type="password" id="confirmNewPassword" placeholder="••••••••" required minlength="6">
+                </div>
+                <button type="submit" class="btn btn-primary" id="changePasswordBtn">
+                    Modifier le mot de passe
+                </button>
+            </form>
+        </div>
+
+        <!-- Zone de danger -->
+        <div class="account-card">
+            <h2>⚠️ Zone de danger</h2>
+            <div class="danger-zone">
+                <h3>🗑️ Supprimer mon compte</h3>
+                <p>
+                    Cette action est <strong>irréversible</strong>. Toutes vos données (progression, statistiques, historique) seront <strong>définitivement supprimées</strong>.
+                </p>
+                <button class="btn btn-danger" id="deleteAccountBtn">
+                    Supprimer mon compte
+                </button>
+            </div>
+        </div>
+
+        <!-- Bouton de déconnexion -->
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="btn btn-secondary" id="logoutBtn">
+                🚪 Se déconnecter
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de confirmation de suppression -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚠️ Confirmer la suppression</h3>
+                <p style="color: #721c24; font-size: 14px; margin-top: 10px;">
+                    Cette action est <strong>irréversible</strong>. Êtes-vous absolument sûr ?
+                </p>
+            </div>
+            
+            <div id="deleteMessage" class="error-message"></div>
+            
+            <form id="deleteAccountForm">
+                <div class="form-group">
+                    <label for="deletePassword">Entrez votre mot de passe pour confirmer</label>
+                    <input type="password" id="deletePassword" placeholder="••••••••" required>
+                </div>
+                
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary" id="cancelDeleteBtn">
+                        Annuler
+                    </button>
+                    <button type="submit" class="btn btn-danger" id="confirmDeleteBtn">
+                        Supprimer définitivement
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="firebase-config.js"></script>
+    <script type="module" src="account.js"></script>
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - IFSI Lannion 2025</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+            max-width: 420px;
+            width: 100%;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-header h1 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .auth-header p {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #495057;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #adb5bd;
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            font-size: 12px;
+        }
+
+        .strength-bar {
+            height: 4px;
+            background: #e9ecef;
+            border-radius: 2px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .strength-bar-fill {
+            height: 100%;
+            width: 0%;
+            transition: all 0.3s ease;
+        }
+
+        .strength-weak { width: 33%; background: #dc3545; }
+        .strength-medium { width: 66%; background: #ffc107; }
+        .strength-strong { width: 100%; background: #28a745; }
+
+        .form-hint {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .form-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .form-links a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .divider {
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e9ecef;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 15px;
+            color: #6c757d;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.6s linear infinite;
+            margin-left: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #667eea;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #495057;
+        }
+
+        @media (max-width: 480px) {
+            .auth-card {
+                padding: 30px 20px;
+            }
+
+            .back-link {
+                position: static;
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()" class="back-link">← Retour</a>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>📝 Créer un compte</h1>
+                <p>Commencez vos révisions dès maintenant</p>
+            </div>
+
+            <div class="info-box" id="restrictionInfo">
+                ℹ️ Vos données restent privées et sécurisées. Seuls votre email et mot de passe sont nécessaires.
+            </div>
+
+            <div id="errorMessage" class="error-message"></div>
+            <div id="successMessage" class="success-message"></div>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="email">Adresse email *</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="exemple@email.com" 
+                        required 
+                        autocomplete="email"
+                    >
+                    <div class="form-hint">Utilisez votre email étudiant ou personnel</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe *</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Minimum 6 caractères" 
+                        required 
+                        autocomplete="new-password"
+                        minlength="6"
+                    >
+                    <div class="password-strength">
+                        <div class="strength-bar">
+                            <div id="strengthBarFill" class="strength-bar-fill"></div>
+                        </div>
+                        <span id="strengthText" class="form-hint"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmer le mot de passe *</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword" 
+                        placeholder="Retapez votre mot de passe" 
+                        required 
+                        autocomplete="new-password"
+                        minlength="6"
+                    >
+                </div>
+
+                <button type="submit" class="btn-primary" id="registerBtn">
+                    Créer mon compte
+                </button>
+            </form>
+
+            <div class="divider">
+                <span>ou</span>
+            </div>
+
+            <div class="form-links">
+                <p style="margin: 0; color: #6c757d; font-size: 14px;">
+                    Vous avez déjà un compte ? 
+                    <a href="login.html"><strong>Se connecter</strong></a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configuration et Firebase -->
+    <script src="app-config.js"></script>
+    <script src="firebase-config.js"></script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword
+        } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js';
+        import { 
+            getFirestore, 
+            doc, 
+            setDoc 
+        } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
+
+        // Initialisation
+        const app = initializeApp(window.firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Éléments DOM
+        const registerForm = document.getElementById('registerForm');
+        const registerBtn = document.getElementById('registerBtn');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const passwordInput = document.getElementById('password');
+        const strengthBarFill = document.getElementById('strengthBarFill');
+        const strengthText = document.getElementById('strengthText');
+        const restrictionInfo = document.getElementById('restrictionInfo');
+
+        // Afficher le message de restriction si configuré
+        if (window.appConfig && window.appConfig.restrictionMode === 'strict') {
+            const domains = window.appConfig.allowedEmailDomains || [];
+            if (domains.length > 0) {
+                const domainList = domains.join(', ');
+                restrictionInfo.innerHTML = `
+                    🔒 <strong>Inscription réservée</strong><br>
+                    <span style="font-size: 12px;">Domaines autorisés : ${domainList}</span>
+                `;
+                restrictionInfo.style.background = '#fff3cd';
+                restrictionInfo.style.borderLeft = '4px solid #ffc107';
+            }
+        }
+
+        // Vérifier la force du mot de passe
+        passwordInput.addEventListener('input', () => {
+            const password = passwordInput.value;
+            const strength = checkPasswordStrength(password);
+            
+            strengthBarFill.className = 'strength-bar-fill';
+            
+            if (strength === 'weak') {
+                strengthBarFill.classList.add('strength-weak');
+                strengthText.textContent = '⚠️ Mot de passe faible';
+                strengthText.style.color = '#dc3545';
+            } else if (strength === 'medium') {
+                strengthBarFill.classList.add('strength-medium');
+                strengthText.textContent = '🔶 Mot de passe moyen';
+                strengthText.style.color = '#ffc107';
+            } else if (strength === 'strong') {
+                strengthBarFill.classList.add('strength-strong');
+                strengthText.textContent = '✅ Mot de passe fort';
+                strengthText.style.color = '#28a745';
+            } else {
+                strengthText.textContent = '';
+            }
+        });
+
+        function checkPasswordStrength(password) {
+            if (password.length === 0) return 'none';
+            if (password.length < 6) return 'weak';
+            
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^a-zA-Z0-9]/.test(password)) strength++;
+            
+            if (strength <= 1) return 'weak';
+            if (strength === 2) return 'medium';
+            return 'strong';
+        }
+
+        /**
+         * Valider le domaine de l'email
+         * @param {string} email - Adresse email à valider
+         * @returns {boolean} - true si autorisé, false sinon
+         */
+        function validateEmailDomain(email) {
+            if (!window.appConfig) return true; // Pas de config = accès ouvert
+            
+            const config = window.appConfig;
+            
+            // Mode ouvert : tout est autorisé
+            if (config.restrictionMode !== 'strict') return true;
+            
+            // Vérifier si c'est un email admin
+            if (config.adminEmails && config.adminEmails.includes(email.toLowerCase())) {
+                return true;
+            }
+            
+            // Extraire le domaine de l'email
+            const emailLower = email.toLowerCase();
+            
+            // Vérifier si le domaine est dans la liste autorisée
+            if (!config.allowedEmailDomains || config.allowedEmailDomains.length === 0) {
+                return true; // Pas de restriction si liste vide
+            }
+            
+            // Vérifier chaque domaine autorisé
+            for (const domain of config.allowedEmailDomains) {
+                if (emailLower.endsWith(domain.toLowerCase())) {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+
+        // Gestion de la soumission du formulaire
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // ======= VALIDATION DU DOMAINE EMAIL =======
+            if (window.appConfig && window.appConfig.restrictionMode === 'strict') {
+                const isAllowed = validateEmailDomain(email);
+                if (!isAllowed) {
+                    errorMessage.textContent = window.appConfig.restrictionMessage || 
+                        "L'inscription est réservée aux membres autorisés.";
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+            }
+
+            // Vérifier que les mots de passe correspondent
+            if (password !== confirmPassword) {
+                errorMessage.textContent = 'Les mots de passe ne correspondent pas.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Désactiver le bouton pendant le traitement
+            registerBtn.disabled = true;
+            registerBtn.innerHTML = 'Création en cours<span class="loading-spinner"></span>';
+            
+            // Masquer les messages précédents
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            try {
+                // Créer le compte Firebase Auth
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Créer le document utilisateur dans Firestore
+                await setDoc(doc(db, 'users', user.uid), {
+                    email: email,
+                    createdAt: new Date(),
+                    settings: {
+                        dailyGoal: 20,
+                        notifications: true
+                    },
+                    stats: {
+                        totalTermsStudied: 0,
+                        totalReviews: 0,
+                        currentStreak: 0,
+                        lastActivity: new Date()
+                    }
+                });
+
+                // Succès
+                successMessage.textContent = '✅ Compte créé avec succès ! Redirection...';
+                successMessage.style.display = 'block';
+
+                // Redirection après 1.5 secondes
+                setTimeout(() => {
+                    window.location.href = 'home.html';
+                }, 1500);
+
+            } catch (error) {
+                console.error('Erreur inscription:', error);
+                
+                // Afficher l'erreur
+                errorMessage.textContent = getErrorMessage(error.code);
+                errorMessage.style.display = 'block';
+                
+                // Réactiver le bouton
+                registerBtn.disabled = false;
+                registerBtn.textContent = 'Créer mon compte';
+            }
+        });
+
+        // Messages d'erreur en français
+        function getErrorMessage(errorCode) {
+            const errorMessages = {
+                'auth/email-already-in-use': 'Cette adresse email est déjà utilisée.',
+                'auth/invalid-email': 'Adresse email invalide.',
+                'auth/operation-not-allowed': 'Opération non autorisée.',
+                'auth/weak-password': 'Le mot de passe doit contenir au moins 6 caractères.',
+                'auth/network-request-failed': 'Erreur de connexion. Vérifiez votre connexion internet.'
+            };
+
+            return errorMessages[errorCode] || `Erreur : ${errorCode}`;
+        }
+    </script>
+</body>
+</html>

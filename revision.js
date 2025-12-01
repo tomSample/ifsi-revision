@@ -23,13 +23,79 @@ let globalStats = {
 let reportedTerms = [];
 let pendingReports = [];
 
+// Firebase et gestion de progression
+let auth = null;
+let db = null;
+let syncManager = null;
+let spacedRepetition = null;
+let userProgress = {};
+
 // Initialisation au chargement de la page
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    await initializeFirebase();
     loadCoursesData();
-    loadUserProgress();
+    await loadUserProgressFromFirestore();
     loadReportedTerms();
     setupEventListeners();
 });
+
+/**
+ * Initialiser Firebase et les modules de progression
+ */
+async function initializeFirebase() {
+    try {
+        // Import dynamique de Firebase
+        const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js');
+        const { getAuth, onAuthStateChanged } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js');
+        const { getFirestore } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
+        
+        // Initialiser Firebase
+        const app = initializeApp(window.firebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+        
+        // Initialiser les gestionnaires
+        syncManager = new SyncManager(auth, db);
+        spacedRepetition = new SpacedRepetition();
+        
+        // Charger les synchronisations en attente
+        syncManager.loadPendingFromLocalStorage();
+        
+        // Écouter les changements d'authentification
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log('✅ Utilisateur connecté:', user.email);
+                // Recharger la progression si l'utilisateur vient de se connecter
+                loadUserProgressFromFirestore();
+            } else {
+                console.log('ℹ️ Mode invité - progression locale uniquement');
+                userProgress = {};
+            }
+        });
+        
+    } catch (error) {
+        console.error('Erreur initialisation Firebase:', error);
+        console.log('ℹ️ Utilisation du mode hors ligne');
+    }
+}
+
+/**
+ * Charger la progression utilisateur depuis Firestore
+ */
+async function loadUserProgressFromFirestore() {
+    if (!syncManager || !auth?.currentUser) {
+        console.log('Mode invité - pas de progression synchronisée');
+        return;
+    }
+    
+    try {
+        userProgress = await syncManager.getAllProgress();
+        console.log(`✅ Progression chargée: ${Object.keys(userProgress).length} termes`);
+    } catch (error) {
+        console.error('Erreur chargement progression:', error);
+        userProgress = {};
+    }
+}
 
 // Charger les signalements existants
 function loadReportedTerms() {
@@ -353,7 +419,7 @@ function updateUEDisplay() {
 }
 
 // Démarrer une session de révision
-function startRevision() {
+async function startRevision() {
     if (filteredTerms.length === 0) {
         alert('Aucun terme disponible avec les UE sélectionnées. Veuillez sélectionner au moins une UE.');
         return;
@@ -371,7 +437,7 @@ function startRevision() {
     }
     
     // Sélectionner les termes pour cette session depuis les termes filtrés
-    currentSession = selectTermsForSession(termCount);
+    currentSession = await selectTermsForSession(termCount);
     currentTermIndex = 0;
     sessionResults = [];
     sessionStartTime = new Date();
@@ -384,21 +450,57 @@ function startRevision() {
     showCurrentTerm();
 }
 
-// Sélectionner des termes pour la session (depuis les termes filtrés)
-function selectTermsForSession(count = 10) {
+// Sélectionner des termes pour la session (avec priorisation intelligente)
+async function selectTermsForSession(count = 10) {
     if (filteredTerms.length === 0) {
         console.log('Aucun terme disponible avec les filtres actuels');
         return [];
     }
     
-    // Mélanger les termes filtrés de façon aléatoire
-    const shuffledTerms = [...filteredTerms].sort(() => 0.5 - Math.random());
+    // Si pas d'algorithme de répétition espacée, mode aléatoire
+    if (!spacedRepetition || !syncManager) {
+        const shuffledTerms = [...filteredTerms].sort(() => 0.5 - Math.random());
+        return shuffledTerms.slice(0, Math.min(count, filteredTerms.length));
+    }
     
-    // Prendre le nombre demandé (ou moins s'il y a moins de termes disponibles)
-    const sessionTerms = shuffledTerms.slice(0, Math.min(count, filteredTerms.length));
+    // Mode intelligent: priorisation selon la courbe de l'oubli
+    const termsWithProgress = [];
     
-    console.log(`Session générée avec ${sessionTerms.length} termes aléatoires depuis ${filteredTerms.length} termes filtrés`);
-    return sessionTerms;
+    for (const term of filteredTerms) {
+        const termKey = generateTermKey(term);
+        const progress = userProgress[termKey] || null;
+        
+        termsWithProgress.push({
+            term: term,
+            progress: progress,
+            priority: spacedRepetition.getPriorityScore(progress)
+        });
+    }
+    
+    // Trier par priorité (décroissante)
+    termsWithProgress.sort((a, b) => b.priority - a.priority);
+    
+    // Stratégie de sélection:
+    // - 40% des termes les plus prioritaires (jamais vus + difficiles + en retard)
+    // - 60% aléatoires parmi les autres
+    const highPriorityCount = Math.ceil(count * 0.4);
+    const randomCount = count - highPriorityCount;
+    
+    // Sélectionner les termes prioritaires
+    const highPriority = termsWithProgress.slice(0, Math.min(highPriorityCount, termsWithProgress.length));
+    
+    // Sélectionner aléatoirement parmi le reste
+    const remaining = termsWithProgress.slice(highPriorityCount);
+    const randomSelection = remaining.sort(() => 0.5 - Math.random()).slice(0, randomCount);
+    
+    // Combiner et mélanger pour éviter un ordre prévisible
+    const selectedTerms = [...highPriority, ...randomSelection]
+        .sort(() => 0.5 - Math.random())
+        .map(item => item.term);
+    
+    console.log(`✅ Session intelligente: ${selectedTerms.length} termes (${highPriorityCount} prioritaires)`);
+    
+    return selectedTerms.slice(0, count);
 }
 
 // Simplifier la vérification (plus de traçage individuel)
@@ -448,6 +550,10 @@ function setThinkingState() {
     
     // Masquer la section de correction
     document.getElementById('correctionSection').style.display = 'none';
+    
+    // Réinitialiser les boutons de difficulté
+    const difficultyButtons = document.querySelectorAll('.difficulty-btn');
+    difficultyButtons.forEach(btn => btn.classList.remove('selected'));
     
     // Afficher le bouton de vérification
     document.getElementById('checkAnswerBtn').style.display = 'inline-block';
@@ -500,6 +606,62 @@ function revealDefinition() {
 }
 
 // Passer au terme suivant
+/**
+ * Noter la difficulté d'un terme et passer au suivant
+ * @param {string} difficulty - 'facile', 'moyen', ou 'difficile'
+ */
+async function rateDifficulty(difficulty) {
+    const currentTerm = currentSession[currentTermIndex];
+    const termKey = generateTermKey(currentTerm);
+    
+    // Animation visuelle du bouton cliqué
+    const buttons = document.querySelectorAll('.difficulty-btn');
+    buttons.forEach(btn => btn.classList.remove('selected'));
+    event.target.closest('.difficulty-btn').classList.add('selected');
+    
+    // Calculer la nouvelle progression avec l'algorithme SM-2
+    if (spacedRepetition && syncManager) {
+        const currentProgress = userProgress[termKey] || null;
+        const newProgress = spacedRepetition.calculateNextReview(currentProgress, difficulty);
+        
+        // Sauvegarder dans Firestore
+        const saved = await syncManager.saveTermProgress(termKey, newProgress);
+        
+        if (saved) {
+            // Mettre à jour le cache local
+            userProgress[termKey] = newProgress;
+            
+            // Calculer les jours jusqu'à la prochaine révision
+            const daysUntilNext = Math.ceil((newProgress.nextReview - new Date()) / (1000 * 60 * 60 * 24));
+            const intervalText = spacedRepetition.formatInterval(daysUntilNext);
+            
+            showNotification(`✅ Progression sauvegardée ! Prochaine révision : ${intervalText}`, 'success');
+        } else {
+            showNotification('⚠️ Sauvegarde en attente (mode hors ligne)', 'warning');
+        }
+    } else {
+        console.log(`Note enregistrée (mode invité): ${difficulty} pour ${currentTerm.term}`);
+    }
+    
+    // Enregistrer le résultat dans la session
+    sessionResults.push({
+        term: currentTerm,
+        difficulty: difficulty,
+        userAnswer: document.getElementById('userAnswer').value
+    });
+    
+    // Passer au terme suivant après un court délai
+    setTimeout(() => {
+        currentTermIndex++;
+        
+        if (currentTermIndex < currentSession.length) {
+            showCurrentTerm();
+        } else {
+            showSessionSummary();
+        }
+    }, 800);
+}
+
 function nextTerm() {
     if (currentState !== 'revealed') return;
     
