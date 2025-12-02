@@ -333,40 +333,48 @@
     <script src="app-config.js"></script>
     <script src="firebase-config.js"></script>
     <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
-        import { 
-            getAuth, 
-            createUserWithEmailAndPassword,
-            onAuthStateChanged
-        } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js';
-        import { 
-            getFirestore, 
-            doc, 
-            setDoc 
-        } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
-
-        // Initialisation
-        const app = initializeApp(window.firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // 🔒 REVERSE AUTH GUARD: Rediriger si déjà connecté
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                console.log('✅ Utilisateur déjà connecté, redirection vers home.html');
-                window.location.href = 'home.html';
+        // Attendre que firebase-config.js soit chargé
+        async function initFirebase() {
+            // Vérifier que la config est chargée
+            if (!window.firebaseConfig) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                return initFirebase();
             }
-        });
 
-        // Éléments DOM
-        const registerForm = document.getElementById('registerForm');
-        const registerBtn = document.getElementById('registerBtn');
-        const errorMessage = document.getElementById('errorMessage');
-        const successMessage = document.getElementById('successMessage');
-        const passwordInput = document.getElementById('password');
-        const strengthBarFill = document.getElementById('strengthBarFill');
-        const strengthText = document.getElementById('strengthText');
-        const restrictionInfo = document.getElementById('restrictionInfo');
+            const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js');
+            const { 
+                getAuth, 
+                createUserWithEmailAndPassword,
+                onAuthStateChanged
+            } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js');
+            const { 
+                getFirestore, 
+                doc, 
+                setDoc 
+            } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
+
+            // Initialisation
+            const app = initializeApp(window.firebaseConfig);
+            const auth = getAuth(app);
+            const db = getFirestore(app);
+
+            // 🔒 REVERSE AUTH GUARD: Rediriger si déjà connecté
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    console.log('✅ Utilisateur déjà connecté, redirection vers home.html');
+                    window.location.href = 'home.html';
+                }
+            });
+
+            // Éléments DOM
+            const registerForm = document.getElementById('registerForm');
+            const registerBtn = document.getElementById('registerBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const passwordInput = document.getElementById('password');
+            const strengthBarFill = document.getElementById('strengthBarFill');
+            const strengthText = document.getElementById('strengthText');
+            const restrictionInfo = document.getElementById('restrictionInfo');
 
         // Afficher le message de restriction si configuré
         if (window.appConfig && window.appConfig.restrictionMode === 'strict') {
@@ -546,6 +554,10 @@
 
             return errorMessages[errorCode] || `Erreur : ${errorCode}`;
         }
+        }
+
+        // Démarrer l'initialisation
+        initFirebase();
     </script>
 </body>
 </html>

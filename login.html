@@ -305,110 +305,122 @@
     <!-- Firebase -->
     <script src="firebase-config.js"></script>
     <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
-        import { 
-            getAuth, 
-            signInWithEmailAndPassword,
-            setPersistence,
-            browserLocalPersistence,
-            browserSessionPersistence,
-            onAuthStateChanged
-        } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js';
-
-        // Initialisation
-        const app = initializeApp(window.firebaseConfig);
-        const auth = getAuth(app);
-
-        // 🔒 REVERSE AUTH GUARD: Rediriger si déjà connecté
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                console.log('✅ Utilisateur déjà connecté, redirection vers home.html');
-                window.location.href = 'home.html';
+        // Attendre que firebase-config.js soit chargé
+        async function initFirebase() {
+            // Vérifier que la config est chargée
+            if (!window.firebaseConfig) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                return initFirebase();
             }
-        });
 
-        // Configurer la persistance par défaut (local = reste connecté)
-        setPersistence(auth, browserLocalPersistence)
-            .catch((error) => {
-                console.error('Erreur configuration persistance:', error);
+            const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js');
+            const { 
+                getAuth, 
+                signInWithEmailAndPassword,
+                setPersistence,
+                browserLocalPersistence,
+                browserSessionPersistence,
+                onAuthStateChanged
+            } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js');
+
+            // Initialisation
+            const app = initializeApp(window.firebaseConfig);
+            const auth = getAuth(app);
+
+            // 🔒 REVERSE AUTH GUARD: Rediriger si déjà connecté
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    console.log('✅ Utilisateur déjà connecté, redirection vers home.html');
+                    window.location.href = 'home.html';
+                }
             });
 
-        // Éléments DOM
-        const loginForm = document.getElementById('loginForm');
-        const loginBtn = document.getElementById('loginBtn');
-        const errorMessage = document.getElementById('errorMessage');
-        const successMessage = document.getElementById('successMessage');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const rememberMeCheckbox = document.getElementById('rememberMe');
+            // Configurer la persistance par défaut (local = reste connecté)
+            setPersistence(auth, browserLocalPersistence)
+                .catch((error) => {
+                    console.error('Erreur configuration persistance:', error);
+                });
 
-        // Note: Firebase Auth gère déjà la persistance de session
-        // Pas besoin de stocker email/password dans localStorage
+            // Éléments DOM
+            const loginForm = document.getElementById('loginForm');
+            const loginBtn = document.getElementById('loginBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const rememberMeCheckbox = document.getElementById('rememberMe');
 
-        // Gestion de la soumission du formulaire
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            // Note: Firebase Auth gère déjà la persistance de session
+            // Pas besoin de stocker email/password dans localStorage
 
-            // Désactiver le bouton pendant le traitement
-            loginBtn.disabled = true;
-            loginBtn.innerHTML = 'Connexion en cours<span class="loading-spinner"></span>';
-            
-            // Masquer les messages précédents
-            errorMessage.style.display = 'none';
-            successMessage.style.display = 'none';
-
-            try {
-                // Configurer la persistance selon la checkbox
-                const rememberMe = rememberMeCheckbox.checked;
-                await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
-
-                // Connexion Firebase
-                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            // Gestion de la soumission du formulaire
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
                 
-                // Firebase Auth gère la persistance automatiquement
-                // Pas besoin de stocker les identifiants manuellement
-                
-                // Succès
-                successMessage.textContent = '✅ Connexion réussie ! Redirection...';
-                successMessage.style.display = 'block';
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
 
-                // Redirection après 1 seconde vers la page d'origine ou navigation
-                setTimeout(() => {
-                    const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
-                    sessionStorage.removeItem('redirectAfterLogin');
-                    window.location.href = redirectUrl || 'home.html';
-                }, 1000);
+                // Désactiver le bouton pendant le traitement
+                loginBtn.disabled = true;
+                loginBtn.innerHTML = 'Connexion en cours<span class="loading-spinner"></span>';
+                
+                // Masquer les messages précédents
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
 
-            } catch (error) {
-                console.error('Erreur connexion:', error);
-                
-                // Afficher l'erreur
-                errorMessage.textContent = getErrorMessage(error.code);
-                errorMessage.style.display = 'block';
-                
-                // Réactiver le bouton
-                loginBtn.disabled = false;
-                loginBtn.textContent = 'Se connecter';
+                try {
+                    // Configurer la persistance selon la checkbox
+                    const rememberMe = rememberMeCheckbox.checked;
+                    await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
+
+                    // Connexion Firebase
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    
+                    // Firebase Auth gère la persistance automatiquement
+                    // Pas besoin de stocker les identifiants manuellement
+                    
+                    // Succès
+                    successMessage.textContent = '✅ Connexion réussie ! Redirection...';
+                    successMessage.style.display = 'block';
+
+                    // Redirection après 1 seconde vers la page d'origine ou navigation
+                    setTimeout(() => {
+                        const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
+                        sessionStorage.removeItem('redirectAfterLogin');
+                        window.location.href = redirectUrl || 'home.html';
+                    }, 1000);
+
+                } catch (error) {
+                    console.error('Erreur connexion:', error);
+                    
+                    // Afficher l'erreur
+                    errorMessage.textContent = getErrorMessage(error.code);
+                    errorMessage.style.display = 'block';
+                    
+                    // Réactiver le bouton
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = 'Se connecter';
+                }
+            });
+
+            // Messages d'erreur en français
+            function getErrorMessage(errorCode) {
+                const errorMessages = {
+                    'auth/invalid-email': 'Adresse email invalide.',
+                    'auth/user-disabled': 'Ce compte a été désactivé.',
+                    'auth/user-not-found': 'Aucun compte associé à cet email.',
+                    'auth/wrong-password': 'Mot de passe incorrect.',
+                    'auth/invalid-credential': 'Email ou mot de passe incorrect.',
+                    'auth/too-many-requests': 'Trop de tentatives. Veuillez réessayer plus tard.',
+                    'auth/network-request-failed': 'Erreur de connexion. Vérifiez votre connexion internet.'
+                };
+
+                return errorMessages[errorCode] || `Erreur : ${errorCode}`;
             }
-        });
-
-        // Messages d'erreur en français
-        function getErrorMessage(errorCode) {
-            const errorMessages = {
-                'auth/invalid-email': 'Adresse email invalide.',
-                'auth/user-disabled': 'Ce compte a été désactivé.',
-                'auth/user-not-found': 'Aucun compte associé à cet email.',
-                'auth/wrong-password': 'Mot de passe incorrect.',
-                'auth/invalid-credential': 'Email ou mot de passe incorrect.',
-                'auth/too-many-requests': 'Trop de tentatives. Veuillez réessayer plus tard.',
-                'auth/network-request-failed': 'Erreur de connexion. Vérifiez votre connexion internet.'
-            };
-
-            return errorMessages[errorCode] || `Erreur : ${errorCode}`;
         }
+
+        // Démarrer l'initialisation
+        initFirebase();
     </script>
 </body>
 </html>
