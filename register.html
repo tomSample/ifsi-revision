@@ -336,7 +336,8 @@
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
         import { 
             getAuth, 
-            createUserWithEmailAndPassword
+            createUserWithEmailAndPassword,
+            onAuthStateChanged
         } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js';
         import { 
             getFirestore, 
@@ -348,6 +349,14 @@
         const app = initializeApp(window.firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
+
+        // 🔒 REVERSE AUTH GUARD: Rediriger si déjà connecté
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log('✅ Utilisateur déjà connecté, redirection vers home.html');
+                window.location.href = 'home.html';
+            }
+        });
 
         // Éléments DOM
         const registerForm = document.getElementById('registerForm');

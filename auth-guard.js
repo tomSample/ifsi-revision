@@ -47,22 +47,22 @@ class AuthGuard {
     }
 
     /**
-     * Rediriger vers la page de login
+     * Rediriger vers la page de login (landing page)
      */
     redirectToLogin() {
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
         
         // Ne pas rediriger si déjà sur une page publique
-        if (this.publicPages.includes(currentPage)) {
+        if (this.publicPages.includes(currentPage) || currentPage === 'index.html') {
             return;
         }
 
-        console.log('🔒 Accès refusé - Redirection vers index.html');
+        console.log('🔒 Accès refusé - Utilisateur non connecté, redirection vers index.html');
         
         // Sauvegarder l'URL de destination pour redirection après login
         sessionStorage.setItem('redirectAfterLogin', window.location.href);
         
-        // Rediriger vers la landing page
+        // Rediriger vers la landing page (index.html)
         window.location.href = 'index.html';
     }
 
