@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFSI Lannion - R�visions Quotidiennes</title>
+    <link rel="stylesheet" href="../css/revision-complete.css?v=1764703168">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGLNPW9JFH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TGLNPW9JFH', {
+        'storage': 'none',
+        'client_storage': 'none',
+        'anonymize_ip': true,
+        'allow_google_signals': false,
+        'allow_ad_personalization_signals': false
+      });
+    </script>
+    
+    <!-- ?? 📊 Analytics IFSI -->
+    <script src="../js/config/analytics-config.js?v=1764703168"></script>
+    <script src="../js/modules/analytics.js?v=1764703168"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>?? 📚 IFSI Lannion 2025</h1>
+            <h2>R�visions - Test de connaissances</h2>
+            <nav class="breadcrumb">
+                <a href="home.html">?? 🏠 Hub</a> � <span class="current">R�visions Quotidiennes</span>
+            </nav>
+        </header>
+
+        <main>
+            <!-- �cran de d�marrage -->
+            <div class="start-screen" id="startScreen">
+                <div class="welcome-card">
+                    <h3>?? Pr�t pour vos r�visions ?</h3>
+                    <p>Testez vos connaissances sur des termes tir�s al�atoirement de toutes les UE.</p>
+                    
+                    <!-- S�lecteur du nombre de termes -->
+                    <div class="term-selector">
+                        <label for="termCount">Nombre de termes :</label>
+                        <div class="term-count-controls">
+                            <button type="button" class="count-btn minus" onclick="adjustTermCount(-1)">-</button>
+                            <input type="number" id="termCount" value="10" min="1" max="50" class="term-count-input">
+                            <button type="button" class="count-btn plus" onclick="adjustTermCount(1)">+</button>
+                        </div>
+                        <div class="term-count-presets">
+                            <button class="preset-btn" onclick="setTermCount(5)">5</button>
+                            <button class="preset-btn active" onclick="setTermCount(10)">10</button>
+                            <button class="preset-btn" onclick="setTermCount(15)">15</button>
+                            <button class="preset-btn" onclick="setTermCount(20)">20</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Filtre UE simple -->
+                    <div class="ue-filter-simple">
+                        <label>?? Unit�s d'Enseignement</label>
+                        <div class="ue-dropdown" onclick="toggleUEDropdown()">
+                            <span id="ueFilterText">Toutes les UE</span>
+                            <span class="dropdown-arrow">?</span>
+                        </div>
+                        <div class="ue-options" id="ueOptions" style="display: none;">
+                            <!-- G�n�r� par JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="stats-preview" id="statsPreview">
+                        <div class="stat-item">
+                            <span class="stat-number" id="filteredTermsCount">-</span>
+                            <span class="stat-label">Termes s�lectionn�s</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalTermsPreview">-</span>
+                            <span class="stat-label">Termes total</span>
+                        </div>
+                    </div>
+                    <button class="start-btn" onclick="startRevision()">
+                        ?? Commencer la r�vision
+                    </button>
+                </div>
+            </div>
+
+            <!-- Interface de r�vision -->
+            <div class="revision-screen" id="revisionScreen" style="display: none;">
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-ue" id="termUE">UE X.X</span>
+                        <span class="term-number" id="termNumber">1/10</span>
+                    </div>
+                    
+                    <!-- �tape 1: Terme � d�finir -->
+                    <div class="term-question">
+                        <h3 id="termName">Terme � d�finir</h3>
+                        <p class="instruction">Donnez votre d�finition :</p>
+                    </div>
+
+                    <!-- Zone de r�ponse utilisateur -->
+                    <div class="answer-section">
+                        <textarea 
+                            id="userAnswer" 
+                            placeholder="�crivez votre d�finition ici..."
+                            rows="4"
+                        ></textarea>
+                        <button id="checkAnswerBtn" class="btn-primary" onclick="revealDefinition()">
+                            V�rifier ma r�ponse
+                        </button>
+                    </div>
+
+                    <!-- Section de correction (cach�e) -->
+                    <div id="correctionSection" class="correction-section" style="display: none;">
+                        <div class="user-answer">
+                            <h4>Votre r�ponse :</h4>
+                            <div id="userAnswerDisplay" class="answer-display"></div>
+                        </div>
+                        
+                        <div class="correct-answer">
+                            <h4>D�finition officielle :</h4>
+                            <div id="correctAnswerDisplay" class="answer-display"></div>
+                        </div>
+                        
+                        <!-- Notation de difficult� -->
+                        <div class="difficulty-rating">
+                            <h4>?? 💭 Comment avez-vous trouv� ce terme ?</h4>
+                            <p class="difficulty-hint">Votre r�ponse permet d'optimiser vos prochaines r�visions</p>
+                            <div class="difficulty-buttons">
+                                <button class="difficulty-btn btn-hard" onclick="rateDifficulty('difficile')" title="Je n'ai pas su r�pondre ou j'ai eu beaucoup de mal">
+                                    <span class="difficulty-emoji">😊</span>
+                                    <span class="difficulty-label">Difficile</span>
+                                    <span class="difficulty-interval">Revoir dans 1 jour</span>
+                                </button>
+                                <button class="difficulty-btn btn-medium" onclick="rateDifficulty('moyen')" title="J'ai su r�pondre mais avec quelques h�sitations">
+                                    <span class="difficulty-emoji">😊</span>
+                                    <span class="difficulty-label">Moyen</span>
+                                    <span class="difficulty-interval">Revoir dans ~3 jours</span>
+                                </button>
+                                <button class="difficulty-btn btn-easy" onclick="rateDifficulty('facile')" title="J'ai parfaitement su r�pondre">
+                                    <span class="difficulty-emoji">😊</span>
+                                    <span class="difficulty-label">Facile</span>
+                                    <span class="difficulty-interval">Revoir dans ~6 jours</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="evaluation-buttons">
+                            <button id="reportTermBtn" class="btn-report" onclick="showReportModal()">
+                                Signaler cette d�finition
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- �tape 2: D�finition cach�e -->
+                    <div id="definitionSection" class="definition-hidden">
+                        <div class="definition-content">
+                            <h4>? D�finition officielle :</h4>
+                            <div class="definition-text" id="termDefinition"></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- �cran de r�sultats -->
+            <div class="results-screen" id="resultsScreen" style="display: none;">
+                <div class="results-card">
+                    <h3>?? R�capitulatif de votre session</h3>
+                    <p class="session-stats-text">
+                        Vous avez �tudi� <strong id="sessionTermCount">10 termes</strong> 
+                        en <strong id="sessionDuration">-</strong>
+                    </p>
+                    
+                    <div class="terms-summary" id="termsSummary">
+                        <!-- Le contenu sera g�n�r� dynamiquement -->
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="new-session-btn" onclick="startNewSession()">
+                            ?? 🔄 Nouvelle session (10 termes)
+                        </button>
+                        <button class="export-btn" onclick="exportSession()">
+                            ? Exporter cette session
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- �cran de r�vision des r�ponses -->
+            <div class="review-screen" id="reviewScreen" style="display: none;">
+                <div class="review-header">
+                    <h3>?? R�vision de vos r�ponses</h3>
+                    <button class="close-review-btn" onclick="closeReview()">?</button>
+                </div>
+                <div class="review-content" id="reviewContent">
+                    <!-- Le contenu sera g�n�r� dynamiquement -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de signalement -->
+    <div class="report-modal" id="reportModal" style="display: none;">
+        <div class="report-content">
+            <div class="report-header">
+                <h3>?? Signaler la d�finition</h3>
+                <button class="close-report" onclick="closeReport()">?</button>
+            </div>
+            
+            <div class="report-body">
+                <p><strong>Terme :</strong> <span id="reportTermName"></span></p>
+                <p><strong>D�finition actuelle :</strong></p>
+                <div class="current-definition" id="reportCurrentDefinition"></div>
+                
+                <label for="reportType">Que souhaitez-vous signaler ?</label>
+                <select id="reportType">
+                    <option value="unclear">D�finition peu claire</option>
+                    <option value="incomplete">D�finition incompl�te</option>
+                    <option value="error">Erreur dans la d�finition</option>
+                    <option value="suggestion">Suggestion d'am�lioration</option>
+                </select>
+                
+                <label for="reportComment">Votre commentaire :</label>
+                <textarea id="reportComment" placeholder="D�crivez le probl�me ou votre suggestion..." rows="4"></textarea>
+            </div>
+            
+            <div class="report-actions">
+                <button onclick="submitReport()" class="action-btn primary">?? 📤 Envoyer le signalement</button>
+                <button onclick="closeReport()" class="action-btn secondary">? Annuler</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="../js/config/firebase-config.js?v=1764703168"></script>
+    
+    <!-- Auth Guard - Protection de la page -->
+    <script src="../js/auth/auth-guard.js?v=1764703168"></script>
+    <script>
+        // Prot�ger la page - rediriger si non connect�
+        const authGuard = new AuthGuard();
+        authGuard.initialize();
+    </script>
+    
+    <!-- Modules de gestion de progression -->
+    <script src="../js/modules/sync-manager.js?v=1764703168"></script>
+    <script src="../js/modules/spaced-repetition.js?v=1764703168"></script>
+    
+    <!-- Script principal de r�vision -->
+    <script src="../js/modules/revision.js?v=1764703168"></script>
+</body>
+</html>
