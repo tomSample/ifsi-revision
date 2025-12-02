@@ -1,0 +1,20 @@
+/* ============================================
+   IFSI RÉVISION - CSS Principal
+   Import de tous les modules CSS
+   ============================================ */
+
+/* 1. Variables (doit être chargé en premier) */
+@import './css/variables.css';
+
+/* 2. Reset & Base */
+@import './css/base.css';
+
+/* 3. Composants réutilisables */
+@import './css/components.css';
+
+/* 4. Utilitaires */
+@import './css/utilities.css';
+
+/* 5. Styles spécifiques (charger selon la page) */
+/* @import './css/admin.css'; */
+/* @import './css/revision.css'; */
