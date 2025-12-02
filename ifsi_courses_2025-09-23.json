@@ -1,5 +1,5 @@
 {
-  "exportDate": "2025-11-01T14:43:23.029677",
+  "exportDate": "2025-12-02T17:54:21.339600",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -2440,10 +2440,266 @@
         ],
         "filename": "Prise en charge de la douleur aiguë.odt"
       }
+    ],
+    [
+      "ue_4_4_s1_populations_spcifiques",
+      {
+        "title": "populations spécifiques",
+        "date": "02/12/2025",
+        "ue": "4.4.S1",
+        "author": "ext",
+        "definitions": [
+          {
+            "definition": "enfant, femme enceinte, patient âgé = influence la pharmacocinétique",
+            "term": "Population spécifique"
+          },
+          {
+            "definition": "sujet d’au moins 75 ans, ou d’au moins 65 ans s’il est polypathologique, c’est-à-dire présentant plusieurs pathologies chroniques.",
+            "term": "personne âgée (définition HAS)"
+          },
+          {
+            "definition": "association de plusieurs pathologies chroniques chez un même individu, fréquente chez la personne âgée et source de complexité thérapeutique.",
+            "term": "polypathologie"
+          },
+          {
+            "definition": "usage simultané d’au moins 5 médicaments au long cours chez un même patient, très fréquent chez le sujet âgé et associé à un risque accru d’iatrogénie.",
+            "term": "polymédication"
+          },
+          {
+            "definition": "ensemble des effets indésirables et complications liés aux médicaments, pouvant entraîner hospitalisation, prolongation de séjour, échecs thérapeutiques et surcoûts.",
+            "term": "iatrogénie médicamenteuse"
+          },
+          {
+            "definition": "prescription dont le rapport bénéfice-risque est défavorable ou discutable chez la personne âgée, incluant surprescription (overuse) ou sous-prescription (underuse).",
+            "term": "prescription inappropriée"
+          },
+          {
+            "definition": "excès de traitement, avec prescription de médicaments sans indication, à SMR insuffisant ou trop nombreux, augmentant le risque d’effets indésirables.",
+            "term": "overuse"
+          },
+          {
+            "definition": "insuffisance de traitement, c’est-à-dire absence de prescription d’un médicament pourtant efficace et recommandé pour une pathologie donnée.",
+            "term": "underuse"
+          },
+          {
+            "definition": "liste de situations où un médicament ne devrait pas être prescrit chez le sujet âgé (Screening Tool of Older Persons Prescriptions), servant à repérer les prescriptions inappropriées.",
+            "term": "outils STOPP"
+          },
+          {
+            "definition": "liste de situations où un traitement devrait être instauré chez le sujet âgé (Screening Tool to Alert doctors to Right Treatment), visant à repérer les omissions de prescription.",
+            "term": "outils START"
+          },
+          {
+            "definition": "critère gériatrique listant les médicaments potentiellement inappropriés chez les personnes âgées, utilisée comme outil d’aide à la prescription.",
+            "term": "liste de Beers"
+          },
+          {
+            "definition": "liste française de médicaments potentiellement inappropriés chez le sujet âgé, proposée comme outil de référence en gériatrie.",
+            "term": "liste de Laroche"
+          },
+          {
+            "definition": "degré de concordance entre le comportement du patient vis-à-vis du traitement et la prescription médicale, souvent altérée chez la personne âgée (troubles cognitifs, sensoriels, sociaux).",
+            "term": "observance médicamenteuse"
+          },
+          {
+            "definition": "facteurs augmentant la probabilité d’effets indésirables (polymédication, polypathologie, modifications pharmacocinétiques et pharmacodynamiques, fragilité, syndromes gériatriques).",
+            "term": "facteurs de risque iatrogène (personne âgée)"
+          },
+          {
+            "definition": "changement de sensibilité des récepteurs et systèmes (cholinergiques, GABAergiques, dopaminergiques, adrénergiques) conduisant à une réponse différente aux médicaments.",
+            "term": "modifications pharmacodynamiques (personne âgée)"
+          },
+          {
+            "definition": "modifications de l’absorption, distribution, métabolisme et élimination liées au vieillissement, indépendantes de toute pathologie, influençant la concentration et la demi-vie des médicaments.",
+            "term": "modifications pharmacocinétiques (personne âgée)"
+          },
+          {
+            "definition": "diminution de l’albuminémie augmentant la fraction libre des médicaments fortement liés aux protéines plasmatiques et le risque de toxicité.",
+            "term": "hypoalbuminémie (personne âgée)"
+          },
+          {
+            "definition": "modification de la composition corporelle entraînant une augmentation du volume de distribution des médicaments liposolubles et une diminution pour les hydrosolubles.",
+            "term": "augmentation masse grasse, diminution masse maigre"
+          },
+          {
+            "definition": "baisse de l’activité enzymatique, du flux sanguin et de la masse hépatique, augmentant la demi-vie et la concentration de certains médicaments chez la personne âgée.",
+            "term": "diminution métabolisme hépatique"
+          },
+          {
+            "definition": "réduction du débit sanguin rénal, de la filtration glomérulaire et des fonctions tubulaires, augmentant le risque d’accumulation et de néphrotoxicité.",
+            "term": "diminution élimination rénale"
+          },
+          {
+            "definition": "état médical et social instable caractérisé par une diminution des réserves physiologiques et une moindre capacité d’adaptation au stress, associé à un risque accru de mortalité, chutes, hospitalisation et institutionnalisation.",
+            "term": "syndrome de fragilité"
+          },
+          {
+            "definition": "ensemble de tableaux cliniques fréquents chez la personne âgée (chutes, confusion, incontinence, dénutrition, etc.) souvent multifactoriels, dont une composante iatrogène.",
+            "term": "syndromes gériatriques"
+          },
+          {
+            "definition": "risque accru de baisse de tension à la verticalisation, majoré par certains médicaments (antihypertenseurs centraux, psychotropes), favorisant les chutes.",
+            "term": "risque d’hypotension orthostatique"
+          },
+          {
+            "definition": "augmentation du risque d’hypoglycémie sous insuline ou médicaments insulinomimétiques du fait d’une régulation glycémique altérée.",
+            "term": "risque d’hypoglycémie"
+          },
+          {
+            "definition": "augmentation de la sensibilité du système nerveux central aux psychotropes, benzodiazépines et opioïdes, entraînant sédation, troubles de l’attention et de l’équilibre.",
+            "term": "risque de sédation et confusion"
+          },
+          {
+            "definition": "choix de formes orales, orodispersibles, lyocs ou liquides, et de dispositifs transdermiques adaptés aux troubles de la déglutition, de la mémoire, de la vue ou de la motricité.",
+            "term": "formes galéniques adaptées (personne âgée)"
+          },
+          {
+            "definition": "notion de faisabilité d’adapter les formes solides en cas de troubles de déglutition ou de nutrition entérale, avec des règles strictes (ne jamais écraser LP, gastro-résistants, anticancéreux).",
+            "term": "comprimés écrasables / gélules ouvrables"
+          },
+          {
+            "definition": "difficulté à avaler les médicaments, fréquente chez la personne âgée, nécessitant adaptation de la forme galénique et vigilance pour les fausses routes.",
+            "term": "troubles de la déglutition"
+          },
+          {
+            "definition": "patchs utiles pour les patients ayant du mal à prendre par voie orale, mais source possible d’oubli de retrait ou de changement, avec risque de sur- ou sous-dosage",
+            "term": "dispositifs transdermiques (personne âgée)"
+          },
+          {
+            "definition": "démarche systématique pour limiter les risques de polymédication et iatrogénie, incluant analyse des symptômes, des ordonnances et du rapport bénéfice-risque pour chaque traitement.",
+            "term": "évaluation clinique approfondie"
+          },
+          {
+            "definition": "principe rappelant que l’enfant, surtout le nouveau-né et le prématuré, a une maturation des organes, un poids et des systèmes métaboliques très différents de l’adulte, ce qui modifie fortement la pharmacocinétique et la pharmacodynamie.",
+            "term": "enfant n’est pas un adulte en miniature"
+          },
+          {
+            "definition": "enfant né avant 37 semaines d’aménorrhée, avec grande prématurité avant 32 semaines, présentant une immaturité majeure des organes et une grande fragilité face aux médicaments",
+            "term": "Prématuré (définition)"
+          },
+          {
+            "definition": "enfant de 0 à 1 mois, avec foie, rein et barrière hémato-encéphalique immatures, nécessitant des adaptations posologiques importantes.",
+            "term": "nouveau-né (définition)"
+          },
+          {
+            "definition": "enfant de 1 mois à 2 ans, avec fonctions d’absorption, métabolisme et élimination en cours de maturation rapide.",
+            "term": "nourrisson (définition)"
+          },
+          {
+            "definition": "situation où peu de médicaments sont adaptés (formes, dosages, AMM), entraînant prescriptions hors AMM, risques d’erreurs, de toxicité et de responsabilité médico-légale.",
+            "term": "problématique du médicament pédiatrique"
+          },
+          {
+            "definition": "utilisation d’un médicament en dehors des indications, posologies, âges ou formes prévues par l’AMM, très fréquente chez l’enfant, surtout en réanimation néonatale et en oncologie pédiatrique.",
+            "term": "prescription hors AMM (en pédiatrie)"
+          },
+          {
+            "definition": "forme pharmaceutique non adaptée à l’âge ou au poids de l’enfant, rendant la préparation ou l’administration difficile.",
+            "term": "forme galénique inadaptée (enfant)"
+          },
+          {
+            "definition": "risque accru aux étapes de prescription, préparation et administration (calculs dose/poids, dilution, choix de seringue, volume mort de tubulure, étiquetage), pouvant entraîner sous- ou surdosages.",
+            "term": "risque d’erreurs médicamenteuses (enfant)"
+          },
+          {
+            "definition": "la majorité des médicaments traversent le placenta, exposant le fœtus aux effets des traitements maternels.",
+            "term": "Placenta"
+          },
+          {
+            "definition": "médicament pouvant provoquer des malformations congénitales lorsque pris pendant la grossesse, en particulier au premier trimestre.",
+            "term": "médicament tératogène"
+          },
+          {
+            "definition": "effet toxique sur le fœtus, notamment sur sa croissance et la maturation de ses organes, lié à certains médicaments pris pendant la grossesse.",
+            "term": "risque fœtotoxique"
+          },
+          {
+            "definition": "effets indésirables sur le nouveau-né consécutifs à la prise de médicaments jusqu’à l’accouchement (sédation, dépression respiratoire, troubles du comportement, syndrome de sevrage).",
+            "term": "risque néonatal (in utero)"
+          },
+          {
+            "definition": "problématique d’évaluer le bénéfice/risque pour la mère et le nouveau-né exposé via le lait maternel, selon les propriétés du médicament.",
+            "term": "médicaments et allaitement"
+          },
+          {
+            "definition": "ensemble de symptômes (par exemple agitation, troubles de succion, apnées, hypotonie) chez le nouveau-né exposé in utero à certains médicaments (morphiniques, benzodiazépines).",
+            "term": "syndrome de sevrage néonatal"
+          },
+          {
+            "definition": "Centre de Référence sur les Agents Tératogènes, fournissant des informations sur les risques des médicaments pendant la grossesse et l’allaitement.",
+            "term": "CRAT"
+          },
+          {
+            "definition": "spécialités dont l’autorisation de mise sur le marché est limitée aux nouveau-nés, en particulier prématurés (surfactants, ibuprofène IV pour canal artériel, citrate de caféine pour apnées).",
+            "term": "Médicaments avec AMM spécifique nouveau-né/prématuré"
+          },
+          {
+            "definition": "recommandation de privilégier la voie orale, adapter la voie rectale aux situations d’urgence (crise d’épilepsie), éviter la voie intramusculaire chez le nouveau-né, utiliser si besoin voies sous-cutanée, intra-osseuse (voie d’urgence) ou IV.",
+            "term": "voies d’administration privilégiées (enfant)"
+          },
+          {
+            "definition": "absorption digestive plus lente et variable en raison d’un pH gastrique neutre à la naissance, d’une vidange gastrique lente et d’une motricité immature.",
+            "term": "absorption orale chez le nouveau-né"
+          },
+          {
+            "definition": "passage transcutané très augmenté chez le nouveau-né (surface corporelle/poids élevée, épiderme fin, forte hydratation), augmentant le risque de surdosage topique.",
+            "term": "absorption percutanée augmentée"
+          },
+          {
+            "definition": "notion selon laquelle l’eau corporelle élevée et la faible masse grasse chez le prématuré et le nouveau-né augmentent le volume de distribution des médicaments hydrosolubles et modifient celui des liposolubles.",
+            "term": "volume de distribution (enfant)"
+          },
+          {
+            "definition": "barrière cérébrale peu efficace chez le nouveau-né, facilitant le passage des médicaments dans le SNC et majorant le risque de toxicité neurologique.",
+            "term": "barrière hémato-encéphalique immature"
+          },
+          {
+            "definition": "déficit enzymatique et de glucuroconjugaison chez le nouveau-né, allongeant la demi-vie de nombreux médicaments métabolisés par le foie.",
+            "term": "métabolisme hépatique immature"
+          },
+          {
+            "definition": "fonction rénale réduite à la naissance (environ 30% de l’adulte), exposant à une accumulation de médicaments ou métabolites éliminés par le rein.",
+            "term": "élimination rénale immature"
+          },
+          {
+            "definition": "ensemble de réactions de l’organisme aux médicaments, avec meilleure tolérance globale que l’adulte mais risques spécifiques (neurologiques, auditifs, dentaires, digestifs, de croissance).",
+            "term": "tolérance médicamenteuse (enfant)"
+          },
+          {
+            "definition": "toxicité au niveau de l’oreille interne (organe de Corti) pouvant entraîner des troubles auditifs, notamment avec les aminosides et la vancomycine chez le nourrisson.",
+            "term": "ototoxicité"
+          },
+          {
+            "definition": "coloration anormale de l’émail dentaire liée à l’exposition aux cyclines, contre-indiquées jusqu’à 8 ans.",
+            "term": "dyschromie dentaire"
+          },
+          {
+            "definition": "atteinte grave du tube digestif du nouveau-né, favorisée par des solutions hyperosmolaire (par exemple saccharose trop concentré).",
+            "term": "entérocolite ulcéro-nécrosante"
+          },
+          {
+            "definition": "besoin en eau d’environ 240 ml/kg/jour à la naissance, contribuant à l’élimination de certains médicaments mais pouvant majorer des risques de surcharge ou de déséquilibre.",
+            "term": "besoin hydrique élevé (naissance)"
+          },
+          {
+            "definition": "solutions, suspensions, gouttes, sirops, suppositoires, sprays, utilisées avec vigilance sur la conservation, les dispositifs doseurs et le risque d’erreur de volume.",
+            "term": "formes pharmaceutiques pédiatriques"
+          },
+          {
+            "definition": "règle pratique du risque de fausse route, rendant les comprimés non adaptés chez l’enfant de moins de 6 ans.",
+            "term": "comprimé contre-indiqué avant 6 ans"
+          },
+          {
+            "definition": "utilisation d’une solution injectable par voie orale, parfois pratiquée en pédiatrie, mais pouvant poser des problèmes de pH, d’osmolarité, d’excipients et de biodisponibilité.",
+            "term": "administration orale d’une forme injectable"
+          }
+        ],
+        "filename": "populations spécifiques.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 532,
+    "totalTerms": 593,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0

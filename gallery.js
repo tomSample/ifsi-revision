@@ -1,3 +1,6 @@
+// Import modules
+import { logger } from './logger.js';
+
 // Variables globales
 let imagesData = { images: [], categories: {} };
 let selectedFile = null;
@@ -161,7 +164,7 @@ async function uploadImage() {
         }
     } catch (error) {
         showStatus(`❌ Erreur de connexion : ${error.message}`, 'error');
-        console.error('Erreur upload:', error);
+        logger.error('Erreur upload:', error);
     }
 }
 
@@ -195,7 +198,7 @@ async function loadImages() {
             };
         }
     } catch (error) {
-        console.log('Première utilisation - aucune image encore uploadée');
+        logger.info('Première utilisation - aucune image encore uploadée');
         imagesData = {
             images: [],
             categories: {
@@ -229,7 +232,7 @@ function populateCategories() {
 function safeGetElement(id) {
     const element = document.getElementById(id);
     if (!element) {
-        console.warn(`Élément ${id} non trouvé dans le DOM`);
+        logger.warn(`Élément ${id} non trouvé dans le DOM`);
         return null;
     }
     return element;
@@ -647,7 +650,7 @@ async function confirmDelete() {
             showStatus('Erreur lors de la suppression: ' + result.error, 'error');
         }
     } catch (error) {
-        console.error('Erreur:', error);
+        logger.error('Erreur suppression:', error);
         showStatus('Erreur lors de la suppression', 'error');
     }
 }

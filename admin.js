@@ -1,3 +1,6 @@
+// Import modules
+import { logger } from './logger.js';
+
 // Variables globales
 let selectedCourseFile = null;
 let selectedImageFile = null;
@@ -11,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Initialisation de l'interface d'administration
 function initializeAdmin() {
-    console.log('Interface d\'administration initialisée');
+    logger.info('Interface d\'administration initialisée');
 }
 
 // Configuration des zones d'upload
@@ -141,10 +144,24 @@ async function uploadCourse() {
             body: formData
         });
         
+        // Vérifier le Content-Type avant de parser
+        const contentType = extractResponse.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            const text = await extractResponse.text();
+            console.error('Réponse non-JSON reçue:', text.substring(0, 200));
+            throw new Error(`Erreur serveur: Le serveur Flask ne répond pas correctement. Vérifiez que le serveur est démarré avec 'python app.py'`);
+        }
+        
         const extractResult = await extractResponse.json();
         
         if (!extractResponse.ok) {
             throw new Error(extractResult.error || 'Erreur lors de l\'extraction');
+        }
+        
+        // Vérifier que les données sont valides
+        if (!extractResult.metadata || !extractResult.definitions) {
+            console.error('Données extraites invalides:', extractResult);
+            throw new Error('Format de données invalide. Le fichier ODT n\'a pas pu être correctement parsé.');
         }
         
         // Ensuite ajouter le cours à la base de données
@@ -156,11 +173,22 @@ async function uploadCourse() {
             body: JSON.stringify(extractResult)
         });
         
+        // Vérifier le Content-Type pour add_course aussi
+        const addContentType = addResponse.headers.get('content-type');
+        if (!addContentType || !addContentType.includes('application/json')) {
+            const text = await addResponse.text();
+            console.error('Réponse non-JSON reçue:', text.substring(0, 200));
+            throw new Error('Erreur serveur lors de l\'ajout du cours');
+        }
+        
         const addResult = await addResponse.json();
         
         if (addResponse.ok && addResult.success) {
             showStatus(`✅ Cours "${extractResult.metadata.title}" ajouté avec succès ! (${extractResult.definitions.length} définitions)`, 'success');
             resetCourseForm();
+        } else if (addResponse.status === 409 && addResult.action_required === 'confirm_update') {
+            // Cours déjà existant - demander confirmation
+            handleDuplicateCourse(extractResult, addResult);
         } else {
             throw new Error(addResult.error || 'Erreur lors de l\'ajout du cours');
         }
@@ -179,6 +207,62 @@ function resetCourseForm() {
     
     const preview = document.querySelector('#courseMetadataForm .file-preview');
     if (preview) preview.remove();
+}
+
+// Gérer les cours en doublon
+function handleDuplicateCourse(newCourseData, duplicateInfo) {
+    const existing = duplicateInfo.existing_course;
+    const newCourse = duplicateInfo.new_course;
+    
+    const confirmMsg = `⚠️ Ce cours existe déjà !
+
+Cours existant :
+- Titre : ${existing.title}
+- Date : ${existing.date}
+- Auteur : ${existing.author}
+- ${existing.definitions_count} définitions
+
+Nouveau fichier :
+- Titre : ${newCourse.title}
+- Date : ${newCourse.date}
+- Auteur : ${newCourse.author}
+- ${newCourse.definitions_count} définitions
+
+Voulez-vous remplacer le cours existant ?`;
+
+    if (confirm(confirmMsg)) {
+        updateExistingCourse(newCourseData);
+    } else {
+        showStatus('Upload annulé - le cours existant n\'a pas été modifié', 'info');
+        resetCourseForm();
+    }
+}
+
+// Mettre à jour un cours existant
+async function updateExistingCourse(courseData) {
+    try {
+        showStatus('Mise à jour du cours en cours...', 'info');
+        
+        const response = await fetch('/api/update_course', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(courseData)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
+            showStatus(`✅ Cours "${courseData.metadata.title}" mis à jour avec succès !`, 'success');
+            resetCourseForm();
+        } else {
+            throw new Error(result.error || 'Erreur lors de la mise à jour');
+        }
+    } catch (error) {
+        showStatus(`❌ Erreur : ${error.message}`, 'error');
+        console.error('Erreur mise à jour cours:', error);
+    }
 }
 
 // ========================================
@@ -319,7 +403,7 @@ async function uploadImage() {
         }
     } catch (error) {
         showStatus(`❌ Erreur : ${error.message}`, 'error');
-        console.error('Erreur upload image:', error);
+        logger.error('Erreur upload image:', error);
     }
 }
 
