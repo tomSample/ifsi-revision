@@ -493,3 +493,15 @@ function hideLoading() {
     document.getElementById('loadingMessage').style.display = 'none';
     document.getElementById('statsContent').style.display = 'block';
 }
+
+/**
+ * 🚀 Afficher les statistiques de performance
+ */
+function showPerformanceStats() {
+    if (syncManager) {
+        syncManager.logPerformanceStats();
+        alert('📊 Statistiques affichées dans la console (F12)');
+    } else {
+        alert('❌ Sync manager non initialisé');
+    }
+}

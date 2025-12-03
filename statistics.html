@@ -346,6 +346,12 @@
     
     <!-- Auth Guard: Rediriger si non connecté -->
     <script src="auth-guard.js"></script>
+    
+    <!-- 🚀 Optimisations de performance -->
+    <script src="smart-cache.js"></script>
+    <script src="performance-utils.js"></script>
+    <script src="sync-manager.js"></script>
+    <script src="spaced-repetition.js"></script>
 
     <div class="stats-container">
         <a href="javascript:history.back()" class="back-link">← Retour</a>
@@ -353,6 +359,9 @@
         <div class="stats-header">
             <h1>📊 Statistiques de Révision</h1>
             <p>Suivez votre progression et identifiez vos points forts</p>
+            <button onclick="showPerformanceStats()" style="margin-top: 10px; padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                🚀 Voir stats performance
+            </button>
         </div>
 
         <div id="loadingMessage" class="loading">
