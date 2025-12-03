@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IFSI Révisions 2025 - Révisez intelligemment avec la courbe de l'oubli</title>
     <meta name="description" content="Plateforme de révision pour étudiants IFSI utilisant la répétition espacée et la courbe de l'oubli pour maximiser votre mémorisation.">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="IFSI Révisions">
+    <link rel="apple-touch-icon" href="/images/icon-192.png">
     <style>
         * {
             margin: 0;
@@ -404,6 +412,29 @@
         }
 
         initAuth();
+
+        // 🚀 Enregistrement du Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('✅ Service Worker enregistré:', registration.scope);
+                        
+                        // Vérifier les mises à jour
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('🔄 Nouvelle version disponible');
+                                }
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.error('❌ Erreur Service Worker:', error);
+                    });
+            });
+        }
     </script>
 </body>
 </html>
