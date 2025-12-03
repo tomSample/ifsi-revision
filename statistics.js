@@ -14,6 +14,17 @@ let allTerms = [];
 // Initialisation
 document.addEventListener('DOMContentLoaded', async function() {
     await initializeFirebase();
+    
+    // Attendre que l'utilisateur soit authentifié
+    if (auth) {
+        await new Promise((resolve) => {
+            const unsubscribe = auth.onAuthStateChanged((user) => {
+                unsubscribe();
+                resolve();
+            });
+        });
+    }
+    
     await loadData();
     await calculateStatistics();
     hideLoading();
@@ -48,9 +59,6 @@ async function loadData() {
         // Charger la progression utilisateur
         if (syncManager && auth && auth.currentUser) {
             userProgress = await syncManager.getAllProgress();
-            console.log(`✅ Progression chargée: ${Object.keys(userProgress).length} termes`);
-            console.log('📊 DEBUG - Clés de progression:', Object.keys(userProgress).slice(0, 5));
-            console.log('📊 DEBUG - Exemple de données progression:', Object.values(userProgress)[0]);
         }
         
         // Charger tous les termes disponibles
@@ -66,15 +74,11 @@ async function loadData() {
                     allTerms.push({
                         term: term.term,
                         definition: term.definition,
-                        ue: course.ue,
-                        courseId: courseId
+                        ue: course.ue
                     });
                 }
             }
         }
-        
-        console.log(`✅ ${allTerms.length} termes chargés`);
-        console.log('📊 DEBUG - Exemple de terme:', allTerms[0]);
         
     } catch (error) {
         console.error('Erreur chargement données:', error);
@@ -108,12 +112,7 @@ function calculateGlobalStats() {
     let hardCount = 0;
     let masteredCount = 0;
     
-    console.log('📊 DEBUG - calculateGlobalStats démarré');
-    console.log(`📊 Total termes: ${totalTerms}, Termes revus: ${reviewedTerms}`);
-    
-    for (const [termKey, progress] of Object.entries(userProgress)) {
-        console.log(`📊 DEBUG - Traitement ${termKey}:`, progress);
-        
+    for (const progress of Object.values(userProgress)) {
         if (progress.difficultyHistory) {
             easyCount += progress.difficultyHistory.facile || 0;
             mediumCount += progress.difficultyHistory.moyen || 0;
@@ -131,16 +130,13 @@ function calculateGlobalStats() {
         ? Math.round((easyCount + mediumCount * 0.6) / totalReviews * 100) 
         : 0;
     
-    console.log(`📊 DEBUG - Compteurs: facile=${easyCount}, moyen=${mediumCount}, difficile=${hardCount}`);
-    console.log(`📊 DEBUG - Total révisions: ${totalReviews}, Maîtrisés: ${masteredCount}`);
-    
     // Calculer le streak
     const streak = calculateStreak();
     
-    const stats = {
+    return {
         totalTerms,
         reviewedTerms,
-        reviewedPercent: totalTerms > 0 ? Math.round(reviewedTerms / totalTerms * 100) : 0,
+        reviewedPercent: Math.round(reviewedTerms / totalTerms * 100),
         easyCount,
         mediumCount,
         hardCount,
@@ -150,10 +146,6 @@ function calculateGlobalStats() {
         masteredPercent: reviewedTerms > 0 ? Math.round(masteredCount / reviewedTerms * 100) : 0,
         streak
     };
-    
-    console.log('📊 DEBUG - Stats finales:', stats);
-    
-    return stats;
 }
 
 /**
@@ -206,10 +198,20 @@ function displayGlobalStats(stats) {
     
     document.getElementById('successRate').textContent = `${stats.successRate}%`;
     document.getElementById('easyCount').textContent = stats.easyCount;
+    document.getElementById('mediumCount').textContent = stats.mediumCount;
+    document.getElementById('hardCount').textContent = stats.hardCount;
+    
+    document.getElementById('masteredCount').textContent = stats.masteredCount;
+    document.getElementById('masteredProgress').style.width = `${stats.masteredPercent}%`;
+    
+    document.getElementById('streakDays').textContent = stats.streak;
+}
+
+/**
+ * Calculer les statistiques par UE
+ */
 function calculateUEStats() {
     const ueMap = {};
-    
-    console.log('📊 DEBUG - calculateUEStats démarré');
     
     // Initialiser avec tous les termes
     for (const term of allTerms) {
@@ -228,26 +230,15 @@ function calculateUEStats() {
         ueMap[ue].total++;
     }
     
-    console.log('📊 DEBUG - UE initialisées:', Object.keys(ueMap));
-    
     // Ajouter les données de progression
     for (const [termKey, progress] of Object.entries(userProgress)) {
-        console.log(`📊 DEBUG - Analyse termKey: "${termKey}"`);
+        // Extraire l'UE du termKey (format: term_X.X.sX ou term_X.X)
+        const ueMatch = termKey.match(/_(\d+\.\d+(?:\.[a-z]\d+)?)/i);
+        if (!ueMatch) continue;
         
-        // Extraire l'UE du termKey (format possible: term_ue ou autre)
-        const ueMatch = termKey.match(/_(\d+\.\d+)/);
-        console.log(`📊 DEBUG - UE Match result:`, ueMatch);
-        
-        if (!ueMatch) {
-            console.warn(`⚠️ Impossible d'extraire l'UE de: ${termKey}`);
-            continue;
-        }
-        
-        const ue = ueMatch[1];
-        if (!ueMap[ue]) {
-            console.warn(`⚠️ UE ${ue} non trouvée dans ueMap`);
-            continue;
-        }
+        // Normaliser l'UE en majuscules pour le matching
+        const ue = ueMatch[1].toUpperCase();
+        if (!ueMap[ue]) continue;
         
         ueMap[ue].reviewed++;
         
@@ -262,27 +253,11 @@ function calculateUEStats() {
         }
     }
     
-    console.log('📊 DEBUG - ueMap après progression:', ueMap);
-    
     // Calculer les pourcentages
     const ueStats = Object.values(ueMap).map(ue => {
         const totalReviews = ue.easy + ue.medium + ue.hard;
         const successRate = totalReviews > 0 
             ? Math.round((ue.easy + ue.medium * 0.6) / totalReviews * 100) 
-            : 0;
-        
-        return {
-            ...ue,
-            reviewedPercent: ue.total > 0 ? Math.round(ue.reviewed / ue.total * 100) : 0,
-            successRate,
-            masteredPercent: ue.reviewed > 0 ? Math.round(ue.mastered / ue.reviewed * 100) : 0
-        };
-    });
-    
-    console.log('📊 DEBUG - ueStats finales:', ueStats);
-    
-    return ueStats;
-}           ? Math.round((ue.easy + ue.medium * 0.6) / totalReviews * 100) 
             : 0;
         
         return {
@@ -350,23 +325,31 @@ function displayUEDetails(ueStats) {
         return major1 !== major2 ? major1 - major2 : minor1 - minor2;
     });
     
-    ueList.innerHTML = sortedUE.map(ue => `
+    ueList.innerHTML = sortedUE.map(ue => {
+        const totalReviews = ue.easy + ue.medium + ue.hard;
+        const easyPercent = totalReviews > 0 ? (ue.easy / totalReviews * 100) : 0;
+        const mediumPercent = totalReviews > 0 ? (ue.medium / totalReviews * 100) : 0;
+        const hardPercent = totalReviews > 0 ? (ue.hard / totalReviews * 100) : 0;
+        
+        return `
         <div class="ue-item">
-            <div>
+            <div style="flex: 1;">
                 <div class="ue-name">UE ${ue.ue}</div>
-                <div class="ue-stats">
-                    ${ue.reviewed}/${ue.total} cartes · 
-                    <span style="color: #28a745;">${ue.easy} faciles</span> · 
-                    <span style="color: #ffc107;">${ue.medium} moyens</span> · 
-                    <span style="color: #dc3545;">${ue.hard} difficiles</span>
+                <div class="ue-stats" style="margin-top: 8px;">
+                    ${ue.reviewed}/${ue.total} cartes · ${ue.successRate}% de réussite · ${ue.mastered} maîtrisées
+                </div>
+                <div style="display: flex; gap: 2px; margin-top: 10px; height: 8px; border-radius: 4px; overflow: hidden; background: #e9ecef;">
+                    <div style="width: ${easyPercent}%; background: #28a745;" 
+                         title="${ue.easy} faciles (${Math.round(easyPercent)}%)"></div>
+                    <div style="width: ${mediumPercent}%; background: #ffc107;" 
+                         title="${ue.medium} moyens (${Math.round(mediumPercent)}%)"></div>
+                    <div style="width: ${hardPercent}%; background: #dc3545;" 
+                         title="${ue.hard} difficiles (${Math.round(hardPercent)}%)"></div>
                 </div>
             </div>
-            <div>
-                <div class="ue-progress">${ue.successRate}%</div>
-                <div class="ue-stats">${ue.mastered} maîtrisées</div>
-            </div>
         </div>
-    `).join('');
+    `;
+    }).join('');
 }
 
 /**
@@ -464,8 +447,8 @@ function renderHeatmap() {
         }
     }
     
-    // Générer le calendrier (90 derniers jours)
-    const days = 90;
+    // Générer le calendrier (30 derniers jours)
+    const days = 30;
     const today = new Date();
     const startDate = new Date(today);
     startDate.setDate(startDate.getDate() - days);
@@ -533,14 +516,4 @@ function hideLoading() {
     document.getElementById('statsContent').style.display = 'block';
 }
 
-/**
- * 🚀 Afficher les statistiques de performance
- */
-function showPerformanceStats() {
-    if (syncManager) {
-        syncManager.logPerformanceStats();
-        alert('📊 Statistiques affichées dans la console (F12)');
-    } else {
-        alert('❌ Sync manager non initialisé');
-    }
-}
+
