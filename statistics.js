@@ -49,6 +49,8 @@ async function loadData() {
         if (syncManager && auth?.currentUser) {
             userProgress = await syncManager.getAllProgress();
             console.log(`✅ Progression chargée: ${Object.keys(userProgress).length} termes`);
+            console.log('📊 DEBUG - Clés de progression:', Object.keys(userProgress).slice(0, 5));
+            console.log('📊 DEBUG - Exemple de données progression:', Object.values(userProgress)[0]);
         }
         
         // Charger tous les termes disponibles
@@ -64,13 +66,15 @@ async function loadData() {
                     allTerms.push({
                         term: term.term,
                         definition: term.definition,
-                        ue: course.ue
+                        ue: course.ue,
+                        courseId: courseId
                     });
                 }
             }
         }
         
         console.log(`✅ ${allTerms.length} termes chargés`);
+        console.log('📊 DEBUG - Exemple de terme:', allTerms[0]);
         
     } catch (error) {
         console.error('Erreur chargement données:', error);
@@ -104,7 +108,12 @@ function calculateGlobalStats() {
     let hardCount = 0;
     let masteredCount = 0;
     
-    for (const progress of Object.values(userProgress)) {
+    console.log('📊 DEBUG - calculateGlobalStats démarré');
+    console.log(`📊 Total termes: ${totalTerms}, Termes revus: ${reviewedTerms}`);
+    
+    for (const [termKey, progress] of Object.entries(userProgress)) {
+        console.log(`📊 DEBUG - Traitement ${termKey}:`, progress);
+        
         if (progress.difficultyHistory) {
             easyCount += progress.difficultyHistory.facile || 0;
             mediumCount += progress.difficultyHistory.moyen || 0;
@@ -122,13 +131,16 @@ function calculateGlobalStats() {
         ? Math.round((easyCount + mediumCount * 0.6) / totalReviews * 100) 
         : 0;
     
+    console.log(`📊 DEBUG - Compteurs: facile=${easyCount}, moyen=${mediumCount}, difficile=${hardCount}`);
+    console.log(`📊 DEBUG - Total révisions: ${totalReviews}, Maîtrisés: ${masteredCount}`);
+    
     // Calculer le streak
     const streak = calculateStreak();
     
-    return {
+    const stats = {
         totalTerms,
         reviewedTerms,
-        reviewedPercent: Math.round(reviewedTerms / totalTerms * 100),
+        reviewedPercent: totalTerms > 0 ? Math.round(reviewedTerms / totalTerms * 100) : 0,
         easyCount,
         mediumCount,
         hardCount,
@@ -138,6 +150,10 @@ function calculateGlobalStats() {
         masteredPercent: reviewedTerms > 0 ? Math.round(masteredCount / reviewedTerms * 100) : 0,
         streak
     };
+    
+    console.log('📊 DEBUG - Stats finales:', stats);
+    
+    return stats;
 }
 
 /**
@@ -190,20 +206,10 @@ function displayGlobalStats(stats) {
     
     document.getElementById('successRate').textContent = `${stats.successRate}%`;
     document.getElementById('easyCount').textContent = stats.easyCount;
-    document.getElementById('mediumCount').textContent = stats.mediumCount;
-    document.getElementById('hardCount').textContent = stats.hardCount;
-    
-    document.getElementById('masteredCount').textContent = stats.masteredCount;
-    document.getElementById('masteredProgress').style.width = `${stats.masteredPercent}%`;
-    
-    document.getElementById('streakDays').textContent = stats.streak;
-}
-
-/**
- * Calculer les statistiques par UE
- */
 function calculateUEStats() {
     const ueMap = {};
+    
+    console.log('📊 DEBUG - calculateUEStats démarré');
     
     // Initialiser avec tous les termes
     for (const term of allTerms) {
@@ -222,14 +228,26 @@ function calculateUEStats() {
         ueMap[ue].total++;
     }
     
+    console.log('📊 DEBUG - UE initialisées:', Object.keys(ueMap));
+    
     // Ajouter les données de progression
     for (const [termKey, progress] of Object.entries(userProgress)) {
-        // Extraire l'UE du termKey (format: term_ue)
-        const ueMatch = termKey.match(/_(\d+\.\d+)$/);
-        if (!ueMatch) continue;
+        console.log(`📊 DEBUG - Analyse termKey: "${termKey}"`);
+        
+        // Extraire l'UE du termKey (format possible: term_ue ou autre)
+        const ueMatch = termKey.match(/_(\d+\.\d+)/);
+        console.log(`📊 DEBUG - UE Match result:`, ueMatch);
+        
+        if (!ueMatch) {
+            console.warn(`⚠️ Impossible d'extraire l'UE de: ${termKey}`);
+            continue;
+        }
         
         const ue = ueMatch[1];
-        if (!ueMap[ue]) continue;
+        if (!ueMap[ue]) {
+            console.warn(`⚠️ UE ${ue} non trouvée dans ueMap`);
+            continue;
+        }
         
         ueMap[ue].reviewed++;
         
@@ -244,11 +262,27 @@ function calculateUEStats() {
         }
     }
     
+    console.log('📊 DEBUG - ueMap après progression:', ueMap);
+    
     // Calculer les pourcentages
     const ueStats = Object.values(ueMap).map(ue => {
         const totalReviews = ue.easy + ue.medium + ue.hard;
         const successRate = totalReviews > 0 
             ? Math.round((ue.easy + ue.medium * 0.6) / totalReviews * 100) 
+            : 0;
+        
+        return {
+            ...ue,
+            reviewedPercent: ue.total > 0 ? Math.round(ue.reviewed / ue.total * 100) : 0,
+            successRate,
+            masteredPercent: ue.reviewed > 0 ? Math.round(ue.mastered / ue.reviewed * 100) : 0
+        };
+    });
+    
+    console.log('📊 DEBUG - ueStats finales:', ueStats);
+    
+    return ueStats;
+}           ? Math.round((ue.easy + ue.medium * 0.6) / totalReviews * 100) 
             : 0;
         
         return {
