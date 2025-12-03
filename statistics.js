@@ -46,7 +46,7 @@ async function initializeFirebase() {
 async function loadData() {
     try {
         // Charger la progression utilisateur
-        if (syncManager && auth?.currentUser) {
+        if (syncManager && auth && auth.currentUser) {
             userProgress = await syncManager.getAllProgress();
             console.log(`✅ Progression chargée: ${Object.keys(userProgress).length} termes`);
             console.log('📊 DEBUG - Clés de progression:', Object.keys(userProgress).slice(0, 5));
