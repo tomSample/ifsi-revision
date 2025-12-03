@@ -56,12 +56,17 @@ async function loadData() {
         const coursesData = await response.json();
         
         allTerms = [];
-        for (const course of coursesData.courses) {
-            for (const term of course.terms) {
-                allTerms.push({
-                    ...term,
-                    ue: course.ue
-                });
+        
+        // Le JSON a la structure: courses: [[id, {data}], [id, {data}], ...]
+        for (const [courseId, course] of coursesData.courses) {
+            if (course.definitions && Array.isArray(course.definitions)) {
+                for (const term of course.definitions) {
+                    allTerms.push({
+                        term: term.term,
+                        definition: term.definition,
+                        ue: course.ue
+                    });
+                }
             }
         }
         
