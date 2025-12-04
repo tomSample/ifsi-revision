@@ -3,27 +3,28 @@
  * Cache stratégique pour mode hors ligne
  */
 
-const CACHE_VERSION = 'v1.0.0';
-const CACHE_NAME = `ifsi-revision-${CACHE_VERSION}`;
+const CACHE_VERSION = 'v1';
+const CACHE_NAME = `ifsi-cache-${CACHE_VERSION}`;
 
 // Ressources critiques à mettre en cache immédiatement
 const CRITICAL_ASSETS = [
     '/',
-    '/index.html',
+    '/admin.html',
     '/home.html',
     '/revision.html',
     '/statistics.html',
+    '/account.html',
+    '/login.html',
     '/style.css',
     '/style-revision.css',
-    '/firebase-config.js',
     '/auth.js',
     '/auth-guard.js',
     '/sync-manager.js',
     '/spaced-repetition.js',
     '/revision.js',
     '/statistics.js',
-    '/smart-cache.js',
-    '/performance-utils.js',
+    '/account.js',
+    '/admin.js',
     '/ifsi_courses_2025-09-23.json'
 ];
 
@@ -112,17 +113,16 @@ self.addEventListener('fetch', (event) => {
  * Idéal pour: Assets statiques, CSS, JS
  */
 async function cacheFirstStrategy(request) {
+    const cache = await caches.open(CACHE_NAME);
+    const cachedResponse = await cache.match(request);
+    
+    // Si en cache, retourner immédiatement
+    if (cachedResponse) {
+        return cachedResponse;
+    }
+    
+    // Sinon, essayer le réseau
     try {
-        const cache = await caches.open(CACHE_NAME);
-        const cachedResponse = await cache.match(request);
-        
-        if (cachedResponse) {
-            // Retourner le cache, mettre à jour en arrière-plan
-            updateCacheInBackground(request, cache);
-            return cachedResponse;
-        }
-        
-        // Pas en cache: récupérer du réseau
         const networkResponse = await fetch(request);
         
         // Mettre en cache si succès
@@ -133,13 +133,31 @@ async function cacheFirstStrategy(request) {
         return networkResponse;
         
     } catch (error) {
-        console.error('❌ Cache First Error:', error);
+        // Hors ligne et pas en cache
+        console.error('❌ Ressource non disponible:', request.url);
         
-        // Fallback: page offline custom si disponible
         if (request.destination === 'document') {
-            return caches.match('/offline.html') || new Response('Mode hors ligne - Reconnectez-vous', {
+            return new Response(`
+                <!DOCTYPE html>
+                <html lang="fr">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Hors ligne</title>
+                    <style>
+                        body { font-family: Arial; text-align: center; padding: 50px; }
+                        h1 { color: #667eea; }
+                    </style>
+                </head>
+                <body>
+                    <h1>Mode hors ligne</h1>
+                    <p>Cette page n'est pas disponible hors ligne.</p>
+                    <button onclick="location.reload()">Réessayer</button>
+                </body>
+                </html>
+            `, {
                 status: 503,
-                statusText: 'Service Unavailable'
+                statusText: 'Service Unavailable',
+                headers: { 'Content-Type': 'text/html; charset=utf-8' }
             });
         }
         
@@ -174,20 +192,6 @@ async function networkFirstStrategy(request) {
         }
         
         throw error;
-    }
-}
-
-/**
- * Mise à jour du cache en arrière-plan (stale-while-revalidate)
- */
-async function updateCacheInBackground(request, cache) {
-    try {
-        const networkResponse = await fetch(request);
-        if (networkResponse && networkResponse.status === 200) {
-            cache.put(request, networkResponse.clone());
-        }
-    } catch (error) {
-        // Silencieux: l'erreur réseau en arrière-plan n'est pas critique
     }
 }
 
