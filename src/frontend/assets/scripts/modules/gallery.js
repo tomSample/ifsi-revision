@@ -171,7 +171,7 @@ async function uploadImage() {
 // Chargement des images depuis le serveur
 async function loadImages() {
     try {
-        const response = await fetch('images_metadata.json');
+        const response = await fetch('/src/data/images_metadata.json');
         if (response.ok) {
             imagesData = await response.json();
         } else {

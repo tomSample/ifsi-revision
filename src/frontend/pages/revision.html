@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IFSI Lannion - Révisions Quotidiennes</title>
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/public/manifest.json">
     <meta name="theme-color" content="#667eea">
-    <link rel="stylesheet" href="style-revision.css">
+    <link rel="stylesheet" href="/src/frontend/assets/styles/style-revision.css">
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGLNPW9JFH"></script>
@@ -25,8 +25,8 @@
     </script>
     
     <!-- 📊 Analytics IFSI -->
-    <script src="analytics-config.js"></script>
-    <script src="analytics.js"></script>
+    <script src="/src/frontend/assets/scripts/config/analytics-config.js"></script>
+    <script src="/src/frontend/assets/scripts/modules/analytics.js"></script>
 </head>
 <body>
     <div class="container">
@@ -34,7 +34,7 @@
             <h1>📚 IFSI Lannion 2025</h1>
             <h2>Révisions - Test de connaissances</h2>
             <nav class="breadcrumb">
-                <a href="home.html">🏠 Hub</a> › <span class="current">Révisions Quotidiennes</span>
+                <a href="/src/frontend/pages/home.html">🏠 Hub</a> › <span class="current">Révisions Quotidiennes</span>
             </nav>
         </header>
 
@@ -239,10 +239,10 @@
     </div>
 
     <!-- Firebase -->
-    <script src="firebase-config.js"></script>
+    <script src="/src/frontend/assets/scripts/config/firebase-config.js"></script>
     
     <!-- Auth Guard - Protection de la page -->
-    <script src="auth-guard.js"></script>
+    <script src="/src/frontend/assets/scripts/auth/auth-guard.js"></script>
     <script>
         // Protéger la page - rediriger si non connecté
         const authGuard = new AuthGuard();
@@ -250,14 +250,14 @@
     </script>
     
     <!-- 🚀 Optimisations de performance -->
-    <script src="smart-cache.js"></script>
-    <script src="performance-utils.js"></script>
+    <script src="/src/frontend/assets/scripts/utils/smart-cache.js"></script>
+    <script src="/src/frontend/assets/scripts/utils/performance-utils.js"></script>
     
     <!-- Modules de gestion de progression -->
-    <script src="sync-manager.js"></script>
-    <script src="spaced-repetition.js"></script>
+    <script src="/src/frontend/assets/scripts/modules/sync-manager.js"></script>
+    <script src="/src/frontend/assets/scripts/modules/spaced-repetition.js"></script>
     
     <!-- Script principal de révision -->
-    <script src="revision.js"></script>
+    <script src="/src/frontend/assets/scripts/modules/revision.js"></script>
 </body>
 </html>

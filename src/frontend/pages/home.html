@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IFSI Lannion 2025 - Navigation</title>
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/public/manifest.json">
     <meta name="theme-color" content="#667eea">
     <style>
         * {
@@ -201,7 +201,7 @@
         <h2>Interface de révision et de gestion</h2>
         
         <div class="nav-buttons">
-            <a href="admin.html" class="nav-btn admin">
+            <a href="/src/frontend/pages/admin.html" class="nav-btn admin">
                 <div class="nav-btn-icon">⚙️</div>
                 <div class="nav-btn-content">
                     <h3>Administration</h3>
@@ -209,7 +209,7 @@
                 </div>
             </a>
             
-            <a href="browse-courses.html" class="nav-btn browse">
+            <a href="/src/frontend/pages/browse-courses.html" class="nav-btn browse">
                 <div class="nav-btn-icon">📖</div>
                 <div class="nav-btn-content">
                     <h3>Consulter les Cours</h3>
@@ -217,7 +217,7 @@
                 </div>
             </a>
             
-            <a href="revision.html" class="nav-btn revision">
+            <a href="/src/frontend/pages/revision.html" class="nav-btn revision">
                 <div class="nav-btn-icon">🎯</div>
                 <div class="nav-btn-content">
                     <h3>Révisions</h3>
@@ -225,7 +225,7 @@
                 </div>
             </a>
             
-            <a href="statistics.html" class="nav-btn stats">
+            <a href="/src/frontend/pages/statistics.html" class="nav-btn stats">
                 <div class="nav-btn-icon">📊</div>
                 <div class="nav-btn-content">
                     <h3>Statistiques</h3>
@@ -233,7 +233,7 @@
                 </div>
             </a>
             
-            <a href="gallery.html" class="nav-btn gallery">
+            <a href="/src/frontend/pages/gallery.html" class="nav-btn gallery">
                 <div class="nav-btn-icon">🖼️</div>
                 <div class="nav-btn-content">
                     <h3>Galerie d'Images</h3>
@@ -244,14 +244,14 @@
     </div>
 
     <!-- Firebase -->
-    <script src="firebase-config.js"></script>
+    <script src="/src/frontend/assets/scripts/config/firebase-config.js"></script>
     
     <!-- Auth Guard: Rediriger si non connecté -->
-    <script src="auth-guard.js"></script>
+    <script src="/src/frontend/assets/scripts/auth/auth-guard.js"></script>
     
     <!-- 🚀 Optimisations de performance -->
-    <script src="smart-cache.js"></script>
-    <script src="performance-utils.js"></script>
+    <script src="/src/frontend/assets/scripts/utils/smart-cache.js"></script>
+    <script src="/src/frontend/assets/scripts/utils/performance-utils.js"></script>
     
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
@@ -271,7 +271,7 @@
                 console.log('User connected:', user.email);
                 authStatus.innerHTML = `
                     <div class="auth-links">
-                        <a href="account.html" class="btn-account">⚙️ Mon compte</a>
+                        <a href="/src/frontend/pages/account.html" class="btn-account">⚙️ Mon compte</a>
                         <a href="#" id="logoutBtn" style="color: #dc3545; font-weight: 600;">🚪 Déconnexion</a>
                     </div>
                 `;
@@ -291,8 +291,8 @@
                 // Utilisateur non connecté
                 authStatus.innerHTML = `
                     <div class="auth-links">
-                        <a href="login.html">Se connecter</a>
-                        <a href="register.html" class="btn-account">Créer un compte</a>
+                        <a href="/src/frontend/pages/login.html">Se connecter</a>
+                        <a href="/src/frontend/pages/register.html" class="btn-account">Créer un compte</a>
                     </div>
                 `;
             }

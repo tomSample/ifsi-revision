@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IFSI Lannion - Administration</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/src/frontend/assets/styles/style.css">
     <style>
         * {
             margin: 0;
@@ -1069,11 +1069,11 @@
 </head>
 <body>
     <!-- Firebase Config -->
-    <script src="firebase-config.js"></script>
+    <script src="/src/frontend/assets/scripts/config/firebase-config.js"></script>
     
     <!-- Auth Guard: Rediriger si non connecté -->
-    <script src="auth-guard.js"></script>
-    <script src="auth.js"></script>
+    <script src="/src/frontend/assets/scripts/auth/auth-guard.js"></script>
+    <script src="/src/frontend/assets/scripts/auth/auth.js"></script>
     
     <!-- Modal d'authentification -->
     <div id="authModal" class="auth-modal">
@@ -1098,7 +1098,7 @@
         <header>
             <h1>⚙️ Administration IFSI Lannion</h1>
             <nav class="breadcrumb">
-                <a href="home.html">🏠 Hub</a>
+                <a href="/src/frontend/pages/home.html">🏠 Hub</a>
                 <span class="separator">›</span>
                 <span class="current">Administration</span>
             </nav>
@@ -1247,6 +1247,6 @@
             }
         }
     </script>
-    <script type="module" src="admin.js"></script>
+    <script type="module" src="/src/frontend/assets/scripts/modules/admin.js"></script>
 </body>
 </html>

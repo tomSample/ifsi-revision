@@ -62,7 +62,7 @@ async function loadData() {
         }
         
         // Charger tous les termes disponibles
-        const response = await fetch('ifsi_courses_2025-09-23.json');
+        const response = await fetch('/src/data/courses.json');
         const coursesData = await response.json();
         
         allTerms = [];

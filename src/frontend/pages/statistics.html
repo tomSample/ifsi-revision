@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Statistiques - IFSI Lannion 2025</title>
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/public/manifest.json">
     <meta name="theme-color" content="#667eea">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/src/frontend/assets/styles/style.css">
     <style>
         * {
             box-sizing: border-box;
@@ -459,21 +459,21 @@
     </div>
 
     <!-- Firebase Config -->
-    <script src="firebase-config.js"></script>
+    <script src="/src/frontend/assets/scripts/config/firebase-config.js"></script>
     
     <!-- Auth Guard: Rediriger si non connecté -->
-    <script src="auth-guard.js"></script>
+    <script src="/src/frontend/assets/scripts/auth/auth-guard.js"></script>
     
     <!-- 🚀 Optimisations de performance -->
-    <script src="smart-cache.js"></script>
-    <script src="performance-utils.js"></script>
-    <script src="sync-manager.js"></script>
-    <script src="spaced-repetition.js"></script>
+    <script src="/src/frontend/assets/scripts/utils/smart-cache.js"></script>
+    <script src="/src/frontend/assets/scripts/utils/performance-utils.js"></script>
+    <script src="/src/frontend/assets/scripts/modules/sync-manager.js"></script>
+    <script src="/src/frontend/assets/scripts/modules/spaced-repetition.js"></script>
 
     <!-- Chart.js pour les graphiques -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     
     <!-- Script principal -->
-    <script src="statistics.js"></script>
+    <script src="/src/frontend/assets/scripts/modules/statistics.js"></script>
 </body>
 </html>

@@ -185,7 +185,7 @@ function setupEventListeners() {
 // Charger les données des cours
 async function loadCoursesData() {
     try {
-        const response = await fetch('ifsi_courses_2025-09-23.json');
+        const response = await fetch('/src/data/courses.json');
         coursesData = await response.json();
         
         // Extraire tous les termes et UE
