@@ -450,13 +450,28 @@ def generate_course_key(metadata):
 
 @app.route('/')
 def index():
-    """Sert la page d'administration pour l'interface locale"""
-    return send_from_directory('.', 'admin.html')
+    """Redirige vers la page d'accueil frontend"""
+    return send_from_directory('../../', 'index.html')
 
-@app.route('/<path:filename>')
-def serve_static(filename):
-    """Sert les fichiers statiques"""
-    return send_from_directory('.', filename)
+@app.route('/src/frontend/pages/<path:filename>')
+def serve_pages(filename):
+    """Sert les pages HTML depuis src/frontend/pages/"""
+    return send_from_directory('../frontend/pages', filename)
+
+@app.route('/src/frontend/assets/<path:subpath>/<path:filename>')
+def serve_assets(subpath, filename):
+    """Sert les assets (CSS, JS) depuis src/frontend/assets/"""
+    return send_from_directory(f'../frontend/assets/{subpath}', filename)
+
+@app.route('/src/data/<path:filename>')
+def serve_data(filename):
+    """Sert les fichiers de données depuis src/data/"""
+    return send_from_directory('../data', filename)
+
+@app.route('/public/<path:subpath>/<path:filename>')
+def serve_public(subpath, filename):
+    """Sert les fichiers optimisés depuis public/"""
+    return send_from_directory(f'../../public/{subpath}', filename)
 
 @app.route('/api/stats')
 def get_stats():
