@@ -17,11 +17,11 @@ try:
 except ImportError:
     HAS_ODFPY = False
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../../public', static_url_path='')
 CORS(app)  # Permettre les requêtes cross-origin
 
-# Configuration
-JSON_FILE_PATH = 'ifsi_courses_2025-09-23.json'
+# Configuration - Chemins mis à jour pour nouvelle structure
+JSON_FILE_PATH = '../data/courses.json'
 
 def read_json_file():
     """Lit le fichier JSON existant"""
@@ -954,5 +954,6 @@ def delete_course():
 
 if __name__ == '__main__':
     print("🚀 Serveur IFSI Lannion démarré sur http://localhost:5000")
-    print("📁 Fichier JSON:", JSON_FILE_PATH)
+    print("📁 Fichier JSON:", os.path.abspath(JSON_FILE_PATH))
+    print("📂 Dossier statique:", os.path.abspath(app.static_folder))
     app.run(debug=True, host='0.0.0.0', port=5000)

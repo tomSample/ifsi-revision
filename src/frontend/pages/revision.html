@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFSI Lannion - Révisions Quotidiennes</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <link rel="stylesheet" href="style-revision.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGLNPW9JFH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TGLNPW9JFH', {
+        'storage': 'none',
+        'client_storage': 'none',
+        'anonymize_ip': true,
+        'allow_google_signals': false,
+        'allow_ad_personalization_signals': false
+      });
+    </script>
+    
+    <!-- 📊 Analytics IFSI -->
+    <script src="analytics-config.js"></script>
+    <script src="analytics.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 IFSI Lannion 2025</h1>
+            <h2>Révisions - Test de connaissances</h2>
+            <nav class="breadcrumb">
+                <a href="home.html">🏠 Hub</a> › <span class="current">Révisions Quotidiennes</span>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Écran de démarrage -->
+            <div class="start-screen" id="startScreen">
+                <div class="welcome-card">
+                    <h3>🎯 Prêt pour vos révisions ?</h3>
+                    <p>Testez vos connaissances sur des termes tirés aléatoirement de toutes les UE.</p>
+                    
+                    <!-- Sélecteur du nombre de termes -->
+                    <div class="term-selector">
+                        <label for="termCount">Nombre de termes :</label>
+                        <div class="term-count-controls">
+                            <button type="button" class="count-btn minus" onclick="adjustTermCount(-1)">−</button>
+                            <input type="number" id="termCount" value="10" min="1" max="50" class="term-count-input">
+                            <button type="button" class="count-btn plus" onclick="adjustTermCount(1)">+</button>
+                        </div>
+                        <div class="term-count-presets">
+                            <button class="preset-btn" onclick="setTermCount(5)">5</button>
+                            <button class="preset-btn active" onclick="setTermCount(10)">10</button>
+                            <button class="preset-btn" onclick="setTermCount(15)">15</button>
+                            <button class="preset-btn" onclick="setTermCount(20)">20</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Filtre UE simple -->
+                    <div class="ue-filter-simple">
+                        <label>📚 Unités d'Enseignement</label>
+                        <div class="ue-dropdown" onclick="toggleUEDropdown()">
+                            <span id="ueFilterText">Toutes les UE</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+                        <div class="ue-options" id="ueOptions" style="display: none;">
+                            <!-- Généré par JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="stats-preview" id="statsPreview">
+                        <div class="stat-item">
+                            <span class="stat-number" id="filteredTermsCount">-</span>
+                            <span class="stat-label">Termes sélectionnés</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalTermsPreview">-</span>
+                            <span class="stat-label">Termes total</span>
+                        </div>
+                    </div>
+                    <button class="start-btn" onclick="startRevision()">
+                        🚀 Commencer la révision
+                    </button>
+                </div>
+            </div>
+
+            <!-- Interface de révision -->
+            <div class="revision-screen" id="revisionScreen" style="display: none;">
+                <div class="term-card">
+                    <div class="term-header">
+                        <span class="term-ue" id="termUE">UE X.X</span>
+                        <span class="term-number" id="termNumber">1/10</span>
+                    </div>
+                    
+                    <!-- Étape 1: Terme à définir -->
+                    <div class="term-question">
+                        <h3 id="termName">Terme à définir</h3>
+                        <p class="instruction">Donnez votre définition :</p>
+                    </div>
+
+                    <!-- Zone de réponse utilisateur -->
+                    <div class="answer-section">
+                        <textarea 
+                            id="userAnswer" 
+                            placeholder="Écrivez votre définition ici..."
+                            rows="4"
+                        ></textarea>
+                        <button id="checkAnswerBtn" class="btn-primary" onclick="revealDefinition()">
+                            Vérifier ma réponse
+                        </button>
+                    </div>
+
+                    <!-- Section de correction (cachée) -->
+                    <div id="correctionSection" class="correction-section" style="display: none;">
+                        <div class="user-answer">
+                            <h4>Votre réponse :</h4>
+                            <div id="userAnswerDisplay" class="answer-display"></div>
+                        </div>
+                        
+                        <div class="correct-answer">
+                            <h4>Définition officielle :</h4>
+                            <div id="correctAnswerDisplay" class="answer-display"></div>
+                        </div>
+                        
+                        <!-- Notation de difficulté -->
+                        <div class="difficulty-rating">
+                            <h4>💭 Comment avez-vous trouvé ce terme ?</h4>
+                            <p class="difficulty-hint">Votre réponse permet d'optimiser vos prochaines révisions</p>
+                            <div class="difficulty-buttons">
+                                <button class="difficulty-btn btn-hard" onclick="rateDifficulty('difficile')" title="Je n'ai pas su répondre ou j'ai eu beaucoup de mal">
+                                    <span class="difficulty-emoji">😓</span>
+                                    <span class="difficulty-label">Difficile</span>
+                                    <span class="difficulty-interval">Revoir dans 1 jour</span>
+                                </button>
+                                <button class="difficulty-btn btn-medium" onclick="rateDifficulty('moyen')" title="J'ai su répondre mais avec quelques hésitations">
+                                    <span class="difficulty-emoji">🤔</span>
+                                    <span class="difficulty-label">Moyen</span>
+                                    <span class="difficulty-interval">Revoir dans ~3 jours</span>
+                                </button>
+                                <button class="difficulty-btn btn-easy" onclick="rateDifficulty('facile')" title="J'ai parfaitement su répondre">
+                                    <span class="difficulty-emoji">😊</span>
+                                    <span class="difficulty-label">Facile</span>
+                                    <span class="difficulty-interval">Revoir dans ~6 jours</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="evaluation-buttons">
+                            <button id="reportTermBtn" class="btn-report" onclick="showReportModal()">
+                                Signaler cette définition
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Étape 2: Définition cachée -->
+                    <div id="definitionSection" class="definition-hidden">
+                        <div class="definition-content">
+                            <h4>� Définition officielle :</h4>
+                            <div class="definition-text" id="termDefinition"></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Écran de résultats -->
+            <div class="results-screen" id="resultsScreen" style="display: none;">
+                <div class="results-card">
+                    <h3>📚 Récapitulatif de votre session</h3>
+                    <p class="session-stats-text">
+                        Vous avez étudié <strong id="sessionTermCount">10 termes</strong> 
+                        en <strong id="sessionDuration">-</strong>
+                    </p>
+                    
+                    <div class="terms-summary" id="termsSummary">
+                        <!-- Le contenu sera généré dynamiquement -->
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="new-session-btn" onclick="startNewSession()">
+                            🔄 Nouvelle session (10 termes)
+                        </button>
+                        <button class="export-btn" onclick="exportSession()">
+                            � Exporter cette session
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Écran de révision des réponses -->
+            <div class="review-screen" id="reviewScreen" style="display: none;">
+                <div class="review-header">
+                    <h3>📋 Révision de vos réponses</h3>
+                    <button class="close-review-btn" onclick="closeReview()">✖</button>
+                </div>
+                <div class="review-content" id="reviewContent">
+                    <!-- Le contenu sera généré dynamiquement -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de signalement -->
+    <div class="report-modal" id="reportModal" style="display: none;">
+        <div class="report-content">
+            <div class="report-header">
+                <h3>⚠️ Signaler la définition</h3>
+                <button class="close-report" onclick="closeReport()">✖</button>
+            </div>
+            
+            <div class="report-body">
+                <p><strong>Terme :</strong> <span id="reportTermName"></span></p>
+                <p><strong>Définition actuelle :</strong></p>
+                <div class="current-definition" id="reportCurrentDefinition"></div>
+                
+                <label for="reportType">Que souhaitez-vous signaler ?</label>
+                <select id="reportType">
+                    <option value="unclear">Définition peu claire</option>
+                    <option value="incomplete">Définition incomplète</option>
+                    <option value="error">Erreur dans la définition</option>
+                    <option value="suggestion">Suggestion d'amélioration</option>
+                </select>
+                
+                <label for="reportComment">Votre commentaire :</label>
+                <textarea id="reportComment" placeholder="Décrivez le problème ou votre suggestion..." rows="4"></textarea>
+            </div>
+            
+            <div class="report-actions">
+                <button onclick="submitReport()" class="action-btn primary">📤 Envoyer le signalement</button>
+                <button onclick="closeReport()" class="action-btn secondary">❌ Annuler</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="firebase-config.js"></script>
+    
+    <!-- Auth Guard - Protection de la page -->
+    <script src="auth-guard.js"></script>
+    <script>
+        // Protéger la page - rediriger si non connecté
+        const authGuard = new AuthGuard();
+        authGuard.initialize();
+    </script>
+    
+    <!-- 🚀 Optimisations de performance -->
+    <script src="smart-cache.js"></script>
+    <script src="performance-utils.js"></script>
+    
+    <!-- Modules de gestion de progression -->
+    <script src="sync-manager.js"></script>
+    <script src="spaced-repetition.js"></script>
+    
+    <!-- Script principal de révision -->
+    <script src="revision.js"></script>
+</body>
+</html>
