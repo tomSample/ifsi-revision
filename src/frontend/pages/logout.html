@@ -51,7 +51,7 @@
         signOut(auth).then(() => {
             document.getElementById('status').textContent = '✅ Déconnecté avec succès !';
             setTimeout(() => {
-                window.location.href = 'home.html';
+                window.location.href = '/src/frontend/pages/index.html';
             }, 1000);
         }).catch((error) => {
             document.getElementById('status').textContent = '❌ Erreur : ' + error.message;

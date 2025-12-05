@@ -63,6 +63,7 @@ class AuthGuard {
         sessionStorage.setItem('redirectAfterLogin', window.location.href);
         
         // Rediriger vers la landing page (index.html)
+        window.location.href = '/src/frontend/pages/index.html';
         window.location.href = 'index.html';
     }
 
@@ -76,7 +77,7 @@ class AuthGuard {
         if (redirectUrl) {
             window.location.href = redirectUrl;
         } else {
-            window.location.href = 'navigation.html';
+            window.location.href = '/src/frontend/pages/home.html';
         }
     }
 
@@ -103,7 +104,7 @@ class AuthGuard {
         `;
         warningBanner.innerHTML = `
             ⚠️ Mode invité - Vos révisions ne seront pas sauvegardées
-            <a href="register.html" style="color: white; text-decoration: underline; margin-left: 10px; font-weight: bold;">
+            <a href="/src/frontend/pages/register.html" style="color: white; text-decoration: underline; margin-left: 10px; font-weight: bold;">
                 Créer un compte gratuit
             </a>
         `;
