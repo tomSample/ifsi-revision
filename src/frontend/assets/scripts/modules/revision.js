@@ -1112,7 +1112,7 @@ function startNewSession() {
 
 // Retourner au menu principal
 function returnToMenu() {
-    window.location.href = 'index.html';
+    window.location.href = '/src/frontend/pages/home.html';
 }
 
 // Mise à jour des raccourcis clavier
