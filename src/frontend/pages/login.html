@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - IFSI Lannion 2025</title>
-    <link rel="stylesheet" href="/src/frontend/assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/style.css">
     <style>
         .auth-container {
             min-height: 100vh;
@@ -286,7 +286,7 @@
             </form>
 
             <div class="form-links">
-                <a href="/src/frontend/pages/reset-password.html">Mot de passe oublié ?</a>
+                <a href="./reset-password.html">Mot de passe oublié ?</a>
             </div>
 
             <div class="divider">
@@ -296,16 +296,16 @@
             <div class="form-links">
                 <p style="margin: 0; color: #6c757d; font-size: 14px;">
                     Pas encore de compte ? 
-                    <a href="/src/frontend/pages/register.html"><strong>S'inscrire</strong></a>
+                    <a href="./register.html"><strong>S'inscrire</strong></a>
                 </p>
             </div>
         </div>
     </div>
 
     <!-- Firebase -->
-    <script src="/src/frontend/assets/scripts/config/firebase-config.js"></script>
+    <script src="../assets/scripts/config/firebase-config.js"></script>
     <!-- Cache Manager -->
-    <script src="/src/frontend/assets/scripts/utils/cache-manager.js"></script>
+    <script src="../assets/scripts/utils/cache-manager.js"></script>
     <script type="module">
         // Attendre que firebase-config.js soit chargé
         async function initFirebase() {

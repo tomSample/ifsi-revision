@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IFSI Lannion - Administration</title>
-    <link rel="stylesheet" href="/src/frontend/assets/styles/style.css">
+    <link rel="stylesheet" href="../assets/styles/style.css">
     <style>
         * {
             margin: 0;
@@ -1080,7 +1080,7 @@
 </head>
 <body>
     <!-- Firebase Config -->
-    <script src="/src/frontend/assets/scripts/config/firebase-config.js"></script>
+    <script src="../assets/scripts/config/firebase-config.js"></script>
     
     <!-- Firebase Initialization for Firestore -->
     <script type="module">
@@ -1120,8 +1120,8 @@
     </script>
     
     <!-- Auth Guard: Rediriger si non connecté -->
-    <script src="/src/frontend/assets/scripts/auth/auth-guard.js"></script>
-    <script src="/src/frontend/assets/scripts/auth/auth.js"></script>
+    <script src="../assets/scripts/auth/auth-guard.js"></script>
+    <script src="../assets/scripts/auth/auth.js"></script>
     
     <!-- Modal d'authentification -->
     <div id="authModal" class="auth-modal">
@@ -1146,7 +1146,7 @@
         <header>
             <h1>⚙️ Administration IFSI Lannion</h1>
             <nav class="breadcrumb">
-                <a href="/src/frontend/pages/home.html">🏠 Hub</a>
+                <a href="./home.html">🏠 Hub</a>
                 <span class="separator">›</span>
                 <span class="current">Administration</span>
             </nav>
@@ -1411,7 +1411,7 @@
             }
         }
     </script>
-    <script src="/src/frontend/assets/scripts/modules/admin-feedbacks.js"></script>
-    <script src="/src/frontend/assets/scripts/modules/admin.js"></script>
+    <script src="../assets/scripts/modules/admin-feedbacks.js"></script>
+    <script src="../assets/scripts/modules/admin.js"></script>
 </body>
 </html>

@@ -206,7 +206,7 @@
         <h2>Interface de révision et de gestion</h2>
         
         <div class="nav-buttons">
-            <a href="/src/frontend/pages/admin.html" class="nav-btn admin">
+            <a href="./admin.html" class="nav-btn admin">
                 <div class="nav-btn-icon">⚙️</div>
                 <div class="nav-btn-content">
                     <h3>Administration</h3>
@@ -214,7 +214,7 @@
                 </div>
             </a>
             
-            <a href="/src/frontend/pages/browse-courses.html" class="nav-btn browse">
+            <a href="./browse-courses.html" class="nav-btn browse">
                 <div class="nav-btn-icon">📖</div>
                 <div class="nav-btn-content">
                     <h3>Consulter les Cours</h3>
@@ -222,7 +222,7 @@
                 </div>
             </a>
             
-            <a href="/src/frontend/pages/revision.html" class="nav-btn revision">
+            <a href="./revision.html" class="nav-btn revision">
                 <div class="nav-btn-icon">🎯</div>
                 <div class="nav-btn-content">
                     <h3>Révisions</h3>
@@ -230,7 +230,7 @@
                 </div>
             </a>
             
-            <a href="/src/frontend/pages/statistics.html" class="nav-btn stats">
+            <a href="./statistics.html" class="nav-btn stats">
                 <div class="nav-btn-icon">📊</div>
                 <div class="nav-btn-content">
                     <h3>Statistiques</h3>
@@ -238,7 +238,7 @@
                 </div>
             </a>
             
-            <a href="/src/frontend/pages/gallery.html" class="nav-btn gallery">
+            <a href="./gallery.html" class="nav-btn gallery">
                 <div class="nav-btn-icon">🖼️</div>
                 <div class="nav-btn-content">
                     <h3>Galerie d'Images</h3>
@@ -260,7 +260,7 @@
     </div>
 
     <!-- Firebase -->
-    <script src="/src/frontend/assets/scripts/config/firebase-config.js"></script>
+    <script src="../assets/scripts/config/firebase-config.js"></script>
     <script type="module">
         // Initialiser Firebase pour les feedbacks
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
@@ -293,18 +293,18 @@
     </script>
     
     <!-- 🚀 Optimisations de performance -->
-    <script src="/src/frontend/assets/scripts/utils/smart-cache.js"></script>
-    <script src="/src/frontend/assets/scripts/utils/performance-utils.js"></script>
+    <script src="../assets/scripts/utils/smart-cache.js"></script>
+    <script src="../assets/scripts/utils/performance-utils.js"></script>
     
     <!-- Version, Error Handler, Feedback -->
-    <script src="/src/frontend/assets/scripts/utils/version-manager.js"></script>
-    <script src="/src/frontend/assets/scripts/utils/error-handler.js"></script>
-    <script src="/src/frontend/assets/scripts/utils/feedback-manager.js"></script>
-    <script src="/src/frontend/assets/scripts/utils/security-manager.js"></script>
+    <script src="../assets/scripts/utils/version-manager.js"></script>
+    <script src="../assets/scripts/utils/error-handler.js"></script>
+    <script src="../assets/scripts/utils/feedback-manager.js"></script>
+    <script src="../assets/scripts/utils/security-manager.js"></script>
     
     <!-- PWA -->
-    <script src="/src/frontend/assets/scripts/utils/sw-register.js"></script>
-    <script src="/src/frontend/assets/scripts/utils/pwa-install.js"></script>
+    <script src="../assets/scripts/utils/sw-register.js"></script>
+    <script src="../assets/scripts/utils/pwa-install.js"></script>
     
     <script>
         // Injecter le badge de version
@@ -335,7 +335,7 @@
                 console.log('✅ Utilisateur connecté');
                 authStatus.innerHTML = `
                     <div class="auth-links">
-                        <a href="/src/frontend/pages/account.html" class="btn-account">⚙️ Mon compte</a>
+                        <a href="./account.html" class="btn-account">⚙️ Mon compte</a>
                         <a href="#" id="logoutBtn" style="color: #dc3545; font-weight: 600;">🚪 Déconnexion</a>
                     </div>
                 `;
@@ -367,8 +367,8 @@
                 // Utilisateur non connecté
                 authStatus.innerHTML = `
                     <div class="auth-links">
-                        <a href="/src/frontend/pages/login.html">Se connecter</a>
-                        <a href="/src/frontend/pages/register.html" class="btn-account">Créer un compte</a>
+                        <a href="./login.html">Se connecter</a>
+                        <a href="./register.html" class="btn-account">Créer un compte</a>
                     </div>
                 `;
             }
