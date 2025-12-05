@@ -1,5 +1,5 @@
 // Import modules
-import { logger } from './logger.js';
+// import { logger } from './logger.js'; // Désactivé temporairement
 
 // Variables globales
 let selectedCourseFile = null;
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Initialisation de l'interface d'administration
 function initializeAdmin() {
-    logger.info('Interface d\'administration initialisée');
+    console.log('✅ Interface d\'administration initialisée');
 }
 
 // Configuration des zones d'upload
@@ -403,7 +403,7 @@ async function uploadImage() {
         }
     } catch (error) {
         showStatus(`❌ Erreur : ${error.message}`, 'error');
-        logger.error('Erreur upload image:', error);
+        console.error('❌ Erreur upload image:', error);
     }
 }
 

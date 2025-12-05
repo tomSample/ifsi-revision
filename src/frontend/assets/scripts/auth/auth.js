@@ -85,8 +85,6 @@ class AuthManager {
         
         // Supprimer tous les boutons de suppression ajoutés dynamiquement
         document.querySelectorAll('.delete-btn').forEach(btn => btn.remove());
-        
-        console.log('🔒 Boutons admin masqués');
     }
 
     // Action protégée
@@ -198,5 +196,3 @@ setInterval(() => {
         authManager.checkAuthStatus();
     }
 }, 60000);
-
-console.log('🔐 Système d\'authentification initialisé');

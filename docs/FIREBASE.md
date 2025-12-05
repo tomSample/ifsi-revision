@@ -49,6 +49,12 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
+    // Helper: Vérifier si utilisateur est admin
+    function isAdmin() {
+      return exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
     // Utilisateurs peuvent gérer leurs propres données
     match /users/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
@@ -62,6 +68,13 @@ service cloud.firestore {
           allow read, write: if request.auth != null && request.auth.uid == userId;
         }
       }
+    }
+    
+    // ⭐ NOUVEAU : Feedbacks utilisateurs
+    match /feedbacks/{feedbackId} {
+      allow create: if request.auth != null;  // N'importe quel utilisateur connecté peut créer
+      allow read: if isAdmin();                // Seuls les admins peuvent lire
+      allow update, delete: if isAdmin();      // Seuls les admins peuvent modifier/supprimer
     }
     
     // Cours en lecture seule (optionnel - si tu décides de les mettre sur Firebase)

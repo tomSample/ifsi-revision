@@ -1,0 +1,433 @@
+/**
+ * VERSION MANAGER
+ * Gestion centralisée du versionnage de l'application
+ */
+
+class VersionManager {
+    constructor() {
+        this.version = '3.1.0';
+        this.buildDate = '2025-12-05';
+        this.releaseNotes = {
+            '3.1.0': {
+                date: '2025-12-05',
+                features: [
+                    'Système de versionnage intégré',
+                    'Gestion d\'erreurs globale',
+                    'Système de feedback utilisateur',
+                    'Renforcement de la sécurité'
+                ]
+            },
+            '3.0.0': {
+                date: '2025-12-04',
+                features: [
+                    'Transformation en PWA installable',
+                    'Service Worker intelligent (4 stratégies de cache)',
+                    'Installation multi-plateforme',
+                    'Mode hors ligne complet'
+                ]
+            },
+            '2.0.0': {
+                date: '2025-12-03',
+                features: [
+                    'Système de flashcards avec rotation 3D',
+                    'Algorithme de répétition espacée',
+                    'Synchronisation Firebase',
+                    'Cache intelligent'
+                ]
+            }
+        };
+    }
+
+    /**
+     * Retourne la version actuelle
+     */
+    getVersion() {
+        return this.version;
+    }
+
+    /**
+     * Retourne la version complète avec date
+     */
+    getFullVersion() {
+        return `v${this.version} (${this.buildDate})`;
+    }
+
+    /**
+     * Retourne les notes de version
+     */
+    getReleaseNotes(version = null) {
+        if (version) {
+            return this.releaseNotes[version] || null;
+        }
+        return this.releaseNotes;
+    }
+
+    /**
+     * Compare deux versions
+     * @returns -1 si v1 < v2, 0 si égales, 1 si v1 > v2
+     */
+    compareVersions(v1, v2) {
+        const parts1 = v1.split('.').map(Number);
+        const parts2 = v2.split('.').map(Number);
+        
+        for (let i = 0; i < 3; i++) {
+            if (parts1[i] > parts2[i]) return 1;
+            if (parts1[i] < parts2[i]) return -1;
+        }
+        return 0;
+    }
+
+    /**
+     * Vérifie si une nouvelle version est disponible
+     */
+    async checkForUpdates() {
+        try {
+            // Vérifier la version dans le service worker
+            if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+                navigator.serviceWorker.controller.postMessage({
+                    type: 'GET_VERSION'
+                });
+                
+                return new Promise((resolve) => {
+                    navigator.serviceWorker.addEventListener('message', (event) => {
+                        if (event.data.type === 'VERSION_INFO') {
+                            const swVersion = event.data.version.replace('v', '');
+                            const isNewer = this.compareVersions(swVersion, this.version) > 0;
+                            resolve({
+                                updateAvailable: isNewer,
+                                currentVersion: this.version,
+                                latestVersion: swVersion
+                            });
+                        }
+                    }, { once: true });
+                });
+            }
+            
+            return {
+                updateAvailable: false,
+                currentVersion: this.version
+            };
+        } catch (error) {
+            console.error('Erreur vérification mises à jour:', error);
+            return { updateAvailable: false };
+        }
+    }
+
+    /**
+     * Affiche la version dans la console
+     */
+    logVersion() {
+        console.log(`%c🎓 IFSI Lannion Révisions %cv${this.version}`, 
+            'color: #667eea; font-size: 16px; font-weight: bold;',
+            'color: #764ba2; font-size: 14px;'
+        );
+        console.log(`Build: ${this.buildDate}`);
+        
+        const notes = this.releaseNotes[this.version];
+        if (notes) {
+            console.log(`✨ Nouveautés de la version ${this.version}:`);
+            notes.features.forEach(feature => {
+                console.log(`  • ${feature}`);
+            });
+        }
+    }
+
+    /**
+     * Retourne un badge HTML avec la version
+     */
+    renderVersionBadge(options = {}) {
+        const { 
+            showDate = false, 
+            className = 'version-badge',
+            style = 'minimal' // minimal, detailed, compact
+        } = options;
+
+        let content = '';
+        
+        if (style === 'detailed') {
+            content = `
+                <div class="${className} version-detailed">
+                    <span class="version-label">Version</span>
+                    <span class="version-number">v${this.version}</span>
+                    ${showDate ? `<span class="version-date">${this.buildDate}</span>` : ''}
+                </div>
+            `;
+        } else if (style === 'compact') {
+            content = `<span class="${className} version-compact">v${this.version}</span>`;
+        } else {
+            content = `
+                <div class="${className} version-minimal">
+                    <span>v${this.version}</span>
+                </div>
+            `;
+        }
+        
+        return content;
+    }
+
+    /**
+     * Injecte le badge de version dans un élément
+     */
+    injectVersionBadge(elementId, options = {}) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.innerHTML = this.renderVersionBadge(options);
+        }
+    }
+
+    /**
+     * Stocke la version dans localStorage
+     */
+    saveVersionToStorage() {
+        try {
+            localStorage.setItem('app_version', this.version);
+            localStorage.setItem('app_version_date', this.buildDate);
+        } catch (error) {
+            console.error('Erreur sauvegarde version:', error);
+        }
+    }
+
+    /**
+     * Vérifie si l'app a été mise à jour depuis la dernière visite
+     */
+    checkVersionUpdate() {
+        try {
+            const storedVersion = localStorage.getItem('app_version');
+            
+            if (!storedVersion) {
+                // Première installation
+                this.saveVersionToStorage();
+                return { 
+                    isNewInstall: true, 
+                    wasUpdated: false 
+                };
+            }
+            
+            const wasUpdated = this.compareVersions(this.version, storedVersion) > 0;
+            
+            if (wasUpdated) {
+                this.saveVersionToStorage();
+                return {
+                    isNewInstall: false,
+                    wasUpdated: true,
+                    previousVersion: storedVersion,
+                    currentVersion: this.version
+                };
+            }
+            
+            return { 
+                isNewInstall: false, 
+                wasUpdated: false 
+            };
+        } catch (error) {
+            console.error('Erreur vérification version:', error);
+            return { isNewInstall: false, wasUpdated: false };
+        }
+    }
+
+    /**
+     * Affiche une notification de mise à jour
+     */
+    showUpdateNotification(previousVersion) {
+        const notes = this.releaseNotes[this.version];
+        if (!notes) return;
+
+        const notification = document.createElement('div');
+        notification.className = 'version-update-notification';
+        notification.innerHTML = `
+            <div class="update-content">
+                <div class="update-header">
+                    <span class="update-icon">🎉</span>
+                    <h4>Mise à jour v${this.version}</h4>
+                    <button class="close-update" onclick="this.parentElement.parentElement.parentElement.remove()">✖</button>
+                </div>
+                <div class="update-body">
+                    <p class="update-subtitle">Nouveautés :</p>
+                    <ul class="update-features">
+                        ${notes.features.map(f => `<li>${f}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+        `;
+        
+        // Styles inline pour l'autonomie
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            max-width: 400px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            z-index: 10000;
+            animation: slideInRight 0.5s ease;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Auto-suppression après 10 secondes
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.5s ease';
+            setTimeout(() => notification.remove(), 500);
+        }, 10000);
+    }
+}
+
+// Styles CSS pour les badges de version (à ajouter au fichier CSS global)
+const VERSION_STYLES = `
+<style>
+.version-badge {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.version-badge:hover {
+    opacity: 1;
+}
+
+.version-minimal {
+    color: #6c757d;
+}
+
+.version-detailed {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 10px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 12px;
+}
+
+.version-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #667eea;
+}
+
+.version-number {
+    font-weight: 600;
+    color: #667eea;
+}
+
+.version-date {
+    font-size: 10px;
+    color: #6c757d;
+}
+
+.version-compact {
+    padding: 2px 8px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.version-update-notification {
+    animation: slideInRight 0.5s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+.update-content {
+    padding: 20px;
+}
+
+.update-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.update-icon {
+    font-size: 24px;
+}
+
+.update-header h4 {
+    margin: 0;
+    flex: 1;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+.close-update {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.close-update:hover {
+    background: #f8f9fa;
+}
+
+.update-subtitle {
+    font-weight: 600;
+    color: #667eea;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.update-features {
+    margin: 0;
+    padding-left: 20px;
+    color: #2c3e50;
+}
+
+.update-features li {
+    margin: 4px 0;
+    font-size: 13px;
+    line-height: 1.5;
+}
+</style>
+`;
+
+// Instance globale
+window.versionManager = new VersionManager();
+
+// Log de la version au chargement
+window.versionManager.logVersion();
+
+// Vérification de mise à jour
+const updateStatus = window.versionManager.checkVersionUpdate();
+if (updateStatus.wasUpdated) {
+    console.log(`✨ Mise à jour: v${updateStatus.previousVersion} → v${updateStatus.currentVersion}`);
+    
+    // Afficher la notification après 1 seconde
+    setTimeout(() => {
+        window.versionManager.showUpdateNotification(updateStatus.previousVersion);
+    }, 1000);
+} else if (updateStatus.isNewInstall) {
+    console.log('🎉 Bienvenue sur IFSI Lannion Révisions!');
+}

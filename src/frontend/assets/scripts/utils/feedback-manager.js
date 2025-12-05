@@ -1,0 +1,637 @@
+/**
+ * FEEDBACK MANAGER
+ * Système de feedback et signalement utilisateur
+ */
+
+class FeedbackManager {
+    constructor() {
+        this.feedbackEndpoint = null; // URL future pour API backend
+        this.feedbacks = [];
+        this.initialized = false;
+    }
+
+    /**
+     * Initialise le système de feedback
+     */
+    init() {
+        if (this.initialized) return;
+        
+        // Charger les feedbacks précédents
+        this.loadFeedbacksFromStorage();
+        
+        this.initialized = true;
+        console.log('✅ [FeedbackManager] Système de feedback initialisé');
+    }
+
+    /**
+     * Ouvre la modal de feedback
+     */
+    openFeedbackModal() {
+        // Créer la modal si elle n'existe pas
+        if (!document.getElementById('feedbackModal')) {
+            this.createFeedbackModal();
+        }
+        
+        const modal = document.getElementById('feedbackModal');
+        modal.style.display = 'flex';
+        
+        // Focus sur le premier champ
+        setTimeout(() => {
+            document.getElementById('feedbackType')?.focus();
+        }, 100);
+    }
+
+    /**
+     * Ferme la modal de feedback
+     */
+    closeFeedbackModal() {
+        const modal = document.getElementById('feedbackModal');
+        if (modal) {
+            modal.style.display = 'none';
+            this.resetFeedbackForm();
+        }
+    }
+
+    /**
+     * Crée la modal de feedback
+     */
+    createFeedbackModal() {
+        const modal = document.createElement('div');
+        modal.id = 'feedbackModal';
+        modal.className = 'feedback-modal';
+        modal.innerHTML = `
+            <div class="feedback-modal-overlay" onclick="window.feedbackManager.closeFeedbackModal()"></div>
+            <div class="feedback-modal-content">
+                <div class="feedback-header">
+                    <h3>💬 Votre feedback</h3>
+                    <button class="close-feedback" onclick="window.feedbackManager.closeFeedbackModal()">✖</button>
+                </div>
+                
+                <div class="feedback-body">
+                    <p class="feedback-intro">
+                        Votre avis est précieux ! Aidez-nous à améliorer l'application en partageant vos suggestions, 
+                        signalements de bugs ou demandes de fonctionnalités.
+                    </p>
+                    
+                    <form id="feedbackForm" onsubmit="window.feedbackManager.submitFeedback(event); return false;">
+                        <div class="form-group">
+                            <label for="feedbackType">
+                                <span class="label-icon">🏷️</span>
+                                Type de feedback
+                            </label>
+                            <select id="feedbackType" required>
+                                <option value="">-- Sélectionnez --</option>
+                                <option value="bug">🐛 Bug / Problème technique</option>
+                                <option value="feature">✨ Demande de fonctionnalité</option>
+                                <option value="improvement">💡 Suggestion d'amélioration</option>
+                                <option value="content">📚 Contenu (cours, définitions)</option>
+                                <option value="ux">🎨 Interface / Expérience utilisateur</option>
+                                <option value="other">💬 Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="feedbackPage">
+                                <span class="label-icon">📍</span>
+                                Page concernée (optionnel)
+                            </label>
+                            <select id="feedbackPage">
+                                <option value="">-- Non spécifiée --</option>
+                                <option value="home">🏠 Accueil / Hub</option>
+                                <option value="revision">📚 Révisions (Flashcards)</option>
+                                <option value="statistics">📊 Statistiques</option>
+                                <option value="browse">🔍 Parcourir les cours</option>
+                                <option value="gallery">🖼️ Galerie d'images</option>
+                                <option value="admin">⚙️ Administration</option>
+                                <option value="account">👤 Compte</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="feedbackSubject">
+                                <span class="label-icon">📝</span>
+                                Sujet (optionnel)
+                            </label>
+                            <input 
+                                type="text" 
+                                id="feedbackSubject" 
+                                placeholder="Ex: Erreur lors du chargement des flashcards"
+                                maxlength="100"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="feedbackMessage">
+                                <span class="label-icon">💬</span>
+                                Votre message *
+                            </label>
+                            <textarea 
+                                id="feedbackMessage" 
+                                rows="6" 
+                                required
+                                placeholder="Décrivez votre feedback en détail..."
+                                maxlength="1000"
+                            ></textarea>
+                            <div class="char-count">
+                                <span id="charCount">0</span> / 1000 caractères
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="feedbackEmail">
+                                <span class="label-icon">📧</span>
+                                Email (optionnel, pour réponse)
+                            </label>
+                            <input 
+                                type="email" 
+                                id="feedbackEmail" 
+                                placeholder="votre@email.fr"
+                            >
+                        </div>
+                        
+                        <div class="feedback-actions">
+                            <button type="submit" class="btn-submit">
+                                <span>📤 Envoyer le feedback</span>
+                            </button>
+                            <button type="button" class="btn-cancel" onclick="window.feedbackManager.closeFeedbackModal()">
+                                Annuler
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Ajouter l'event listener pour le compteur de caractères
+        const textarea = document.getElementById('feedbackMessage');
+        const charCount = document.getElementById('charCount');
+        textarea.addEventListener('input', () => {
+            charCount.textContent = textarea.value.length;
+        });
+    }
+
+    /**
+     * Soumet le feedback
+     */
+    async submitFeedback(event) {
+        event.preventDefault();
+        
+        const form = document.getElementById('feedbackForm');
+        const submitBtn = form.querySelector('.btn-submit');
+        
+        // Désactiver le bouton pendant l'envoi
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>⏳ Envoi en cours...</span>';
+        
+        const feedback = {
+            id: this.generateFeedbackId(),
+            timestamp: new Date().toISOString(),
+            type: document.getElementById('feedbackType').value,
+            page: document.getElementById('feedbackPage').value,
+            subject: document.getElementById('feedbackSubject').value,
+            message: document.getElementById('feedbackMessage').value,
+            email: document.getElementById('feedbackEmail').value,
+            userAgent: navigator.userAgent,
+            appVersion: window.versionManager?.getVersion(),
+            url: window.location.href,
+            user: this.getUserContext()
+        };
+        
+        try {
+            // Sauvegarder localement
+            this.saveFeedback(feedback);
+            
+            // Tenter d'envoyer à Firebase ou API (futur)
+            await this.sendFeedbackToServer(feedback);
+            
+            // Succès
+            this.showSuccessMessage();
+            this.closeFeedbackModal();
+            
+        } catch (error) {
+            console.error('[FeedbackManager] Erreur envoi feedback:', error);
+            this.showErrorMessage();
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>📤 Envoyer le feedback</span>';
+        }
+    }
+
+    /**
+     * Envoie le feedback au serveur (Firebase ou API)
+     */
+    async sendFeedbackToServer(feedback) {
+        // Tentative d'envoi à Firestore (v9+ modular API)
+        if (window.firestoreUtils && window.db) {
+            try {
+                const { collection, addDoc, serverTimestamp } = window.firestoreUtils;
+                
+                // Préparer les données pour Firestore (sans l'ID client)
+                const firestoreData = {
+                    timestamp: serverTimestamp(),
+                    type: feedback.type,
+                    page: feedback.page,
+                    subject: feedback.subject,
+                    message: feedback.message,
+                    email: feedback.email || '',
+                    userAgent: feedback.userAgent || navigator.userAgent,
+                    appVersion: feedback.appVersion || window.versionManager?.getVersion() || '3.1.0',
+                    url: feedback.url || window.location.href,
+                    status: 'nouveau',
+                    resolved: false,
+                    user: feedback.user || null
+                };
+                
+                const feedbacksCollection = collection(window.db, 'feedbacks');
+                const docRef = await addDoc(feedbacksCollection, firestoreData);
+                console.log('✅ [FeedbackManager] Feedback envoyé à Firestore:', docRef.id);
+                
+                // Mettre à jour l'ID local avec l'ID Firestore
+                const localFeedbacks = this.getFeedbacks();
+                const index = localFeedbacks.findIndex(f => f.id === feedback.id);
+                if (index !== -1) {
+                    localFeedbacks[index].firestoreId = docRef.id;
+                    localStorage.setItem('user_feedbacks', JSON.stringify(localFeedbacks));
+                }
+                
+                return { success: true, firestoreId: docRef.id };
+                
+            } catch (error) {
+                console.warn('[FeedbackManager] Erreur Firestore, sauvegarde locale uniquement:', error);
+                throw error;
+            }
+        }
+        
+        // Alternative: envoi à une API backend
+        if (this.feedbackEndpoint) {
+            try {
+                const response = await fetch(this.feedbackEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(feedback)
+                });
+                
+                if (response.ok) {
+                    console.log('✅ [FeedbackManager] Feedback envoyé à l\'API');
+                    return { success: true };
+                }
+            } catch (error) {
+                console.warn('[FeedbackManager] Erreur API backend:', error);
+                throw error;
+            }
+        }
+        
+        // Aucun serveur disponible, sauvegarde locale uniquement
+        console.log('ℹ️ [FeedbackManager] Feedback sauvegardé localement (serveur indisponible)');
+        return { success: true, localOnly: true };
+    }
+
+    /**
+     * Sauvegarde le feedback localement
+     */
+    saveFeedback(feedback) {
+        this.feedbacks.unshift(feedback);
+        
+        // Limite à 20 feedbacks
+        if (this.feedbacks.length > 20) {
+            this.feedbacks = this.feedbacks.slice(0, 20);
+        }
+        
+        try {
+            localStorage.setItem('user_feedbacks', JSON.stringify(this.feedbacks));
+        } catch (error) {
+            console.error('[FeedbackManager] Erreur sauvegarde:', error);
+        }
+    }
+
+    /**
+     * Charge les feedbacks depuis localStorage
+     */
+    loadFeedbacksFromStorage() {
+        try {
+            const stored = localStorage.getItem('user_feedbacks');
+            if (stored) {
+                this.feedbacks = JSON.parse(stored);
+            }
+        } catch (error) {
+            console.error('[FeedbackManager] Erreur chargement:', error);
+        }
+    }
+
+    /**
+     * Réinitialise le formulaire
+     */
+    resetFeedbackForm() {
+        const form = document.getElementById('feedbackForm');
+        if (form) {
+            form.reset();
+            document.getElementById('charCount').textContent = '0';
+        }
+    }
+
+    /**
+     * Génère un ID unique
+     */
+    generateFeedbackId() {
+        return `fb_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    }
+
+    /**
+     * Récupère le contexte utilisateur
+     */
+    getUserContext() {
+        try {
+            const user = window.auth?.currentUser;
+            return user ? {
+                uid: user.uid,
+                email: user.email
+            } : null;
+        } catch {
+            return null;
+        }
+    }
+
+    /**
+     * Affiche un message de succès
+     */
+    showSuccessMessage() {
+        this.showNotification('✅ Feedback envoyé !', 'Merci pour votre retour, il nous aidera à améliorer l\'application.', 'success');
+    }
+
+    /**
+     * Affiche un message d'erreur
+     */
+    showErrorMessage() {
+        this.showNotification('⚠️ Erreur', 'Impossible d\'envoyer le feedback. Il a été sauvegardé localement et sera envoyé automatiquement plus tard.', 'error');
+    }
+
+    /**
+     * Affiche une notification toast
+     */
+    showNotification(title, message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `feedback-toast feedback-toast-${type}`;
+        notification.innerHTML = `
+            <div class="toast-content">
+                <strong>${title}</strong>
+                <p>${message}</p>
+            </div>
+        `;
+        
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            max-width: 400px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            z-index: 10002;
+            animation: slideInUp 0.3s ease;
+            padding: 16px 20px;
+            border-left: 4px solid ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#667eea'};
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOutDown 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 4000);
+    }
+
+    /**
+     * Retourne tous les feedbacks
+     */
+    getFeedbacks() {
+        return [...this.feedbacks];
+    }
+
+    /**
+     * Exporte les feedbacks en JSON
+     */
+    exportFeedbacksAsJSON() {
+        const data = {
+            exportDate: new Date().toISOString(),
+            appVersion: window.versionManager?.getVersion(),
+            totalFeedbacks: this.feedbacks.length,
+            feedbacks: this.feedbacks
+        };
+        
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `ifsi-feedbacks-${new Date().toISOString().split('T')[0]}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+}
+
+// Styles CSS pour la modal de feedback
+const FEEDBACK_STYLES = `
+<style>
+.feedback-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+.feedback-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.feedback-modal-content {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.feedback-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 28px;
+    border-bottom: 1px solid #e9ecef;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px 16px 0 0;
+}
+
+.feedback-header h3 {
+    margin: 0;
+    color: white;
+    font-size: 20px;
+}
+
+.close-feedback {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.close-feedback:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.feedback-body {
+    padding: 24px 28px;
+}
+
+.feedback-intro {
+    color: #6c757d;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.label-icon {
+    font-size: 16px;
+}
+
+.form-group select,
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.form-group select:focus,
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.char-count {
+    text-align: right;
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 4px;
+}
+
+.feedback-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.btn-submit,
+.btn-cancel {
+    flex: 1;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-cancel {
+    background: #e9ecef;
+    color: #495057;
+}
+
+.btn-cancel:hover {
+    background: #dee2e6;
+}
+
+.toast-content strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.toast-content p {
+    margin: 0;
+    font-size: 13px;
+    color: #6c757d;
+    line-height: 1.4;
+}
+</style>
+`;
+
+// Instance globale
+console.log('📦 [FeedbackManager] Chargement du script...');
+window.feedbackManager = new FeedbackManager();
+window.feedbackManager.init();
+console.log('✅ [FeedbackManager] Instance globale créée:', window.feedbackManager);

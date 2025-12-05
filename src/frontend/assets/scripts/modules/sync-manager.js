@@ -8,6 +8,9 @@
  * - Cache multi-niveaux (RAM + localStorage)
  * - Batch loading pour réduire les reads
  * - Monitoring des performances
+ * 
+ * v3.1.0:
+ * - Rate limiting sur les appels Firestore (10 req/min par utilisateur)
  */
 
 class SyncManager {
@@ -30,6 +33,10 @@ class SyncManager {
         
         // 📦 Initialiser le batch loader
         this.batchLoader = new BatchLoader(db, this.perfMonitor);
+        
+        // 🛡️ Rate limiter pour les appels Firestore (10 req/min)
+        this.firestoreLimiter = window.securityManager ? 
+            window.securityManager.createRateLimiter(10, 60000) : null;
         
         // Écouter les changements de connexion
         window.addEventListener('online', () => {
@@ -97,6 +104,7 @@ class SyncManager {
      * Sauvegarder la progression d'un terme
      * @param {string} termKey - Clé unique du terme
      * @param {Object} progressData - Données de progression
+     * @returns {boolean|Object} True si succès, objet avec rateLimited si limité
      */
     async saveTermProgress(termKey, progressData) {
         const user = this.auth.currentUser;
@@ -113,6 +121,18 @@ class SyncManager {
             this.pendingSync.push({ termKey, progressData });
             this.savePendingToLocalStorage();
             return true;
+        }
+
+        // 🛡️ Vérifier le rate limiting
+        if (this.firestoreLimiter) {
+            const check = this.firestoreLimiter(user.uid);
+            if (!check.allowed) {
+                console.warn(`⚠️ Rate limiting: Trop de requêtes. Réessayez dans ${Math.ceil(check.retryAfter/1000)}s`);
+                // Ajouter à la file d'attente pour retry plus tard
+                this.pendingSync.push({ termKey, progressData });
+                this.savePendingToLocalStorage();
+                return { rateLimited: true, retryAfter: check.retryAfter };
+            }
         }
 
         try {
@@ -143,7 +163,7 @@ class SyncManager {
     /**
      * Récupérer toute la progression utilisateur - OPTIMISÉ avec batch et cache
      * @param {boolean} forceRefresh - Forcer le rechargement depuis Firestore
-     * @returns {Object} Dictionnaire termKey -> progressData
+     * @returns {Object} Dictionnaire termKey -> progressData ou {rateLimited: true}
      */
     async getAllProgress(forceRefresh = false) {
         const user = this.auth.currentUser;
@@ -156,6 +176,19 @@ class SyncManager {
         if (!forceRefresh && Object.keys(this.userProgressCache).length > 0) {
             console.log('✅ Utilisation du cache pour getAllProgress');
             return this.userProgressCache;
+        }
+
+        // 🛡️ Vérifier le rate limiting
+        if (this.firestoreLimiter) {
+            const check = this.firestoreLimiter(user.uid);
+            if (!check.allowed) {
+                console.warn(`⚠️ Rate limiting: Trop de requêtes. Réessayez dans ${Math.ceil(check.retryAfter/1000)}s`);
+                // Retourner le cache si disponible
+                if (Object.keys(this.userProgressCache).length > 0) {
+                    return this.userProgressCache;
+                }
+                return { rateLimited: true, retryAfter: check.retryAfter };
+            }
         }
 
         const startTime = Date.now();

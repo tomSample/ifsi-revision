@@ -56,7 +56,7 @@ class FirebaseAuthManager {
             this.currentUser = user;
             
             if (user) {
-                console.log('✅ Utilisateur connecté:', user.email);
+                console.log('✅ Utilisateur connecté');
                 this.onUserLogin(user);
             } else {
                 console.log('❌ Utilisateur déconnecté');
@@ -142,7 +142,18 @@ class FirebaseAuthManager {
      */
     async logout() {
         try {
+            // 1. Synchroniser les modifications en attente
+            if (window.syncManager && typeof window.syncManager.syncPendingChanges === 'function') {
+                await window.syncManager.syncPendingChanges();
+            }
+            
+            // 2. Déconnexion Firebase
             await signOut(auth);
+            
+            // 3. Nettoyer les caches de session
+            sessionStorage.removeItem('coursesData_session');
+            sessionStorage.removeItem('userProgress_session');
+            
             return { success: true, message: 'Déconnexion réussie' };
         } catch (error) {
             console.error('Erreur déconnexion:', error);

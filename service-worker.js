@@ -338,18 +338,6 @@ async function syncProgression() {
 
 console.log(`✅ [SW ${CACHE_VERSION}] Service Worker chargé`);
 
-    }
-    
-    // Stratégie pour les ressources de l'app: Cache First (performance)
-    if (url.origin === location.origin) {
-        event.respondWith(cacheFirstStrategy(request));
-        return;
-    }
-    
-    // Stratégie par défaut pour CDN externes: Cache First
-    event.respondWith(cacheFirstStrategy(request));
-});
-
 /**
  * Cache First: Priorité au cache, fallback réseau
  * Idéal pour: Assets statiques, CSS, JS

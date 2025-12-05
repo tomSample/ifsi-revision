@@ -8,6 +8,8 @@
     
     <!-- PWA -->
     <link rel="manifest" href="/public/manifest.json">
+    <link rel="icon" type="image/png" href="/public/images/icon-192.png">
+    <link rel="shortcut icon" type="image/png" href="/public/images/icon-192.png">
     <meta name="theme-color" content="#667eea">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -294,7 +296,7 @@
             <p class="tagline">Révisez intelligemment avec la courbe de l'oubli et maximisez votre réussite</p>
             
             <div class="cta-buttons">
-                <a href="/src/frontend/pages/register.html" class="btn btn-primary">🚀 Commencer gratuitement</a>
+                <a href="/src/frontend/pages/register.html" class="btn btn-primary">🚀 Commencer</a>
                 <a href="/src/frontend/pages/login.html" class="btn btn-secondary">🔐 Se connecter</a>
             </div>
         </div>
@@ -436,5 +438,9 @@
             });
         }
     </script>
+    
+    <!-- PWA Installation -->
+    <script src="/src/frontend/assets/scripts/utils/sw-register.js"></script>
+    <script src="/src/frontend/assets/scripts/utils/pwa-install.js"></script>
 </body>
 </html>

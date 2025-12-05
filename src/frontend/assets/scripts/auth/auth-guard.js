@@ -34,7 +34,7 @@ class AuthGuard {
                     if (!user) {
                         this.redirectToLogin();
                     } else {
-                        console.log('✅ Utilisateur authentifié:', user.email);
+                        console.log('✅ Utilisateur authentifié');
                         resolve(user);
                     }
                 });

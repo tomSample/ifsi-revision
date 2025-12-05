@@ -597,6 +597,17 @@
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
+        /* Badge de notification */
+        .badge {
+            background: #dc3545;
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            margin-left: 0.5rem;
+        }
+
         /* Conteneurs des sections */
         .admin-section {
             display: none;
@@ -1071,6 +1082,43 @@
     <!-- Firebase Config -->
     <script src="/src/frontend/assets/scripts/config/firebase-config.js"></script>
     
+    <!-- Firebase Initialization for Firestore -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js';
+        import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs, doc, updateDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
+
+        // Initialize Firebase
+        const app = initializeApp(window.firebaseConfig);
+        window.auth = getAuth(app);
+        window.db = getFirestore(app);
+        
+        // Expose Firestore utilities globally
+        window.firestoreUtils = {
+            collection,
+            addDoc,
+            serverTimestamp,
+            query,
+            orderBy,
+            limit,
+            getDocs,
+            doc,
+            updateDoc,
+            deleteDoc
+        };
+
+        // Legacy compatibility
+        window.firebase = {
+            firestore: {
+                FieldValue: {
+                    serverTimestamp: serverTimestamp
+                }
+            }
+        };
+
+        console.log('✅ Firebase initialisé pour admin');
+    </script>
+    
     <!-- Auth Guard: Rediriger si non connecté -->
     <script src="/src/frontend/assets/scripts/auth/auth-guard.js"></script>
     <script src="/src/frontend/assets/scripts/auth/auth.js"></script>
@@ -1104,7 +1152,18 @@
             </nav>
         </header>
 
-
+        <!-- Onglets de navigation -->
+        <div class="admin-tabs">
+            <button class="admin-tab active" onclick="switchTab('courses')">
+                📚 Cours
+            </button>
+            <button class="admin-tab" onclick="switchTab('images')">
+                🖼️ Images
+            </button>
+            <button class="admin-tab" onclick="switchTab('feedbacks')">
+                💬 Feedbacks <span id="feedbackCount" class="badge">0</span>
+            </button>
+        </div>
 
         <!-- Section Upload de Cours -->
         <section class="admin-section active" id="coursesSection">
@@ -1139,7 +1198,7 @@
         </section>
 
         <!-- Section Upload d'Images -->
-        <section class="admin-section" id="imagesSection">
+        <section class="admin-section" id="imagesSection" data-tab="images">
             <div class="section-header">
                 <h3>🖼️ Ajout d'images et schémas</h3>
                 <p>Uploadez vos images (PNG, JPG, PDF) organisées par catégorie thématique</p>
@@ -1195,11 +1254,111 @@
             </div>
         </section>
 
+        <!-- Section Feedbacks Utilisateurs -->
+        <section class="admin-section" id="feedbacksSection" data-tab="feedbacks">
+            <div class="section-header">
+                <h3>💬 Feedbacks Utilisateurs</h3>
+                <p>Gérez les retours et signalements des utilisateurs</p>
+            </div>
+
+            <!-- Filtres -->\n            <div class="feedback-filters" style="background: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                <label style="font-weight: 600; color: #495057;">Filtrer par:</label>
+                <select id="feedbackTypeFilter" onchange="filterFeedbacks()" style="padding: 0.5rem 1rem; border: 2px solid #e9ecef; border-radius: 8px; cursor: pointer;">
+                    <option value="all">Tous les types</option>
+                    <option value="bug">🐛 Bugs</option>
+                    <option value="feature">✨ Fonctionnalités</option>
+                    <option value="improvement">💡 Améliorations</option>
+                    <option value="content">📚 Contenu</option>
+                    <option value="ux">🎨 UX</option>
+                    <option value="other">💬 Autre</option>
+                </select>
+                
+                <select id="feedbackStatusFilter" onchange="filterFeedbacks()" style="padding: 0.5rem 1rem; border: 2px solid #e9ecef; border-radius: 8px; cursor: pointer;">
+                    <option value="all">Tous les statuts</option>
+                    <option value="nouveau">🆕 Nouveaux</option>
+                    <option value="lu">👀 Lus</option>
+                    <option value="résolu">✅ Résolus</option>
+                    <option value="archivé">📦 Archivés</option>
+                </select>
+                
+                <button onclick="refreshFeedbacks()" style="margin-left: auto; padding: 0.5rem 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                    🔄 Actualiser
+                </button>
+                
+                <button onclick="exportFeedbacks()" style="padding: 0.5rem 1.5rem; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                    💾 Exporter JSON
+                </button>
+            </div>
+
+            <!-- Stats des feedbacks -->
+            <div class="feedback-stats" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div style="font-size: 2rem; font-weight: bold; color: #667eea;" id="totalFeedbacks">0</div>
+                    <div style="color: #6c757d; font-size: 0.9rem;">Total feedbacks</div>
+                </div>
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div style="font-size: 2rem; font-weight: bold; color: #dc3545;" id="bugCount">0</div>
+                    <div style="color: #6c757d; font-size: 0.9rem;">Bugs signalés</div>
+                </div>
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div style="font-size: 2rem; font-weight: bold; color: #ffc107;" id="pendingCount">0</div>
+                    <div style="color: #6c757d; font-size: 0.9rem;">En attente</div>
+                </div>
+                <div style="background: white; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div style="font-size: 2rem; font-weight: bold; color: #28a745;" id="resolvedCount">0</div>
+                    <div style="color: #6c757d; font-size: 0.9rem;">Résolus</div>
+                </div>
+            </div>
+
+            <!-- Liste des feedbacks -->
+            <div id="feedbackList" style="display: flex; flex-direction: column; gap: 1rem;">
+                <!-- Généré dynamiquement par JavaScript -->
+            </div>
+
+            <!-- Message si aucun feedback -->
+            <div id="noFeedbackMessage" style="text-align: center; padding: 3rem; color: #6c757d; display: none;">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">📭</div>
+                <p style="font-size: 1.2rem;">Aucun feedback pour le moment</p>
+            </div>
+        </section>
+
         <div id="status"></div>
     </div>
     </div>
 
     <script>
+        // Tab switching function
+        function switchTab(tabName) {
+            // Remove active from all tabs
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Hide all sections
+            document.querySelectorAll('.admin-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Activate clicked tab
+            event.target.classList.add('active');
+            
+            // Show corresponding section
+            const sectionMap = {
+                'courses': 'coursesSection',
+                'images': 'imagesSection',
+                'feedbacks': 'feedbacksSection'
+            };
+            const targetSection = document.getElementById(sectionMap[tabName]);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // Load feedbacks on first tab switch
+            if (tabName === 'feedbacks' && window.adminFeedbacksManager) {
+                window.adminFeedbacksManager.init();
+            }
+        }
+
         // Vérifier l'authentification au chargement
         document.addEventListener('DOMContentLoaded', function() {
             if (authManager.isAdmin()) {
@@ -1237,6 +1396,11 @@
             document.getElementById('authModal').style.display = 'none';
             document.getElementById('adminInterface').style.display = 'block';
             
+            // Initialize feedbacks manager
+            if (window.adminFeedbacksManager) {
+                window.adminFeedbacksManager.init();
+            }
+            
             // Notification de connexion réussie
             const status = document.getElementById('status');
             if (status) {
@@ -1247,6 +1411,7 @@
             }
         }
     </script>
-    <script type="module" src="/src/frontend/assets/scripts/modules/admin.js"></script>
+    <script src="/src/frontend/assets/scripts/modules/admin-feedbacks.js"></script>
+    <script src="/src/frontend/assets/scripts/modules/admin.js"></script>
 </body>
 </html>

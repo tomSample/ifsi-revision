@@ -50,23 +50,38 @@
         const app = initializeApp(window.firebaseConfig);
         const auth = getAuth(app);
 
-        // Déconnexion immédiate
-        signOut(auth).then(() => {
-            // Effacer le cache des cours de la session
-            if (typeof clearCoursesCache === 'function') {
-                clearCoursesCache();
-            } else {
-                sessionStorage.removeItem('coursesData_session');
-                console.log('🗑️ Cache des cours effacé');
+        // Synchroniser les modifications en attente avant de se déconnecter
+        async function performLogout() {
+            try {
+                // 1. Synchroniser les modifications en attente
+                if (window.syncManager && typeof window.syncManager.syncPendingChanges === 'function') {
+                    await window.syncManager.syncPendingChanges();
+                    console.log('✅ Modifications synchronisées avant déconnexion');
+                }
+                
+                // 2. Déconnexion Firebase
+                await signOut(auth);
+                
+                // 3. Effacer tous les caches de session
+                if (typeof clearCoursesCache === 'function') {
+                    clearCoursesCache();
+                } else {
+                    sessionStorage.removeItem('coursesData_session');
+                    sessionStorage.removeItem('userProgress_session');
+                    console.log('🗑️ Cache effacé');
+                }
+                
+                document.getElementById('status').textContent = '✅ Déconnecté avec succès !';
+                setTimeout(() => {
+                    window.location.href = '/src/frontend/pages/index.html';
+                }, 1000);
+            } catch (error) {
+                console.error('Erreur lors de la déconnexion:', error);
+                document.getElementById('status').textContent = '❌ Erreur : ' + error.message;
             }
-            
-            document.getElementById('status').textContent = '✅ Déconnecté avec succès !';
-            setTimeout(() => {
-                window.location.href = '/src/frontend/pages/index.html';
-            }, 1000);
-        }).catch((error) => {
-            document.getElementById('status').textContent = '❌ Erreur : ' + error.message;
-        });
+        }
+        
+        performLogout();
     </script>
 </body>
 </html>

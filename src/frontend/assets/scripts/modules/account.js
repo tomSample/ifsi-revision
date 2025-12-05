@@ -286,7 +286,18 @@ async function deleteUserData(userId) {
  */
 document.getElementById('logoutBtn').addEventListener('click', async () => {
     try {
+        // 1. Synchroniser les modifications en attente
+        if (window.syncManager && typeof window.syncManager.syncPendingChanges === 'function') {
+            await window.syncManager.syncPendingChanges();
+        }
+        
+        // 2. Déconnexion Firebase
         await signOut(auth);
+        
+        // 3. Nettoyer les caches de session
+        sessionStorage.removeItem('coursesData_session');
+        sessionStorage.removeItem('userProgress_session');
+        
         window.location.href = 'navigation.html';
     } catch (error) {
         console.error('Erreur déconnexion:', error);

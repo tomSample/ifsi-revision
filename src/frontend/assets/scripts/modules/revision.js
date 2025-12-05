@@ -34,7 +34,7 @@ let userProgress = {};
 document.addEventListener('DOMContentLoaded', async function() {
     await initializeFirebase();
     loadCoursesData();
-    await loadUserProgressFromFirestore();
+    // La progression est chargée automatiquement dans onAuthStateChanged
     loadReportedTerms();
     setupEventListeners();
 });
@@ -62,13 +62,14 @@ async function initializeFirebase() {
         syncManager.loadPendingFromLocalStorage();
         
         // Écouter les changements d'authentification
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
             if (user) {
-                console.log('✅ Utilisateur connecté:', user.email);
-                // Précharger le cache des cours pour toute la session
-                preloadCoursesCache();
-                // Recharger la progression si l'utilisateur vient de se connecter
-                loadUserProgressFromFirestore();
+                console.log('✅ Utilisateur connecté');
+                // Précharger le cache des cours ET la progression en parallèle
+                await Promise.all([
+                    preloadCoursesCache(),
+                    loadUserProgressFromFirestore()
+                ]);
             } else {
                 console.log('ℹ️ Mode invité - progression locale uniquement');
                 userProgress = {};
@@ -107,8 +108,29 @@ async function loadUserProgressFromFirestore() {
         return;
     }
     
+    // Vérifier le cache de session d'abord
+    const cachedProgress = sessionStorage.getItem('userProgress_session');
+    if (cachedProgress) {
+        try {
+            userProgress = JSON.parse(cachedProgress);
+            console.log(`📦 Progression chargée depuis le cache: ${Object.keys(userProgress).length} termes`);
+            return;
+        } catch (e) {
+            console.warn('Erreur lecture cache progression:', e);
+        }
+    }
+    
     try {
+        // Charger depuis Firestore
         userProgress = await syncManager.getAllProgress();
+        
+        // Mettre en cache pour la session
+        try {
+            sessionStorage.setItem('userProgress_session', JSON.stringify(userProgress));
+        } catch (e) {
+            console.warn('⚠️ Impossible de mettre en cache la progression (quota dépassé?)');
+        }
+        
         console.log(`✅ Progression chargée: ${Object.keys(userProgress).length} termes`);
     } catch (error) {
         console.error('Erreur chargement progression:', error);

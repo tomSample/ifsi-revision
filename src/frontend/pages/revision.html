@@ -312,14 +312,6 @@
     <!-- Cache Manager -->
     <script src="/src/frontend/assets/scripts/utils/cache-manager.js"></script>
     
-    <!-- Auth Guard - Protection de la page -->
-    <script src="/src/frontend/assets/scripts/auth/auth-guard.js"></script>
-    <script>
-        // Protéger la page - rediriger si non connecté
-        const authGuard = new AuthGuard();
-        authGuard.initialize();
-    </script>
-    
     <!-- 🚀 Optimisations de performance -->
     <script src="/src/frontend/assets/scripts/utils/smart-cache.js"></script>
     <script src="/src/frontend/assets/scripts/utils/performance-utils.js"></script>
@@ -330,6 +322,10 @@
     
     <!-- Script principal de révision avec flashcards -->
     <script src="/src/frontend/assets/scripts/modules/revision.js?v=2.0"></script>
+    
+    <!-- PWA -->
+    <script src="/src/frontend/assets/scripts/utils/sw-register.js"></script>
+    <script src="/src/frontend/assets/scripts/utils/pwa-install.js"></script>
     
     <script>
         // Fonction pour retourner la carte

@@ -453,6 +453,15 @@ def index():
     """Redirige vers la page d'accueil frontend"""
     return send_from_directory('../../', 'index.html')
 
+@app.route('/service-worker.js')
+def serve_service_worker():
+    """Sert le Service Worker depuis la racine avec headers appropriés"""
+    response = send_from_directory('../../', 'service-worker.js')
+    response.headers['Service-Worker-Allowed'] = '/'
+    response.headers['Content-Type'] = 'application/javascript'
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    return response
+
 @app.route('/src/frontend/pages/<path:filename>')
 def serve_pages(filename):
     """Sert les pages HTML depuis src/frontend/pages/"""
@@ -472,6 +481,16 @@ def serve_data(filename):
 def serve_public(subpath, filename):
     """Sert les fichiers optimisés depuis public/"""
     return send_from_directory(f'../../public/{subpath}', filename)
+
+@app.route('/public/<path:filename>')
+def serve_public_root(filename):
+    """Sert les fichiers à la racine de public/ (manifest.json, service-worker.js, etc.)"""
+    response = send_from_directory('../../public', filename)
+    # Permettre au Service Worker de contrôler le scope racine
+    if filename == 'service-worker.js':
+        response.headers['Service-Worker-Allowed'] = '/'
+        response.headers['Content-Type'] = 'application/javascript'
+    return response
 
 @app.route('/api/stats')
 def get_stats():

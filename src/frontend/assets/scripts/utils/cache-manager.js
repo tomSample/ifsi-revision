@@ -32,13 +32,14 @@ async function preloadCoursesCache() {
 }
 
 /**
- * Effacer le cache des cours
+ * Effacer le cache des cours et de la progression
  * À appeler lors de la déconnexion
  */
 function clearCoursesCache() {
     try {
         sessionStorage.removeItem('coursesData_session');
-        console.log('🗑️ Cache des cours effacé');
+        sessionStorage.removeItem('userProgress_session');
+        console.log('🗑️ Cache des cours et progression effacé');
     } catch (error) {
         console.error('Erreur lors de l\'effacement du cache:', error);
     }

@@ -1,0 +1,358 @@
+/**
+ * ADMIN FEEDBACKS MANAGER
+ * Gestion des feedbacks utilisateurs dans l'interface admin
+ */
+
+class AdminFeedbacksManager {
+    constructor() {
+        this.feedbacks = [];
+        this.filteredFeedbacks = [];
+        this.filters = {
+            type: 'all',
+            status: 'all'
+        };
+    }
+
+    /**
+     * Initialise le gestionnaire de feedbacks
+     */
+    async init() {
+        console.log('🔄 [AdminFeedbacks] Chargement des feedbacks...');
+        await this.loadFeedbacks();
+        this.updateStats();
+        this.renderFeedbacks();
+    }
+
+    /**
+     * Charge les feedbacks depuis Firestore
+     */
+    async loadFeedbacks() {
+        try {
+            if (!window.db || !window.firestoreUtils) {
+                console.error('[AdminFeedbacks] Firestore non disponible');
+                return;
+            }
+
+            const { collection, query, orderBy, limit, getDocs } = window.firestoreUtils;
+            
+            const feedbacksRef = collection(window.db, 'feedbacks');
+            const q = query(feedbacksRef, orderBy('timestamp', 'desc'), limit(100));
+            const snapshot = await getDocs(q);
+
+            this.feedbacks = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data(),
+                timestamp: doc.data().timestamp?.toDate() || new Date()
+            }));
+
+            console.log(`✅ [AdminFeedbacks] ${this.feedbacks.length} feedbacks chargés`);
+            this.filteredFeedbacks = [...this.feedbacks];
+
+        } catch (error) {
+            console.error('[AdminFeedbacks] Erreur chargement:', error);
+            
+            // Fallback: tenter de charger depuis localStorage
+            const localFeedbacks = localStorage.getItem('admin_feedbacks_cache');
+            if (localFeedbacks) {
+                this.feedbacks = JSON.parse(localFeedbacks);
+                this.filteredFeedbacks = [...this.feedbacks];
+                console.log('ℹ️ [AdminFeedbacks] Chargement depuis cache local');
+            }
+        }
+    }
+
+    /**
+     * Filtre les feedbacks selon les critères
+     */
+    filterFeedbacks() {
+        this.filters.type = document.getElementById('feedbackTypeFilter').value;
+        this.filters.status = document.getElementById('feedbackStatusFilter').value;
+
+        this.filteredFeedbacks = this.feedbacks.filter(feedback => {
+            const typeMatch = this.filters.type === 'all' || feedback.type === this.filters.type;
+            const statusMatch = this.filters.status === 'all' || feedback.status === this.filters.status;
+            return typeMatch && statusMatch;
+        });
+
+        this.renderFeedbacks();
+        this.updateStats();
+    }
+
+    /**
+     * Met à jour les statistiques
+     */
+    updateStats() {
+        const total = this.feedbacks.length;
+        const bugs = this.feedbacks.filter(f => f.type === 'bug').length;
+        const pending = this.feedbacks.filter(f => f.status === 'nouveau' || !f.status).length;
+        const resolved = this.feedbacks.filter(f => f.status === 'résolu').length;
+
+        document.getElementById('totalFeedbacks').textContent = total;
+        document.getElementById('bugCount').textContent = bugs;
+        document.getElementById('pendingCount').textContent = pending;
+        document.getElementById('resolvedCount').textContent = resolved;
+        document.getElementById('feedbackCount').textContent = pending;
+    }
+
+    /**
+     * Affiche les feedbacks
+     */
+    renderFeedbacks() {
+        const container = document.getElementById('feedbackList');
+        const noMessage = document.getElementById('noFeedbackMessage');
+
+        if (this.filteredFeedbacks.length === 0) {
+            container.style.display = 'none';
+            noMessage.style.display = 'block';
+            return;
+        }
+
+        container.style.display = 'flex';
+        noMessage.style.display = 'none';
+
+        container.innerHTML = this.filteredFeedbacks.map(feedback => this.renderFeedbackCard(feedback)).join('');
+    }
+
+    /**
+     * Rend une carte de feedback
+     */
+    renderFeedbackCard(feedback) {
+        const typeEmoji = {
+            'bug': '🐛',
+            'feature': '✨',
+            'improvement': '💡',
+            'content': '📚',
+            'ux': '🎨',
+            'other': '💬'
+        };
+
+        const statusColors = {
+            'nouveau': '#ffc107',
+            'lu': '#17a2b8',
+            'résolu': '#28a745',
+            'archivé': '#6c757d'
+        };
+
+        const status = feedback.status || 'nouveau';
+        const timestamp = feedback.timestamp instanceof Date ? 
+            feedback.timestamp.toLocaleString('fr-FR') : 
+            new Date(feedback.timestamp).toLocaleString('fr-FR');
+
+        return `
+            <div class="feedback-card" data-id="${feedback.id}" style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid ${statusColors[status]};">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <span style="font-size: 1.5rem;">${typeEmoji[feedback.type] || '💬'}</span>
+                            <h4 style="margin: 0; color: #2c3e50; font-size: 1.1rem;">${feedback.subject || 'Feedback sans titre'}</h4>
+                            <span style="background: ${statusColors[status]}; color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">
+                                ${status.toUpperCase()}
+                            </span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #6c757d;">
+                            📅 ${timestamp} · 
+                            📧 ${feedback.email || 'Non fourni'} · 
+                            📍 ${feedback.page || 'Non spécifiée'}
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button onclick="adminFeedbacksManager.markAsRead('${feedback.id}')" 
+                                style="padding: 0.5rem 1rem; background: #17a2b8; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem;" 
+                                title="Marquer comme lu">
+                            👀
+                        </button>
+                        <button onclick="adminFeedbacksManager.markAsResolved('${feedback.id}')" 
+                                style="padding: 0.5rem 1rem; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem;"
+                                title="Marquer comme résolu">
+                            ✅
+                        </button>
+                        <button onclick="adminFeedbacksManager.archiveFeedback('${feedback.id}')" 
+                                style="padding: 0.5rem 1rem; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem;"
+                                title="Archiver">
+                            📦
+                        </button>
+                        <button onclick="adminFeedbacksManager.deleteFeedback('${feedback.id}')" 
+                                style="padding: 0.5rem 1rem; background: #dc3545; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem;"
+                                title="Supprimer">
+                            🗑️
+                        </button>
+                    </div>
+                </div>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <p style="margin: 0; color: #495057; line-height: 1.6; white-space: pre-wrap;">${this.escapeHTML(feedback.message)}</p>
+                </div>
+                <div style="font-size: 0.85rem; color: #6c757d;">
+                    🖥️ ${feedback.userAgent || 'Non fourni'}<br>
+                    📱 Version: ${feedback.appVersion || 'Inconnue'}<br>
+                    👤 UID: ${feedback.user?.uid || 'Anonyme'}
+                </div>
+            </div>
+        `;
+    }
+
+    /**
+     * Échappe les caractères HTML
+     */
+    escapeHTML(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    /**
+     * Marque un feedback comme lu
+     */
+    async markAsRead(feedbackId) {
+        await this.updateFeedbackStatus(feedbackId, 'lu');
+    }
+
+    /**
+     * Marque un feedback comme résolu
+     */
+    async markAsResolved(feedbackId) {
+        await this.updateFeedbackStatus(feedbackId, 'résolu', true);
+    }
+
+    /**
+     * Archive un feedback
+     */
+    async archiveFeedback(feedbackId) {
+        await this.updateFeedbackStatus(feedbackId, 'archivé');
+    }
+
+    /**
+     * Met à jour le statut d'un feedback
+     */
+    async updateFeedbackStatus(feedbackId, status, resolved = false) {
+        try {
+            if (!window.db || !window.firestoreUtils) throw new Error('Firestore non disponible');
+
+            const { doc, updateDoc, serverTimestamp } = window.firestoreUtils;
+            const feedbackRef = doc(window.db, 'feedbacks', feedbackId);
+            
+            await updateDoc(feedbackRef, {
+                status: status,
+                resolved: resolved,
+                updatedAt: serverTimestamp()
+            });
+
+            // Mettre à jour localement
+            const feedback = this.feedbacks.find(f => f.id === feedbackId);
+            if (feedback) {
+                feedback.status = status;
+                feedback.resolved = resolved;
+            }
+
+            this.filterFeedbacks();
+            this.showNotification(`✅ Feedback marqué comme ${status}`);
+
+        } catch (error) {
+            console.error('[AdminFeedbacks] Erreur mise à jour:', error);
+            this.showNotification('❌ Erreur lors de la mise à jour', 'error');
+        }
+    }
+
+    /**
+     * Supprime un feedback
+     */
+    async deleteFeedback(feedbackId) {
+        if (!confirm('Êtes-vous sûr de vouloir supprimer ce feedback ?')) {
+            return;
+        }
+
+        try {
+            if (!window.db || !window.firestoreUtils) throw new Error('Firestore non disponible');
+
+            const { doc, deleteDoc } = window.firestoreUtils;
+            const feedbackRef = doc(window.db, 'feedbacks', feedbackId);
+            await deleteDoc(feedbackRef);
+
+            // Retirer localement
+            this.feedbacks = this.feedbacks.filter(f => f.id !== feedbackId);
+            this.filterFeedbacks();
+
+            this.showNotification('✅ Feedback supprimé');
+
+        } catch (error) {
+            console.error('[AdminFeedbacks] Erreur suppression:', error);
+            this.showNotification('❌ Erreur lors de la suppression', 'error');
+        }
+    }
+
+    /**
+     * Actualise les feedbacks
+     */
+    async refreshFeedbacks() {
+        this.showNotification('🔄 Actualisation...', 'info');
+        await this.loadFeedbacks();
+        this.filterFeedbacks();
+        this.showNotification('✅ Feedbacks actualisés');
+    }
+
+    /**
+     * Exporte les feedbacks en JSON
+     */
+    exportFeedbacks() {
+        const data = {
+            exportDate: new Date().toISOString(),
+            totalFeedbacks: this.feedbacks.length,
+            feedbacks: this.feedbacks.map(f => ({
+                ...f,
+                timestamp: f.timestamp instanceof Date ? f.timestamp.toISOString() : f.timestamp
+            }))
+        };
+
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `ifsi-feedbacks-${new Date().toISOString().split('T')[0]}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        this.showNotification('✅ Feedbacks exportés');
+    }
+
+    /**
+     * Affiche une notification
+     */
+    showNotification(message, type = 'success') {
+        const notification = document.createElement('div');
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            background: ${type === 'error' ? '#dc3545' : type === 'info' ? '#17a2b8' : '#28a745'};
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 10000;
+            animation: slideInUp 0.3s ease;
+        `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.animation = 'slideOutDown 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+}
+
+// Instance globale
+window.adminFeedbacksManager = new AdminFeedbacksManager();
+
+// Fonctions globales pour les boutons inline
+function filterFeedbacks() {
+    window.adminFeedbacksManager.filterFeedbacks();
+}
+
+function refreshFeedbacks() {
+    window.adminFeedbacksManager.refreshFeedbacks();
+}
+
+function exportFeedbacks() {
+    window.adminFeedbacksManager.exportFeedbacks();
+}

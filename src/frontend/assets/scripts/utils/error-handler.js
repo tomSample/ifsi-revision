@@ -1,0 +1,612 @@
+/**
+ * GLOBAL ERROR HANDLER
+ * Gestion centralisée des erreurs de l'application
+ * 
+ * v3.1.0:
+ * - Logging étendu: erreurs, warnings, info
+ * - Catégorisation: cache, sync, firestore, navigation, auth, pwa
+ */
+
+class ErrorHandler {
+    constructor() {
+        this.errors = [];
+        this.warnings = [];
+        this.infoLogs = [];
+        this.maxErrors = 50; // Limite du buffer d'erreurs
+        this.maxWarnings = 20; // Limite du buffer de warnings
+        this.maxInfoLogs = 10; // Limite du buffer d'info
+        this.initialized = false;
+        this.errorEndpoint = null; // Pour envoi futur vers serveur
+        this.enableConsoleErrors = true;
+        
+        // Catégories de logs
+        this.categories = ['cache', 'sync', 'firestore', 'navigation', 'auth', 'pwa', 'general'];
+    }
+
+    /**
+     * Initialise les listeners d'erreurs globaux
+     */
+    init() {
+        if (this.initialized) return;
+
+        // Charger les logs existants
+        this.loadLogsFromStorage();
+
+        // Erreurs JavaScript non gérées
+        window.addEventListener('error', (event) => {
+            this.handleError({
+                type: 'javascript',
+                message: event.message,
+                filename: event.filename,
+                line: event.lineno,
+                column: event.colno,
+                error: event.error,
+                stack: event.error?.stack
+            });
+        });
+
+        // Promesses rejetées non gérées
+        window.addEventListener('unhandledrejection', (event) => {
+            this.handlePromiseRejection({
+                type: 'promise',
+                reason: event.reason,
+                message: event.reason?.message || String(event.reason),
+                stack: event.reason?.stack
+            });
+        });
+
+        // Erreurs de ressources (images, scripts, etc.)
+        window.addEventListener('error', (event) => {
+            if (event.target !== window) {
+                this.handleResourceError({
+                    type: 'resource',
+                    target: event.target.tagName,
+                    src: event.target.src || event.target.href
+                });
+            }
+        }, true);
+
+        this.initialized = true;
+        console.log('✅ [ErrorHandler] Gestionnaire d\'erreurs initialisé');
+    }
+
+    /**
+     * Gère les erreurs JavaScript
+     */
+    handleError(errorInfo) {
+        const error = {
+            id: this.generateErrorId(),
+            timestamp: new Date().toISOString(),
+            type: errorInfo.type,
+            message: errorInfo.message,
+            filename: errorInfo.filename,
+            line: errorInfo.line,
+            column: errorInfo.column,
+            stack: errorInfo.stack,
+            userAgent: navigator.userAgent,
+            url: window.location.href,
+            user: this.getUserContext()
+        };
+
+        this.addError(error);
+        this.logError(error);
+        this.showUserNotification(error);
+    }
+
+    /**
+     * Gère les rejets de promesses
+     */
+    handlePromiseRejection(errorInfo) {
+        const error = {
+            id: this.generateErrorId(),
+            timestamp: new Date().toISOString(),
+            type: errorInfo.type,
+            message: errorInfo.message,
+            reason: errorInfo.reason,
+            stack: errorInfo.stack,
+            userAgent: navigator.userAgent,
+            url: window.location.href,
+            user: this.getUserContext()
+        };
+
+        this.addError(error);
+        this.logError(error);
+        
+        // Les rejets de promesses Firebase sont fréquents et moins critiques
+        if (!errorInfo.message?.includes('Firebase')) {
+            this.showUserNotification(error);
+        }
+    }
+
+    /**
+     * Gère les erreurs de chargement de ressources
+     */
+    handleResourceError(errorInfo) {
+        const error = {
+            id: this.generateErrorId(),
+            timestamp: new Date().toISOString(),
+            type: errorInfo.type,
+            message: `Erreur de chargement: ${errorInfo.target}`,
+            resource: errorInfo.src,
+            userAgent: navigator.userAgent,
+            url: window.location.href
+        };
+
+        this.addError(error);
+        
+        if (this.enableConsoleErrors) {
+            console.warn(`⚠️ [ErrorHandler] Ressource non chargée:`, errorInfo.src);
+        }
+    }
+
+    /**
+     * Ajoute une erreur au buffer
+     */
+    addError(error) {
+        this.errors.unshift(error);
+        
+        // Limite la taille du buffer
+        if (this.errors.length > this.maxErrors) {
+            this.errors = this.errors.slice(0, this.maxErrors);
+        }
+
+        // Sauvegarde dans localStorage pour persistance
+        this.saveErrorsToStorage();
+    }
+
+    /**
+     * Log l'erreur dans la console
+     */
+    logError(error) {
+        if (!this.enableConsoleErrors) return;
+
+        const style = error.type === 'javascript' ? 'color: #dc3545; font-weight: bold;' :
+                      error.type === 'promise' ? 'color: #ffc107; font-weight: bold;' :
+                      'color: #6c757d;';
+
+        console.error(`%c❌ [${error.type.toUpperCase()}]`, style);
+        console.error('Message:', error.message);
+        if (error.filename) console.error('Fichier:', error.filename, `(${error.line}:${error.column})`);
+        if (error.stack) console.error('Stack:', error.stack);
+        console.error('Timestamp:', error.timestamp);
+    }
+
+    /**
+     * Affiche une notification à l'utilisateur
+     */
+    showUserNotification(error) {
+        // Ne pas spammer l'utilisateur avec des notifications
+        const recentErrors = this.errors.filter(e => 
+            Date.now() - new Date(e.timestamp).getTime() < 5000
+        );
+        
+        if (recentErrors.length > 3) {
+            return; // Trop d'erreurs récentes, on évite le spam
+        }
+
+        const notification = document.createElement('div');
+        notification.className = 'error-notification';
+        notification.innerHTML = `
+            <div class="error-content">
+                <div class="error-icon">⚠️</div>
+                <div class="error-text">
+                    <strong>Une erreur est survenue</strong>
+                    <p>${this.getUserFriendlyMessage(error)}</p>
+                </div>
+                <button class="close-error" onclick="this.parentElement.parentElement.remove()">✖</button>
+            </div>
+        `;
+
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            max-width: 400px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 10001;
+            animation: slideInUp 0.3s ease;
+        `;
+
+        document.body.appendChild(notification);
+
+        // Auto-suppression après 5 secondes
+        setTimeout(() => {
+            notification.style.animation = 'slideOutDown 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 5000);
+    }
+
+    /**
+     * Convertit une erreur technique en message utilisateur
+     */
+    getUserFriendlyMessage(error) {
+        if (error.message?.includes('Firebase')) {
+            return 'Problème de connexion à la base de données. Vérifiez votre connexion internet.';
+        }
+        if (error.message?.includes('fetch') || error.message?.includes('network')) {
+            return 'Problème de connexion réseau. Vérifiez votre connexion internet.';
+        }
+        if (error.type === 'resource') {
+            return 'Certaines ressources n\'ont pas pu être chargées. Essayez de recharger la page.';
+        }
+        if (error.message?.includes('undefined') || error.message?.includes('null')) {
+            return 'Une erreur technique est survenue. Rechargez la page si le problème persiste.';
+        }
+        
+        return 'Une erreur inattendue s\'est produite. Rechargez la page ou contactez le support si nécessaire.';
+    }
+
+    /**
+     * Génère un ID unique pour l'erreur
+     */
+    generateErrorId() {
+        return `err_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    }
+
+    /**
+     * Récupère le contexte utilisateur
+     */
+    getUserContext() {
+        try {
+            const user = window.auth?.currentUser;
+            return user ? {
+                uid: user.uid,
+                email: user.email?.split('@')[0] + '@***' // Anonymisation partielle
+            } : null;
+        } catch {
+            return null;
+        }
+    }
+
+    /**
+     * Sauvegarde les erreurs dans localStorage
+     */
+    saveErrorsToStorage() {
+        try {
+            const errorsToSave = this.errors.slice(0, 10); // Seulement les 10 dernières
+            localStorage.setItem('app_errors', JSON.stringify(errorsToSave));
+        } catch (error) {
+            console.warn('Impossible de sauvegarder les erreurs:', error);
+        }
+    }
+
+    /**
+     * Récupère les erreurs depuis localStorage
+     */
+    loadErrorsFromStorage() {
+        try {
+            const stored = localStorage.getItem('app_errors');
+            if (stored) {
+                this.errors = JSON.parse(stored);
+            }
+        } catch (error) {
+            console.warn('Impossible de charger les erreurs:', error);
+        }
+    }
+
+    /**
+     * Retourne toutes les erreurs
+     */
+    getErrors() {
+        return [...this.errors];
+    }
+
+    /**
+     * Retourne les erreurs récentes (dernières 24h)
+     */
+    getRecentErrors(hours = 24) {
+        const cutoff = Date.now() - (hours * 60 * 60 * 1000);
+        return this.errors.filter(error => 
+            new Date(error.timestamp).getTime() > cutoff
+        );
+    }
+
+    /**
+     * Efface toutes les erreurs
+     */
+    clearErrors() {
+        this.errors = [];
+        localStorage.removeItem('app_errors');
+        console.log('✅ [ErrorHandler] Erreurs effacées');
+    }
+
+    /**
+     * Envoie les erreurs à un serveur (pour futur monitoring)
+     */
+    async reportErrors(errors = null) {
+        if (!this.errorEndpoint) {
+            console.warn('[ErrorHandler] Pas d\'endpoint configuré pour le reporting');
+            return;
+        }
+
+        const errorsToReport = errors || this.getRecentErrors(24);
+        
+        try {
+            const response = await fetch(this.errorEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    errors: errorsToReport,
+                    appVersion: window.versionManager?.getVersion(),
+                    timestamp: new Date().toISOString()
+                })
+            });
+
+            if (response.ok) {
+                console.log('✅ [ErrorHandler] Erreurs envoyées au serveur');
+            }
+        } catch (error) {
+            console.error('[ErrorHandler] Erreur lors du reporting:', error);
+        }
+    }
+
+    /**
+     * Génère un rapport d'erreurs pour export
+     */
+    generateErrorReport() {
+        const report = {
+            generatedAt: new Date().toISOString(),
+            appVersion: window.versionManager?.getVersion(),
+            summary: {
+                totalErrors: this.errors.length,
+                totalWarnings: this.warnings.length,
+                totalInfo: this.infoLogs.length,
+                recentErrors: this.getRecentErrors(24).length
+            },
+            errorsByType: this.groupErrorsByType(),
+            errors: this.errors.map(error => ({
+                timestamp: error.timestamp,
+                type: error.type,
+                category: error.category,
+                message: error.message,
+                filename: error.filename,
+                line: error.line,
+                url: error.url
+            })),
+            warnings: this.warnings.map(warning => ({
+                timestamp: warning.timestamp,
+                category: warning.category,
+                message: warning.message,
+                data: warning.data
+            })),
+            info: this.infoLogs.map(info => ({
+                timestamp: info.timestamp,
+                category: info.category,
+                message: info.message,
+                data: info.data
+            }))
+        };
+
+        return report;
+    }
+
+    /**
+     * Groupe les erreurs par type
+     */
+    groupErrorsByType() {
+        const grouped = {};
+        this.errors.forEach(error => {
+            grouped[error.type] = (grouped[error.type] || 0) + 1;
+        });
+        return grouped;
+    }
+
+    /**
+     * Exporte les erreurs en JSON
+     */
+    exportErrorsAsJSON() {
+        const report = this.generateErrorReport();
+        const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `ifsi-errors-${new Date().toISOString().split('T')[0]}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    /**
+     * Log un warning (niveau WARNING)
+     * @param {string} category - Catégorie: cache, sync, firestore, navigation, auth, pwa, general
+     * @param {string} message - Message descriptif
+     * @param {Object} data - Données additionnelles (optionnel)
+     */
+    logWarning(category, message, data = {}) {
+        if (!this.categories.includes(category)) {
+            category = 'general';
+        }
+
+        const warning = {
+            id: this.generateErrorId(),
+            timestamp: new Date().toISOString(),
+            level: 'WARNING',
+            category,
+            message,
+            data,
+            url: window.location.href,
+            user: this.getUserContext()
+        };
+
+        // Ajouter au buffer
+        this.warnings.unshift(warning);
+        if (this.warnings.length > this.maxWarnings) {
+            this.warnings = this.warnings.slice(0, this.maxWarnings);
+        }
+
+        // Log console avec style
+        console.warn(`%c⚠️ [${category.toUpperCase()}] ${message}`, 'color: #ffc107; font-weight: bold;', data);
+
+        // Sauvegarder dans localStorage
+        this.saveLogsToStorage();
+    }
+
+    /**
+     * Log une info (niveau INFO)
+     * @param {string} category - Catégorie: cache, sync, firestore, navigation, auth, pwa, general
+     * @param {string} message - Message descriptif
+     * @param {Object} data - Données additionnelles (optionnel)
+     */
+    logInfo(category, message, data = {}) {
+        if (!this.categories.includes(category)) {
+            category = 'general';
+        }
+
+        const info = {
+            id: this.generateErrorId(),
+            timestamp: new Date().toISOString(),
+            level: 'INFO',
+            category,
+            message,
+            data,
+            url: window.location.href,
+            user: this.getUserContext()
+        };
+
+        // Ajouter au buffer
+        this.infoLogs.unshift(info);
+        if (this.infoLogs.length > this.maxInfoLogs) {
+            this.infoLogs = this.infoLogs.slice(0, this.maxInfoLogs);
+        }
+
+        // Log console avec style
+        console.log(`%cℹ️ [${category.toUpperCase()}] ${message}`, 'color: #17a2b8; font-weight: bold;', data);
+
+        // Sauvegarder dans localStorage
+        this.saveLogsToStorage();
+    }
+
+    /**
+     * Récupère tous les logs d'une catégorie
+     * @param {string} category - Catégorie à filtrer
+     * @returns {Object} Logs groupés par niveau
+     */
+    getLogsByCategory(category) {
+        return {
+            errors: this.errors.filter(e => e.category === category),
+            warnings: this.warnings.filter(w => w.category === category),
+            info: this.infoLogs.filter(i => i.category === category)
+        };
+    }
+
+    /**
+     * Sauvegarde tous les logs dans localStorage
+     */
+    saveLogsToStorage() {
+        try {
+            localStorage.setItem('app_errors', JSON.stringify(this.errors));
+            localStorage.setItem('app_warnings', JSON.stringify(this.warnings));
+            localStorage.setItem('app_info', JSON.stringify(this.infoLogs));
+        } catch (e) {
+            console.error('Erreur sauvegarde logs:', e);
+        }
+    }
+
+    /**
+     * Charge tous les logs depuis localStorage
+     */
+    loadLogsFromStorage() {
+        try {
+            const storedErrors = localStorage.getItem('app_errors');
+            const storedWarnings = localStorage.getItem('app_warnings');
+            const storedInfo = localStorage.getItem('app_info');
+            
+            if (storedErrors) this.errors = JSON.parse(storedErrors);
+            if (storedWarnings) this.warnings = JSON.parse(storedWarnings);
+            if (storedInfo) this.infoLogs = JSON.parse(storedInfo);
+        } catch (e) {
+            console.error('Erreur chargement logs:', e);
+        }
+    }
+}
+
+// Styles CSS pour les notifications d'erreur
+const ERROR_STYLES = `
+<style>
+@keyframes slideInUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutDown {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+}
+
+.error-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+}
+
+.error-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.error-text {
+    flex: 1;
+}
+
+.error-text strong {
+    display: block;
+    color: #856404;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.error-text p {
+    margin: 0;
+    color: #856404;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.close-error {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #856404;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.close-error:hover {
+    background: rgba(133, 100, 4, 0.1);
+}
+</style>
+`;
+
+// Instance globale
+window.errorHandler = new ErrorHandler();
+
+// Initialisation automatique
+window.errorHandler.init();
+
+// Charger les erreurs précédentes
+window.errorHandler.loadErrorsFromStorage();

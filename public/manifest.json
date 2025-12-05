@@ -2,28 +2,75 @@
   "name": "IFSI Lannion - Révisions 2025",
   "short_name": "IFSI Révisions",
   "description": "Application de révision par flashcards pour étudiants infirmiers avec algorithme de répétition espacée",
-  "start_url": "/",
+  "start_url": "/src/frontend/pages/index.html",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#667eea",
   "theme_color": "#667eea",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "images/icon-192.png",
+      "src": "/public/images/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "images/icon-512.png",
+      "src": "/public/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/public/images/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/public/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "categories": ["education", "medical"],
+  "screenshots": [
+    {
+      "src": "/public/images/screenshot-mobile.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Page de révision"
+    }
+  ],
+  "categories": ["education", "medical", "health"],
   "lang": "fr-FR",
   "dir": "ltr",
-  "scope": "/",
-  "prefer_related_applications": false
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "shortcuts": [
+    {
+      "name": "Révisions",
+      "short_name": "Réviser",
+      "description": "Commencer une session de révision",
+      "url": "/src/frontend/pages/revision.html",
+      "icons": [{ "src": "/public/images/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Statistiques",
+      "short_name": "Stats",
+      "description": "Voir vos statistiques",
+      "url": "/src/frontend/pages/statistics.html",
+      "icons": [{ "src": "/public/images/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Parcourir",
+      "short_name": "Cours",
+      "description": "Consulter les cours",
+      "url": "/src/frontend/pages/browse-courses.html",
+      "icons": [{ "src": "/public/images/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"]
 }
+
