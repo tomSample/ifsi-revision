@@ -6,15 +6,43 @@
     <title>IFSI Révisions 2025 - Révisez intelligemment avec la courbe de l'oubli</title>
     <meta name="description" content="Plateforme de révision pour étudiants IFSI utilisant la répétition espacée et la courbe de l'oubli pour maximiser votre mémorisation.">
     
+    <!-- Base path configuration for GitHub Pages -->
+    <script>
+        // Détection automatique de l'environnement
+        const isGitHubPages = window.location.hostname.includes('github.io');
+        const basePath = isGitHubPages ? '/ifsi-revision' : '';
+        
+        // Fonction globale pour résoudre les chemins
+        window.resolvePath = (path) => {
+            if (path.startsWith('/')) {
+                return basePath + path;
+            }
+            return path;
+        };
+        
+        // Stocker pour usage ultérieur
+        window.BASE_PATH = basePath;
+    </script>
+    
     <!-- PWA -->
-    <link rel="manifest" href="/public/manifest.json">
-    <link rel="icon" type="image/png" href="/public/images/icon-192.png">
-    <link rel="shortcut icon" type="image/png" href="/public/images/icon-192.png">
+    <link rel="manifest" href="/public/manifest.json" id="manifest-link">
+    <link rel="icon" type="image/png" href="/public/images/icon-192.png" id="favicon-link">
+    <link rel="shortcut icon" type="image/png" href="/public/images/icon-192.png" id="shortcut-icon-link">
     <meta name="theme-color" content="#667eea">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="IFSI Révisions">
-    <link rel="apple-touch-icon" href="/public/images/icon-192.png">
+    <link rel="apple-touch-icon" href="/public/images/icon-192.png" id="apple-icon-link">
+    
+    <script>
+        // Corriger les liens dès que possible
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('manifest-link').href = window.resolvePath('/public/manifest.json');
+            document.getElementById('favicon-link').href = window.resolvePath('/public/images/icon-192.png');
+            document.getElementById('shortcut-icon-link').href = window.resolvePath('/public/images/icon-192.png');
+            document.getElementById('apple-icon-link').href = window.resolvePath('/public/images/icon-192.png');
+        });
+    </script>
     <style>
         * {
             margin: 0;
@@ -437,6 +465,22 @@
                     });
             });
         }
+    </script>
+    
+    <!-- Script de correction des chemins pour GitHub Pages -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Corriger tous les liens href qui commencent par /
+            document.querySelectorAll('a[href^="/"], link[href^="/"], script[src^="/"]').forEach(el => {
+                const attr = el.tagName === 'SCRIPT' ? 'src' : 'href';
+                const currentPath = el.getAttribute(attr);
+                if (currentPath && currentPath.startsWith('/')) {
+                    el.setAttribute(attr, window.resolvePath(currentPath));
+                }
+            });
+            
+            console.log('✅ Chemins corrigés pour:', window.location.hostname);
+        });
     </script>
     
     <!-- PWA Installation -->
