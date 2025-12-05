@@ -536,6 +536,12 @@ function showCurrentTerm() {
     document.getElementById('termName').textContent = currentTerm.term;
     document.getElementById('termDefinition').textContent = currentTerm.definition;
     
+    // Mettre à jour aussi le terme sur la face arrière
+    const termNameBack = document.getElementById('termNameBack');
+    if (termNameBack) {
+        termNameBack.textContent = currentTerm.term;
+    }
+    
     // Reset de l'interface à l'état initial (flashcard)
     resetFlashcardState();
 }
@@ -692,7 +698,9 @@ async function rateDifficulty(difficulty) {
     // Animation visuelle du bouton cliqué
     const buttons = document.querySelectorAll('.difficulty-btn');
     buttons.forEach(btn => btn.classList.remove('selected'));
-    event.target.closest('.difficulty-btn').classList.add('selected');
+    if (event && event.target) {
+        event.target.closest('.difficulty-btn').classList.add('selected');
+    }
     
     // Calculer la nouvelle progression avec l'algorithme SM-2
     if (spacedRepetition && syncManager) {
@@ -718,11 +726,12 @@ async function rateDifficulty(difficulty) {
         console.log(`Note enregistrée (mode invité): ${difficulty} pour ${currentTerm.term}`);
     }
     
-    // Enregistrer le résultat dans la session
+    // Enregistrer le résultat dans la session (ne pas essayer d'accéder à userAnswer si flashcard)
+    const userAnswerEl = document.getElementById('userAnswer');
     sessionResults.push({
         term: currentTerm,
         difficulty: difficulty,
-        userAnswer: document.getElementById('userAnswer').value
+        userAnswer: userAnswerEl ? userAnswerEl.value : '' // Flashcard n'a pas de textarea
     });
     
     // Passer au terme suivant après un court délai
