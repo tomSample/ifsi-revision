@@ -708,7 +708,15 @@ function revealDefinition() {
     
     // Afficher la section de correction
     const correctionSection = document.getElementById('correctionSection');
-    if (correctionSection) correctionSection.style.display = 'block';
+    if (correctionSection) {
+        correctionSection.style.display = 'block';
+        
+        // Faire défiler vers la correction (seulement si l'élément existe)
+        correctionSection.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+    }
     
     // Enregistrer dans les résultats de session
     sessionResults.push({
@@ -716,12 +724,6 @@ function revealDefinition() {
         userReflection: answer,
         timestamp: new Date().toISOString(),
         reported: false
-    });
-    
-    // Faire défiler vers la correction
-    document.getElementById('correctionSection').scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
     });
 }
 
@@ -807,19 +809,26 @@ function checkAnswer() {
     
     const currentTerm = currentSession[currentTermIndex];
     
-    // Afficher la section de correction
-    document.getElementById('userAnswerDisplay').textContent = userAnswer;
-    document.getElementById('correctAnswerDisplay').textContent = currentTerm.definition;
-    document.getElementById('correctionSection').style.display = 'block';
+    // Afficher la section de correction (vérifier existence pour compatibilité)
+    const correctionSection = document.getElementById('correctionSection');
+    const userAnswerDisplay = document.getElementById('userAnswerDisplay');
+    const correctAnswerDisplay = document.getElementById('correctAnswerDisplay');
+    const userAnswerField = document.getElementById('userAnswer');
     
-    // Désactiver le textarea et le bouton
-    document.getElementById('userAnswer').disabled = true;
+    if (userAnswerDisplay) userAnswerDisplay.textContent = userAnswer;
+    if (correctAnswerDisplay) correctAnswerDisplay.textContent = currentTerm.definition;
+    if (correctionSection) {
+        correctionSection.style.display = 'block';
+        
+        // Faire défiler vers la correction
+        correctionSection.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+    }
     
-    // Faire défiler vers la correction
-    document.getElementById('correctionSection').scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
-    });
+    // Désactiver le textarea
+    if (userAnswerField) userAnswerField.disabled = true;
 }
 
 // Afficher le résumé de session
