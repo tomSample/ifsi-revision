@@ -332,6 +332,8 @@
     <!-- Configuration et Firebase -->
     <script src="/src/frontend/assets/scripts/config/app-config.js"></script>
     <script src="/src/frontend/assets/scripts/config/firebase-config.js"></script>
+    <!-- Cache Manager -->
+    <script src="/src/frontend/assets/scripts/utils/cache-manager.js"></script>
     <script type="module">
         // Attendre que firebase-config.js soit chargé
         async function initFirebase() {
@@ -519,6 +521,11 @@
                         lastActivity: new Date()
                     }
                 });
+
+                // Précharger le cache des cours pour la session
+                if (typeof preloadCoursesCache === 'function') {
+                    preloadCoursesCache().catch(err => console.warn('Cache preload error:', err));
+                }
 
                 // Succès
                 successMessage.textContent = '✅ Compte créé avec succès ! Redirection...';

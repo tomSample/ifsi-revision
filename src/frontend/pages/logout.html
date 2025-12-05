@@ -32,6 +32,9 @@
     <!-- Firebase Config -->
     <script src="/src/frontend/assets/scripts/config/firebase-config.js"></script>
     
+    <!-- Cache Manager -->
+    <script src="/src/frontend/assets/scripts/utils/cache-manager.js"></script>
+    
     <!-- Auth Guard: Rediriger si non connecté -->
     <script src="/src/frontend/assets/scripts/auth/auth-guard.js"></script>
     <div class="message">
@@ -49,6 +52,14 @@
 
         // Déconnexion immédiate
         signOut(auth).then(() => {
+            // Effacer le cache des cours de la session
+            if (typeof clearCoursesCache === 'function') {
+                clearCoursesCache();
+            } else {
+                sessionStorage.removeItem('coursesData_session');
+                console.log('🗑️ Cache des cours effacé');
+            }
+            
             document.getElementById('status').textContent = '✅ Déconnecté avec succès !';
             setTimeout(() => {
                 window.location.href = '/src/frontend/pages/index.html';

@@ -304,6 +304,8 @@
 
     <!-- Firebase -->
     <script src="/src/frontend/assets/scripts/config/firebase-config.js"></script>
+    <!-- Cache Manager -->
+    <script src="/src/frontend/assets/scripts/utils/cache-manager.js"></script>
     <script type="module">
         // Attendre que firebase-config.js soit chargé
         async function initFirebase() {
@@ -375,6 +377,11 @@
 
                     // Connexion Firebase
                     const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    
+                    // Précharger le cache des cours pour la session
+                    if (typeof preloadCoursesCache === 'function') {
+                        preloadCoursesCache().catch(err => console.warn('Cache préload error:', err));
+                    }
                     
                     // Firebase Auth gère la persistance automatiquement
                     // Pas besoin de stocker les identifiants manuellement

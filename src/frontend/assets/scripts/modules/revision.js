@@ -65,6 +65,8 @@ async function initializeFirebase() {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 console.log('✅ Utilisateur connecté:', user.email);
+                // Précharger le cache des cours pour toute la session
+                preloadCoursesCache();
                 // Recharger la progression si l'utilisateur vient de se connecter
                 loadUserProgressFromFirestore();
             } else {
@@ -76,6 +78,23 @@ async function initializeFirebase() {
     } catch (error) {
         console.error('Erreur initialisation Firebase:', error);
         console.log('ℹ️ Utilisation du mode hors ligne');
+    }
+}
+
+/**
+ * Précharger le cache des cours lors de l'authentification
+ */
+async function preloadCoursesCache() {
+    try {
+        console.log('🔄 Préchargement du cache des cours...');
+        const response = await fetch('/src/data/courses.json');
+        const data = await response.json();
+        
+        // Stocker dans le cache de session (sans expiration)
+        sessionStorage.setItem('coursesData_session', JSON.stringify(data));
+        console.log('✅ Cache des cours préchargé pour la session');
+    } catch (error) {
+        console.error('❌ Erreur préchargement cache:', error);
     }
 }
 
@@ -185,32 +204,20 @@ function setupEventListeners() {
 // Charger les données des cours
 async function loadCoursesData() {
     try {
-        // Vérifier le cache localStorage d'abord
-        const cachedData = localStorage.getItem('coursesData_cache');
-        const cacheTimestamp = localStorage.getItem('coursesData_timestamp');
-        const cacheExpiry = 24 * 60 * 60 * 1000; // 24 heures
-        
-        if (cachedData && cacheTimestamp) {
-            const age = Date.now() - parseInt(cacheTimestamp);
-            if (age < cacheExpiry) {
-                console.log('📦 Chargement depuis le cache');
-                coursesData = JSON.parse(cachedData);
-            }
-        }
-        
-        // Si pas de cache, charger depuis le serveur
-        if (!coursesData) {
-            console.log('🌐 Chargement depuis le serveur...');
-            const response = await fetch('/src/data/courses.json');
-            coursesData = await response.json();
-            
-            // Mettre en cache
-            try {
-                localStorage.setItem('coursesData_cache', JSON.stringify(coursesData));
-                localStorage.setItem('coursesData_timestamp', Date.now().toString());
-                console.log('✅ Données mises en cache');
-            } catch (e) {
-                console.warn('⚠️ Impossible de mettre en cache (quota dépassé?)');
+        // Utiliser la fonction globale de cache (définie dans cache-manager.js)
+        if (typeof getCoursesData === 'function') {
+            coursesData = await getCoursesData();
+        } else {
+            // Fallback si cache-manager.js n'est pas chargé
+            const sessionCache = sessionStorage.getItem('coursesData_session');
+            if (sessionCache) {
+                console.log('📦 Chargement depuis le cache de session');
+                coursesData = JSON.parse(sessionCache);
+            } else {
+                console.log('🌐 Chargement depuis le serveur...');
+                const response = await fetch('/src/data/courses.json');
+                coursesData = await response.json();
+                sessionStorage.setItem('coursesData_session', JSON.stringify(coursesData));
             }
         }
         
