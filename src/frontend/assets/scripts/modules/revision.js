@@ -185,27 +185,59 @@ function setupEventListeners() {
 // Charger les données des cours
 async function loadCoursesData() {
     try {
-        const response = await fetch('/src/data/courses.json');
-        coursesData = await response.json();
+        // Vérifier le cache localStorage d'abord
+        const cachedData = localStorage.getItem('coursesData_cache');
+        const cacheTimestamp = localStorage.getItem('coursesData_timestamp');
+        const cacheExpiry = 24 * 60 * 60 * 1000; // 24 heures
         
-        // Extraire tous les termes et UE
+        if (cachedData && cacheTimestamp) {
+            const age = Date.now() - parseInt(cacheTimestamp);
+            if (age < cacheExpiry) {
+                console.log('📦 Chargement depuis le cache');
+                coursesData = JSON.parse(cachedData);
+            }
+        }
+        
+        // Si pas de cache, charger depuis le serveur
+        if (!coursesData) {
+            console.log('🌐 Chargement depuis le serveur...');
+            const response = await fetch('/src/data/courses.json');
+            coursesData = await response.json();
+            
+            // Mettre en cache
+            try {
+                localStorage.setItem('coursesData_cache', JSON.stringify(coursesData));
+                localStorage.setItem('coursesData_timestamp', Date.now().toString());
+                console.log('✅ Données mises en cache');
+            } catch (e) {
+                console.warn('⚠️ Impossible de mettre en cache (quota dépassé?)');
+            }
+        }
+        
+        // Extraire tous les termes et UE (optimisé)
         allTerms = [];
         const ueSet = new Set();
         
-        coursesData.courses.forEach(course => {
-            const [courseKey, courseData] = course;
-            if (courseData.definitions) {
+        // Optimisation: extraction plus rapide
+        const courses = coursesData.courses;
+        for (let i = 0; i < courses.length; i++) {
+            const [courseKey, courseData] = courses[i];
+            if (courseData.definitions && courseData.definitions.length > 0) {
                 ueSet.add(courseData.ue);
-                courseData.definitions.forEach(def => {
+                const defs = courseData.definitions;
+                const ue = courseData.ue;
+                const title = courseData.title;
+                
+                for (let j = 0; j < defs.length; j++) {
                     allTerms.push({
-                        term: def.term,
-                        definition: def.definition,
-                        ue: courseData.ue,
-                        courseTitle: courseData.title
+                        term: defs[j].term,
+                        definition: defs[j].definition,
+                        ue: ue,
+                        courseTitle: title
                     });
-                });
+                }
             }
-        });
+        }
         
         // Trier les UE
         availableUEs = Array.from(ueSet).sort((a, b) => {
@@ -436,15 +468,15 @@ async function startRevision() {
         return;
     }
     
+    // Afficher immédiatement l'écran de révision avec un loader
+    document.getElementById('startScreen').style.display = 'none';
+    document.getElementById('revisionScreen').style.display = 'block';
+    
     // Sélectionner les termes pour cette session depuis les termes filtrés
     currentSession = await selectTermsForSession(termCount);
     currentTermIndex = 0;
     sessionResults = [];
     sessionStartTime = new Date();
-    
-    // Masquer l'écran de démarrage et afficher l'écran de révision
-    document.getElementById('startScreen').style.display = 'none';
-    document.getElementById('revisionScreen').style.display = 'block';
     
     // Démarrer le premier terme
     showCurrentTerm();
