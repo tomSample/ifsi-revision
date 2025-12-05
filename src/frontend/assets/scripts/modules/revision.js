@@ -536,41 +536,112 @@ function showCurrentTerm() {
     document.getElementById('termName').textContent = currentTerm.term;
     document.getElementById('termDefinition').textContent = currentTerm.definition;
     
-    // Reset de l'interface à l'état initial
-    setThinkingState();
+    // Reset de l'interface à l'état initial (flashcard)
+    resetFlashcardState();
 }
 
-// État initial : réflexion
+// Reset de la flashcard
+function resetFlashcardState() {
+    currentState = 'thinking';
+    
+    // Réinitialiser la rotation de la carte
+    const flashcard = document.getElementById('flashcard');
+    if (flashcard) {
+        flashcard.classList.remove('flipped');
+    }
+    
+    // Masquer la section de difficulté
+    const difficultySection = document.getElementById('difficultySection');
+    if (difficultySection) {
+        difficultySection.style.display = 'none';
+    }
+    
+    // Réinitialiser les boutons de difficulté
+    const difficultyButtons = document.querySelectorAll('.difficulty-btn');
+    difficultyButtons.forEach(btn => btn.classList.remove('selected'));
+}
+
+// Fonction pour retourner la carte (appelée depuis HTML)
+function flipCard() {
+    if (currentState !== 'thinking') return;
+    
+    const flashcard = document.getElementById('flashcard');
+    const difficultySection = document.getElementById('difficultySection');
+    
+    if (!flashcard.classList.contains('flipped')) {
+        flashcard.classList.add('flipped');
+        currentState = 'revealed';
+        
+        // Afficher les boutons de difficulté après un délai
+        setTimeout(() => {
+            if (difficultySection) {
+                difficultySection.style.display = 'block';
+            }
+        }, 300);
+        
+        // Enregistrer dans les résultats de session
+        const currentTerm = currentSession[currentTermIndex];
+        sessionResults.push({
+            term: currentTerm,
+            userReflection: '', // Pas de réponse écrite avec flashcard
+            timestamp: new Date().toISOString(),
+            reported: false
+        });
+    }
+}
+
+// État initial : réflexion (ancienne version avec textarea - conservée pour compatibilité)
 function setThinkingState() {
     currentState = 'thinking';
     
-    // Réinitialiser la zone de réponse
-    document.getElementById('userAnswer').value = '';
-    document.getElementById('userAnswer').disabled = false;
+    // Vérifier si on utilise les flashcards ou l'ancien système
+    const flashcard = document.getElementById('flashcard');
+    if (flashcard) {
+        resetFlashcardState();
+        return;
+    }
+    
+    // Ancien système avec textarea (si présent)
+    const userAnswer = document.getElementById('userAnswer');
+    if (userAnswer) {
+        userAnswer.value = '';
+        userAnswer.disabled = false;
+    }
     
     // Masquer la section de correction
-    document.getElementById('correctionSection').style.display = 'none';
+    const correctionSection = document.getElementById('correctionSection');
+    if (correctionSection) {
+        correctionSection.style.display = 'none';
+    }
     
     // Réinitialiser les boutons de difficulté
     const difficultyButtons = document.querySelectorAll('.difficulty-btn');
     difficultyButtons.forEach(btn => btn.classList.remove('selected'));
     
     // Afficher le bouton de vérification
-    document.getElementById('checkAnswerBtn').style.display = 'inline-block';
-    document.getElementById('checkAnswerBtn').disabled = false;
+    const checkBtn = document.getElementById('checkAnswerBtn');
+    if (checkBtn) {
+        checkBtn.style.display = 'inline-block';
+        checkBtn.disabled = false;
+    }
     
     // Focus sur la zone de réponse
     setTimeout(() => {
-        document.getElementById('userAnswer').focus();
+        if (userAnswer) {
+            userAnswer.focus();
+        }
     }, 100);
 }
 
-// Révéler la définition
+// Révéler la définition (ancienne version avec textarea - conservée pour compatibilité)
 function revealDefinition() {
     if (currentState !== 'thinking') return;
     
-    const userAnswer = document.getElementById('userAnswer').value.trim();
-    if (!userAnswer) {
+    const userAnswer = document.getElementById('userAnswer');
+    if (!userAnswer) return; // Nouveau système flashcard
+    
+    const answer = userAnswer.value.trim();
+    if (!answer) {
         alert('Veuillez saisir votre réponse avant de vérifier.');
         return;
     }
@@ -580,20 +651,24 @@ function revealDefinition() {
     const currentTerm = currentSession[currentTermIndex];
     
     // Afficher les réponses
-    document.getElementById('userAnswerDisplay').textContent = userAnswer;
-    document.getElementById('correctAnswerDisplay').textContent = currentTerm.definition;
+    const userAnswerDisplay = document.getElementById('userAnswerDisplay');
+    const correctAnswerDisplay = document.getElementById('correctAnswerDisplay');
+    if (userAnswerDisplay) userAnswerDisplay.textContent = answer;
+    if (correctAnswerDisplay) correctAnswerDisplay.textContent = currentTerm.definition;
     
     // Désactiver le textarea et masquer le bouton
-    document.getElementById('userAnswer').disabled = true;
-    document.getElementById('checkAnswerBtn').style.display = 'none';
+    userAnswer.disabled = true;
+    const checkBtn = document.getElementById('checkAnswerBtn');
+    if (checkBtn) checkBtn.style.display = 'none';
     
     // Afficher la section de correction
-    document.getElementById('correctionSection').style.display = 'block';
+    const correctionSection = document.getElementById('correctionSection');
+    if (correctionSection) correctionSection.style.display = 'block';
     
     // Enregistrer dans les résultats de session
     sessionResults.push({
         term: currentTerm,
-        userReflection: userAnswer,
+        userReflection: answer,
         timestamp: new Date().toISOString(),
         reported: false
     });
