@@ -765,12 +765,10 @@ async function rateDifficulty(difficulty) {
         console.log(`Note enregistrée (mode invité): ${difficulty} pour ${currentTerm.term}`);
     }
     
-    // Enregistrer le résultat dans la session (ne pas essayer d'accéder à userAnswer si flashcard)
-    const userAnswerEl = document.getElementById('userAnswer');
+    // Enregistrer le résultat dans la session (mode flashcard)
     sessionResults.push({
         term: currentTerm,
-        difficulty: difficulty,
-        userAnswer: userAnswerEl ? userAnswerEl.value : '' // Flashcard n'a pas de textarea
+        difficulty: difficulty
     });
     
     // Passer au terme suivant après un court délai
