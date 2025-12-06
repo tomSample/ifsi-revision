@@ -74,6 +74,26 @@ class ErrorHandler {
      * Gère les erreurs JavaScript
      */
     handleError(errorInfo) {
+        // Ignorer les erreurs de scripts externes (Google API, Firebase iframe, etc.)
+        const externalScriptPatterns = [
+            'googleapis.com',
+            'gstatic.com',
+            'google.com',
+            'firebaseapp.com',
+            'Script error' // Erreurs cross-origin
+        ];
+        
+        const isExternalError = externalScriptPatterns.some(pattern => 
+            errorInfo.message?.includes(pattern) || 
+            errorInfo.filename?.includes(pattern) ||
+            errorInfo.message === 'Script error.'
+        );
+        
+        if (isExternalError) {
+            console.warn('⚠️ [ErrorHandler] Erreur externe ignorée:', errorInfo.message);
+            return; // Ne pas traiter les erreurs de scripts externes
+        }
+        
         const error = {
             id: this.generateErrorId(),
             timestamp: new Date().toISOString(),
@@ -122,6 +142,23 @@ class ErrorHandler {
      * Gère les erreurs de chargement de ressources
      */
     handleResourceError(errorInfo) {
+        // Ignorer les erreurs de ressources externes
+        const externalResourcePatterns = [
+            'googleapis.com',
+            'gstatic.com',
+            'google.com',
+            'firebaseapp.com'
+        ];
+        
+        const isExternalResource = externalResourcePatterns.some(pattern => 
+            errorInfo.src?.includes(pattern)
+        );
+        
+        if (isExternalResource) {
+            console.warn('⚠️ [ErrorHandler] Ressource externe non chargée:', errorInfo.src);
+            return; // Ne pas notifier l'utilisateur pour les ressources externes
+        }
+        
         const error = {
             id: this.generateErrorId(),
             timestamp: new Date().toISOString(),
