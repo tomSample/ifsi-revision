@@ -483,7 +483,6 @@ function displayUEDetails(ueStats) {
 /**
  * Générer le calendrier heatmap
  */
- */
 function renderHeatmap() {
     const container = document.getElementById('heatmapContainer');
     if (!container) return;
