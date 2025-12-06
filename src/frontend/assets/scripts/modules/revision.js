@@ -231,10 +231,14 @@ function setupEventListeners() {
 // Charger les données des cours
 async function loadCoursesData() {
     try {
+        console.log('🔍 Début chargement des données...');
+        
         // Utiliser la fonction globale de cache (définie dans cache-manager.js)
         if (typeof getCoursesData === 'function') {
+            console.log('✅ getCoursesData disponible, utilisation du cache manager');
             coursesData = await getCoursesData();
         } else {
+            console.log('⚠️ getCoursesData non disponible, fallback manuel');
             // Fallback si cache-manager.js n'est pas chargé
             const sessionCache = sessionStorage.getItem('coursesData_session');
             if (sessionCache) {
@@ -242,11 +246,25 @@ async function loadCoursesData() {
                 coursesData = JSON.parse(sessionCache);
             } else {
                 console.log('🌐 Chargement depuis le serveur...');
-                const response = await fetch(resolvePath('/src/data/courses.json'));
+                const url = resolvePath('/src/data/courses.json');
+                console.log('📍 URL à charger:', url);
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
                 coursesData = await response.json();
                 sessionStorage.setItem('coursesData_session', JSON.stringify(coursesData));
+                console.log('✅ Données chargées et mises en cache');
             }
         }
+        
+        if (!coursesData || !coursesData.courses) {
+            throw new Error('Données invalides: structure attendue non trouvée');
+        }
+        
+        console.log(`📚 ${coursesData.courses.length} cours trouvés`);
         
         // Extraire tous les termes et UE (optimisé)
         allTerms = [];
@@ -302,8 +320,16 @@ async function loadCoursesData() {
         console.log(`${availableUEs.length} UE disponibles:`, availableUEs);
         
     } catch (error) {
-        console.error('Erreur lors du chargement des données:', error);
-        alert('Erreur lors du chargement des données. Vérifiez votre connexion.');
+        console.error('❌ Erreur lors du chargement des données:', error);
+        console.error('Détails:', {
+            message: error.message,
+            stack: error.stack,
+            type: error.name
+        });
+        
+        // Afficher un message d'erreur plus détaillé
+        const errorMsg = `Erreur de chargement: ${error.message}\n\nVérifiez:\n- Votre connexion Internet\n- La console pour plus de détails`;
+        alert(errorMsg);
     }
 }
 

@@ -70,7 +70,15 @@ async function getCoursesData() {
     
     // Si pas de cache, charger depuis le serveur
     console.log('🌐 Chargement depuis le serveur...');
-    const response = await fetch(resolvePath('/src/data/courses.json'));
+    const url = resolvePath('/src/data/courses.json');
+    console.log('📍 URL complète:', url);
+    
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText} - URL: ${url}`);
+    }
+    
     const data = await response.json();
     
     // Mettre en cache pour la session
