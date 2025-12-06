@@ -1029,8 +1029,8 @@ function closeReportModal() {
     }
 }
 
-// Soumettre le signalement via Google Forms (iframe cachée)
-function submitReport() {
+// Soumettre le signalement vers Firestore
+async function submitReport() {
     const currentTerm = currentSession[currentTermIndex];
     const reasonElement = document.getElementById('reportReason');
     const commentElement = document.getElementById('reportComment');
@@ -1049,76 +1049,58 @@ function submitReport() {
         return;
     }
     
-    // Construire le commentaire enrichi
-    const enrichedComment = `PROBLÈME: ${getReasonLabel(reason)}
-
-COMMENTAIRE/SUGGESTION:
-${comment}
-
-DÉFINITION ACTUELLE:
-${currentTerm.definition}
-
-Date: ${new Date().toLocaleString('fr-FR')}`;
-
-    // Créer une iframe cachée pour la soumission
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.name = 'hidden-form-target';
-    document.body.appendChild(iframe);
-    
-    // Créer le formulaire qui cible l'iframe
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = 'https://docs.google.com/forms/d/e/1FAIpQLSe04vxWBsFmPrrEVdQsFwvsrt0konBbrd4iNncbRb8Z99N0UA/formResponse';
-    form.target = 'hidden-form-target';
-    form.style.display = 'none';
-    
-    // Ajouter les champs avec vos vrais entry IDs
-    const formFields = {
-        'entry.987196451': currentTerm.term,                    // Terme signalé
-        'entry.46296924': currentTerm.ue || 'Non spécifiée',   // Unité d'enseignement
-        'entry.980958767': enrichedComment                     // Commentaire complet
-    };
-    
-    Object.entries(formFields).forEach(([name, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = value;
-        form.appendChild(input);
-    });
-    
-    document.body.appendChild(form);
-    
-    // Soumettre le formulaire
-    form.submit();
-    
-    // Nettoyer après 3 secondes
-    setTimeout(() => {
-        if (document.body.contains(form)) {
-            document.body.removeChild(form);
+    try {
+        // Importer Firestore si pas déjà fait
+        if (!db) {
+            const { getFirestore } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
+            db = getFirestore();
         }
-        if (document.body.contains(iframe)) {
-            document.body.removeChild(iframe);
+        
+        const { collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
+        
+        // Créer l'objet de signalement
+        const reportData = {
+            term: currentTerm.term,
+            ue: currentTerm.ue || 'Non spécifiée',
+            courseTitle: currentTerm.courseTitle || '',
+            currentDefinition: currentTerm.definition,
+            reason: reason,
+            reasonLabel: getReasonLabel(reason),
+            comment: comment,
+            status: 'pending', // pending, approved, rejected
+            reportedBy: auth?.currentUser?.uid || 'anonymous',
+            reportedByEmail: auth?.currentUser?.email || 'Utilisateur non connecté',
+            reportedAt: serverTimestamp(),
+            treatedBy: null,
+            treatedAt: null,
+            adminNotes: null
+        };
+        
+        // Enregistrer dans Firestore
+        const reportsCollection = collection(db, 'reports');
+        await addDoc(reportsCollection, reportData);
+        
+        // Marquer comme signalé localement
+        markTermAsReported(currentTerm);
+        
+        // Feedback immédiat à l'utilisateur
+        showNotification('✅ Signalement envoyé ! Merci pour votre contribution.', 'success');
+        
+        // Fermer la modal
+        closeReportModal();
+        
+        // Analytics si disponible
+        if (window.gtag) {
+            window.gtag('event', 'term_reported', {
+                event_category: 'User Interaction',
+                event_label: currentTerm.term,
+                custom_parameter_1: reason
+            });
         }
-    }, 3000);
-    
-    // Marquer comme signalé pour éviter les doublons
-    markTermAsReported(currentTerm);
-    
-    // Feedback immédiat à l'utilisateur
-    showNotification('✅ Signalement envoyé ! Merci pour votre contribution.', 'success');
-    
-    // Fermer la modal
-    closeReportModal();
-    
-    // Analytics si disponible
-    if (window.gtag) {
-        window.gtag('event', 'term_reported', {
-            event_category: 'User Interaction',
-            event_label: currentTerm.term,
-            custom_parameter_1: reason
-        });
+        
+    } catch (error) {
+        console.error('Erreur lors de l\'envoi du signalement:', error);
+        showNotification('❌ Erreur lors de l\'envoi du signalement. Veuillez réessayer.', 'error');
     }
 }
 
