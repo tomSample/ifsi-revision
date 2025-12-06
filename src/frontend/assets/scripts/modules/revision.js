@@ -1,3 +1,8 @@
+// Helper pour résoudre les chemins sur GitHub Pages
+const isGitHubPages = window.location.hostname.includes('github.io');
+const basePath = isGitHubPages ? '/ifsi-revision' : '';
+const resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
+
 // Variables globales pour la gestion des révisions
 let allTerms = [];
 let filteredTerms = []; // Termes filtrés selon les UE
@@ -88,7 +93,7 @@ async function initializeFirebase() {
 async function preloadCoursesCache() {
     try {
         console.log('🔄 Préchargement du cache des cours...');
-        const response = await fetch('/src/data/courses.json');
+        const response = await fetch(resolvePath('/src/data/courses.json'));
         const data = await response.json();
         
         // Stocker dans le cache de session (sans expiration)
@@ -237,7 +242,7 @@ async function loadCoursesData() {
                 coursesData = JSON.parse(sessionCache);
             } else {
                 console.log('🌐 Chargement depuis le serveur...');
-                const response = await fetch('/src/data/courses.json');
+                const response = await fetch(resolvePath('/src/data/courses.json'));
                 coursesData = await response.json();
                 sessionStorage.setItem('coursesData_session', JSON.stringify(coursesData));
             }

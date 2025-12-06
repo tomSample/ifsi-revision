@@ -3,6 +3,11 @@
  * Analyse la progression utilisateur et génère des graphiques
  */
 
+// Helper pour résoudre les chemins sur GitHub Pages
+const isGitHubPages = window.location.hostname.includes('github.io');
+const basePath = isGitHubPages ? '/ifsi-revision' : '';
+const resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
+
 // Variables globales
 let auth = null;
 let db = null;
@@ -62,7 +67,7 @@ async function loadData() {
         }
         
         // Charger tous les termes disponibles
-        const response = await fetch('/src/data/courses.json');
+        const response = await fetch(resolvePath('/src/data/courses.json'));
         const coursesData = await response.json();
         
         allTerms = [];

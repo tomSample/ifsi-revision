@@ -4,6 +4,11 @@
  * Efface le cache lors de la déconnexion
  */
 
+// Helper pour résoudre les chemins sur GitHub Pages
+const isGitHubPages = window.location.hostname.includes('github.io');
+const basePath = isGitHubPages ? '/ifsi-revision' : '';
+const resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
+
 /**
  * Précharger le cache des cours lors de l'authentification
  * À appeler lors de la connexion utilisateur
@@ -11,7 +16,7 @@
 async function preloadCoursesCache() {
     try {
         console.log('🔄 Préchargement du cache des cours...');
-        const response = await fetch('/src/data/courses.json');
+        const response = await fetch(resolvePath('/src/data/courses.json'));
         
         if (!response.ok) {
             throw new Error(`Erreur HTTP: ${response.status}`);
@@ -65,7 +70,7 @@ async function getCoursesData() {
     
     // Si pas de cache, charger depuis le serveur
     console.log('🌐 Chargement depuis le serveur...');
-    const response = await fetch('/src/data/courses.json');
+    const response = await fetch(resolvePath('/src/data/courses.json'));
     const data = await response.json();
     
     // Mettre en cache pour la session

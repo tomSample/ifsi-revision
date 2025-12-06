@@ -124,6 +124,11 @@
     </div>
 
     <script>
+        // Helper pour résoudre les chemins sur GitHub Pages
+        const isGitHubPages = window.location.hostname.includes('github.io');
+        const basePath = isGitHubPages ? '/ifsi-revision' : '';
+        const resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
+        
         let coursesData = null;
         let filteredCourses = [];
 
@@ -135,7 +140,7 @@
         // Charger les cours depuis le JSON
         async function loadCourses() {
             try {
-                const response = await fetch('/src/data/courses.json');
+                const response = await fetch(resolvePath('/src/data/courses.json'));
                 const data = await response.json();
                 coursesData = data;
                 
