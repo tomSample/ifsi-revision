@@ -5,9 +5,18 @@
 
 class VersionManager {
     constructor() {
-        this.version = '3.1.0';
-        this.buildDate = '2025-12-05';
+        this.version = '3.2.0';
+        this.buildDate = '2025-12-06';
         this.releaseNotes = {
+            '3.2.0': {
+                date: '2025-12-06',
+                features: [
+                    'Système de signalement Firestore intégré',
+                    'Mise à jour automatique des définitions',
+                    'Interface admin avec onglets',
+                    'Suppression auto signalements traités'
+                ]
+            },
             '3.1.0': {
                 date: '2025-12-05',
                 features: [
