@@ -986,6 +986,64 @@ def delete_course():
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/update_definition', methods=['POST'])
+def update_definition():
+    """Mettre à jour une définition spécifique depuis un signalement"""
+    try:
+        data = request.get_json()
+        term = data.get('term')
+        ue = data.get('ue')
+        new_definition = data.get('newDefinition')
+        
+        if not term or not new_definition:
+            return jsonify({'error': 'Terme et nouvelle définition requis'}), 400
+        
+        # Lire le fichier JSON
+        json_data = read_json_file()
+        
+        # Chercher le terme dans tous les cours
+        found = False
+        for course in json_data['courses']:
+            course_key, course_data = course
+            
+            # Vérifier l'UE si fournie
+            if ue and course_data.get('ue') != ue:
+                continue
+            
+            # Chercher dans les définitions
+            for definition in course_data.get('definitions', []):
+                if definition.get('term') == term:
+                    # Mettre à jour la définition
+                    definition['definition'] = new_definition
+                    found = True
+                    print(f"✅ Définition mise à jour: {term} dans {course_data.get('title')}")
+                    break
+            
+            if found:
+                break
+        
+        if not found:
+            return jsonify({'error': f'Terme "{term}" non trouvé'}), 404
+        
+        # Mettre à jour la date d'export
+        json_data['exportDate'] = datetime.now().isoformat()
+        
+        # Sauvegarder le fichier JSON
+        write_json_file(json_data)
+        
+        return jsonify({
+            'success': True,
+            'message': f'Définition de "{term}" mise à jour avec succès',
+            'term': term,
+            'newDefinition': new_definition
+        })
+        
+    except Exception as e:
+        print(f"Erreur dans update_definition: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
     print("🚀 Serveur IFSI Lannion démarré sur http://localhost:5000")
     print("📁 Fichier JSON:", os.path.abspath(JSON_FILE_PATH))

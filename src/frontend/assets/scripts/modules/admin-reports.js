@@ -286,11 +286,11 @@ class AdminReportsManager {
                               placeholder="Ajoutez des notes sur la correction effectuée..."></textarea>
                 </div>
 
-                <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #ffc107;">
-                    <strong style="color: #856404;">⚠️ Important :</strong>
-                    <p style="margin: 0.5rem 0 0 0; color: #856404; font-size: 0.95rem;">
-                        Cette action modifiera la définition dans le fichier JSON. Assurez-vous que la correction est exacte.
-                        La modification sera effective après le prochain déploiement.
+                <div style="background: #d1ecf1; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #0c5460;">
+                    <strong style="color: #0c5460;">✅ Mise à jour automatique :</strong>
+                    <p style="margin: 0.5rem 0 0 0; color: #0c5460; font-size: 0.95rem;">
+                        Cette action modifiera automatiquement la définition dans le fichier JSON.
+                        La nouvelle définition sera disponible immédiatement pour tous les utilisateurs après rechargement.
                     </p>
                 </div>
 
@@ -330,18 +330,38 @@ class AdminReportsManager {
             return;
         }
 
-        if (confirm(`Êtes-vous sûr de vouloir modifier la définition de "${report.term}" ?\n\nNote: La modification sera enregistrée dans le signalement mais nécessite une mise à jour manuelle du fichier JSON.`)) {
+        if (confirm(`Êtes-vous sûr de vouloir modifier la définition de "${report.term}" ?\n\nLa modification sera appliquée immédiatement dans le fichier JSON.`)) {
             try {
+                // 1. Mettre à jour la définition dans le JSON via l'API
+                const response = await fetch('/api/update_definition', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        term: report.term,
+                        ue: report.ue,
+                        newDefinition: newDefinition
+                    })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.error || 'Erreur lors de la mise à jour');
+                }
+
+                // 2. Mettre à jour le signalement dans Firestore
                 const { doc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
                 
-                // Mettre à jour le signalement
                 const reportRef = doc(this.db, 'reports', reportId);
                 await updateDoc(reportRef, {
                     status: 'approved',
                     suggestedDefinition: newDefinition,
                     adminNotes: adminNotes || null,
                     treatedBy: this.auth.currentUser?.uid || 'admin',
-                    treatedAt: serverTimestamp()
+                    treatedAt: serverTimestamp(),
+                    appliedToJson: true  // Flag pour indiquer que la modification a été appliquée
                 });
 
                 // Fermer le modal
@@ -350,11 +370,11 @@ class AdminReportsManager {
                 // Recharger les signalements
                 await this.loadReports();
 
-                this.showSuccess(`Définition de "${report.term}" modifiée avec succès ! N'oubliez pas de mettre à jour le fichier JSON.`);
+                this.showSuccess(`✅ Définition de "${report.term}" mise à jour avec succès dans le fichier JSON !`);
 
             } catch (error) {
                 console.error('❌ Erreur lors de la sauvegarde:', error);
-                this.showError('Erreur lors de la sauvegarde de la définition');
+                this.showError(`Erreur: ${error.message}`);
             }
         }
     }

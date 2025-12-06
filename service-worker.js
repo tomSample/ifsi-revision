@@ -95,6 +95,12 @@ self.addEventListener('fetch', (event) => {
         return;
     }
     
+    // Ignorer les requêtes Firestore Listen (WebSocket/streaming)
+    if (request.url.includes('firestore.googleapis.com') && 
+        (request.url.includes('/Listen/') || request.url.includes('/channel?'))) {
+        return; // Laisser passer sans interception
+    }
+    
     // 1. Firebase: Network First avec timeout
     if (FIREBASE_PATTERNS.some(pattern => pattern.test(request.url))) {
         event.respondWith(networkFirstWithTimeout(request, 3000));

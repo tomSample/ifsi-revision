@@ -185,12 +185,12 @@
 
         /* === SECTIONS === */
         .admin-section {
-            display: none;
+            display: none !important;
             animation: fadeInUp 0.4s ease;
         }
 
         .admin-section.active {
-            display: block;
+            display: block !important;
         }
 
         @keyframes fadeInUp {
@@ -610,7 +610,7 @@
 
         /* Conteneurs des sections */
         .admin-section {
-            display: none;
+            display: none !important;
             background: #f8f9fa;
             border-radius: 15px;
             padding: 2.5rem;
@@ -618,7 +618,7 @@
         }
 
         .admin-section.active {
-            display: block;
+            display: block !important;
         }
 
         @keyframes fadeInUp {
@@ -1169,7 +1169,7 @@
         </div>
 
         <!-- Section Upload de Cours -->
-        <section class="admin-section active" id="coursesSection">
+        <section class="admin-section active" id="coursesSection" data-tab="courses">
             <div class="section-header">
                 <h3>📚 Ajout de nouveaux cours</h3>
                 <p>Uploadez vos fichiers .odt pour enrichir la base de données des cours</p>
@@ -1434,6 +1434,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             if (authManager.isAdmin()) {
                 showAdminInterface();
+                // Précharger les signalements en arrière-plan
+                if (window.adminReportsManager) {
+                    setTimeout(() => window.adminReportsManager.init(), 500);
+                }
             } else {
                 showAuthModal();
             }
