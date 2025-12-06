@@ -10,7 +10,6 @@ if (!window.resolvePath) {
     const basePath = isGitHubPages ? '/ifsi-revision' : '';
     window.resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
 }
-const resolvePath = window.resolvePath;
 
 /**
  * Précharger le cache des cours lors de l'authentification
@@ -19,7 +18,7 @@ const resolvePath = window.resolvePath;
 async function preloadCoursesCache() {
     try {
         console.log('🔄 Préchargement du cache des cours...');
-        const response = await fetch(resolvePath('/src/data/courses.json'));
+        const response = await fetch(window.resolvePath('/src/data/courses.json'));
         
         if (!response.ok) {
             throw new Error(`Erreur HTTP: ${response.status}`);
@@ -73,7 +72,7 @@ async function getCoursesData() {
     
     // Si pas de cache, charger depuis le serveur
     console.log('🌐 Chargement depuis le serveur...');
-    const url = resolvePath('/src/data/courses.json');
+    const url = window.resolvePath('/src/data/courses.json');
     console.log('📍 URL complète:', url);
     
     const response = await fetch(url);

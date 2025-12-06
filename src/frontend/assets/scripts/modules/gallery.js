@@ -7,7 +7,6 @@ if (!window.resolvePath) {
     const basePath = isGitHubPages ? '/ifsi-revision' : '';
     window.resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
 }
-const resolvePath = window.resolvePath;
 
 // Variables globales
 let imagesData = { images: [], categories: {} };
@@ -179,7 +178,7 @@ async function uploadImage() {
 // Chargement des images depuis le serveur
 async function loadImages() {
     try {
-        const response = await fetch(resolvePath('/src/data/images_metadata.json'));
+        const response = await fetch(window.resolvePath('/src/data/images_metadata.json'));
         if (response.ok) {
             imagesData = await response.json();
         } else {

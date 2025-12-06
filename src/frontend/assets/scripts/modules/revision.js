@@ -4,7 +4,6 @@ if (!window.resolvePath) {
     const basePath = isGitHubPages ? '/ifsi-revision' : '';
     window.resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
 }
-const resolvePath = window.resolvePath;
 
 // Variables globales pour la gestion des révisions
 let allTerms = [];
@@ -96,7 +95,7 @@ async function initializeFirebase() {
 async function preloadCoursesCache() {
     try {
         console.log('🔄 Préchargement du cache des cours...');
-        const response = await fetch(resolvePath('/src/data/courses.json'));
+        const response = await fetch(window.resolvePath('/src/data/courses.json'));
         const data = await response.json();
         
         // Stocker dans le cache de session (sans expiration)
@@ -249,7 +248,7 @@ async function loadCoursesData() {
                 coursesData = JSON.parse(sessionCache);
             } else {
                 console.log('🌐 Chargement depuis le serveur...');
-                const url = resolvePath('/src/data/courses.json');
+                const url = window.resolvePath('/src/data/courses.json');
                 console.log('📍 URL à charger:', url);
                 const response = await fetch(url);
                 

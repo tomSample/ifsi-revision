@@ -9,7 +9,6 @@ if (!window.resolvePath) {
     const basePath = isGitHubPages ? '/ifsi-revision' : '';
     window.resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
 }
-const resolvePath = window.resolvePath;
 
 // Variables globales
 let auth = null;
@@ -70,7 +69,7 @@ async function loadData() {
         }
         
         // Charger tous les termes disponibles
-        const response = await fetch(resolvePath('/src/data/courses.json'));
+        const response = await fetch(window.resolvePath('/src/data/courses.json'));
         const coursesData = await response.json();
         
         allTerms = [];
