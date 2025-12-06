@@ -36,5 +36,7 @@ env/
 Thumbs.db
 desktop.ini
 
-# Firebase configuration (ne pas commit la vraie config)
-firebase-config.js
+# Firebase configuration - Désactivé car nécessaire pour GitHub Pages
+# Note: Les clés API Firebase client sont publiques par conception
+# La sécurité est assurée par les règles Firestore côté serveur
+# firebase-config.js
