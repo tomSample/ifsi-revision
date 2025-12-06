@@ -364,7 +364,7 @@
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     console.log('✅ Utilisateur déjà connecté, redirection vers home.html');
-                    window.location.href = '/src/frontend/pages/home.html';
+                    window.location.href = './home.html';
                 }
             });
 
@@ -533,7 +533,7 @@
 
                 // Redirection après 1.5 secondes
                 setTimeout(() => {
-                    window.location.href = '/src/frontend/pages/home.html';
+                    window.location.href = './home.html';
                 }, 1500);
 
             } catch (error) {

@@ -333,7 +333,7 @@
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     console.log('✅ Utilisateur déjà connecté, redirection vers home.html');
-                    window.location.href = '/src/frontend/pages/home.html';
+                    window.location.href = './home.html';
                 }
             });
 
@@ -394,7 +394,7 @@
                     setTimeout(() => {
                         const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
                         sessionStorage.removeItem('redirectAfterLogin');
-                        window.location.href = redirectUrl || '/src/frontend/pages/home.html';
+                        window.location.href = redirectUrl || './home.html';
                     }, 1000);
 
                 } catch (error) {
