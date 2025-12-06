@@ -345,134 +345,147 @@ function displayUEPodiums(ueStats) {
 }
 
 /**
- * Afficher les détails par UE avec répétition espacée
+ * Afficher les détails par UE (design simplifié et lisible)
  */
 function displayUEDetails(ueStats) {
     const ueList = document.getElementById('ueDetailsList');
     
-    // Trier par UE
+    // Trier par score de facilité (meilleur en haut)
     const sortedUE = [...ueStats].sort((a, b) => {
-        const [major1, minor1] = a.ue.split('.').map(Number);
-        const [major2, minor2] = b.ue.split('.').map(Number);
-        return major1 !== major2 ? major1 - major2 : minor1 - minor2;
+        // Calculer score de facilité pour chaque UE
+        const totalA = a.easy + a.medium + a.hard;
+        const totalB = b.easy + b.medium + b.hard;
+        
+        const scoreA = totalA > 0 ? (a.easy * 1.0 + a.medium * 0.5) / totalA : 0;
+        const scoreB = totalB > 0 ? (b.easy * 1.0 + b.medium * 0.5) / totalB : 0;
+        
+        // Si pas de données, mettre en bas
+        if (totalA === 0 && totalB === 0) {
+            // Trier par numéro d'UE
+            const [major1, minor1] = a.ue.split('.').map(Number);
+            const [major2, minor2] = b.ue.split('.').map(Number);
+            return major1 !== major2 ? major1 - major2 : minor1 - minor2;
+        }
+        if (totalA === 0) return 1;
+        if (totalB === 0) return -1;
+        
+        // Meilleur score en haut
+        return scoreB - scoreA;
     });
     
     ueList.innerHTML = sortedUE.map(ue => {
-        const hasOverdue = ue.overdue > 0;
         const hasDue = ue.dueNow > 0;
-        
-        // Calcul des pourcentages pour la barre de progression
-        const neverSeenPercent = (ue.neverSeen / ue.total * 100).toFixed(1);
-        const learningPercent = (ue.learning / ue.total * 100).toFixed(1);
-        const consolidatedPercent = (ue.consolidated / ue.total * 100).toFixed(1);
+        const studiedPercent = (ue.studied / ue.total * 100).toFixed(0);
         
         const totalReviews = ue.easy + ue.medium + ue.hard;
-        const easyPercent = totalReviews > 0 ? (ue.easy / totalReviews * 100).toFixed(0) : 0;
-        const mediumPercent = totalReviews > 0 ? (ue.medium / totalReviews * 100).toFixed(0) : 0;
-        const hardPercent = totalReviews > 0 ? (ue.hard / totalReviews * 100).toFixed(0) : 0;
+        const hasData = totalReviews > 0;
+        
+        // Calcul des pourcentages pour les difficultés
+        const easyPercent = hasData ? (ue.easy / totalReviews * 100).toFixed(0) : 0;
+        const mediumPercent = hasData ? (ue.medium / totalReviews * 100).toFixed(0) : 0;
+        const hardPercent = hasData ? (ue.hard / totalReviews * 100).toFixed(0) : 0;
+        
+        // Score de facilité
+        const facilityScore = hasData ? ((ue.easy * 1.0 + ue.medium * 0.5) / totalReviews * 100).toFixed(0) : 0;
         
         return `
-        <div class="ue-item" style="border: 2px solid ${hasDue ? '#dc3545' : '#e9ecef'}; border-radius: 12px; padding: 1.2rem; background: white; transition: transform 0.2s, box-shadow 0.2s;">
-            <!-- En-tête UE -->
+        <div class="ue-item" style="border: 2px solid ${hasDue ? '#dc3545' : '#e9ecef'}; border-radius: 12px; padding: 1.5rem; background: white; transition: all 0.2s;">
+            <!-- En-tête -->
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
                 <div style="display: flex; align-items: center; gap: 1rem;">
-                    <div class="ue-name" style="font-size: 1.4rem; font-weight: 700; color: #2c3e50;">
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #2c3e50;">
                         📚 UE ${ue.ue}
                     </div>
-                    <div style="background: #f8f9fa; padding: 0.3rem 0.8rem; border-radius: 12px; font-size: 0.85rem; color: #6c757d;" title="${ue.studied} termes étudiés sur ${ue.total} disponibles">
+                    ${hasData ? `<div style="background: linear-gradient(135deg, ${facilityScore >= 70 ? '#28a745' : facilityScore >= 50 ? '#ffc107' : '#dc3545'} 0%, ${facilityScore >= 70 ? '#218838' : facilityScore >= 50 ? '#e0a800' : '#c82333'} 100%); color: white; padding: 0.3rem 0.8rem; border-radius: 12px; font-size: 0.85rem; font-weight: 600;" title="Score de facilité : ${facilityScore}%">
+                        ${facilityScore}% facile
+                    </div>` : ''}
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="font-size: 1.1rem; font-weight: 600; color: #6c757d;">
                         ${ue.studied}/${ue.total}
                     </div>
+                    ${hasDue ? `<div style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 700; font-size: 1rem; box-shadow: 0 2px 8px rgba(220,53,69,0.3);" title="${ue.overdue > 0 ? ue.overdue + ' en retard' : 'À réviser'}">
+                        🔥 ${ue.dueNow}
+                    </div>` : ''}
                 </div>
-                ${hasDue ? `<div style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 700; font-size: 1rem; box-shadow: 0 2px 8px rgba(220,53,69,0.3);" title="${ue.overdue > 0 ? ue.overdue + ' terme(s) en retard' : 'À réviser maintenant'}">
-                    🔥 ${ue.dueNow}
-                </div>` : ''}
             </div>
             
-            <!-- Barre de progression principale (grande et visuelle) -->
-            <div style="margin-bottom: ${hasOverdue ? '1rem' : '0.8rem'};">
-                <div style="display: flex; height: 32px; border-radius: 8px; overflow: hidden; background: #e9ecef; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
-                    <div style="width: ${neverSeenPercent}%; background: linear-gradient(135deg, #17a2b8 0%, #138496 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;" 
-                         title="${ue.neverSeen} nouveaux termes (${neverSeenPercent}%)"
-                         onmouseover="this.style.opacity='0.8'"
-                         onmouseout="this.style.opacity='1'">
+            <!-- Progression globale -->
+            <div style="margin-bottom: ${hasData ? '1.2rem' : '0'};">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <span style="font-size: 0.9rem; color: #6c757d; font-weight: 600;">Progression</span>
+                    <span style="font-size: 1rem; font-weight: 700; color: #667eea;">${studiedPercent}%</span>
+                </div>
+                <div style="height: 24px; background: #e9ecef; border-radius: 12px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
+                    <div style="width: ${studiedPercent}%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); transition: width 0.5s ease;"></div>
+                </div>
+            </div>
+            
+            ${hasData ? `
+            <!-- Performance sur termes vus -->
+            <div>
+                <div style="font-size: 0.9rem; color: #495057; font-weight: 600; margin-bottom: 0.8rem;">
+                    Performance sur les ${totalReviews} terme${totalReviews > 1 ? 's' : ''} vu${totalReviews > 1 ? 's' : ''}
+                </div>
+                
+                <!-- Facile -->
+                <div style="margin-bottom: 0.6rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div style="width: 12px; height: 12px; background: #28a745; border-radius: 3px;"></div>
+                            <span style="font-size: 0.85rem; color: #6c757d;">Facile</span>
+                        </div>
+                        <span style="font-size: 0.9rem; font-weight: 600; color: #28a745;">${ue.easy} (${easyPercent}%)</span>
+                    </div>
+                    <div style="height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden;">
+                        <div style="width: ${easyPercent}%; height: 100%; background: #28a745; transition: width 0.5s ease;"></div>
+                    </div>
+                </div>
+                
+                <!-- Moyen -->
+                <div style="margin-bottom: 0.6rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div style="width: 12px; height: 12px; background: #ffc107; border-radius: 3px;"></div>
+                            <span style="font-size: 0.85rem; color: #6c757d;">Moyen</span>
+                        </div>
+                        <span style="font-size: 0.9rem; font-weight: 600; color: #ffc107;">${ue.medium} (${mediumPercent}%)</span>
+                    </div>
+                    <div style="height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden;">
+                        <div style="width: ${mediumPercent}%; height: 100%; background: #ffc107; transition: width 0.5s ease;"></div>
+                    </div>
+                </div>
+                
+                <!-- Difficile -->
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div style="width: 12px; height: 12px; background: #dc3545; border-radius: 3px;"></div>
+                            <span style="font-size: 0.85rem; color: #6c757d;">Difficile</span>
+                        </div>
+                        <span style="font-size: 0.9rem; font-weight: 600; color: #dc3545;">${ue.hard} (${hardPercent}%)</span>
+                    </div>
+                    <div style="height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden;">
+                        <div style="width: ${hardPercent}%; height: 100%; background: #dc3545; transition: width 0.5s ease;"></div>
+                    </div>
+                </div>
+            </div>
+            ` : `
+            <div style="text-align: center; padding: 1rem; color: #adb5bd; font-style: italic;">
+                Aucune révision effectuée pour cette UE
+            </div>
+            `}
+        </div>
+    `;
+    }).join('');
+}
                         ${ue.neverSeen > 0 ? ue.neverSeen : ''}
                     </div>
                     <div style="width: ${learningPercent}%; background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;" 
                          title="${ue.learning} en apprentissage - intervalles < 7 jours (${learningPercent}%)"
                          onmouseover="this.style.opacity='0.8'"
                          onmouseout="this.style.opacity='1'">
-                        ${ue.learning > 0 ? ue.learning : ''}
-                    </div>
-                    <div style="width: ${consolidatedPercent}%; background: linear-gradient(135deg, #28a745 0%, #218838 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;" 
-                         title="${ue.consolidated} consolidés - intervalles ≥ 7 jours (${consolidatedPercent}%)"
-                         onmouseover="this.style.opacity='0.8'"
-                         onmouseout="this.style.opacity='1'">
-                        ${ue.consolidated > 0 ? ue.consolidated : ''}
-                    </div>
-                </div>
-                
-                <!-- Légende compacte -->
-                <div style="display: flex; justify-content: space-around; margin-top: 0.6rem; font-size: 0.8rem; color: #6c757d;">
-                    <div style="display: flex; align-items: center; gap: 0.4rem;">
-                        <div style="width: 12px; height: 12px; background: linear-gradient(135deg, #17a2b8 0%, #138496 100%); border-radius: 3px;"></div>
-                        <span title="Termes jamais vus">Nouveaux</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 0.4rem;">
-                        <div style="width: 12px; height: 12px; background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); border-radius: 3px;"></div>
-                        <span title="Intervalles < 7j">En cours</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 0.4rem;">
-                        <div style="width: 12px; height: 12px; background: linear-gradient(135deg, #28a745 0%, #218838 100%); border-radius: 3px;"></div>
-                        <span title="Intervalles ≥ 7j">Consolidés</span>
-                    </div>
-                </div>
-            </div>
-            
-            ${hasOverdue ? `
-            <!-- Alerte retard (compacte) -->
-            <div style="background: linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%); border-left: 4px solid #ffc107; padding: 0.6rem 0.8rem; margin-bottom: 1rem; border-radius: 6px; display: flex; align-items: center; gap: 0.6rem;">
-                <span style="font-size: 1.3rem;">⚠️</span>
-                <span style="color: #856404; font-weight: 600; font-size: 0.9rem;">
-                    ${ue.overdue} en retard
-                </span>
-            </div>
-            ` : ''}
-            
-            <!-- Barre de difficultés (mini, hover pour info) -->
-            ${totalReviews > 0 ? `
-            <div style="display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: #e9ecef;">
-                <div style="width: ${easyPercent}%; background: #28a745; transition: opacity 0.2s;" 
-                     title="Facile: ${ue.easy} (${easyPercent}%)"
-                     onmouseover="this.style.opacity='0.7'"
-                     onmouseout="this.style.opacity='1'"></div>
-                <div style="width: ${mediumPercent}%; background: #ffc107; transition: opacity 0.2s;" 
-                     title="Moyen: ${ue.medium} (${mediumPercent}%)"
-                     onmouseover="this.style.opacity='0.7'"
-                     onmouseout="this.style.opacity='1'"></div>
-                <div style="width: ${hardPercent}%; background: #dc3545; transition: opacity 0.2s;" 
-                     title="Difficile: ${ue.hard} (${hardPercent}%)"
-                     onmouseover="this.style.opacity='0.7'"
-                     onmouseout="this.style.opacity='1'"></div>
-            </div>
-            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem; font-size: 0.75rem; color: #adb5bd;" title="Répartition des évaluations de difficulté">
-                <div style="display: flex; align-items: center; gap: 0.3rem;">
-                    <div style="width: 10px; height: 10px; background: #28a745; border-radius: 2px;"></div>
-                    <span>${ue.easy}</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.3rem;">
-                    <div style="width: 10px; height: 10px; background: #ffc107; border-radius: 2px;"></div>
-                    <span>${ue.medium}</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.3rem;">
-                    <div style="width: 10px; height: 10px; background: #dc3545; border-radius: 2px;"></div>
-                    <span>${ue.hard}</span>
-                </div>
-            </div>
-            ` : ''}
-        </div>
-    `;
-    }).join('');
-}
+
 /**
  * Générer le calendrier heatmap
  */
