@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
     
     await loadData();
+    hideLoading(); // Afficher le contenu AVANT de calculer les stats
     await calculateStatistics();
-    hideLoading();
 });
 
 /**
@@ -103,7 +103,6 @@ async function calculateStatistics() {
     displayUEPodiums(ueStats);
     displayUEDetails(ueStats);
     
-    renderEvolutionChart();
     renderHeatmap();
 }
 
@@ -199,26 +198,34 @@ function calculateStreak() {
  * Afficher les statistiques globales
  */
 function displayGlobalStats(stats) {
-    document.getElementById('reviewedCount').textContent = stats.reviewedTerms;
-    document.getElementById('totalCount').textContent = `sur ${stats.totalTerms} disponibles`;
-    document.getElementById('reviewedProgress').style.width = `${stats.reviewedPercent}%`;
+    const reviewedCountEl = document.getElementById('reviewedCount');
+    const totalCountEl = document.getElementById('totalCount');
+    const reviewedProgressEl = document.getElementById('reviewedProgress');
+    const successRateEl = document.getElementById('successRate');
+    const easyCountEl = document.getElementById('easyCount');
+    const mediumCountEl = document.getElementById('mediumCount');
+    const hardCountEl = document.getElementById('hardCount');
+    const streakDaysEl = document.getElementById('streakDays');
     
-    document.getElementById('successRate').textContent = `${stats.successRate}%`;
-    document.getElementById('easyCount').textContent = stats.easyCount;
-    document.getElementById('mediumCount').textContent = stats.mediumCount;
-    document.getElementById('hardCount').textContent = stats.hardCount;
+    if (reviewedCountEl) reviewedCountEl.textContent = stats.reviewedTerms;
+    if (totalCountEl) totalCountEl.textContent = `sur ${stats.totalTerms} disponibles`;
+    if (reviewedProgressEl) reviewedProgressEl.style.width = `${stats.reviewedPercent}%`;
     
-    document.getElementById('masteredCount').textContent = stats.masteredCount;
-    document.getElementById('masteredProgress').style.width = `${stats.masteredPercent}%`;
+    if (successRateEl) successRateEl.textContent = `${stats.successRate}%`;
+    if (easyCountEl) easyCountEl.textContent = stats.easyCount;
+    if (mediumCountEl) mediumCountEl.textContent = stats.mediumCount;
+    if (hardCountEl) hardCountEl.textContent = stats.hardCount;
     
-    document.getElementById('streakDays').textContent = stats.streak;
+    if (streakDaysEl) streakDaysEl.textContent = stats.streak;
 }
 
 /**
- * Calculer les statistiques par UE
+ * Calculer les statistiques par UE avec répétition espacée
  */
 function calculateUEStats() {
     const ueMap = {};
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
     
     // Initialiser avec tous les termes
     for (const term of allTerms) {
@@ -227,55 +234,82 @@ function calculateUEStats() {
             ueMap[ue] = {
                 ue: ue,
                 total: 0,
-                reviewed: 0,
+                neverSeen: 0,      // Jamais vus
+                dueNow: 0,         // À réviser maintenant
+                overdue: 0,        // En retard
+                learning: 0,       // Intervalles < 7j
+                consolidated: 0,   // Intervalles ≥ 7j
                 easy: 0,
                 medium: 0,
-                hard: 0,
-                mastered: 0
+                hard: 0
             };
         }
         ueMap[ue].total++;
     }
     
-    // Ajouter les données de progression
-    for (const [termKey, progress] of Object.entries(userProgress)) {
-        // Extraire l'UE du termKey (format: term_X.X.sX ou term_X.X)
-        const ueMatch = termKey.match(/_(\d+\.\d+(?:\.[a-z]\d+)?)/i);
-        if (!ueMatch) continue;
+    // Analyser la progression pour chaque terme
+    for (const term of allTerms) {
+        const ue = term.ue;
+        const termKey = generateTermKey(term.term, ue);
+        const progress = userProgress[termKey];
         
-        // Normaliser l'UE en majuscules pour le matching
-        const ue = ueMatch[1].toUpperCase();
-        if (!ueMap[ue]) continue;
-        
-        ueMap[ue].reviewed++;
-        
-        if (progress.difficultyHistory) {
-            ueMap[ue].easy += progress.difficultyHistory.facile || 0;
-            ueMap[ue].medium += progress.difficultyHistory.moyen || 0;
-            ueMap[ue].hard += progress.difficultyHistory.difficile || 0;
-        }
-        
-        if (progress.intervalDays >= 30) {
-            ueMap[ue].mastered++;
+        if (!progress || !progress.nextReview) {
+            // Terme jamais vu
+            ueMap[ue].neverSeen++;
+        } else {
+            const nextReview = new Date(progress.nextReview);
+            nextReview.setHours(0, 0, 0, 0);
+            
+            if (nextReview <= today) {
+                // Dû aujourd'hui ou en retard
+                ueMap[ue].dueNow++;
+                
+                const daysLate = Math.floor((today - nextReview) / (1000 * 60 * 60 * 24));
+                if (daysLate > 0) {
+                    ueMap[ue].overdue++;
+                }
+            } else {
+                // Pas encore dû - catégoriser selon intervalle
+                if (progress.intervalDays < 7) {
+                    ueMap[ue].learning++;
+                } else {
+                    ueMap[ue].consolidated++;
+                }
+            }
+            
+            // Compter les difficultés
+            if (progress.difficultyHistory) {
+                ueMap[ue].easy += progress.difficultyHistory.facile || 0;
+                ueMap[ue].medium += progress.difficultyHistory.moyen || 0;
+                ueMap[ue].hard += progress.difficultyHistory.difficile || 0;
+            }
         }
     }
     
     // Calculer les pourcentages
     const ueStats = Object.values(ueMap).map(ue => {
+        const studied = ue.total - ue.neverSeen;
         const totalReviews = ue.easy + ue.medium + ue.hard;
-        const successRate = totalReviews > 0 
-            ? Math.round((ue.easy + ue.medium * 0.6) / totalReviews * 100) 
-            : 0;
         
         return {
             ...ue,
-            reviewedPercent: Math.round(ue.reviewed / ue.total * 100),
-            successRate,
-            masteredPercent: ue.reviewed > 0 ? Math.round(ue.mastered / ue.reviewed * 100) : 0
+            studied,
+            studiedPercent: Math.round(studied / ue.total * 100)
         };
     });
     
     return ueStats;
+}
+
+/**
+ * Générer une clé unique pour un terme
+ */
+function generateTermKey(term, ue) {
+    const normalized = term.toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]/g, '_');
+    return `${normalized}_${ue.toLowerCase()}`;
 }
 
 /**
@@ -320,120 +354,139 @@ function displayUEPodiums(ueStats) {
 }
 
 /**
- * Afficher les détails par UE
+ * Afficher les détails par UE (design simplifié et lisible)
  */
 function displayUEDetails(ueStats) {
     const ueList = document.getElementById('ueDetailsList');
     
-    // Trier par UE
+    // Trier par score de facilité (meilleur en haut)
     const sortedUE = [...ueStats].sort((a, b) => {
-        const [major1, minor1] = a.ue.split('.').map(Number);
-        const [major2, minor2] = b.ue.split('.').map(Number);
-        return major1 !== major2 ? major1 - major2 : minor1 - minor2;
+        // Calculer score de facilité pour chaque UE
+        const totalA = a.easy + a.medium + a.hard;
+        const totalB = b.easy + b.medium + b.hard;
+        
+        const scoreA = totalA > 0 ? (a.easy * 1.0 + a.medium * 0.5) / totalA : 0;
+        const scoreB = totalB > 0 ? (b.easy * 1.0 + b.medium * 0.5) / totalB : 0;
+        
+        // Si pas de données, mettre en bas
+        if (totalA === 0 && totalB === 0) {
+            // Trier par numéro d'UE
+            const [major1, minor1] = a.ue.split('.').map(Number);
+            const [major2, minor2] = b.ue.split('.').map(Number);
+            return major1 !== major2 ? major1 - major2 : minor1 - minor2;
+        }
+        if (totalA === 0) return 1;
+        if (totalB === 0) return -1;
+        
+        // Meilleur score en haut
+        return scoreB - scoreA;
     });
     
     ueList.innerHTML = sortedUE.map(ue => {
+        const hasDue = ue.dueNow > 0;
+        const studiedPercent = (ue.studied / ue.total * 100).toFixed(0);
+        
         const totalReviews = ue.easy + ue.medium + ue.hard;
-        const easyPercent = totalReviews > 0 ? (ue.easy / totalReviews * 100) : 0;
-        const mediumPercent = totalReviews > 0 ? (ue.medium / totalReviews * 100) : 0;
-        const hardPercent = totalReviews > 0 ? (ue.hard / totalReviews * 100) : 0;
+        const hasData = totalReviews > 0;
+        
+        // Calcul des pourcentages pour les difficultés
+        const easyPercent = hasData ? (ue.easy / totalReviews * 100).toFixed(0) : 0;
+        const mediumPercent = hasData ? (ue.medium / totalReviews * 100).toFixed(0) : 0;
+        const hardPercent = hasData ? (ue.hard / totalReviews * 100).toFixed(0) : 0;
+        
+        // Score de facilité
+        const facilityScore = hasData ? ((ue.easy * 1.0 + ue.medium * 0.5) / totalReviews * 100).toFixed(0) : 0;
         
         return `
-        <div class="ue-item">
-            <div style="flex: 1;">
-                <div class="ue-name">UE ${ue.ue}</div>
-                <div class="ue-stats" style="margin-top: 8px;">
-                    ${ue.reviewed}/${ue.total} cartes · ${ue.successRate}% de réussite · ${ue.mastered} maîtrisées
+        <div class="ue-item" style="border: 2px solid ${hasDue ? '#dc3545' : '#e9ecef'}; border-radius: 12px; padding: 1.5rem; background: white; transition: all 0.2s;">
+            <!-- En-tête -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #2c3e50;">
+                        📚 UE ${ue.ue}
+                    </div>
+                    ${hasData ? `<div style="background: linear-gradient(135deg, ${facilityScore >= 70 ? '#28a745' : facilityScore >= 50 ? '#ffc107' : '#dc3545'} 0%, ${facilityScore >= 70 ? '#218838' : facilityScore >= 50 ? '#e0a800' : '#c82333'} 100%); color: white; padding: 0.3rem 0.8rem; border-radius: 12px; font-size: 0.85rem; font-weight: 600;" title="Score de facilité : ${facilityScore}%">
+                        ${facilityScore}% facile
+                    </div>` : ''}
                 </div>
-                <div style="display: flex; gap: 2px; margin-top: 10px; height: 8px; border-radius: 4px; overflow: hidden; background: #e9ecef;">
-                    <div style="width: ${easyPercent}%; background: #28a745;" 
-                         title="${ue.easy} faciles (${Math.round(easyPercent)}%)"></div>
-                    <div style="width: ${mediumPercent}%; background: #ffc107;" 
-                         title="${ue.medium} moyens (${Math.round(mediumPercent)}%)"></div>
-                    <div style="width: ${hardPercent}%; background: #dc3545;" 
-                         title="${ue.hard} difficiles (${Math.round(hardPercent)}%)"></div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="font-size: 1.1rem; font-weight: 600; color: #6c757d;">
+                        ${ue.studied}/${ue.total}
+                    </div>
+                    ${hasDue ? `<div style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 700; font-size: 1rem; box-shadow: 0 2px 8px rgba(220,53,69,0.3);" title="${ue.overdue > 0 ? ue.overdue + ' en retard' : 'À réviser'}">
+                        🔥 ${ue.dueNow}
+                    </div>` : ''}
                 </div>
             </div>
+            
+            <!-- Progression globale -->
+            <div style="margin-bottom: ${hasData ? '1.2rem' : '0'};">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <span style="font-size: 0.9rem; color: #6c757d; font-weight: 600;">Progression</span>
+                    <span style="font-size: 1rem; font-weight: 700; color: #667eea;">${studiedPercent}%</span>
+                </div>
+                <div style="height: 24px; background: #e9ecef; border-radius: 12px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
+                    <div style="width: ${studiedPercent}%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); transition: width 0.5s ease;"></div>
+                </div>
+            </div>
+            
+            ${hasData ? `
+            <!-- Performance sur termes vus -->
+            <div>
+                <div style="font-size: 0.9rem; color: #495057; font-weight: 600; margin-bottom: 0.8rem;">
+                    Performance sur les ${totalReviews} terme${totalReviews > 1 ? 's' : ''} vu${totalReviews > 1 ? 's' : ''}
+                </div>
+                
+                <!-- Facile -->
+                <div style="margin-bottom: 0.6rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div style="width: 12px; height: 12px; background: #28a745; border-radius: 3px;"></div>
+                            <span style="font-size: 0.85rem; color: #6c757d;">Facile</span>
+                        </div>
+                        <span style="font-size: 0.9rem; font-weight: 600; color: #28a745;">${ue.easy} (${easyPercent}%)</span>
+                    </div>
+                    <div style="height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden;">
+                        <div style="width: ${easyPercent}%; height: 100%; background: #28a745; transition: width 0.5s ease;"></div>
+                    </div>
+                </div>
+                
+                <!-- Moyen -->
+                <div style="margin-bottom: 0.6rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div style="width: 12px; height: 12px; background: #ffc107; border-radius: 3px;"></div>
+                            <span style="font-size: 0.85rem; color: #6c757d;">Moyen</span>
+                        </div>
+                        <span style="font-size: 0.9rem; font-weight: 600; color: #ffc107;">${ue.medium} (${mediumPercent}%)</span>
+                    </div>
+                    <div style="height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden;">
+                        <div style="width: ${mediumPercent}%; height: 100%; background: #ffc107; transition: width 0.5s ease;"></div>
+                    </div>
+                </div>
+                
+                <!-- Difficile -->
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div style="width: 12px; height: 12px; background: #dc3545; border-radius: 3px;"></div>
+                            <span style="font-size: 0.85rem; color: #6c757d;">Difficile</span>
+                        </div>
+                        <span style="font-size: 0.9rem; font-weight: 600; color: #dc3545;">${ue.hard} (${hardPercent}%)</span>
+                    </div>
+                    <div style="height: 8px; background: #e9ecef; border-radius: 4px; overflow: hidden;">
+                        <div style="width: ${hardPercent}%; height: 100%; background: #dc3545; transition: width 0.5s ease;"></div>
+                    </div>
+                </div>
+            </div>
+            ` : `
+            <div style="text-align: center; padding: 1rem; color: #adb5bd; font-style: italic;">
+                Aucune révision effectuée pour cette UE
+            </div>
+            `}
         </div>
     `;
     }).join('');
-}
-
-/**
- * Générer le graphique d'évolution
- */
-function renderEvolutionChart() {
-    const ctx = document.getElementById('evolutionChart');
-    if (!ctx) return;
-    
-    // Préparer les données (derniers 30 jours)
-    const days = 30;
-    const labels = [];
-    const data = [];
-    
-    const today = new Date();
-    
-    for (let i = days - 1; i >= 0; i--) {
-        const date = new Date(today);
-        date.setDate(date.getDate() - i);
-        
-        const dateStr = date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
-        labels.push(dateStr);
-        
-        // Compter le nombre de cartes maîtrisées à cette date
-        let masteredCount = 0;
-        for (const progress of Object.values(userProgress)) {
-            if (progress.lastReviewed) {
-                const reviewDate = new Date(progress.lastReviewed);
-                if (reviewDate <= date && progress.intervalDays >= 30) {
-                    masteredCount++;
-                }
-            }
-        }
-        data.push(masteredCount);
-    }
-    
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Cartes maîtrisées',
-                data: data,
-                borderColor: '#667eea',
-                backgroundColor: 'rgba(102, 126, 234, 0.1)',
-                tension: 0.4,
-                fill: true,
-                pointRadius: 4,
-                pointBackgroundColor: '#667eea',
-                pointBorderColor: '#fff',
-                pointBorderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    padding: 12,
-                    titleFont: { size: 14 },
-                    bodyFont: { size: 13 }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        precision: 0
-                    }
-                }
-            }
-        }
-    });
 }
 
 /**
@@ -521,6 +574,99 @@ function renderHeatmap() {
 function hideLoading() {
     document.getElementById('loadingMessage').style.display = 'none';
     document.getElementById('statsContent').style.display = 'block';
+    
+    // Attacher l'événement au bouton de réinitialisation
+    const resetBtn = document.getElementById('resetStatsBtn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', handleResetStats);
+    }
+}
+
+/**
+ * Gérer la réinitialisation des statistiques
+ */
+async function handleResetStats() {
+    if (!auth?.currentUser) {
+        alert('Vous devez être connecté pour réinitialiser vos statistiques.');
+        return;
+    }
+    
+    const confirmed = confirm(
+        '⚠️ ATTENTION ⚠️\n\n' +
+        'Êtes-vous sûr de vouloir réinitialiser toutes vos statistiques ?\n\n' +
+        'Cette action est IRRÉVERSIBLE et supprimera :\n' +
+        '• Toutes vos révisions\n' +
+        '• Tous vos scores de difficulté\n' +
+        '• Tout votre historique de progression\n' +
+        '• Tous les intervalles de répétition espacée\n\n' +
+        'Cliquez sur OK pour confirmer la suppression définitive.'
+    );
+    
+    if (!confirmed) return;
+    
+    // Double confirmation pour être sûr
+    const doubleConfirm = confirm(
+        '🔴 DERNIÈRE CONFIRMATION\n\n' +
+        'Cette action va TOUT EFFACER.\n' +
+        'Vous devrez tout recommencer à zéro.\n\n' +
+        'Confirmez-vous définitivement ?'
+    );
+    
+    if (!doubleConfirm) return;
+    
+    try {
+        // Afficher un message de chargement
+        const resetBtn = document.getElementById('resetStatsBtn');
+        const originalText = resetBtn.innerHTML;
+        resetBtn.disabled = true;
+        resetBtn.innerHTML = '⏳ Suppression en cours...';
+        resetBtn.style.opacity = '0.6';
+        
+        // Supprimer toutes les données Firestore
+        const { collection, query, getDocs, deleteDoc, doc } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
+        
+        const userId = auth.currentUser.uid;
+        const progressCollection = collection(db, `users/${userId}/progress`);
+        const progressQuery = query(progressCollection);
+        const snapshot = await getDocs(progressQuery);
+        
+        // Supprimer tous les documents
+        const deletePromises = [];
+        snapshot.forEach((docSnapshot) => {
+            deletePromises.push(deleteDoc(docSnapshot.ref));
+        });
+        
+        await Promise.all(deletePromises);
+        
+        // Réinitialiser les variables locales
+        userProgress = {};
+        
+        // Vider le localStorage aussi (si utilisé)
+        if (syncManager && syncManager.clearLocalProgress) {
+            syncManager.clearLocalProgress();
+        }
+        
+        // Réafficher les statistiques (maintenant vides)
+        await calculateStatistics();
+        
+        // Restaurer le bouton
+        resetBtn.disabled = false;
+        resetBtn.innerHTML = originalText;
+        resetBtn.style.opacity = '1';
+        
+        // Notification de succès
+        alert('✅ Statistiques réinitialisées avec succès !\n\nVous pouvez recommencer vos révisions.');
+        
+    } catch (error) {
+        console.error('Erreur lors de la réinitialisation:', error);
+        alert('❌ Erreur lors de la réinitialisation des statistiques.\n\nVeuillez réessayer ou contacter le support.');
+        
+        // Restaurer le bouton en cas d'erreur
+        const resetBtn = document.getElementById('resetStatsBtn');
+        resetBtn.disabled = false;
+        resetBtn.innerHTML = '🔄 Réinitialiser mes statistiques';
+        resetBtn.style.opacity = '1';
+    }
 }
 
 

@@ -317,6 +317,10 @@ header h2 {
 
 .stat-item {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
 }
 
 .stat-number {
@@ -325,6 +329,12 @@ header h2 {
     font-weight: bold;
     color: #667eea;
     margin-bottom: 0.5rem;
+}
+
+.stat-icon {
+    display: block;
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
 }
 
 .stat-label {

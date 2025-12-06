@@ -228,9 +228,9 @@
         }
 
         .ue-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         .ue-item {
@@ -337,7 +337,7 @@
             }
 
             .ue-list {
-                grid-template-columns: 1fr;
+                gap: 0.8rem;
             }
         }
     </style>
@@ -347,8 +347,15 @@
         <a href="./home.html" class="back-link">🏠 Retour au Hub</a>
 
         <div class="stats-header">
-            <h1>📊 Statistiques de Révision</h1>
-            <p>Suivez votre progression et identifiez vos points forts</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h1>📊 Statistiques de Révision</h1>
+                    <p>Suivez votre progression et identifiez vos points forts</p>
+                </div>
+                <button id="resetStatsBtn" class="reset-stats-btn" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(220,53,69,0.3);">
+                    🔄 Réinitialiser mes statistiques
+                </button>
+            </div>
         </div>
 
         <div id="loadingMessage" class="loading">
@@ -388,20 +395,6 @@
 
                 <div class="stat-card">
                     <div class="stat-card-header">
-                        <span class="stat-icon">✅</span>
-                        <h3>Cartes Maîtrisées</h3>
-                    </div>
-                    <div class="stat-value" id="masteredCount">0</div>
-                    <div class="stat-label">Intervalle ≥ 30 jours</div>
-                    <div class="stat-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="masteredProgress" style="width: 0%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-card-header">
                         <span class="stat-icon">🔥</span>
                         <h3>Streak de Révision</h3>
                     </div>
@@ -428,14 +421,6 @@
                 <p style="color: #6c757d; margin-bottom: 20px;">Unités d'enseignement nécessitant plus de révisions</p>
                 <div class="podium-container" id="podiumNeedWork">
                     <!-- Généré dynamiquement -->
-                </div>
-            </div>
-
-            <!-- Graphique Évolution -->
-            <div class="section-card">
-                <h2>📈 Évolution des cartes maîtrisées</h2>
-                <div class="chart-container chart-large">
-                    <canvas id="evolutionChart"></canvas>
                 </div>
             </div>
 

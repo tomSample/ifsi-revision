@@ -544,57 +544,101 @@ async function startRevision() {
     showCurrentTerm();
 }
 
-// Sélectionner des termes pour la session (avec priorisation intelligente)
+// Sélectionner des termes pour la session (répétition espacée par défaut)
 async function selectTermsForSession(count = 10) {
     if (filteredTerms.length === 0) {
         console.log('Aucun terme disponible avec les filtres actuels');
         return [];
     }
     
-    // Si pas d'algorithme de répétition espacée, mode aléatoire
-    if (!spacedRepetition || !syncManager) {
-        const shuffledTerms = [...filteredTerms].sort(() => 0.5 - Math.random());
-        return shuffledTerms.slice(0, Math.min(count, filteredTerms.length));
-    }
+    const now = new Date();
+    now.setHours(0, 0, 0, 0); // Minuit aujourd'hui
     
-    // Mode intelligent: priorisation selon la courbe de l'oubli
-    const termsWithProgress = [];
+    const neverSeen = [];     // Jamais vus (priorité maximale)
+    const dueToday = [];      // À revoir aujourd'hui
+    const notDueYet = [];     // Pas encore dus (ignorés sauf si pas assez)
     
+    // Catégoriser tous les termes selon progression
     for (const term of filteredTerms) {
         const termKey = generateTermKey(term);
-        const progress = userProgress[termKey] || null;
+        const progress = userProgress[termKey];
         
-        termsWithProgress.push({
-            term: term,
-            progress: progress,
-            priority: spacedRepetition.getPriorityScore(progress)
-        });
+        if (!progress || !progress.nextReview) {
+            // Terme jamais vu - PRIORITÉ 1
+            neverSeen.push({
+                term,
+                priority: 1000,
+                reason: 'Nouveau'
+            });
+        } else {
+            const nextReview = new Date(progress.nextReview);
+            nextReview.setHours(0, 0, 0, 0);
+            
+            if (nextReview <= now) {
+                // Dû aujourd'hui ou en retard - PRIORITÉ 2
+                const daysLate = Math.floor((now - nextReview) / (1000 * 60 * 60 * 24));
+                const difficultyScore = progress.lastDifficulty === 'difficile' ? 3 : 
+                                       progress.lastDifficulty === 'moyen' ? 2 : 1;
+                
+                dueToday.push({
+                    term,
+                    priority: 100 + daysLate * 10 + difficultyScore,
+                    reason: daysLate > 0 ? `Retard ${daysLate}j` : 'Dû',
+                    difficulty: progress.lastDifficulty
+                });
+            } else {
+                // Pas encore dû - PRIORITÉ 3 (présenté seulement si pas assez)
+                const daysUntil = Math.floor((nextReview - now) / (1000 * 60 * 60 * 24));
+                notDueYet.push({
+                    term,
+                    priority: -daysUntil,
+                    reason: `Dans ${daysUntil}j`
+                });
+            }
+        }
     }
     
-    // Trier par priorité (décroissante)
-    termsWithProgress.sort((a, b) => b.priority - a.priority);
+    // Trier chaque catégorie par priorité décroissante
+    neverSeen.sort((a, b) => b.priority - a.priority);
+    dueToday.sort((a, b) => b.priority - a.priority);
+    notDueYet.sort((a, b) => b.priority - a.priority); // Les plus proches en premier
     
-    // Stratégie de sélection:
-    // - 40% des termes les plus prioritaires (jamais vus + difficiles + en retard)
-    // - 60% aléatoires parmi les autres
-    const highPriorityCount = Math.ceil(count * 0.4);
-    const randomCount = count - highPriorityCount;
+    console.log('📊 Répétition espacée:', {
+        nouveau: neverSeen.length,
+        dû: dueToday.length,
+        pasDû: notDueYet.length,
+        demandé: count
+    });
     
-    // Sélectionner les termes prioritaires
-    const highPriority = termsWithProgress.slice(0, Math.min(highPriorityCount, termsWithProgress.length));
+    // Sélection dans l'ordre de priorité (SANS SHUFFLE)
+    const orderedSelection = [];
     
-    // Sélectionner aléatoirement parmi le reste
-    const remaining = termsWithProgress.slice(highPriorityCount);
-    const randomSelection = remaining.sort(() => 0.5 - Math.random()).slice(0, randomCount);
+    // 1. Tous les nouveaux termes en premier
+    orderedSelection.push(...neverSeen);
     
-    // Combiner et mélanger pour éviter un ordre prévisible
-    const selectedTerms = [...highPriority, ...randomSelection]
-        .sort(() => 0.5 - Math.random())
+    // 2. Puis tous les termes dus
+    orderedSelection.push(...dueToday);
+    
+    // 3. Si pas assez, ajouter les termes pas encore dus
+    if (orderedSelection.length < count) {
+        orderedSelection.push(...notDueYet);
+    }
+    
+    // Limiter au nombre demandé et extraire les termes
+    const finalSelection = orderedSelection
+        .slice(0, count)
         .map(item => item.term);
     
-    console.log(`✅ Session intelligente: ${selectedTerms.length} termes (${highPriorityCount} prioritaires)`);
+    // Log pour debug
+    const composition = {
+        nouveau: Math.min(neverSeen.length, count),
+        dû: Math.min(dueToday.length, Math.max(0, count - neverSeen.length)),
+        pasDû: Math.max(0, count - neverSeen.length - dueToday.length)
+    };
     
-    return selectedTerms.slice(0, count);
+    console.log(`✅ Session: ${finalSelection.length} termes`, composition);
+    
+    return finalSelection;
 }
 
 // Simplifier la vérification (plus de traçage individuel)
