@@ -874,7 +874,7 @@ button.admin-only,
     visibility: hidden !important;
 }
 
-.admin-authenticated .admin-section {
+.admin-authenticated .admin-section.active {
     display: block !important;
     visibility: visible !important;
 }
