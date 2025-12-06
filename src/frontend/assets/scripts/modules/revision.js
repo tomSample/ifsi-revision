@@ -1,7 +1,10 @@
-// Helper pour résoudre les chemins sur GitHub Pages
-const isGitHubPages = window.location.hostname.includes('github.io');
-const basePath = isGitHubPages ? '/ifsi-revision' : '';
-const resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
+// Helper pour résoudre les chemins sur GitHub Pages (si pas déjà défini)
+if (!window.resolvePath) {
+    const isGitHubPages = window.location.hostname.includes('github.io');
+    const basePath = isGitHubPages ? '/ifsi-revision' : '';
+    window.resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
+}
+const resolvePath = window.resolvePath;
 
 // Variables globales pour la gestion des révisions
 let allTerms = [];

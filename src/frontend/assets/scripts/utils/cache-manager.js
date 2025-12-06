@@ -4,10 +4,13 @@
  * Efface le cache lors de la déconnexion
  */
 
-// Helper pour résoudre les chemins sur GitHub Pages
-const isGitHubPages = window.location.hostname.includes('github.io');
-const basePath = isGitHubPages ? '/ifsi-revision' : '';
-const resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
+// Helper pour résoudre les chemins sur GitHub Pages (si pas déjà défini)
+if (!window.resolvePath) {
+    const isGitHubPages = window.location.hostname.includes('github.io');
+    const basePath = isGitHubPages ? '/ifsi-revision' : '';
+    window.resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
+}
+const resolvePath = window.resolvePath;
 
 /**
  * Précharger le cache des cours lors de l'authentification
