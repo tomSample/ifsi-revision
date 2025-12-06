@@ -565,6 +565,99 @@ function renderHeatmap() {
 function hideLoading() {
     document.getElementById('loadingMessage').style.display = 'none';
     document.getElementById('statsContent').style.display = 'block';
+    
+    // Attacher l'événement au bouton de réinitialisation
+    const resetBtn = document.getElementById('resetStatsBtn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', handleResetStats);
+    }
+}
+
+/**
+ * Gérer la réinitialisation des statistiques
+ */
+async function handleResetStats() {
+    if (!auth?.currentUser) {
+        alert('Vous devez être connecté pour réinitialiser vos statistiques.');
+        return;
+    }
+    
+    const confirmed = confirm(
+        '⚠️ ATTENTION ⚠️\n\n' +
+        'Êtes-vous sûr de vouloir réinitialiser toutes vos statistiques ?\n\n' +
+        'Cette action est IRRÉVERSIBLE et supprimera :\n' +
+        '• Toutes vos révisions\n' +
+        '• Tous vos scores de difficulté\n' +
+        '• Tout votre historique de progression\n' +
+        '• Tous les intervalles de répétition espacée\n\n' +
+        'Cliquez sur OK pour confirmer la suppression définitive.'
+    );
+    
+    if (!confirmed) return;
+    
+    // Double confirmation pour être sûr
+    const doubleConfirm = confirm(
+        '🔴 DERNIÈRE CONFIRMATION\n\n' +
+        'Cette action va TOUT EFFACER.\n' +
+        'Vous devrez tout recommencer à zéro.\n\n' +
+        'Confirmez-vous définitivement ?'
+    );
+    
+    if (!doubleConfirm) return;
+    
+    try {
+        // Afficher un message de chargement
+        const resetBtn = document.getElementById('resetStatsBtn');
+        const originalText = resetBtn.innerHTML;
+        resetBtn.disabled = true;
+        resetBtn.innerHTML = '⏳ Suppression en cours...';
+        resetBtn.style.opacity = '0.6';
+        
+        // Supprimer toutes les données Firestore
+        const { collection, query, getDocs, deleteDoc, doc } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
+        
+        const userId = auth.currentUser.uid;
+        const progressCollection = collection(db, `users/${userId}/progress`);
+        const progressQuery = query(progressCollection);
+        const snapshot = await getDocs(progressQuery);
+        
+        // Supprimer tous les documents
+        const deletePromises = [];
+        snapshot.forEach((docSnapshot) => {
+            deletePromises.push(deleteDoc(docSnapshot.ref));
+        });
+        
+        await Promise.all(deletePromises);
+        
+        // Réinitialiser les variables locales
+        userProgress = {};
+        
+        // Vider le localStorage aussi (si utilisé)
+        if (syncManager && syncManager.clearLocalProgress) {
+            syncManager.clearLocalProgress();
+        }
+        
+        // Réafficher les statistiques (maintenant vides)
+        await calculateStatistics();
+        
+        // Restaurer le bouton
+        resetBtn.disabled = false;
+        resetBtn.innerHTML = originalText;
+        resetBtn.style.opacity = '1';
+        
+        // Notification de succès
+        alert('✅ Statistiques réinitialisées avec succès !\n\nVous pouvez recommencer vos révisions.');
+        
+    } catch (error) {
+        console.error('Erreur lors de la réinitialisation:', error);
+        alert('❌ Erreur lors de la réinitialisation des statistiques.\n\nVeuillez réessayer ou contacter le support.');
+        
+        // Restaurer le bouton en cas d'erreur
+        const resetBtn = document.getElementById('resetStatsBtn');
+        resetBtn.disabled = false;
+        resetBtn.innerHTML = '🔄 Réinitialiser mes statistiques';
+        resetBtn.style.opacity = '1';
+    }
 }
 
 

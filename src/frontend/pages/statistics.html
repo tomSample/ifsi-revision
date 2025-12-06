@@ -347,8 +347,15 @@
         <a href="./home.html" class="back-link">🏠 Retour au Hub</a>
 
         <div class="stats-header">
-            <h1>📊 Statistiques de Révision</h1>
-            <p>Suivez votre progression et identifiez vos points forts</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h1>📊 Statistiques de Révision</h1>
+                    <p>Suivez votre progression et identifiez vos points forts</p>
+                </div>
+                <button id="resetStatsBtn" class="reset-stats-btn" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(220,53,69,0.3);">
+                    🔄 Réinitialiser mes statistiques
+                </button>
+            </div>
         </div>
 
         <div id="loadingMessage" class="loading">
