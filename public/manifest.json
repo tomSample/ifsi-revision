@@ -2,7 +2,7 @@
   "name": "IFSI Lannion - Révisions 2025",
   "short_name": "IFSI Révisions",
   "description": "Application de révision par flashcards pour étudiants infirmiers avec algorithme de répétition espacée",
-  "start_url": "/ifsi-revision/src/frontend/pages/home.html",
+  "start_url": "/ifsi-revision/src/frontend/pages/index.html?pwa=true",
   "scope": "/ifsi-revision/",
   "display": "standalone",
   "background_color": "#667eea",
