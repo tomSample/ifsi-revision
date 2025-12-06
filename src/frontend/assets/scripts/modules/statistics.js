@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
     
     await loadData();
+    hideLoading(); // Afficher le contenu AVANT de calculer les stats
     await calculateStatistics();
-    hideLoading();
 });
 
 /**
@@ -198,16 +198,25 @@ function calculateStreak() {
  * Afficher les statistiques globales
  */
 function displayGlobalStats(stats) {
-    document.getElementById('reviewedCount').textContent = stats.reviewedTerms;
-    document.getElementById('totalCount').textContent = `sur ${stats.totalTerms} disponibles`;
-    document.getElementById('reviewedProgress').style.width = `${stats.reviewedPercent}%`;
+    const reviewedCountEl = document.getElementById('reviewedCount');
+    const totalCountEl = document.getElementById('totalCount');
+    const reviewedProgressEl = document.getElementById('reviewedProgress');
+    const successRateEl = document.getElementById('successRate');
+    const easyCountEl = document.getElementById('easyCount');
+    const mediumCountEl = document.getElementById('mediumCount');
+    const hardCountEl = document.getElementById('hardCount');
+    const streakDaysEl = document.getElementById('streakDays');
     
-    document.getElementById('successRate').textContent = `${stats.successRate}%`;
-    document.getElementById('easyCount').textContent = stats.easyCount;
-    document.getElementById('mediumCount').textContent = stats.mediumCount;
-    document.getElementById('hardCount').textContent = stats.hardCount;
+    if (reviewedCountEl) reviewedCountEl.textContent = stats.reviewedTerms;
+    if (totalCountEl) totalCountEl.textContent = `sur ${stats.totalTerms} disponibles`;
+    if (reviewedProgressEl) reviewedProgressEl.style.width = `${stats.reviewedPercent}%`;
     
-    document.getElementById('streakDays').textContent = stats.streak;
+    if (successRateEl) successRateEl.textContent = `${stats.successRate}%`;
+    if (easyCountEl) easyCountEl.textContent = stats.easyCount;
+    if (mediumCountEl) mediumCountEl.textContent = stats.mediumCount;
+    if (hardCountEl) hardCountEl.textContent = stats.hardCount;
+    
+    if (streakDaysEl) streakDaysEl.textContent = stats.streak;
 }
 
 /**
