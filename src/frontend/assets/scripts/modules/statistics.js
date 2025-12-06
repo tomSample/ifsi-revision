@@ -479,15 +479,10 @@ function displayUEDetails(ueStats) {
     `;
     }).join('');
 }
-                        ${ue.neverSeen > 0 ? ue.neverSeen : ''}
-                    </div>
-                    <div style="width: ${learningPercent}%; background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;" 
-                         title="${ue.learning} en apprentissage - intervalles < 7 jours (${learningPercent}%)"
-                         onmouseover="this.style.opacity='0.8'"
-                         onmouseout="this.style.opacity='1'">
 
 /**
  * Générer le calendrier heatmap
+ */
  */
 function renderHeatmap() {
     const container = document.getElementById('heatmapContainer');
