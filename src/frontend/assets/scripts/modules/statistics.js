@@ -103,7 +103,6 @@ async function calculateStatistics() {
     displayUEPodiums(ueStats);
     displayUEDetails(ueStats);
     
-    renderEvolutionChart();
     renderHeatmap();
 }
 
@@ -208,17 +207,16 @@ function displayGlobalStats(stats) {
     document.getElementById('mediumCount').textContent = stats.mediumCount;
     document.getElementById('hardCount').textContent = stats.hardCount;
     
-    document.getElementById('masteredCount').textContent = stats.masteredCount;
-    document.getElementById('masteredProgress').style.width = `${stats.masteredPercent}%`;
-    
     document.getElementById('streakDays').textContent = stats.streak;
 }
 
 /**
- * Calculer les statistiques par UE
+ * Calculer les statistiques par UE avec répétition espacée
  */
 function calculateUEStats() {
     const ueMap = {};
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
     
     // Initialiser avec tous les termes
     for (const term of allTerms) {
@@ -227,55 +225,82 @@ function calculateUEStats() {
             ueMap[ue] = {
                 ue: ue,
                 total: 0,
-                reviewed: 0,
+                neverSeen: 0,      // Jamais vus
+                dueNow: 0,         // À réviser maintenant
+                overdue: 0,        // En retard
+                learning: 0,       // Intervalles < 7j
+                consolidated: 0,   // Intervalles ≥ 7j
                 easy: 0,
                 medium: 0,
-                hard: 0,
-                mastered: 0
+                hard: 0
             };
         }
         ueMap[ue].total++;
     }
     
-    // Ajouter les données de progression
-    for (const [termKey, progress] of Object.entries(userProgress)) {
-        // Extraire l'UE du termKey (format: term_X.X.sX ou term_X.X)
-        const ueMatch = termKey.match(/_(\d+\.\d+(?:\.[a-z]\d+)?)/i);
-        if (!ueMatch) continue;
+    // Analyser la progression pour chaque terme
+    for (const term of allTerms) {
+        const ue = term.ue;
+        const termKey = generateTermKey(term.term, ue);
+        const progress = userProgress[termKey];
         
-        // Normaliser l'UE en majuscules pour le matching
-        const ue = ueMatch[1].toUpperCase();
-        if (!ueMap[ue]) continue;
-        
-        ueMap[ue].reviewed++;
-        
-        if (progress.difficultyHistory) {
-            ueMap[ue].easy += progress.difficultyHistory.facile || 0;
-            ueMap[ue].medium += progress.difficultyHistory.moyen || 0;
-            ueMap[ue].hard += progress.difficultyHistory.difficile || 0;
-        }
-        
-        if (progress.intervalDays >= 30) {
-            ueMap[ue].mastered++;
+        if (!progress || !progress.nextReview) {
+            // Terme jamais vu
+            ueMap[ue].neverSeen++;
+        } else {
+            const nextReview = new Date(progress.nextReview);
+            nextReview.setHours(0, 0, 0, 0);
+            
+            if (nextReview <= today) {
+                // Dû aujourd'hui ou en retard
+                ueMap[ue].dueNow++;
+                
+                const daysLate = Math.floor((today - nextReview) / (1000 * 60 * 60 * 24));
+                if (daysLate > 0) {
+                    ueMap[ue].overdue++;
+                }
+            } else {
+                // Pas encore dû - catégoriser selon intervalle
+                if (progress.intervalDays < 7) {
+                    ueMap[ue].learning++;
+                } else {
+                    ueMap[ue].consolidated++;
+                }
+            }
+            
+            // Compter les difficultés
+            if (progress.difficultyHistory) {
+                ueMap[ue].easy += progress.difficultyHistory.facile || 0;
+                ueMap[ue].medium += progress.difficultyHistory.moyen || 0;
+                ueMap[ue].hard += progress.difficultyHistory.difficile || 0;
+            }
         }
     }
     
     // Calculer les pourcentages
     const ueStats = Object.values(ueMap).map(ue => {
+        const studied = ue.total - ue.neverSeen;
         const totalReviews = ue.easy + ue.medium + ue.hard;
-        const successRate = totalReviews > 0 
-            ? Math.round((ue.easy + ue.medium * 0.6) / totalReviews * 100) 
-            : 0;
         
         return {
             ...ue,
-            reviewedPercent: Math.round(ue.reviewed / ue.total * 100),
-            successRate,
-            masteredPercent: ue.reviewed > 0 ? Math.round(ue.mastered / ue.reviewed * 100) : 0
+            studied,
+            studiedPercent: Math.round(studied / ue.total * 100)
         };
     });
     
     return ueStats;
+}
+
+/**
+ * Générer une clé unique pour un terme
+ */
+function generateTermKey(term, ue) {
+    const normalized = term.toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]/g, '_');
+    return `${normalized}_${ue.toLowerCase()}`;
 }
 
 /**
@@ -320,7 +345,7 @@ function displayUEPodiums(ueStats) {
 }
 
 /**
- * Afficher les détails par UE
+ * Afficher les détails par UE avec répétition espacée
  */
 function displayUEDetails(ueStats) {
     const ueList = document.getElementById('ueDetailsList');
@@ -333,109 +358,95 @@ function displayUEDetails(ueStats) {
     });
     
     ueList.innerHTML = sortedUE.map(ue => {
-        const totalReviews = ue.easy + ue.medium + ue.hard;
-        const easyPercent = totalReviews > 0 ? (ue.easy / totalReviews * 100) : 0;
-        const mediumPercent = totalReviews > 0 ? (ue.medium / totalReviews * 100) : 0;
-        const hardPercent = totalReviews > 0 ? (ue.hard / totalReviews * 100) : 0;
+        const hasOverdue = ue.overdue > 0;
+        const hasDue = ue.dueNow > 0;
+        
+        // Calcul des pourcentages pour la barre de progression
+        const neverSeenPercent = (ue.neverSeen / ue.total * 100).toFixed(1);
+        const learningPercent = (ue.learning / ue.total * 100).toFixed(1);
+        const consolidatedPercent = (ue.consolidated / ue.total * 100).toFixed(1);
         
         return `
-        <div class="ue-item">
-            <div style="flex: 1;">
-                <div class="ue-name">UE ${ue.ue}</div>
-                <div class="ue-stats" style="margin-top: 8px;">
-                    ${ue.reviewed}/${ue.total} cartes · ${ue.successRate}% de réussite · ${ue.mastered} maîtrisées
+        <div class="ue-item" style="border: 2px solid ${hasDue ? '#dc3545' : '#e9ecef'}; border-radius: 12px; padding: 1.5rem; background: white;">
+            <!-- En-tête UE -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div>
+                    <div class="ue-name" style="font-size: 1.3rem; font-weight: 700; color: #2c3e50;">
+                        📚 UE ${ue.ue}
+                    </div>
+                    <div style="color: #6c757d; font-size: 0.9rem; margin-top: 0.3rem;">
+                        ${ue.studied}/${ue.total} termes étudiés (${ue.studiedPercent}%)
+                    </div>
                 </div>
-                <div style="display: flex; gap: 2px; margin-top: 10px; height: 8px; border-radius: 4px; overflow: hidden; background: #e9ecef;">
-                    <div style="width: ${easyPercent}%; background: #28a745;" 
-                         title="${ue.easy} faciles (${Math.round(easyPercent)}%)"></div>
-                    <div style="width: ${mediumPercent}%; background: #ffc107;" 
-                         title="${ue.medium} moyens (${Math.round(mediumPercent)}%)"></div>
-                    <div style="width: ${hardPercent}%; background: #dc3545;" 
-                         title="${ue.hard} difficiles (${Math.round(hardPercent)}%)"></div>
+                ${hasDue ? `<div style="background: #dc3545; color: white; padding: 0.4rem 0.8rem; border-radius: 20px; font-weight: 600; font-size: 0.9rem;">
+                    🔥 ${ue.dueNow} à réviser
+                </div>` : ''}
+            </div>
+            
+            <!-- État de mémorisation -->
+            <div style="margin-bottom: 1rem;">
+                <div style="font-weight: 600; color: #495057; margin-bottom: 0.5rem; font-size: 0.95rem;">
+                    📈 État de mémorisation
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.8rem; margin-bottom: 0.8rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">🆕</span>
+                        <span style="color: #6c757d; font-size: 0.85rem;">Nouveaux:</span>
+                        <strong style="color: #17a2b8;">${ue.neverSeen}</strong>
+                        <span style="color: #adb5bd; font-size: 0.8rem;">(${neverSeenPercent}%)</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">⌛</span>
+                        <span style="color: #6c757d; font-size: 0.85rem;">En cours:</span>
+                        <strong style="color: #ffc107;">${ue.learning}</strong>
+                        <span style="color: #adb5bd; font-size: 0.8rem;">(${learningPercent}%)</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.2rem;">✅</span>
+                        <span style="color: #6c757d; font-size: 0.85rem;">Consolidés:</span>
+                        <strong style="color: #28a745;">${ue.consolidated}</strong>
+                        <span style="color: #adb5bd; font-size: 0.8rem;">(${consolidatedPercent}%)</span>
+                    </div>
+                </div>
+                
+                <!-- Barre de progression -->
+                <div style="display: flex; height: 12px; border-radius: 6px; overflow: hidden; background: #e9ecef;">
+                    <div style="width: ${neverSeenPercent}%; background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);" 
+                         title="${ue.neverSeen} nouveaux termes"></div>
+                    <div style="width: ${learningPercent}%; background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);" 
+                         title="${ue.learning} en apprentissage (< 7j)"></div>
+                    <div style="width: ${consolidatedPercent}%; background: linear-gradient(135deg, #28a745 0%, #218838 100%);" 
+                         title="${ue.consolidated} consolidés (≥ 7j)"></div>
+                </div>
+            </div>
+            
+            ${hasOverdue ? `
+            <!-- Alerte retard -->
+            <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 0.8rem; margin-bottom: 1rem; border-radius: 4px;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="font-size: 1.2rem;">⚠️</span>
+                    <span style="color: #856404; font-weight: 600;">
+                        ${ue.overdue} terme${ue.overdue > 1 ? 's' : ''} en retard
+                    </span>
+                </div>
+            </div>
+            ` : ''}
+            
+            <!-- Difficultés perçues -->
+            <div style="display: flex; align-items: center; gap: 1.5rem; padding-top: 1rem; border-top: 1px solid #e9ecef;">
+                <div style="color: #6c757d; font-size: 0.9rem; font-weight: 600;">
+                    📊 Répartition difficultés:
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <span style="color: #28a745;">😊 Facile: <strong>${ue.easy}</strong></span>
+                    <span style="color: #ffc107;">🤔 Moyen: <strong>${ue.medium}</strong></span>
+                    <span style="color: #dc3545;">😓 Difficile: <strong>${ue.hard}</strong></span>
                 </div>
             </div>
         </div>
     `;
     }).join('');
 }
-
-/**
- * Générer le graphique d'évolution
- */
-function renderEvolutionChart() {
-    const ctx = document.getElementById('evolutionChart');
-    if (!ctx) return;
-    
-    // Préparer les données (derniers 30 jours)
-    const days = 30;
-    const labels = [];
-    const data = [];
-    
-    const today = new Date();
-    
-    for (let i = days - 1; i >= 0; i--) {
-        const date = new Date(today);
-        date.setDate(date.getDate() - i);
-        
-        const dateStr = date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
-        labels.push(dateStr);
-        
-        // Compter le nombre de cartes maîtrisées à cette date
-        let masteredCount = 0;
-        for (const progress of Object.values(userProgress)) {
-            if (progress.lastReviewed) {
-                const reviewDate = new Date(progress.lastReviewed);
-                if (reviewDate <= date && progress.intervalDays >= 30) {
-                    masteredCount++;
-                }
-            }
-        }
-        data.push(masteredCount);
-    }
-    
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Cartes maîtrisées',
-                data: data,
-                borderColor: '#667eea',
-                backgroundColor: 'rgba(102, 126, 234, 0.1)',
-                tension: 0.4,
-                fill: true,
-                pointRadius: 4,
-                pointBackgroundColor: '#667eea',
-                pointBorderColor: '#fff',
-                pointBorderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    padding: 12,
-                    titleFont: { size: 14 },
-                    bodyFont: { size: 13 }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        precision: 0
-                    }
-                }
-            }
-        }
-    });
-}
-
 /**
  * Générer le calendrier heatmap
  */
