@@ -356,21 +356,17 @@
                         sessionStorage.removeItem('coursesData_session');
                         sessionStorage.removeItem('userProgress_session');
                         
-                        alert('✅ Déconnexion réussie !');
-                        window.location.reload();
+                        console.log('✅ Déconnexion réussie, redirection automatique...');
+                        // Note: La redirection se fait automatiquement via onAuthStateChanged
                     } catch (error) {
                         console.error('Erreur lors de la déconnexion:', error);
                         alert('❌ Erreur lors de la déconnexion : ' + error.message);
                     }
                 });
             } else {
-                // Utilisateur non connecté
-                authStatus.innerHTML = `
-                    <div class="auth-links">
-                        <a href="./login.html">Se connecter</a>
-                        <a href="./register.html" class="btn-account">Créer un compte</a>
-                    </div>
-                `;
+                // Utilisateur non connecté → Rediriger vers la landing page
+                console.log('⚠️ Utilisateur non connecté, redirection vers index.html');
+                window.location.href = './index.html';
             }
         });
     </script>
