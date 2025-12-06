@@ -148,6 +148,102 @@
             transform: translateY(-3px);
         }
 
+        /* PWA Install Button */
+        .pwa-install-banner {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-install {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .btn-install:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(40, 167, 69, 0.5);
+        }
+
+        .install-hint {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+        }
+
+        /* iOS Install Modal */
+        .ios-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .ios-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .ios-modal h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .ios-modal ol {
+            text-align: left;
+            color: #495057;
+            line-height: 2;
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .ios-modal ol li {
+            margin-bottom: 0.75rem;
+        }
+
+        .ios-modal .close-btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
         /* Features Section */
         .features {
             padding: 5rem 20px;
@@ -317,8 +413,33 @@
                 <a href="./register.html" class="btn btn-primary">🚀 Commencer</a>
                 <a href="./login.html" class="btn btn-secondary">🔐 Se connecter</a>
             </div>
+
+            <!-- PWA Install Button (visible sur mobile uniquement) -->
+            <div id="pwa-install-banner" class="pwa-install-banner" style="display: none;">
+                <button id="pwa-install-button" class="btn-install">
+                    <span id="install-icon">📱</span>
+                    <span>Installer l'application</span>
+                </button>
+                <p class="install-hint">Accès hors ligne et notifications de révision</p>
+            </div>
         </div>
     </section>
+
+    <!-- iOS Install Modal -->
+    <div id="ios-modal" class="ios-modal">
+        <div class="ios-modal-content">
+            <h3>📱 Installer sur iPhone/iPad</h3>
+            <ol>
+                <li>Appuyez sur le bouton <strong>Partager</strong> 📤 en bas de l'écran</li>
+                <li>Faites défiler et sélectionnez <strong>"Sur l'écran d'accueil"</strong></li>
+                <li>Appuyez sur <strong>Ajouter</strong></li>
+            </ol>
+            <p style="color: #6c757d; font-size: 0.9rem; margin-top: 1rem;">
+                ⚠️ Cette fonction n'est disponible que dans Safari
+            </p>
+            <button class="close-btn" onclick="closeIOSModal()">J'ai compris</button>
+        </div>
+    </div>
 
     <!-- Features Section -->
     <section class="features">
@@ -455,6 +576,76 @@
                     });
             });
         }
+    </script>
+
+    <!-- PWA Install Button Logic -->
+    <script>
+        let deferredPrompt;
+        const installBanner = document.getElementById('pwa-install-banner');
+        const installButton = document.getElementById('pwa-install-button');
+        const installIcon = document.getElementById('install-icon');
+        const iosModal = document.getElementById('ios-modal');
+
+        // Détecter la plateforme
+        const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const isAndroid = /Android/.test(navigator.userAgent);
+        const isMobile = /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent);
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
+                            window.navigator.standalone === true;
+
+        // Afficher le bouton uniquement si mobile et pas déjà installé
+        if (isMobile && !isStandalone) {
+            installBanner.style.display = 'block';
+            
+            // Icône selon la plateforme
+            if (isIOS) {
+                installIcon.textContent = '🍎';
+            } else if (isAndroid) {
+                installIcon.textContent = '🤖';
+            }
+        }
+
+        // Capturer l'événement beforeinstallprompt (Android/Desktop)
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('✅ PWA installable (Android/Desktop)');
+        });
+
+        // Gestion du clic sur le bouton d'installation
+        installButton.addEventListener('click', async () => {
+            if (isIOS) {
+                // iOS : Afficher le modal avec instructions
+                iosModal.style.display = 'flex';
+            } else if (deferredPrompt) {
+                // Android : Déclencher le prompt natif
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                
+                if (outcome === 'accepted') {
+                    console.log('✅ Installation acceptée');
+                    installBanner.style.display = 'none';
+                } else {
+                    console.log('❌ Installation refusée');
+                }
+                
+                deferredPrompt = null;
+            } else {
+                console.warn('⚠️ Installation PWA non disponible');
+                alert('Installation non disponible sur ce navigateur');
+            }
+        });
+
+        // Fermer le modal iOS
+        function closeIOSModal() {
+            iosModal.style.display = 'none';
+        }
+
+        // Cacher le bouton après installation
+        window.addEventListener('appinstalled', () => {
+            console.log('✅ PWA installée avec succès');
+            installBanner.style.display = 'none';
+        });
     </script>
     
     <!-- PWA Installation -->
