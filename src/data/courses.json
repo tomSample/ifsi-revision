@@ -1,5 +1,5 @@
 {
-  "exportDate": "2025-12-02T17:54:21.339600",
+  "exportDate": "2025-12-06T15:50:47.864176",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -82,7 +82,7 @@
             "term": "Tissu"
           },
           {
-            "definition": "Tissu formé de cellules jointives reposant sur une membrane basale, jouant des rôles de protection, sécrétion, absorption.",
+            "definition": "Tissu formé de cellules jointives reposant sur une membrane basale qui joue le rôle de protection, sécrétion, absorption.",
             "term": "Tissu épithélial"
           },
           {
@@ -2696,10 +2696,570 @@
         ],
         "filename": "populations spécifiques.odt"
       }
+    ],
+    [
+      "ue_4_1_s1_prise_en_charge_des_escarres",
+      {
+        "title": "prise en charge des escarres",
+        "date": "03/12/2025",
+        "ue": "4.1.S1",
+        "author": "FG",
+        "definitions": [
+          {
+            "definition": "Lésion cutanée d’origine ischémique due à une compression prolongée des tissus mous entre une saillie osseuse et un plan dur, entraînant une nécrose tissulaire.",
+            "term": "L’escarre"
+          },
+          {
+            "definition": "Classification évolutive de 0 à 4 allant de la simple rougeur réversible (stade 0) à la perte de substance profonde atteignant muscle, tendon ou os (stade 4)​. Les stades 0, 1 et 2 (phlyctène ou érosion superficielle) sont des stades réversibles de l’escarre.",
+            "term": "Stades de l’escarre"
+          },
+          {
+            "definition": "Facteurs mécaniques comme la pression, la friction, le cisaillement et la macération prolongée, qui favorisent l’apparition d’escarres.",
+            "term": "Facteurs extrinsèques"
+          },
+          {
+            "definition": "Facteurs liés au patient (immobilité, dénutrition, déshydratation, incontinence, troubles de la conscience ou de la sensibilité, âge, pathologies graves, traitements) augmentant le risque d’escarre.",
+            "term": "Facteurs intrinsèques"
+          },
+          {
+            "definition": "Zones du corps en contact prolongé avec le plan dur (talons, sacrum, ischions, trochanters, occiput, oreilles, narines) particulièrement exposées aux escarres.",
+            "term": "Points d’appui"
+          },
+          {
+            "definition": "Grille d’évaluation standardisée du risque d’escarre basée sur six items (perception sensorielle, humidité, activité, mobilité, nutrition, friction/cisaillement).",
+            "term": "Échelle de Braden"
+          },
+          {
+            "definition": "Démarche systématique à l’admission et renouvelée régulièrement, combinant jugement clinique pluridisciplinaire et échelle de Braden, pour adapter la prévention.",
+            "term": "Évaluation du risque"
+          },
+          {
+            "definition": "Matelas, surmatelas, bottes et coussins adaptés utilisés pour réduire la pression sur les points d’appui",
+            "term": "Supports de décharge"
+          },
+          {
+            "definition": "Repositionnements réguliers (en général toutes les deux heures) visant à supprimer les appuis prolongés et à prévenir les escarres.",
+            "term": "Changements de position"
+          },
+          {
+            "definition": "Massage très léger sans appui profond, réalisé sur peau intacte aux zones d’appui pour stimuler la microcirculation et observer précocement les lésions.",
+            "term": "Effleurage"
+          },
+          {
+            "definition": "Prise en charge de la dénutrition et de la déshydratation (apport hydrique suffisant, alimentation enrichie, suivi du poids, albuminémie, recours au diététicien).",
+            "term": "Prévention nutritionnelle"
+          },
+          {
+            "definition": "Toilette au savon doux, séchage minutieux, protection des zones d’appui, gestion de la macération et surveillance rapprochée de la peau.",
+            "term": "Soins quotidiens cutanés"
+          },
+          {
+            "definition": "Complications infectieuses (septicémie, ostéite, abcès), fonctionnelles, orthopédiques et psychologiques pouvant compromettre autonomie et pronostic vital.",
+            "term": "Complications des escarres"
+          },
+          {
+            "definition": "Ensemble des documents (score de Braden, feuille de retournement, fiches de plaies, fiches alimentaire et hydrique) assurant le suivi de la prise en charge.",
+            "term": "Traçabilité"
+          }
+        ],
+        "filename": "prise en charge des escarres.odt"
+      }
+    ],
+    [
+      "ue_2_4_s1_traumatismes_crniens_et_rachidiens_prise_en_charge_aux_urgences",
+      {
+        "title": "Traumatismes crâniens et rachidiens – prise en charge aux urgences",
+        "date": "03/12/2025",
+        "ue": "2.4.S1",
+        "author": "Dr",
+        "definitions": [
+          {
+            "definition": "ensemble d’os reliés par des sutures, mobile jusqu’à 2 ans (fontanelles) puis inextensible à l’âge adulte, percé d’orifices pour nerfs et vaisseaux (orbites, foramen occipital, conduit auditif) et protégeant l’encéphale.",
+            "term": "Crâne / crâne osseux"
+          },
+          {
+            "definition": "cerveau, diencéphale (thalamus, hypothalamus…), tronc cérébral (mésencéphale, pont, bulbe) et cervelet, constitué de substance grise et blanche, protégé par les méninges et le LCR, siège des fonctions motrices, sensitives, végétatives et cognitives.",
+            "term": "Encéphale"
+          },
+          {
+            "definition": "liquide clair produit par les plexus choroïdes dans les ventricules, circulant dans le système ventriculaire et l’espace sous-arachnoïdien, jouant un rôle de protection mécanique et métabolique du système nerveux central.",
+            "term": "LCR (liquide céphalo-rachidien)"
+          },
+          {
+            "definition": "cavités intracérébrales où se forme le LCR, permettant sa circulation vers l’espace sous-arachnoïdien puis sa résorption.",
+            "term": "Ventricules cérébraux"
+          },
+          {
+            "definition": "trois membranes (dure-mère, arachnoïde, pie-mère) entourant cerveau et moelle, délimitant l’espace sous-arachnoïdien où circule le LCR.",
+            "term": "Méninges"
+          },
+          {
+            "definition": "zone riche en corps cellulaires neuronaux (cortex cérébral, noyaux profonds, “papillon” central dans la moelle), impliquée dans l’intégration de l’information.",
+            "term": "Substance grise"
+          },
+          {
+            "definition": "zone riche en axones myélinisés formant les voies de communication entre structures nerveuses (centrale dans le cerveau, périphérique dans la moelle).",
+            "term": "Substance blanche"
+          },
+          {
+            "definition": "colonne vertébrale (7 vertèbres cervicales, 12 thoraciques, 5 lombaires, 5 sacrées soudées) abritant la moelle épinière, relais entre encéphale et reste du corps.",
+            "term": "Rachis et moelle épinière"
+          },
+          {
+            "definition": "apport artériel principalement assuré par les carotides internes et les artères vertébrales, drainage veineux vers les sinus veineux puis les veines jugulaires.",
+            "term": "Vascularisation cérébrale"
+          },
+          {
+            "definition": "incapacité à enregistrer de nouveaux souvenirs après l’évènement causal (ex : répète les mêmes questions).",
+            "term": "Amnésie antérograde"
+          },
+          {
+            "definition": "perte des souvenirs précédant l’évènement causal (trou de mémoire sur l’accident ou la période juste avant).",
+            "term": "Amnésie rétrograde"
+          },
+          {
+            "definition": "interruption transitoire de la conscience au moment du traumatisme, retrouvée à l’interrogatoire ou par les témoins.",
+            "term": "PCI (perte de connaissance initiale)"
+          },
+          {
+            "definition": "pression régnant dans la boîte crânienne, résultant des volumes cerveau/sang/LCR, normale autour de 5–10 mmHg chez l’adulte, mesurée par un dispositif invasif (ex : cathéter intraparenchymateux).",
+            "term": "PIC (pression intracrânienne)"
+          },
+          {
+            "definition": "élévation pathologique de la PIC responsable de souffrance cérébrale, se manifestant par céphalées, vomissements, troubles visuels, œdème papillaire, altération de la conscience, HTA, bradycardie et irrégularité de la FR.",
+            "term": "HTIC (hypertension intracrânienne)"
+          },
+          {
+            "definition": "tableau associant céphalées, raideur de nuque et photophobie/phonophobie, traduisant une irritation ou inflammation des méninges.",
+            "term": "Syndrome méningé"
+          },
+          {
+            "definition": "augmentation pathologique du volume de LCR (hypersécrétion, défaut de résorption ou obstacle), entraînant dilatation ventriculaire et signes d’HTIC.",
+            "term": "Hydrocéphalie"
+          },
+          {
+            "definition": "structures profondes (noyau caudé, putamen, pallidum, etc.) modulant les fonctions motrices, sensitives associatives et émotionnelles, participant au contrôle de l’action et vulnérables à l’ischémie et aux toxiques.",
+            "term": "Noyaux gris centraux"
+          },
+          {
+            "definition": "échelle de 3 à 15 évaluant la conscience par ouverture des yeux, réponse verbale et motrice ; 15 = normal, ≤ 8 = coma nécessitant prise en charge spécialisée.",
+            "term": "Score de Glasgow (GCS)"
+          },
+          {
+            "definition": "adaptation du GCS à l’enfant avec réponses verbales et motrices spécifiques à l’âge, permettant la même stratification de gravité.",
+            "term": "Score de Glasgow pédiatrique"
+          },
+          {
+            "definition": "ensemble des facteurs généraux (hypotension, hypertension, hypoxie, hyper/hypocapnie, hyperthermie, anémie, troubles métaboliques…) susceptibles d’aggraver les lésions cérébrales initiales.",
+            "term": "ACSOS (agressions cérébrales secondaires d’origine systémique)"
+          },
+          {
+            "definition": "transfert d’énergie mécanique sur la tête (impact, accélération, décélération) entraînant un dysfonctionnement cérébral avec ou sans lésion visible.",
+            "term": "Traumatisme crânien (TC)"
+          },
+          {
+            "definition": "pathologie fréquente, 4ᵉ cause de mortalité, 1ʳᵉ cause de mortalité chez les moins de 20 ans, touchant surtout les hommes, les sujets âgés, les enfants et les conducteurs/AVP/agressions.",
+            "term": "Incidence et population à risque (TC)"
+          },
+          {
+            "definition": "description selon la gravité (niveau de conscience, confusion, durée des troubles, réversibilité), le caractère lésionnel (lésions visibles ou non) et les facteurs associés (intoxication, traitements, comorbidités).",
+            "term": "Caractérisation du TC"
+          },
+          {
+            "definition": "TC avec GCS 13–15, perturbation transitoire du fonctionnement cérébral, souvent sans lésion au scanner, surveillable à domicile si pas de facteur de risque ni de signe d’alarme.",
+            "term": "TC léger (TCL)"
+          },
+          {
+            "definition": "TC avec GCS ≤ 8 après correction des fonctions vitales, souvent associé à des lésions intracrâniennes et nécessitant réanimation, monitorage et neurochirurgie possible.",
+            "term": "TC grave (TCG)"
+          },
+          {
+            "definition": "classification clinique divisant les TC en groupes de risque (1 faible, 2 modéré, 3 élevé) guidant le recours au scanner, l’hospitalisation et la surveillance.",
+            "term": "Classification de Masters"
+          },
+          {
+            "definition": "ensemble des gestes initiaux (collier cervical, plan dur ou matelas coquille, déshabillage, proclive 30°, monitorage, dextro, température, VVP, bilan biologique, ECG, analgésie adaptée sans produits pro-convulsivants) pour sécuriser le patient.",
+            "term": "Rôle infirmier – mise en condition TC"
+          },
+          {
+            "definition": "interrogatoire et examen clinique détaillés visant à préciser la cinétique et le contexte du traumatisme, le risque vital immédiat, la gravité, le caractère fermé ou ouvert, et les facteurs de complication (traitements, toxiques, antécédents).",
+            "term": "Évaluation patient TC"
+          },
+          {
+            "definition": "méthode structurée d’évaluation initiale (Airway, Breathing, Circulation, Disability, Environment/Exposure) pour repérer et traiter en priorité les détresses vitales.",
+            "term": "ABCDE"
+          },
+          {
+            "definition": "recours principalement au scanner cérébral (souvent body-scanner en polytrauma), l’IRM étant réservée à des cas particuliers (ex : suspicion de lésions axonales diffuses).",
+            "term": "Imagerie dans le TC"
+          },
+          {
+            "definition": "plaies du cuir chevelu très vascularisé, souvent très hémorragiques, nécessitant hémostase rapide, suture, pansement compressif et vérification de la vaccination antitétanique.",
+            "term": "Plaies du scalp"
+          },
+          {
+            "definition": "fractures simples de la voûte (risque fonctionnel selon la localisation, ex : rocher) ou embarrures (enfoncement osseux) plus graves avec risque d’atteinte cérébrale sous-jacente.",
+            "term": "Lésions osseuses du crâne"
+          },
+          {
+            "definition": "fracture profonde avec risque de brèche ostéo-méningée, se manifestant par fuite de LCR (rhinorrhée/otorrhée claire), hémotympan, ecchymoses péri-orbitaires, signe de Battle, et possibles paralysies de nerfs crâniens.",
+            "term": "Fracture de la base du crâne"
+          },
+          {
+            "definition": "hémorragie entre os et dure-mère, souvent artérielle, typiquement avec intervalle libre puis dégradation brutale, représentant une urgence neurochirurgicale à pronostic fonctionnel bon si prise en charge rapide mais avec mortalité non négligeable.",
+            "term": "Hématome extra-dural (HED)"
+          },
+          {
+            "definition": "hémorragie sous la dure-mère, souvent veineuse, de pronostic plus sombre car fréquemment associée à d’autres lésions, sans véritable intervalle libre et avec risque élevé de séquelles.",
+            "term": "Hématome sous-dural (HSD) aigu"
+          },
+          {
+            "definition": "présence de sang dans l’espace sous-arachnoïdien, post-traumatique ou anévrysmale, responsable de céphalées brutales, troubles de conscience, syndrome méningé et risque élevé de mortalité et de séquelles.",
+            "term": "Hémorragie sous-arachnoïdienne (HSA)"
+          },
+          {
+            "definition": "hémorragie dans le tissu cérébral, le plus souvent d’origine vasculaire (HTA, MAV, tumeur, anticoagulants) plutôt que traumatique, relevant du cadre des AVC hémorragiques.",
+            "term": "Hémorragie intraparenchymateuse"
+          },
+          {
+            "definition": "présence de sang dans les ventricules cérébraux, aggravant la circulation du LCR, majorant le risque d’hydrocéphalie et associée à un pronostic sombre.",
+            "term": "Hémorragie intraventriculaire"
+          },
+          {
+            "definition": "ecchymose du parenchyme cérébral par mécanisme oedémateux et/ou hémorragique, d’importance variable, pouvant être pauci-symptomatique ou conduire à des tableaux graves.",
+            "term": "Contusion cérébrale"
+          },
+          {
+            "definition": "lésions de cisaillement des axones de la substance blanche, fréquentes dans les TC graves, responsables de coma prolongé avec TDM parfois normal et confirmées par IRM.",
+            "term": "Lésions axonales diffuses (LAD)"
+          },
+          {
+            "definition": "déplacement d’une partie du cerveau à travers une structure rigide (ex : trou occipital) sous l’effet d’une HTIC, entraînant compression du tronc cérébral et risque de mort encéphalique.",
+            "term": "Engagement cérébral"
+          },
+          {
+            "definition": "ensemble des phénomènes retardés (oedème, engagement, ischémies secondaires, hydrocéphalie, infections, séquelles motrices et cognitives) aggravant le pronostic.",
+            "term": "Complications secondaires du TCG"
+          },
+          {
+            "definition": "prise en charge spécialisée du patient cérébro-lésé grave visant à contrôler la PIC, optimiser le débit sanguin cérébral, corriger les ACSOS et prévenir les complications (ventilation, hémodynamique, métabolique, température).",
+            "term": "Neuro-réanimation"
+          },
+          {
+            "definition": "installation en proclive 30°, immobilisation du rachis, protection des VAS (voire AG), optimisation de l’oxygénation et de la ventilation, surveillance et correction des paramètres hémodynamiques, métaboliques et thermiques, prévention des complications de décubitus.",
+            "term": "Rôle IDE en neuro-réanimation"
+          },
+          {
+            "definition": "drain ventriculaire permettant l’évacuation contrôlée du LCR pour diminuer la PIC et traiter certaines hydrocéphalies aiguës.",
+            "term": "DVE (dérivation ventriculaire externe)"
+          },
+          {
+            "definition": "ablation temporaire d’un volet osseux du crâne pour laisser au cerveau la place de se dilater et diminuer une HTIC réfractaire.",
+            "term": "Craniectomie décompressive"
+          },
+          {
+            "definition": "épisode transitoire d’amnésie antérograde et parfois rétrograde, brutal, régressant en moins de 24 h, généralement bénin, souvent déclenché par un stress ou un effort.",
+            "term": "Ictus amnésique"
+          },
+          {
+            "definition": "commotions cérébrales à répétition exposant à une encéphalopathie traumatique chronique, se manifestant à long terme par troubles cognitifs, comportementaux et moteurs proches d’un tableau démentiel.",
+            "term": "TC du sportif"
+          },
+          {
+            "definition": "lésion anatomique des structures vertébrales ± atteinte médullaire (commotion, contusion, compression, section), définie par sa localisation, sa stabilité et sa menace sur la moelle.",
+            "term": "Traumatisme rachidien"
+          },
+          {
+            "definition": "atteinte ligamentaire entre deux vertèbres, bénigne si stable, grave si rupture ligamentaire et risque d’instabilité.",
+            "term": "Entorse vertébrale"
+          },
+          {
+            "definition": "déplacement anormal d’une vertèbre par rapport à une autre, en général instable, exposant à la compression médullaire.",
+            "term": "Luxation vertébrale"
+          },
+          {
+            "definition": "rupture osseuse d’une vertèbre, stable ou instable, potentiellement responsable de contusion ou compression médullaire.",
+            "term": "Fracture vertébrale"
+          },
+          {
+            "definition": "atteinte fonctionnelle transitoire de la moelle, avec récupération possible sans séquelle anatomique.",
+            "term": "Commotion médullaire"
+          },
+          {
+            "definition": "ecchymose et oedème de la moelle, à risque de séquelles neurologiques persistantes.",
+            "term": "Contusion médullaire"
+          },
+          {
+            "definition": "souffrance de la moelle par un élément extrinsèque (fragment osseux, hématome, tumeur), responsable de déficit neurologique progressif ou brutal.",
+            "term": "Compression médullaire"
+          },
+          {
+            "definition": "rupture complète de la moelle, entraînant un déficit moteur et sensitif définitif sous le niveau lésionnel.",
+            "term": "Section médullaire"
+          },
+          {
+            "definition": "paralysie des quatre membres liée à une lésion médullaire cervicale haute (au-dessus de T1).",
+            "term": "Tétraplégie"
+          },
+          {
+            "definition": "paralysie des membres inférieurs liée à une lésion médullaire thoracique ou lombaire.",
+            "term": "Paraplégie"
+          },
+          {
+            "definition": "territoires cutanés innervés par une racine sensitive donnée, utilisés pour repérer un niveau lésionnel.",
+            "term": "Dermatomes"
+          },
+          {
+            "definition": "groupes musculaires dépendant principalement d’une racine motrice, utilisés pour évaluer la fonction motrice segmentaire.",
+            "term": "Myotomes"
+          },
+          {
+            "definition": "règle de sécurité imposant l’immobilisation systématique du rachis tant qu’une lésion n’est pas éliminée.",
+            "term": "Principe “tout TC est un traumatisme du rachis jusqu’à preuve du contraire”"
+          },
+          {
+            "definition": "dispositif d’immobilisation du rachis cervical pour prévenir les aggravations lésionnelles.",
+            "term": "Collier cervical rigide"
+          },
+          {
+            "definition": "support rigide permettant un maintien en décubitus strict avec respect de l’axe tête–cou–tronc.",
+            "term": "Plan dur / matelas coquille"
+          },
+          {
+            "definition": "immobilisation (plan dur, collier, respect de l’axe), décoquillage uniquement sur avis médical, évaluation neurologique et recherche de douleur rachidienne.",
+            "term": "Prise en charge trauma rachidien"
+          },
+          {
+            "definition": "enfant très vulnérable (fontanelles, sutures non soudées, tête lourde, cou peu musclé), risque majoré de lésions axonales diffuses et de séquelles, Glasgow adapté et grande vigilance (chutes, AVP, maltraitance).",
+            "term": "Spécificités pédiatriques (TC/rachis)"
+          },
+          {
+            "definition": "traumatisme crânien non accidentel du nourrisson par secousses, associant souvent HSD, LAD, atteinte cervicale et hémorragies rétiniennes, avec mortalité et séquelles très élevées.",
+            "term": "Syndrome du bébé secoué"
+          }
+        ],
+        "filename": "Traumatismes crâniens et rachidiens – prise en charge aux urgences.odt"
+      }
+    ],
+    [
+      "ue_4_4_s1_les_antalgiques",
+      {
+        "title": "les antalgiques",
+        "date": "05/12/2025",
+        "ue": "4.4.S1",
+        "author": "ext",
+        "definitions": [
+          {
+            "definition": "Médicament destiné à soulager la douleur, à visée symptomatique, sans traiter la cause sous-jacente.",
+            "term": "Antalgique"
+          },
+          {
+            "definition": "Classification des antalgiques en trois niveaux (non opioïdes, opioïdes faibles, opioïdes forts) en fonction de l’intensité de la douleur et du type de médicament utilisé.",
+            "term": "Paliers antalgiques (OMS)"
+          },
+          {
+            "definition": "Alternative à la classification de l’OMS. On y retrouve différentes catégories comme les anti-nociceptifs, anti-hyperalgiques, etc.",
+            "term": "Classification de Lussier et Beaulieu (antalgiques)"
+          },
+          {
+            "definition": "thalamus",
+            "term": "Centre régulateur douleur"
+          },
+          {
+            "definition": "Antalgique non opioïde (paracétamol, AINS, néfopam) indiqué pour les douleurs légères à modérées.",
+            "term": "Antalgique de palier I"
+          },
+          {
+            "definition": "Opioïde faible (codéine, tramadol) indiqué pour les douleurs d’intensité moyenne à forte. Action sur récepteur pré-synaptique ⇒ inhibe libération des neurotransmetteurs excitatoires ⇒ en post-synaptique diminution de la probabilité de génération des potentiels d’action.",
+            "term": "Antalgique de palier II"
+          },
+          {
+            "definition": "Opioïde fort (morphine, oxycodone, fentanyl, hydromorphone) indiqué pour les douleurs intenses ou rebelles. Action sur récepteur pré-synaptique ⇒ inhibe libération des neurotransmetteurs excitatoires ⇒ en post-synaptique diminution de la probabilité de génération des potentiels d’action.",
+            "term": "Antalgique de palier III"
+          },
+          {
+            "definition": "Médicament non classé comme antalgique mais qui traite un mécanisme de la douleur ou un symptôme associé (antispasmodiques, corticoïdes, antidépresseurs, antiépileptiques, anesthésiques locaux, etc.).",
+            "term": "Co‑antalgique"
+          },
+          {
+            "definition": "Antalgique et antipyrétique non opioïde de première intention, à métabolisme hépatique, avec risque d’hépatotoxicité en cas de surdosage. Élimination dans les urines.",
+            "term": "Paracétamol"
+          },
+          {
+            "definition": "Antalgiques non opioïdes à action anti‑inflammatoire (ibuprofène, kétoprofène, diclofénac, etc.) utilisés notamment pour les douleurs d’origine inflammatoire.",
+            "term": "AINS"
+          },
+          {
+            "definition": "Antalgique central non opioïde inhibant la recapture de la sérotonine, noradrénaline et dopamine, sans effet anti‑inflammatoire ni antipyrétique.",
+            "term": "Néfopam"
+          },
+          {
+            "definition": "Antalgique agissant sur les récepteurs morphiniques (mu, kappa, delta) avec effets antalgiques puissants mais risques de somnolence, dépression respiratoire, constipation, dépendance et tolérance.",
+            "term": "Opioïde"
+          },
+          {
+            "definition": "Opioïde faible souvent associé au paracétamol, à effet antalgique et antitussif, exposant aux effets indésirables morphiniques et au risque de dépendance.",
+            "term": "Codéine"
+          },
+          {
+            "definition": "Opioïde faible agissant sur les récepteurs pré-synaptiques mu et la recapture de la noradrénaline et de la sérotonine, efficace sur certaines douleurs neuropathiques, avec abaissement du seuil épileptogène, hypoglycémies et syndrome sérotoninergique (agitation, confusion, troubles de la tension, tachycardie, frissons, sueurs, tremblements, rigidité, diarrhée).",
+            "term": "Tramadol"
+          },
+          {
+            "definition": "Molécule se fixant sur les récepteurs opioïdes et les activant complètement (morphine, oxycodone, fentanyl), sans effet plafond antalgique.",
+            "term": "Agoniste pur (opioïde)"
+          },
+          {
+            "definition": "Opioïde (ex. buprénorphine) ayant un effet partiel ou mixte sur les récepteurs, avec effet plafond et risque de déclencher un syndrome de sevrage si associé à un agoniste pur.",
+            "term": "Agoniste‑antagoniste"
+          },
+          {
+            "definition": "Molécule (naloxone) se fixant sur les récepteurs opioïdes sans les activer, utilisée comme antidote en cas de surdosage.",
+            "term": "Antagoniste opioïde"
+          },
+          {
+            "definition": "Effet indésirable quasi systématique des opioïdes nécessitant prévention hygiéno‑diététique et prescription de laxatifs, voire antagonistes périphériques.",
+            "term": "Constipation induite par opioïdes"
+          },
+          {
+            "definition": "Douleurs intenses, brèves, avec montée rapide, survenant chez des patients déjà traités par opioïdes, pouvant nécessiter des fentanyl transmuqueux (ressemble à une sucette, ou sous forme de spray nasal).",
+            "term": "Accès douloureux paroxystiques (ADP)"
+          },
+          {
+            "definition": "Changement d’opioïde fort pour améliorer tolérance ou efficacité, en s’aidant de tables d’équianalgésie (cf opioconvert).",
+            "term": "Rotation des opioïdes"
+          },
+          {
+            "definition": "Association raisonnée de plusieurs antalgiques ou co‑antalgiques agissant sur des mécanismes différents de la douleur afin d’augmenter l’efficacité et réduire les effets indésirables.",
+            "term": "Antalgésie multimodale"
+          },
+          {
+            "definition": "Mode d’administration libérant l’antalgique de façon prolongée à travers la peau, nécessitant des précautions (fièvre, sueur, élimination des déchets).",
+            "term": "Voie transdermique (patch)"
+          },
+          {
+            "definition": "Temps entre l’administration d’un antalgique et le début de l’effet, déterminant le moment optimal pour réaliser un soin douloureux. Morphinique en IV = 5min.",
+            "term": "Délai d’action"
+          },
+          {
+            "definition": "Douleur liée à une lésion ou un dysfonctionnement du système nerveux, nécessitant souvent des traitements spécifiques (antidépresseurs, antiépileptiques, topiques). Une fois le traitement mis en place, son efficacité peut être atteinte en plusieurs jours voire semaines.",
+            "term": "Douleur neuropathique"
+          },
+          {
+            "definition": "Médicaments (amitriptyline, clomipramine) utilisés en faible dose dans les douleurs neuropathiques, avec effets anticholinergiques et risques cardiaques (allongement du QT pour l’amitriptyline = Laroxyl).",
+            "term": "Antidépresseurs tricycliques"
+          },
+          {
+            "definition": "Antidépresseurs inhibiteurs de la recapture de la sérotonine et noradrénaline (duloxétine, venlafaxine) utilisés dans certaines douleurs neuropathiques.",
+            "term": "IRSNa"
+          },
+          {
+            "definition": "Molécules (gabapentine, prégabaline, carbamazépine) à effet antihyperalgésique utilisées dans les douleurs neuropathiques, avec nécessité de titration progressive et d’arrêt progressif également.",
+            "term": "Antiépileptiques antalgiques"
+          },
+          {
+            "definition": "Antalgique d’appoint antagoniste NMDA, utilisé dans certaines douleurs aiguës ou chroniques rebelles, souvent en milieu spécialisé, avec surveillance étroite des effets neuropsychiques.",
+            "term": "Kétamine"
+          },
+          {
+            "definition": "Opioïde particulier agissant aussi sur les récepteurs NMDA, utilisé dans certaines douleurs chroniques ou neuropathiques réfractaires, avec demi‑vie longue et risque d’allongement du QT. Utilisé également dans le sevrage de l’héroïne.",
+            "term": "Méthadone"
+          },
+          {
+            "definition": "Substances dérivées du cannabis parfois utilisées dans certaines douleurs neuropathiques, avec données cliniques encore limitées.",
+            "term": "Cannabinoïdes"
+          },
+          {
+            "definition": "Mélange équimolaire oxygène–protoxyde d’azote procurant analgésie de surface, anxiolyse et sédation consciente pour gestes courts, nécessitant coopération du patient et environnement sécurisé.",
+            "term": "MEOPA"
+          },
+          {
+            "definition": "Anesthésique local topique (crème ou patch) permettant une anesthésie cutanée superficielle avant gestes douloureux (ponctions, pansements).",
+            "term": "Lidocaïne (EMLA)"
+          },
+          {
+            "definition": "Stimulation électrique transcutanée visant à moduler le message douloureux par des impulsions électriques appliquées sur la peau.",
+            "term": "TENS"
+          },
+          {
+            "definition": "Ensemble de techniques (relaxation, hypnose, environnement, immobilisation, chaleur/froid, psychothérapie, etc.) complétant les traitements médicamenteux de la douleur.",
+            "term": "Analgésie non médicamenteuse"
+          },
+          {
+            "definition": "Risques digestif, rénal et hémorragique, qui limite leur utilisation et impose des précautions.",
+            "term": "Effets indésirables des AINS"
+          },
+          {
+            "definition": "Toxicité hépatique en cas de surdosage et réactions cutanées allergiques rares, justifiant le respect strict de la dose maximale et l’usage de l’antidote en cas d’excès.",
+            "term": "Effets indésirables du paracétamol"
+          },
+          {
+            "definition": "Sueurs, somnolence, nausées, vertiges et effets atropiniques (sécheresse buccale, tachycardie, confusion, hallucinations), avec risque d’abus et de dépendance.",
+            "term": "Effets indésirables du néfopam"
+          },
+          {
+            "definition": "Constipation ++, rétention urinaire ++, dépression respiratoire surtout en cas de surdosage, nausées, vomissements à l’introduction ++, prurit, sueurs, somnolence, hallucinations, convulsions, dépendance, tolérance.",
+            "term": "Effets indésirables des opioïdes"
+          },
+          {
+            "definition": "Effet indésirable quasi systématique des opioïdes nécessitant prévention hygiéno‑diététique, laxatifs systématiques et, en cas d’échec, antagonistes périphériques (méthylnaltrexone, naloxégol).",
+            "term": "Constipation sous opioïdes"
+          },
+          {
+            "definition": "Effets morphiniques classiques, abaissement du seuil épileptogène, hypoglycémies et risque de syndrome sérotoninergique nécessitant l’arrêt immédiat du traitement en cas de signes.",
+            "term": "Effets indésirables du tramadol"
+          },
+          {
+            "definition": "Insuffisance respiratoire ou hépatique sévère, hypertension intracrânienne, épilepsie non contrôlée, intoxication alcoolique aiguë, allergie et associations à d’autres morphiniques ou Inhibiteurs de la MonoAmine Oxydase (IMAO).",
+            "term": "Contre‑indications des opioïdes"
+          },
+          {
+            "definition": "Allergie, asthme ou insuffisance respiratoire, toxicomanie active et association avec agonistes‑antagonistes morphiniques, en tenant compte aussi des contre‑indications du paracétamol associé.",
+            "term": "Contre‑indications de la codéine"
+          },
+          {
+            "definition": "Allergie, insuffisance hépatique ou respiratoire, toxicomanie, association avec buprénorphine ou IMAO, avec prudence accrue en cas d’épilepsie, diabète ou traitement sérotoninergique.",
+            "term": "Contre‑indications du tramadol"
+          },
+          {
+            "definition": "Âge inférieur à 15 ans, antécédents de convulsions ou épilepsie, risque de glaucome et de rétention urinaire.",
+            "term": "Contre‑indications du néfopam"
+          },
+          {
+            "definition": "Principes comprenant la rotation possible des opiacés, la mise en place d’un traitement de fond avec doses de secours, le respect des durées maximales de prescription et l’adaptation progressive des doses selon la douleur.",
+            "term": "Règles de base du traitement par opiacés"
+          },
+          {
+            "definition": "Procédure d’ajustement de la morphine à libération immédiate pour atteindre une douleur contrôlée avant passage à une forme à libération prolongée.",
+            "term": "Titration morphinique"
+          },
+          {
+            "definition": "Augmentation de 30 à 50 % de la dose quotidienne (ou ajout des bolus à la dose de fond) si la douleur reste supérieure à 3/10 ou si plus de trois interdoses sont nécessaires par jour, avec possibilité de diminuer ensuite d’environ 30 % par jour.",
+            "term": "Adaptation des doses d’opioïdes"
+          },
+          {
+            "definition": "Suite d’actions en cas de somnolence associée à une fréquence respiratoire inférieure à 10/min, incluant arrêt de la morphine, appel médical, stimulation du patient, oxygénation, titration de naloxone puis relais en perfusion continue selon protocole.",
+            "term": "Conduite à tenir en cas de surdosage morphinique"
+          },
+          {
+            "definition": "Stratégie consistant à associer plusieurs antalgiques ou co‑antalgiques aux mécanismes d’action différents pour améliorer l’efficacité et réduire les effets indésirables.",
+            "term": "Association d’antalgiques (analgésie multimodale)"
+          },
+          {
+            "definition": "Combinaisons fréquentes en post‑opératoire (paracétamol, néfopam, kétoprofène, tramadol, morphinique) et association possible du paracétamol avec tous les autres antalgiques, avec effet synergique avec la morphine.",
+            "term": "Associations utiles"
+          },
+          {
+            "definition": "Association de deux antalgiques ayant le même mécanisme (par exemple tramadol et autre morphinique) en raison d’un bénéfice antalgique limité mais d’une majoration des risques d’effets indésirables.",
+            "term": "Associations à éviter"
+          }
+        ],
+        "filename": "les antalgiques.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 593,
+    "totalTerms": 724,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0

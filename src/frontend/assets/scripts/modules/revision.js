@@ -630,6 +630,17 @@ function showCurrentTerm() {
     document.getElementById('termName').textContent = currentTerm.term;
     document.getElementById('termDefinition').textContent = currentTerm.definition;
     
+    // Afficher le titre du cours sur les deux faces
+    const courseTitle = currentTerm.courseTitle || 'Cours non spécifié';
+    const courseTitleEl = document.getElementById('courseTitle');
+    const courseTitleBackEl = document.getElementById('courseTitleBack');
+    if (courseTitleEl) {
+        courseTitleEl.textContent = `📚 ${courseTitle}`;
+    }
+    if (courseTitleBackEl) {
+        courseTitleBackEl.textContent = `📚 ${courseTitle}`;
+    }
+    
     // Mettre à jour aussi le terme sur la face arrière
     const termNameBack = document.getElementById('termNameBack');
     if (termNameBack) {
