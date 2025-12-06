@@ -28,10 +28,6 @@ function setupUploads() {
 // ========================================
 // NOTE: switchTab() est défini dans admin.html pour gérer tous les onglets (courses, images, reports, feedbacks)
 
-// Réinitialiser les formulaires lors du changement d'onglet
-    resetAllForms();
-}
-
 // ========================================
 // UPLOAD DE COURS (.ODT)
 // ========================================
