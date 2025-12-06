@@ -6,8 +6,12 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', async () => {
         try {
-            const registration = await navigator.serviceWorker.register('/service-worker.js', {
-                scope: '/'
+            // Résoudre le chemin pour GitHub Pages
+            const swPath = window.resolvePath ? window.resolvePath('/service-worker.js') : '/service-worker.js';
+            const swScope = window.resolvePath ? window.resolvePath('/') : '/';
+            
+            const registration = await navigator.serviceWorker.register(swPath, {
+                scope: swScope
             });
             
             console.log('✅ [SW] Service Worker enregistré:', registration.scope);
