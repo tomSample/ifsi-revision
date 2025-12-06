@@ -351,18 +351,11 @@ class AdminReportsManager {
                     throw new Error(result.error || 'Erreur lors de la mise à jour');
                 }
 
-                // 2. Mettre à jour le signalement dans Firestore
-                const { doc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
+                // 2. Supprimer le signalement de Firestore (plus besoin de le garder)
+                const { doc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
                 
                 const reportRef = doc(this.db, 'reports', reportId);
-                await updateDoc(reportRef, {
-                    status: 'approved',
-                    suggestedDefinition: newDefinition,
-                    adminNotes: adminNotes || null,
-                    treatedBy: this.auth.currentUser?.uid || 'admin',
-                    treatedAt: serverTimestamp(),
-                    appliedToJson: true  // Flag pour indiquer que la modification a été appliquée
-                });
+                await deleteDoc(reportRef);
 
                 // Fermer le modal
                 document.getElementById('editDefinitionModal')?.remove();
@@ -380,22 +373,18 @@ class AdminReportsManager {
     }
 
     /**
-     * Approuver un signalement
+     * Approuver un signalement (supprime le signalement)
      */
     async approveReport(reportId) {
-        if (confirm('Marquer ce signalement comme traité ?')) {
+        if (confirm('Marquer ce signalement comme traité ?\n\nLe signalement sera supprimé de la base de données.')) {
             try {
-                const { doc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
+                const { doc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
                 
                 const reportRef = doc(this.db, 'reports', reportId);
-                await updateDoc(reportRef, {
-                    status: 'approved',
-                    treatedBy: this.auth.currentUser?.uid || 'admin',
-                    treatedAt: serverTimestamp()
-                });
+                await deleteDoc(reportRef);
 
                 await this.loadReports();
-                this.showSuccess('Signalement marqué comme traité');
+                this.showSuccess('Signalement traité et supprimé');
 
             } catch (error) {
                 console.error('❌ Erreur:', error);
@@ -405,24 +394,19 @@ class AdminReportsManager {
     }
 
     /**
-     * Rejeter un signalement
+     * Rejeter un signalement (supprime le signalement)
      */
     async rejectReport(reportId) {
-        const reason = prompt('Raison du rejet (optionnel) :');
+        const reason = prompt('Raison du rejet (optionnel) :\n\nLe signalement sera supprimé de la base de données.');
         if (reason !== null) {
             try {
-                const { doc, updateDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
+                const { doc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
                 
                 const reportRef = doc(this.db, 'reports', reportId);
-                await updateDoc(reportRef, {
-                    status: 'rejected',
-                    adminNotes: reason || 'Signalement rejeté',
-                    treatedBy: this.auth.currentUser?.uid || 'admin',
-                    treatedAt: serverTimestamp()
-                });
+                await deleteDoc(reportRef);
 
                 await this.loadReports();
-                this.showSuccess('Signalement rejeté');
+                this.showSuccess('Signalement rejeté et supprimé');
 
             } catch (error) {
                 console.error('❌ Erreur:', error);

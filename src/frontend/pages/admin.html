@@ -1438,6 +1438,17 @@
                 if (window.adminReportsManager) {
                     setTimeout(() => window.adminReportsManager.init(), 500);
                 }
+                
+                // DIAGNOSTIC: Vérifier que les sections sont bien cachées sauf coursesSection
+                setTimeout(() => {
+                    const sections = document.querySelectorAll('.admin-section');
+                    console.log('🔍 DIAGNOSTIC SECTIONS:');
+                    sections.forEach(section => {
+                        const isActive = section.classList.contains('active');
+                        const displayStyle = window.getComputedStyle(section).display;
+                        console.log(`  - ${section.id}: active=${isActive}, display=${displayStyle}`);
+                    });
+                }, 1000);
             } else {
                 showAuthModal();
             }

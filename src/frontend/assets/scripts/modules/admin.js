@@ -26,28 +26,9 @@ function setupUploads() {
 // ========================================
 // GESTION DES ONGLETS
 // ========================================
+// NOTE: switchTab() est défini dans admin.html pour gérer tous les onglets (courses, images, reports, feedbacks)
 
-function switchTab(tabName) {
-    // Mettre à jour les onglets
-    document.querySelectorAll('.admin-tab').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    event.target.classList.add('active');
-    
-    // Mettre à jour les sections
-    document.querySelectorAll('.admin-section').forEach(section => {
-        section.classList.remove('active');
-    });
-    
-    if (tabName === 'courses') {
-        document.getElementById('coursesSection').classList.add('active');
-        activeTab = 'courses';
-    } else if (tabName === 'images') {
-        document.getElementById('imagesSection').classList.add('active');
-        activeTab = 'images';
-    }
-    
-    // Réinitialiser les formulaires lors du changement d'onglet
+// Réinitialiser les formulaires lors du changement d'onglet
     resetAllForms();
 }
 
