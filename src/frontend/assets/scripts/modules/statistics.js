@@ -391,31 +391,40 @@ function displayUEDetails(ueStats) {
             <!-- Barre de progression principale (grande et visuelle) -->
             <div style="margin-bottom: ${hasOverdue ? '1rem' : '0.8rem'};">
                 <div style="display: flex; height: 32px; border-radius: 8px; overflow: hidden; background: #e9ecef; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
-                    <div style="width: ${neverSeenPercent}%; background: linear-gradient(135deg, #17a2b8 0%, #138496 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.85rem; transition: all 0.3s;" 
-                         title="🆕 ${ue.neverSeen} nouveaux termes (${neverSeenPercent}%)"
+                    <div style="width: ${neverSeenPercent}%; background: linear-gradient(135deg, #17a2b8 0%, #138496 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;" 
+                         title="${ue.neverSeen} nouveaux termes (${neverSeenPercent}%)"
                          onmouseover="this.style.opacity='0.8'"
                          onmouseout="this.style.opacity='1'">
-                        ${ue.neverSeen > 0 ? '🆕 ' + ue.neverSeen : ''}
+                        ${ue.neverSeen > 0 ? ue.neverSeen : ''}
                     </div>
-                    <div style="width: ${learningPercent}%; background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.85rem; transition: all 0.3s;" 
-                         title="⏳ ${ue.learning} en apprentissage - intervalles < 7 jours (${learningPercent}%)"
+                    <div style="width: ${learningPercent}%; background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;" 
+                         title="${ue.learning} en apprentissage - intervalles < 7 jours (${learningPercent}%)"
                          onmouseover="this.style.opacity='0.8'"
                          onmouseout="this.style.opacity='1'">
-                        ${ue.learning > 0 ? '⏳ ' + ue.learning : ''}
+                        ${ue.learning > 0 ? ue.learning : ''}
                     </div>
-                    <div style="width: ${consolidatedPercent}%; background: linear-gradient(135deg, #28a745 0%, #218838 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.85rem; transition: all 0.3s;" 
-                         title="✅ ${ue.consolidated} consolidés - intervalles ≥ 7 jours (${consolidatedPercent}%)"
+                    <div style="width: ${consolidatedPercent}%; background: linear-gradient(135deg, #28a745 0%, #218838 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;" 
+                         title="${ue.consolidated} consolidés - intervalles ≥ 7 jours (${consolidatedPercent}%)"
                          onmouseover="this.style.opacity='0.8'"
                          onmouseout="this.style.opacity='1'">
-                        ${ue.consolidated > 0 ? '✅ ' + ue.consolidated : ''}
+                        ${ue.consolidated > 0 ? ue.consolidated : ''}
                     </div>
                 </div>
                 
                 <!-- Légende compacte -->
                 <div style="display: flex; justify-content: space-around; margin-top: 0.6rem; font-size: 0.8rem; color: #6c757d;">
-                    <span title="Termes jamais vus">🆕 Nouveaux</span>
-                    <span title="Intervalles < 7j">⏳ En cours</span>
-                    <span title="Intervalles ≥ 7j">✅ Consolidés</span>
+                    <div style="display: flex; align-items: center; gap: 0.4rem;">
+                        <div style="width: 12px; height: 12px; background: linear-gradient(135deg, #17a2b8 0%, #138496 100%); border-radius: 3px;"></div>
+                        <span title="Termes jamais vus">Nouveaux</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.4rem;">
+                        <div style="width: 12px; height: 12px; background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); border-radius: 3px;"></div>
+                        <span title="Intervalles < 7j">En cours</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.4rem;">
+                        <div style="width: 12px; height: 12px; background: linear-gradient(135deg, #28a745 0%, #218838 100%); border-radius: 3px;"></div>
+                        <span title="Intervalles ≥ 7j">Consolidés</span>
+                    </div>
                 </div>
             </div>
             
@@ -433,20 +442,31 @@ function displayUEDetails(ueStats) {
             ${totalReviews > 0 ? `
             <div style="display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: #e9ecef;">
                 <div style="width: ${easyPercent}%; background: #28a745; transition: opacity 0.2s;" 
-                     title="😊 Facile: ${ue.easy} (${easyPercent}%)"
+                     title="Facile: ${ue.easy} (${easyPercent}%)"
                      onmouseover="this.style.opacity='0.7'"
                      onmouseout="this.style.opacity='1'"></div>
                 <div style="width: ${mediumPercent}%; background: #ffc107; transition: opacity 0.2s;" 
-                     title="🤔 Moyen: ${ue.medium} (${mediumPercent}%)"
+                     title="Moyen: ${ue.medium} (${mediumPercent}%)"
                      onmouseover="this.style.opacity='0.7'"
                      onmouseout="this.style.opacity='1'"></div>
                 <div style="width: ${hardPercent}%; background: #dc3545; transition: opacity 0.2s;" 
-                     title="😓 Difficile: ${ue.hard} (${hardPercent}%)"
+                     title="Difficile: ${ue.hard} (${hardPercent}%)"
                      onmouseover="this.style.opacity='0.7'"
                      onmouseout="this.style.opacity='1'"></div>
             </div>
-            <div style="text-align: center; margin-top: 0.4rem; font-size: 0.75rem; color: #adb5bd;" title="Répartition des évaluations de difficulté">
-                😊 ${ue.easy}  ·  🤔 ${ue.medium}  ·  😓 ${ue.hard}
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem; font-size: 0.75rem; color: #adb5bd;" title="Répartition des évaluations de difficulté">
+                <div style="display: flex; align-items: center; gap: 0.3rem;">
+                    <div style="width: 10px; height: 10px; background: #28a745; border-radius: 2px;"></div>
+                    <span>${ue.easy}</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.3rem;">
+                    <div style="width: 10px; height: 10px; background: #ffc107; border-radius: 2px;"></div>
+                    <span>${ue.medium}</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.3rem;">
+                    <div style="width: 10px; height: 10px; background: #dc3545; border-radius: 2px;"></div>
+                    <span>${ue.hard}</span>
+                </div>
             </div>
             ` : ''}
         </div>
