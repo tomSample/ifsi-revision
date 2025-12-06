@@ -362,6 +362,32 @@ function updateStatsDisplay() {
     if (filteredTermsElement) {
         filteredTermsElement.textContent = filteredTerms.length;
     }
+    
+    // Afficher le mode de sélection
+    const modeIndicator = document.getElementById('selectionModeIndicator');
+    const modeIcon = document.getElementById('selectionModeIcon');
+    const modeText = document.getElementById('selectionModeText');
+    
+    if (modeIndicator && modeIcon && modeText) {
+        const hasIntelligentMode = auth?.currentUser && spacedRepetition && syncManager && Object.keys(userProgress).length > 0;
+        
+        if (hasIntelligentMode) {
+            modeIndicator.style.display = 'flex';
+            modeIcon.textContent = '🧠';
+            modeText.textContent = 'Répétition espacée active';
+            modeIndicator.style.color = '#667eea';
+        } else if (auth?.currentUser) {
+            modeIndicator.style.display = 'flex';
+            modeIcon.textContent = 'ℹ️';
+            modeText.textContent = 'Mode aléatoire (pas de progression)';
+            modeIndicator.style.color = '#888';
+        } else {
+            modeIndicator.style.display = 'flex';
+            modeIcon.textContent = '🔀';
+            modeText.textContent = 'Mode aléatoire (non connecté)';
+            modeIndicator.style.color = '#888';
+        }
+    }
 }
 
 // ===== FILTRAGE UE SIMPLE =====
@@ -551,50 +577,132 @@ async function selectTermsForSession(count = 10) {
         return [];
     }
     
-    // Si pas d'algorithme de répétition espacée, mode aléatoire
-    if (!spacedRepetition || !syncManager) {
+    console.log('🔍 Vérification modules:', {
+        spacedRepetition: !!spacedRepetition,
+        syncManager: !!syncManager,
+        auth: !!auth,
+        user: auth?.currentUser?.uid || 'non connecté',
+        userProgressSize: Object.keys(userProgress || {}).length
+    });
+    
+    // Si pas connecté ou pas de modules, mode aléatoire
+    if (!auth?.currentUser || !spacedRepetition || !syncManager || Object.keys(userProgress).length === 0) {
+        console.log('⚠️ Mode aléatoire:', {
+            raison: !auth?.currentUser ? 'Non connecté' : 
+                    !spacedRepetition ? 'spacedRepetition manquant' :
+                    !syncManager ? 'syncManager manquant' :
+                    'Aucune progression enregistrée'
+        });
         const shuffledTerms = [...filteredTerms].sort(() => 0.5 - Math.random());
         return shuffledTerms.slice(0, Math.min(count, filteredTerms.length));
     }
     
-    // Mode intelligent: priorisation selon la courbe de l'oubli
-    const termsWithProgress = [];
+    // ========================================
+    // MODE INTELLIGENT: Répétition espacée
+    // ========================================
+    console.log('🧠 Mode intelligent activé - Répétition espacée');
     
+    const now = new Date();
+    now.setHours(0, 0, 0, 0); // Minuit aujourd'hui
+    
+    const neverSeen = [];     // Jamais vus (priorité maximale)
+    const dueToday = [];      // À revoir aujourd'hui
+    const notDue = [];        // Pas encore dus
+    
+    // Catégoriser tous les termes
     for (const term of filteredTerms) {
         const termKey = generateTermKey(term);
-        const progress = userProgress[termKey] || null;
+        const progress = userProgress[termKey];
         
-        termsWithProgress.push({
-            term: term,
-            progress: progress,
-            priority: spacedRepetition.getPriorityScore(progress)
-        });
+        if (!progress || !progress.nextReview) {
+            // Terme jamais vu
+            neverSeen.push({
+                term,
+                priority: 1000, // Priorité maximale
+                reason: 'Jamais vu'
+            });
+        } else {
+            const nextReview = new Date(progress.nextReview);
+            nextReview.setHours(0, 0, 0, 0);
+            
+            if (nextReview <= now) {
+                // Dû aujourd'hui ou en retard
+                const daysLate = Math.floor((now - nextReview) / (1000 * 60 * 60 * 24));
+                const difficultyScore = progress.lastDifficulty === 'difficile' ? 3 : 
+                                       progress.lastDifficulty === 'moyen' ? 2 : 1;
+                
+                dueToday.push({
+                    term,
+                    priority: 100 + daysLate * 10 + difficultyScore,
+                    reason: `Dû ${daysLate > 0 ? `(retard: ${daysLate}j)` : 'aujourd\'hui'} - ${progress.lastDifficulty}`,
+                    daysLate,
+                    difficulty: progress.lastDifficulty
+                });
+            } else {
+                // Pas encore dû
+                const daysUntil = Math.floor((nextReview - now) / (1000 * 60 * 60 * 24));
+                notDue.push({
+                    term,
+                    priority: -daysUntil, // Négatif = pas prioritaire
+                    reason: `Prochain: dans ${daysUntil}j`
+                });
+            }
+        }
     }
     
-    // Trier par priorité (décroissante)
-    termsWithProgress.sort((a, b) => b.priority - a.priority);
+    console.log('📊 Catégorisation:', {
+        neverSeen: neverSeen.length,
+        dueToday: dueToday.length,
+        notDue: notDue.length
+    });
+    
+    // Trier par priorité décroissante
+    dueToday.sort((a, b) => b.priority - a.priority);
     
     // Stratégie de sélection:
-    // - 40% des termes les plus prioritaires (jamais vus + difficiles + en retard)
-    // - 60% aléatoires parmi les autres
-    const highPriorityCount = Math.ceil(count * 0.4);
-    const randomCount = count - highPriorityCount;
+    // 1. Tous les jamais vus (mélangés)
+    // 2. Tous les dus aujourd'hui (triés par priorité)
+    // 3. Si pas assez, compléter avec termes pas encore dus (mélangés)
     
-    // Sélectionner les termes prioritaires
-    const highPriority = termsWithProgress.slice(0, Math.min(highPriorityCount, termsWithProgress.length));
+    const selectedTermsWithMeta = [];
     
-    // Sélectionner aléatoirement parmi le reste
-    const remaining = termsWithProgress.slice(highPriorityCount);
-    const randomSelection = remaining.sort(() => 0.5 - Math.random()).slice(0, randomCount);
+    // Ajouter jamais vus (mélangés)
+    const shuffledNeverSeen = [...neverSeen].sort(() => 0.5 - Math.random());
+    selectedTermsWithMeta.push(...shuffledNeverSeen.slice(0, count));
     
-    // Combiner et mélanger pour éviter un ordre prévisible
-    const selectedTerms = [...highPriority, ...randomSelection]
+    // Ajouter dus aujourd'hui (déjà triés)
+    if (selectedTermsWithMeta.length < count) {
+        const remaining = count - selectedTermsWithMeta.length;
+        selectedTermsWithMeta.push(...dueToday.slice(0, remaining));
+    }
+    
+    // Compléter avec pas encore dus si nécessaire
+    if (selectedTermsWithMeta.length < count) {
+        const remaining = count - selectedTermsWithMeta.length;
+        const shuffledNotDue = [...notDue].sort(() => 0.5 - Math.random());
+        selectedTermsWithMeta.push(...shuffledNotDue.slice(0, remaining));
+    }
+    
+    // Mélanger la sélection finale pour éviter un ordre prévisible
+    const finalSelection = selectedTermsWithMeta
         .sort(() => 0.5 - Math.random())
         .map(item => item.term);
     
-    console.log(`✅ Session intelligente: ${selectedTerms.length} termes (${highPriorityCount} prioritaires)`);
+    console.log('✅ Session intelligente:', {
+        total: finalSelection.length,
+        composition: {
+            neverSeen: selectedTermsWithMeta.filter(t => t.priority >= 1000).length,
+            dueToday: selectedTermsWithMeta.filter(t => t.priority >= 100 && t.priority < 1000).length,
+            notDue: selectedTermsWithMeta.filter(t => t.priority < 0).length
+        }
+    });
     
-    return selectedTerms.slice(0, count);
+    // Log des 5 premiers termes pour debug
+    selectedTermsWithMeta.slice(0, 5).forEach((item, i) => {
+        console.log(`  ${i+1}. ${item.term.term.substring(0, 30)}... - ${item.reason}`);
+    });
+    
+    return finalSelection.slice(0, count);
 }
 
 // Simplifier la vérification (plus de traçage individuel)
