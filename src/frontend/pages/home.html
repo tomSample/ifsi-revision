@@ -100,9 +100,9 @@
         }
         
         .nav-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
         
         .nav-btn {
@@ -173,6 +173,175 @@
             font-size: 0.85rem;
         }
         
+        .hidden {
+            display: none !important;
+        }
+        
+        /* === FEEDBACK MODAL STYLES === */
+        .feedback-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .feedback-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+        }
+        
+        .feedback-modal-content {
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+        }
+        
+        .feedback-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e0e0e0;
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .feedback-header h3 {
+            margin: 0;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .close-feedback {
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .close-feedback:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        .feedback-body {
+            padding: 2rem;
+        }
+        
+        .feedback-intro {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .label-icon {
+            margin-right: 0.5rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #43e97b;
+        }
+        
+        .char-count {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 0.25rem;
+        }
+        
+        .feedback-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn-submit,
+        .btn-cancel {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 233, 123, 0.3);
+        }
+        
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .btn-cancel {
+            background: #f0f0f0;
+            color: #666;
+        }
+        
+        .btn-cancel:hover {
+            background: #e0e0e0;
+        }
+        
         @media (max-width: 600px) {
             .nav-container {
                 padding: 2rem;
@@ -182,9 +351,42 @@
                 font-size: 2rem;
             }
             
+            .nav-buttons {
+                grid-template-columns: 1fr;
+            }
+            
             .nav-btn {
                 flex-direction: column;
                 text-align: center;
+            }
+            
+            .nav-btn-icon {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+            
+            /* Feedback modal responsive */
+            .feedback-modal {
+                padding: 10px;
+            }
+            
+            .feedback-modal-content {
+                max-height: 95vh;
+            }
+            
+            .feedback-header,
+            .feedback-body {
+                padding: 1rem;
+            }
+            
+            .feedback-actions {
+                flex-direction: column;
+            }
+            
+            .btn-submit,
+            .btn-cancel {
+                width: 100%;
+            }
                 padding: 1rem;
             }
             
@@ -206,7 +408,7 @@
         <h2>Interface de révision et de gestion</h2>
         
         <div class="nav-buttons">
-            <a href="./admin.html" class="nav-btn admin">
+            <a href="./admin.html" class="nav-btn admin hidden" id="adminBtn">
                 <div class="nav-btn-icon">⚙️</div>
                 <div class="nav-btn-content">
                     <h3>Administration</h3>
@@ -238,13 +440,16 @@
                 </div>
             </a>
             
-            <a href="./gallery.html" class="nav-btn gallery">
+            <!-- Gallery cachée pour tous les utilisateurs -->
+            <!--
+            <a href="./gallery.html" class="nav-btn gallery hidden">
                 <div class="nav-btn-icon">🖼️</div>
                 <div class="nav-btn-content">
                     <h3>Galerie d'Images</h3>
                     <p>Visualiser schémas et supports par catégorie</p>
                 </div>
             </a>
+            -->
             
             <button class="nav-btn feedback" onclick="window.feedbackManager.openFeedbackModal()" style="cursor: pointer;">
                 <div class="nav-btn-icon">💬</div>
@@ -321,18 +526,40 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
         // Initialisation Firebase
         const app = initializeApp(window.firebaseConfig);
         const auth = getAuth(app);
+        const db = getFirestore(app);
 
         // Gérer l'affichage du statut d'authentification
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
             const authStatus = document.getElementById('authStatus');
+            const adminBtn = document.getElementById('adminBtn');
             
             if (user) {
                 // Utilisateur connecté
                 console.log('✅ Utilisateur connecté');
+                
+                // Vérifier le rôle admin
+                try {
+                    const userDoc = await getDoc(doc(db, 'users', user.uid));
+                    const userData = userDoc.data();
+                    const isAdmin = userData?.role === 'admin';
+                    
+                    if (isAdmin) {
+                        console.log('👤 Rôle admin détecté');
+                        adminBtn.classList.remove('hidden');
+                    } else {
+                        console.log('👤 Utilisateur standard');
+                        adminBtn.classList.add('hidden');
+                    }
+                } catch (error) {
+                    console.error('Erreur vérification rôle:', error);
+                    adminBtn.classList.add('hidden'); // Par défaut, cacher le bouton
+                }
+                
                 authStatus.innerHTML = `
                     <div class="auth-links">
                         <a href="./account.html" class="btn-account">⚙️ Mon compte</a>
