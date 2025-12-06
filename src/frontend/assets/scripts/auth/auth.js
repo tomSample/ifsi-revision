@@ -44,9 +44,9 @@ class AuthManager {
         this.hideAdminButtons();
         this.hideLogoutButton();
         
-        // Rediriger vers navigation si on est sur admin
+        // Rediriger vers home si on est sur admin
         if (window.location.pathname.includes('admin.html')) {
-            window.location.href = 'navigation.html';
+            window.location.href = 'home.html';
         }
     }
 

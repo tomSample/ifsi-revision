@@ -242,7 +242,7 @@ document.getElementById('deleteAccountForm').addEventListener('submit', async (e
 
         // Rediriger vers la page d'accueil
         alert('✅ Votre compte a été supprimé avec succès.');
-        window.location.href = 'navigation.html';
+        window.location.href = 'index.html';
 
     } catch (error) {
         console.error('Erreur suppression compte:', error);
@@ -298,7 +298,7 @@ document.getElementById('logoutBtn').addEventListener('click', async () => {
         sessionStorage.removeItem('coursesData_session');
         sessionStorage.removeItem('userProgress_session');
         
-        window.location.href = 'navigation.html';
+        window.location.href = 'home.html';
     } catch (error) {
         console.error('Erreur déconnexion:', error);
         alert('Erreur lors de la déconnexion');

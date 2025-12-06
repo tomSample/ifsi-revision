@@ -363,7 +363,7 @@ class FirebaseAuthManager {
      */
     onUserLogin(user) {
         // Rediriger vers le dashboard ou la page précédente
-        const redirectUrl = localStorage.getItem('redirect_after_login') || 'navigation.html';
+        const redirectUrl = localStorage.getItem('redirect_after_login') || 'home.html';
         localStorage.removeItem('redirect_after_login');
         
         // Notification visuelle
