@@ -352,8 +352,19 @@
             const passwordInput = document.getElementById('password');
             const rememberMeCheckbox = document.getElementById('rememberMe');
 
-            // Note: Firebase Auth gère déjà la persistance de session
-            // Pas besoin de stocker email/password dans localStorage
+            // Restaurer l'email si "Se souvenir de moi" était coché
+            const savedEmail = localStorage.getItem('rememberedEmail');
+            const wasRemembered = localStorage.getItem('rememberMe') === 'true';
+            
+            if (savedEmail && wasRemembered) {
+                emailInput.value = savedEmail;
+                rememberMeCheckbox.checked = true;
+                // Focus sur le mot de passe pour faciliter la connexion
+                passwordInput.focus();
+            }
+
+            // Note: Firebase Auth gère la persistance de session
+            // On stocke seulement l'email pour faciliter la reconnexion
 
             // Gestion de la soumission du formulaire
             loginForm.addEventListener('submit', async (e) => {
@@ -374,6 +385,15 @@
                     // Configurer la persistance selon la checkbox
                     const rememberMe = rememberMeCheckbox.checked;
                     await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
+
+                    // Sauvegarder l'email si "Se souvenir de moi" est coché
+                    if (rememberMe) {
+                        localStorage.setItem('rememberedEmail', email);
+                        localStorage.setItem('rememberMe', 'true');
+                    } else {
+                        localStorage.removeItem('rememberedEmail');
+                        localStorage.removeItem('rememberMe');
+                    }
 
                     // Connexion Firebase
                     const userCredential = await signInWithEmailAndPassword(auth, email, password);
