@@ -5,9 +5,27 @@
 
 class VersionManager {
     constructor() {
-        this.version = '3.2.0';
-        this.buildDate = '2025-12-06';
+        this.version = '3.3.1';
+        this.buildDate = '2025-12-08';
         this.releaseNotes = {
+            '3.3.1': {
+                date: '2025-12-08',
+                features: [
+                    'Ordre aléatoire des flashcards par catégorie',
+                    'Nouveaux termes toujours prioritaires',
+                    'Prévisibilité éliminée'
+                ]
+            },
+            '3.3.0': {
+                date: '2025-12-06',
+                features: [
+                    'Répétition espacée intelligente (filtrage nextReviewDate)',
+                    'Stats UE simplifiées (progression + performance)',
+                    'Tri par score de facilité',
+                    'Badge % facile coloré',
+                    'Réinitialisation complète des statistiques'
+                ]
+            },
             '3.2.0': {
                 date: '2025-12-06',
                 features: [
