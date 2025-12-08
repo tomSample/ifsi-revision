@@ -1,10 +1,10 @@
 /**
  * SERVICE WORKER - IFSI Lannion Révisions PWA
  * Cache stratégique intelligent pour mode hors ligne
- * Version 3.1 - PWA Optimisée avec système de versionnage
+ * Version 3.3.1 - Répétition espacée + stats simplifiées + ordre aléatoire
  */
 
-const CACHE_VERSION = 'v3.1.0';
+const CACHE_VERSION = 'v3.3.1';
 const CACHE_NAME = `ifsi-cache-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `ifsi-runtime-${CACHE_VERSION}`;
 const DATA_CACHE = `ifsi-data-${CACHE_VERSION}`;
@@ -93,6 +93,12 @@ self.addEventListener('fetch', (event) => {
     // Ignorer non-GET et extensions
     if (request.method !== 'GET' || url.protocol === 'chrome-extension:') {
         return;
+    }
+    
+    // Ignorer les requêtes Firestore Listen (WebSocket/streaming)
+    if (request.url.includes('firestore.googleapis.com') && 
+        (request.url.includes('/Listen/') || request.url.includes('/channel?'))) {
+        return; // Laisser passer sans interception
     }
     
     // 1. Firebase: Network First avec timeout
@@ -337,18 +343,6 @@ async function syncProgression() {
 }
 
 console.log(`✅ [SW ${CACHE_VERSION}] Service Worker chargé`);
-
-    }
-    
-    // Stratégie pour les ressources de l'app: Cache First (performance)
-    if (url.origin === location.origin) {
-        event.respondWith(cacheFirstStrategy(request));
-        return;
-    }
-    
-    // Stratégie par défaut pour CDN externes: Cache First
-    event.respondWith(cacheFirstStrategy(request));
-});
 
 /**
  * Cache First: Priorité au cache, fallback réseau
