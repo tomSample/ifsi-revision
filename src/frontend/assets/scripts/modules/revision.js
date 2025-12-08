@@ -1601,7 +1601,6 @@ function showClassificationResult(personalChoice, globalInfo) {
     document.getElementById('flashcard-header').style.display = 'flex';
     document.getElementById('importance-badge').textContent = badge;
     document.getElementById('importance-badge').style.display = 'inline';
-    document.getElementById('btn-modify').style.display = 'block';
     
     // Afficher le résultat compact dans la flashcard
     document.getElementById('result-badge').textContent = `${badge} ${label}`;

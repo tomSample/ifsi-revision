@@ -141,6 +141,16 @@
             background: #5a6268;
         }
 
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+            font-weight: 600;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
         .btn-danger {
             background: #dc3545;
             color: white;
@@ -295,6 +305,9 @@
         <div class="account-header">
             <h1>⚙️ Mon compte</h1>
             <p>Gérez vos informations et paramètres</p>
+            <button class="btn btn-primary" id="helpGuideBtn" style="margin-top: 15px;">
+                📖 Guide d'utilisation
+            </button>
         </div>
 
         <!-- Informations du compte -->
@@ -363,6 +376,18 @@
         <!-- Zone de danger -->
         <div class="account-card">
             <h2>⚠️ Zone de danger</h2>
+            
+            <div class="danger-zone" style="margin-bottom: 25px;">
+                <h3>🔄 Réinitialiser les classifications</h3>
+                <p>
+                    Réinitialise tous vos votes d'importance (Essentiel, Important, Complémentaire, Ignorer). 
+                    Vous devrez re-classifier les termes lors de vos prochaines révisions.
+                </p>
+                <button class="btn btn-warning" id="resetClassificationsBtn">
+                    Réinitialiser les classifications
+                </button>
+            </div>
+            
             <div class="danger-zone">
                 <h3>🗑️ Supprimer mon compte</h3>
                 <p>
@@ -409,6 +434,66 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal Guide d'utilisation -->
+    <div id="helpGuideModal" class="modal">
+        <div class="modal-content" style="max-width: 700px; max-height: 85vh; overflow-y: auto;">
+            <div class="modal-header">
+                <h3>📖 Guide d'utilisation - IFSI Révision</h3>
+                <button type="button" class="btn btn-secondary" id="closeHelpBtn" style="float: right; margin-top: -40px;">✕</button>
+            </div>
+            
+            <div style="font-size: 14px; line-height: 1.7; color: #495057;">
+                
+                <h4 style="color: #667eea; margin-top: 20px;">🎯 Système de révision espacée</h4>
+                <p>L'application utilise la <strong>répétition espacée</strong> pour optimiser votre mémorisation :</p>
+                <ul>
+                    <li><strong>Facile 😊</strong> : Revoir dans ~6 jours</li>
+                    <li><strong>Moyen 🤔</strong> : Revoir dans ~3 jours</li>
+                    <li><strong>Difficile 😓</strong> : Revoir dans 1 jour</li>
+                </ul>
+                
+                <h4 style="color: #667eea; margin-top: 20px;">🏷️ Classification collaborative</h4>
+                <p>Classifiez chaque terme selon son importance selon vous :</p>
+                <ul>
+                    <li><strong>🔴 Essentiel</strong> : Concept fondamental à maîtriser</li>
+                    <li><strong>🟡 Important</strong> : Notion clé à connaître</li>
+                    <li><strong>🟢 Complémentaire</strong> : Information utile mais secondaire</li>
+                    <li><strong>⚫ Ignorer</strong> : Terme non pertinent pour vous</li>
+                </ul>
+                <p>Les votes de chaque utilisateur seront pris en compte pour mettre en avant les termes les plus importants et mieux cibler vos révisions.</p>
+                
+                <h4 style="color: #667eea; margin-top: 20px;">📊 Statistiques détaillées</h4>
+                <p>Consultez votre progression :</p>
+                <ul>
+                    <li>Nombre de termes révisés</li>
+                    <li>Taux de réussite par UE</li>
+                    <li>Historique des révisions</li>
+                    <li>Termes à revoir aujourd'hui</li>
+                </ul>
+                
+                <h4 style="color: #667eea; margin-top: 20px;">📱 Application PWA</h4>
+                <p>Installez l'app sur votre appareil :</p>
+                <ul>
+                    <li>Synchronisation automatique</li>
+                    <li>Notifications de révision (bientôt)</li>
+                </ul>
+                
+                <h4 style="color: #667eea; margin-top: 20px;">🔒 Données personnelles</h4>
+                <p>Vos données sont synchronisées en temps réel via Firebase. Vous pouvez :</p>
+                <ul>
+                    <li>Réinitialiser vos classifications</li>
+                    <li>Supprimer votre compte</li>
+                </ul>
+                
+                <div style="margin-top: 25px; padding: 15px; background: #e8f5e9; border-radius: 8px; text-align: center;">
+                    <p style="margin: 0; color: #2e7d32; font-weight: 600;">
+                        💡 Astuce : Révisez 10-15 minutes par jour pour des résultats optimaux !
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -194,13 +194,10 @@
                                 <div class="flashcard-front">
                                     <div class="card-label">Question</div>
                                     
-                                    <!-- En-tête avec badge et bouton modification (si déjà voté) -->
+                                    <!-- En-tête avec badge (si déjà voté) -->
                                     <div class="flashcard-header" id="flashcard-header" style="display: none;">
                                         <span class="importance-badge" id="importance-badge"></span>
                                         <h3 class="term-title" id="termName">Terme à définir</h3>
-                                        <button class="btn-modify-classification" id="btn-modify" onclick="event.stopPropagation(); openModifyModal();" title="Modifier la classification" style="display: none;">
-                                            ⚙️
-                                        </button>
                                     </div>
                                     
                                     <!-- Titre simple (si pas encore voté) -->
@@ -277,20 +274,20 @@
                             <h4>💭 Comment avez-vous trouvé ce terme ?</h4>
                             <p class="difficulty-hint">Votre réponse permet d'optimiser vos prochaines révisions</p>
                             <div class="difficulty-buttons">
-                                <button class="difficulty-btn btn-hard" onclick="rateDifficulty('difficile')" title="Je n'ai pas su répondre ou j'ai eu beaucoup de mal">
-                                    <span class="difficulty-emoji">😓</span>
-                                    <span class="difficulty-label">Difficile</span>
-                                    <span class="difficulty-interval">Revoir dans 1 jour</span>
+                                <button class="difficulty-btn btn-easy" onclick="rateDifficulty('facile')" title="J'ai parfaitement su répondre">
+                                    <span class="difficulty-emoji">😊</span>
+                                    <span class="difficulty-label">Facile</span>
+                                    <span class="difficulty-interval">Revoir dans ~6 jours</span>
                                 </button>
                                 <button class="difficulty-btn btn-medium" onclick="rateDifficulty('moyen')" title="J'ai su répondre mais avec quelques hésitations">
                                     <span class="difficulty-emoji">🤔</span>
                                     <span class="difficulty-label">Moyen</span>
                                     <span class="difficulty-interval">Revoir dans ~3 jours</span>
                                 </button>
-                                <button class="difficulty-btn btn-easy" onclick="rateDifficulty('facile')" title="J'ai parfaitement su répondre">
-                                    <span class="difficulty-emoji">😊</span>
-                                    <span class="difficulty-label">Facile</span>
-                                    <span class="difficulty-interval">Revoir dans ~6 jours</span>
+                                <button class="difficulty-btn btn-hard" onclick="rateDifficulty('difficile')" title="Je n'ai pas su répondre ou j'ai eu beaucoup de mal">
+                                    <span class="difficulty-emoji">😓</span>
+                                    <span class="difficulty-label">Difficile</span>
+                                    <span class="difficulty-interval">Revoir dans 1 jour</span>
                                 </button>
                             </div>
                             
