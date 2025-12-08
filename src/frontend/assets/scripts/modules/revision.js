@@ -598,30 +598,40 @@ async function selectTermsForSession(count = 10) {
         }
     }
     
-    // Trier chaque catégorie par priorité décroissante
-    neverSeen.sort((a, b) => b.priority - a.priority);
-    dueToday.sort((a, b) => b.priority - a.priority);
-    notDueYet.sort((a, b) => b.priority - a.priority); // Les plus proches en premier
+    // Fonction de mélange aléatoire (Fisher-Yates)
+    const shuffle = (array) => {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    };
+    
+    // Mélanger chaque catégorie pour éviter la prévisibilité
+    const shuffledNeverSeen = shuffle(neverSeen);
+    const shuffledDueToday = shuffle(dueToday);
+    const shuffledNotDueYet = shuffle(notDueYet);
     
     console.log('📊 Répétition espacée:', {
-        nouveau: neverSeen.length,
-        dû: dueToday.length,
-        pasDû: notDueYet.length,
+        nouveau: shuffledNeverSeen.length,
+        dû: shuffledDueToday.length,
+        pasDû: shuffledNotDueYet.length,
         demandé: count
     });
     
-    // Sélection dans l'ordre de priorité (SANS SHUFFLE)
+    // Sélection dans l'ordre de priorité avec ordre aléatoire dans chaque catégorie
     const orderedSelection = [];
     
-    // 1. Tous les nouveaux termes en premier
-    orderedSelection.push(...neverSeen);
+    // 1. Tous les nouveaux termes en premier (ordre aléatoire)
+    orderedSelection.push(...shuffledNeverSeen);
     
-    // 2. Puis tous les termes dus
-    orderedSelection.push(...dueToday);
+    // 2. Puis tous les termes dus (ordre aléatoire)
+    orderedSelection.push(...shuffledDueToday);
     
-    // 3. Si pas assez, ajouter les termes pas encore dus
+    // 3. Si pas assez, ajouter les termes pas encore dus (ordre aléatoire)
     if (orderedSelection.length < count) {
-        orderedSelection.push(...notDueYet);
+        orderedSelection.push(...shuffledNotDueYet);
     }
     
     // Limiter au nombre demandé et extraire les termes
@@ -631,9 +641,9 @@ async function selectTermsForSession(count = 10) {
     
     // Log pour debug
     const composition = {
-        nouveau: Math.min(neverSeen.length, count),
-        dû: Math.min(dueToday.length, Math.max(0, count - neverSeen.length)),
-        pasDû: Math.max(0, count - neverSeen.length - dueToday.length)
+        nouveau: Math.min(shuffledNeverSeen.length, count),
+        dû: Math.min(shuffledDueToday.length, Math.max(0, count - shuffledNeverSeen.length)),
+        pasDû: Math.max(0, count - shuffledNeverSeen.length - shuffledDueToday.length)
     };
     
     console.log(`✅ Session: ${finalSelection.length} termes`, composition);
