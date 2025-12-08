@@ -1,10 +1,10 @@
 /**
  * SERVICE WORKER - IFSI Lannion Révisions PWA
  * Cache stratégique intelligent pour mode hors ligne
- * Version 3.3.1 - Répétition espacée + stats simplifiées + ordre aléatoire
+ * Version 3.4.0 - Classification collaborative + système de mise à jour
  */
 
-const CACHE_VERSION = 'v3.3.1';
+const CACHE_VERSION = 'v3.4.0';
 const CACHE_NAME = `ifsi-cache-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `ifsi-runtime-${CACHE_VERSION}`;
 const DATA_CACHE = `ifsi-data-${CACHE_VERSION}`;
@@ -450,5 +450,10 @@ self.addEventListener('message', (event) => {
                 console.log('🗑️ Cache vidé');
             })
         );
+    }
+    
+    // Message pour forcer la mise à jour
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+        self.skipWaiting();
     }
 });

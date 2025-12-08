@@ -399,9 +399,45 @@ document.head.appendChild(slideDownAnimation);
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         window.pwaInstallManager = new PWAInstallManager();
+        initManualInstallButton();
     });
 } else {
     window.pwaInstallManager = new PWAInstallManager();
+    initManualInstallButton();
+}
+
+/**
+ * Initialise le bouton d'installation manuel sur la landing page
+ */
+function initManualInstallButton() {
+    const manualBtn = document.getElementById('manual-install-btn');
+    if (!manualBtn) return;
+
+    const pwaManager = window.pwaInstallManager;
+    
+    // Afficher le bouton seulement si non installé
+    if (!pwaManager.isStandalone) {
+        manualBtn.style.display = 'inline-block';
+        
+        manualBtn.addEventListener('click', () => {
+            if (pwaManager.platform === 'ios') {
+                pwaManager.showIOSInstructions();
+            } else if (pwaManager.deferredPrompt) {
+                pwaManager.deferredPrompt.prompt();
+                pwaManager.deferredPrompt.userChoice.then((choice) => {
+                    if (choice.outcome === 'accepted') {
+                        console.log('✅ Installation acceptée');
+                    }
+                    pwaManager.deferredPrompt = null;
+                });
+            } else {
+                // Fallback: afficher les instructions
+                alert('Pour installer l\'application:\n\n' +
+                      '1. Ouvrez le menu de votre navigateur (⋮)\n' +
+                      '2. Sélectionnez "Installer l\'application" ou "Ajouter à l\'écran d\'accueil"');
+            }
+        });
+    }
 }
 
 console.log('✅ [PWA] Install Manager chargé');

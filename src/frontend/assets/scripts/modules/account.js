@@ -188,6 +188,134 @@ document.getElementById('changePasswordForm').addEventListener('submit', async (
 });
 
 /**
+ * Ouvrir le guide d'utilisation
+ */
+document.getElementById('helpGuideBtn').addEventListener('click', () => {
+    document.getElementById('helpGuideModal').classList.add('active');
+});
+
+/**
+ * Fermer le guide d'utilisation
+ */
+document.getElementById('closeHelpBtn').addEventListener('click', () => {
+    document.getElementById('helpGuideModal').classList.remove('active');
+});
+
+// Fermer la modal en cliquant en dehors
+document.getElementById('helpGuideModal').addEventListener('click', (e) => {
+    if (e.target.id === 'helpGuideModal') {
+        document.getElementById('helpGuideModal').classList.remove('active');
+    }
+});
+
+/**
+ * Réinitialiser les classifications
+ */
+document.getElementById('resetClassificationsBtn').addEventListener('click', async () => {
+    if (!confirm('⚠️ Êtes-vous sûr de vouloir réinitialiser toutes vos classifications d\'importance ?\n\nVous devrez re-voter pour tous les termes déjà classifiés.')) {
+        return;
+    }
+
+    const btn = document.getElementById('resetClassificationsBtn');
+    btn.disabled = true;
+    btn.textContent = 'Réinitialisation...';
+
+    try {
+        const { getAuth } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js');
+        const { getFirestore, collection, query, where, getDocs, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js');
+        
+        const auth = getAuth();
+        const db = getFirestore();
+        const user = auth.currentUser;
+
+        if (!user) {
+            alert('Vous devez être connecté');
+            return;
+        }
+
+        // Supprimer tous les documents userProgress de l'utilisateur
+        const progressQuery = query(
+            collection(db, 'userProgress'),
+            where('userId', '==', user.uid)
+        );
+
+        const snapshot = await getDocs(progressQuery);
+        const deletePromises = [];
+        const updatePromises = [];
+        
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+            // Ne traiter que les documents avec classification
+            if (data.personalImportance || data.hasVoted) {
+                // Supprimer le document userProgress
+                deletePromises.push(deleteDoc(doc.ref));
+                
+                // Si l'utilisateur avait voté, décrémenter le vote communautaire
+                if (data.hasVoted && data.personalImportance && data.termId) {
+                    const termClassifRef = doc.ref.firestore.collection('termClassifications').doc(data.termId);
+                    updatePromises.push(
+                        termClassifRef.get().then(termDoc => {
+                            if (termDoc.exists) {
+                                const termData = termDoc.data();
+                                const importance = data.personalImportance;
+                                const votes = termData.votes || {};
+                                
+                                // Décrémenter le vote
+                                if (votes[importance] && votes[importance] > 0) {
+                                    votes[importance]--;
+                                }
+                                
+                                const totalVotes = Object.values(votes).reduce((sum, count) => sum + count, 0);
+                                
+                                // Recalculer la majorité
+                                let majorityChoice = null;
+                                let majorityCount = 0;
+                                Object.entries(votes).forEach(([key, count]) => {
+                                    if (count > majorityCount) {
+                                        majorityChoice = key;
+                                        majorityCount = count;
+                                    }
+                                });
+                                
+                                const majorityPercentage = totalVotes > 0 
+                                    ? Math.round((majorityCount / totalVotes) * 100) 
+                                    : 0;
+                                
+                                return termClassifRef.update({
+                                    votes,
+                                    totalVotes,
+                                    majorityChoice,
+                                    majorityPercentage,
+                                    lastUpdated: new Date().toISOString()
+                                });
+                            }
+                        }).catch(err => console.error('Erreur mise à jour votes:', err))
+                    );
+                }
+            }
+        });
+
+        await Promise.all([...deletePromises, ...updatePromises]);
+
+        // Vider le cache local de classification
+        const cacheKey = `classification_cache_${user.uid}`;
+        localStorage.removeItem(cacheKey);
+
+        alert(`✅ ${deletePromises.length} classification(s) réinitialisée(s) avec succès !`);
+        
+        // Recharger la page pour rafraîchir les stats
+        setTimeout(() => window.location.reload(), 1000);
+
+    } catch (error) {
+        console.error('Erreur lors de la réinitialisation:', error);
+        alert('❌ Erreur lors de la réinitialisation des classifications');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'Réinitialiser les classifications';
+    }
+});
+
+/**
  * Ouvrir la modal de suppression
  */
 document.getElementById('deleteAccountBtn').addEventListener('click', () => {

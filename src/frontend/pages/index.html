@@ -151,6 +151,23 @@
             transform: translateY(-3px);
         }
 
+        .btn-accent {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            animation: shimmer 2s infinite;
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(40, 167, 69, 0.4);
+        }
+
+        @keyframes shimmer {
+            0%, 100% { box-shadow: 0 4px 20px rgba(40, 167, 69, 0.3); }
+            50% { box-shadow: 0 8px 30px rgba(40, 167, 69, 0.5); }
+        }
+
         /* PWA Install Button */
         .btn-install {
             background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
@@ -351,6 +368,9 @@
             <div class="cta-buttons">
                 <a href="./register.html" class="btn btn-primary">🚀 Commencer</a>
                 <a href="./login.html" class="btn btn-secondary">🔐 Se connecter</a>
+                <button id="manual-install-btn" class="btn btn-accent" style="display: none;">
+                    📱 Installer l'app
+                </button>
             </div>
         </div>
     </section>
