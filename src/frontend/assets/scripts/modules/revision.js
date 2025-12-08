@@ -35,7 +35,12 @@ let auth = null;
 let db = null;
 let syncManager = null;
 let spacedRepetition = null;
+let classificationManager = null;
 let userProgress = {};
+
+// État de la carte actuelle pour la classification
+let currentTerm = null;
+let currentTermHasVoted = false;
 
 // Initialisation au chargement de la page
 document.addEventListener('DOMContentLoaded', async function() {
@@ -44,6 +49,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // La progression est chargée automatiquement dans onAuthStateChanged
     loadReportedTerms();
     setupEventListeners();
+    setupClassificationListeners();
 });
 
 /**
@@ -64,6 +70,7 @@ async function initializeFirebase() {
         // Initialiser les gestionnaires
         syncManager = new SyncManager(auth, db);
         spacedRepetition = new SpacedRepetition();
+        classificationManager = new ClassificationManager(auth, db);
         
         // Charger les synchronisations en attente
         syncManager.loadPendingFromLocalStorage();
@@ -675,13 +682,20 @@ function generateTermKey(term) {
 }
 
 // Afficher le terme actuel
-function showCurrentTerm() {
+async function showCurrentTerm() {
     const currentTerm = currentSession[currentTermIndex];
     
     // Mettre à jour l'affichage
     document.getElementById('termUE').textContent = `UE ${currentTerm.ue}`;
     document.getElementById('termNumber').textContent = `${currentTermIndex + 1}/${currentSession.length}`;
     document.getElementById('termName').textContent = currentTerm.term;
+    
+    // Mettre à jour aussi termNameSimple
+    const termNameSimpleEl = document.getElementById('termNameSimple');
+    if (termNameSimpleEl) {
+        termNameSimpleEl.textContent = currentTerm.term;
+    }
+    
     document.getElementById('termDefinition').textContent = currentTerm.definition;
     
     // Afficher le titre du cours sur les deux faces
@@ -703,6 +717,9 @@ function showCurrentTerm() {
     
     // Reset de l'interface à l'état initial (flashcard)
     resetFlashcardState();
+    
+    // Initialiser la classification pour ce terme
+    await initFlashcardClassification(currentTerm);
 }
 
 // Reset de la flashcard
@@ -728,6 +745,12 @@ function resetFlashcardState() {
 
 // Fonction pour retourner la carte (appelée depuis HTML)
 function flipCard() {
+    // Vérifier si l'utilisateur doit d'abord voter
+    if (!currentTermHasVoted && classificationManager) {
+        showNotification('⚠️ Veuillez d\'abord classifier ce terme', 'warning');
+        return;
+    }
+    
     if (currentState !== 'thinking') return;
     
     const flashcard = document.getElementById('flashcard');
@@ -1343,3 +1366,341 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// ===== GESTION DE LA CLASSIFICATION DES TERMES =====
+
+/**
+ * Configurer les event listeners pour la classification
+ */
+function setupClassificationListeners() {
+    // Fermer la modal si on clique en dehors
+    const modal = document.getElementById('modify-modal');
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModifyModal();
+            }
+        });
+    }
+}
+
+/**
+ * Initialiser l'affichage de la flashcard avec classification
+ */
+async function initFlashcardClassification(term) {
+    console.log('🎯 initFlashcardClassification appelée', { term, hasManager: !!classificationManager });
+    
+    if (!classificationManager) {
+        console.warn('⚠️ ClassificationManager non disponible');
+        return;
+    }
+    
+    currentTerm = term;
+    const termKey = generateTermKey(term);
+    
+    try {
+        // Récupérer les infos de classification
+        const classificationInfo = await classificationManager.getClassificationInfo(termKey);
+        currentTermHasVoted = classificationInfo.personal?.hasVoted || false;
+        
+        console.log('📊 Classification info:', { termKey, hasVoted: currentTermHasVoted, classificationInfo });
+        
+        if (!currentTermHasVoted) {
+            // Première rencontre : afficher le sélecteur
+            console.log('✨ Première rencontre - affichage du prompt');
+            showClassificationPrompt();
+        } else {
+            // Déjà voté : afficher badge + infos
+            console.log('✅ Déjà voté - affichage du badge');
+            showClassifiedCard(classificationInfo);
+        }
+    } catch (error) {
+        console.error('❌ Erreur init classification:', error);
+        // En cas d'erreur, afficher la carte normalement
+        showClassifiedCard(null);
+    }
+}
+
+/**
+ * Afficher le sélecteur de classification (première rencontre)
+ */
+function showClassificationPrompt() {
+    console.log('🎨 showClassificationPrompt appelée');
+    
+    // Masquer l'en-tête avec badge
+    document.getElementById('flashcard-header').style.display = 'none';
+    document.getElementById('simple-header').style.display = 'block';
+    
+    // Afficher le prompt de classification
+    const promptElement = document.getElementById('classification-prompt');
+    console.log('📍 Element classification-prompt:', promptElement);
+    
+    if (promptElement) {
+        promptElement.style.display = 'block';
+        console.log('✅ Prompt affiché');
+    } else {
+        console.error('❌ Element classification-prompt non trouvé!');
+    }
+    
+    document.getElementById('classification-result').style.display = 'none';
+    document.getElementById('classification-info').style.display = 'none';
+    
+    // Désactiver le flip de carte jusqu'au vote
+    const flashcard = document.getElementById('flashcard');
+    flashcard.style.pointerEvents = 'none';
+    flashcard.style.opacity = '0.7';
+    
+    // Masquer l'instruction de flip
+    document.getElementById('flip-instruction').style.display = 'none';
+    
+    // Réinitialiser les boutons
+    const buttons = document.querySelectorAll('.option-btn');
+    console.log('🔘 Boutons trouvés:', buttons.length);
+    
+    buttons.forEach(btn => {
+        btn.classList.remove('selected');
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+    });
+}
+
+/**
+ * Afficher la carte avec classification existante
+ */
+function showClassifiedCard(classificationInfo) {
+    const { personal, global } = classificationInfo || {};
+    
+    if (personal && personal.importance) {
+        // Afficher l'en-tête avec badge
+        document.getElementById('flashcard-header').style.display = 'flex';
+        document.getElementById('simple-header').style.display = 'none';
+        
+        const badge = ClassificationManager.getImportanceBadge(personal.importance);
+        const label = ClassificationManager.getImportanceLabel(personal.importance);
+        
+        document.getElementById('importance-badge').textContent = badge;
+        document.getElementById('importance-badge').style.display = 'inline';
+        document.getElementById('btn-modify').style.display = 'block';
+        
+        // Afficher les infos en bas
+        document.getElementById('personal-choice').innerHTML = `${badge} ${label}`;
+        
+        if (global) {
+            const communityBadge = ClassificationManager.getImportanceBadge(global.majorityChoice);
+            const communityLabel = ClassificationManager.getImportanceLabel(global.majorityChoice);
+            document.getElementById('community-choice').innerHTML = 
+                `${communityBadge} ${communityLabel} (${global.majorityPercentage}%)`;
+        } else {
+            document.getElementById('community-choice').innerHTML = 'Pas encore de données';
+        }
+        
+        document.getElementById('classification-info').style.display = 'flex';
+    } else {
+        // Pas de classification, affichage standard
+        document.getElementById('flashcard-header').style.display = 'none';
+        document.getElementById('simple-header').style.display = 'block';
+        document.getElementById('classification-info').style.display = 'none';
+    }
+    
+    // Masquer le prompt et le résultat
+    document.getElementById('classification-prompt').style.display = 'none';
+    document.getElementById('classification-result').style.display = 'none';
+    
+    // Réactiver le flip de carte
+    const flashcard = document.getElementById('flashcard');
+    flashcard.style.pointerEvents = 'auto';
+    flashcard.style.opacity = '1';
+    
+    // Afficher l'instruction de flip
+    document.getElementById('flip-instruction').style.display = 'block';
+}
+
+/**
+ * Sélectionner l'importance (nouveau système avec boutons directs)
+ */
+function selectImportance(importance) {
+    // Appliquer le style sélectionné
+    document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    
+    const selectedBtn = document.querySelector(`[data-importance="${importance}"]`);
+    if (selectedBtn) {
+        selectedBtn.classList.add('selected');
+    }
+    
+    // Soumettre immédiatement
+    submitClassification(importance);
+}
+
+/**
+ * Soumettre la classification
+ */
+async function submitClassification(importance) {
+    // Support pour l'ancien système (radio) et le nouveau (boutons directs)
+    const selectedImportance = importance || document.querySelector('input[name="importance"]:checked')?.value;
+    
+    if (!selectedImportance || !classificationManager || !currentTerm) return;
+    
+    // Désactiver tous les boutons pendant l'enregistrement
+    document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.disabled = true;
+        btn.style.opacity = '0.6';
+        btn.style.cursor = 'not-allowed';
+    });
+    
+    try {
+        const termKey = generateTermKey(currentTerm);
+        
+        // Enregistrer le vote
+        await classificationManager.voteForTerm(termKey, selectedImportance);
+        
+        // Récupérer les infos mises à jour
+        const classificationInfo = await classificationManager.getClassificationInfo(termKey);
+        
+        // Masquer le prompt
+        document.getElementById('classification-prompt').style.display = 'none';
+        
+        // Afficher le résultat
+        showClassificationResult(selectedImportance, classificationInfo.global);
+        
+        // Réactiver le flip
+        const flashcard = document.getElementById('flashcard');
+        flashcard.style.pointerEvents = 'auto';
+        flashcard.style.opacity = '1';
+        
+        // Afficher l'instruction de flip
+        document.getElementById('flip-instruction').style.display = 'block';
+        
+        currentTermHasVoted = true;
+        
+        showNotification('✅ Classification enregistrée !', 'success');
+    } catch (error) {
+        console.error('Erreur soumission classification:', error);
+        showNotification('❌ Erreur lors de l\'enregistrement', 'error');
+        
+        // Réactiver les boutons
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+        });
+    }
+}
+
+/**
+ * Afficher le résultat après vote
+ */
+function showClassificationResult(personalChoice, globalInfo) {
+    const badge = ClassificationManager.getImportanceBadge(personalChoice);
+    const label = ClassificationManager.getImportanceLabel(personalChoice);
+    
+    // Masquer le titre simple et afficher l'en-tête avec badge
+    document.getElementById('simple-header').style.display = 'none';
+    document.getElementById('flashcard-header').style.display = 'flex';
+    document.getElementById('importance-badge').textContent = badge;
+    document.getElementById('importance-badge').style.display = 'inline';
+    document.getElementById('btn-modify').style.display = 'block';
+    
+    // Afficher le résultat compact dans la flashcard
+    document.getElementById('result-badge').textContent = `${badge} ${label}`;
+    
+    if (globalInfo && globalInfo.totalVotes > 0) {
+        const communityBadge = ClassificationManager.getImportanceBadge(globalInfo.majorityChoice);
+        const communityLabel = ClassificationManager.getImportanceLabel(globalInfo.majorityChoice);
+        
+        document.getElementById('result-community').innerHTML = `
+            <small>👥 ${communityBadge} ${communityLabel} (${globalInfo.majorityPercentage}% · ${globalInfo.totalVotes} vote${globalInfo.totalVotes > 1 ? 's' : ''})</small>
+        `;
+    } else {
+        document.getElementById('result-community').innerHTML = `
+            <small>🆕 Premier vote !</small>
+        `;
+    }
+    
+    document.getElementById('classification-result').style.display = 'block';
+    
+    // NE PAS afficher les infos en bas (redondant avec le résultat)
+    document.getElementById('classification-info').style.display = 'none';
+}
+
+/**
+ * Ouvrir la modal de modification
+ */
+async function openModifyModal() {
+    if (!classificationManager || !currentTerm) return;
+    
+    try {
+        const termKey = generateTermKey(currentTerm);
+        const classificationInfo = await classificationManager.getClassificationInfo(termKey);
+        
+        if (!classificationInfo.personal) return;
+        
+        const personal = classificationInfo.personal;
+        const global = classificationInfo.global;
+        
+        // Remplir les infos actuelles
+        const badge = ClassificationManager.getImportanceBadge(personal.importance);
+        const label = ClassificationManager.getImportanceLabel(personal.importance);
+        document.getElementById('current-classification').textContent = `${badge} ${label}`;
+        
+        if (global && global.totalVotes > 0) {
+            const communityBadge = ClassificationManager.getImportanceBadge(global.majorityChoice);
+            const communityLabel = ClassificationManager.getImportanceLabel(global.majorityChoice);
+            document.getElementById('community-classification').textContent = 
+                `${communityBadge} ${communityLabel} (${global.majorityPercentage}%)`;
+        } else {
+            document.getElementById('community-classification').textContent = 'Pas encore de données';
+        }
+        
+        // Pré-sélectionner le choix actuel
+        const radios = document.querySelectorAll('input[name="new-importance"]');
+        radios.forEach(radio => {
+            radio.checked = (radio.value === personal.importance);
+        });
+        
+        // Afficher la modal
+        document.getElementById('modify-modal').classList.add('active');
+    } catch (error) {
+        console.error('Erreur ouverture modal:', error);
+        showNotification('❌ Erreur lors de l\'ouverture', 'error');
+    }
+}
+
+/**
+ * Fermer la modal de modification
+ */
+function closeModifyModal() {
+    document.getElementById('modify-modal').classList.remove('active');
+}
+
+/**
+ * Sauvegarder la modification
+ */
+async function saveModification() {
+    const selectedImportance = document.querySelector('input[name="new-importance"]:checked')?.value;
+    
+    if (!selectedImportance || !classificationManager || !currentTerm) return;
+    
+    try {
+        const termKey = generateTermKey(currentTerm);
+        
+        // Modifier le vote
+        await classificationManager.modifyVote(termKey, selectedImportance);
+        
+        // Récupérer les infos mises à jour
+        const classificationInfo = await classificationManager.getClassificationInfo(termKey);
+        
+        // Mettre à jour l'affichage
+        showClassifiedCard(classificationInfo);
+        
+        // Fermer la modal
+        closeModifyModal();
+        
+        showNotification('✅ Classification mise à jour !', 'success');
+    } catch (error) {
+        console.error('Erreur modification:', error);
+        showNotification('❌ Erreur lors de la modification', 'error');
+    }
+}
