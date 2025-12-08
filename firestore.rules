@@ -37,6 +37,60 @@ service cloud.firestore {
       allow update, delete: if isAdmin();       // Seuls les admins peuvent modifier/supprimer
     }
     
+    // ===== CLASSIFICATION COLLABORATIVE (NOUVEAU) =====
+    
+    // Progression utilisateur (ÉTENDUE pour la classification)
+    match /userProgress/{progressId} {
+      // Vérifier que le progressId correspond bien au format userId_termId
+      function isOwner() {
+        return request.auth != null && progressId.matches(request.auth.uid + '_.*');
+      }
+      
+      // Lecture : uniquement par le propriétaire
+      allow read: if isOwner();
+      
+      // Écriture : uniquement par le propriétaire avec validation
+      allow create, update: if isOwner() 
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.termId is string
+        // Validation des champs de classification (optionnels)
+        && (!('personalImportance' in request.resource.data) 
+            || request.resource.data.personalImportance in ['essential', 'important', 'supplementary', 'ignored'])
+        && (!('hasVoted' in request.resource.data) 
+            || request.resource.data.hasVoted is bool);
+      
+      // Suppression : uniquement par le propriétaire
+      allow delete: if isOwner();
+    }
+    
+    // Classifications globales (statistiques communautaires)
+    match /termClassifications/{termId} {
+      // Lecture : tout le monde peut lire les statistiques
+      allow read: if true;
+      
+      // Création : utilisateur authentifié avec validation stricte
+      allow create: if request.auth != null
+        && request.resource.data.termId is string
+        && request.resource.data.votes is map
+        && request.resource.data.votes.keys().hasAll(['essential', 'important', 'supplementary', 'ignored'])
+        && request.resource.data.totalVotes is int
+        && request.resource.data.totalVotes >= 1
+        && request.resource.data.majorityChoice in ['essential', 'important', 'supplementary', 'ignored']
+        && request.resource.data.majorityPercentage is int
+        && request.resource.data.majorityPercentage >= 0
+        && request.resource.data.majorityPercentage <= 100;
+      
+      // Mise à jour : utilisateur authentifié avec validation
+      allow update: if request.auth != null
+        && request.resource.data.termId == resource.data.termId
+        && request.resource.data.totalVotes >= resource.data.totalVotes
+        && request.resource.data.votes is map
+        && request.resource.data.votes.keys().hasAll(['essential', 'important', 'supplementary', 'ignored']);
+      
+      // Pas de suppression (classifications permanentes)
+      allow delete: if false;
+    }
+    
     // Bloquer tout le reste par défaut
     match /{document=**} {
       allow read, write: if false;
