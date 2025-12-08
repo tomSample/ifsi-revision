@@ -1,0 +1,117 @@
+/**
+ * LOGGER CONFIGURATION
+ * Configuration centralisée pour les logs de l'application
+ */
+
+// Détection de l'environnement
+const isProduction = window.location.hostname.includes('github.io') || 
+                     window.location.hostname.includes('tomsample.github.io');
+
+const isDevelopment = !isProduction;
+
+// Configuration des logs
+window.LOG_CONFIG = {
+    // Environnement
+    isDevelopment,
+    isProduction,
+    
+    // Niveaux de logs activés
+    enabled: {
+        error: true,           // Toujours actif
+        warn: true,            // Toujours actif
+        info: isDevelopment,   // Seulement en dev
+        log: isDevelopment,    // Seulement en dev
+        debug: isDevelopment   // Seulement en dev
+    },
+    
+    // Catégories de logs à afficher (en dev uniquement)
+    categories: {
+        firebase: isDevelopment,
+        cache: isDevelopment,
+        performance: isDevelopment,
+        sync: isDevelopment,
+        auth: isDevelopment,
+        revision: isDevelopment,
+        stats: isDevelopment,
+        admin: isDevelopment,
+        pwa: isDevelopment
+    }
+};
+
+// Wrapper pour console.log
+const originalLog = console.log;
+const originalInfo = console.info;
+const originalDebug = console.debug;
+
+// Remplacer console.log en production
+if (isProduction) {
+    console.log = function(...args) {
+        // Ne rien afficher en production (sauf si DEBUG activé)
+        if (localStorage.getItem('DEBUG_MODE') === 'true') {
+            originalLog.apply(console, args);
+        }
+    };
+    
+    console.info = function(...args) {
+        if (localStorage.getItem('DEBUG_MODE') === 'true') {
+            originalInfo.apply(console, args);
+        }
+    };
+    
+    console.debug = function(...args) {
+        if (localStorage.getItem('DEBUG_MODE') === 'true') {
+            originalDebug.apply(console, args);
+        }
+    };
+}
+
+// Utilitaire de logging conditionnel
+window.logger = {
+    log: (category, ...args) => {
+        if (isDevelopment || localStorage.getItem('DEBUG_MODE') === 'true') {
+            if (window.LOG_CONFIG.categories[category]) {
+                console.log(`[${category.toUpperCase()}]`, ...args);
+            }
+        }
+    },
+    
+    info: (category, ...args) => {
+        if (isDevelopment || localStorage.getItem('DEBUG_MODE') === 'true') {
+            if (window.LOG_CONFIG.categories[category]) {
+                console.info(`[${category.toUpperCase()}]`, ...args);
+            }
+        }
+    },
+    
+    warn: (...args) => {
+        console.warn(...args);
+    },
+    
+    error: (...args) => {
+        console.error(...args);
+    },
+    
+    // Activer le mode debug (en production)
+    enableDebug: () => {
+        localStorage.setItem('DEBUG_MODE', 'true');
+        console.log('✅ Mode DEBUG activé. Rechargez la page pour voir les logs.');
+    },
+    
+    // Désactiver le mode debug
+    disableDebug: () => {
+        localStorage.removeItem('DEBUG_MODE');
+        console.log('❌ Mode DEBUG désactivé. Rechargez la page.');
+    }
+};
+
+// Message de bienvenue en dev
+if (isDevelopment) {
+    console.log('%c🎓 IFSI Révisions - Mode Développement', 'color: #667eea; font-weight: bold; font-size: 14px;');
+    console.log('%cLogs activés. Pour désactiver, utilisez: window.logger.disableDebug()', 'color: #999;');
+} else {
+    // Message discret en production
+    console.log('%c🎓 IFSI Révisions', 'color: #667eea; font-weight: bold;');
+    console.log('Pour activer les logs de debug: window.logger.enableDebug()');
+}
+
+export default window.logger;
