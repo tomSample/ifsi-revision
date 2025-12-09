@@ -111,22 +111,155 @@ function getTermsDueToday() {
 }
 
 /**
- * Démarrer la révision quotidienne
+ * Afficher la configuration de révision quotidienne
  */
-function startDailyRevision() {
-    revisionMode.type = 'daily';
-    revisionMode.scope = null;
-    revisionMode.intensity = null;
+function showDailyRevisionConfig() {
+    // Masquer sélection de mode
+    document.getElementById('modeSelectionScreen').style.display = 'none';
     
-    const dueTerms = getTermsDueToday();
+    // Afficher config quotidienne
+    const configScreen = document.getElementById('dailyRevisionConfig');
+    if (configScreen) {
+        configScreen.style.display = 'block';
+    }
     
-    if (dueTerms.length === 0) {
-        showNotification('Aucun terme à réviser aujourd\'hui !', 'info');
+    // Charger les UE disponibles
+    loadDailyUESelection();
+}
+
+/**
+ * Charger la sélection des UE pour révision quotidienne
+ */
+function loadDailyUESelection() {
+    if (!coursesData || !coursesData.courses) return;
+    
+    const ueList = document.getElementById('dailyUeList');
+    if (!ueList) return;
+    
+    ueList.innerHTML = '';
+    
+    // Obtenir les UE uniques
+    const ues = [...new Set(coursesData.courses.map(c => c.ue))].sort();
+    
+    ues.forEach(ue => {
+        const ueTerms = allTerms.filter(t => t.ue === ue);
+        const dueTerms = ueTerms.filter(t => {
+            const termId = generateTermKey(t);
+            const progress = userProgress[termId];
+            if (!progress || !progress.nextReview) return true;
+            const nextReview = new Date(progress.nextReview);
+            nextReview.setHours(0, 0, 0, 0);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            return nextReview <= today;
+        });
+        
+        const checkbox = document.createElement('div');
+        checkbox.className = 'ue-checkbox-item';
+        checkbox.innerHTML = `
+            <label>
+                <input type="checkbox" value="${ue}" checked onchange="updateDailyTermCount()">
+                <span class="ue-name">UE ${ue}</span>
+                <span class="ue-stats">${dueTerms.length} dus / ${ueTerms.length} total</span>
+            </label>
+        `;
+        ueList.appendChild(checkbox);
+    });
+    
+    // Mettre à jour le compteur initial
+    updateDailyTermCount();
+}
+
+/**
+ * Mettre à jour le compteur de termes pour révision quotidienne
+ */
+function updateDailyTermCount() {
+    const selectedUEs = Array.from(
+        document.querySelectorAll('#dailyUeList input[type="checkbox"]:checked')
+    ).map(cb => cb.value);
+    
+    const termCountSlider = document.getElementById('dailyTermCount');
+    if (!termCountSlider) return;
+    
+    // Calculer les termes dus pour les UE sélectionnées
+    const dueTerms = getTermsDueToday().filter(t => 
+        selectedUEs.length === 0 || selectedUEs.includes(t.ue)
+    );
+    
+    // Mettre à jour le max du slider
+    termCountSlider.max = Math.max(1, dueTerms.length);
+    if (parseInt(termCountSlider.value) > dueTerms.length) {
+        termCountSlider.value = dueTerms.length;
+    }
+    
+    // Afficher le compte
+    const countDisplay = document.getElementById('dailyTermCountDisplay');
+    if (countDisplay) {
+        countDisplay.textContent = `${termCountSlider.value} termes`;
+    }
+    
+    // Mettre à jour la répartition par importance
+    updateDailyImportanceDistribution(dueTerms.slice(0, parseInt(termCountSlider.value)));
+}
+
+/**
+ * Mettre à jour la distribution d'importance
+ */
+function updateDailyImportanceDistribution(terms) {
+    const counts = {
+        essential: 0,
+        important: 0,
+        supplementary: 0
+    };
+    
+    terms.forEach(term => {
+        const importance = getTermImportance(term);
+        if (counts.hasOwnProperty(importance)) {
+            counts[importance]++;
+        }
+    });
+    
+    const essentialEl = document.getElementById('dailyConfigEssential');
+    const importantEl = document.getElementById('dailyConfigImportant');
+    const supplementaryEl = document.getElementById('dailyConfigSupplementary');
+    
+    if (essentialEl) essentialEl.textContent = counts.essential;
+    if (importantEl) importantEl.textContent = counts.important;
+    if (supplementaryEl) supplementaryEl.textContent = counts.supplementary;
+}
+
+/**
+ * Démarrer la révision quotidienne configurée
+ */
+function startConfiguredDailyRevision() {
+    const selectedUEs = Array.from(
+        document.querySelectorAll('#dailyUeList input[type="checkbox"]:checked')
+    ).map(cb => cb.value);
+    
+    if (selectedUEs.length === 0) {
+        showNotification('Veuillez sélectionner au moins une UE', 'warning');
         return;
     }
     
-    // Mélanger les termes
-    revisionMode.terms = shuffleArray(dueTerms);
+    const termCount = parseInt(document.getElementById('dailyTermCount').value);
+    
+    revisionMode.type = 'daily';
+    revisionMode.scope = { ues: selectedUEs };
+    revisionMode.intensity = null;
+    
+    // Filtrer et limiter les termes
+    let dueTerms = getTermsDueToday().filter(t => 
+        selectedUEs.includes(t.ue)
+    );
+    
+    if (dueTerms.length === 0) {
+        showNotification('Aucun terme dû pour ces UE', 'info');
+        return;
+    }
+    
+    // Mélanger et limiter
+    dueTerms = shuffleArray(dueTerms).slice(0, termCount);
+    revisionMode.terms = dueTerms;
     
     // Démarrer la session
     startRevisionSession(revisionMode.terms);
@@ -187,13 +320,17 @@ function loadScopeList() {
                 id: course.ue,
                 name: `UE ${course.ue}`,
                 courses: [],
-                terms: []
+                termCount: 0
             });
         }
         
         const ue = ueMap.get(course.ue);
         ue.courses.push(course);
-        ue.terms.push(...course.terms);
+        
+        // Vérifier si course.terms existe avant de compter
+        if (course.terms && Array.isArray(course.terms)) {
+            ue.termCount += course.terms.length;
+        }
     });
     
     // Afficher les UE
@@ -203,17 +340,18 @@ function loadScopeList() {
             id: ueId,
             name: ue.name,
             courseCount: ue.courses.length,
-            termCount: ue.terms.length
+            termCount: ue.termCount
         });
         scopeList.appendChild(ueItem);
         
         // Afficher les cours de cette UE
         ue.courses.forEach(course => {
+            const courseTermCount = course.terms && Array.isArray(course.terms) ? course.terms.length : 0;
             const courseItem = createScopeItem({
                 type: 'course',
-                id: course.id,
+                id: course.id || course.nom,
                 name: course.nom,
-                termCount: course.terms.length,
+                termCount: courseTermCount,
                 isSubItem: true
             });
             scopeList.appendChild(courseItem);
@@ -492,7 +630,9 @@ function skipClassification() {
 window.initializeModeSelection = initializeModeSelection;
 window.showTargetedRevisionSetup = showTargetedRevisionSetup;
 window.backToModeSelection = backToModeSelection;
-window.startDailyRevision = startDailyRevision;
+window.showDailyRevisionConfig = showDailyRevisionConfig;
+window.updateDailyTermCount = updateDailyTermCount;
+window.startConfiguredDailyRevision = startConfiguredDailyRevision;
 window.filterScope = filterScope;
 window.backToScopeSelection = backToScopeSelection;
 window.startTargetedRevision = startTargetedRevision;

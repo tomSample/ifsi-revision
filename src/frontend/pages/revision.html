@@ -6,7 +6,7 @@
     <title>IFSI Lannion - Révisions Quotidiennes</title>
     <link rel="manifest" href="../../../public/manifest.json">
     <meta name="theme-color" content="#667eea">
-    <link rel="stylesheet" href="../assets/styles/style-revision.css">
+    <link rel="stylesheet" href="../assets/styles/style-revision.css?v=3.5.1">
     <style>
         /* Styles flashcard avec rotation 3D */
         .flashcard-container {
@@ -169,10 +169,66 @@
                                 <span class="stat-value" id="dailyTime">-</span>
                             </div>
                         </div>
-                        <button class="btn-mode btn-primary" onclick="startDailyRevision()" id="btnStartDaily">
+                        <button class="btn-mode btn-primary" onclick="showDailyRevisionConfig()" id="btnStartDaily">
                             Réviser maintenant
                         </button>
                     </div>
+                </div>
+            </div>
+
+            <!-- Écran de configuration révision quotidienne -->
+            <div class="daily-revision-config" id="dailyRevisionConfig" style="display: none;">
+                <button class="btn-back-setup" onclick="backToModeSelection()">← Retour</button>
+                
+                <h2>🔄 Configuration Révision Quotidienne</h2>
+                
+                <div class="config-section">
+                    <h3>📚 Sélectionner les UE</h3>
+                    <div class="ue-selection-list" id="dailyUeList">
+                        <!-- Les UE seront chargées dynamiquement -->
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <h3>📊 Nombre de termes</h3>
+                    <input type="range" 
+                           id="dailyTermCount" 
+                           class="term-slider"
+                           min="5" 
+                           max="50" 
+                           value="20" 
+                           oninput="updateDailyTermCount()">
+                    <div class="term-count-display">
+                        <span id="dailyTermCountDisplay">20</span> termes
+                        <span class="term-count-max" id="dailyTermCountMax"></span>
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <h3>🎯 Répartition par importance</h3>
+                    <div class="importance-distribution">
+                        <div class="importance-item">
+                            <span class="badge-config essential">🔴 Essentiel</span>
+                            <span class="importance-count" id="dailyConfigEssential">0</span>
+                        </div>
+                        <div class="importance-item">
+                            <span class="badge-config important">🟡 Important</span>
+                            <span class="importance-count" id="dailyConfigImportant">0</span>
+                        </div>
+                        <div class="importance-item">
+                            <span class="badge-config supplementary">🟢 Complémentaire</span>
+                            <span class="importance-count" id="dailyConfigSupplementary">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-footer">
+                    <div class="estimated-time">
+                        ⏱️ Durée estimée : <span id="dailyConfigTime">30</span> min
+                    </div>
+                    <button class="btn-start-session" onclick="startConfiguredDailyRevision()">
+                        Démarrer la révision
+                    </button>
                 </div>
             </div>
 
