@@ -512,6 +512,7 @@
         let spacedRepetition = null;
         let classificationManager = null;
         let currentTerm = null;
+        let smartCache = null;
 
         // Initialisation au chargement
         document.addEventListener('DOMContentLoaded', () => {
@@ -530,6 +531,11 @@
                 
                 sessionConfig = JSON.parse(configStr);
                 console.log('Session config:', sessionConfig);
+
+                // Initialiser SmartCache
+                if (typeof SmartCache !== 'undefined') {
+                    smartCache = new SmartCache();
+                }
 
                 // Initialiser Firebase et les modules
                 await initializeModules();
@@ -573,63 +579,68 @@
         async function loadTerms() {
             try {
                 // Récupérer les termes depuis le cache ou l'API
-                let allCourses = null;
+                let coursesData = null;
                 
-                if (typeof SmartCache !== 'undefined') {
-                    const cachedData = SmartCache.get('allCourses');
-                    allCourses = cachedData ? cachedData.data : null;
+                // Essayer le cache d'abord
+                if (smartCache) {
+                    coursesData = smartCache.get('coursesData');
                 }
 
-                if (!allCourses) {
-                    const response = await fetch('/api/courses');
-                    allCourses = await response.json();
-                    if (typeof SmartCache !== 'undefined') {
-                        SmartCache.set('allCourses', allCourses);
+                // Si pas en cache, charger depuis le fichier JSON
+                if (!coursesData) {
+                    const url = window.resolvePath ? window.resolvePath('/src/data/courses.json') : '/src/data/courses.json';
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    coursesData = data;
+                    
+                    // Mettre en cache
+                    if (smartCache) {
+                        smartCache.set('coursesData', coursesData);
                     }
                 }
+
+                // Extraire tous les termes disponibles
+                let allTerms = [];
+                if (coursesData && coursesData.courses) {
+                    coursesData.courses.forEach(([courseKey, courseData]) => {
+                        if (courseData.definitions && Array.isArray(courseData.definitions)) {
+                            courseData.definitions.forEach(def => {
+                                allTerms.push({
+                                    term: def.term,
+                                    definition: def.definition,
+                                    ue: courseData.ue,
+                                    course: courseData.title,
+                                    courseKey: courseKey
+                                });
+                            });
+                        }
+                    });
+                }
+
+                console.log(`Tous les termes disponibles: ${allTerms.length}`);
 
                 // Filtrer selon la config
                 terms = [];
                 
                 if (sessionConfig.mode === 'daily') {
                     // Mode révision quotidienne
-                    allCourses.forEach(course => {
-                        course.terms.forEach(term => {
-                            if (spacedRepetition && spacedRepetition.isDueForReview(term)) {
-                                terms.push({
-                                    ...term,
-                                    course: course.title,
-                                    ue: course.ue
-                                });
-                            }
-                        });
+                    allTerms.forEach(term => {
+                        if (spacedRepetition && spacedRepetition.isDueForReview(term)) {
+                            terms.push(term);
+                        }
                     });
                 } else if (sessionConfig.mode === 'targeted') {
                     // Mode révision ciblée
                     const selectedItems = sessionConfig.selectedItems || [];
                     
-                    allCourses.forEach(course => {
-                        const courseKey = `${course.ue}_${course.title}`;
-                        
+                    allTerms.forEach(term => {
                         selectedItems.forEach(item => {
-                            if (item.type === 'course' && item.id === courseKey) {
+                            if (item.type === 'course' && item.id === term.courseKey) {
                                 // Cours entier sélectionné
-                                course.terms.forEach(term => {
-                                    terms.push({
-                                        ...term,
-                                        course: course.title,
-                                        ue: course.ue
-                                    });
-                                });
-                            } else if (item.type === 'ue' && course.ue === item.id) {
+                                terms.push(term);
+                            } else if (item.type === 'ue' && item.id === term.ue) {
                                 // UE entière sélectionnée
-                                course.terms.forEach(term => {
-                                    terms.push({
-                                        ...term,
-                                        course: course.title,
-                                        ue: course.ue
-                                    });
-                                });
+                                terms.push(term);
                             }
                         });
                     });
