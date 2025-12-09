@@ -374,6 +374,9 @@ function updateIntensityStats() {
  * Sélectionner une intensité et démarrer
  */
 function selectIntensity(intensity) {
+    // Sauvegarder l'intensité dans la config
+    targetedConfig.intensity = intensity;
+    
     let terms;
     
     switch(intensity) {

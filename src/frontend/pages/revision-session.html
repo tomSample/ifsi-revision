@@ -6,7 +6,361 @@
     <title>IFSI Lannion - Session de Révision</title>
     <link rel="manifest" href="../../../public/manifest.json">
     <meta name="theme-color" content="#667eea">
-    <link rel="stylesheet" href="../assets/styles/style-revision.css?v=3.5.1">
+    <link rel="stylesheet" href="../assets/styles/style-revision.css?v=3.6.3">
+    <style>
+        /* ========== FLASHCARD 3D STYLES ========== */
+        .flashcard-container {
+            perspective: 1000px;
+            margin: 30px auto;
+            min-height: 350px;
+            max-width: 800px;
+        }
+
+        .flashcard {
+            position: relative;
+            width: 100%;
+            min-height: 350px;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard-front,
+        .flashcard-back {
+            position: absolute;
+            width: 100%;
+            min-height: 350px;
+            backface-visibility: hidden;
+            background: white;
+            border-radius: 16px;
+            padding: 50px 40px;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .flashcard-back {
+            transform: rotateY(180deg);
+        }
+
+        .card-label {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #667eea;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .flashcard-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .importance-badge {
+            font-size: 28px;
+            animation: pulse 2s infinite;
+        }
+
+        .term-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .flip-instruction {
+            color: #6c757d;
+            font-size: 16px;
+            margin-top: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .flashcard-back h3 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 25px;
+            margin-top: 30px;
+        }
+
+        .definition-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #34495e;
+            max-width: 650px;
+            text-align: left;
+        }
+
+        /* ========== CLASSIFICATION PROMPT ========== */
+        .classification-prompt-below {
+            margin: 30px auto;
+            max-width: 800px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .prompt-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .classification-options-compact {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .option-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 140px;
+            max-width: 180px;
+        }
+
+        .option-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .option-btn[data-importance="essential"]:hover {
+            border-color: #e74c3c;
+            background: #ffebee;
+        }
+
+        .option-btn[data-importance="important"]:hover {
+            border-color: #f39c12;
+            background: #fff9e6;
+        }
+
+        .option-btn[data-importance="supplementary"]:hover {
+            border-color: #27ae60;
+            background: #e8f5e9;
+        }
+
+        .option-btn.ignore:hover {
+            border-color: #95a5a6;
+            background: #eceff1;
+        }
+
+        .option-btn .emoji {
+            font-size: 28px;
+        }
+
+        .option-btn .label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        /* ========== DIFFICULTY SECTION ========== */
+        .difficulty-section {
+            margin: 30px auto;
+            max-width: 800px;
+            animation: slideUp 0.5s ease;
+        }
+
+        .difficulty-rating {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+
+        .difficulty-rating h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .difficulty-hint {
+            text-align: center;
+            color: #6c757d;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .difficulty-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .difficulty-btn {
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 20px;
+            border: 3px solid #e9ecef;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .difficulty-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .btn-easy:hover {
+            border-color: #27ae60;
+            background: #e8f5e9;
+        }
+
+        .btn-medium:hover {
+            border-color: #f39c12;
+            background: #fff9e6;
+        }
+
+        .btn-hard:hover {
+            border-color: #e74c3c;
+            background: #ffebee;
+        }
+
+        .difficulty-emoji {
+            font-size: 36px;
+        }
+
+        .difficulty-label {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .difficulty-interval {
+            font-size: 13px;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .report-btn {
+            display: block;
+            margin: 20px auto 0;
+            padding: 12px 24px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            color: #6c757d;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .report-btn:hover {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        /* ========== PROGRESS BAR ========== */
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            padding: 15px 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .progress-info span {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .term-title {
+                font-size: 28px;
+            }
+
+            .definition-text {
+                font-size: 16px;
+            }
+
+            .classification-options-compact {
+                flex-direction: column;
+            }
+
+            .option-btn {
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            .difficulty-buttons {
+                flex-direction: column;
+            }
+
+            .difficulty-btn {
+                min-width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -25,59 +379,90 @@
         </header>
 
         <main>
-            <!-- Écran de révision -->
+            <!-- Écran de révision avec flashcards -->
             <div class="revision-screen" id="revisionScreen">
-                <div class="term-card">
-                    <div class="term-header">
-                        <span class="term-ue" id="termUE">UE</span>
-                        <span class="term-number" id="termProgress">1/10</span>
-                    </div>
+                
+                <!-- Flashcard 3D -->
+                <div class="flashcard-container">
+                    <div class="flashcard" id="flashcard" onclick="flipCard()">
+                        <div class="flashcard-inner">
+                            <!-- Face avant : Question -->
+                            <div class="flashcard-front">
+                                <div class="card-label">Question</div>
+                                <div class="flashcard-header">
+                                    <span class="importance-badge" id="importanceBadge">⚪</span>
+                                    <h3 class="term-title" id="termName">Terme</h3>
+                                </div>
+                                <p class="flip-instruction">🖱️ Cliquez pour révéler la réponse</p>
+                            </div>
 
-                    <div class="term-question">
-                        <h3 id="termName">Terme à réviser</h3>
-                        <p class="instruction">Essayez de vous rappeler la définition</p>
+                            <!-- Face arrière : Réponse -->
+                            <div class="flashcard-back">
+                                <div class="card-label">Réponse</div>
+                                <h3 id="termNameBack">Terme</h3>
+                                <div class="definition-text" id="termDefinition">Définition du terme</div>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="answer-section">
-                        <textarea 
-                            id="userAnswer" 
-                            placeholder="Tapez votre réponse ici..."
-                            rows="4"></textarea>
-                        <div class="answer-actions">
-                            <button class="check-btn" onclick="revealAnswer()">
-                                Voir la réponse
+                <!-- Prompt de classification d'importance -->
+                <div class="classification-prompt-below" id="classificationPrompt" style="display:none;">
+                    <p class="prompt-title">⭐ Quelle importance pour ce terme ?</p>
+                    
+                    <div class="classification-options-compact">
+                        <button class="option-btn" data-importance="essential" onclick="selectImportance('essential')">
+                            <span class="emoji">🔴</span>
+                            <span class="label">Essentiel</span>
+                        </button>
+                        
+                        <button class="option-btn" data-importance="important" onclick="selectImportance('important')">
+                            <span class="emoji">🟡</span>
+                            <span class="label">Important</span>
+                        </button>
+                        
+                        <button class="option-btn" data-importance="supplementary" onclick="selectImportance('supplementary')">
+                            <span class="emoji">🟢</span>
+                            <span class="label">Complémentaire</span>
+                        </button>
+                        
+                        <button class="option-btn ignore" data-importance="ignored" onclick="selectImportance('ignored')">
+                            <span class="emoji">⚪</span>
+                            <span class="label">Ignorer</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Section difficulté (masquée jusqu'au flip) -->
+                <div class="difficulty-section" id="difficultySection" style="display: none;">
+                    <div class="difficulty-rating">
+                        <h4>🎯 Comment avez-vous trouvé ce terme ?</h4>
+                        <p class="difficulty-hint">Votre réponse permet d'optimiser vos prochaines révisions</p>
+                        
+                        <div class="difficulty-buttons">
+                            <button class="difficulty-btn btn-easy" onclick="rateDifficulty('facile')">
+                                <span class="difficulty-emoji">😊</span>
+                                <span class="difficulty-label">Facile</span>
+                                <span class="difficulty-interval" id="intervalEasy">Revoir dans ~6 jours</span>
+                            </button>
+                            
+                            <button class="difficulty-btn btn-medium" onclick="rateDifficulty('moyen')">
+                                <span class="difficulty-emoji">😐</span>
+                                <span class="difficulty-label">Moyen</span>
+                                <span class="difficulty-interval" id="intervalMedium">Revoir dans ~3 jours</span>
+                            </button>
+                            
+                            <button class="difficulty-btn btn-hard" onclick="rateDifficulty('difficile')">
+                                <span class="difficulty-emoji">😟</span>
+                                <span class="difficulty-label">Difficile</span>
+                                <span class="difficulty-interval" id="intervalHard">Revoir dans 1 jour</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Section de correction (masquée initialement) -->
-                    <div class="correction-section" id="correctionSection" style="display: none;">
-                        <div class="user-answer">
-                            <h4>Votre réponse:</h4>
-                            <div class="answer-display" id="userAnswerDisplay"></div>
-                        </div>
-
-                        <div class="correct-answer">
-                            <h4>Définition correcte:</h4>
-                            <div class="answer-display" id="correctAnswerDisplay"></div>
-                        </div>
-
-                        <!-- Auto-évaluation -->
-                        <div class="self-evaluation">
-                            <p>Comment évaluez-vous votre réponse ?</p>
-                            <div class="evaluation-buttons">
-                                <button class="eval-btn wrong" onclick="evaluateAnswer('wrong')">
-                                    ❌ Faux
-                                </button>
-                                <button class="eval-btn partial" onclick="evaluateAnswer('partial')">
-                                    ⚠️ Partiel
-                                </button>
-                                <button class="eval-btn correct" onclick="evaluateAnswer('correct')">
-                                    ✅ Correct
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="report-btn" onclick="openReportModal()">
+                        ⚠️ Signaler un problème avec cette définition
+                    </button>
                 </div>
             </div>
 
@@ -87,35 +472,22 @@
                     <h3>🎉 Session terminée !</h3>
                     
                     <div class="session-stats">
-                        <div class="stat-circle">
-                            <div class="circle-progress">
-                                <span id="finalScore">0</span>%
-                            </div>
-                            <p>Score final</p>
+                        <div class="stat-item">
+                            <span class="stat-value" id="totalReviewed">0</span>
+                            <span class="stat-label">Termes révisés</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="finalScore">0%</span>
+                            <span class="stat-label">Score final</span>
                         </div>
                     </div>
 
-                    <div class="detailed-stats">
-                        <div class="stat-row">
-                            <span>✅ Correctes:</span>
-                            <strong id="correctCount">0</strong>
-                        </div>
-                        <div class="stat-row">
-                            <span>⚠️ Partielles:</span>
-                            <strong id="partialCount">0</strong>
-                        </div>
-                        <div class="stat-row">
-                            <span>❌ Fausses:</span>
-                            <strong id="wrongCount">0</strong>
-                        </div>
-                    </div>
-
-                    <div class="action-buttons">
-                        <button class="new-session-btn" onclick="window.location.href='./revision.html'">
+                    <div class="results-actions">
+                        <button class="primary-btn" onclick="window.location.href='./revision.html'">
                             🔄 Nouvelle session
                         </button>
-                        <button class="review-btn" onclick="window.location.href='./home.html'">
-                            🏠 Retour au hub
+                        <button class="secondary-btn" onclick="window.location.href='./statistics.html'">
+                            📊 Voir statistiques
                         </button>
                     </div>
                 </div>
@@ -123,131 +495,294 @@
         </main>
     </div>
 
-    <!-- Firebase -->
+    <!-- Scripts -->
     <script src="../assets/scripts/config/firebase-config.js"></script>
-    
-    <!-- Utils -->
-    <script src="../assets/scripts/utils/cache-manager.js?v=3.1"></script>
-    <script src="../assets/scripts/utils/page-load-guard.js"></script>
-    
-    <!-- Modules -->
+    <script src="../assets/scripts/utils/smart-cache.js"></script>
     <script src="../assets/scripts/modules/sync-manager.js"></script>
     <script src="../assets/scripts/modules/spaced-repetition.js"></script>
+    <script src="../assets/scripts/modules/classification-manager.js"></script>
     
-    <!-- Session Script -->
-    <script type="module">
-        let currentTermIndex = 0;
+    <script>
+        // Variables globales
         let terms = [];
+        let currentTermIndex = 0;
         let sessionResults = [];
+        let sessionConfig = null;
         let syncManager = null;
         let spacedRepetition = null;
-        
-        // Initialisation
-        document.addEventListener('DOMContentLoaded', async () => {
-            await initializeFirebase();
-            loadSession();
+        let classificationManager = null;
+        let currentTerm = null;
+
+        // Initialisation au chargement
+        document.addEventListener('DOMContentLoaded', () => {
+            initSession();
         });
-        
-        async function initializeFirebase() {
+
+        async function initSession() {
             try {
-                const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js');
-                const { getAuth, onAuthStateChanged } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js');
-                const { getFirestore } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+                // Charger la config depuis sessionStorage
+                const configStr = sessionStorage.getItem('revisionConfig');
+                if (!configStr) {
+                    alert('Aucune session en cours. Redirection...');
+                    window.location.href = './revision.html';
+                    return;
+                }
                 
-                const app = initializeApp(window.firebaseConfig);
-                const auth = getAuth(app);
-                const db = getFirestore(app);
+                sessionConfig = JSON.parse(configStr);
+                console.log('Session config:', sessionConfig);
+
+                // Initialiser Firebase et les modules
+                await initializeModules();
+
+                // Charger les termes
+                await loadTerms();
                 
-                window.syncManager = new SyncManager(auth, db);
-                window.spacedRepetition = new SpacedRepetition();
+                // Afficher le premier terme
+                if (terms.length > 0) {
+                    displayCurrentTerm();
+                } else {
+                    alert('Aucun terme à réviser');
+                    window.location.href = './revision.html';
+                }
                 
-                syncManager = window.syncManager;
-                spacedRepetition = window.spacedRepetition;
             } catch (error) {
-                console.error('Erreur initialisation Firebase:', error);
+                console.error('Erreur initialisation session:', error);
+                alert('Erreur lors du chargement de la session: ' + error.message);
             }
         }
-        
-        function loadSession() {
-            // Charger les termes depuis sessionStorage
-            const termsJson = sessionStorage.getItem('revisionTerms');
-            const mode = sessionStorage.getItem('revisionMode');
-            const config = sessionStorage.getItem('revisionConfig');
-            
-            if (!termsJson) {
-                alert('❌ Aucune session de révision en cours');
-                window.location.href = './revision.html';
-                return;
+
+        async function initializeModules() {
+            try {
+                // Attendre que Firebase soit initialisé
+                if (typeof firebase !== 'undefined' && firebase.auth) {
+                    const user = firebase.auth().currentUser;
+                    if (user) {
+                        syncManager = new SyncManager(user.uid);
+                        spacedRepetition = new SpacedRepetition(syncManager);
+                        classificationManager = new ClassificationManager(user.uid, syncManager);
+                        console.log('Modules initialisés avec user:', user.uid);
+                    } else {
+                        console.warn('Utilisateur non connecté - mode dégradé');
+                    }
+                }
+            } catch (error) {
+                console.error('Erreur initialisation modules:', error);
             }
-            
-            terms = JSON.parse(termsJson);
-            console.log(`✅ Session chargée: ${terms.length} termes (mode: ${mode})`);
-            
-            // Afficher le type de session
-            const sessionTypeEl = document.getElementById('sessionType');
-            if (mode === 'targeted') {
-                sessionTypeEl.textContent = '🎯 Révision Ciblée';
-            } else if (mode === 'daily') {
-                sessionTypeEl.textContent = '🔄 Révision Quotidienne';
-            }
-            
-            // Initialiser l'affichage
-            document.getElementById('totalTerms').textContent = terms.length;
-            displayCurrentTerm();
         }
-        
+
+        async function loadTerms() {
+            try {
+                // Récupérer les termes depuis le cache ou l'API
+                let allCourses = null;
+                
+                if (typeof SmartCache !== 'undefined') {
+                    const cachedData = SmartCache.get('allCourses');
+                    allCourses = cachedData ? cachedData.data : null;
+                }
+
+                if (!allCourses) {
+                    const response = await fetch('/api/courses');
+                    allCourses = await response.json();
+                    if (typeof SmartCache !== 'undefined') {
+                        SmartCache.set('allCourses', allCourses);
+                    }
+                }
+
+                // Filtrer selon la config
+                terms = [];
+                
+                if (sessionConfig.mode === 'daily') {
+                    // Mode révision quotidienne
+                    allCourses.forEach(course => {
+                        course.terms.forEach(term => {
+                            if (spacedRepetition && spacedRepetition.isDueForReview(term)) {
+                                terms.push({
+                                    ...term,
+                                    course: course.title,
+                                    ue: course.ue
+                                });
+                            }
+                        });
+                    });
+                } else if (sessionConfig.mode === 'targeted') {
+                    // Mode révision ciblée
+                    const selectedItems = sessionConfig.selectedItems || [];
+                    
+                    allCourses.forEach(course => {
+                        const courseKey = `${course.ue}_${course.title}`;
+                        
+                        selectedItems.forEach(item => {
+                            if (item.type === 'course' && item.id === courseKey) {
+                                // Cours entier sélectionné
+                                course.terms.forEach(term => {
+                                    terms.push({
+                                        ...term,
+                                        course: course.title,
+                                        ue: course.ue
+                                    });
+                                });
+                            } else if (item.type === 'ue' && course.ue === item.id) {
+                                // UE entière sélectionnée
+                                course.terms.forEach(term => {
+                                    terms.push({
+                                        ...term,
+                                        course: course.title,
+                                        ue: course.ue
+                                    });
+                                });
+                            }
+                        });
+                    });
+
+                    // Filtrer par intensité si définie
+                    if (sessionConfig.intensity) {
+                        terms = filterByIntensity(terms, sessionConfig.intensity);
+                    }
+                }
+
+                // Mélanger les termes
+                terms = shuffleArray(terms);
+                
+                // Mettre à jour l'UI
+                document.getElementById('totalTerms').textContent = terms.length;
+                document.getElementById('sessionType').textContent = 
+                    sessionConfig.mode === 'daily' ? 'Révision Quotidienne' : 'Révision Ciblée';
+                    
+                console.log(`${terms.length} termes chargés`);
+            } catch (error) {
+                console.error('Erreur chargement termes:', error);
+                throw error;
+            }
+        }
+
+        function filterByIntensity(allTerms, intensity) {
+            if (!classificationManager) return allTerms;
+
+            switch(intensity) {
+                case 'sprint':
+                    return allTerms.filter(t => {
+                        const importance = classificationManager.getImportance(t.term);
+                        return importance === 'essential';
+                    });
+                case 'discovery':
+                    return allTerms.filter(t => {
+                        const importance = classificationManager.getImportance(t.term);
+                        return ['essential', 'important'].includes(importance);
+                    });
+                case 'mastery':
+                default:
+                    return allTerms;
+            }
+        }
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
         function displayCurrentTerm() {
             if (currentTermIndex >= terms.length) {
                 showResults();
                 return;
             }
             
-            const term = terms[currentTermIndex];
+            currentTerm = terms[currentTermIndex];
             
-            // Mettre à jour les informations
-            document.getElementById('termName').textContent = term.term;
-            document.getElementById('termUE').textContent = `UE ${term.ue}`;
-            document.getElementById('termProgress').textContent = `${currentTermIndex + 1}/${terms.length}`;
+            // Réinitialiser la carte
+            const flashcard = document.getElementById('flashcard');
+            flashcard.classList.remove('flipped');
+            
+            // Mettre à jour le contenu
+            document.getElementById('termName').textContent = currentTerm.term;
+            document.getElementById('termNameBack').textContent = currentTerm.term;
+            document.getElementById('termDefinition').textContent = currentTerm.definition;
+            
+            // Badge d'importance
+            if (classificationManager) {
+                const importance = classificationManager.getImportance(currentTerm.term);
+                const badge = document.getElementById('importanceBadge');
+                const badges = {
+                    'essential': '🔴',
+                    'important': '🟡',
+                    'supplementary': '🟢',
+                    'ignored': '⚪'
+                };
+                badge.textContent = badges[importance] || '⚪';
+            }
+            
+            // Mettre à jour les compteurs
             document.getElementById('currentTermNumber').textContent = currentTermIndex + 1;
             
-            // Réinitialiser l'interface
-            document.getElementById('userAnswer').value = '';
-            document.getElementById('correctionSection').style.display = 'none';
+            // Masquer les sections
+            document.getElementById('difficultySection').style.display = 'none';
+            document.getElementById('classificationPrompt').style.display = 'none';
             
-            // Calculer le score actuel
+            // Calculer le score
             updateScore();
         }
-        
-        window.revealAnswer = function() {
-            const term = terms[currentTermIndex];
-            const userAnswer = document.getElementById('userAnswer').value;
+
+        window.flipCard = function() {
+            const flashcard = document.getElementById('flashcard');
+            const difficultySection = document.getElementById('difficultySection');
+            const classificationPrompt = document.getElementById('classificationPrompt');
             
-            // Afficher les réponses
-            document.getElementById('userAnswerDisplay').textContent = userAnswer || '(Pas de réponse)';
-            document.getElementById('correctAnswerDisplay').textContent = term.definition;
-            
-            // Afficher la section de correction
-            document.getElementById('correctionSection').style.display = 'block';
+            if (!flashcard.classList.contains('flipped')) {
+                flashcard.classList.add('flipped');
+                
+                // Afficher les sections après animation
+                setTimeout(() => {
+                    difficultySection.style.display = 'block';
+                    classificationPrompt.style.display = 'block';
+                }, 300);
+            }
         };
-        
-        window.evaluateAnswer = async function(evaluation) {
-            const term = terms[currentTermIndex];
+
+        window.selectImportance = async function(importance) {
+            if (!classificationManager || !currentTerm) return;
+            
+            try {
+                await classificationManager.setImportance(currentTerm.term, importance);
+                
+                // Feedback visuel
+                const buttons = document.querySelectorAll('.option-btn');
+                buttons.forEach(btn => {
+                    if (btn.dataset.importance === importance) {
+                        btn.style.transform = 'scale(1.1)';
+                        setTimeout(() => {
+                            btn.style.transform = 'scale(1)';
+                        }, 200);
+                    }
+                });
+                
+                console.log(`Classification: ${currentTerm.term} → ${importance}`);
+            } catch (error) {
+                console.error('Erreur classification:', error);
+            }
+        };
+
+        window.rateDifficulty = async function(difficulty) {
+            if (!currentTerm) return;
             
             // Enregistrer le résultat
             sessionResults.push({
-                term: term.term,
-                ue: term.ue,
-                evaluation: evaluation,
+                term: currentTerm.term,
+                ue: currentTerm.ue,
+                difficulty: difficulty,
                 timestamp: Date.now()
             });
             
             // Mettre à jour la progression via Spaced Repetition
-            if (syncManager && spacedRepetition) {
-                const termKey = `${term.term}_${term.ue}`.replace(/\s+/g, '_').toLowerCase();
-                const correct = evaluation === 'correct';
+            if (spacedRepetition) {
+                const termKey = `${currentTerm.term}_${currentTerm.ue}`.replace(/\s+/g, '_').toLowerCase();
+                const correct = difficulty === 'facile';
                 
                 try {
                     await spacedRepetition.updateProgress(termKey, correct, syncManager);
+                    console.log(`Progression: ${currentTerm.term} → ${difficulty}`);
                 } catch (error) {
                     console.error('Erreur mise à jour progression:', error);
                 }
@@ -257,43 +792,31 @@
             currentTermIndex++;
             displayCurrentTerm();
         };
-        
+
+        window.openReportModal = function() {
+            if (!currentTerm) return;
+            alert(`Signalement pour: ${currentTerm.term}\n\nFonctionnalité en cours de développement.`);
+        };
+
         function updateScore() {
             if (sessionResults.length === 0) {
                 document.getElementById('sessionScore').textContent = '0';
                 return;
             }
             
-            const correct = sessionResults.filter(r => r.evaluation === 'correct').length;
-            const partial = sessionResults.filter(r => r.evaluation === 'partial').length;
-            const score = Math.round(((correct + partial * 0.5) / sessionResults.length) * 100);
+            const easy = sessionResults.filter(r => r.difficulty === 'facile').length;
+            const medium = sessionResults.filter(r => r.difficulty === 'moyen').length;
+            const score = Math.round(((easy + medium * 0.5) / sessionResults.length) * 100);
             
             document.getElementById('sessionScore').textContent = score;
         }
-        
+
         function showResults() {
-            // Masquer l'écran de révision
             document.getElementById('revisionScreen').style.display = 'none';
+            document.getElementById('resultsScreen').style.display = 'block';
             
-            // Calculer les statistiques finales
-            const correct = sessionResults.filter(r => r.evaluation === 'correct').length;
-            const partial = sessionResults.filter(r => r.evaluation === 'partial').length;
-            const wrong = sessionResults.filter(r => r.evaluation === 'wrong').length;
-            const finalScore = Math.round(((correct + partial * 0.5) / sessionResults.length) * 100);
-            
-            // Afficher les résultats
-            document.getElementById('finalScore').textContent = finalScore;
-            document.getElementById('correctCount').textContent = correct;
-            document.getElementById('partialCount').textContent = partial;
-            document.getElementById('wrongCount').textContent = wrong;
-            
-            // Afficher l'écran de résultats
-            document.getElementById('resultsScreen').style.display = 'flex';
-            
-            // Nettoyer le sessionStorage
-            sessionStorage.removeItem('revisionTerms');
-            sessionStorage.removeItem('revisionMode');
-            sessionStorage.removeItem('revisionConfig');
+            document.getElementById('totalReviewed').textContent = sessionResults.length;
+            document.getElementById('finalScore').textContent = document.getElementById('sessionScore').textContent + '%';
         }
     </script>
 </body>
