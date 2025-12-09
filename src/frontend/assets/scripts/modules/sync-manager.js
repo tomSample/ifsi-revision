@@ -21,12 +21,27 @@ class SyncManager {
         this.isOnline = navigator.onLine;
         this.pendingSync = []; // File d'attente pour sync hors ligne
         
-        // 🚀 Initialiser le cache intelligent
-        this.smartCache = new SmartCache({
-            maxMemorySize: 200,
-            ttl: 7 * 24 * 60 * 60 * 1000, // 7 jours
-            storagePrefix: 'ifsi_progress_'
-        });
+        // 🚀 Initialiser le cache intelligent (avec fallback)
+        if (typeof SmartCache !== 'undefined') {
+            this.smartCache = new SmartCache({
+                maxMemorySize: 200,
+                ttl: 7 * 24 * 60 * 60 * 1000, // 7 jours
+                storagePrefix: 'ifsi_progress_'
+            });
+        } else {
+            console.warn('⚠️ SmartCache non disponible, utilisation localStorage direct');
+            this.smartCache = {
+                get: (key) => {
+                    const data = localStorage.getItem(`ifsi_progress_${key}`);
+                    return data ? JSON.parse(data) : null;
+                },
+                set: (key, value) => {
+                    localStorage.setItem(`ifsi_progress_${key}`, JSON.stringify(value));
+                },
+                has: (key) => localStorage.getItem(`ifsi_progress_${key}`) !== null,
+                delete: (key) => localStorage.removeItem(`ifsi_progress_${key}`)
+            };
+        }
         
         // 📊 Initialiser le monitoring
         this.perfMonitor = new PerformanceMonitor();

@@ -373,10 +373,10 @@ function updateIntensityStats() {
 /**
  * Sélectionner une intensité et démarrer
  */
-function selectIntensity(mode) {
+function selectIntensity(intensity) {
     let terms;
     
-    switch(mode) {
+    switch(intensity) {
         case 'sprint':
             terms = selectedTerms.filter(t => getTermImportance(t) === 'essential');
             break;

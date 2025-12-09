@@ -3118,6 +3118,34 @@ button, .btn-mode, .btn-intensity, .btn-scope {
     padding-right: 10px;
 }
 
+.scope-list-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 10px;
+}
+
+.scope-list-vertical::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scope-list-vertical::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.scope-list-vertical::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 4px;
+}
+
+.scope-list-vertical::-webkit-scrollbar-thumb:hover {
+    background: #5568d3;
+}
+
 .scope-list::-webkit-scrollbar {
     width: 8px;
 }
@@ -3374,6 +3402,90 @@ button, .btn-mode, .btn-intensity, .btn-scope {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 12px;
     max-width: 100%;
+}
+
+/* UE Selection Simple - Liste verticale */
+.ue-selection-simple {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.ue-selection-simple::-webkit-scrollbar {
+    width: 8px;
+}
+
+.ue-selection-simple::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.ue-selection-simple::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 4px;
+}
+
+.ue-item-simple {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    background: white;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.ue-item-simple:hover {
+    border-color: #667eea;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+}
+
+.ue-item-simple.selected {
+    background: #e8edff;
+    border-color: #667eea;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
+}
+
+.ue-item-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ue-item-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.ue-item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ue-item-name {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+.ue-item-stats {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.ue-item-check {
+    font-size: 1.5rem;
+    color: #667eea;
+    font-weight: bold;
+    min-width: 24px;
+    text-align: center;
 }
 
 .ue-checkbox {

@@ -115,25 +115,21 @@ function loadUESelection() {
         const ueTerms = allTerms.filter(t => t.ue === ue);
         const dueTerms = ueTerms.filter(t => isTermDueToday(t));
         
-        const checkbox = document.createElement('label');
-        checkbox.className = 'ue-checkbox';
-        checkbox.innerHTML = `
-            <input type="checkbox" 
-                   value="${ue}" 
-                   checked 
-                   onchange="toggleUE('${ue}')">
-            <div class="ue-card">
-                <div class="ue-header">
-                    <span class="ue-icon">📚</span>
-                    <span class="ue-name">UE ${ue}</span>
-                </div>
-                <div class="ue-stats">
-                    <span class="stat-due">${dueTerms.length} dus</span>
-                    <span class="stat-total">/ ${ueTerms.length} total</span>
+        const item = document.createElement('div');
+        item.className = 'ue-item-simple selected';
+        item.dataset.ue = ue;
+        item.onclick = () => toggleUE(ue);
+        item.innerHTML = `
+            <div class="ue-item-left">
+                <span class="ue-item-icon">📚</span>
+                <div class="ue-item-text">
+                    <span class="ue-item-name">UE ${ue}</span>
+                    <span class="ue-item-stats">${dueTerms.length} dus / ${ueTerms.length} total</span>
                 </div>
             </div>
+            <span class="ue-item-check">✓</span>
         `;
-        grid.appendChild(checkbox);
+        grid.appendChild(item);
     });
     
     updatePreview();
@@ -157,13 +153,19 @@ function isTermDueToday(term) {
 }
 
 /**
- * Basculer la sélection d'une UE
+ * Toggle UE selection
  */
 function toggleUE(ue) {
+    const item = document.querySelector(`.ue-item-simple[data-ue="${ue}"]`);
+    
     if (selectedUEs.has(ue)) {
         selectedUEs.delete(ue);
+        item.classList.remove('selected');
+        item.querySelector('.ue-item-check').textContent = '';
     } else {
         selectedUEs.add(ue);
+        item.classList.add('selected');
+        item.querySelector('.ue-item-check').textContent = '✓';
     }
     updatePreview();
 }
