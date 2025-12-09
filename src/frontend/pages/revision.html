@@ -128,53 +128,144 @@
         </header>
 
         <main>
-            <!-- Écran de démarrage -->
-            <div class="start-screen" id="startScreen">
-                <div class="welcome-card">
-                    <h3>🎯 Prêt pour vos révisions ?</h3>
-                    <p>Révisez avec des flashcards interactives - Cliquez pour révéler la réponse !</p>
-                    
-                    <!-- Sélecteur du nombre de termes -->
-                    <div class="term-selector">
-                        <label for="termCount">Nombre de termes :</label>
-                        <div class="term-count-controls">
-                            <button type="button" class="count-btn minus" onclick="adjustTermCount(-1)">−</button>
-                            <input type="number" id="termCount" value="10" min="1" max="50" class="term-count-input">
-                            <button type="button" class="count-btn plus" onclick="adjustTermCount(1)">+</button>
+            <!-- Écran de sélection du mode -->
+            <div class="mode-selection-screen" id="modeSelectionScreen">
+                <div class="mode-selection-header">
+                    <h2>Quel type de révision ?</h2>
+                    <p class="subtitle">Choisissez votre mode d'apprentissage</p>
+                </div>
+
+                <div class="mode-cards">
+                    <!-- Mode Révision Ciblée -->
+                    <div class="mode-card" onclick="showTargetedRevisionSetup()">
+                        <div class="mode-icon">🎯</div>
+                        <h3>Révision Ciblée</h3>
+                        <p>Choisir une UE ou un cours + intensité</p>
+                        <ul class="mode-features">
+                            <li>⚡ Sprint examen</li>
+                            <li>🎓 Découverte</li>
+                            <li>🏆 Perfectionnement</li>
+                        </ul>
+                        <button class="btn-mode">Choisir</button>
+                    </div>
+
+                    <!-- Mode Révision Quotidienne -->
+                    <div class="mode-card">
+                        <div class="mode-icon">🔄</div>
+                        <h3>Révision Quotidienne</h3>
+                        <p>Termes dus aujourd'hui (tous domaines)</p>
+                        <div class="daily-stats" id="dailyStats">
+                            <div class="stat-item">
+                                <span class="stat-label">Termes dus</span>
+                                <span class="stat-value" id="dailyDueCount">-</span>
+                            </div>
+                            <div class="importance-breakdown" id="importanceBreakdown">
+                                <span class="badge-mini essential">🔴 <span id="dailyEssential">0</span></span>
+                                <span class="badge-mini important">🟡 <span id="dailyImportant">0</span></span>
+                                <span class="badge-mini supplementary">🟢 <span id="dailySupplementary">0</span></span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">⏱️ Durée estimée</span>
+                                <span class="stat-value" id="dailyTime">-</span>
+                            </div>
                         </div>
-                        <div class="term-count-presets">
-                            <button class="preset-btn" onclick="setTermCount(5)">5</button>
-                            <button class="preset-btn active" onclick="setTermCount(10)">10</button>
-                            <button class="preset-btn" onclick="setTermCount(15)">15</button>
-                            <button class="preset-btn" onclick="setTermCount(20)">20</button>
+                        <button class="btn-mode btn-primary" onclick="startDailyRevision()" id="btnStartDaily">
+                            Réviser maintenant
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Écran de configuration révision ciblée -->
+            <div class="targeted-revision-setup" id="targetedRevisionSetup" style="display: none;">
+                <!-- Étape 1: Sélection du périmètre -->
+                <div id="scopeSelection" class="setup-step">
+                    <button class="btn-back-setup" onclick="backToModeSelection()">← Retour</button>
+                    
+                    <h2>📚 Choisir un cours ou une UE</h2>
+                    
+                    <div class="scope-filters">
+                        <button class="filter-btn active" data-filter="all" onclick="filterScope('all')">Tous</button>
+                        <button class="filter-btn" data-filter="ue" onclick="filterScope('ue')">Par UE</button>
+                        <button class="filter-btn" data-filter="course" onclick="filterScope('course')">Par Cours</button>
+                    </div>
+
+                    <div id="scopeList" class="scope-list">
+                        <!-- Généré dynamiquement -->
+                    </div>
+                </div>
+
+                <!-- Étape 2: Sélection de l'intensité -->
+                <div id="intensitySelection" class="setup-step" style="display: none;">
+                    <button class="btn-back-setup" onclick="backToScopeSelection()">← Retour</button>
+                    
+                    <div class="selected-scope-info" id="selectedScopeInfo">
+                        <!-- Généré dynamiquement -->
+                    </div>
+
+                    <h2>🎯 Choisir l'intensité</h2>
+
+                    <div class="intensity-cards">
+                        <!-- Sprint Mode -->
+                        <div class="intensity-card" data-mode="sprint">
+                            <div class="intensity-header">
+                                <span class="intensity-icon">⚡</span>
+                                <h3>Sprint Examen</h3>
+                            </div>
+                            <p class="intensity-desc">Essentiels uniquement</p>
+                            <div class="intensity-stats">
+                                <div class="stat">
+                                    <span class="stat-icon">📊</span>
+                                    <span class="stat-text"><span id="sprintCount">0</span> termes</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-icon">⏱️</span>
+                                    <span class="stat-text"><span id="sprintTime">0</span> min</span>
+                                </div>
+                            </div>
+                            <button class="btn-intensity" onclick="startTargetedRevision('sprint')">Commencer</button>
+                        </div>
+
+                        <!-- Discovery Mode -->
+                        <div class="intensity-card" data-mode="discovery">
+                            <div class="intensity-header">
+                                <span class="intensity-icon">🎓</span>
+                                <h3>Découverte</h3>
+                            </div>
+                            <p class="intensity-desc">Essentiels + Importants</p>
+                            <div class="intensity-stats">
+                                <div class="stat">
+                                    <span class="stat-icon">📊</span>
+                                    <span class="stat-text"><span id="discoveryCount">0</span> termes</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-icon">⏱️</span>
+                                    <span class="stat-text"><span id="discoveryTime">0</span> min</span>
+                                </div>
+                            </div>
+                            <button class="btn-intensity" onclick="startTargetedRevision('discovery')">Commencer</button>
+                        </div>
+
+                        <!-- Mastery Mode -->
+                        <div class="intensity-card" data-mode="mastery">
+                            <div class="intensity-header">
+                                <span class="intensity-icon">🏆</span>
+                                <h3>Perfectionnement</h3>
+                            </div>
+                            <p class="intensity-desc">Tous les termes</p>
+                            <div class="intensity-stats">
+                                <div class="stat">
+                                    <span class="stat-icon">📊</span>
+                                    <span class="stat-text"><span id="masteryCount">0</span> termes</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-icon">⏱️</span>
+                                    <span class="stat-text"><span id="masteryTime">0</span> min</span>
+                                </div>
+                            </div>
+                            <button class="btn-intensity" onclick="startTargetedRevision('mastery')">Commencer</button>
                         </div>
                     </div>
-                    
-                    <!-- Filtre UE simple -->
-                    <div class="ue-filter-simple">
-                        <label>📚 Unités d'Enseignement</label>
-                        <div class="ue-dropdown" onclick="toggleUEDropdown()">
-                            <span id="ueFilterText">Toutes les UE</span>
-                            <span class="dropdown-arrow">▼</span>
-                        </div>
-                        <div class="ue-options" id="ueOptions" style="display: none;">
-                            <!-- Généré par JavaScript -->
-                        </div>
-                    </div>
-                    
-                    <div class="stats-preview" id="statsPreview">
-                        <div class="stat-item">
-                            <span class="stat-number" id="filteredTermsCount">-</span>
-                            <span class="stat-label">Termes sélectionnés</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" id="totalTermsPreview">-</span>
-                            <span class="stat-label">Termes total</span>
-                        </div>
-                    </div>
-                    <button class="start-btn" onclick="startRevision()">
-                        🚀 Commencer la révision
-                    </button>
                 </div>
             </div>
 
@@ -194,6 +285,11 @@
                                 <div class="flashcard-front">
                                     <div class="card-label">Question</div>
                                     
+                                    <!-- Badge NOUVEAU pour première rencontre -->
+                                    <div class="new-term-badge" id="newTermBadge" style="display: none;">
+                                        🆕 NOUVEAU
+                                    </div>
+                                    
                                     <!-- En-tête avec badge (si déjà voté) -->
                                     <div class="flashcard-header" id="flashcard-header" style="display: none;">
                                         <span class="importance-badge" id="importance-badge"></span>
@@ -204,6 +300,14 @@
                                     <div id="simple-header" style="display: block;">
                                         <div style="font-size: 14px; color: #667eea; font-weight: 600; margin-bottom: 10px;" id="courseTitle"></div>
                                         <h3 id="termNameSimple">Terme à définir</h3>
+                                    </div>
+                                    
+                                    <!-- Message découverte pour première fois -->
+                                    <div class="first-encounter-message" id="firstEncounterMessage" style="display: none;">
+                                        <p>💡 Prenez le temps de découvrir ce terme</p>
+                                        <p style="font-size: 0.9em; color: #6c757d; margin-top: 8px;">
+                                            Vous pourrez le classer lors de votre prochaine révision
+                                        </p>
                                     </div>
                                     
                                     <!-- Résultat après vote -->
@@ -241,31 +345,40 @@
                         </div>
                     </div>
                     
-                    <!-- Sélecteur de classification (EN DESSOUS de la flashcard) -->
+                    <!-- Sélecteur de classification (SOUS la flashcard, 2ème rencontre uniquement) -->
                     <div class="classification-prompt-below" id="classification-prompt" style="display: none;">
-                        <p class="prompt-title">💡 Quelle importance pour ce terme ?</p>
+                        <p class="prompt-title">💡 Maintenant que vous connaissez ce terme, quelle importance pour VOUS ?</p>
+                        <p class="prompt-subtitle">Votre avis aide la communauté</p>
                         
                         <div class="classification-options-compact">
                             <button class="option-btn" data-importance="essential" onclick="selectImportance('essential')">
                                 <span class="emoji">🔴</span>
                                 <span class="label">Essentiel</span>
+                                <span class="desc">Incontournable</span>
                             </button>
                             
                             <button class="option-btn" data-importance="important" onclick="selectImportance('important')">
                                 <span class="emoji">🟡</span>
                                 <span class="label">Important</span>
+                                <span class="desc">Utile</span>
                             </button>
                             
                             <button class="option-btn" data-importance="supplementary" onclick="selectImportance('supplementary')">
                                 <span class="emoji">🟢</span>
                                 <span class="label">Complémentaire</span>
+                                <span class="desc">Culture</span>
                             </button>
                             
                             <button class="option-btn ignore" data-importance="ignored" onclick="selectImportance('ignored')">
                                 <span class="emoji">⚫</span>
                                 <span class="label">Ignorer</span>
+                                <span class="desc">Ne plus voir</span>
                             </button>
                         </div>
+                        
+                        <button class="btn-skip-classification" onclick="skipClassification()">
+                            Classer plus tard
+                        </button>
                     </div>
 
                     <!-- Boutons de difficulté (affichés après flip) -->
@@ -441,8 +554,11 @@
     <script src="../assets/scripts/modules/spaced-repetition.js"></script>
     <script src="../assets/scripts/modules/classification-manager.js"></script>
     
+    <!-- Nouveau module pour les modes de révision -->
+    <script src="../assets/scripts/modules/revision-modes.js?v=3.5.0"></script>
+    
     <!-- Script principal de révision avec flashcards -->
-    <script src="../assets/scripts/modules/revision.js?v=3.4.4"></script>
+    <script src="../assets/scripts/modules/revision.js?v=3.5.0"></script>
     
     <!-- PWA -->
     <script src="../assets/scripts/utils/sw-register.js"></script>

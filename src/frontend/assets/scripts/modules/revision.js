@@ -45,11 +45,14 @@ let currentTermHasVoted = false;
 // Initialisation au chargement de la page
 document.addEventListener('DOMContentLoaded', async function() {
     await initializeFirebase();
-    loadCoursesData();
+    await loadCoursesData();
     // La progression est chargée automatiquement dans onAuthStateChanged
     loadReportedTerms();
     setupEventListeners();
     setupClassificationListeners();
+    
+    // Initialiser l'écran de sélection de mode
+    initializeModeSelection();
 });
 
 /**
@@ -551,6 +554,37 @@ async function startRevision() {
     showCurrentTerm();
 }
 
+/**
+ * Démarrer une session avec des termes spécifiques (appelé depuis revision-modes.js)
+ */
+async function startRevisionSession(terms) {
+    if (!terms || terms.length === 0) {
+        alert('Aucun terme disponible pour cette sélection.');
+        return;
+    }
+    
+    // Masquer l'écran de sélection
+    const modeScreen = document.getElementById('modeSelectionScreen');
+    const setupScreen = document.getElementById('targetedRevisionSetup');
+    if (modeScreen) modeScreen.style.display = 'none';
+    if (setupScreen) setupScreen.style.display = 'none';
+    
+    // Afficher l'écran de révision
+    document.getElementById('revisionScreen').style.display = 'block';
+    
+    // Initialiser la session
+    currentSession = terms;
+    currentTermIndex = 0;
+    sessionResults = [];
+    sessionStartTime = new Date();
+    
+    // Démarrer le premier terme
+    showCurrentTerm();
+}
+
+// Exposer la fonction pour revision-modes.js
+window.startRevisionSession = startRevisionSession;
+
 // Sélectionner des termes pour la session (répétition espacée par défaut)
 async function selectTermsForSession(count = 10) {
     if (filteredTerms.length === 0) {
@@ -683,7 +717,8 @@ function generateTermKey(term) {
 
 // Afficher le terme actuel
 async function showCurrentTerm() {
-    const currentTerm = currentSession[currentTermIndex];
+    currentTerm = currentSession[currentTermIndex];
+    const termId = generateTermKey(currentTerm);
     
     // Mettre à jour l'affichage
     document.getElementById('termUE').textContent = `UE ${currentTerm.ue}`;
@@ -717,6 +752,20 @@ async function showCurrentTerm() {
     
     // Reset de l'interface à l'état initial (flashcard)
     resetFlashcardState();
+    
+    // Vérifier si c'est la première rencontre
+    const isFirst = isFirstEncounter(termId);
+    
+    if (isFirst) {
+        // Première rencontre : afficher UI de découverte
+        showFirstEncounterUI(currentTerm);
+    } else {
+        // Deuxième rencontre ou plus : proposer classification
+        const progress = userProgress[termId];
+        if (!progress || !progress.hasVoted || !progress.personalImportance) {
+            showSecondEncounterUI(currentTerm);
+        }
+    }
     
     // Initialiser la classification pour ce terme
     await initFlashcardClassification(currentTerm);
