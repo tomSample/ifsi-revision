@@ -137,7 +137,7 @@
 
                 <div class="mode-cards">
                     <!-- Mode Révision Ciblée -->
-                    <div class="mode-card" onclick="showTargetedRevisionSetup()">
+                    <div class="mode-card" onclick="window.location.href='./revision-targeted.html'">
                         <div class="mode-icon">🎯</div>
                         <h3>Révision Ciblée</h3>
                         <p>Choisir une UE ou un cours + intensité</p>
@@ -150,7 +150,7 @@
                     </div>
 
                     <!-- Mode Révision Quotidienne -->
-                    <div class="mode-card">
+                    <div class="mode-card" onclick="window.location.href='./revision-daily.html'">
                         <div class="mode-icon">🔄</div>
                         <h3>Révision Quotidienne</h3>
                         <p>Termes dus aujourd'hui (tous domaines)</p>
@@ -169,7 +169,7 @@
                                 <span class="stat-value" id="dailyTime">-</span>
                             </div>
                         </div>
-                        <button class="btn-mode btn-primary" onclick="showDailyRevisionConfig()" id="btnStartDaily">
+                        <button class="btn-mode btn-primary" id="btnStartDaily">
                             Réviser maintenant
                         </button>
                     </div>

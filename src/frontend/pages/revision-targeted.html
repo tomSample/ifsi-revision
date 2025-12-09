@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFSI Lannion - Révision Ciblée</title>
+    <link rel="manifest" href="../../../public/manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <link rel="stylesheet" href="../assets/styles/style-revision.css?v=3.5.1">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Révision Ciblée</h1>
+            <h2>Choisissez vos cours et votre intensité</h2>
+            <nav class="breadcrumb">
+                <a href="./home.html">🏠 Hub</a> › 
+                <a href="./revision.html">Révisions</a> › 
+                <span class="current">Révision Ciblée</span>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Étape 1: Sélection des cours/UE -->
+            <div id="selectionStep" class="setup-step">
+                <div class="step-header">
+                    <h3>📚 Étape 1: Sélection des cours</h3>
+                    <p>Sélectionnez une ou plusieurs UE ou cours spécifiques</p>
+                </div>
+
+                <div class="scope-filters">
+                    <button class="filter-btn active" onclick="filterScope('all')">Tous</button>
+                    <button class="filter-btn" onclick="filterScope('ue')">Par UE</button>
+                    <button class="filter-btn" onclick="filterScope('course')">Par Cours</button>
+                </div>
+
+                <div id="scopeList" class="scope-list">
+                    <!-- Généré dynamiquement -->
+                </div>
+
+                <div class="selection-summary" id="selectionSummary" style="display: none;">
+                    <h4>Sélection actuelle</h4>
+                    <div id="selectedItems"></div>
+                    <div class="selection-stats">
+                        <span id="selectedCount">0</span> éléments · 
+                        <span id="totalTermsSelected">0</span> termes
+                    </div>
+                </div>
+
+                <div class="step-actions">
+                    <button class="btn-secondary" onclick="window.location.href='./revision.html'">
+                        ← Annuler
+                    </button>
+                    <button class="btn-primary" onclick="nextToIntensityStep()" id="btnNextStep" disabled>
+                        Suivant: Intensité →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Étape 2: Sélection intensité -->
+            <div id="intensityStep" class="setup-step" style="display: none;">
+                <div class="step-header">
+                    <h3>⚡ Étape 2: Choisir l'intensité</h3>
+                    <p>Définissez la profondeur de votre révision</p>
+                </div>
+
+                <div id="selectedScopeInfo" class="selected-scope-info">
+                    <!-- Affichage des cours sélectionnés -->
+                </div>
+
+                <div class="intensity-cards">
+                    <div class="intensity-card" data-mode="sprint" onclick="selectIntensity('sprint')">
+                        <div class="intensity-icon">⚡</div>
+                        <h4>Sprint Examen</h4>
+                        <p>Uniquement les termes essentiels</p>
+                        <div class="intensity-stats">
+                            <div class="stat">
+                                <span class="stat-value" id="sprintCount">0</span>
+                                <span class="stat-label">termes</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value" id="sprintTime">0</span>
+                                <span class="stat-label">min</span>
+                            </div>
+                        </div>
+                        <button class="btn-intensity">Choisir</button>
+                    </div>
+
+                    <div class="intensity-card" data-mode="discovery" onclick="selectIntensity('discovery')">
+                        <div class="intensity-icon">🎓</div>
+                        <h4>Découverte</h4>
+                        <p>Essentiels + Importants</p>
+                        <div class="intensity-stats">
+                            <div class="stat">
+                                <span class="stat-value" id="discoveryCount">0</span>
+                                <span class="stat-label">termes</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value" id="discoveryTime">0</span>
+                                <span class="stat-label">min</span>
+                            </div>
+                        </div>
+                        <button class="btn-intensity">Choisir</button>
+                    </div>
+
+                    <div class="intensity-card" data-mode="mastery" onclick="selectIntensity('mastery')">
+                        <div class="intensity-icon">🏆</div>
+                        <h4>Perfectionnement</h4>
+                        <p>Tous les termes</p>
+                        <div class="intensity-stats">
+                            <div class="stat">
+                                <span class="stat-value" id="masteryCount">0</span>
+                                <span class="stat-label">termes</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value" id="masteryTime">0</span>
+                                <span class="stat-label">min</span>
+                            </div>
+                        </div>
+                        <button class="btn-intensity">Choisir</button>
+                    </div>
+                </div>
+
+                <div class="step-actions">
+                    <button class="btn-secondary" onclick="backToSelectionStep()">
+                        ← Retour
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/scripts/config/firebase-config.js"></script>
+    <script src="../assets/scripts/utils/cache-manager.js?v=3.1"></script>
+    <script src="../assets/scripts/modules/sync-manager.js"></script>
+    <script src="../assets/scripts/modules/spaced-repetition.js"></script>
+    <script src="../assets/scripts/modules/targeted-revision.js?v=3.5.1"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFSI Lannion - Révision Quotidienne</title>
+    <link rel="manifest" href="../../../public/manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <link rel="stylesheet" href="../assets/styles/style-revision.css?v=3.5.1">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔄 Révision Quotidienne</h1>
+            <h2>Termes à réviser aujourd'hui</h2>
+            <nav class="breadcrumb">
+                <a href="./home.html">🏠 Hub</a> › 
+                <a href="./revision.html">Révisions</a> › 
+                <span class="current">Révision Quotidienne</span>
+            </nav>
+        </header>
+
+        <main>
+            <div class="daily-config-screen">
+                <div class="config-header">
+                    <h3>⚙️ Configuration</h3>
+                    <p>Personnalisez votre session de révision</p>
+                </div>
+
+                <!-- Sélection UE -->
+                <div class="config-section">
+                    <h4>📚 Sélectionner les UE</h4>
+                    <div class="ue-selection-grid" id="ueSelectionGrid">
+                        <!-- Généré dynamiquement -->
+                    </div>
+                </div>
+
+                <!-- Nombre de termes avec boutons presets -->
+                <div class="config-section">
+                    <h4>📊 Nombre de termes</h4>
+                    
+                    <div class="term-presets">
+                        <button class="preset-btn" onclick="setTermCount(10)">10</button>
+                        <button class="preset-btn active" onclick="setTermCount(20)">20</button>
+                        <button class="preset-btn" onclick="setTermCount(30)">30</button>
+                        <button class="preset-btn" onclick="setTermCount(50)">50</button>
+                    </div>
+
+                    <div class="term-input-group">
+                        <button class="btn-adjust" onclick="adjustTermCount(-5)">-5</button>
+                        <input type="number" 
+                               id="termCountInput" 
+                               min="1" 
+                               max="100" 
+                               value="20"
+                               oninput="updatePreview()">
+                        <button class="btn-adjust" onclick="adjustTermCount(5)">+5</button>
+                    </div>
+
+                    <div class="term-count-info">
+                        <span id="termCountMax">sur 0 disponibles</span>
+                    </div>
+                </div>
+
+                <!-- Aperçu de la session -->
+                <div class="config-section">
+                    <h4>📋 Aperçu de la session</h4>
+                    
+                    <div class="session-preview">
+                        <div class="preview-stat">
+                            <span class="preview-icon">📝</span>
+                            <div>
+                                <div class="preview-value" id="previewTermCount">20 termes</div>
+                                <div class="preview-label">à réviser</div>
+                            </div>
+                        </div>
+
+                        <div class="preview-stat">
+                            <span class="preview-icon">⏱️</span>
+                            <div>
+                                <div class="preview-value" id="previewDuration">5 min</div>
+                                <div class="preview-label">durée estimée (15s/terme)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="importance-preview">
+                        <div class="importance-bar">
+                            <div class="bar-segment essential" id="barEssential" style="width: 33.33%"></div>
+                            <div class="bar-segment important" id="barImportant" style="width: 33.33%"></div>
+                            <div class="bar-segment supplementary" id="barSupplementary" style="width: 33.34%"></div>
+                        </div>
+                        <div class="importance-legend">
+                            <span class="legend-item">
+                                <span class="legend-color essential"></span>
+                                <span id="legendEssential">0</span> Essentiels
+                            </span>
+                            <span class="legend-item">
+                                <span class="legend-color important"></span>
+                                <span id="legendImportant">0</span> Importants
+                            </span>
+                            <span class="legend-item">
+                                <span class="legend-color supplementary"></span>
+                                <span id="legendSupplementary">0</span> Complémentaires
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="config-actions">
+                    <button class="btn-secondary" onclick="window.location.href='./revision.html'">
+                        ← Retour
+                    </button>
+                    <button class="btn-primary" onclick="startDailyRevision()" id="btnStartRevision">
+                        Démarrer la révision →
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/scripts/config/firebase-config.js"></script>
+    <script src="../assets/scripts/utils/cache-manager.js?v=3.1"></script>
+    <script src="../assets/scripts/modules/sync-manager.js"></script>
+    <script src="../assets/scripts/modules/spaced-repetition.js"></script>
+    <script src="../assets/scripts/modules/daily-revision.js?v=3.5.1"></script>
+</body>
+</html>
