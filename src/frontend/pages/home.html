@@ -101,8 +101,14 @@
         
         .nav-buttons {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-buttons {
+                grid-template-columns: 1fr;
+            }
         }
         
         .nav-btn {
@@ -408,14 +414,6 @@
         <h2>Interface de révision et de gestion</h2>
         
         <div class="nav-buttons">
-            <a href="./admin.html" class="nav-btn admin hidden" id="adminBtn">
-                <div class="nav-btn-icon">⚙️</div>
-                <div class="nav-btn-content">
-                    <h3>Administration</h3>
-                    <p>Gestion des cours et des images</p>
-                </div>
-            </a>
-            
             <a href="./browse-courses.html" class="nav-btn browse">
                 <div class="nav-btn-icon">📖</div>
                 <div class="nav-btn-content">
@@ -437,6 +435,14 @@
                 <div class="nav-btn-content">
                     <h3>Statistiques</h3>
                     <p>Suivre votre progression et vos performances</p>
+                </div>
+            </a>
+            
+            <a href="./admin.html" class="nav-btn admin hidden" id="adminBtn">
+                <div class="nav-btn-icon">⚙️</div>
+                <div class="nav-btn-content">
+                    <h3>Administration</h3>
+                    <p>Gestion des cours et des images</p>
                 </div>
             </a>
             
