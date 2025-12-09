@@ -2940,6 +2940,7 @@ body {
 
 .container {
     padding: 15px;
+    max-width: 100%;
 }
 
 /* Boutons touch-friendly (44x44px minimum) */
@@ -2950,8 +2951,15 @@ button, .btn-mode, .btn-intensity, .btn-scope {
 
 /* Mode cards empilées sur mobile */
 .mode-cards {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 15px;
+    width: 100%;
+}
+
+.mode-card {
+    width: 100%;
+    min-height: auto;
 }
 
 /* Config quotidienne mobile */

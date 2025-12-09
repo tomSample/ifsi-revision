@@ -138,8 +138,8 @@ function loadDailyUESelection() {
     
     ueList.innerHTML = '';
     
-    // Obtenir les UE uniques
-    const ues = [...new Set(coursesData.courses.map(c => c.ue))].sort();
+    // Obtenir les UE uniques - coursesData.courses est un tableau de [key, courseData]
+    const ues = [...new Set(coursesData.courses.map(([key, data]) => data.ue))].sort();
     
     ues.forEach(ue => {
         const ueTerms = allTerms.filter(t => t.ue === ue);
@@ -314,22 +314,37 @@ function loadScopeList() {
     // Grouper par UE
     const ueMap = new Map();
     
-    coursesData.courses.forEach(course => {
-        if (!ueMap.has(course.ue)) {
-            ueMap.set(course.ue, {
-                id: course.ue,
-                name: `UE ${course.ue}`,
+    // coursesData.courses est un tableau de paires [key, courseData]
+    coursesData.courses.forEach(courseEntry => {
+        // courseEntry est [courseKey, courseData]
+        const [courseKey, courseData] = courseEntry;
+        
+        if (!courseData || !courseData.ue) {
+            console.warn('Cours sans UE détecté:', courseKey);
+            return;
+        }
+        
+        if (!ueMap.has(courseData.ue)) {
+            ueMap.set(courseData.ue, {
+                id: courseData.ue,
+                name: `UE ${courseData.ue}`,
                 courses: [],
                 termCount: 0
             });
         }
         
-        const ue = ueMap.get(course.ue);
-        ue.courses.push(course);
+        const ue = ueMap.get(courseData.ue);
         
-        // Vérifier si course.terms existe avant de compter
-        if (course.terms && Array.isArray(course.terms)) {
-            ue.termCount += course.terms.length;
+        // Ajouter le cours avec son key
+        const courseInfo = {
+            key: courseKey,
+            ...courseData
+        };
+        ue.courses.push(courseInfo);
+        
+        // Vérifier si courseData.definitions existe avant de compter
+        if (courseData.definitions && Array.isArray(courseData.definitions)) {
+            ue.termCount += courseData.definitions.length;
         }
     });
     
@@ -345,12 +360,15 @@ function loadScopeList() {
         scopeList.appendChild(ueItem);
         
         // Afficher les cours de cette UE
-        ue.courses.forEach(course => {
-            const courseTermCount = course.terms && Array.isArray(course.terms) ? course.terms.length : 0;
+        ue.courses.forEach(courseInfo => {
+            // courseInfo a maintenant .definitions au lieu de .terms
+            const courseTermCount = courseInfo.definitions && Array.isArray(courseInfo.definitions) 
+                ? courseInfo.definitions.length 
+                : 0;
             const courseItem = createScopeItem({
                 type: 'course',
-                id: course.id || course.nom,
-                name: course.nom,
+                id: courseInfo.key || courseInfo.title,
+                name: courseInfo.title,
                 termCount: courseTermCount,
                 isSubItem: true
             });
@@ -419,9 +437,26 @@ function calculateScopeTerms(scope) {
         revisionMode.terms = allTerms.filter(term => term.ue === scope.id);
     } else if (scope.type === 'course') {
         // Filtrer les termes de ce cours
-        const course = coursesData.courses.find(c => c.id === scope.id);
-        if (course) {
-            revisionMode.terms = course.terms;
+        // coursesData.courses est un tableau de [key, courseData]
+        const courseEntry = coursesData.courses.find(([key, data]) => 
+            key === scope.id || data.title === scope.id
+        );
+        
+        if (courseEntry) {
+            const [courseKey, courseData] = courseEntry;
+            // Convertir les definitions en termes
+            if (courseData.definitions && Array.isArray(courseData.definitions)) {
+                revisionMode.terms = courseData.definitions.map(def => ({
+                    term: def.term,
+                    definition: def.definition,
+                    ue: courseData.ue,
+                    courseTitle: courseData.title
+                }));
+            } else {
+                revisionMode.terms = [];
+            }
+        } else {
+            revisionMode.terms = [];
         }
     }
 }
