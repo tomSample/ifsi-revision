@@ -396,10 +396,17 @@ function selectIntensity(mode) {
     // Mélanger les termes
     terms = terms.sort(() => Math.random() - 0.5);
     
-    // Stocker en sessionStorage et rediriger
+    // Stocker en sessionStorage et lancer la session
     sessionStorage.setItem('revisionTerms', JSON.stringify(terms));
     sessionStorage.setItem('revisionMode', 'targeted');
-    window.location.href = './revision.html';
+    sessionStorage.setItem('revisionConfig', JSON.stringify({
+        selectedItems: targetedConfig.selectedItems,
+        intensity: intensity,
+        totalTerms: terms.length
+    }));
+    
+    // Charger le moteur de révision et démarrer
+    window.location.href = './revision-session.html';
 }
 
 /**

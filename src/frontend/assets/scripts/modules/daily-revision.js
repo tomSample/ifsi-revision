@@ -341,10 +341,16 @@ function startDailyRevision() {
         .slice(0, termCount)
         .sort(() => Math.random() - 0.5);
     
-    // Stocker en sessionStorage et rediriger
+    // Stocker en sessionStorage et lancer la session
     sessionStorage.setItem('revisionTerms', JSON.stringify(selectedTerms));
     sessionStorage.setItem('revisionMode', 'daily');
-    window.location.href = './revision.html';
+    sessionStorage.setItem('revisionConfig', JSON.stringify({
+        selectedUEs: Array.from(selectedUEs),
+        termCount: selectedTerms.length
+    }));
+    
+    // Charger le moteur de révision et démarrer
+    window.location.href = './revision-session.html';
 }
 
 // Export pour utilisation globale

@@ -3091,6 +3091,7 @@ button, .btn-mode, .btn-intensity, .btn-scope {
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    overflow-x: hidden;
 }
 
 .step-header {
@@ -3113,6 +3114,7 @@ button, .btn-mode, .btn-intensity, .btn-scope {
 .scope-list {
     max-height: 500px;
     overflow-y: auto;
+    overflow-x: hidden;
     padding-right: 10px;
 }
 
@@ -3137,24 +3139,28 @@ button, .btn-mode, .btn-intensity, .btn-scope {
 .scope-item {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 12px 15px;
-    background: #f8f9fa;
-    border: 2px solid #e9ecef;
-    border-radius: 10px;
+    gap: 12px;
+    padding: 10px 12px;
+    background: white;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
     margin-bottom: 8px;
     transition: all 0.3s ease;
     cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .scope-item:hover {
-    background: #e9ecef;
+    background: #f8f9ff;
     border-color: #667eea;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
 }
 
 .scope-item.selected {
-    background: rgba(102, 126, 234, 0.1);
+    background: #e8edff;
     border-color: #667eea;
+    border-width: 2px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
 }
 
 .scope-subitem {
@@ -3180,14 +3186,16 @@ button, .btn-mode, .btn-intensity, .btn-scope {
 }
 
 .scope-header h4 {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     color: #2c3e50;
     margin: 0;
+    font-weight: 600;
 }
 
 .scope-stats {
     color: #6c757d;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    margin-top: 2px;
 }
 
 /* Selection summary */
@@ -3324,6 +3332,7 @@ button, .btn-mode, .btn-intensity, .btn-scope {
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    overflow-x: hidden;
 }
 
 .config-header {
@@ -3362,8 +3371,9 @@ button, .btn-mode, .btn-intensity, .btn-scope {
 /* UE Selection Grid */
 .ue-selection-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+    max-width: 100%;
 }
 
 .ue-checkbox {
@@ -3375,46 +3385,53 @@ button, .btn-mode, .btn-intensity, .btn-scope {
 }
 
 .ue-card {
-    padding: 15px;
-    background: #f8f9fa;
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
+    padding: 12px;
+    background: white;
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
     transition: all 0.3s ease;
-    min-height: 90px;
+    min-height: 85px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .ue-checkbox input:checked + .ue-card {
-    background: rgba(102, 126, 234, 0.1);
+    background: #e8edff;
     border-color: #667eea;
+    border-width: 2px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
 }
 
 .ue-checkbox:hover .ue-card {
     border-color: #667eea;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
 }
 
 .ue-header {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
+    gap: 6px;
+    margin-bottom: 8px;
 }
 
 .ue-icon {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    flex-shrink: 0;
 }
 
 .ue-name {
     font-weight: 600;
     color: #2c3e50;
+    font-size: 0.9rem;
+    line-height: 1.2;
 }
 
 .ue-stats {
     display: flex;
     gap: 5px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .stat-due {
