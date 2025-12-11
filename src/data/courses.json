@@ -1,5 +1,5 @@
 {
-  "exportDate": "2025-12-11T17:11:10.638157",
+  "exportDate": "2025-12-11T20:27:03.818139",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -17,136 +17,167 @@
           {
             "definition": "Cellule sans noyau ni organites membranaires, avec le matériel génétique situé dans le cytoplasme (dans une zone appelée nucléoïde), généralement unicellulaire (exemple : bactéries).",
             "term": "Cellule procaryote",
-            "importance": "utile"
+            "importance": "indispensable"
           },
           {
             "definition": "Cellule possédant un noyau délimité par une double membrane contenant l’ADN, ainsi que des organites complexes (exemple : cellules humaines).",
             "term": "Cellule eucaryote",
-            "importance": "optionnel"
+            "importance": "indispensable"
           },
           {
             "definition": "Organite le plus volumineux chez les eucaryotes, contenant l’ADN et contrôlant les fonctions cellulaires.",
-            "term": "Noyau"
+            "term": "Noyau",
+            "importance": "indispensable"
           },
           {
             "definition": "Support de l’information génétique codant pour la synthèse des protéines.",
-            "term": "ADN (Acide désoxyribonucléique)"
+            "term": "ADN (Acide désoxyribonucléique)",
+            "importance": "indispensable"
           },
           {
             "definition": "Complexe d’ADN associé à des protéines (histones) dans le noyau, réparti en euchromatine (active) et hétérochromatine (inactive).",
-            "term": "Chromatine"
+            "term": "Chromatine",
+            "importance": "utile"
           },
           {
             "definition": "Partie de la cellule hors noyau, comprenant le cytosol, le cytosquelette et les organites.",
-            "term": "Cytoplasme"
+            "term": "Cytoplasme",
+            "importance": "indispensable"
           },
           {
             "definition": "Milieu aqueux intra-cellulaire, siège de nombreuses réactions métaboliques.",
-            "term": "Cytosol"
+            "term": "Cytosol",
+            "importance": "indispensable"
           },
           {
             "definition": "Réseau de protéines fibreuses assurant la forme, la rigidité, la motilité et le soutien de la cellule.",
-            "term": "Cytosquelette"
+            "term": "Cytosquelette",
+            "importance": "indispensable"
           },
           {
             "definition": "Organites synthétisant les protéines selon les instructions de l’ARN.",
-            "term": "Ribosomes"
+            "term": "Ribosomes",
+            "importance": "indispensable"
           },
           {
             "definition": "Réseau membranaire subdivisé en RE rugueux (portant des ribosomes, synthèse des protéines) et RE lisse (synthèse des lipides).",
-            "term": "Réticulum endoplasmique (RE)"
+            "term": "Réticulum endoplasmique (RE)",
+            "importance": "indispensable"
           },
           {
             "definition": "Organite chargé de modifier, maturer, trier et distribuer les protéines.",
-            "term": "Appareil de Golgi"
+            "term": "Appareil de Golgi",
+            "importance": "indispensable"
           },
           {
             "definition": "Organites contenant des enzymes hydrolytiques dégradant les déchets cellulaires (présents uniquement chez les cellules animales).",
-            "term": "Lysosomes"
+            "term": "Lysosomes",
+            "importance": "indispensable"
           },
           {
             "definition": "Organites produisant l’énergie cellulaire sous forme d’ATP.",
-            "term": "Mitochondries"
+            "term": "Mitochondries",
+            "importance": "indispensable"
           },
           {
             "definition": "Vésicules enzymatiques intervenant dans la détoxification des déchets cellulaires.",
-            "term": "Peroxysomes"
+            "term": "Peroxysomes",
+            "importance": "utile"
           },
           {
             "definition": "Barrière lipidique régulant les échanges entre la cellule et son environnement, supportant aussi des activités enzymatiques, énergétiques et le transfert d’informations.",
-            "term": "Membrane plasmique"
+            "term": "Membrane plasmique",
+            "importance": "indispensable"
           },
           {
             "definition": "Structures membranaires assurant la cohésion et la communication entre cellules (jonctions serrées, adhérentes, desmosomes, communicantes).",
-            "term": "Jonctions cellulaires"
+            "term": "Jonctions cellulaires",
+            "importance": "optionnel"
           },
           {
             "definition": "Ensemble de cellules partageant une structure et une fonction communes, avec une substance intercellulaire variable.",
-            "term": "Tissu"
+            "term": "Tissu",
+            "importance": "indispensable"
           },
           {
             "definition": "Tissu formé de cellules jointives reposant sur une membrane basale qui joue le rôle de protection, sécrétion, absorption.",
-            "term": "Tissu épithélial"
+            "term": "Tissu épithélial",
+            "importance": "indispensable"
           },
           {
             "definition": "Couche de macromolécules (collagène notamment) séparant le tissu épithélial du tissu conjonctif sous-jacent.",
-            "term": "Membrane basale"
+            "term": "Membrane basale",
+            "importance": "indispensable"
           },
           {
             "definition": "Tissu constitué de cellules dispersées dans une matrice extracellulaire, jouant un rôle de soutien et de structure.",
-            "term": "Tissu conjonctif"
+            "term": "Tissu conjonctif",
+            "importance": "utile"
           },
           {
             "definition": "Cellule spécialisée dans la réception et la transmission des influx nerveux.",
-            "term": "Neurone"
+            "term": "Neurone",
+            "importance": "indispensable"
           },
           {
             "definition": "Cellules fournissant un soutien et une protection aux neurones.",
-            "term": "Cellules gliales"
+            "term": "Cellules gliales",
+            "importance": "utile"
           },
           {
             "definition": "Glandes sécrétant des hormones directement dans le sang.",
-            "term": "Glandes endocrines"
+            "term": "Glandes endocrines",
+            "importance": "indispensable"
           },
           {
             "definition": "Glandes sécrétant des substances via des canaux vers la surface de la peau ou des muqueuses.",
-            "term": "Glandes exocrines"
+            "term": "Glandes exocrines",
+            "importance": "indispensable"
           },
           {
             "definition": "Étude microscopique de la structure, de l’organisation et de la fonction des tissus biologiques.",
-            "term": "Histologie"
+            "term": "Histologie",
+            "importance": "utile"
           },
           {
             "definition": "Ensemble des cellules responsables de la fonction spécifique d’un organe.",
-            "term": "Parenchyme"
+            "term": "Parenchyme",
+            "importance": "indispensable"
           },
           {
             "definition": "Partie du tissu conjonctif formant la trame de l’organe, contenant vaisseaux et nerfs.",
-            "term": "Stroma"
+            "term": "Stroma",
+            "importance": "indispensable"
           },
           {
             "definition": "Espace entre les cellules rempli par la substance intercellulaire, jouant un rôle dans les échanges et la mécanique des tissus.",
-            "term": "Espace intercellulaire"
+            "term": "Espace intercellulaire",
+            "importance": "utile"
           },
           {
             "definition": "Différence morphologique et fonctionnelle entre le pôle apical (orienté vers la lumière) et le pôle basal (orienté vers le tissu conjonctif).",
-            "term": "Polarité cellulaire (épithélium)"
+            "term": "Polarité cellulaire (épithélium)",
+            "importance": "utile"
           },
           {
             "definition": "Jonctions cellulaires renforçant adhésion et communication, comprenant jonctions serrées (barrière), jonctions adhérentes, desmosomes, jonctions communicantes (passage molécules).",
-            "term": "Complexes jonctionnels"
+            "term": "Complexes jonctionnels",
+            "importance": "optionnel"
           },
           {
             "definition": "Hémidesmosomes assurant l’attachement des filaments intermédiaires de la cellule à la membrane basale.",
-            "term": "Jonctions d’ancrage cellule-substrat"
+            "term": "Jonctions d’ancrage cellule-substrat",
+            "importance": "optionnel"
           },
           {
             "definition": "Selon forme cellulaire (pavimenteux, cubique, cylindrique), nombre de couches (simple, stratifié, pseudostratifié), et structures (cils, microvillosités).",
-            "term": "Classification des tissus épithéliaux"
+            "term": "Classification des tissus épithéliaux",
+            "importance": "optionnel"
           },
           {
             "definition": "Cellules épithéliales spécialisées dans la sécrétion, divisées en endocrines, exocrines ou amphicrines (activités combinées).",
-            "term": "Épithéliums glandulaires"
+            "term": "Épithéliums glandulaires",
+            "importance": "utile"
           }
         ],
         "filename": "Organisation de la cellule au tissu.odt"
