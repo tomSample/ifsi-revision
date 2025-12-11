@@ -1,5 +1,5 @@
 {
-  "exportDate": "2025-12-11T20:27:03.818139",
+  "exportDate": "2025-12-11T21:36:50.531120",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -3076,6 +3076,78 @@
       }
     ],
     [
+      "ue_4_4_s1_rle_ide_dans_la_gestion_des_mdicaments",
+      {
+        "title": "rôle IDE dans la gestion des médicaments",
+        "date": "04/12/2025",
+        "ue": "4.4.S1",
+        "author": "KM",
+        "definitions": [
+          {
+            "definition": "ensemble des étapes qui vont de la prescription d’un médicament jusqu’à son administration et à la gestion des lots (périmés, rappelés) dans un établissement de santé",
+            "term": "Circuit du médicament"
+          },
+          {
+            "definition": "prise en charge médicamenteuse du patient depuis son entrée (y compris son traitement personnel) jusqu’à sa sortie et à l’ordonnance remise (PM).",
+            "term": "Circuit clinique"
+          },
+          {
+            "definition": "gestion du médicament en tant que produit, de l’achat jusqu’à la délivrance dans les unités de soins.",
+            "term": "Circuit logistique"
+          },
+          {
+            "definition": "ensemble des activités du pharmacien pour délivrer un médicament, incluant l’analyse pharmaceutique, la recherche d’interactions et la vérification de la validité de la prescription.",
+            "term": "Dispensation"
+          },
+          {
+            "definition": "mise à disposition effective des médicaments prescrits par le pharmacien, constituant une phase de la dispensation.",
+            "term": "Délivrance"
+          },
+          {
+            "definition": "action d’attribuer, de préparer et de répartir les médicaments en fonction de la prescription médicale pour le bon patient.",
+            "term": "Distribution"
+          },
+          {
+            "definition": "action de donner concrètement le médicament au patient, par la voie et selon le schéma prescrits.",
+            "term": "Administration"
+          },
+          {
+            "definition": "acheminement des médicaments dans des caisses sécurisées, identifiées et scellées, avec respect notamment de la chaîne du froid.",
+            "term": "Transport des médicaments"
+          },
+          {
+            "definition": "organisation et conservation des médicaments dans des lieux dédiés (pharmacie, armoires, chariots, réfrigérateurs, coffre à stupéfiants, salle de stockage des solutés) en respectant les règles de sécurité.",
+            "term": "Stockage des médicaments"
+          },
+          {
+            "definition": "vérification rigoureuse de l’identité du patient (questions ouvertes, bracelet, etc.) avant toute administration de médicament.",
+            "term": "Identitovigilance"
+          },
+          {
+            "definition": "médicaments nécessitant des précautions particulières de stockage, de préparation ou d’administration (exemple : KCL avec étiquetage et rangement spécifiques)",
+            "term": "Médicaments à risque"
+          },
+          {
+            "definition": "médicaments soumis à une réglementation spécifique, conservés dans un coffre fermé à clé, avec un registre de traçabilité et un contrôle quotidien.",
+            "term": "Stupéfiants"
+          },
+          {
+            "definition": "date limite d’utilisation d’un médicament, nécessitant un contrôle régulier des armoires et des réfrigérateurs et le retrait des lots périmés ou rappelés.",
+            "term": "Péremption"
+          },
+          {
+            "definition": "enregistrement systématique des actes (détention de clé, dispensation, administration, contrôle des stupéfiants, température du frigo, etc.) pour prouver le respect des bonnes pratiques.",
+            "term": "Traçabilité"
+          },
+          {
+            "definition": "chariot dédié contenant médicaments et solutés d’urgence, stocké et contrôlé selon des règles strictes de disponibilité et de sécurité.",
+            "term": "Chariot d’urgence"
+          }
+        ],
+        "filename": "rôle IDE dans la gestion des médicaments.odt"
+      }
+    ],
+    [
       "ue_4_4_s1_les_antalgiques",
       {
         "title": "les antalgiques",
@@ -3084,216 +3156,760 @@
         "author": "ext",
         "definitions": [
           {
-            "definition": "Médicament destiné à soulager la douleur, à visée symptomatique, sans traiter la cause sous-jacente.",
+            "definition": "médicament permettant de soulager la douleur, traitement symptomatique (non curatif) qui doit s'accompagner d'un traitement de la cause.",
             "term": "Antalgique"
           },
           {
-            "definition": "Classification des antalgiques en trois niveaux (non opioïdes, opioïdes faibles, opioïdes forts) en fonction de l’intensité de la douleur et du type de médicament utilisé.",
-            "term": "Paliers antalgiques (OMS)"
+            "definition": "outil d'évaluation de l'intensité de la douleur, de 1 à 3 (légère), 4 à 6 (moyenne), 7 à 10 (intense).",
+            "term": "Échelle EVA (Échelle Visuelle Analogique)"
           },
           {
-            "definition": "Alternative à la classification de l’OMS. On y retrouve différentes catégories comme les anti-nociceptifs, anti-hyperalgiques, etc.",
-            "term": "Classification de Lussier et Beaulieu (antalgiques)"
+            "definition": "stratégie de prise en charge de la douleur basée sur l'intensité, graduée en 3 paliers (non morphiniques, opioïdes faibles, opioïdes forts).",
+            "term": "Palier OMS"
           },
           {
-            "definition": "thalamus",
-            "term": "Centre régulateur douleur"
+            "definition": "antalgique non opioïde d'action périphérique, inhibiteur de la synthèse des prostaglandines, antipyrétique et antalgique, métabolisme hépatique, dose max 4g/jour chez l'adulte.",
+            "term": "Paracétamol (pallier I)"
           },
           {
-            "definition": "Antalgique non opioïde (paracétamol, AINS, néfopam) indiqué pour les douleurs légères à modérées.",
-            "term": "Antalgique de palier I"
+            "definition": "analgésiques périphériques incluant l'acide acétylsalicylique (Aspirine), l'ibuprofène (Advil), le diclofénac (Voltarène), le kétoprofène (Profenid).",
+            "term": "AINS (Anti-inflammatoires non stéroïdiens - pallier I)"
           },
           {
-            "definition": "Opioïde faible (codéine, tramadol) indiqué pour les douleurs d’intensité moyenne à forte. Action sur récepteur pré-synaptique ⇒ inhibe libération des neurotransmetteurs excitatoires ⇒ en post-synaptique diminution de la probabilité de génération des potentiels d’action.",
-            "term": "Antalgique de palier II"
+            "definition": "analgésique central agissant par inhibition de la recapture de la sérotonine, noradrénaline et dopamine, sans activité anti-inflammatoire ou antipyrétique, dose max 120mg/24h.",
+            "term": "Néfopam (Acupan - pallier I)"
           },
           {
-            "definition": "Opioïde fort (morphine, oxycodone, fentanyl, hydromorphone) indiqué pour les douleurs intenses ou rebelles. Action sur récepteur pré-synaptique ⇒ inhibe libération des neurotransmetteurs excitatoires ⇒ en post-synaptique diminution de la probabilité de génération des potentiels d’action.",
-            "term": "Antalgique de palier III"
+            "definition": "opioïde faible, dérivé semi-synthétique de la morphine, durée d'action 4h, souvent associée au paracétamol, action anti-tussive.",
+            "term": "Codéine (pallier II)"
           },
           {
-            "definition": "Médicament non classé comme antalgique mais qui traite un mécanisme de la douleur ou un symptôme associé (antispasmodiques, corticoïdes, antidépresseurs, antiépileptiques, anesthésiques locaux, etc.).",
-            "term": "Co‑antalgique"
+            "definition": "opioïde faible agissant par fixation sur récepteurs µ et inhibition de la recapture de noradrénaline/sérotonine, durée d'action 5-7h, dose max 400mg/jour, action sur douleurs neuropathiques.",
+            "term": "Tramadol (pallier II)"
           },
           {
-            "definition": "Antalgique et antipyrétique non opioïde de première intention, à métabolisme hépatique, avec risque d’hépatotoxicité en cas de surdosage. Élimination dans les urines.",
-            "term": "Paracétamol"
+            "definition": "agoniste pur des récepteurs opioïdes µ, analgésie dose-dépendante sans effet plafond, disponible en formes libération immédiate et prolongée.",
+            "term": "Morphine (pallier III)"
           },
           {
-            "definition": "Antalgiques non opioïdes à action anti‑inflammatoire (ibuprofène, kétoprofène, diclofénac, etc.) utilisés notamment pour les douleurs d’origine inflammatoire.",
-            "term": "AINS"
+            "definition": "dérivé semi-synthétique de la codéine, agoniste des récepteurs µ et kappa, formes libération immédiate et prolongée.",
+            "term": "Oxycodone (pallier III)"
           },
           {
-            "definition": "Antalgique central non opioïde inhibant la recapture de la sérotonine, noradrénaline et dopamine, sans effet anti‑inflammatoire ni antipyrétique.",
-            "term": "Néfopam"
+            "definition": "morphinique de synthèse, agoniste pur des récepteurs µ, disponible en multiples galéniques (patch, spray nasal, comprimé sublingual), action rapide (15 min en transmuqueux).",
+            "term": "Fentanyl (pallier III)"
           },
           {
-            "definition": "Antalgique agissant sur les récepteurs morphiniques (mu, kappa, delta) avec effets antalgiques puissants mais risques de somnolence, dépression respiratoire, constipation, dépendance et tolérance.",
-            "term": "Opioïde"
+            "definition": "dérivé semi-synthétique de la morphine, 7,5 fois plus puissant que la morphine, agoniste pur des récepteurs µ.",
+            "term": "Hydromorphone (pallier III)"
           },
           {
-            "definition": "Opioïde faible souvent associé au paracétamol, à effet antalgique et antitussif, exposant aux effets indésirables morphiniques et au risque de dépendance.",
-            "term": "Codéine"
+            "definition": "médicaments agissant par autres voies de la douleur ou sur les symptômes associés (antispasmodiques, corticoïdes, antidépresseurs, antiépileptiques, anesthésiques locaux).",
+            "term": "Co-antalgiques"
           },
           {
-            "definition": "Opioïde faible agissant sur les récepteurs pré-synaptiques mu et la recapture de la noradrénaline et de la sérotonine, efficace sur certaines douleurs neuropathiques, avec abaissement du seuil épileptogène, hypoglycémies et syndrome sérotoninergique (agitation, confusion, troubles de la tension, tachycardie, frissons, sueurs, tremblements, rigidité, diarrhée).",
-            "term": "Tramadol"
+            "definition": "médicaments spécifiques du traitement des douleurs migraineuses et algies faciales.",
+            "term": "Triptans (co-antalgique)"
           },
           {
-            "definition": "Molécule se fixant sur les récepteurs opioïdes et les activant complètement (morphine, oxycodone, fentanyl), sans effet plafond antalgique.",
-            "term": "Agoniste pur (opioïde)"
+            "definition": "utilisés pour les douleurs osseuses.",
+            "term": "Biphosphonates (co-antalgique)"
           },
           {
-            "definition": "Opioïde (ex. buprénorphine) ayant un effet partiel ou mixte sur les récepteurs, avec effet plafond et risque de déclencher un syndrome de sevrage si associé à un agoniste pur.",
-            "term": "Agoniste‑antagoniste"
+            "definition": "mélange équimoléculaire d'oxygène et protoxyde d'azote avec propriétés antihyperalgésiques, pour gestes de courte durée.",
+            "term": "MEOPA (Méthoxyflurane/Protoxyde d'azote - co-antalgique)"
           },
           {
-            "definition": "Molécule (naloxone) se fixant sur les récepteurs opioïdes sans les activer, utilisée comme antidote en cas de surdosage.",
-            "term": "Antagoniste opioïde"
+            "definition": "3 grands types présents dans le SNC (µ Mu, κ Kappa, δ delta), fixation directe des agonistes purs entraînant analgésie, sédation et dépression respiratoire.",
+            "term": "Récepteurs opioïdes"
           },
           {
-            "definition": "Effet indésirable quasi systématique des opioïdes nécessitant prévention hygiéno‑diététique et prescription de laxatifs, voire antagonistes périphériques.",
-            "term": "Constipation induite par opioïdes"
+            "definition": "diminution de l'AMPc intracellulaire et inhibition de la libération des neurotransmetteurs excitatoires (glutamate, substance P).",
+            "term": "Action pré-synaptique (action des opioïdes)"
           },
           {
-            "definition": "Douleurs intenses, brèves, avec montée rapide, survenant chez des patients déjà traités par opioïdes, pouvant nécessiter des fentanyl transmuqueux (ressemble à une sucette, ou sous forme de spray nasal).",
-            "term": "Accès douloureux paroxystiques (ADP)"
+            "definition": "hyperpolarisation des membranes et diminution de la probabilité de génération des potentiels d'action.",
+            "term": "Action post-synaptique (action des opioïdes)"
           },
           {
-            "definition": "Changement d’opioïde fort pour améliorer tolérance ou efficacité, en s’aidant de tables d’équianalgésie (cf opioconvert).",
-            "term": "Rotation des opioïdes"
+            "definition": "effet quasi systématique, dès le début du traitement, prévention systématique par laxatifs et conseils hygiénodiététiques.",
+            "term": "Constipation (EI opioïdes)"
           },
           {
-            "definition": "Association raisonnée de plusieurs antalgiques ou co‑antalgiques agissant sur des mécanismes différents de la douleur afin d’augmenter l’efficacité et réduire les effets indésirables.",
-            "term": "Antalgésie multimodale"
+            "definition": "fréquents (40% des cas), généralement transitoires, traitement par métoclopramide ou dompéridone en 1ère intention.",
+            "term": "Nausées et vomissements (EI opioïdes)"
           },
           {
-            "definition": "Mode d’administration libérant l’antalgique de façon prolongée à travers la peau, nécessitant des précautions (fièvre, sueur, élimination des déchets).",
-            "term": "Voie transdermique (patch)"
+            "definition": "surveiller les mictions, risque de sondage aller-retour ou sondage évacuateur, prévention par alfuzosine.",
+            "term": "Rétention urinaire (EI opioïdes)"
           },
           {
-            "definition": "Temps entre l’administration d’un antalgique et le début de l’effet, déterminant le moment optimal pour réaliser un soin douloureux. Morphinique en IV = 5min.",
-            "term": "Délai d’action"
+            "definition": "surveillance de la fréquence respiratoire, somnolence et stimulation verbale en cas de surdosage, antidote : naloxone.",
+            "term": "Dépression respiratoire (EI opioïdes)"
           },
           {
-            "definition": "Douleur liée à une lésion ou un dysfonctionnement du système nerveux, nécessitant souvent des traitements spécifiques (antidépresseurs, antiépileptiques, topiques). Une fois le traitement mis en place, son efficacité peut être atteinte en plusieurs jours voire semaines.",
+            "definition": "douleur initiée ou provoquée par une lésion ou dysfonctionnement du système nerveux, traitée par titration progressive avec efficacité retardée (plusieurs semaines à mois).",
             "term": "Douleur neuropathique"
           },
           {
-            "definition": "Médicaments (amitriptyline, clomipramine) utilisés en faible dose dans les douleurs neuropathiques, avec effets anticholinergiques et risques cardiaques (allongement du QT pour l’amitriptyline = Laroxyl).",
-            "term": "Antidépresseurs tricycliques"
+            "definition": "antidépresseur tricyclique, 1ère ligne douleurs neuropathiques, dose efficace 75mg, attention à l'allongement du QT.",
+            "term": "Amitriptyline (Laroxyl- antineuropathique)"
           },
           {
-            "definition": "Antidépresseurs inhibiteurs de la recapture de la sérotonine et noradrénaline (duloxétine, venlafaxine) utilisés dans certaines douleurs neuropathiques.",
-            "term": "IRSNa"
+            "definition": "ISRNA (Inhibiteur de la Recapture de la Sérotonine et Noradrénaline), AMM douleur neuropathique diabétique, modulateur des contrôles descendants.",
+            "term": "Duloxétine (Cymbalta - antineuropathique)"
           },
           {
-            "definition": "Molécules (gabapentine, prégabaline, carbamazépine) à effet antihyperalgésique utilisées dans les douleurs neuropathiques, avec nécessité de titration progressive et d’arrêt progressif également.",
-            "term": "Antiépileptiques antalgiques"
+            "definition": "anti-épileptique, antihyperalgésique, augmentation progressive des doses, risque de somnolence et mésusage.",
+            "term": "Gabapentine (Neurontin - antineuropathique)"
           },
           {
-            "definition": "Antalgique d’appoint antagoniste NMDA, utilisé dans certaines douleurs aiguës ou chroniques rebelles, souvent en milieu spécialisé, avec surveillance étroite des effets neuropsychiques.",
+            "definition": "anti-épileptique, antihyperalgésique, dose efficace 600mg/jour, prescription sécurisée depuis mai 2021 (max 6 mois) en raison du mésusage.",
+            "term": "Prégabaline (Lyrica - antineuropathique)"
+          },
+          {
+            "definition": "antagoniste des récepteurs NMDA, antihyperalgésique, indication dans douleurs neuropathiques, hyperalgésies post-opératoires, douleurs cancéreuses réfractaires, surveillance des effets neuropsychiques.",
             "term": "Kétamine"
           },
           {
-            "definition": "Opioïde particulier agissant aussi sur les récepteurs NMDA, utilisé dans certaines douleurs chroniques ou neuropathiques réfractaires, avec demi‑vie longue et risque d’allongement du QT. Utilisé également dans le sevrage de l’héroïne.",
+            "definition": "opioïde agoniste des récepteurs µ et récepteurs NMDA, utilisée dans douleurs chroniques/neuropathiques réfractaires, manipulation complexe (demi-vie variable et longue).",
             "term": "Méthadone"
           },
           {
-            "definition": "Substances dérivées du cannabis parfois utilisées dans certaines douleurs neuropathiques, avec données cliniques encore limitées.",
+            "definition": "intérêt dans douleurs neuropathiques (SEP, fibromyalgie), peu d'essais cliniques, en France : dronabinol (Marinol) et cannabidiol (Epidyolex).",
             "term": "Cannabinoïdes"
           },
           {
-            "definition": "Mélange équimolaire oxygène–protoxyde d’azote procurant analgésie de surface, anxiolyse et sédation consciente pour gestes courts, nécessitant coopération du patient et environnement sécurisé.",
-            "term": "MEOPA"
+            "definition": "anesthésique local en crème ou patch, profondeur et durée variables selon durée de pose, indications multiples (ponctions, pansements).",
+            "term": "Lidocaïne (Emla)"
           },
           {
-            "definition": "Anesthésique local topique (crème ou patch) permettant une anesthésie cutanée superficielle avant gestes douloureux (ponctions, pansements).",
-            "term": "Lidocaïne (EMLA)"
-          },
-          {
-            "definition": "Stimulation électrique transcutanée visant à moduler le message douloureux par des impulsions électriques appliquées sur la peau.",
-            "term": "TENS"
-          },
-          {
-            "definition": "Ensemble de techniques (relaxation, hypnose, environnement, immobilisation, chaleur/froid, psychothérapie, etc.) complétant les traitements médicamenteux de la douleur.",
-            "term": "Analgésie non médicamenteuse"
-          },
-          {
-            "definition": "Risques digestif, rénal et hémorragique, qui limite leur utilisation et impose des précautions.",
-            "term": "Effets indésirables des AINS"
-          },
-          {
-            "definition": "Toxicité hépatique en cas de surdosage et réactions cutanées allergiques rares, justifiant le respect strict de la dose maximale et l’usage de l’antidote en cas d’excès.",
-            "term": "Effets indésirables du paracétamol"
-          },
-          {
-            "definition": "Sueurs, somnolence, nausées, vertiges et effets atropiniques (sécheresse buccale, tachycardie, confusion, hallucinations), avec risque d’abus et de dépendance.",
-            "term": "Effets indésirables du néfopam"
-          },
-          {
-            "definition": "Constipation ++, rétention urinaire ++, dépression respiratoire surtout en cas de surdosage, nausées, vomissements à l’introduction ++, prurit, sueurs, somnolence, hallucinations, convulsions, dépendance, tolérance.",
-            "term": "Effets indésirables des opioïdes"
-          },
-          {
-            "definition": "Effet indésirable quasi systématique des opioïdes nécessitant prévention hygiéno‑diététique, laxatifs systématiques et, en cas d’échec, antagonistes périphériques (méthylnaltrexone, naloxégol).",
-            "term": "Constipation sous opioïdes"
-          },
-          {
-            "definition": "Effets morphiniques classiques, abaissement du seuil épileptogène, hypoglycémies et risque de syndrome sérotoninergique nécessitant l’arrêt immédiat du traitement en cas de signes.",
-            "term": "Effets indésirables du tramadol"
-          },
-          {
-            "definition": "Insuffisance respiratoire ou hépatique sévère, hypertension intracrânienne, épilepsie non contrôlée, intoxication alcoolique aiguë, allergie et associations à d’autres morphiniques ou Inhibiteurs de la MonoAmine Oxydase (IMAO).",
-            "term": "Contre‑indications des opioïdes"
-          },
-          {
-            "definition": "Allergie, asthme ou insuffisance respiratoire, toxicomanie active et association avec agonistes‑antagonistes morphiniques, en tenant compte aussi des contre‑indications du paracétamol associé.",
-            "term": "Contre‑indications de la codéine"
-          },
-          {
-            "definition": "Allergie, insuffisance hépatique ou respiratoire, toxicomanie, association avec buprénorphine ou IMAO, avec prudence accrue en cas d’épilepsie, diabète ou traitement sérotoninergique.",
-            "term": "Contre‑indications du tramadol"
-          },
-          {
-            "definition": "Âge inférieur à 15 ans, antécédents de convulsions ou épilepsie, risque de glaucome et de rétention urinaire.",
-            "term": "Contre‑indications du néfopam"
-          },
-          {
-            "definition": "Principes comprenant la rotation possible des opiacés, la mise en place d’un traitement de fond avec doses de secours, le respect des durées maximales de prescription et l’adaptation progressive des doses selon la douleur.",
-            "term": "Règles de base du traitement par opiacés"
-          },
-          {
-            "definition": "Procédure d’ajustement de la morphine à libération immédiate pour atteindre une douleur contrôlée avant passage à une forme à libération prolongée.",
+            "definition": "administration d'un comprimé à libération immédiate toutes les 4h si besoin, réévaluation après 1h, possibilité de doses de secours si inefficacité.",
             "term": "Titration morphinique"
           },
           {
-            "definition": "Augmentation de 30 à 50 % de la dose quotidienne (ou ajout des bolus à la dose de fond) si la douleur reste supérieure à 3/10 ou si plus de trois interdoses sont nécessaires par jour, avec possibilité de diminuer ensuite d’environ 30 % par jour.",
-            "term": "Adaptation des doses d’opioïdes"
+            "definition": "changement d'opioïde fort suite à effets indésirables malgré mesures correctives, utilisation des tables d'équiantalgie.",
+            "term": "Rotation des opioïdes"
           },
           {
-            "definition": "Suite d’actions en cas de somnolence associée à une fréquence respiratoire inférieure à 10/min, incluant arrêt de la morphine, appel médical, stimulation du patient, oxygénation, titration de naloxone puis relais en perfusion continue selon protocole.",
-            "term": "Conduite à tenir en cas de surdosage morphinique"
+            "definition": "dose supplémentaire entre les prises régulières, représentant 1/10 à 1/6 de la dose de fond en voie orale.",
+            "term": "Interdoses"
           },
           {
-            "definition": "Stratégie consistant à associer plusieurs antalgiques ou co‑antalgiques aux mécanismes d’action différents pour améliorer l’efficacité et réduire les effets indésirables.",
-            "term": "Association d’antalgiques (analgésie multimodale)"
+            "definition": "délai avant l'efficacité du médicament (1h en général, 5 min en morphine IV, 45 min en sous-cutané), détermine le moment optimal pour débuter un soin/geste.",
+            "term": "Délai d'action"
           },
           {
-            "definition": "Combinaisons fréquentes en post‑opératoire (paracétamol, néfopam, kétoprofène, tramadol, morphinique) et association possible du paracétamol avec tous les autres antalgiques, avec effet synergique avec la morphine.",
-            "term": "Associations utiles"
-          },
-          {
-            "definition": "Association de deux antalgiques ayant le même mécanisme (par exemple tramadol et autre morphinique) en raison d’un bénéfice antalgique limité mais d’une majoration des risques d’effets indésirables.",
-            "term": "Associations à éviter"
+            "definition": "association de plusieurs antalgiques pour synergie d'action, meilleure efficacité et limitation des effets indésirables.",
+            "term": "Analgésie multimodale"
           }
         ],
         "filename": "les antalgiques.odt"
       }
+    ],
+    [
+      "ue_2_4_s1_plaies_et_brlures",
+      {
+        "title": "plaies et brûlures",
+        "date": "08/12/2025",
+        "ue": "2.4.S1",
+        "author": "SC",
+        "definitions": [
+          {
+            "definition": "organe le plus étendu et le plus lourd du corps, jouant un rôle de protection, de thermorégulation, sensoriel, métabolique, excréteur et de support de la cicatrisation.",
+            "term": "Peau"
+          },
+          {
+            "definition": "effraction de la barrière cutanée par un agent vulnérant, avec possible perte de substance et limitation fonctionnelle, de gravité variable de bénigne à urgence vitale.",
+            "term": "Plaie"
+          },
+          {
+            "definition": "plaie d’origine traumatique, chirurgicale ou intentionnelle, cicatrisant en quelques jours avec ou sans soins selon le cas.",
+            "term": "Plaie aiguë"
+          },
+          {
+            "definition": "plaie induite par une pathologie, dont la cicatrisation dépasse 4 à 6 semaines malgré des soins appropriés.",
+            "term": "Plaie chronique"
+          },
+          {
+            "definition": "plaies par arme blanche, arme à feu, objet projeté, bistouri, souvent petites en surface mais profondes.",
+            "term": "Mécanismes lésionnels tranchants/perforants"
+          },
+          {
+            "definition": "plaies par écrasement, torsion, morsure ou choc mécanique, à risque de lésions profondes associées.",
+            "term": "Mécanismes lésionnels contondants"
+          },
+          {
+            "definition": "section traumatique d’un segment (souvent doigts ou membre), nécessitant conservation des segments au froid et pansement compressif humide sans garrot ni antiseptique.",
+            "term": "Amputation"
+          },
+          {
+            "definition": "mécanisme lésionnel responsable notamment des escarres, lié à un glissement des plans cutanés et sous-cutanés.",
+            "term": "Cisaillement"
+          },
+          {
+            "definition": "classification de 1 (urgence vitale) à 5 (sans urgence) selon gravité, type de plaie et retentissement, utilisée aux urgences.",
+            "term": "Échelle de triage plaies aiguës"
+          },
+          {
+            "definition": "recueil de l’anamnèse, description complète de la plaie (localisation, profondeur, aspect, odeur, saignement, souillures, corps étrangers) et évaluation des fonctions du membre.",
+            "term": "Rôle IDE – bilan lésionnel"
+          },
+          {
+            "definition": "étape de nettoyage de la plaie (NaCl 0,9%, eau et savon doux si très souillée, brossage si besoin), visant à enlever souillures et tissus dévitalisés, avant antisepsie.",
+            "term": "Détersion"
+          },
+          {
+            "definition": "utilisation d’antiseptiques adaptés (Bétadine, Dakin, Biseptine) en respectant leurs indications et contre-indications, en évitant les solutions colorées qui masquent la plaie.",
+            "term": "Désinfection (antisepsie)"
+          },
+          {
+            "definition": "dispositif visant à protéger, assurer l’hémostase, favoriser le drainage des exsudats et limiter la contamination microbienne.",
+            "term": "Pansement de plaie"
+          },
+          {
+            "definition": "processus physiologique de réparation tissulaire en trois phases (détersion, bourgeonnement, épidermisation) permettant la restauration structurelle et fonctionnelle.",
+            "term": "Cicatrisation"
+          },
+          {
+            "definition": "phase où un tissu de granulation rouge « framboisé » comble la plaie grâce à la production de collagène et de nouveaux vaisseaux.",
+            "term": "Phase de bourgeonnement"
+          },
+          {
+            "definition": "phase de recouvrement par une nouvelle peau à partir des bords vers le centre, initialement rosée et fragile, ensuite recolorée par la mélanine.",
+            "term": "Phase d’épidermisation"
+          },
+          {
+            "definition": "âge avancé, dénutrition, diabète, hypoxie tissulaire, certains médicaments, tabagisme, infection, corps étranger ou protocole de soins inadapté.",
+            "term": "Facteurs compromettant la cicatrisation"
+          },
+          {
+            "definition": "destruction des téguments et éventuellement des tissus sous-jacents par un agent thermique, chimique, électrique, par radiations ou par froid, de gravité variable.",
+            "term": "Brûlure"
+          },
+          {
+            "definition": "refroidissement de la brûlure à l’eau à 15–20 °C, pendant 15 minutes, en faisant ruisseler l’eau à environ 15 cm de la zone brûlée.",
+            "term": "Règle des 15 (brûlures thermiques)"
+          },
+          {
+            "definition": "estimation de l’étendue de la brûlure via la règle des 9 de Wallace ou la paume de la main (≈ 1% de la surface corporelle).",
+            "term": "Surface corporelle brûlée (SCB)"
+          },
+          {
+            "definition": "lésions cutanées dues à un produit caustique, nécessitant déshabillage, confinement des vêtements, décontamination prolongée et protection des intervenants.",
+            "term": "Brûlures chimiques"
+          },
+          {
+            "definition": "lésions profondes dues au courant ou à la foudre, avec risque de complications musculaires, cardiaques, neurologiques et rénales.",
+            "term": "Brûlures électriques"
+          },
+          {
+            "definition": "surface atteinte, profondeur, localisation critique (face, mains, périnée, articulations, brûlures circulaires), terrain fragile et lésions associées.",
+            "term": "Critères de gravité des brûlures"
+          },
+          {
+            "definition": "seuils de gravité à partir d’environ 10% de SCB chez l’adulte et 5% chez l’enfant ou la personne âgée.",
+            "term": "Surface corporelle brûlée grave"
+          },
+          {
+            "definition": "refroidissement contrôlé, antalgiques, protection contre l’hypothermie, pansement stérile, retrait des bijoux et surveillance régulière.",
+            "term": "Prise en charge IDE brûlures simples"
+          },
+          {
+            "definition": "soin stérile avec NaCl 0,9%, compresses non adhérentes, topique type Biafine/Flammazine, pansement occlusif et séparation des doigts si atteints.",
+            "term": "Pansement de brûlure"
+          },
+          {
+            "definition": "retard de cicatrisation, infection, hypertrophie cicatricielle, dyschromie et parfois nécessité de greffe cutanée.",
+            "term": "Complications des brûlures"
+          },
+          {
+            "definition": "structure spécialisée recevant les brûlures complexes ou graves pour une prise en charge médicochirurgicale, rééducative et psychologique pluridisciplinaire.",
+            "term": "Centre de grands brûlés"
+          }
+        ],
+        "filename": "plaies et brûlures.odt"
+      }
+    ],
+    [
+      "ue_4_1_s1_les_besoins_nutritionnels_de_la_personne_soigne",
+      {
+        "title": "Les besoins nutritionnels de la personne soignée",
+        "date": "04/12/2025",
+        "ue": "4.1.S1",
+        "author": "Audrey",
+        "definitions": [
+          {
+            "definition": "l’alimentation de la personne soignée est un soin à part entière, nécessitant une vigilance pluridisciplinaire continue (IDE, AS, médecin, diététicien, restauration) et la prise en compte du plaisir alimentaire",
+            "term": "Alimentation-soin"
+          },
+          {
+            "definition": "ensemble des apports indispensables en macronutriments (protéines, lipides, glucides), micronutriments (vitamines, minéraux), eau et fibres, qui varient selon l’âge, l’activité, la maladie, la grossesse ou l’allaitement.",
+            "term": "Besoins nutritionnels"
+          },
+          {
+            "definition": "protéines de haute valeur biologique assurant construction et entretien des tissus (muscles, os) et la fabrication d’hormones, neurotransmetteurs, anticorps et molécules de transport.",
+            "term": "Protéines animales"
+          },
+          {
+            "definition": "protéines issues des végétaux, complémentaires des protéines animales et associées entre elles ou avec des produits animaux pour couvrir les besoins en acides aminés essentiels.",
+            "term": "Protéines végétales"
+          },
+          {
+            "definition": "nutriments énergétiques dont les acides gras saturés augmentent le LDL-cholestérol, les insaturés (oméga 3, 6, 9) protègent le cardiovasculaire, et les acides gras trans augmentent le risque cardiovasculaire.",
+            "term": "Lipides (graisses)"
+          },
+          {
+            "definition": "sucres rapides (sucre, miel, confiture, bonbons) fournissant une énergie immédiate pour les cellules, dont l’excès est stocké sous forme de graisse.",
+            "term": "Glucides simples"
+          },
+          {
+            "definition": "glucides à diffusion plus lente (féculents, légumes secs) fournissant une énergie prolongée, avec un index glycémique influencé par le type d’aliment et le mode de cuisson.",
+            "term": "Glucides complexes"
+          },
+          {
+            "definition": "fibres des fruits et légumes crus, favorisant le transit, la prévention de la constipation et de certains cancers digestifs.",
+            "term": "Fibres crues"
+          },
+          {
+            "definition": "fibres des fruits et légumes cuits qui augmentent la satiété et ralentissent l’arrivée des nutriments dans le sang.",
+            "term": "Fibres cuites"
+          },
+          {
+            "definition": "vitamine impliquée dans l’intégrité de la peau, des muqueuses, des neurones et de la vision.",
+            "term": "Vitamine A / provitamine A"
+          },
+          {
+            "definition": "vitamine essentielle au fonctionnement de la moelle osseuse, à la formation des globules rouges et au système nerveux.",
+            "term": "Vitamine B9 (folates)"
+          },
+          {
+            "definition": "vitamine antioxydante intervenant dans la prévention de nombreux cancers et dans la cicatrisation.",
+            "term": "Vitamine C"
+          },
+          {
+            "definition": "vitamine jouant un rôle central dans la santé osseuse, l’immunité et la régulation de l’humeur (thymie).",
+            "term": "Vitamine D"
+          },
+          {
+            "definition": "vitamine antioxydante participant à l’entretien de la peau, des muqueuses et à l’intégrité des neurones.",
+            "term": "Vitamine E"
+          },
+          {
+            "definition": "minéral constituant principal de l’hémoglobine des globules rouges, indispensable au transport de l’oxygène.",
+            "term": "Fer"
+          },
+          {
+            "definition": "minéral nécessaire à la formation des os et des dents, ainsi qu’au bon fonctionnement des nerfs et des muscles.",
+            "term": "Magnésium"
+          },
+          {
+            "definition": "composés antioxydants végétaux contribuant à la protection cardiovasculaire, à la prévention de certains cancers et au ralentissement du vieillissement cellulaire.",
+            "term": "Polyphénols"
+          },
+          {
+            "definition": "pathologie fréquente et silencieuse à l’hôpital, en EHPAD et à domicile, entraînant fonte musculaire, déficit immunitaire, risque de chutes et perte d’autonomie.",
+            "term": "Dénutrition"
+          },
+          {
+            "definition": "rapport poids/taille² utilisé comme critère phénotypique pour diagnostiquer et classer la dénutrition (seuils différents avant et après 70 ans).",
+            "term": "IMC (Indice de Masse Corporelle)"
+          },
+          {
+            "definition": "réduction des apports alimentaires (≥ 50% des besoins pendant plus d’une semaine ou diminution prolongée), malabsorption/maldigestion ou situation d’agression avec hypercatabolisme.",
+            "term": "Critères étiologiques de dénutrition"
+          },
+          {
+            "definition": "trouble de la déglutition pouvant toucher solides, liquides ou salive, exposant aux fausses routes, pneumopathies et dénutrition.",
+            "term": "Dysphagie"
+          },
+          {
+            "definition": "passage du bol alimentaire ou de la salive dans les voies respiratoires au lieu de l’œsophage, se manifestant par toux, voix rauque/mouillée, infections respiratoires à répétition.",
+            "term": "Fausses routes"
+          },
+          {
+            "definition": "pratique excluant la chair animale mais incluant produits laitiers, œufs et dérivés, nécessitant des associations céréales/légumineuses et produits animaux pour couvrir les besoins protéiques.",
+            "term": "Végétarisme"
+          },
+          {
+            "definition": "mode alimentaire excluant tout produit d’origine animale, avec risque élevé de carences (vitamine B12, D, fer, calcium, zinc, EPA/DHA) et déconseillé chez la personne soignée.",
+            "term": "Végétalisme"
+          },
+          {
+            "definition": "organisation de repas riches en fibres et féculents (de préférence complets) à chaque repas, apports glucidiques réguliers, limitation des sucres rapides hors repas et choix de graisses insaturées.",
+            "term": "Accompagnement nutritionnel du diabète"
+          }
+        ],
+        "filename": "Les besoins nutritionnels de la personne soignée.odt"
+      }
+    ],
+    [
+      "ue_5_9_s1_approche_relationnelle",
+      {
+        "title": "approche relationnelle",
+        "date": "05/12/2025",
+        "ue": "5.9.S1",
+        "author": "CC",
+        "definitions": [
+          {
+            "definition": "approche du soin où la relation soignant-soigné est centrale, fondée sur la présence, l’écoute, l’empathie et la prise en compte des dimensions émotionnelles, psychologiques et sociales de la personne.",
+            "term": "Soins relationnels"
+          },
+          {
+            "definition": "acte global intégrant dimensions techniques, relationnelles, éthiques et contextuelles, visant à répondre aux besoins fondamentaux d’une personne vulnérable en respectant sa dignité et son autonomie.",
+            "term": "Soin (selon ARSI)"
+          },
+          {
+            "definition": "processus dynamique entre deux individus, basé sur communication, écoute, respect et réciprocité, créant un espace de confiance et d’échange pour comprendre besoins et attentes.",
+            "term": "Relation (selon ARSI)"
+          },
+          {
+            "definition": "état où la personne se sent en sécurité, accepte de s’ouvrir et de se laisser accompagner car elle croit en la compétence et la bienveillance du soignant, condition d’une relation thérapeutique.",
+            "term": "Confiance"
+          },
+          {
+            "definition": "reconnaissance sans jugement de la dignité, des valeurs et des choix de la personne, en considérant ses besoins et souhaits comme fondamentaux.",
+            "term": "Respect"
+          },
+          {
+            "definition": "attention totale portée à la personne, avec reformulation et clarification de ses propos pour montrer une compréhension réelle et instaurer un lien de confiance.",
+            "term": "Écoute active"
+          },
+          {
+            "definition": "capacité à se mettre à la place de l’autre et à comprendre ses émotions tout en gardant une distance professionnelle pour mieux répondre à ses besoins sans confusion émotionnelle.",
+            "term": "Empathie"
+          },
+          {
+            "definition": "ensemble des mots, du ton, du regard, de la posture, des gestes, des silences et des émotions qui transmettent le message et la qualité de la relation.",
+            "term": "Communication verbale et non verbale"
+          },
+          {
+            "definition": "facteurs qui perturbent la relation (stress, surcharge émotionnelle, stéréotypes, préjugés) et altèrent la qualité des échanges.",
+            "term": "Barrières relationnelles"
+          },
+          {
+            "definition": "respect du domicile/chambre, absence d’approche surprise, respect du sommeil et absence de soin imposé sans accord.",
+            "term": "Règles de base relationnelles"
+          },
+          {
+            "definition": "contact visuel horizontal, direct mais bienveillant et suffisamment proche pour signifier présence et considération.",
+            "term": "Pilier du regard"
+          },
+          {
+            "definition": "ensemble de gestes préparatoires (frapper, se présenter, approche visuelle, parole, premier contact par le toucher) pour entrer en relation.",
+            "term": "Pilier des préliminaires"
+          },
+          {
+            "definition": "utilisation ajustée du ton et des mots, sachant que la communication repose en grande partie sur le non-verbal et la voix plus que sur le contenu verbal seul.",
+            "term": "Pilier de la parole"
+          },
+          {
+            "definition": "contact physique progressif, professionnel, rassurant et pacifiant, adapté au consentement et à la situation de la personne.",
+            "term": "Pilier du toucher"
+          },
+          {
+            "definition": "philosophie de soin centrée sur la dignité et l’identité de la personne, quels que soient ses handicaps, fondée sur quatre piliers (regard, parole, toucher, verticalité).",
+            "term": "Humanitude"
+          },
+          {
+            "definition": "maintien ou retour à une posture debout ou assise, associée à la dignité humaine et au sentiment d’exister comme sujet et non uniquement comme « corps à soigner ».",
+            "term": "Verticalité (en Humanitude)"
+          }
+        ],
+        "filename": "approche relationnelle.odt"
+      }
+    ],
+    [
+      "ue_5_9_s1_principes_fondamentaux_de_la_responsabilit_infirmire_droit",
+      {
+        "title": "Principes fondamentaux de la responsabilité infirmière (droit)",
+        "date": "08/12/2025",
+        "ue": "5.9.S1",
+        "author": "CC",
+        "definitions": [
+          {
+            "definition": "obligation pour l’infirmier de répondre de ses actes et de leurs conséquences devant le patient, l’institution et la loi, en respectant règles professionnelles, éthiques et légales.",
+            "term": "Responsabilité infirmière"
+          },
+          {
+            "definition": "responsabilité visant à réparer un dommage causé à autrui, généralement par une indemnisation prise en charge par l’assureur.",
+            "term": "​Responsabilité civile"
+          },
+          {
+            "definition": "responsabilité qui sanctionne une infraction (faute intentionnelle ou faute d’imprudence, négligence grave, mise en danger ou violation délibérée d’une obligation de prudence/sécurité).",
+            "term": "Responsabilité pénale"
+          },
+          {
+            "definition": "responsabilité devant l’Ordre ou l’employeur en cas de manquement aux règles professionnelles ou déontologiques, pouvant entraîner des sanctions professionnelles.",
+            "term": "Responsabilité disciplinaire"
+          },
+          {
+            "definition": "fait que chaque professionnel répond des actes qu’il accomplit personnellement dans le cadre de ses fonctions.",
+            "term": "Responsabilité individuelle"
+          },
+          {
+            "definition": "partage d’une responsabilité organisationnelle par l’équipe soignante, liée au fonctionnement du service et aux organisations mises en place.",
+            "term": "Responsabilité collective"
+          },
+          {
+            "definition": "atteinte subie par une personne (physique, moral, matériel) du fait d’un tiers, ouvrant droit à réparation lorsqu’elle remplit les conditions juridiques.",
+            "term": "Dommage / préjudice"
+          },
+          {
+            "definition": "fait de fournir le bon soin, au bon patient, au bon moment, selon les bonnes pratiques, pour des soins sûrs, efficaces, équitables et centrés sur le patient.",
+            "term": "Qualité des soins"
+          },
+          {
+            "definition": "cycle continu « planifier – réaliser – évaluer – améliorer » reposant sur la traçabilité, l’évaluation, la communication et le respect des procédures.",
+            "term": "Démarche qualité"
+          },
+          {
+            "definition": "document opérationnel décrivant « comment faire » une tâche, en détaillant étapes, rôles et traçabilité pour harmoniser les pratiques.",
+            "term": "Procédure"
+          },
+          {
+            "definition": "conduite à tenir validée, souvent médicale, pour une situation clinique donnée, s’appuyant sur des données probantes.",
+            "term": "Protocole"
+          },
+          {
+            "definition": "repères nationaux de bonnes pratiques destinés à améliorer qualité et sécurité des soins, à suivre par les professionnels de santé.",
+            "term": "Recommandations HAS"
+          },
+          {
+            "definition": "obligation légale issue du Code de la santé publique qui impose au soignant de ne pas divulguer les informations concernant le patient.",
+            "term": "Secret professionnel"
+          },
+          {
+            "definition": "défaillance humaine (connaissance, vigilance, communication, respect de procédure) à analyser et déclarer pour apprendre et renforcer la sécurité, sans être automatiquement une faute.",
+            "term": "Erreur"
+          },
+          {
+            "definition": "comportement qui sort du cadre professionnel attendu (manquement grave, volontaire ou non) et peut engager les responsabilités civile, pénale ou disciplinaire.",
+            "term": "Faute"
+          },
+          {
+            "definition": "manquement grave à une obligation connue, exposant autrui à un risque d’une particulière gravité, engageant la responsabilité pénale personnelle de l’auteur.",
+            "term": "Faute caractérisée"
+          },
+          {
+            "definition": "événement inattendu survenant au cours d’un soin, ayant causé ou pouvant causer un dommage, devant être déclaré et analysé.",
+            "term": "Événement indésirable associé aux soins (EIAS)"
+          },
+          {
+            "definition": "analyse collective, rétrospective et systémique de cas cliniques marqués par un événement indésirable ou une complication.",
+            "term": "RMM (Revue de morbidité-mortalité)"
+          },
+          {
+            "definition": "dispositif organisé de recueil et d’analyse des événements indésirables afin de comprendre les causes et de prévenir leur répétition.",
+            "term": "CREX (Comité de Retour d’EXpérience)"
+          },
+          {
+            "definition": "culture de sécurité qui distingue erreur et faute, favorise la déclaration et l’analyse des erreurs sans stigmatisation, tout en sanctionnant les comportements gravement fautifs.",
+            "term": "Culture juste"
+          }
+        ],
+        "filename": "Principes fondamentaux de la responsabilité infirmière (droit).odt"
+      }
+    ],
+    [
+      "ue_2_4_s1_soins_infirmiers_auprs_dun_patient_traumatis_bnficiant_dune_chirurgie",
+      {
+        "title": "Soins infirmiers auprès d’un patient traumatisé bénéficiant d’une chirurgie",
+        "date": "08/12/2025",
+        "ue": "2.4.S1",
+        "author": "SC",
+        "definitions": [
+          {
+            "definition": "phase qui commence à la consultation chirurgicale et se termine à l’arrivée en service pour la préparation avant l’intervention (bilan, information, consentement, préparation psycho‑corporelle).​",
+            "term": "Période préopératoire"
+          },
+          {
+            "definition": "entretien permettant d’expliquer raison, nature, risques, bénéfices, durée d’hospitalisation/immobilisation et d’obtenir le consentement éclairé pour l’acte opératoire.​",
+            "term": "Consultation du chirurgien"
+          },
+          {
+            "definition": "consultation obligatoire avec l’anesthésiste (48 h min, < 2 mois) comprenant entretien, examen clinique, examens complémentaires, choix du type d’anesthésie et recueil du consentement pour la sédation.​",
+            "term": "Consultation d’anesthésie"
+          },
+          {
+            "definition": "réévaluation par l’anesthésiste dans les 24–48 h avant l’acte pour vérifier l’absence de modification de l’état clinique depuis la consultation.​",
+            "term": "Visite pré‑anesthésique"
+          },
+          {
+            "definition": "modalités d’entrée (veille ou jour J, en journée ou via urgences) conditionnant l’organisation du jeûne et de la préparation au bloc.​",
+            "term": "Hospitalisation programmée / ambulatoire / non programmée"
+          },
+          {
+            "definition": "accueil, identitovigilance, recueil de données, évaluation autonomie/habitudes de vie, préparation psychologique et physique, information du patient et traçabilité dans le DSI.​",
+            "term": "Rôle infirmier préopératoire"
+          },
+          {
+            "definition": "retrait bijoux/prothèses/vernis, toilette ou douche complète, dépilation selon protocole, chemise propre, patient à jeun, paramètres vitaux et prémédication si prescrite.​",
+            "term": "Préparation physique préopératoire"
+          },
+          {
+            "definition": "ensemble des documents à vérifier/compléter avant le bloc (bilan préop, groupe sanguin et RAI, examens, dossier d’anesthésie, check‑list, consentements, autorisations légales, personne de confiance).​",
+            "term": "Dossier opératoire"
+          },
+          {
+            "definition": "anesthésie avec perte de conscience, analgésie et curarisation, nécessitant intubation et surveillance rapprochée, exposant à des effets secondaires fréquents (NV, somnolence) et rares mais graves.​",
+            "term": "Anesthésie générale"
+          },
+          {
+            "definition": "techniques d’anesthésie par anesthésiques locaux autour des nerfs ou dans les espaces rachidiens pour insensibiliser un territoire, avec risques spécifiques (hypoTA, céphalées, complications neurologiques).​",
+            "term": "Anesthésie locorégionale / rachianesthésie / péridurale"
+          },
+          {
+            "definition": "insensibilisation d’une petite zone (suture, petite chirurgie, soins dentaires) par anesthésiques locaux en infiltration, crème, patch ou spray.​",
+            "term": "Anesthésie locale"
+          },
+          {
+            "definition": "diminution contrôlée de la vigilance par sédatifs (benzodiazépines, faibles doses de propofol ± opioïdes) souvent associée à une anesthésie locale ou loco‑régionale.​",
+            "term": "Sédation"
+          },
+          {
+            "definition": "salle de réveil obligatoire après anesthésie, assurant une surveillance intensive des fonctions vitales jusqu’à récupération stable.​",
+            "term": "SSPI (salle de surveillance post‑interventionnelle)"
+          },
+          {
+            "definition": "score de 0 à 10 (conscience, motricité, ventilation, TA, coloration) utilisé pour autoriser la sortie de SSPI (≥ 9/10 ou ≥ 8 selon protocole).​",
+            "term": "Score d’Aldrete"
+          },
+          {
+            "definition": "phase allant de la fin de l’intervention au retour à un équilibre biologique/physiologique, incluant passage en SSPI puis retour en service avec surveillances ciblées.​",
+            "term": "Période postopératoire"
+          },
+          {
+            "definition": "organisation matérielle du lit et de l’environnement (bio‑nettoyage, arceau, potence, matelas à air, perfusion, O2, aspiration, matériel d’élimination, sonnette) pour le retour du patient.​",
+            "term": "Préparation de la chambre"
+          },
+          {
+            "definition": "bilan initial puis surveillances neurologique, respiratoire, circulatoire, douleur, diurèse, transit, risque infectieux, risque hémorragique et dispositifs (pansements, drains, plâtres).​",
+            "term": "Surveillance postopératoire en service"
+          },
+          {
+            "definition": "risques liés à l’alitement prolongé (thromboembolie, escarres, infections pulmonaires/urinaires, constipation, fonte musculaire, syndrome de glissement) à prévenir par mobilisation et prévention.​",
+            "term": "Complications du décubitus"
+          },
+          {
+            "definition": "mise en œuvre des prescriptions (réhydratation, antalgiques, anticoagulants, antibiotiques, examens), soins d’hygiène et de confort, prévention des escarres, organisation du premier lever et reprise alimentaire adaptée.​",
+            "term": "Prise en charge postopératoire IDE"
+          },
+          {
+            "definition": "information, conseils et soutien psychologique pour favoriser le retour à l’autonomie, en collaboration avec kiné, ergothérapeute, diététicien, psychologue et assistante sociale.",
+            "term": "Éducation et coordination"
+          },
+          {
+            "definition": "accueil humaniste centré sur la personne, identitovigilance (bracelet, dossier), recueil de données (antécédents, allergies, autonomie, habitudes de vie), information/rassurance, préparation psychologique et physique (toilette, dépilation, jeûne, retrait bijoux/prothèses), prise des constantes et mise en œuvre des prescriptions (ECG, bilans, prémédication), vérification/complétude du dossier opératoire et traçabilité dans le DSI.",
+            "term": "Rôle infirmier en préopératoire"
+          },
+          {
+            "definition": "transmission des informations préopératoires vers le bloc (check‑list, feuille de liaison, consentements, bilans), organisation du transfert avec le brancardier, prise en compte des risques liés à l’acte chirurgical et à l’anesthésie pour anticiper les besoins de surveillance et de matériel au retour.",
+            "term": "Rôle infirmier en per‑opératoire (interface bloc–service)"
+          },
+          {
+            "definition": "préparation de la chambre (lit, matériel de perfusion, O2, aspiration, élimination, prévention hypothermie), accueil du patient après SSPI, bilan initial global (neurologique, respiratoire, circulatoire, douleur, diurèse, transit, pansements, drains, plâtres), mise en route des prescriptions (perfusions, antalgiques, anticoagulants, antibiotiques, examens), soins d’hygiène/confort, prévention des complications du décubitus, organisation du premier lever et de la reprise alimentaire, éducation et coordination pluridisciplinaire en vue du retour à l’autonomie.",
+            "term": "Rôle infirmier en postopératoire"
+          }
+        ],
+        "filename": "Soins infirmiers auprès d’un patient traumatisé bénéficiant d’une chirurgie.odt"
+      }
+    ],
+    [
+      "ue_4_4_s1_anticoagulants_antiagrgants",
+      {
+        "title": "Anticoagulants - antiagrégants",
+        "date": "11/12/2025",
+        "ue": "4.4.S1",
+        "author": "Dr",
+        "definitions": [
+          {
+            "definition": "ensemble des mécanismes maintenant le sang fluide dans les vaisseaux tout en permettant l’arrêt des hémorragies et la prévention des thromboses, via hémostase primaire, coagulation et fibrinolyse.",
+            "term": "Hémostase"
+          },
+          {
+            "definition": "premier temps de l’hémostase correspondant à la formation du clou plaquettaire par agrégation des plaquettes au site de la lésion.",
+            "term": "Hémostase primaire"
+          },
+          {
+            "definition": "deuxième temps de l’hémostase visant à consolider le clou plaquettaire par formation d’un caillot de fibrine via une cascade de facteurs de coagulation.",
+            "term": "Hémostase secondaire (coagulation)"
+          },
+          {
+            "definition": "processus de destruction du caillot permettant d’éviter la persistance de thromboses une fois la réparation vasculaire obtenue.",
+            "term": "Fibrinolyse"
+          },
+          {
+            "definition": "médicaments inhibant l’agrégation plaquettaire et la formation du clou plaquettaire, utilisés en prévention des thromboses artérielles (SCA, AVC, stent) avec risque principal hémorragique.",
+            "term": "Antiagrégants plaquettaires"
+          },
+          {
+            "definition": "antiagrégant inhibiteur de COX‑1, utilisé à faible dose au long cours, exposant à un risque hémorragique et digestif, devant être arrêté avant un geste invasif.",
+            "term": "ASPIRINE (Kardegic)"
+          },
+          {
+            "definition": "antiagrégants oraux (clopidogrel, ticlopidine, ticagrelor, prasugrel, dipyridamole) bloquant l’activation plaquettaire par l’ADP, avec risque hémorragique et parfois hématologique (agranulocytose pour ticlopidine).",
+            "term": "Inhibiteurs de la voie de l’ADP"
+          },
+          {
+            "definition": "antiagrégants injectables (eptifibatide, tirofiban) utilisés en urgence lors d’angioplastie coronaire, agissant sur le récepteur plaquettaire final avec retour rapide de la coagulation après arrêt.",
+            "term": "Antagonistes GP IIb/IIIa"
+          },
+          {
+            "definition": "médicaments agissant sur l’hémostase secondaire pour prévenir ou traiter les maladies thromboemboliques veineuses en empêchant la formation de thrombus dans les veines.",
+            "term": "Anticoagulants"
+          },
+          {
+            "definition": "anticoagulants injectables IV/SC activant l’antithrombine III avec activité anti‑IIa et anti‑Xa, à action immédiate, nécessitant un suivi anti‑Xa et des plaquettes, avec risque de TIH.",
+            "term": "Héparines non fractionnées (HNF)"
+          },
+          {
+            "definition": "héparines injectables SC (énoxaparine, tinzaparine, etc.) à activité surtout anti‑Xa, plus maniables et moins hémorragiques que les HNF, contre‑indiquées en insuffisance rénale sévère.",
+            "term": "Héparines de bas poids moléculaire (HBPM)"
+          },
+          {
+            "definition": "anticoagulant injectable apparenté aux héparines, anti‑Xa pur, administré SC 1 fois/j, utile en ambulatoire ou en cas de TIH, sans suivi plaquettaire spécifique.",
+            "term": "Fondaparinux (Arixtra)"
+          },
+          {
+            "definition": "anticoagulant injectable anti‑Xa réservé à l’hôpital, indiqué en cas de TIH, avec adaptation posologique au poids et à la fonction rénale.",
+            "term": "Danaparoïd (Orgaran)"
+          },
+          {
+            "definition": "anticoagulants oraux (warfarine, fluindione, acénocoumarol) inhibant la synthèse hépatique des facteurs II, VII, IX, X, à délai d’action de 48–72 h, surveillés par l’INR avec marge thérapeutique étroite.",
+            "term": "Antivitamines K (AVK)"
+          },
+          {
+            "definition": "indice standardisé de l’anticoagulation sous AVK, généralement ciblé entre 2 et 3 (ou plus pour prothèses mécaniques) avec surveillance rapprochée à l’instauration puis mensuelle si équilibré.",
+            "term": "INR"
+          },
+          {
+            "definition": "nouveaux anticoagulants oraux directs (apixaban, rivaroxaban, dabigatran) inhibant sélectivement le facteur Xa ou la thrombine, à action rapide, sans suivi coagulation de routine mais avec risque hémorragique.",
+            "term": "AOD / NACO"
+          },
+          {
+            "definition": "principal effet indésirable de tous les antiagrégants et anticoagulants, se manifestant par saignements cutanés, muqueux ou internes, imposant surveillance clinique et parfois biologique.",
+            "term": "Risque hémorragique"
+          },
+          {
+            "definition": "effet indésirable rare mais grave des héparines, paradoxalement thrombotique, survenant entre J5 et J21, nécessitant surveillance des plaquettes et arrêt immédiat en cas de suspicion.",
+            "term": "TIH (thrombopénie induite par l’héparine)"
+          },
+          {
+            "definition": "adaptation selon gravité, allant de l’ajustement posologique et surveillance de l’INR à l’arrêt + vitamine K ± PPSB en cas d’hémorragie grave, toujours sur prescription médicale.",
+            "term": "Conduite en cas de surdosage AVK"
+          },
+          {
+            "definition": "contre‑indication en cas d’insuffisance rénale sévère, jamais de chevauchement avec héparine, pas de doublement de dose en cas d’oubli, et identification rigoureuse des spécialités pour sécuriser l’administration",
+            "term": "Points de vigilance AOD"
+          }
+        ],
+        "filename": "Anticoagulants - antiagrégants.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 724,
+    "totalTerms": 857,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0
