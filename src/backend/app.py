@@ -21,7 +21,9 @@ app = Flask(__name__, static_folder='../../public', static_url_path='')
 CORS(app)  # Permettre les requêtes cross-origin
 
 # Configuration - Chemins mis à jour pour nouvelle structure
-JSON_FILE_PATH = '../data/courses.json'
+# Chemin absolu pour éviter les problèmes de chemin relatif
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+JSON_FILE_PATH = os.path.join(SCRIPT_DIR, '../data/courses.json')
 
 def read_json_file():
     """Lit le fichier JSON existant"""
@@ -1048,10 +1050,14 @@ def update_definition():
 def update_courses():
     """Met à jour l'intégralité du fichier courses.json"""
     try:
+        print("📥 Réception de la requête update_courses")
         data = request.get_json()
         
         if not data or 'courses' not in data:
+            print("❌ Données invalides - pas de 'courses'")
             return jsonify({'error': 'Données invalides'}), 400
+        
+        print(f"✅ Données reçues: {len(data.get('courses', []))} cours")
         
         # Mettre à jour la date d'export
         data['exportDate'] = datetime.now().isoformat()
@@ -1065,7 +1071,9 @@ def update_courses():
             data['stats']['totalTerms'] = total_terms
         
         # Sauvegarder le fichier JSON
+        print(f"💾 Sauvegarde dans: {os.path.abspath(JSON_FILE_PATH)}")
         write_json_file(data)
+        print("✅ Fichier sauvegardé avec succès")
         
         return jsonify({
             'success': True,
@@ -1074,7 +1082,7 @@ def update_courses():
         })
         
     except Exception as e:
-        print(f"Erreur dans update_courses: {e}")
+        print(f"❌ Erreur dans update_courses: {e}")
         import traceback
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500

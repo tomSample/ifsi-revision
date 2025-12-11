@@ -10,6 +10,7 @@ let allTerms = [];
 let filteredTerms = []; // Termes filtrés selon les UE
 let availableUEs = []; // Liste des UE disponibles
 let selectedUEs = []; // UE sélectionnées
+let revisionMode = 'random'; // Mode de révision: 'random', 'indispensable', 'elargi', 'complet'
 let currentSession = [];
 let currentTermIndex = 0;
 let sessionResults = [];
@@ -286,6 +287,7 @@ async function loadCoursesData() {
                     allTerms.push({
                         term: defs[j].term,
                         definition: defs[j].definition,
+                        importance: defs[j].importance, // Récupérer l'importance depuis courses.json
                         ue: ue,
                         courseTitle: title
                     });
@@ -352,15 +354,56 @@ function saveUserProgress() {
 
 // Mettre à jour l'affichage des statistiques
 function updateStatsDisplay() {
-    const totalTermsElement = document.getElementById('totalTermsPreview');
     const filteredTermsElement = document.getElementById('filteredTermsCount');
+    const estimatedTimeElement = document.getElementById('estimatedTime');
     
-    if (totalTermsElement) {
-        totalTermsElement.textContent = globalStats.totalTerms;
-    }
+    // Obtenir le nombre de termes selon le mode
+    const availableTerms = getFilteredTermsByMode();
+    const termCount = Math.min(parseInt(document.getElementById('termCount')?.value || 10), availableTerms.length);
     
     if (filteredTermsElement) {
-        filteredTermsElement.textContent = filteredTerms.length;
+        filteredTermsElement.textContent = availableTerms.length;
+    }
+    
+    if (estimatedTimeElement) {
+        // Calcul du temps estimé (15 secondes par terme)
+        const totalSeconds = termCount * 15;
+        const minutes = Math.ceil(totalSeconds / 60);
+        estimatedTimeElement.textContent = `${minutes} min`;
+    }
+}
+
+/**
+ * Obtenir les termes filtrés selon le mode de révision
+ */
+function getFilteredTermsByMode() {
+    let terms = filteredTerms;
+    
+    if (revisionMode === 'indispensable') {
+        // Seulement les termes indispensables
+        terms = filteredTerms.filter(term => term.importance === 'indispensable');
+    } else if (revisionMode === 'elargi') {
+        // Indispensables + Utiles
+        terms = filteredTerms.filter(term => 
+            term.importance === 'indispensable' || term.importance === 'utile'
+        );
+    } else if (revisionMode === 'complet') {
+        // Tous les termes avec importance définie
+        terms = filteredTerms.filter(term => term.importance);
+    }
+    // Mode 'random' : tous les termes (filteredTerms)
+    
+    return terms;
+}
+
+/**
+ * Mettre à jour le mode de révision
+ */
+function updateRevisionMode() {
+    const selectedMode = document.querySelector('input[name="revisionMode"]:checked');
+    if (selectedMode) {
+        revisionMode = selectedMode.value;
+        updateStatsDisplay();
     }
 }
 
@@ -514,8 +557,17 @@ function updateUEDisplay() {
 
 // Démarrer une session de révision
 async function startRevision() {
-    if (filteredTerms.length === 0) {
-        alert('Aucun terme disponible avec les UE sélectionnées. Veuillez sélectionner au moins une UE.');
+    // Obtenir les termes selon le mode sélectionné
+    const availableTerms = getFilteredTermsByMode();
+    
+    if (availableTerms.length === 0) {
+        const modeMessages = {
+            'indispensable': 'Aucun terme "indispensable" disponible avec les UE sélectionnées.',
+            'elargi': 'Aucun terme "indispensable" ou "utile" disponible avec les UE sélectionnées.',
+            'complet': 'Aucun terme avec importance définie disponible avec les UE sélectionnées.',
+            'random': 'Aucun terme disponible avec les UE sélectionnées.'
+        };
+        alert(modeMessages[revisionMode] || 'Aucun terme disponible. Veuillez sélectionner au moins une UE.');
         return;
     }
     
@@ -523,10 +575,10 @@ async function startRevision() {
     const termCountInput = document.getElementById('termCount');
     const termCount = parseInt(termCountInput.value) || 10;
     
-    // Validation du nombre de termes par rapport aux termes filtrés
-    const maxTerms = Math.min(50, filteredTerms.length);
+    // Validation du nombre de termes par rapport aux termes disponibles
+    const maxTerms = Math.min(50, availableTerms.length);
     if (termCount < 1 || termCount > maxTerms) {
-        alert(`Veuillez choisir entre 1 et ${maxTerms} termes avec la sélection d'UE actuelle.`);
+        alert(`Veuillez choisir entre 1 et ${maxTerms} termes avec la sélection actuelle.`);
         return;
     }
     
@@ -534,8 +586,8 @@ async function startRevision() {
     document.getElementById('startScreen').style.display = 'none';
     document.getElementById('revisionScreen').style.display = 'block';
     
-    // Sélectionner les termes pour cette session depuis les termes filtrés
-    currentSession = await selectTermsForSession(termCount);
+    // Sélectionner les termes pour cette session depuis les termes disponibles
+    currentSession = await selectTermsForSession(termCount, availableTerms);
     currentTermIndex = 0;
     sessionResults = [];
     sessionStartTime = new Date();
@@ -545,8 +597,11 @@ async function startRevision() {
 }
 
 // Sélectionner des termes pour la session (répétition espacée par défaut)
-async function selectTermsForSession(count = 10) {
-    if (filteredTerms.length === 0) {
+async function selectTermsForSession(count = 10, sourceTerms = null) {
+    // Utiliser les termes fournis ou les termes filtrés par défaut
+    const termsToUse = sourceTerms || filteredTerms;
+    
+    if (termsToUse.length === 0) {
         console.log('Aucun terme disponible avec les filtres actuels');
         return [];
     }

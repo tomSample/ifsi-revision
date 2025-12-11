@@ -115,6 +115,78 @@
                 transform: translateY(0);
             }
         }
+        
+        /* Styles pour le sélecteur de mode de révision */
+        .revision-mode-selector {
+            margin: 1.5rem 0;
+        }
+        
+        .revision-mode-selector label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #2c3e50;
+        }
+        
+        .mode-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .mode-option {
+            cursor: pointer;
+        }
+        
+        .mode-option input[type="radio"] {
+            display: none;
+        }
+        
+        .mode-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: #f8f9fa;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        
+        .mode-option:hover .mode-card {
+            border-color: #667eea;
+            background: #f0f2ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+        
+        .mode-option input[type="radio"]:checked + .mode-card {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .mode-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.4rem;
+        }
+        
+        .mode-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .mode-desc {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+        
+        .mode-option input[type="radio"]:checked + .mode-card .mode-desc {
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
@@ -162,14 +234,53 @@
                         </div>
                     </div>
                     
+                    <!-- Mode de révision -->
+                    <div class="revision-mode-selector">
+                        <label>🎲 Mode de révision</label>
+                        <div class="mode-options">
+                            <label class="mode-option">
+                                <input type="radio" name="revisionMode" value="random" checked onchange="updateRevisionMode()">
+                                <div class="mode-card">
+                                    <span class="mode-icon">🔀</span>
+                                    <span class="mode-name">Aléatoire</span>
+                                    <small class="mode-desc">Tous les termes mélangés</small>
+                                </div>
+                            </label>
+                            <label class="mode-option">
+                                <input type="radio" name="revisionMode" value="indispensable" onchange="updateRevisionMode()">
+                                <div class="mode-card">
+                                    <span class="mode-icon">🔴</span>
+                                    <span class="mode-name">Ciblé</span>
+                                    <small class="mode-desc">Termes indispensables uniquement</small>
+                                </div>
+                            </label>
+                            <label class="mode-option">
+                                <input type="radio" name="revisionMode" value="elargi" onchange="updateRevisionMode()">
+                                <div class="mode-card">
+                                    <span class="mode-icon">🟡</span>
+                                    <span class="mode-name">Élargi</span>
+                                    <small class="mode-desc">Indispensables + Utiles</small>
+                                </div>
+                            </label>
+                            <label class="mode-option">
+                                <input type="radio" name="revisionMode" value="complet" onchange="updateRevisionMode()">
+                                <div class="mode-card">
+                                    <span class="mode-icon">🟢</span>
+                                    <span class="mode-name">Complet</span>
+                                    <small class="mode-desc">Tous les niveaux d'importance</small>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
                     <div class="stats-preview" id="statsPreview">
                         <div class="stat-item">
                             <span class="stat-number" id="filteredTermsCount">-</span>
-                            <span class="stat-label">Termes sélectionnés</span>
+                            <span class="stat-label">Termes disponibles</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number" id="totalTermsPreview">-</span>
-                            <span class="stat-label">Termes total</span>
+                            <span class="stat-number" id="estimatedTime">-</span>
+                            <span class="stat-label">Temps estimé</span>
                         </div>
                     </div>
                     <button class="start-btn" onclick="startRevision()">

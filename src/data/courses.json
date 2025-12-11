@@ -1,5 +1,5 @@
 {
-  "exportDate": "2025-12-06T15:50:47.864176",
+  "exportDate": "2025-12-11T17:00:19.440858",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -11,11 +11,13 @@
         "definitions": [
           {
             "definition": "Plus petite unité de base d’un organisme vivant, capable d’accomplir les fonctions nécessaires au métabolisme et à la vie.",
-            "term": "Cellule"
+            "term": "Cellule",
+            "importance": "indispensable"
           },
           {
             "definition": "Cellule sans noyau ni organites membranaires, avec le matériel génétique situé dans le cytoplasme (dans une zone appelée nucléoïde), généralement unicellulaire (exemple : bactéries).",
-            "term": "Cellule procaryote"
+            "term": "Cellule procaryote",
+            "importance": "utile"
           },
           {
             "definition": "Cellule possédant un noyau délimité par une double membrane contenant l’ADN, ainsi que des organites complexes (exemple : cellules humaines).",
