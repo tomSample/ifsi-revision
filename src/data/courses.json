@@ -1,5 +1,5 @@
 {
-  "exportDate": "2025-12-11T17:00:19.440858",
+  "exportDate": "2025-12-11T17:11:10.638157",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -21,7 +21,8 @@
           },
           {
             "definition": "Cellule possédant un noyau délimité par une double membrane contenant l’ADN, ainsi que des organites complexes (exemple : cellules humaines).",
-            "term": "Cellule eucaryote"
+            "term": "Cellule eucaryote",
+            "importance": "optionnel"
           },
           {
             "definition": "Organite le plus volumineux chez les eucaryotes, contenant l’ADN et contrôlant les fonctions cellulaires.",

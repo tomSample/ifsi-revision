@@ -407,6 +407,9 @@ function updateRevisionMode() {
     }
 }
 
+// Rendre la fonction accessible globalement
+window.updateRevisionMode = updateRevisionMode;
+
 // ===== FILTRAGE UE SIMPLE =====
 
 // Initialiser le filtre UE
