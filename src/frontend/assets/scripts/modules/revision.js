@@ -617,7 +617,7 @@ async function selectTermsForSession(count = 10, sourceTerms = null) {
     const notDueYet = [];     // Pas encore dus (ignorés sauf si pas assez)
     
     // Catégoriser tous les termes selon progression
-    for (const term of filteredTerms) {
+    for (const term of termsToUse) {
         const termKey = generateTermKey(term);
         const progress = userProgress[termKey];
         
