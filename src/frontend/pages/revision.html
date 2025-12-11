@@ -194,40 +194,10 @@
                                 <div class="flashcard-front">
                                     <div class="card-label">Question</div>
                                     
-                                    <!-- En-tête avec badge (si déjà voté) -->
-                                    <div class="flashcard-header" id="flashcard-header" style="display: none;">
-                                        <span class="importance-badge" id="importance-badge"></span>
-                                        <h3 class="term-title" id="termName">Terme à définir</h3>
-                                    </div>
-                                    
-                                    <!-- Titre simple (si pas encore voté) -->
-                                    <div id="simple-header" style="display: block;">
-                                        <div style="font-size: 14px; color: #667eea; font-weight: 600; margin-bottom: 10px;" id="courseTitle"></div>
-                                        <h3 id="termNameSimple">Terme à définir</h3>
-                                    </div>
-                                    
-                                    <!-- Résultat après vote -->
-                                    <div class="classification-result" id="classification-result" style="display: none;">
-                                        <div class="result-personal">
-                                            ✅ Classé comme <span class="badge-inline" id="result-badge"></span>
-                                        </div>
-                                        
-                                        <div class="result-community" id="result-community">
-                                            <!-- Rempli dynamiquement -->
-                                        </div>
-                                    </div>
+                                    <div style="font-size: 14px; color: #667eea; font-weight: 600; margin-bottom: 10px;" id="courseTitle"></div>
+                                    <h3 id="termNameSimple">Terme à définir</h3>
                                     
                                     <p class="flip-instruction" id="flip-instruction">👆 Cliquez pour révéler la définition</p>
-                                    
-                                    <!-- Infos discrètes en bas (si déjà voté) -->
-                                    <div class="classification-info" id="classification-info" style="display: none;">
-                                        <div class="info-row">
-                                            <small>Vous : <strong id="personal-choice"></strong></small>
-                                        </div>
-                                        <div class="info-row">
-                                            <small>Communauté : <strong id="community-choice"></strong></small>
-                                        </div>
-                                    </div>
                                 </div>
                                 
                                 <!-- Face arrière: Définition -->
@@ -238,33 +208,6 @@
                                     <div class="definition-text" id="termDefinition"></div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Sélecteur de classification (EN DESSOUS de la flashcard) -->
-                    <div class="classification-prompt-below" id="classification-prompt" style="display: none;">
-                        <p class="prompt-title">💡 Quelle importance pour ce terme ?</p>
-                        
-                        <div class="classification-options-compact">
-                            <button class="option-btn" data-importance="essential" onclick="selectImportance('essential')">
-                                <span class="emoji">🔴</span>
-                                <span class="label">Essentiel</span>
-                            </button>
-                            
-                            <button class="option-btn" data-importance="important" onclick="selectImportance('important')">
-                                <span class="emoji">🟡</span>
-                                <span class="label">Important</span>
-                            </button>
-                            
-                            <button class="option-btn" data-importance="supplementary" onclick="selectImportance('supplementary')">
-                                <span class="emoji">🟢</span>
-                                <span class="label">Complémentaire</span>
-                            </button>
-                            
-                            <button class="option-btn ignore" data-importance="ignored" onclick="selectImportance('ignored')">
-                                <span class="emoji">⚫</span>
-                                <span class="label">Ignorer</span>
-                            </button>
                         </div>
                     </div>
 
@@ -371,58 +314,6 @@
         </div>
     </div>
 
-    <!-- Modal de modification de classification -->
-    <div class="modal-overlay" id="modify-modal">
-        <div class="modal-content">
-            <h3>Modifier la classification</h3>
-            <hr>
-            
-            <p class="modal-info">
-                Actuellement : <strong id="current-classification"></strong><br>
-                Communauté : <strong id="community-classification"></strong>
-            </p>
-            
-            <div class="classification-options">
-                <label class="option-card">
-                    <input type="radio" name="new-importance" value="essential">
-                    <div class="option-content">
-                        <span class="emoji">🔴</span>
-                        <strong>Essentiel</strong>
-                    </div>
-                </label>
-                
-                <label class="option-card">
-                    <input type="radio" name="new-importance" value="important">
-                    <div class="option-content">
-                        <span class="emoji">🟡</span>
-                        <strong>Important</strong>
-                    </div>
-                </label>
-                
-                <label class="option-card">
-                    <input type="radio" name="new-importance" value="supplementary">
-                    <div class="option-content">
-                        <span class="emoji">🟢</span>
-                        <strong>Complémentaire</strong>
-                    </div>
-                </label>
-                
-                <label class="option-card ignore">
-                    <input type="radio" name="new-importance" value="ignored">
-                    <div class="option-content">
-                        <span class="emoji">⚫</span>
-                        <strong>Ignorer</strong>
-                    </div>
-                </label>
-            </div>
-            
-            <div class="modal-actions">
-                <button class="btn-cancel" onclick="closeModifyModal()">Annuler</button>
-                <button class="btn-save" onclick="saveModification()">Enregistrer</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Firebase -->
     <script src="../assets/scripts/config/firebase-config.js"></script>
     
@@ -439,7 +330,6 @@
     <!-- Modules de gestion de progression -->
     <script src="../assets/scripts/modules/sync-manager.js"></script>
     <script src="../assets/scripts/modules/spaced-repetition.js"></script>
-    <script src="../assets/scripts/modules/classification-manager.js"></script>
     
     <!-- Script principal de révision avec flashcards -->
     <script src="../assets/scripts/modules/revision.js?v=3.4.4"></script>

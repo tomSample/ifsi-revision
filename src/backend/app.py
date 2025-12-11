@@ -1044,6 +1044,41 @@ def update_definition():
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/update_courses', methods=['POST'])
+def update_courses():
+    """Met à jour l'intégralité du fichier courses.json"""
+    try:
+        data = request.get_json()
+        
+        if not data or 'courses' not in data:
+            return jsonify({'error': 'Données invalides'}), 400
+        
+        # Mettre à jour la date d'export
+        data['exportDate'] = datetime.now().isoformat()
+        
+        # Recalculer les statistiques si présentes
+        if 'stats' in data:
+            total_terms = sum(
+                len(course[1].get('definitions', [])) 
+                for course in data['courses']
+            )
+            data['stats']['totalTerms'] = total_terms
+        
+        # Sauvegarder le fichier JSON
+        write_json_file(data)
+        
+        return jsonify({
+            'success': True,
+            'message': 'Fichier courses.json mis à jour avec succès',
+            'exportDate': data['exportDate']
+        })
+        
+    except Exception as e:
+        print(f"Erreur dans update_courses: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
     print("🚀 Serveur IFSI Lannion démarré sur http://localhost:5000")
     print("📁 Fichier JSON:", os.path.abspath(JSON_FILE_PATH))

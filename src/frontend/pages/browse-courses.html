@@ -54,6 +54,53 @@
             z-index: 100;
             box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
         }
+        
+        /* Styles pour les badges d'importance */
+        .importance-badge-inline {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .admin-importance-selector {
+            flex-shrink: 0;
+        }
+        
+        .admin-importance-selector select {
+            cursor: pointer;
+            background: white;
+            transition: all 0.2s ease;
+        }
+        
+        .admin-importance-selector select:hover {
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -258,6 +305,9 @@
             const [key, data] = course;
             const termsSection = document.getElementById('termsSection');
             const termsContainer = document.getElementById('termsContainer');
+            
+            // Vérifier si l'utilisateur est admin
+            const isAdmin = authManager && authManager.isAdmin;
 
             termsContainer.innerHTML = `
                 <div class="course-details-header">
@@ -270,17 +320,147 @@
                     <span>${data.date}</span>
                 </div>
                 <div class="definitions-list">
-                    ${data.definitions ? data.definitions.map((def, index) => `
+                    ${data.definitions ? data.definitions.map((def, index) => {
+                        const importance = def.importance || '';
+                        const importanceBadge = getImportanceBadge(importance);
+                        
+                        return `
                         <div class="definition-item">
-                            <div class="definition-term">${index + 1}. ${def.term}</div>
+                            <div class="definition-header" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem;">
+                                <div style="flex: 1;">
+                                    <div class="definition-term">${index + 1}. ${def.term}</div>
+                                    ${importance ? `<span class="importance-badge-inline">${importanceBadge}</span>` : ''}
+                                </div>
+                                ${isAdmin ? `
+                                <div class="admin-importance-selector">
+                                    <select onchange="updateTermImportance('${courseKey}', ${index}, this.value)" 
+                                            style="padding: 0.3rem 0.5rem; border-radius: 4px; border: 1px solid #ddd; font-size: 0.85rem;">
+                                        <option value="">-- Importance --</option>
+                                        <option value="indispensable" ${importance === 'indispensable' ? 'selected' : ''}>🔴 Indispensable</option>
+                                        <option value="utile" ${importance === 'utile' ? 'selected' : ''}>🟡 Utile</option>
+                                        <option value="optionnel" ${importance === 'optionnel' ? 'selected' : ''}>🟢 Optionnel</option>
+                                    </select>
+                                </div>
+                                ` : ''}
+                            </div>
                             <div class="definition-text">${def.definition}</div>
                         </div>
-                    `).join('') : '<p>Aucune définition disponible</p>'}
+                    `}).join('') : '<p>Aucune définition disponible</p>'}
                 </div>
             `;
 
             termsSection.style.display = 'block';
             termsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Obtenir le badge d'importance
+        function getImportanceBadge(importance) {
+            const badges = {
+                'indispensable': '🔴 Indispensable',
+                'utile': '🟡 Utile',
+                'optionnel': '🟢 Optionnel'
+            };
+            return badges[importance] || '';
+        }
+        
+        // Mettre à jour l'importance d'un terme (admin uniquement)
+        function updateTermImportance(courseKey, termIndex, importance) {
+            if (!authManager || !authManager.isAdmin) {
+                alert('❌ Accès refusé: Vous devez être administrateur');
+                return;
+            }
+            
+            // Trouver le cours dans les données
+            const courseIndex = coursesData.courses.findIndex(c => c[0] === courseKey);
+            if (courseIndex === -1) {
+                alert('❌ Cours non trouvé');
+                return;
+            }
+            
+            const [key, data] = coursesData.courses[courseIndex];
+            
+            if (!data.definitions || !data.definitions[termIndex]) {
+                alert('❌ Terme non trouvé');
+                return;
+            }
+            
+            // Mettre à jour l'importance localement
+            if (importance === '') {
+                delete data.definitions[termIndex].importance;
+            } else {
+                data.definitions[termIndex].importance = importance;
+            }
+            
+            // Sauvegarder sur le serveur
+            saveCoursesToServer()
+                .then(() => {
+                    showNotification('✅ Importance mise à jour', 'success');
+                    // Rafraîchir l'affichage
+                    showCourseDetails(courseKey);
+                })
+                .catch(error => {
+                    console.error('Erreur sauvegarde:', error);
+                    showNotification('❌ Erreur lors de la sauvegarde', 'error');
+                });
+        }
+        
+        // Sauvegarder courses.json sur le serveur
+        async function saveCoursesToServer() {
+            try {
+                const response = await fetch('/api/update_courses', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(coursesData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const result = await response.json();
+                if (!result.success) {
+                    throw new Error(result.error || 'Erreur inconnue');
+                }
+                
+                return result;
+            } catch (error) {
+                console.error('Erreur sauvegarde courses.json:', error);
+                throw error;
+            }
+        }
+        
+        // Afficher une notification
+        function showNotification(message, type = 'info') {
+            // Supprimer les anciennes notifications
+            const existingNotifs = document.querySelectorAll('.notification');
+            existingNotifs.forEach(notif => notif.remove());
+            
+            // Créer la nouvelle notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#007bff'};
+                color: white;
+                font-weight: 500;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Masquer après 3 secondes
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
         }
 
         // Masquer les termes
