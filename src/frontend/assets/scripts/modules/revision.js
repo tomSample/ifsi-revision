@@ -739,9 +739,8 @@ async function showCurrentTerm() {
     // Mettre à jour l'affichage
     document.getElementById('termUE').textContent = `UE ${currentTerm.ue}`;
     document.getElementById('termNumber').textContent = `${currentTermIndex + 1}/${currentSession.length}`;
-    document.getElementById('termName').textContent = currentTerm.term;
     
-    // Mettre à jour aussi termNameSimple
+    // Mettre à jour termNameSimple (le seul élément restant après suppression de la classification)
     const termNameSimpleEl = document.getElementById('termNameSimple');
     if (termNameSimpleEl) {
         termNameSimpleEl.textContent = currentTerm.term;
