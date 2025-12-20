@@ -1,5 +1,5 @@
 {
-  "exportDate": "2025-12-11T21:36:50.531120",
+  "exportDate": "2025-12-20T15:23:25.827436",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -3906,10 +3906,826 @@
         ],
         "filename": "Anticoagulants - antiagrégants.odt"
       }
+    ],
+    [
+      "ue_2_4_s1_traumatisme_psychologique",
+      {
+        "title": "traumatisme psychologique",
+        "date": "17/12/2025",
+        "ue": "2.4.S1",
+        "author": "GN",
+        "definitions": [
+          {
+            "definition": "évènement traumatisant défini comme un évènement soudain, intense et potentiellement mortel vécu avec un sentiment d’impuissance, de peur intense ou d’horreur. Il peut s’agir réelle ou perçue contre sa vie ou celle d’autrui. Ce type d’évènement dépasse les capacités habituelles d’adaptation psychologiques d’un individu.Rupture de l’équilibre psychique qui entraîne une souffrance incommensurable.Classification = simple ou isolé / complexe (quantitatif = nombre, qualitatif = vécu/perception) ou multiple",
+            "term": "Traumatisme psychologique / Psychotraumatisme"
+          },
+          {
+            "definition": "violences intra-familiales, AVP, maltraitance, enfance, conflits, attentats, catastrophes naturelles…",
+            "term": "Évènements / causes"
+          },
+          {
+            "definition": "refoulement (semi-conscient) et déni (nier en bloc)",
+            "term": "Mécanismes de défense"
+          },
+          {
+            "definition": "agitation, angoisse, reviviscence, trouble de l’humeur (émotions labiles), trouble du sommeil, etc.",
+            "term": "Signes / symptômes"
+          },
+          {
+            "definition": "psychotraumatisme < stress aigu < stress post-traumatique",
+            "term": "Classification"
+          },
+          {
+            "definition": "symptômes exacerbés",
+            "term": "Stress aigu"
+          },
+          {
+            "definition": "pathologie psychiatrique avec diagnostic médical. Symptômes persistent au delà d’1 mois après l’évènement déclencheur ⇒ reviviscence +++, hypervigilance, prostration, fuite, pleurs… en lien avec la mémoire et les sensations corporelles. Risque addictogène +++ et développement d’une autre pathologie psy voire suicide.",
+            "term": "Stress post-traumatique (SPT)"
+          },
+          {
+            "definition": "psychologue, psychiatre, centre régional de stress post-traumatique, psychotrope (soulager les symptômes/signes cliniques mais pas de guérison), médiation thérapeutique, entretien infirmier/ de relation d’aide, etc",
+            "term": "Prise en soin"
+          }
+        ],
+        "filename": "traumatisme psychologique.odt"
+      }
+    ],
+    [
+      "ue_2_4_s1_traumatismes_de_lappareil_locomoteur",
+      {
+        "title": "traumatismes de l’appareil locomoteur",
+        "date": "17/10/2025",
+        "ue": "2.4.S1",
+        "author": "Dr",
+        "definitions": [
+          {
+            "definition": "Ensemble d’os reliés par des articulations, des ligaments, des tendons et des muscles assurant le mouvement et la posture.",
+            "term": "Appareil locomoteur"
+          },
+          {
+            "definition": "Membrane fibreuse enveloppant les muscles et séparant les groupes musculaires entre eux.",
+            "term": "Fascia"
+          },
+          {
+            "definition": "Zone d’insertion du tendon sur l’os, peu vascularisée et fragile (exemples : coiffe des rotateurs, tendon d’Achille).",
+            "term": "Enthèse"
+          },
+          {
+            "definition": "Ensemble fonctionnel formé d’os, de ligaments, de cartilage hyalin, de synovie, de muscles, de tendons et d’une capsule.",
+            "term": "Articulation"
+          },
+          {
+            "definition": "Arrachement d’un tendon accompagné d’un fragment osseux.",
+            "term": "Avulsion tendineuse"
+          },
+          {
+            "definition": "Déchirure partielle ou complète d’un muscle provoquée par un effort violent.",
+            "term": "Claquage"
+          },
+          {
+            "definition": "Rupture partielle ou totale de la continuité osseuse d’origine traumatique, pathologique ou de fatigue, se manifestant par douleur, impotence, déformation et réaction inflammatoire.",
+            "term": "Fracture"
+          },
+          {
+            "definition": "Fissure sur un os sain due à un surmenage (sport intensif), à évolution progressive et détectée à la scintigraphie.",
+            "term": "Fracture de fatigue"
+          },
+          {
+            "definition": "Circonstances et type de force responsable de la lésion, orientant le diagnostic et la recherche d’atteintes associées.",
+            "term": "Mécanisme lésionnel"
+          },
+          {
+            "definition": "Impact sur la zone blessée elle-même.",
+            "term": "Mécanisme direct"
+          },
+          {
+            "definition": "Impact à distance de la zone initialement touchée.",
+            "term": "Mécanisme indirect"
+          },
+          {
+            "definition": "Mouvement en spire responsable d’une lésion articulaire ou osseuse.",
+            "term": "Torsion"
+          },
+          {
+            "definition": "Lésion osseuse par compression, touchant fréquemment le calcanéum, le dos ou les genoux.",
+            "term": "Écrasement ou tassement"
+          },
+          {
+            "definition": "Fracture sur os fragilisé par une pathologie générale (tumeur, métastase, ostéoporose, maladie métabolique ou irradiation).",
+            "term": "Fracture pathologique"
+          },
+          {
+            "definition": "Partie externe dense et rigide de l’os assurant sa solidité mécanique.",
+            "term": "Corticale"
+          },
+          {
+            "definition": "Étude microscopique des tissus pour déterminer la nature des lésions.",
+            "term": "Anatomopathologie"
+          },
+          {
+            "definition": "Fêlure avec continuité de l’os conservée, réaxable spontanément chez l’enfant, sans atteinte du périoste dans les formes non périostées.",
+            "term": "Fracture incomplète en bois vert"
+          },
+          {
+            "definition": "Déformation osseuse avec bombement sans rupture du périoste ni de la corticale, visible à la radiographie.",
+            "term": "Fracture incomplète en motte de beurre"
+          },
+          {
+            "definition": "Rupture totale de la continuité osseuse, avec parfois formation d’un fragment en aile de papillon au point d’impact.",
+            "term": "Fracture complète"
+          },
+          {
+            "definition": "Localisation (épiphyse, métaphyse...), direction du trait et nombre de fragments.",
+            "term": "Description d’une fracture"
+          },
+          {
+            "definition": "Fragment osseux déplacé pouvant compromettre les vaisseaux, les nerfs ou la peau.",
+            "term": "Fracture déplacée"
+          },
+          {
+            "definition": "Atteintes cutanées, musculaires ou vasculo-nerveuses accompagnant une fracture.",
+            "term": "Lésions associées"
+          },
+          {
+            "definition": "Hémorragie, compression (syndrome des loges) ou section artérielle provoquant une ischémie aiguë et abolition des pouls.",
+            "term": "Lésion vasculaire"
+          },
+          {
+            "definition": "Compression, élongation ou section nerveuse entraînant des troubles sensitifs ou moteurs.",
+            "term": "Lésion nerveuse"
+          },
+          {
+            "definition": "Fracture avec plaie cutanée communicante, classée selon Cauchoix (stades 1 à 3), à fort risque infectieux et de mauvaise consolidation.",
+            "term": "Fracture ouverte"
+          },
+          {
+            "definition": "Soudure des fragments osseux passant par un hématome, un cal conjonctif puis une ossification.",
+            "term": "Consolidation osseuse"
+          },
+          {
+            "definition": "Immobilisation ou contention (plâtre, résine, traction, ostéosynthèse) pour maintenir les fragments en position anatomique.",
+            "term": "Traitement des fractures"
+          },
+          {
+            "definition": "Technique chirurgicale de fixation interne de fracture à l’aide de broches, plaques ou clous.",
+            "term": "Ostéosynthèse"
+          },
+          {
+            "definition": "Hémorragie, choc traumatique, troubles cardio-respiratoires ou complications thrombo-emboliques avec risque d’embolie graisseuse.",
+            "term": "Complications générales immédiates"
+          },
+          {
+            "definition": "Lésions vasculo-nerveuses locales comme le syndrome des loges ou de Volkman (ischémie musculaire aiguë).",
+            "term": "Complications locorégionales immédiates"
+          },
+          {
+            "definition": "Escarres, phlébite, infections pulmonaires ou urinaires, constipation liées à l’alitement prolongé.",
+            "term": "Complications du décubitus"
+          },
+          {
+            "definition": "Déplacements, retard de consolidation, pseudarthrose, cal vicieux, infection ou algodystrophie.",
+            "term": "Complications secondaires"
+          },
+          {
+            "definition": "Fonte du muscle liée à l’immobilisation prolongée.",
+            "term": "Atrophie musculaire"
+          },
+          {
+            "definition": "Diminution de la mobilité due à l’immobilisation, nécessitant une rééducation intensive.",
+            "term": "Raideur articulaire"
+          },
+          {
+            "definition": "Mort osseuse due à un défaut d’irrigation, souvent après fracture du col fémoral, nécessitant un traitement chirurgical.",
+            "term": "Ostéonécrose aseptique"
+          },
+          {
+            "definition": "Fracture affectant parfois le cartilage de croissance, pouvant entraîner des déformations futures.",
+            "term": "Fracture de l’enfant"
+          },
+          {
+            "definition": "Fracture atteignant la plaque de croissance (Salter & Harris types 4-5) avec risque d’arrêt de croissance localisé.",
+            "term": "Fracture de décollement épiphysaire"
+          },
+          {
+            "definition": "Étirement ou déchirure partielle d’un ligament sans perte permanente de contact articulaire.",
+            "term": "Entorse"
+          },
+          {
+            "definition": "Lésion du ligament latéral externe par torsion interne, provoquant douleur, œdème et nécessitant immobilisation et rééducation proprioceptive.",
+            "term": "Entorse de cheville"
+          },
+          {
+            "definition": "Atteinte fréquente du ligament latéral interne ou du ligament croisé antérieur avec épanchement et laxité, traitée selon la gravité.",
+            "term": "Entorse du genou"
+          },
+          {
+            "definition": "Perte totale du contact entre deux surfaces articulaires.",
+            "term": "Luxation"
+          },
+          {
+            "definition": "Perte partielle et temporaire du contact entre deux surfaces articulaires.",
+            "term": "Subluxation"
+          },
+          {
+            "definition": "Déboîtement antéro-interne de la tête humérale, immobilisé 3 semaines, pouvant entraîner des complications vasculaires ou nerveuses.",
+            "term": "Luxation d’épaule"
+          }
+        ],
+        "filename": "traumatismes de l’appareil locomoteur.odt"
+      }
+    ],
+    [
+      "ue_2_4_s1_traumatismes_de_lextrmit_suprieure_du_fmur",
+      {
+        "title": "traumatismes de l'extrémité supérieure du fémur",
+        "date": "12/12/2025",
+        "ue": "2.4.S1",
+        "author": "Dr",
+        "definitions": [
+          {
+            "definition": "fractures intéressant le col et/ou la région trochantérienne du fémur au niveau de la hanche.​",
+            "term": "Fractures de l’extrémité supérieure du fémur (FESF)"
+          },
+          {
+            "definition": "fragilisation diffuse de l’os entraînant une diminution de la masse osseuse et un risque élevé de fracture, surtout après la ménopause.​",
+            "term": "Ostéoporose"
+          },
+          {
+            "definition": "évaluation du risque de décès à court terme lié à la fracture et aux décompensations associées.​",
+            "term": "Pronostic vital"
+          },
+          {
+            "definition": "capacité future du patient à retrouver sa marche et son autonomie après la fracture.​",
+            "term": "Pronostic fonctionnel"
+          },
+          {
+            "definition": "fracture dont le trait passe par le col du fémur au-dessus du massif trochantérien.​",
+            "term": "Fracture cervicale vraie"
+          },
+          {
+            "definition": "fracture située au niveau du massif des trochanters (cervico-, per-, sous-trochantérienne ou trochantero-diaphysaire).​",
+            "term": "Fracture trochantérienne"
+          },
+          {
+            "definition": "système radiologique en 4 stades pour apprécier le déplacement d’une fracture du col fémoral.​ 1 et 2 ⇒ pas de signe clinique, 3 et 4 ⇒ signe clinique)",
+            "term": "Classification de Garden"
+          },
+          {
+            "definition": "mort du tissu osseux de la tête fémorale par interruption de la vascularisation, sans infection.​",
+            "term": "Ostéonécrose aseptique de la tête fémorale"
+          },
+          {
+            "definition": "absence de consolidation de la fracture au-delà de 6 mois, avec douleur persistante et mobilité anormale au niveau du foyer.​",
+            "term": "Pseudarthrose du col fémoral"
+          },
+          {
+            "definition": "consolidation osseuse en mauvaise position entraînant un défaut d’axe, de longueur ou de rotation du membre.​",
+            "term": "Cal vicieux"
+          },
+          {
+            "definition": "complications liées à l’alitement prolongé (thrombose veineuse, embolie pulmonaire, escarres, infections urinaires et pulmonaires).​",
+            "term": "Complications du décubitus"
+          },
+          {
+            "definition": "dispositif de traction cutanée du membre inférieur utilisé à visée antalgique et de maintien en attendant le traitement définitif.​",
+            "term": "Traction collée"
+          },
+          {
+            "definition": "technique chirurgicale qui stabilise la fracture par du matériel (vis, plaque, clou) pour permettre la consolidation osseuse.​",
+            "term": "Ostéosynthèse"
+          },
+          {
+            "definition": "ostéosynthèse par vis introduites à travers la peau sans large ouverture chirurgicale.​",
+            "term": "Vissage percutané"
+          },
+          {
+            "definition": "dispositif d’ostéosynthèse intramédullaire utilisé pour les fractures trochantériennes du fémur.​",
+            "term": "Clou Gamma"
+          },
+          {
+            "definition": "prothèse de hanche remplaçant uniquement le versant fémoral de l’articulation.​",
+            "term": "Arthroplastie intermédiaire"
+          },
+          {
+            "definition": "remplacement prothétique des deux versants de l’articulation (tête fémorale et cotyle).​",
+            "term": "Prothèse totale de hanche"
+          },
+          {
+            "definition": "perte de contact normale entre les éléments prothétiques avec déboîtement de l’articulation.​",
+            "term": "Luxation de prothèse"
+          },
+          {
+            "definition": "perte de fixation de la prothèse dans l’os, d’origine mécanique ou infectieuse.​",
+            "term": "Descellement prothétique"
+          },
+          {
+            "definition": "usure et inflammation du cartilage acétabulaire en regard de la bille prothétique",
+            "term": "Cotyloïdite"
+          },
+          {
+            "definition": "patient chez qui l’on cherche à conserver la tête fémorale pour préserver le capital osseux, avec indication privilégiée d’ostéosynthèse même pour les fractures déplacées.",
+            "term": "Patient jeune (en pratique < 60 ans)"
+          },
+          {
+            "definition": "patient souvent ostéoporotique, fragile, chez qui l’on privilégie un traitement en un temps (prothèse) pour limiter les risques de complications tardives (ostéonécrose, pseudarthrose) et d’alitement prolongé.",
+            "term": "Patient âgé (en pratique > 70 ans)"
+          },
+          {
+            "definition": "syndrome clinique comportant une dégradation du tissu musculaire squelettique, parfois consécutive à une immobilisation forcée du patient après une chute. La symptomatologie comprend une faiblesse musculaire, des myalgies et des urines brun-rougeâtre, bien que cette triade soit présente chez moins de 10% des patients.",
+            "term": "Rhabdomyolyse"
+          }
+        ],
+        "filename": "traumatismes de l'extrémité supérieure du fémur.odt"
+      }
+    ],
+    [
+      "ue_2_4_s1_traumatologie_imagerie_mdicale",
+      {
+        "title": "traumatologie – imagerie médicale",
+        "date": "17/10/2025",
+        "ue": "2.4.S1",
+        "author": "ext",
+        "definitions": [
+          {
+            "definition": "Examen d’imagerie médicale utilisant les rayons X pour obtenir des images des structures osseuses. Indicée principalement pour diagnostiquer une fracture osseuse, contrôler la réduction d’une luxation, la consolidation après chirurgie ou immobilisation, et suivre la formation du cal osseux.",
+            "term": "Radiologie standard"
+          },
+          {
+            "definition": "Examen d’imagerie utilisant les ultrasons pour visualiser les tissus mous (muscles, ligaments, tendons). Indiquée en cas d’atteinte ligamentaire ou d’entorse afin d’évaluer la gravité (arrachement osseux, rupture ligamentaire). Réalisée après un traumatisme sans fracture visible pour explorer la persistance de douleurs.",
+            "term": "Échographie"
+          },
+          {
+            "definition": "Technique d’imagerie par rayons X couplée à un traitement informatique, produisant des images en coupes fines. Indiqué pour rechercher un saignement, une atteinte cérébrale ou viscérale, ou une fracture non visible à la radiographie. Permet une analyse précise des structures internes.",
+            "term": "Scanner (TDM)"
+          },
+          {
+            "definition": "Scanner associé à l’injection d’un produit de contraste dans l’articulation, permettant une visualisation détaillée des structures articulaires (cartilage, ligaments, synoviale).",
+            "term": "Arthroscanner"
+          },
+          {
+            "definition": "Examen de scanner total allant du sommet du crâne au bassin, utilisé notamment pour le bilan des polytraumatisés.",
+            "term": "Body scanner"
+          },
+          {
+            "definition": "Examen sans rayons X, utilisant un champ magnétique pour explorer les tissus mous (muscles, tendons, ligaments). Indiquée pour détecter des lésions tissulaires après un délai d’environ 3 semaines pour une meilleure visibilité (œdème ou épanchement).",
+            "term": "IRM (Imagerie par Résonance Magnétique)"
+          },
+          {
+            "definition": "Orthopédique : Concerne le système osseux, musculaire ou ligamentaire.Crânienne : Implique le crâne ou le cerveau (lésions cérébrales, saignement, traumatisme crânien).Viscérale : Affecte les organes internes.Polytraumatisé : Patient présentant plusieurs atteintes simultanées.",
+            "term": "Types d’atteintes"
+          },
+          {
+            "definition": "Dissociation entre deux surfaces articulaires. Nécessite deux radiographies : une initiale pour évaluer la position des segments, et une après réduction et immobilisation. Rechercher une fracture associée.",
+            "term": "Luxation"
+          },
+          {
+            "definition": "Rupture de la continuité osseuse. L’évaluation de l’angle et du type de fracture oriente la prise en charge (immobilisation simple ou intervention chirurgicale).",
+            "term": "Fracture"
+          },
+          {
+            "definition": "Fracture partielle sur un os flexible de l’enfant, conservant une partie de la continuité osseuse.",
+            "term": "Fracture en bois vert"
+          },
+          {
+            "definition": "Fracture typique des jeunes enfants, avec bombement osseux sans rupture complète.",
+            "term": "Fracture en motte de beurre"
+          },
+          {
+            "definition": "Évaluation de la consolidation osseuse, de la formation du cal, et de l’absence de déplacement secondaire ou de mauvaise consolidation (cal vicieux, algodystrophie).",
+            "term": "Contrôle post-opératoire ou post-immobilisation"
+          },
+          {
+            "definition": "Chez un patient sous antiagrégant plaquettaire : scanner après 6 h (risque de faux positif avant ce délai).Chez un patient sous anticoagulant : scanner immédiat (risque d’hémorragie majeure).Suivi par antidote si nécessaire, neurochirurgie éventuelle, et contrôle scanner à 48–72 h puis à 3 mois.",
+            "term": "Traumatisme crânien"
+          },
+          {
+            "definition": "L’indication imagerie est posée selon la localisation du traumatisme, le contexte clinique, et les traitements du patient.",
+            "term": "Vigilance en post-traumatique"
+          }
+        ],
+        "filename": "traumatologie – imagerie médicale.odt"
+      }
+    ],
+    [
+      "ue_3_1_s1_anthropologie_des_pratiques_soignantes_infirmires",
+      {
+        "title": "Anthropologie des pratiques soignantes / infirmières",
+        "date": "",
+        "ue": "3.1.S1",
+        "author": "CC09/09/2025",
+        "definitions": [
+          {
+            "definition": "Discipline qui étudie l’être humain en société et en culture, ses représentations de la maladie et du soin, à partir de méthodes comme l’observation et l’immersion.",
+            "term": "Anthropologie de la santé"
+          },
+          {
+            "definition": "Étude des inégalités sociales de santé, du rôle de la famille et de la classe sociale dans l’accès aux soins et dans les parcours de santé.",
+            "term": "Sociologie de la santé"
+          },
+          {
+            "definition": "Ensemble d’idées reçues et de croyances partagées dans un groupe social, que l’analyse sociologique cherche à questionner.",
+            "term": "Doxa"
+          },
+          {
+            "definition": "Dispositions durables à percevoir, penser et agir, intériorisées par l’individu en fonction de son milieu social et guidant ses pratiques de santé.",
+            "term": "Habitus (Bourdieu)"
+          },
+          {
+            "definition": "Ressources économiques, culturelles, sociales ou symboliques d’un individu qui influencent son rapport au soin et son accès au système de santé.",
+            "term": "Capital (Bourdieu)"
+          },
+          {
+            "definition": "Infirmière britannique pionnière de l’hygiène hospitalière et de l’organisation pavillonnaire des hôpitaux, ayant systématisé l’observation et les statistiques pendant la guerre de Crimée.",
+            "term": "Florence Nightingale"
+          },
+          {
+            "definition": "Médecin français à l’origine, en 1882, des premières écoles d’infirmières publiques et laïques, articulant cours théoriques et stages pour professionnaliser le métier.",
+            "term": "Docteur Bourneville"
+          },
+          {
+            "definition": "Infirmière et réformatrice qui a œuvré pour la réglementation du diplôme d’État, la formation structurée et la reconnaissance professionnelle des infirmières en France.",
+            "term": "Léonie Chaptal"
+          },
+          {
+            "definition": "Concept central développé notamment par Walter Hesbeen, désignant une attention globale à la singularité de la personne, à sa dignité et à la qualité de la relation, au-delà du seul geste technique.",
+            "term": "Prendre soin"
+          },
+          {
+            "definition": "Processus historique passant du soin caritatif ou religieux à une profession reconnue par un diplôme d’État, des savoirs propres et une autonomie clinique.",
+            "term": "Professionnalisation infirmière"
+          },
+          {
+            "definition": "Intégration progressive de la formation infirmière à l’université, avec reconnaissance académique des sciences infirmières et renforcement de la recherche, en cours de généralisation vers 2026.",
+            "term": "Universitarisation des soins infirmiers"
+          },
+          {
+            "definition": "Construction d’un rôle autonome, responsable et réflexif, inscrit dans un réseau interprofessionnel, articulant savoirs scientifiques, éthique du soin et compétence relationnelle",
+            "term": "Identité professionnelle infirmière"
+          }
+        ],
+        "filename": "Anthropologie des pratiques soignantes / infirmières.odt"
+      }
+    ],
+    [
+      "ue_3_1_s1_thories_de_soin",
+      {
+        "title": "Théories de soin",
+        "date": "",
+        "ue": "3.1.S1",
+        "author": "GN",
+        "definitions": [
+          {
+            "definition": "Ensemble de modèles conceptuels qui guident la pratique, structurent la réflexion clinique et participent à la construction de l’identité professionnelle infirmière.",
+            "term": "Théories du soin infirmier"
+          },
+          {
+            "definition": "Repères communs aux théories infirmières que sont la santé, la personne, l’environnement et les soins infirmiers, servant de base à toute démarche de soin.",
+            "term": "Quatre concepts clés"
+          },
+          {
+            "definition": "Vision biomédicale centrée sur le corps comme objet de soins, où l’infirmier fait « à la place de » le patient en suppléant totalement ses capacités.",
+            "term": "Paradigme de catégorisation"
+          },
+          {
+            "definition": "Approche qui reconnaît l’origine multifactorielle de la maladie, valorise les ressources du milieu (famille, domicile) et promeut le potentiel d’autonomie de la personne.",
+            "term": "Paradigme d’intégration"
+          },
+          {
+            "definition": "Conception relationnelle du soin où personne et environnement forment une entité, le soignant étant « avec » le patient dans une relation de partenariat et de caring.",
+            "term": "Paradigme de transformation"
+          },
+          {
+            "definition": "Courant qui articule santé, écosystèmes et justice sociale, attentif aux inégalités, aux déséquilibres permanents et aux discriminations comme le capacitisme.",
+            "term": "Paradigme de complexité"
+          },
+          {
+            "definition": "Théoricienne qui définit les soins infirmiers comme un soutien à l’indépendance de la personne à travers 14 besoins fondamentaux physiques, psychiques et sociaux.",
+            "term": "Virginia Henderson"
+          },
+          {
+            "definition": "Autrice de la théorie du déficit en auto-soins, centrée sur le développement de la capacité du patient à prendre soin de lui-même au maximum de ses possibilités.",
+            "term": "Dorothea Orem"
+          },
+          {
+            "definition": "Infirmière théoricienne dont le modèle se fonde sur 12 activités de la vie quotidienne, permettant d’évaluer la personne sur un continuum dépendance–indépendance.",
+            "term": "Nancy Roper"
+          },
+          {
+            "definition": "Pionnière des 11 modes fonctionnels de santé, cadre d’évaluation clinique structurant le recueil de données et la formulation des diagnostics infirmiers.",
+            "term": "Marjory Gordon"
+          },
+          {
+            "definition": "Fondatrice de la théorie du caring humain, qui place la relation de soin, l’amour inconditionnel et la dimension spirituelle au cœur de la pratique infirmière.",
+            "term": "Jean Watson"
+          },
+          {
+            "definition": "Outils pratiques pour orienter le type de soins, préciser le rôle infirmier, la tranche d’âge ciblée et la conception de la personne, et nourrir le raisonnement clinique.",
+            "term": "Rôle des théories de soin"
+          }
+        ],
+        "filename": "Théories de soin.odt"
+      }
+    ],
+    [
+      "ue_3_10_s1_prcautions_standards",
+      {
+        "title": "précautions standards",
+        "date": "07/10/2025",
+        "ue": "3.10.S1",
+        "author": "EXT",
+        "definitions": [
+          {
+            "definition": "Structure dédiée à la prévention du risque infectieux, à la surveillance des infections, à la gestion des épidémies et à l’amélioration des pratiques d’hygiène pour patients et soignants.",
+            "term": "UGRI (Unité de Gestion du Risque Infectieux)"
+          },
+          {
+            "definition": "Infection survenant au cours ou au décours d’une prise en charge diagnostique, thérapeutique, préventive ou de soins, absente au début de la prise en charge, incluant hôpital, EHPAD et soins de ville.",
+            "term": "IAS (Infection Associée aux Soins)"
+          },
+          {
+            "definition": "Infection associée aux soins spécifiquement contractée dans un établissement de santé, faisant partie des IAS.",
+            "term": "Infection nosocomiale"
+          },
+          {
+            "definition": "Infection due à un micro-organisme appartenant à la flore propre du patient, favorisée par l’immunodépression ou un geste invasif.",
+            "term": "IAS endogène"
+          },
+          {
+            "definition": "Infection due à un micro-organisme acquis lors des soins par transmission croisée, via les soignants, les autres patients ou l’environnement.",
+            "term": "IAS exogène"
+          },
+          {
+            "definition": "Ensemble systématique de mesures (hygiène des mains, EPI, hygiène respiratoire, gestion des excreta, de l’environnement, prévention des AES) visant à réduire la transmission croisée des agents infectieux pour tout patient, tout soin et tout soignant.",
+            "term": "Précautions standard"
+          },
+          {
+            "definition": "Mesures pour limiter la transmission par gouttelettes (masque, mouchoirs jetables, tousser dans le coude, hygiène des mains, vaccination) appliquées aux professionnels, patients et visiteurs dès les premiers symptômes respiratoires.",
+            "term": "Hygiène respiratoire"
+          },
+          {
+            "definition": "Organisation sécurisée de la prise en charge des selles, urines et vomissements (EPI, laveur-désinfecteur, circuits adaptés, tri des déchets) afin de prévenir le péril fécal et la contamination de l’environnement.",
+            "term": "Gestion des excreta"
+          },
+          {
+            "definition": "Entretien des locaux, du matériel, du linge et des déchets pour limiter la formation de biofilms et la transmission croisée via les surfaces, l’eau ou les dispositifs médicaux.",
+            "term": "Gestion de l’environnement"
+          },
+          {
+            "definition": "Déchets d’Activité de Soins Non Dangereux assimilés aux ordures ménagères, non contaminés, non toxiques, non perforants, éliminés en filière classique (sac noir).",
+            "term": "DASND / DAOM"
+          },
+          {
+            "definition": "Déchets d’Activité de Soins à Risque Infectieux (objets piquants, coupants, souillés par liquides biologiques infectieux) nécessitant un conditionnement spécifique, une traçabilité et une élimination par incinération.",
+            "term": "DASRI"
+          },
+          {
+            "definition": "Contact avec du sang ou un liquide biologique potentiellement contaminé par piqûre, coupure, projection sur peau lésée ou muqueuse, nécessitant mesures immédiates (lavage, désinfection) et déclaration d’accident du travail.",
+            "term": "AES (Accident d’Exposition au Sang)"
+          },
+          {
+            "definition": "Mesure prioritaire des précautions standard consistant à réaliser une friction hydro-alcoolique (ou un lavage si mains souillées) avant et après tout soin, avant le port et après le retrait des gants, pour interrompre la transmission manuportée des micro-organismes.",
+            "term": "Hygiène des mains"
+          },
+          {
+            "definition": "Agglomérat de bactéries adhérant à une surface (dispositif médical, surface humide), se constituant en quelques heures et impliqué dans une grande partie des infections associées aux soins.",
+            "term": "Biofilm"
+          },
+          {
+            "definition": "Classification de Spaulding selon le niveau de risque infectieux (introduction dans le système vasculaire > contact muqueuse ou peau lésée > contact peau intacte) qui détermine le niveau de traitement requis (stérilisation, désinfection de haut ou bas niveau).",
+            "term": "Dispositif médical critique / semi-critique / non critique"
+          },
+          {
+            "definition": "Dispositif médical destiné à un seul patient et un seul usage, devant être éliminé immédiatement après utilisation dans la filière de déchets adaptée, sans retraitement.",
+            "term": "Matériel à usage unique"
+          },
+          {
+            "definition": "Conteneur sécurisé pour Objets Piquants, Coupants, Tranchants, placé au plus près du soin, devant être correctement étiqueté, fermé à temps et éliminé dans la filière DASRI.",
+            "term": "Collecteur OPCT"
+          },
+          {
+            "definition": "Risque de contamination lié aux micro-organismes d’origine fécale présents en grande quantité dans les selles, pouvant être résistants aux antibiotiques et responsables d’infections graves.",
+            "term": "Péril fécal"
+          },
+          {
+            "definition": "Mesure de prévention (notamment contre hépatite B, grippe, coqueluche, infections respiratoires) réduisant le risque d’infection des professionnels et de transmission aux patients.",
+            "term": "Vaccination des soignants"
+          }
+        ],
+        "filename": "précautions standards.odt"
+      }
+    ],
+    [
+      "ue_5_9_s1_psychologie_sociale",
+      {
+        "title": "Psychologie sociale",
+        "date": "20/12/2025",
+        "ue": "5.9.S1",
+        "author": "CC",
+        "definitions": [
+          {
+            "definition": "Branche de la psychologie qui étudie comment les pensées, émotions et comportements des individus sont influencés par la présence réelle, imaginaire ou implicite d’autrui et par le contexte social.",
+            "term": "Psychologie sociale"
+          },
+          {
+            "definition": "Processus par lequel un individu ou un groupe modifie, consciemment ou non, les perceptions, jugements, attitudes ou comportements d’autrui (conformisme, obéissance, normalisation).",
+            "term": "Influence sociale"
+          },
+          {
+            "definition": "Influence exercée par la présence physique d’autres personnes qui observent, jugent ou interagissent avec l’individu.",
+            "term": "Influence réelle"
+          },
+          {
+            "definition": "Influence provenant de ce que l’individu pense que les autres attendent de lui, même en leur absence (anticipation du regard d’autrui).",
+            "term": "Influence imaginaire"
+          },
+          {
+            "definition": "Influence des normes et règles du contexte social, qui guident les comportements sans ordre explicite (codes du service, culture d’équipe, organisation).",
+            "term": "Influence implicite"
+          },
+          {
+            "definition": "Tendance à ajuster ses opinions ou comportements à ceux du groupe afin d’y appartenir, d’être accepté ou d’éviter le rejet.",
+            "term": "Conformisme"
+          },
+          {
+            "definition": "Règles, explicites ou implicites, qui définissent les comportements attendus dans un groupe et régulent les interactions.",
+            "term": "Normes sociales"
+          },
+          {
+            "definition": "Normes basées sur ce que les membres du groupe font réellement, donnant une indication de ce qui est « habituel ».",
+            "term": "Normes descriptives"
+          },
+          {
+            "definition": "Normes basées sur ce que le groupe considère comme souhaitable ou moralement approprié, indiquant ce qu’il « faut » faire.",
+            "term": "Normes injonctives"
+          },
+          {
+            "definition": "Systèmes d’idées, de croyances et d’images partagés par un groupe, qui permettent d’interpréter la réalité sociale et orientent les pratiques (ex : « ce qu’est un bon étudiant infirmier »).",
+            "term": "Représentations sociales"
+          },
+          {
+            "definition": "Modèle qui décrit la relation dynamique entre le formateur, l’apprenant et le savoir, chaque pôle étant indispensable à la situation d’apprentissage.",
+            "term": "Triangle pédagogique"
+          },
+          {
+            "definition": "Processus évolutif par lequel un individu se définit comme membre d’un groupe professionnel à partir de valeurs, savoirs, expériences et reconnaissance par autrui.",
+            "term": "Identité professionnelle"
+          },
+          {
+            "definition": "Manière d’être et d’agir en situation, articulant distance, engagement, respect de l’éthique, réflexivité et adaptation au contexte de soin ou de formation.",
+            "term": "Posture professionnelle"
+          },
+          {
+            "definition": "Ensemble d’attentes et de comportements associés à une position donnée (étudiant, formateur, IDE), qui organise les interactions et influence la façon d’agir.",
+            "term": "Rôle social"
+          }
+        ],
+        "filename": "Psychologie sociale.odt"
+      }
+    ],
+    [
+      "ue_4_1_s1_soins_palliatif_en_griatrie_faimsoif",
+      {
+        "title": "soins palliatif en gériatrie (faim/soif)",
+        "date": "11/12/2025",
+        "ue": "4.1.S1",
+        "author": "ext",
+        "definitions": [
+          {
+            "definition": "Techniques de soutien nutritionnel ou hydrique (sondes, perfusions IV ou SC) utilisées quand l’ingestion orale est insuffisante ou impossible, dont l’indication en phase terminale doit être discutée en termes de bénéfices/risques et de confort.",
+            "term": "Alimentation et hydratation artificielles"
+          },
+          {
+            "definition": "Période avancée d’une maladie grave évolutive où les traitements curatifs ne sont plus efficaces et où la prise en charge vise prioritairement le confort, la qualité de vie et le respect des souhaits du patient et de sa famille.",
+            "term": "Phase terminale / fin de vie"
+          },
+          {
+            "definition": "Diminution de la sensation de soif avec l’âge, liée à une moindre sensibilité des récepteurs, ce qui fait que beaucoup de patients en fin de vie ne se plaignent pas de soif.",
+            "term": "Perception de la soif chez la personne âgée"
+          },
+          {
+            "definition": "Ensemble de soins locaux (hydratation de la bouche, glaçons, pulvérisations, gels) permettant de soulager la bouche sèche et la sensation de soif, souvent plus efficaces et mieux tolérés que l’hydratation systémique en fin de vie.",
+            "term": "Soins de bouche"
+          },
+          {
+            "definition": "État de déficit hydrique pouvant, chez certains patients, diminuer certains symptômes (vomissements, encombrement bronchique, ascite, œdèmes) et activer des opioïdes endogènes, mais nécessitant une surveillance (insuffisance rénale, adaptation des traitements).",
+            "term": "Déshydratation en fin de vie"
+          },
+          {
+            "definition": "Apport de liquide par voie veineuse qui n’améliore pas systématiquement la sensation de soif en fin de vie et peut majorer l’encombrement pulmonaire, les œdèmes périphériques et les vomissements.",
+            "term": "Hydratation intraveineuse"
+          },
+          {
+            "definition": "Technique d’hydratation par voie sous-cutanée mieux tolérée que la voie IV mais pouvant entraîner hématomes, douleurs au point de ponction, œdèmes et encombrement respiratoire.",
+            "term": "Hypodermoclyse (perfusion sous-cutanée)"
+          },
+          {
+            "definition": "Démarche de décision partagée visant à évaluer l’intérêt ou non de maintenir ou de débuter une alimentation/hydratation artificielle, en tenant compte du confort, des risques, de la phase évolutive et de la volonté du patient.",
+            "term": "Réflexion éthique sur « laisser boire/manger »"
+          },
+          {
+            "definition": "Objectif central de la prise en charge en fin de vie, incluant le soulagement de la douleur, de la soif ressentie, de l’encombrement, des nausées et de l’angoisse, plutôt que la normalisation des apports hydriques ou caloriques.",
+            "term": "Confort en soins palliatifs"
+          }
+        ],
+        "filename": "soins palliatif en gériatrie (faim/soif).odt"
+      }
+    ],
+    [
+      "ue_4_1_s1_evaluation_de_la_force_musculaire",
+      {
+        "title": "Evaluation de la force musculaire",
+        "date": "11/12/2025",
+        "ue": "4.1.S1",
+        "author": "ext",
+        "definitions": [
+          {
+            "definition": "Capacité du muscle à exercer une force, évaluée ici par la force de serrage de la main, utilisée comme critère phénotypique de dénutrition et de sarcopénie.",
+            "term": "Force musculaire (force de préhension)"
+          },
+          {
+            "definition": "Mesure objective de la force de la main à l’aide d’un dynamomètre, réalisée idéalement assis, bras à 90°, trois essais de chaque côté, en retenant la valeur maximale.",
+            "term": "Dynamométrie de préhension (handgrip)"
+          },
+          {
+            "definition": "Dynamomètre manuel hydraulique de référence (« gold standard ») pour mesurer la force de préhension dans les études cliniques, même si d’autres appareils peuvent être utilisés en pratique.",
+            "term": "Dynamomètre Jamar"
+          },
+          {
+            "definition": "Force de préhension considérée pathologique si inférieure à 26–27 kg chez l’homme adulte et à 16 kg chez la femme, selon l’âge et les recommandations HAS.",
+            "term": "Valeurs seuils anormales"
+          },
+          {
+            "definition": "La baisse de force de préhension participe au diagnostic de dénutrition chez l’adulte et, associée à la masse musculaire appendiculaire, à la confirmation d’une sarcopénie chez la personne de 70 ans et plus.",
+            "term": "Intérêt clinique"
+          }
+        ],
+        "filename": "Evaluation de la force musculaire.odt"
+      }
+    ],
+    [
+      "ue_3_1_s1_introduction_la_dmarche_clinique",
+      {
+        "title": "Introduction à la démarche clinique",
+        "date": "30/09/2025",
+        "ue": "3.1.S1",
+        "author": "GN",
+        "definitions": [
+          {
+            "definition": "Processus intellectuel permanent d’identification des problèmes de santé réels et potentiels et des capacités d’une personne, fondé sur l’observation clinique (VAKOG), les savoirs, l’expérience et le raisonnement de l’infirmier, dans une philosophie de soins humaniste.",
+            "term": "Démarche clinique infirmière"
+          },
+          {
+            "definition": "Mise en commun des observations et jugements cliniques des différents professionnels (médecins, IDE, AS, kinésithérapeutes, diététiciens, etc.) pour construire une prise en soin singulière et cohérente.",
+            "term": "​Raisonnement clinique interdisciplinaire"
+          },
+          {
+            "definition": "Résultat de la démarche clinique, intégrant problèmes de santé réels ou potentiels, objectifs pour le patient, actions infirmières (autonomes et sur prescription), surveillance, critères d’évaluation, devenir et planification des soins.",
+            "term": "​Projet de soin personnalisé"
+          },
+          {
+            "definition": "Recueil systématique de données à partir des canaux Visuel, Auditif, Kinesthésique, Olfactif et Gustatif, permettant d’identifier signes cliniques, symptômes, besoins, capacités, difficultés et ressources.",
+            "term": "​Observation clinique VAKOG"
+          },
+          {
+            "definition": "Première étape de la démarche clinique utilisant Q.Q.O.Q.C.P, dossiers médicaux et paramédicaux, grilles de besoins ou d’activités (Gordon, Roper, etc.), échelles (Braden…), entretiens et counseling, pour construire une vision globale de la situation.",
+            "term": "​Recueil de données"
+          },
+          {
+            "definition": "Manifestations objectives (signes) et subjectives (symptômes) de la maladie, à quantifier en intensité et fréquence, servant à repérer complications potentielles, diagnostics différentiels et effets des traitements.",
+            "term": "​Signes cliniques et symptômes"
+          },
+          {
+            "definition": "Temps d’échange structuré permettant d’explorer les données, les émotions, le vécu, la compréhension de la maladie et des traitements, pouvant prendre la forme d’entretien motivationnel ou de recadrage.",
+            "term": "​Entretien infirmier"
+          },
+          {
+            "definition": "Technique d’entretien centrée sur l’aide à la compréhension et à la résolution des problèmes de la personne, prenant en compte dimensions psycho-sociales et biographiques, pour développer autonomie et empowerment.",
+            "term": "​Counseling"
+          },
+          {
+            "definition": "Outil d’analyse infirmière qui organise les données en trois focales complémentaires – les problèmes médicaux (pathologies, signes, symptômes, traitements), les risques et complications potentielles, et les réactions humaines (vécu, émotions, capacités, ressources) – afin de hiérarchiser les priorités de soins et de construire un projet de soin personnalisé.",
+            "term": "​Modèle de raisonnement clinique trifocal"
+          },
+          {
+            "definition": "Appréciation argumentée de la situation à partir des données recueillies et analysées, permettant de hiérarchiser les problèmes ou risques, formuler des objectifs et choisir les actions de soins.",
+            "term": "​Jugement clinique infirmier"
+          },
+          {
+            "definition": "Processus visant à rendre la personne actrice de sa santé en l’aidant à identifier et mobiliser ses propres ressources pour participer à ses soins et à la prise de décisions.",
+            "term": "​Empowerment / auto-efficacité"
+          },
+          {
+            "definition": "Vieillissement physiologique normal, à distinguer des pathologies, qui amène à relativiser certains « problèmes » chez la personne âgée dans l’analyse clinique.",
+            "term": "​Sénescence"
+          }
+        ],
+        "filename": "Introduction à la démarche clinique.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 857,
+    "totalTerms": 1028,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0
