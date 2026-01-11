@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Pharmacologie - IFSI Lannion</title>
+    <link rel="manifest" href="../../../public/manifest.json">
+    <meta name="theme-color" content="#fa709a">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 1rem;
+        }
+
+        .quiz-title {
+            margin: 0;
+            color: #fa709a;
+            font-size: 1.8rem;
+        }
+
+        .quiz-subtitle {
+            color: #999;
+            font-size: 0.9rem;
+            margin: 0.5rem 0 0 0;
+        }
+
+        .btn-back {
+            background: transparent;
+            border: 2px solid #ddd;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            background: #f9f9f9;
+            border-color: #fa709a;
+            color: #fa709a;
+        }
+
+        /* === START SCREEN === */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .start-screen {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .start-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .start-screen h2 {
+            color: #2c3e50;
+            font-size: 1.6rem;
+            margin: 0 0 1rem 0;
+        }
+
+        .start-screen p {
+            color: #999;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin: 0 0 2rem 0;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .option-group {
+            text-align: left;
+        }
+
+        .option-group label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .option-group input[type="radio"] {
+            margin-right: 0.8rem;
+            cursor: pointer;
+            accent-color: #fa709a;
+        }
+
+        .option-group input[type="checkbox"] {
+            margin-right: 0.8rem;
+            cursor: pointer;
+            accent-color: #fa709a;
+        }
+
+        .filters-section {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 2px solid #e0e0e0;
+        }
+
+        .filters-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .filter-group {
+            text-align: left;
+        }
+
+        .filter-group h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #666;
+            margin: 0 0 0.8rem 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .filter-options::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .filter-options::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 10px;
+        }
+
+        .filter-options::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 10px;
+        }
+
+        .filter-options::-webkit-scrollbar-thumb:hover {
+            background: #fa709a;
+        }
+
+        .filter-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+
+        .filter-label:hover {
+            color: #fa709a;
+        }
+
+        .quiz-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(250, 112, 154, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #fa709a;
+            color: #fa709a;
+        }
+
+        .btn-secondary:hover {
+            background: #fa709a;
+            color: white;
+        }
+
+        /* === QUIZ SCREEN === */
+        .question-screen {
+            padding: 1rem 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fa709a 0%, #fee140 100%);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .question-counter {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+
+        .question {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #fa709a;
+        }
+
+        .question-type {
+            display: inline-block;
+            background: #fa709a;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .question-text {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 1rem 0;
+        }
+
+        .answers {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .answer-option {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .answer-option:hover {
+            border-color: #fa709a;
+            background: #fff5f8;
+        }
+
+        .answer-option input[type="radio"] {
+            margin-right: 1rem;
+            cursor: pointer;
+            accent-color: #fa709a;
+        }
+
+        .answer-option.vrai-faux {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .answer-option.vrai-faux .btn-vf {
+            flex: 1;
+        }
+
+        .vrai-faux-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-vf {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-vf:hover {
+            border-color: #fa709a;
+        }
+
+        .btn-vf.selected {
+            background: #fa709a;
+            color: white;
+            border-color: #fa709a;
+        }
+
+        .quiz-button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        /* === RESULTS SCREEN === */
+        .results-screen {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .score-display {
+            font-size: 3.5rem;
+            color: #fa709a;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .score-text {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .score-percentage {
+            font-size: 1.1rem;
+            color: #999;
+            margin-bottom: 2rem;
+        }
+
+        .results-feedback {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .results-feedback.excellent {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .results-feedback.good {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .results-feedback.average {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .results-feedback.poor {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .review-answers {
+            text-align: left;
+            margin-top: 2rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .review-question {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #e0e0e0;
+        }
+
+        .review-question.correct {
+            border-left-color: #28a745;
+        }
+
+        .review-question.incorrect {
+            border-left-color: #dc3545;
+        }
+
+        .review-q-number {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .review-q-text {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .review-answers-info {
+            font-size: 0.9rem;
+        }
+
+        .review-answer-user {
+            color: #dc3545;
+            margin-bottom: 0.3rem;
+        }
+
+        .review-answer-correct {
+            color: #28a745;
+        }
+
+        .explanation {
+            background: #e8f4f8;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: #0c5460;
+            border-left: 3px solid #0c5460;
+        }
+
+        /* === LOADING === */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f0f0f0;
+            border-top: 4px solid #fa709a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 1.5rem;
+            }
+
+            .quiz-title {
+                font-size: 1.4rem;
+            }
+
+            .question-text {
+                font-size: 1rem;
+            }
+
+            .score-display {
+                font-size: 2.5rem;
+            }
+
+            .vrai-faux-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <!-- HEADER -->
+        <div class="quiz-header">
+            <div>
+                <h1 class="quiz-title">💊 Quiz Pharmacologie</h1>
+                <p class="quiz-subtitle">Testez vos connaissances en pharmacologie</p>
+            </div>
+            <a href="./home.html" class="btn-back">← Retour</a>
+        </div>
+
+        <!-- START SCREEN -->
+        <div class="screen active" id="startScreen">
+            <div class="start-screen">
+                <div class="start-icon">💊</div>
+                <h2>Prêt à réviser?</h2>
+                <p>Configurez votre quiz de pharmacologie</p>
+
+                <!-- Nombre de questions -->
+                <div class="quiz-options">
+                    <div class="option-group">
+                        <label>
+                            <input type="number" id="questionsCount" value="10" min="5" max="50" style="width: 60px; padding: 0.5rem;">
+                            <strong>Nombre de questions</strong>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Filtres -->
+                <div class="filters-section">
+                    <div class="filters-title">🎯 Filtrer par familles et domaines (tous sélectionnés par défaut)</div>
+                    <div class="filters-grid">
+                        <!-- Familles -->
+                        <div class="filter-group">
+                            <h3>Familles de médicaments</h3>
+                            <div class="filter-options" id="familiesContainer">
+                                <!-- Généré dynamiquement -->
+                            </div>
+                        </div>
+
+                        <!-- Domaines -->
+                        <div class="filter-group">
+                            <h3>Domaines d'étude</h3>
+                            <div class="filter-options" id="domainsContainer">
+                                <!-- Généré dynamiquement -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button class="btn btn-primary" onclick="window.startQuiz()">Démarrer le Quiz</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIZ SCREEN -->
+        <div class="screen" id="quizScreen">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+
+            <div class="question-counter">
+                <span id="questionCounter">1/10</span>
+            </div>
+
+            <div class="question-screen" id="questionContent">
+                <!-- Généré dynamiquement -->
+            </div>
+
+            <div class="quiz-button-group">
+                <button class="btn btn-secondary" onclick="window.previousQuestion()">← Précédent</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="window.nextQuestion()">Suivant →</button>
+            </div>
+        </div>
+
+        <!-- RESULTS SCREEN -->
+        <div class="screen" id="resultsScreen">
+            <div class="results-screen">
+                <h2 style="color: #2c3e50;">Résultats du Quiz</h2>
+
+                <div class="score-display" id="scoreDisplay">0/10</div>
+                <div class="score-text">Votre score</div>
+                <div class="score-percentage" id="scorePercentage">0%</div>
+
+                <div class="results-feedback" id="feedback">
+                    Bon travail!
+                </div>
+
+                <div class="review-answers" id="reviewAnswers">
+                    <!-- Généré dynamiquement -->
+                </div>
+
+                <div class="quiz-actions" style="margin-top: 2rem;">
+                    <button class="btn btn-secondary" onclick="window.resetQuiz()">← Retour à l'accueil</button>
+                    <button class="btn btn-primary" onclick="window.retakeQuiz()">Recommencer</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOADING SCREEN -->
+        <div class="screen" id="loadingScreen">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Chargement du quiz...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        if (!window.resolvePath) {
+            const isGitHubPages = window.location.hostname.includes('github.io');
+            const basePath = isGitHubPages ? '/ifsi-revision' : '';
+            window.resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
+        }
+    </script>
+    <script src="../assets/scripts/modules/pharma-quiz.js"></script>
+    <script src="./quiz-controller.js"></script>
+</body>
+</html>

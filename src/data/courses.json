@@ -1,5 +1,5 @@
 {
-  "exportDate": "2025-12-20T15:23:25.827436",
+  "exportDate": "2026-01-11T20:50:53.766566",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -789,11 +789,13 @@
         "definitions": [
           {
             "definition": "est une discipline à part entière (sciences infirmières). Cette discipline comporte plusieurs niveaux de savoir (métaparadigme, philosophies de soins infirmiers, modèles conceptuels, théories, méthodes de recherches). S’intéresse au soin des personnes. Se dirige vers les EBN (données probantes)",
-            "term": "Nursology"
+            "term": "Nursology",
+            "importance": "indispensable"
           },
           {
             "definition": "est une succession d’opération mentales qui permettent de recueillir des données cliniques et paracliniques, des les analyser, les interpréter pour mettre en œuvre des actions de soins auprès du patient.",
-            "term": "Raisonnement clinique"
+            "term": "Raisonnement clinique",
+            "importance": "indispensable"
           },
           {
             "definition": "englobe les concepts centraux (santé, environnement, personne, soins) qui sont propres à la discipline infirmière. Influencé par les sciences humaines et sociales.",

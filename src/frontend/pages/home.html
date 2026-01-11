@@ -152,6 +152,11 @@
             background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
             color: white;
         }
+
+        .nav-btn.quiz {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+        }
         
         .nav-btn-icon {
             font-size: 2rem;
@@ -440,6 +445,14 @@
                 </div>
             </a>
             
+            <button class="nav-btn quiz" onclick="window.openPharmaQuiz()" style="cursor: pointer; border: none; text-decoration: none;">
+                <div class="nav-btn-icon">💊</div>
+                <div class="nav-btn-content">
+                    <h3>Quiz Pharmacologie</h3>
+                    <p>Testez vos connaissances avec des QCM/QCU</p>
+                </div>
+            </button>
+            
             <!-- Gallery cachée pour tous les utilisateurs -->
             <!--
             <a href="./gallery.html" class="nav-btn gallery hidden">
@@ -596,6 +609,13 @@
                 window.location.href = './index.html';
             }
         });
+    </script>
+
+    <!-- Quiz Pharmacologie -->
+    <script>
+        window.openPharmaQuiz = function() {
+            window.location.href = './quiz.html';
+        };
     </script>
 </body>
 </html>
