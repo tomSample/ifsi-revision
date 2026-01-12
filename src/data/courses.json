@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-01-11T21:08:11.842230",
+  "exportDate": "2026-01-12T21:08:19.957871",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -613,75 +613,93 @@
         "definitions": [
           {
             "definition": "numération formule sanguine (hématies, leucocytes, thrombocytes). BUT => dénombrer cellules + certains autres paramètres.",
-            "term": "NFS (ou hémogramme) - tube violet"
+            "term": "NFS (ou hémogramme) - tube violet",
+            "importance": "indispensable"
           },
           {
             "definition": "cellule anuclée, forme biconcave, fabriqué ds moelle osseuse, contient hémoglobine qui assure le transfert de l’O2 et élimination CO2 // NORMES = 4,6 a 6 millions/mm³ (H) // 4 à 5,4 millions/mm³ (F)",
-            "term": "Hématie (ou Erythrocyte)"
+            "term": "Hématie (ou Erythrocyte)",
+            "importance": "indispensable"
           },
           {
             "definition": "diminution nbre hématie (hémorragie, hémolyse, maladie hématologique ou médullaire)",
-            "term": "Anémie"
+            "term": "Anémie",
+            "importance": "indispensable"
           },
           {
             "definition": "augmentation du nbre d’hématie (tabagisme, altitude, maladie rénale, tumeur)",
-            "term": "Polyglobulie"
+            "term": "Polyglobulie",
+            "importance": "indispensable"
           },
           {
             "definition": "protéine, rentre dans la compo du sang, donne couleur rouge (fiche en fer), indicateur de l’anémie. NORMES = 13 à 18 g/dL (H) // 11,5 à 17,5g/dL (F)",
-            "term": "Hémoglobine"
+            "term": "Hémoglobine",
+            "importance": "indispensable"
           },
           {
             "definition": "indicateur biologique d’infection. Rôle clé (polynucléaires neutrophiles, éosinophiles, basophiles, lymphocytes, monocytes) // NORMES = 4 à 11g/L (H) // F 3,8 à 11g/L (F)",
-            "term": "Leucocytes"
+            "term": "Leucocytes",
+            "importance": "indispensable"
           },
           {
             "definition": "augmentation du nbre des leucocytes = signe d’infection (bactérie, virus, parasite…) ou induit par la prise médicamenteuse",
-            "term": "Hyperleucocytose"
+            "term": "Hyperleucocytose",
+            "importance": "indispensable"
           },
           {
             "definition": "baisse du nbre de leucocytes = effet secondaire d’un ttmt",
-            "term": "Leucopénie"
+            "term": "Leucopénie",
+            "importance": "indispensable"
           },
           {
             "definition": "cellule anuclée, fabriquée dans la moelle osseuse // NORMES = 50 000 à 400 000/mm3 (H) et jusqu a 445 000/m³ (F)",
-            "term": "Thrombocyte"
+            "term": "Thrombocyte",
+            "importance": "indispensable"
           },
           {
             "definition": "diminution de nbre de thrombocytes = risque d’hémorragie",
-            "term": "Thrombopénie"
+            "term": "Thrombopénie",
+            "importance": "indispensable"
           },
           {
             "definition": "augmentation du nbre de thrombocytes = risque de thrombose",
-            "term": "Thrombocytose"
+            "term": "Thrombocytose",
+            "importance": "indispensable"
           },
           {
             "definition": "processus de coagulation du sang pour éviter les hémorragies tout en maintenant le sang fluide. Le tube de prélèvement contient un anti-coagulant (citrate de sodium). Se déroule en 3 phases (primaire = agrégation plaquettaire, secondaire = coagulation (formation thrombus), fibrinolyse = lyse du caillot une fois le vaisseau réparé",
-            "term": "Hémostase – tube bleu rempli à 4,5ml"
+            "term": "Hémostase – tube bleu rempli à 4,5ml",
+            "importance": "indispensable"
           },
           {
             "definition": "Temps de Céphaline Activée ou Kaolin. Examen pour mesurer la vitesse de coagulation du plasma = permet de savoir si l’orga a les ressources pour coaguler normalement // NORMES = 0,8 à 1,2 secondes temps ratio (s’exprime selon un ration temps témoin/temps patient)",
-            "term": "TCA ou TCK (selon réactif utilisé)"
+            "term": "TCA ou TCK (selon réactif utilisé)",
+            "importance": "indispensable"
           },
           {
             "definition": "Taux de Prothrombine. Examen pour évaluer la coagulation sanguine // NORMES = entre 70 et 100 %",
-            "term": "TP"
+            "term": "TP",
+            "importance": "indispensable"
           },
           {
             "definition": "International Normalized Ratio. Examen pour évaluer la coagulation sanguine d’un patient sous ttmt anti-coagulant. // NORMES = avec un ttmt AVK = INR dépend de la valeur cible selon les indications du ttmt par AVK (exemple si valeur entre 2 et 3 avec une valeur sible vers 2,5 = Si < 2 ttmt sous dosé. Si > 3 ttmt sur-dosage ⇒ origine de troubles hémorragiques donc nécessaire ds bilan pré op",
-            "term": "INR"
+            "term": "INR",
+            "importance": "indispensable"
           },
           {
             "definition": "connaître présence/absence des Ag A et B et présence/absence de l’Ag rhésus standard D. Loi = 2 prélèvements par 2 IDE différentes en 2 temps différents",
-            "term": "Groupe sanguin - tube violet"
+            "term": "Groupe sanguin - tube violet",
+            "importance": "indispensable"
           },
           {
             "definition": "Recherche des Agglutinines Irrégulières. Obligatoire avant toute transfusion ou acte chirurgical et doit être renouvelée tous les 3 jours (validité de 72h). Sont opposées aux agglutinines régulières (anticorps naturel présents dans le système ABO)",
-            "term": "RAI"
+            "term": "RAI",
+            "importance": "indispensable"
           },
           {
             "definition": "Protéine C Réactive. Examen pour évaluer l’état inflammatoire (synthétisée par le foie). Est un indicateur sensible mais n’oriente pas vers une pathologie // NORMES = < 5mg/L (infection peu probable) mais peut rapidement évoluer.",
-            "term": "CRP - tube vert (citraté) ou tube sec"
+            "term": "CRP - tube vert (citraté) ou tube sec",
+            "importance": "indispensable"
           }
         ],
         "filename": "Examens biologiques en traumatologie.odt"
@@ -697,83 +715,103 @@
         "definitions": [
           {
             "definition": "enchaînement ordonné de faits ou de phénomènes répondant à un schéma et aboutissant à quelque chose",
-            "term": "Processus"
+            "term": "Processus",
+            "importance": "indispensable"
           },
           {
             "definition": "Repérage des mécanismes d’apparition / Mécanismes physiopathologiques / Sémiologie, signes cliniques, symptômes / Diagnostic médical / Traitements / Complications",
-            "term": "Approche par processus"
+            "term": "Approche par processus",
+            "importance": "indispensable"
           },
           {
             "definition": "dommage physique à une personne lorsque son corps a été soumis de façon soudaine ou brève à un niveau d’énergie intolérable et provoquant des lésions",
-            "term": "Traumatisme"
+            "term": "Traumatisme",
+            "importance": "indispensable"
           },
           {
             "definition": "succession de modifications anatomiques et physiologiques faisant suite à une agression physique de l’organisme par un agent extérieur",
-            "term": "Processus traumatique"
+            "term": "Processus traumatique",
+            "importance": "indispensable"
           },
           {
             "definition": "âge, pathologies, obésité, sédentarité, traitement en cours, localisation et étendue de la blessure",
-            "term": "Facteurs favorisants"
+            "term": "Facteurs favorisants",
+            "importance": "utile"
           },
           {
             "definition": "cutané, osseux & articulo-ligamentaire, thoraco-abdominal, crâniens & médullaire, polytraumatique, psychologique",
-            "term": "Caractéristiques du processus traumatique"
+            "term": "Caractéristiques du processus traumatique",
+            "importance": "utile"
           },
           {
             "definition": "direct, indirect, sans notion de choc",
-            "term": "Contexte de choc"
+            "term": "Contexte de choc",
+            "importance": "utile"
           },
           {
             "definition": "selon différents critères (mécanisme en cause (chute, noyade…), intentionnel ou non, zone du corps atteinte, type de blessure, lieu de survenue), selon les systèmes atteints (cutané = brûlure, plaie, vasculaire = hémorragie, osseux, ligamentaire = fracture, entorse, luxation, respiratoire, cardiaque = trauma thoracique, digestif, génito-urinaire = abdomino-pelvien, neurologique, autres = crânien, polytraumatisme), selon les contextes (accident de vie courante, AVP, accident du travail, agression, terrorisme, homicide, autolyse)",
-            "term": "Classification d’un traumatisme"
+            "term": "Classification d’un traumatisme",
+            "importance": "utile"
           },
           {
             "definition": "âge, hérédité, fragilité osseuse, pathologies",
-            "term": "Facteurs de risques"
+            "term": "Facteurs de risques",
+            "importance": "indispensable"
           },
           {
             "definition": "comportement à risque, activité professionnelle",
-            "term": "Facteurs précipitant (déclencheurs)"
+            "term": "Facteurs précipitant (déclencheurs)",
+            "importance": "utile"
           },
           {
             "definition": "étude des symptômes et des signes cliniques traduisant la lésion d’un organe ou le trouble d’une fonction",
-            "term": "Sémiologie"
+            "term": "Sémiologie",
+            "importance": "indispensable"
           },
           {
             "definition": "altération morphologique d’un tissu ou d’un organe dont la cause peut être connue ou inconnue pouvant se manifester par des signes physiques ou des symptômes (Toute blessure entraîne des lésions tissulaires. Possibilité de lésions indirectes associées)",
-            "term": "Lésion"
+            "term": "Lésion",
+            "importance": "indispensable"
           },
           {
             "definition": "rupture de la continuité osseuse",
-            "term": "Fracture"
+            "term": "Fracture",
+            "importance": "indispensable"
           },
           {
             "definition": "lésion produite par pression brutale ou choc sans déchirure de la peau",
-            "term": "Contusion"
+            "term": "Contusion",
+            "importance": "indispensable"
           },
           {
             "definition": "perte totale ou partielle des rapports anatomiques normaux entre les extrêmités d’une articulation. Par extension déplacement d’un organe hors de sa loge ou position normale",
-            "term": "Luxation"
+            "term": "Luxation",
+            "importance": "indispensable"
           },
           {
             "definition": "lésion traumatique d’un ou plusieurs ligaments",
-            "term": "Entorse"
+            "term": "Entorse",
+            "importance": "indispensable"
           },
           {
             "definition": "lésion de la région du tronc et des organes compris entre le diaphragme et le plancher pelvien",
-            "term": "Traumatisme abdomino-pelvien"
+            "term": "Traumatisme abdomino-pelvien",
+            "importance": "optionnel"
           },
           {
             "definition": "lésion du thorax et des organes",
-            "term": "Traumatisme thoracique"
+            "term": "Traumatisme thoracique",
+            "importance": "optionnel"
           },
           {
             "definition": "lésion du crâne et de l’encéphale",
-            "term": "Traumatisme crânien"
+            "term": "Traumatisme crânien",
+            "importance": "optionnel"
           },
           {
             "definition": "trouble présenté par une personne ayant vécu un ou plusieurs événements traumatiques ayant menacé son intégrité physique ou psychique et ayant provoqué une peur intense, un sentiment d’impuissance ou d’horreur et ayant développé des troubles psychiques liés à ce traumatisme",
-            "term": "Traumatisme psychologique"
+            "term": "Traumatisme psychologique",
+            "importance": "optionnel"
           }
         ],
         "filename": "Généralités, épidémiologie, sémiologie.odt"
@@ -2429,63 +2467,78 @@
         "definitions": [
           {
             "definition": "expérience sensorielle et émotionnelle désagréable associée à une lésion réelle ou potentielle ou décrite en termes évoquant cette lésion.",
-            "term": "douleur"
+            "term": "douleur",
+            "importance": "indispensable"
           },
           {
             "definition": "ensemble des phénomènes mis en jeu dans le système nerveux central en réaction à un stimulus douloureux activant les nocicepteurs, mécanisme physiologique de perception du stimulus douloureux.",
-            "term": "nociception"
+            "term": "nociception",
+            "importance": "indispensable"
           },
           {
             "definition": "loi du 4 mars 2002 qui reconnaît le soulagement de la douleur comme un droit fondamental de toute personne.",
-            "term": "loi Kouchner"
+            "term": "loi Kouchner",
+            "importance": "indispensable"
           },
           {
             "definition": "processus systématique d’écoute, d’évaluation et de prise en compte de la douleur avec traçabilité dans le dossier patient informatisé.",
-            "term": "évaluation de la douleur"
+            "term": "évaluation de la douleur",
+            "importance": "indispensable"
           },
           {
             "definition": "écouter le patient, évaluer la douleur, croire le patient.",
-            "term": "principes de la prise en charge de la douleur"
+            "term": "principes de la prise en charge de la douleur",
+            "importance": "indispensable"
           },
           {
             "definition": "sensorielle (décodage du message nociceptif), affective et émotionnelle (ressenti pénible, anxiété, tristesse), cognitive (connaissance et compréhension de la douleur), comportementale (manifestations verbales et non verbales telles que cris, plaintes).",
-            "term": "composantes de la douleur"
+            "term": "composantes de la douleur",
+            "importance": "indispensable"
           },
           {
             "definition": "transmission du stimulus douloureux des nocicepteurs (récepteurs sensoriels de la douleur situés en surface et en profondeur) jusqu’au cortex cérébral par un courant électrique nerveux.",
-            "term": "voies de la douleur"
+            "term": "voies de la douleur",
+            "importance": "utile"
           },
           {
             "definition": "douleur aiguë (intense, brutale, de courte durée, liée à une pathologie ou soin, signal d’alarme), douleur chronique (persistante depuis plus de 3 à 6 mois, retentissement sur la vie quotidienne, maladie), douleur neuropathique (due à une lésion ou irritation nerveuse, sensations de brûlure, décharges électriques), douleur psychogène (douleur réelle sans lésion visible, origine psychologique ou psychiatrique).",
-            "term": "types de douleur"
+            "term": "types de douleur",
+            "importance": "utile"
           },
           {
             "definition": "outils mnémotechnique pour décrire la douleur selon Type, Intensité, Localisation, Temps.",
-            "term": "échelle TILT"
+            "term": "échelle TILT",
+            "importance": "indispensable"
           },
           {
             "definition": "auto-évaluation (EVA, EN, EVS, échelle des visages), hétéro-évaluation (Evendol, Algoplus, Doloplus, DN4 pour neuropathique).",
-            "term": "échelles d’évaluation"
+            "term": "échelles d’évaluation",
+            "importance": "indispensable"
           },
           {
             "definition": "état comparable à un sommeil artificiel.",
-            "term": "anesthésie générale (AG)"
+            "term": "anesthésie générale (AG)",
+            "importance": "optionnel"
           },
           {
             "definition": "abolition transitoire de la conduction nerveuse dans un territoire corporel tout en conservant la conscience, médullaire (rachianesthésie, péridurale) ou périphérique (bloc plexique).",
-            "term": "anesthésie loco-régionale (ALR)"
+            "term": "anesthésie loco-régionale (ALR)",
+            "importance": "optionnel"
           },
           {
             "definition": "injection sous la peau pour anesthésier une zone précise.",
-            "term": "anesthésie locale (AL)"
+            "term": "anesthésie locale (AL)",
+            "importance": "optionnel"
           },
           {
             "definition": "évaluation régulière de la douleur, paramètres vitaux, nausées, motricité, sensibilité, site d’injection.",
-            "term": "surveillance post anesthésie"
+            "term": "surveillance post anesthésie",
+            "importance": "optionnel"
           },
           {
             "definition": "rétention urinaire, hypotension, bradycardie, paralysie temporaire ou permanente, accident vasculaire cérébral.",
-            "term": "complications ALR"
+            "term": "complications ALR",
+            "importance": "optionnel"
           }
         ],
         "filename": "Prise en charge de la douleur aiguë.odt"

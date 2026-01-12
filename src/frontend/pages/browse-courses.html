@@ -308,7 +308,7 @@
             
             // Vérifier l'authentification et le statut admin de façon fiable
             authManager.checkAuthStatus();
-            const isAdmin = authManager && authManager.currentUser && authManager.currentUser.isAdmin === true;
+            const isAdmin = authManager && authManager.isAdmin();
             
             // Stocker la clé du cours actuel pour les raccourcis clavier
             window.currentCourseKey = courseKey;
@@ -382,7 +382,7 @@
         
         // Mettre à jour l'importance d'un terme (admin uniquement)
         function updateTermImportance(courseKey, termIndex, importance) {
-            if (!authManager || !authManager.isAdmin) {
+            if (!authManager || !authManager.isAdmin()) {
                 alert('❌ Accès refusé: Vous devez être administrateur');
                 return;
             }
