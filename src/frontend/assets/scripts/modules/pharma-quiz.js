@@ -343,6 +343,7 @@ class PharmaQuiz {
      */
     generateExplanation(data, field) {
         const explanations = {
+            nomCommercial: `Identification: "${data.exemplesCommerciaux}" est un nom commercial du ${data.medicamentPrincipal}, appartenant à la classe ${data.famille}`,
             indications: `Indications: ${data.indication1}${data.indication2 ? ' et ' + data.indication2 : ''}`,
             mecanisme: `Mécanisme: ${data.mecanismeCourt}`,
             effets: `Effets indésirables: ${data.ide1Grave}${data.ide2 ? ' et ' + data.ide2 : ''}`,
@@ -440,6 +441,7 @@ class PharmaQuiz {
      */
     getAvailableDomains() {
         return [
+            { id: 'nomCommercial', label: 'Identification par nom commercial' },
             { id: 'indications', label: 'Indications' },
             { id: 'mecanisme', label: 'Mécanisme' },
             { id: 'effets', label: 'Effets indésirables' },
@@ -480,6 +482,7 @@ class PharmaQuiz {
             
             // Sélectionner un domaine aléatoire parmi les domaines choisis
             const validDomains = [];
+            if (selectedDomains.includes('nomCommercial') && data.exemplesCommerciaux) validDomains.push('nomCommercial');
             if (selectedDomains.includes('indications') && (data.indication1 || data.indication2)) validDomains.push('indications');
             if (selectedDomains.includes('mecanisme') && data.mecanismeCourt) validDomains.push('mecanisme');
             if (selectedDomains.includes('effets') && (data.ide1Grave || data.ide2)) validDomains.push('effets');
@@ -506,6 +509,8 @@ class PharmaQuiz {
      */
     generateQuestionByDomain(data, domain) {
         switch(domain) {
+            case 'nomCommercial':
+                return this.generateNomCommercialQuestion(data);
             case 'indications':
                 return this.generateIndicationQuestion(data);
             case 'mecanisme':
@@ -521,6 +526,53 @@ class PharmaQuiz {
             default:
                 return null;
         }
+    }
+
+    /**
+     * Génère une question sur l'identification du médicament par son nom commercial
+     */
+    generateNomCommercialQuestion(data) {
+        if (!data.exemplesCommerciaux) return null;
+        const questions = this.generateNomCommercialQuestions(data);
+        if (questions.length === 0) return null;
+        const q = questions[Math.floor(Math.random() * questions.length)];
+        return {
+            question: q.question,
+            correctAnswer: q.answer,
+            explanation: this.generateExplanation(data, 'nomCommercial'),
+            medicament: data.medicamentPrincipal,
+            domaine: 'nomCommercial',
+            userAnswer: null
+        };
+    }
+
+    /**
+     * Génère 12+ variations de questions sur identification par nom commercial
+     * Enseigne à identifier la classe/famille d'un médicament à partir de son nom commercial
+     */
+    generateNomCommercialQuestions(data) {
+        const nomComm = data.exemplesCommerciaux || 'ce médicament';
+        const famille = data.famille;
+        const med = data.medicamentPrincipal;
+
+        return [
+            // Questions positives - identification famille à partir du nom commercial
+            { question: `Le médicament "${nomComm}" appartient à la classe: ${famille}`, answer: true, field: 'nomCommercial' },
+            { question: `"${nomComm}" est un médicament de la classe ${famille}`, answer: true, field: 'nomCommercial' },
+            { question: `Si on vous dit le nom commercial "${nomComm}", il s'agit d'un ${famille}`, answer: true, field: 'nomCommercial' },
+            { question: `${nomComm} est un exemple de ${famille}`, answer: true, field: 'nomCommercial' },
+            { question: `La classe thérapeutique du médicament "${nomComm}" est ${famille}`, answer: true, field: 'nomCommercial' },
+            { question: `"${nomComm}" est classé parmi les ${famille}`, answer: true, field: 'nomCommercial' },
+            { question: `Le nom commercial "${nomComm}" correspond à un médicament ${famille}`, answer: true, field: 'nomCommercial' },
+            { question: `${nomComm} figure dans la classe des ${famille}`, answer: true, field: 'nomCommercial' },
+            { question: `Lorsqu'on rencontre le terme "${nomComm}", on identifie un ${famille}`, answer: true, field: 'nomCommercial' },
+            { question: `${med} vendu sous le nom commercial "${nomComm}" est un ${famille}`, answer: true, field: 'nomCommercial' },
+            
+            // Questions négatives - faux noms ou fausses classes (pièges)
+            { question: `"${nomComm}" est un antibiotique de la classe des fluoroquinolones`, answer: famille.toLowerCase().includes('antibiotique') && famille.toLowerCase().includes('fluoroquinolone'), field: 'nomCommercial' },
+            { question: `${nomComm} appartient à la classe des anticoagulants directs`, answer: famille.toLowerCase().includes('anticoagulant'), field: 'nomCommercial' },
+            { question: `Le nom commercial "${nomComm}" correspond à une hormone thyroïdienne`, answer: famille.toLowerCase().includes('thyroid'), field: 'nomCommercial' }
+        ];
     }
 
     /**

@@ -1358,6 +1358,7 @@ function adjustTermCount(delta) {
     
     input.value = newValue;
     updateActivePreset(newValue);
+    updateStatsDisplay(); // Recalculer le temps estimé
     
     // Analytics pour le choix du nombre de termes
     if (window.IFSIAnalytics) {
@@ -1370,6 +1371,7 @@ function setTermCount(count) {
     const input = document.getElementById('termCount');
     input.value = Math.max(1, Math.min(50, count));
     updateActivePreset(count);
+    updateStatsDisplay(); // Recalculer le temps estimé
     
     // Analytics pour le choix du nombre de termes
     if (window.IFSIAnalytics) {
@@ -1403,6 +1405,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             updateActivePreset(clampedValue);
+            updateStatsDisplay(); // Recalculer le temps estimé en temps réel
         });
         
         // Empêcher la saisie de caractères non numériques

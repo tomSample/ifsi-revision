@@ -306,8 +306,13 @@
             const termsSection = document.getElementById('termsSection');
             const termsContainer = document.getElementById('termsContainer');
             
-            // Vérifier si l'utilisateur est admin
-            const isAdmin = authManager && authManager.isAdmin;
+            // Vérifier l'authentification et le statut admin de façon fiable
+            authManager.checkAuthStatus();
+            const isAdmin = authManager && authManager.currentUser && authManager.currentUser.isAdmin === true;
+            
+            // Stocker la clé du cours actuel pour les raccourcis clavier
+            window.currentCourseKey = courseKey;
+            window.selectedTerms = new Set();
 
             termsContainer.innerHTML = `
                 <div class="course-details-header">
@@ -319,29 +324,35 @@
                     <span>${data.author}</span> • 
                     <span>${data.date}</span>
                 </div>
+                ${isAdmin ? `
+                <div class="bulk-edit-toolbar" style="background: #f8f9fa; border: 2px solid #e9ecef; border-radius: 8px; padding: 1rem; margin: 1rem 0; display: none;" id="bulkToolbar">
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                        <div style="font-weight: 600; color: #495057;">
+                            <span id="selectedCount">0</span> terme(s) sélectionné(s)
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <button onclick="bulkApplyImportance('indispensable')" style="background: #dc3545; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.9rem;">🔴 Indispensable</button>
+                            <button onclick="bulkApplyImportance('utile')" style="background: #ffc107; color: #333; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.9rem;">🟡 Utile</button>
+                            <button onclick="bulkApplyImportance('optionnel')" style="background: #28a745; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.9rem;">🟢 Optionnel</button>
+                            <button onclick="bulkClearSelection()" style="background: #6c757d; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.9rem;">✖ Désélectionner tout</button>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #6c757d; margin-top: 0.5rem;">💡 Raccourcis: <kbd>1</kbd>=Indispensable • <kbd>2</kbd>=Utile • <kbd>3</kbd>=Optionnel</div>
+                </div>
+                ` : ''}
                 <div class="definitions-list">
                     ${data.definitions ? data.definitions.map((def, index) => {
                         const importance = def.importance || '';
                         const importanceBadge = getImportanceBadge(importance);
                         
                         return `
-                        <div class="definition-item">
+                        <div class="definition-item" data-term-index="${index}" style="position: relative;">
                             <div class="definition-header" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem;">
+                                ${isAdmin ? `<input type="checkbox" class="term-checkbox" data-index="${index}" onchange="toggleTermSelection(${index})" style="margin-top: 4px; cursor: pointer; width: 18px; height: 18px;">` : ''}
                                 <div style="flex: 1;">
                                     <div class="definition-term">${index + 1}. ${def.term}</div>
                                     ${importance ? `<span class="importance-badge-inline">${importanceBadge}</span>` : ''}
                                 </div>
-                                ${isAdmin ? `
-                                <div class="admin-importance-selector">
-                                    <select onchange="updateTermImportance('${courseKey}', ${index}, this.value)" 
-                                            style="padding: 0.3rem 0.5rem; border-radius: 4px; border: 1px solid #ddd; font-size: 0.85rem;">
-                                        <option value="">-- Importance --</option>
-                                        <option value="indispensable" ${importance === 'indispensable' ? 'selected' : ''}>🔴 Indispensable</option>
-                                        <option value="utile" ${importance === 'utile' ? 'selected' : ''}>🟡 Utile</option>
-                                        <option value="optionnel" ${importance === 'optionnel' ? 'selected' : ''}>🟢 Optionnel</option>
-                                    </select>
-                                </div>
-                                ` : ''}
                             </div>
                             <div class="definition-text">${def.definition}</div>
                         </div>
@@ -351,6 +362,12 @@
 
             termsSection.style.display = 'block';
             termsSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Attacher les event listeners pour les raccourcis clavier si admin
+            if (isAdmin) {
+                document.removeEventListener('keydown', handleBulkKeyboard);
+                document.addEventListener('keydown', handleBulkKeyboard);
+            }
         }
         
         // Obtenir le badge d'importance
@@ -466,6 +483,118 @@
         // Masquer les termes
         function hideTerms() {
             document.getElementById('termsSection').style.display = 'none';
+            document.removeEventListener('keydown', handleBulkKeyboard);
+            window.selectedTerms = null;
+        }
+
+        // ===== NOUVELLES FONCTIONS POUR SÉLECTION MULTIPLE =====
+        
+        // Basculer la sélection d'un terme
+        function toggleTermSelection(index) {
+            if (!window.selectedTerms) {
+                window.selectedTerms = new Set();
+            }
+            
+            if (window.selectedTerms.has(index)) {
+                window.selectedTerms.delete(index);
+            } else {
+                window.selectedTerms.add(index);
+            }
+            
+            updateBulkToolbar();
+        }
+        
+        // Mettre à jour l'affichage de la barre d'outils
+        function updateBulkToolbar() {
+            const toolbar = document.getElementById('bulkToolbar');
+            const countSpan = document.getElementById('selectedCount');
+            const selectedCount = window.selectedTerms ? window.selectedTerms.size : 0;
+            
+            if (toolbar) {
+                toolbar.style.display = selectedCount > 0 ? 'block' : 'none';
+                if (countSpan) {
+                    countSpan.textContent = selectedCount;
+                }
+            }
+            
+            // Mettre à jour les checkboxes
+            document.querySelectorAll('.term-checkbox').forEach((checkbox, index) => {
+                checkbox.checked = window.selectedTerms && window.selectedTerms.has(index);
+            });
+        }
+        
+        // Appliquer l'importance à tous les termes sélectionnés
+        function bulkApplyImportance(importance) {
+            if (!window.selectedTerms || window.selectedTerms.size === 0) {
+                alert('❌ Aucun terme sélectionné');
+                return;
+            }
+            
+            if (!window.currentCourseKey || !coursesData) return;
+            
+            const courseIndex = coursesData.courses.findIndex(c => c[0] === window.currentCourseKey);
+            if (courseIndex === -1) return;
+            
+            const [key, data] = coursesData.courses[courseIndex];
+            
+            // Appliquer l'importance à chaque terme sélectionné
+            window.selectedTerms.forEach(index => {
+                if (data.definitions && data.definitions[index]) {
+                    data.definitions[index].importance = importance;
+                }
+            });
+            
+            // Sauvegarder sur le serveur
+            saveCoursesToServer()
+                .then(() => {
+                    const labels = {
+                        'indispensable': '🔴 Indispensable',
+                        'utile': '🟡 Utile',
+                        'optionnel': '🟢 Optionnel'
+                    };
+                    showNotification(`✅ ${window.selectedTerms.size} terme(s) marqué(s) comme "${labels[importance]}"`, 'success');
+                    
+                    // Réinitialiser la sélection et rafraîchir
+                    window.selectedTerms.clear();
+                    showCourseDetails(window.currentCourseKey);
+                })
+                .catch(error => {
+                    console.error('Erreur sauvegarde:', error);
+                    showNotification('❌ Erreur lors de la sauvegarde', 'error');
+                });
+        }
+        
+        // Désélectionner tous les termes
+        function bulkClearSelection() {
+            window.selectedTerms.clear();
+            updateBulkToolbar();
+        }
+        
+        // Gérer les raccourcis clavier (1, 2, 3)
+        function handleBulkKeyboard(event) {
+            // Vérifier que le focus n'est pas sur un input ou textarea
+            if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA' || event.target.tagName === 'SELECT') {
+                return;
+            }
+            
+            if (!window.selectedTerms || window.selectedTerms.size === 0) {
+                return;
+            }
+            
+            switch(event.key) {
+                case '1':
+                    event.preventDefault();
+                    bulkApplyImportance('indispensable');
+                    break;
+                case '2':
+                    event.preventDefault();
+                    bulkApplyImportance('utile');
+                    break;
+                case '3':
+                    event.preventDefault();
+                    bulkApplyImportance('optionnel');
+                    break;
+            }
         }
 
         // Fonctions d'administration des cours

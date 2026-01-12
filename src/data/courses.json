@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-01-11T20:50:53.766566",
+  "exportDate": "2026-01-11T21:08:11.842230",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -799,15 +799,18 @@
           },
           {
             "definition": "englobe les concepts centraux (santé, environnement, personne, soins) qui sont propres à la discipline infirmière. Influencé par les sciences humaines et sociales.",
-            "term": "Métaparadigme"
+            "term": "Métaparadigme",
+            "importance": "indispensable"
           },
           {
             "definition": "philosophie du soin (cadre de référence singulier) est évolutif par exemple avec l’arrivée des IPA. Sont au nombre de 4 (catégorisation, intégration, transformation, complexité)",
-            "term": "Paradigme"
+            "term": "Paradigme",
+            "importance": "indispensable"
           },
           {
             "definition": "outils (pyramide des besoins, modèle tri focal…)",
-            "term": "Modèles conceptuels"
+            "term": "Modèles conceptuels",
+            "importance": "utile"
           }
         ],
         "filename": "Vocabulaire du raisonnement clinique.odt"
@@ -2111,47 +2114,58 @@
         "definitions": [
           {
             "definition": "être capable d’agir sans dépendre d’autrui et de se décider par soi même aujourd’hui. Principe que personne ne peut contraindre ou obliger une personne à agir différemment sous prétexte que cela serait meilleur pour lui.",
-            "term": "Autonomie"
+            "term": "Autonomie",
+            "importance": "indispensable"
           },
           {
             "definition": "pouvoir faire / réaliser et savoir utiliser les moyens pour faire",
-            "term": "Autonomie fonctionnelle"
+            "term": "Autonomie fonctionnelle",
+            "importance": "indispensable"
           },
           {
             "definition": "savoir faire / décider de faire / capacité à choisir par soi-même",
-            "term": "Autonomie cognitive"
+            "term": "Autonomie cognitive",
+            "importance": "indispensable"
           },
           {
             "definition": "vouloir faire / consentement",
-            "term": "Autonomie décisionnelle"
+            "term": "Autonomie décisionnelle",
+            "importance": "indispensable"
           },
           {
             "definition": "apprécier la capacité de la personne à réaliser des actes de la vie quotidienne (AVQ) et l’accompagner dans les soins en favorisant sa participation et celle de son entourage / adapter les soins quotidiens en tenant compte des ressources / évaluer, anticiper et prévenir les risques liés à la diminution ou la perte de l’autonomie",
-            "term": "Mesure de l’autonomie"
+            "term": "Mesure de l’autonomie",
+            "importance": "indispensable"
           },
           {
             "definition": "Observation clinique (recueil) / Écoute du patient",
-            "term": "Méthodes de mesure"
+            "term": "Méthodes de mesure",
+            "importance": "utile"
           },
           {
             "definition": "échelles",
-            "term": "Outils de mesure"
+            "term": "Outils de mesure",
+            "importance": "utile"
           },
           {
             "definition": "de 0 (dépendance) à 6 (autonome). Indication principale : maladie d’Alzheimer, retour à domicile, mettre en place les aides à domicile. Activites of Daily Living ou Katz mesure 6 activités de base de la vie quotidienne : hygiène corporelle, habillage, aller aux toilettes, transfert, continence, repas",
-            "term": "Échelle ADL"
+            "term": "Échelle ADL",
+            "importance": "utile"
           },
           {
             "definition": "de 0 (dépendance) à 8 (autonome). Indication principale : retour à domicile, mettre en place les aides à domicile. Instrumental Activites of Daily Living mesure 8 activités plus complexes : utilisation téléphone, courses, préparation aliments, entretien ménager, lessive, moyen de transport, gestion des médicaments, gestion budget.",
-            "term": "Échelle IADL"
+            "term": "Échelle IADL",
+            "importance": "indispensable"
           },
           {
             "definition": "Autonomie Gérontologie Groupe Iso Ressources crée en France en 1996. évalue le niveau de perte d’autonomie. Déterminer un groupe GIR 1 (dépendant) à 6 (autonome). Permet l’éligibilité à l’APA des groupes 1 à 4 (Allocation Personnalisée à l’Autonomie).17 critères = 10 variables physique et psychique (calcul du GIR) + 7 variables domestique et sociale (élaborer plan d’aide à domicile).Variable = A (acte accomplit seul, spontanément totalement habituellement et correctement), B (acte accomplit seul, non spontanément et/ou partiellement habituellement, correctement), C (acte n’accomplit pas seul ni spontanément, ni habituellement, ni correctement)",
-            "term": "Échelle AGGIR"
+            "term": "Échelle AGGIR",
+            "importance": "indispensable"
           },
           {
             "definition": "adapter les soins en préservant l’autonomie +++, ne pas faire à la place de la personne en soin",
-            "term": "Application clinique infirmière"
+            "term": "Application clinique infirmière",
+            "importance": "indispensable"
           }
         ],
         "filename": "méthode et outils de mesure de l’autonomie.odt"
