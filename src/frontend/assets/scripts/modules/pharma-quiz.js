@@ -342,8 +342,9 @@ class PharmaQuiz {
      * Génère une explication
      */
     generateExplanation(data, field) {
+        const classLabel = `${data.sousType || data.famille} (${data.famille})`;
         const explanations = {
-            nomCommercial: `Identification: "${data.exemplesCommerciaux}" est un nom commercial du ${data.medicamentPrincipal}, appartenant à la classe ${data.famille}`,
+            nomCommercial: `Identification: "${data.exemplesCommerciaux}" est un nom commercial du ${data.medicamentPrincipal}, appartenant à la classe ${classLabel}`,
             indications: `Indications: ${data.indication1}${data.indication2 ? ' et ' + data.indication2 : ''}`,
             mecanisme: `Mécanisme: ${data.mecanismeCourt}`,
             effets: `Effets indésirables: ${data.ide1Grave}${data.ide2 ? ' et ' + data.ide2 : ''}`,
@@ -552,26 +553,28 @@ class PharmaQuiz {
      */
     generateNomCommercialQuestions(data) {
         const nomComm = data.exemplesCommerciaux || 'ce médicament';
+        const sousType = data.sousType || data.famille;
         const famille = data.famille;
         const med = data.medicamentPrincipal;
+        const classLabel = `${sousType} (${famille})`;
 
         return [
             // Questions positives - identification famille à partir du nom commercial
-            { question: `Le médicament "${nomComm}" appartient à la classe: ${famille}`, answer: true, field: 'nomCommercial' },
-            { question: `"${nomComm}" est un médicament de la classe ${famille}`, answer: true, field: 'nomCommercial' },
-            { question: `Si on vous dit le nom commercial "${nomComm}", il s'agit d'un ${famille}`, answer: true, field: 'nomCommercial' },
-            { question: `${nomComm} est un exemple de ${famille}`, answer: true, field: 'nomCommercial' },
-            { question: `La classe thérapeutique du médicament "${nomComm}" est ${famille}`, answer: true, field: 'nomCommercial' },
-            { question: `"${nomComm}" est classé parmi les ${famille}`, answer: true, field: 'nomCommercial' },
-            { question: `Le nom commercial "${nomComm}" correspond à un médicament ${famille}`, answer: true, field: 'nomCommercial' },
-            { question: `${nomComm} figure dans la classe des ${famille}`, answer: true, field: 'nomCommercial' },
-            { question: `Lorsqu'on rencontre le terme "${nomComm}", on identifie un ${famille}`, answer: true, field: 'nomCommercial' },
-            { question: `${med} vendu sous le nom commercial "${nomComm}" est un ${famille}`, answer: true, field: 'nomCommercial' },
+            { question: `Le médicament "${nomComm}" appartient à la classe: ${classLabel}`, answer: true, field: 'nomCommercial' },
+            { question: `"${nomComm}" est un médicament de la classe ${classLabel}`, answer: true, field: 'nomCommercial' },
+            { question: `Si on vous dit le nom commercial "${nomComm}", il s'agit d'un ${classLabel}`, answer: true, field: 'nomCommercial' },
+            { question: `${nomComm} est un exemple de ${classLabel}`, answer: true, field: 'nomCommercial' },
+            { question: `La classe thérapeutique du médicament "${nomComm}" est ${classLabel}`, answer: true, field: 'nomCommercial' },
+            { question: `"${nomComm}" est classé parmi les ${classLabel}`, answer: true, field: 'nomCommercial' },
+            { question: `Le nom commercial "${nomComm}" correspond à un médicament ${classLabel}`, answer: true, field: 'nomCommercial' },
+            { question: `${nomComm} figure dans la classe des ${classLabel}`, answer: true, field: 'nomCommercial' },
+            { question: `Lorsqu'on rencontre le terme "${nomComm}", on identifie un ${classLabel}`, answer: true, field: 'nomCommercial' },
+            { question: `${med} vendu sous le nom commercial "${nomComm}" est un ${classLabel}`, answer: true, field: 'nomCommercial' },
             
             // Questions négatives - faux noms ou fausses classes (pièges)
-            { question: `"${nomComm}" est un antibiotique de la classe des fluoroquinolones`, answer: famille.toLowerCase().includes('antibiotique') && famille.toLowerCase().includes('fluoroquinolone'), field: 'nomCommercial' },
-            { question: `${nomComm} appartient à la classe des anticoagulants directs`, answer: famille.toLowerCase().includes('anticoagulant'), field: 'nomCommercial' },
-            { question: `Le nom commercial "${nomComm}" correspond à une hormone thyroïdienne`, answer: famille.toLowerCase().includes('thyroid'), field: 'nomCommercial' }
+            { question: `"${nomComm}" est un antibiotique de la classe des fluoroquinolones`, answer: sousType.toLowerCase().includes('antibiotique') && sousType.toLowerCase().includes('fluoroquinolone'), field: 'nomCommercial' },
+            { question: `${nomComm} appartient à la classe des anticoagulants directs`, answer: sousType.toLowerCase().includes('anticoagulant'), field: 'nomCommercial' },
+            { question: `Le nom commercial "${nomComm}" correspond à une hormone thyroïdienne`, answer: sousType.toLowerCase().includes('thyroid'), field: 'nomCommercial' }
         ];
     }
 
