@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFSI Lannion 2025 - Prises en Charge IDE</title>
+    <link rel="manifest" href="../../../public/manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2rem;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            max-width: 600px;
+        }
+
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* UE Tabs */
+        .ue-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .ue-tab {
+            padding: 0.75rem 1.5rem;
+            background: #f0f0f0;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .ue-tab:hover {
+            background: #e0e0e0;
+        }
+
+        .ue-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+        }
+
+        /* Search & Filter */
+        .filters {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Tables Container */
+        .tables-container {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .table-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead th {
+            background: #f8f9fa;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #2c3e50;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        tbody td {
+            padding: 1rem;
+            border-bottom: 1px solid #e9ecef;
+            color: #555;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .term-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .importance-badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .importance-indispensable {
+            background: #ffe0e0;
+            color: #c00;
+        }
+
+        .importance-utile {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .definition-preview {
+            max-width: 400px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Empty State */
+        .empty-state {
+            padding: 3rem;
+            text-align: center;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .ue-tabs {
+                justify-content: center;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .table-wrapper {
+                font-size: 0.9rem;
+            }
+
+            thead th, tbody td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .definition-preview {
+                max-width: 100%;
+            }
+        }
+
+        /* Stats */
+        .stats-bar {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div>
+                <h1>🏥 Prises en Charge IDE</h1>
+                <p>Tableaux récapitulatifs organisés par Unité d'Enseignement</p>
+            </div>
+            <a href="./home.html" class="back-btn">← Retour à l'accueil</a>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-bar" id="statsBar">
+            <div class="stat-item">
+                <span class="stat-number" id="totalTerms">-</span>
+                <span class="stat-label">Termes total</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="totalUEs">-</span>
+                <span class="stat-label">UE couvertes</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="indispensableCount">-</span>
+                <span class="stat-label">Indispensables</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="usefulCount">-</span>
+                <span class="stat-label">Utiles</span>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <input 
+                type="text" 
+                class="search-input" 
+                id="searchInput" 
+                placeholder="🔍 Rechercher un terme, une UE..."
+            >
+        </div>
+
+        <!-- UE Tabs -->
+        <div class="ue-tabs" id="ueTabs">
+            <!-- Générés dynamiquement -->
+        </div>
+
+        <!-- Tables -->
+        <div class="tables-container" id="tablesContainer">
+            <!-- Générés dynamiquement -->
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Plateforme de révision IFSI Lannion 2025 | Accès public</p>
+        </div>
+    </div>
+
+    <script>
+        // Données globales
+        let allCourses = [];
+        let currentUE = null;
+        let searchQuery = '';
+
+        // Charger les données au démarrage
+        async function loadData() {
+            try {
+                // Charger les cours depuis courses.json
+                const response = await fetch('../../../src/data/courses.json');
+                const data = await response.json();
+                allCourses = data.courses;
+                
+                // Initialiser l'interface
+                initializeUI();
+                updateStats();
+                renderTables();
+            } catch (error) {
+                console.error('Erreur chargement données:', error);
+                document.getElementById('tablesContainer').innerHTML = 
+                    '<div class="empty-state"><div class="empty-state-icon">❌</div><h3>Erreur de chargement</h3><p>Impossible de charger les données.</p></div>';
+            }
+        }
+
+        // Initialiser l'interface
+        function initializeUI() {
+            // Extraire les UEs uniques et triées
+            const ues = [...new Set(allCourses.map(course => course[1].ue))].sort();
+            
+            // Générer les onglets UE
+            const tabsContainer = document.getElementById('ueTabs');
+            tabsContainer.innerHTML = ues.map((ue, index) => `
+                <button class="ue-tab ${index === 0 ? 'active' : ''}" onclick="selectUE('${ue}')">
+                    ${ue}
+                </button>
+            `).join('');
+
+            // Sélectionner le premier UE par défaut
+            currentUE = ues[0];
+
+            // Écouteurs d'événements
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                searchQuery = e.target.value.toLowerCase();
+                renderTables();
+            });
+        }
+
+        // Sélectionner une UE
+        function selectUE(ue) {
+            currentUE = ue;
+            
+            // Mettre à jour l'UI
+            document.querySelectorAll('.ue-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Afficher les tables
+            renderTables();
+        }
+
+        // Mettre à jour les statistiques
+        function updateStats() {
+            const uniqueTerms = new Set();
+            const uniqueUEs = new Set();
+            let indispensable = 0;
+            let useful = 0;
+
+            allCourses.forEach(course => {
+                const courseData = course[1];
+                uniqueUEs.add(courseData.ue);
+
+                if (courseData.definitions) {
+                    courseData.definitions.forEach(def => {
+                        uniqueTerms.add(def.term);
+                        if (def.importance === 'indispensable') indispensable++;
+                        if (def.importance === 'utile') useful++;
+                    });
+                }
+            });
+
+            document.getElementById('totalTerms').textContent = uniqueTerms.size;
+            document.getElementById('totalUEs').textContent = uniqueUEs.size;
+            document.getElementById('indispensableCount').textContent = indispensable;
+            document.getElementById('usefulCount').textContent = useful;
+        }
+
+        // Afficher les tables
+        function renderTables() {
+            const container = document.getElementById('tablesContainer');
+            
+            // Filtrer les cours pour l'UE sélectionnée
+            const coursesForUE = allCourses.filter(course => {
+                const ue = course[1].ue;
+                return ue === currentUE;
+            });
+
+            if (coursesForUE.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📭</div><p>Aucun cours pour cette UE.</p></div>';
+                return;
+            }
+
+            // Générer les tables
+            const html = coursesForUE.map(course => {
+                const courseData = course[1];
+                const definitions = courseData.definitions || [];
+
+                // Filtrer par recherche
+                const filtered = definitions.filter(def => {
+                    if (!searchQuery) return true;
+                    return def.term.toLowerCase().includes(searchQuery) ||
+                           def.definition.toLowerCase().includes(searchQuery);
+                });
+
+                if (filtered.length === 0) return '';
+
+                return `
+                    <div class="table-card">
+                        <div class="table-header">
+                            📚 ${courseData.title}
+                            <small style="display: block; font-size: 0.8rem; opacity: 0.8; margin-top: 0.25rem;">
+                                ${courseData.author ? 'Par ' + courseData.author : ''} | ${courseData.date || 'Date inconnue'}
+                            </small>
+                        </div>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Terme</th>
+                                        <th>Importance</th>
+                                        <th>Définition</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${filtered.map(def => `
+                                        <tr>
+                                            <td class="term-name">${def.term}</td>
+                                            <td>
+                                                <span class="importance-badge importance-${def.importance}">
+                                                    ${def.importance === 'indispensable' ? '🔴 Indispensable' : 
+                                                      def.importance === 'utile' ? '🟡 Utile' : '⚪ Autre'}
+                                                </span>
+                                            </td>
+                                            <td class="definition-preview">${def.definition}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            }).filter(html => html !== '').join('');
+
+            container.innerHTML = html || '<div class="empty-state"><div class="empty-state-icon">🔍</div><p>Aucun résultat pour votre recherche.</p></div>';
+        }
+
+        // Démarrer au chargement
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>

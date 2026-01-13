@@ -403,8 +403,8 @@
     </style>
 </head>
 <body>
-    <!-- Statut d'authentification -->
-    <div class="auth-status" id="authStatus">
+    <!-- Statut d'authentification - MASQUÉ (accès public) -->
+    <div class="auth-status" id="authStatus" style="display: none;">
         <!-- Contenu généré dynamiquement -->
     </div>
 
@@ -437,7 +437,7 @@
                 </div>
             </a>
             
-            <a href="./statistics.html" class="nav-btn stats">
+            <a href="./statistics.html" class="nav-btn stats" style="display: none;" id="statsBtn">
                 <div class="nav-btn-icon">📊</div>
                 <div class="nav-btn-content">
                     <h3>Statistiques</h3>
@@ -452,6 +452,14 @@
                     <p>Testez vos connaissances avec des QCM/QCU</p>
                 </div>
             </button>
+            
+            <a href="./ide-management.html" class="nav-btn" style="background: linear-gradient(135deg, #9966ff 0%, #6633cc 100%); color: white;">
+                <div class="nav-btn-icon">🏥</div>
+                <div class="nav-btn-content">
+                    <h3>Prises en Charge IDE</h3>
+                    <p>Tableaux récapitulatifs organisés par UE</p>
+                </div>
+            </a>
             
             <!-- Gallery cachée pour tous les utilisateurs -->
             <!--
