@@ -139,6 +139,9 @@
         thead {
             background: #f8f9fa;
             border-bottom: 2px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         th {
@@ -149,7 +152,41 @@
             white-space: nowrap;
             word-wrap: break-word;
             max-width: 300px;
+            position: sticky;
+            top: 0;
+            background: #f8f9fa;
+            z-index: 11;
         }
+
+        /* Couleurs pastel pour chaque colonne */
+        th:nth-child(1), td:nth-child(1) {
+            background: #fef3e2;
+            width: 180px;
+            min-width: 180px;
+            position: sticky;
+            left: 0;
+            z-index: 12;
+        }
+
+        thead th:nth-child(1) {
+            z-index: 13;
+        }
+
+        th:nth-child(2) { background: #e8f4f8; }
+        th:nth-child(3) { background: #f0e8f8; }
+        th:nth-child(4) { background: #e8f8f0; }
+        th:nth-child(5) { background: #f8f0e8; }
+        th:nth-child(6) { background: #f0f8e8; }
+        th:nth-child(7) { background: #f8e8f0; }
+        th:nth-child(8) { background: #e8f0f8; }
+
+        td:nth-child(2) { background: #f8fbfc; }
+        td:nth-child(3) { background: #faf8fc; }
+        td:nth-child(4) { background: #f8fcfa; }
+        td:nth-child(5) { background: #fcfaf8; }
+        td:nth-child(6) { background: #fafcf8; }
+        td:nth-child(7) { background: #fcf8fa; }
+        td:nth-child(8) { background: #f8fafс; }
 
         td {
             padding: 1rem;
@@ -158,25 +195,70 @@
             vertical-align: top;
             word-wrap: break-word;
             max-width: 300px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         tbody tr:hover {
-            background: #f8f9fa;
+            background-color: rgba(102, 126, 234, 0.05);
         }
 
-        /* First column - row headers */
+        /* First column - row headers avec titres verticaux */
         td:first-child,
         th:first-child {
             font-weight: 600;
-            background: #f8f9fa;
             color: #2c3e50;
-            max-width: 150px;
+            max-width: 180px;
             white-space: normal;
             word-break: break-word;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            padding: 1.5rem 0.75rem;
         }
 
-        tbody tr:hover td:first-child {
-            background: #e8ecf0;
+        /* Accordion toggle */
+        td.expandable::before {
+            content: '▼';
+            display: inline-block;
+            margin-right: 0.5rem;
+            transition: transform 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        td.expandable.collapsed::before {
+            transform: rotate(-90deg);
+        }
+
+        /* Contenu masqué par défaut */
+        .cell-content {
+            white-space: normal;
+            word-wrap: break-word;
+            line-height: 1.6;
+            max-height: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cell-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(transparent, white);
+            pointer-events: none;
+        }
+
+        /* État développé */
+        td.expanded .cell-content {
+            max-height: none;
+            overflow: visible;
+        }
+
+        td.expanded .cell-content::after {
+            display: none;
         }
 
         /* Content formatting */
@@ -443,12 +525,15 @@
             html += '</tr></thead><tbody>';
 
             // Créer les lignes du tableau
-            bodyRows.forEach(row => {
-                html += '<tr>';
-                row.forEach((cell, idx) => {
+            bodyRows.forEach((row, rowIdx) => {
+                html += `<tr data-row="${rowIdx}">`;
+                row.forEach((cell, colIdx) => {
                     // Formater le contenu (gérer les listes à tirets)
                     const content = formatCellContent(cell);
-                    html += `<td><div class="cell-content">${content}</div></td>`;
+                    // Ajouter la classe expandable pour les cellules non-header
+                    const isHeaderCol = colIdx === 0;
+                    const expandClass = isHeaderCol ? '' : 'expandable collapsed';
+                    html += `<td class="${expandClass}" onclick="toggleCell(this, event)"><div class="cell-content">${content}</div></td>`;
                 });
                 html += '</tr>';
             });
@@ -518,6 +603,25 @@
                 "'": '&#039;'
             };
             return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        /**
+         * Toggle l'expansion d'une cellule
+         */
+        function toggleCell(cell, event) {
+            // Ne pas toggle si c'est la première colonne (header)
+            if (cell.cellIndex === 0) return;
+            
+            event.stopPropagation();
+            
+            // Toggle les classes
+            if (cell.classList.contains('collapsed')) {
+                cell.classList.remove('collapsed');
+                cell.classList.add('expanded');
+            } else if (cell.classList.contains('expanded')) {
+                cell.classList.remove('expanded');
+                cell.classList.add('collapsed');
+            }
         }
 
         // Charger les tableaux au démarrage
