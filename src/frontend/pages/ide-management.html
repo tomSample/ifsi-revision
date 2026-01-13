@@ -21,7 +21,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -45,7 +45,6 @@
 
         .header p {
             color: #7f8c8d;
-            max-width: 600px;
         }
 
         .back-btn {
@@ -66,74 +65,38 @@
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
-        /* UE Tabs */
-        .ue-tabs {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 3rem;
             background: white;
-            padding: 1rem;
             border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        .ue-tab {
-            padding: 0.75rem 1.5rem;
-            background: #f0f0f0;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
             color: #666;
         }
 
-        .ue-tab:hover {
-            background: #e0e0e0;
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
         }
 
-        .ue-tab.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-color: #667eea;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        /* Search & Filter */
-        .filters {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .search-input {
-            flex: 1;
-            min-width: 200px;
-            padding: 0.75rem 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        /* Tables Container */
-        .tables-container {
+        /* Charts Container */
+        .charts-container {
             display: grid;
             gap: 2rem;
         }
 
-        .table-card {
+        .chart-card {
             background: white;
             border-radius: 12px;
             overflow: hidden;
@@ -152,7 +115,7 @@
             }
         }
 
-        .table-header {
+        .chart-title {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 1.5rem;
@@ -162,64 +125,75 @@
 
         .table-wrapper {
             overflow-x: auto;
+            padding: 1rem;
         }
 
+        /* === TABLE STYLING === */
         table {
             width: 100%;
             border-collapse: collapse;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
-        thead th {
+        thead {
             background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        th {
             padding: 1rem;
             text-align: left;
             font-weight: 600;
             color: #2c3e50;
-            border-bottom: 2px solid #e0e0e0;
+            white-space: nowrap;
+            word-wrap: break-word;
+            max-width: 300px;
         }
 
-        tbody td {
+        td {
             padding: 1rem;
             border-bottom: 1px solid #e9ecef;
             color: #555;
+            vertical-align: top;
+            word-wrap: break-word;
+            max-width: 300px;
         }
 
         tbody tr:hover {
             background: #f8f9fa;
         }
 
-        tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .term-name {
+        /* First column - row headers */
+        td:first-child,
+        th:first-child {
             font-weight: 600;
+            background: #f8f9fa;
             color: #2c3e50;
+            max-width: 150px;
+            white-space: normal;
+            word-break: break-word;
         }
 
-        .importance-badge {
-            display: inline-block;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            white-space: nowrap;
+        tbody tr:hover td:first-child {
+            background: #e8ecf0;
         }
 
-        .importance-indispensable {
-            background: #ffe0e0;
-            color: #c00;
+        /* Content formatting */
+        td ul, td ol {
+            margin: 0.5rem 0 0.5rem 1.5rem;
+            padding: 0;
         }
 
-        .importance-utile {
-            background: #fff3cd;
-            color: #856404;
+        td li {
+            margin: 0.3rem 0;
+            color: #555;
         }
 
-        .definition-preview {
-            max-width: 400px;
-            color: #666;
-            line-height: 1.4;
+        /* Line breaks in content */
+        .cell-content {
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
 
         /* Empty State */
@@ -227,6 +201,8 @@
             padding: 3rem;
             text-align: center;
             color: #999;
+            background: white;
+            border-radius: 12px;
         }
 
         .empty-state-icon {
@@ -256,60 +232,20 @@
                 font-size: 1.5rem;
             }
 
-            .ue-tabs {
-                justify-content: center;
-            }
-
-            .filters {
-                flex-direction: column;
-            }
-
-            .search-input {
-                width: 100%;
-            }
-
             .table-wrapper {
-                font-size: 0.9rem;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
-            thead th, tbody td {
+            th, td {
                 padding: 0.75rem 0.5rem;
+                font-size: 0.85rem;
+                max-width: 150px;
             }
 
-            .definition-preview {
-                max-width: 100%;
+            table {
+                font-size: 0.85rem;
             }
-        }
-
-        /* Stats */
-        .stats-bar {
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #667eea;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -319,216 +255,234 @@
         <div class="header">
             <div>
                 <h1>🏥 Prises en Charge IDE</h1>
-                <p>Tableaux récapitulatifs organisés par Unité d'Enseignement</p>
+                <p>Tableaux récapitulatifs par Unité d'Enseignement</p>
             </div>
             <a href="./home.html" class="back-btn">← Retour à l'accueil</a>
         </div>
 
-        <!-- Stats -->
-        <div class="stats-bar" id="statsBar">
-            <div class="stat-item">
-                <span class="stat-number" id="totalTerms">-</span>
-                <span class="stat-label">Termes total</span>
+        <!-- Charts Container -->
+        <div class="charts-container" id="chartsContainer">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Chargement des tableaux...</p>
             </div>
-            <div class="stat-item">
-                <span class="stat-number" id="totalUEs">-</span>
-                <span class="stat-label">UE couvertes</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" id="indispensableCount">-</span>
-                <span class="stat-label">Indispensables</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" id="usefulCount">-</span>
-                <span class="stat-label">Utiles</span>
-            </div>
-        </div>
-
-        <!-- Filters -->
-        <div class="filters">
-            <input 
-                type="text" 
-                class="search-input" 
-                id="searchInput" 
-                placeholder="🔍 Rechercher un terme, une UE..."
-            >
-        </div>
-
-        <!-- UE Tabs -->
-        <div class="ue-tabs" id="ueTabs">
-            <!-- Générés dynamiquement -->
-        </div>
-
-        <!-- Tables -->
-        <div class="tables-container" id="tablesContainer">
-            <!-- Générés dynamiquement -->
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            <p>Plateforme de révision IFSI Lannion 2025 | Accès public</p>
+            <p>Plateforme de révision IFSI Lannion 2025 | Prises en charge IDE</p>
         </div>
     </div>
 
     <script>
-        // Données globales
-        let allCourses = [];
-        let currentUE = null;
-        let searchQuery = '';
-
-        // Charger les données au démarrage
-        async function loadData() {
-            try {
-                // Charger les cours depuis courses.json
-                const response = await fetch('../../../src/data/courses.json');
-                const data = await response.json();
-                allCourses = data.courses;
-                
-                // Initialiser l'interface
-                initializeUI();
-                updateStats();
-                renderTables();
-            } catch (error) {
-                console.error('Erreur chargement données:', error);
-                document.getElementById('tablesContainer').innerHTML = 
-                    '<div class="empty-state"><div class="empty-state-icon">❌</div><h3>Erreur de chargement</h3><p>Impossible de charger les données.</p></div>';
-            }
-        }
-
-        // Initialiser l'interface
-        function initializeUI() {
-            // Extraire les UEs uniques et triées
-            const ues = [...new Set(allCourses.map(course => course[1].ue))].sort();
+        /**
+         * Parser CSV simple avec support du contenu multi-ligne
+         */
+        function parseCSV(csvText) {
+            const lines = csvText.trim().split('\n');
+            const data = [];
             
-            // Générer les onglets UE
-            const tabsContainer = document.getElementById('ueTabs');
-            tabsContainer.innerHTML = ues.map((ue, index) => `
-                <button class="ue-tab ${index === 0 ? 'active' : ''}" onclick="selectUE('${ue}')">
-                    ${ue}
-                </button>
-            `).join('');
+            for (let i = 0; i < lines.length; i++) {
+                // Gérer les guillemets pour les cellules multi-lignes
+                let line = lines[i];
+                let row = [];
+                let current = '';
+                let insideQuotes = false;
 
-            // Sélectionner le premier UE par défaut
-            currentUE = ues[0];
+                for (let j = 0; j < line.length; j++) {
+                    const char = line[j];
+                    const nextChar = line[j + 1];
 
-            // Écouteurs d'événements
-            document.getElementById('searchInput').addEventListener('input', (e) => {
-                searchQuery = e.target.value.toLowerCase();
-                renderTables();
-            });
-        }
-
-        // Sélectionner une UE
-        function selectUE(ue) {
-            currentUE = ue;
-            
-            // Mettre à jour l'UI
-            document.querySelectorAll('.ue-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Afficher les tables
-            renderTables();
-        }
-
-        // Mettre à jour les statistiques
-        function updateStats() {
-            const uniqueTerms = new Set();
-            const uniqueUEs = new Set();
-            let indispensable = 0;
-            let useful = 0;
-
-            allCourses.forEach(course => {
-                const courseData = course[1];
-                uniqueUEs.add(courseData.ue);
-
-                if (courseData.definitions) {
-                    courseData.definitions.forEach(def => {
-                        uniqueTerms.add(def.term);
-                        if (def.importance === 'indispensable') indispensable++;
-                        if (def.importance === 'utile') useful++;
-                    });
+                    if (char === '"' && nextChar === '"') {
+                        current += '"';
+                        j++; // Skip next quote
+                    } else if (char === '"') {
+                        insideQuotes = !insideQuotes;
+                    } else if (char === ',' && !insideQuotes) {
+                        row.push(current.trim());
+                        current = '';
+                    } else {
+                        current += char;
+                    }
                 }
-            });
-
-            document.getElementById('totalTerms').textContent = uniqueTerms.size;
-            document.getElementById('totalUEs').textContent = uniqueUEs.size;
-            document.getElementById('indispensableCount').textContent = indispensable;
-            document.getElementById('usefulCount').textContent = useful;
+                row.push(current.trim());
+                data.push(row);
+            }
+            
+            return data;
         }
 
-        // Afficher les tables
-        function renderTables() {
-            const container = document.getElementById('tablesContainer');
-            
-            // Filtrer les cours pour l'UE sélectionnée
-            const coursesForUE = allCourses.filter(course => {
-                const ue = course[1].ue;
-                return ue === currentUE;
-            });
+        /**
+         * Charger et afficher tous les fichiers CSV de role_ide_charts
+         */
+        async function loadAndDisplayCharts() {
+            try {
+                const container = document.getElementById('chartsContainer');
+                container.innerHTML = ''; // Vider le loading
 
-            if (coursesForUE.length === 0) {
-                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📭</div><p>Aucun cours pour cette UE.</p></div>';
-                return;
-            }
+                // Liste des fichiers CSV à charger (à adapter selon les fichiers disponibles)
+                const csvFiles = [
+                    'UE 2.4.S1 - Traumatismes.csv'
+                    // Ajouter d'autres fichiers ici à mesure que vous les uploadez
+                    // 'UE X.X.SX - Titre.csv',
+                    // 'UE Y.Y.SY - Titre.csv',
+                ];
 
-            // Générer les tables
-            const html = coursesForUE.map(course => {
-                const courseData = course[1];
-                const definitions = courseData.definitions || [];
+                let chartsLoaded = 0;
 
-                // Filtrer par recherche
-                const filtered = definitions.filter(def => {
-                    if (!searchQuery) return true;
-                    return def.term.toLowerCase().includes(searchQuery) ||
-                           def.definition.toLowerCase().includes(searchQuery);
-                });
+                for (const filename of csvFiles) {
+                    try {
+                        const response = await fetch(`../../../src/data/role_ide_charts/${encodeURIComponent(filename)}`);
+                        
+                        if (!response.ok) {
+                            console.warn(`Fichier non trouvé: ${filename}`);
+                            continue;
+                        }
 
-                if (filtered.length === 0) return '';
+                        const csvText = await response.text();
+                        const rows = parseCSV(csvText);
 
-                return `
-                    <div class="table-card">
-                        <div class="table-header">
-                            📚 ${courseData.title}
-                            <small style="display: block; font-size: 0.8rem; opacity: 0.8; margin-top: 0.25rem;">
-                                ${courseData.author ? 'Par ' + courseData.author : ''} | ${courseData.date || 'Date inconnue'}
-                            </small>
+                        if (rows.length === 0) {
+                            console.warn(`Fichier vide: ${filename}`);
+                            continue;
+                        }
+
+                        // Créer la carte du tableau
+                        const card = document.createElement('div');
+                        card.className = 'chart-card';
+
+                        // Extraire le titre du nom de fichier (sans .csv)
+                        const title = filename.replace('.csv', '');
+                        
+                        card.innerHTML = `
+                            <div class="chart-title">${title}</div>
+                            <div class="table-wrapper">
+                                ${createTableHTML(rows)}
+                            </div>
+                        `;
+
+                        container.appendChild(card);
+                        chartsLoaded++;
+
+                    } catch (error) {
+                        console.error(`Erreur chargement ${filename}:`, error);
+                    }
+                }
+
+                // Si aucun fichier chargé
+                if (chartsLoaded === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📭</div>
+                            <h3>Aucun tableau disponible</h3>
+                            <p>Veuillez uploader les fichiers CSV dans src/data/role_ide_charts/</p>
                         </div>
-                        <div class="table-wrapper">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Terme</th>
-                                        <th>Importance</th>
-                                        <th>Définition</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    ${filtered.map(def => `
-                                        <tr>
-                                            <td class="term-name">${def.term}</td>
-                                            <td>
-                                                <span class="importance-badge importance-${def.importance}">
-                                                    ${def.importance === 'indispensable' ? '🔴 Indispensable' : 
-                                                      def.importance === 'utile' ? '🟡 Utile' : '⚪ Autre'}
-                                                </span>
-                                            </td>
-                                            <td class="definition-preview">${def.definition}</td>
-                                        </tr>
-                                    `).join('')}
-                                </tbody>
-                            </table>
-                        </div>
+                    `;
+                }
+
+            } catch (error) {
+                console.error('Erreur chargement tableaux:', error);
+                document.getElementById('chartsContainer').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">❌</div>
+                        <h3>Erreur de chargement</h3>
+                        <p>${error.message}</p>
                     </div>
                 `;
-            }).filter(html => html !== '').join('');
-
-            container.innerHTML = html || '<div class="empty-state"><div class="empty-state-icon">🔍</div><p>Aucun résultat pour votre recherche.</p></div>';
+            }
         }
 
-        // Démarrer au chargement
-        document.addEventListener('DOMContentLoaded', loadData);
+        /**
+         * Créer le HTML du tableau à partir des données CSV
+         */
+        function createTableHTML(rows) {
+            if (rows.length < 2) {
+                return '<p>Données insuffisantes pour afficher le tableau</p>';
+            }
+
+            const headers = rows[0];
+            const bodyRows = rows.slice(1);
+
+            let html = '<table><thead><tr>';
+            
+            // Créer les en-têtes
+            headers.forEach((header, idx) => {
+                html += `<th>${escapeHTML(header)}</th>`;
+            });
+            html += '</tr></thead><tbody>';
+
+            // Créer les lignes du tableau
+            bodyRows.forEach(row => {
+                html += '<tr>';
+                row.forEach((cell, idx) => {
+                    // Formater le contenu (gérer les sauts de ligne)
+                    const content = formatCellContent(cell);
+                    html += `<td><div class="cell-content">${content}</div></td>`;
+                });
+                html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+            return html;
+        }
+
+        /**
+         * Formater le contenu d'une cellule
+         */
+        function formatCellContent(text) {
+            if (!text) return '';
+            
+            // Échapper les caractères HTML
+            let content = escapeHTML(text);
+            
+            // Convertir les sauts de ligne en <br>
+            content = content.replace(/\n/g, '<br>');
+            
+            // Convertir les listes (lignes commençant par -) en ul/li
+            if (content.includes('- ')) {
+                const lines = content.split('<br>');
+                const listItems = [];
+                const otherLines = [];
+
+                lines.forEach(line => {
+                    const trimmed = line.trim();
+                    if (trimmed.startsWith('- ')) {
+                        listItems.push(trimmed.substring(2));
+                    } else if (trimmed) {
+                        otherLines.push(line);
+                    }
+                });
+
+                if (listItems.length > 0) {
+                    let html = '';
+                    if (otherLines.length > 0) {
+                        html += otherLines.join('<br>') + '<br>';
+                    }
+                    html += '<ul>' + listItems.map(item => `<li>${item}</li>`).join('') + '</ul>';
+                    return html;
+                }
+            }
+
+            return content;
+        }
+
+        /**
+         * Échapper les caractères HTML
+         */
+        function escapeHTML(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Charger les tableaux au démarrage
+        document.addEventListener('DOMContentLoaded', loadAndDisplayCharts);
     </script>
 </body>
 </html>
+
