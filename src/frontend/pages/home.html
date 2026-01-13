@@ -612,9 +612,9 @@
                     }
                 });
             } else {
-                // Utilisateur non connecté → Rediriger vers la landing page
-                console.log('⚠️ Utilisateur non connecté, redirection vers index.html');
-                window.location.href = './index.html';
+                // Utilisateur non connecté → ACCÈS PUBLIC, pas de redirection
+                console.log('✅ Accès public autorisé (pas d\'authentification requise)');
+                // Logique de redirection SUSPENDUE pour permettre l'accès public
             }
         });
     </script>
