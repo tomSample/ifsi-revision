@@ -334,36 +334,11 @@
                         </div>
                     </div>
 
-                    <!-- Boutons de difficulté (affichés après flip) -->
-                    <div id="difficultySection" class="difficulty-section" style="display: none;">
-                        <div class="difficulty-rating">
-                            <h4>💭 Comment avez-vous trouvé ce terme ?</h4>
-                            <p class="difficulty-hint">Votre réponse permet d'optimiser vos prochaines révisions</p>
-                            <div class="difficulty-buttons">
-                                <button class="difficulty-btn btn-easy" onclick="rateDifficulty('facile')" title="J'ai parfaitement su répondre">
-                                    <span class="difficulty-emoji">😊</span>
-                                    <span class="difficulty-label">Facile</span>
-                                    <span class="difficulty-interval">Revoir dans ~6 jours</span>
-                                </button>
-                                <button class="difficulty-btn btn-medium" onclick="rateDifficulty('moyen')" title="J'ai su répondre mais avec quelques hésitations">
-                                    <span class="difficulty-emoji">🤔</span>
-                                    <span class="difficulty-label">Moyen</span>
-                                    <span class="difficulty-interval">Revoir dans ~3 jours</span>
-                                </button>
-                                <button class="difficulty-btn btn-hard" onclick="rateDifficulty('difficile')" title="Je n'ai pas su répondre ou j'ai eu beaucoup de mal">
-                                    <span class="difficulty-emoji">😓</span>
-                                    <span class="difficulty-label">Difficile</span>
-                                    <span class="difficulty-interval">Revoir dans 1 jour</span>
-                                </button>
-                            </div>
-                            
-                            <!-- Bouton de signalement -->
-                            <div class="report-button-container" style="margin-top: 1.5rem; text-align: center;">
-                                <button id="reportTermBtn" class="btn-report" onclick="showReportModal()" title="Signaler une erreur ou proposer une amélioration">
-                                    ⚠️ Signaler cette définition
-                                </button>
-                            </div>
-                        </div>
+                    <!-- Bouton Suivant (affichés après flip) -->
+                    <div id="nextButtonSection" class="next-button-section" style="display: none; text-align: center; margin-top: 2rem;">
+                        <button class="btn btn-primary" onclick="nextTerm()" title="Passer à la flashcard suivante">
+                            Suivant →
+                        </button>
                     </div>
                 </div>
             </div>
@@ -455,26 +430,6 @@
     <script src="../assets/scripts/modules/spaced-repetition.js"></script>
     
     <!-- Script principal de révision avec flashcards -->
-    <script src="../assets/scripts/modules/revision.js?v=3.4.4"></script>
-    
-    <!-- PWA -->
-    <script src="../assets/scripts/utils/sw-register.js"></script>
-    <script src="../assets/scripts/utils/pwa-install.js"></script>
-    
-    <script>
-        // Fonction pour retourner la carte
-        function flipCard() {
-            const flashcard = document.getElementById('flashcard');
-            const difficultySection = document.getElementById('difficultySection');
-            
-            if (!flashcard.classList.contains('flipped')) {
-                flashcard.classList.add('flipped');
-                // Afficher les boutons de difficulté après un délai
-                setTimeout(() => {
-                    difficultySection.style.display = 'block';
-                }, 300);
-            }
-        }
-    </script>
+    <script src="../assets/scripts/modules/revision.js?v=3.4.5"></script>
 </body>
 </html>

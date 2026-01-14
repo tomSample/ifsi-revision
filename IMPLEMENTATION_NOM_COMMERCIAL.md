@@ -34,7 +34,7 @@ Ajouter une nouvelle question au quiz pharmacologie pour faire identifier la cla
   - Tests de compréhension des classes
   - Évaluation de la discernement
 
-### 3. Intégration dans la Génération Filtrée
+### 3. Intégration dans la Génération FiltréeS
 **Fichier**: `src/frontend/assets/scripts/modules/pharma-quiz.js`
 
 - **Mise à jour** de `generateFilteredQuiz()`:

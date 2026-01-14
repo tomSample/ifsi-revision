@@ -792,25 +792,19 @@ function resetFlashcardState() {
 
 // Fonction pour retourner la carte (appelée depuis HTML)
 function flipCard() {
-    // Vérifier si l'utilisateur doit d'abord voter
-    if (!currentTermHasVoted && classificationManager) {
-        showNotification('⚠️ Veuillez d\'abord classifier ce terme', 'warning');
-        return;
-    }
-    
     if (currentState !== 'thinking') return;
     
     const flashcard = document.getElementById('flashcard');
-    const difficultySection = document.getElementById('difficultySection');
+    const nextButtonSection = document.getElementById('nextButtonSection');
     
     if (!flashcard.classList.contains('flipped')) {
         flashcard.classList.add('flipped');
         currentState = 'revealed';
         
-        // Afficher les boutons de difficulté après un délai
+        // Afficher le bouton Suivant après un délai
         setTimeout(() => {
-            if (difficultySection) {
-                difficultySection.style.display = 'block';
+            if (nextButtonSection) {
+                nextButtonSection.style.display = 'block';
             }
         }, 300);
         
@@ -917,62 +911,16 @@ function revealDefinition() {
     });
 }
 
-// Passer au terme suivant
+// Passer au terme suivant - FONCTION DÉPRÉCIÉE (utiliser nextTerm() à la place)
 /**
- * Noter la difficulté d'un terme et passer au suivant
+ * Ancienne méthode pour noter la difficulté
+ * @deprecated - Utiliser nextTerm() à la place pour les flashcards simples
  * @param {string} difficulty - 'facile', 'moyen', ou 'difficile'
  */
 async function rateDifficulty(difficulty) {
-    const currentTerm = currentSession[currentTermIndex];
-    const termKey = generateTermKey(currentTerm);
-    
-    // Animation visuelle du bouton cliqué
-    const buttons = document.querySelectorAll('.difficulty-btn');
-    buttons.forEach(btn => btn.classList.remove('selected'));
-    if (event && event.target) {
-        event.target.closest('.difficulty-btn').classList.add('selected');
-    }
-    
-    // Calculer la nouvelle progression avec l'algorithme SM-2
-    if (spacedRepetition && syncManager) {
-        const currentProgress = userProgress[termKey] || null;
-        const newProgress = spacedRepetition.calculateNextReview(currentProgress, difficulty);
-        
-        // Sauvegarder dans Firestore
-        const saved = await syncManager.saveTermProgress(termKey, newProgress);
-        
-        if (saved) {
-            // Mettre à jour le cache local
-            userProgress[termKey] = newProgress;
-            
-            // Calculer les jours jusqu'à la prochaine révision
-            const daysUntilNext = Math.ceil((newProgress.nextReview - new Date()) / (1000 * 60 * 60 * 24));
-            const intervalText = spacedRepetition.formatInterval(daysUntilNext);
-            
-            showNotification(`✅ Progression sauvegardée ! Prochaine révision : ${intervalText}`, 'success');
-        } else {
-            showNotification('⚠️ Sauvegarde en attente (mode hors ligne)', 'warning');
-        }
-    } else {
-        console.log(`Note enregistrée (mode invité): ${difficulty} pour ${currentTerm.term}`);
-    }
-    
-    // Enregistrer le résultat dans la session (mode flashcard)
-    sessionResults.push({
-        term: currentTerm,
-        difficulty: difficulty
-    });
-    
-    // Passer au terme suivant après un court délai
-    setTimeout(() => {
-        currentTermIndex++;
-        
-        if (currentTermIndex < currentSession.length) {
-            showCurrentTerm();
-        } else {
-            showSessionSummary();
-        }
-    }, 800);
+    console.warn('⚠️ rateDifficulty() est déprécié - utiliser nextTerm() à la place');
+    // Juste passer au terme suivant sans noter la difficulté
+    nextTerm();
 }
 
 function nextTerm() {
