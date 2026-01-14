@@ -790,33 +790,31 @@ function resetFlashcardState() {
     difficultyButtons.forEach(btn => btn.classList.remove('selected'));
 }
 
-// Fonction pour retourner la carte (appelée depuis HTML)
+// Fonction pour retourner la carte ou passer à la suivante (appelée depuis HTML)
 function flipCard() {
-    if (currentState !== 'thinking') return;
-    
     const flashcard = document.getElementById('flashcard');
     const nextButtonSection = document.getElementById('nextButtonSection');
     
-    if (!flashcard.classList.contains('flipped')) {
-        flashcard.classList.add('flipped');
-        currentState = 'revealed';
-        
-        // Afficher le bouton Suivant après un délai
-        setTimeout(() => {
-            if (nextButtonSection) {
-                nextButtonSection.style.display = 'block';
-            }
-        }, 300);
-        
-        // Enregistrer dans les résultats de session
-        const currentTerm = currentSession[currentTermIndex];
-        sessionResults.push({
-            term: currentTerm,
-            userReflection: '', // Pas de réponse écrite avec flashcard
-            timestamp: new Date().toISOString(),
-            reported: false
-        });
+    // Si la flashcard est déjà retournée, passer au terme suivant
+    if (flashcard.classList.contains('flipped')) {
+        nextTerm();
+        return;
     }
+    
+    // Sinon, la retourner
+    if (currentState !== 'thinking') return;
+    
+    flashcard.classList.add('flipped');
+    currentState = 'revealed';
+    
+    // Enregistrer dans les résultats de session
+    const currentTerm = currentSession[currentTermIndex];
+    sessionResults.push({
+        term: currentTerm,
+        userReflection: '', // Pas de réponse écrite avec flashcard
+        timestamp: new Date().toISOString(),
+        reported: false
+    });
 }
 
 // État initial : réflexion (ancienne version avec textarea - conservée pour compatibilité)
