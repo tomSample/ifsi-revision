@@ -736,6 +736,8 @@ function generateTermKey(term) {
 async function showCurrentTerm() {
     const currentTerm = currentSession[currentTermIndex];
     
+    console.log('📍 Showing term', currentTermIndex + 1, ':', currentTerm.term);
+    
     // Mettre à jour l'affichage
     document.getElementById('termUE').textContent = `UE ${currentTerm.ue}`;
     document.getElementById('termNumber').textContent = `${currentTermIndex + 1}/${currentSession.length}`;
@@ -771,12 +773,15 @@ async function showCurrentTerm() {
 
 // Reset de la flashcard
 function resetFlashcardState() {
+    console.log('🔄 Resetting flashcard state to thinking');
     currentState = 'thinking';
     
-    // Réinitialiser la rotation de la carte
+    // Réinitialiser la rotation de la carte - IMPORTANT pour PC
     const flashcard = document.getElementById('flashcard');
     if (flashcard) {
         flashcard.classList.remove('flipped');
+        // Force le reflow pour s'assurer que les styles sont appliqués
+        void flashcard.offsetWidth;
     }
     
     // Masquer la section de difficulté
@@ -793,28 +798,42 @@ function resetFlashcardState() {
 // Fonction pour retourner la carte ou passer à la suivante (appelée depuis HTML)
 function flipCard() {
     const flashcard = document.getElementById('flashcard');
-    const nextButtonSection = document.getElementById('nextButtonSection');
+    if (!flashcard) {
+        console.error('❌ Flashcard element not found');
+        return;
+    }
+    
+    const isFlipped = flashcard.classList.contains('flipped');
+    
+    console.log('🖱️ flipCard called - isFlipped:', isFlipped, 'currentState:', currentState);
     
     // Si la flashcard est déjà retournée, passer au terme suivant
-    if (flashcard.classList.contains('flipped')) {
+    if (isFlipped) {
+        console.log('→ Passing to next term');
         nextTerm();
         return;
     }
     
     // Sinon, la retourner
-    if (currentState !== 'thinking') return;
+    if (currentState !== 'thinking') {
+        console.warn('⚠️ Cannot flip: currentState is', currentState, '(expected: thinking)');
+        return;
+    }
     
+    console.log('← Flipping card to revealed');
     flashcard.classList.add('flipped');
     currentState = 'revealed';
     
     // Enregistrer dans les résultats de session
     const currentTerm = currentSession[currentTermIndex];
-    sessionResults.push({
-        term: currentTerm,
-        userReflection: '', // Pas de réponse écrite avec flashcard
-        timestamp: new Date().toISOString(),
-        reported: false
-    });
+    if (currentTerm) {
+        sessionResults.push({
+            term: currentTerm,
+            userReflection: '', // Pas de réponse écrite avec flashcard
+            timestamp: new Date().toISOString(),
+            reported: false
+        });
+    }
 }
 
 // État initial : réflexion (ancienne version avec textarea - conservée pour compatibilité)

@@ -25,6 +25,7 @@
             margin: 0 auto;
         }
 
+        /* HEADER */
         .header {
             background: white;
             padding: 2rem;
@@ -45,6 +46,7 @@
 
         .header p {
             color: #7f8c8d;
+            flex: 1;
         }
 
         .back-btn {
@@ -63,6 +65,335 @@
         .back-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* ÉCRAN DE PORTAIL (UEs) */
+        .portal-screen {
+            display: none;
+        }
+
+        .portal-screen.active {
+            display: block;
+        }
+
+        .ue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .ue-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .ue-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+
+        .ue-card h3 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ue-card p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .ue-card .count {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ÉCRAN DE LISTE TABLEAUX */
+        .list-screen {
+            display: none;
+        }
+
+        .list-screen.active {
+            display: block;
+        }
+
+        .breadcrumb {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .charts-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .chart-item:hover {
+            transform: translateY(-6px);
+            border-color: #667eea;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .chart-item-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .chart-item h3 {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chart-item p {
+            color: #7f8c8d;
+            font-size: 0.85rem;
+        }
+
+        /* ÉCRAN DE VISUALISATION */
+        .view-screen {
+            display: none;
+        }
+
+        .view-screen.active {
+            display: block;
+        }
+
+        .view-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .view-header h2 {
+            color: #2c3e50;
+            flex: 1;
+        }
+
+        .view-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            padding: 0.75rem 1.5rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #764ba2;
+        }
+
+        .nav-btn.secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #d0d0d0;
+        }
+
+        /* Charts Container */
+        .charts-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .chart-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        /* === TABLE STYLING === */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        th {
+            padding: 1.25rem 1rem;
+            text-align: left;
+            font-weight: 700;
+            color: #2c3e50;
+            white-space: nowrap;
+            word-wrap: break-word;
+            max-width: 300px;
+            position: sticky;
+            top: 0;
+            background: #f9f9f9;
+            z-index: 101;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        th:nth-child(1), td:nth-child(1) {
+            background: #f9f9f9;
+            width: 120px;
+            min-width: 120px;
+            position: sticky;
+            left: 0;
+            z-index: 50;
+        }
+
+        thead th:nth-child(1) {
+            z-index: 102;
+        }
+
+        th:nth-child(2n) { background: #ffffff; }
+        th:nth-child(2n+1):not(:first-child) { background: #fafafa; }
+        
+        td:nth-child(2n) { background: #ffffff; }
+        td:nth-child(2n+1):not(:first-child) { background: #fafafa; }
+
+        td {
+            padding: 1.25rem 1rem;
+            border-bottom: 1px solid #e0e5eb;
+            color: #444;
+            vertical-align: top;
+            word-wrap: break-word;
+            max-width: 300px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(102, 126, 234, 0.04);
+            box-shadow: inset 2px 0 0 #667eea;
+        }
+
+        td:first-child, th:first-child {
+            font-weight: 700;
+            color: #2c3e50;
+            max-width: 120px;
+            white-space: normal;
+            word-break: break-word;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            padding: 1.5rem 0.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        td.expandable {
+            position: relative;
+            user-select: none;
+        }
+
+        td.expandable::before {
+            content: '▼';
+            display: inline-block;
+            margin-right: 0.75rem;
+            transition: transform 0.3s ease;
+            font-size: 0.7rem;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        td.expandable.collapsed::before {
+            transform: rotate(-90deg);
+        }
+
+        .cell-content {
+            white-space: normal;
+            word-wrap: break-word;
+            line-height: 1.6;
+            max-height: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        td.expanded .cell-content {
+            max-height: none;
+            overflow: visible;
+        }
+
+        td ul, td ol {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        td li {
+            margin: 0.4rem 0;
+            color: #555;
+            line-height: 1.5;
         }
 
         /* Loading State */
@@ -90,224 +421,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Charts Container */
-        .charts-container {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .chart-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            animation: slideIn 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .chart-title {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            flex: 1;
-        }
-
-        /* === TABLE STYLING === */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin: 1rem;
-        }
-
-        thead {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        th {
-            padding: 1.25rem 1rem;
-            text-align: left;
-            font-weight: 700;
-            color: #2c3e50;
-            white-space: nowrap;
-            word-wrap: break-word;
-            max-width: 300px;
-            position: sticky;
-            top: 0;
-            background: #f9f9f9;
-            z-index: 101;
-            font-size: 0.95rem;
-            letter-spacing: 0.3px;
-            border-bottom: 2px solid #667eea;
-        }
-
-        /* First column - neutral background */
-        th:nth-child(1), td:nth-child(1) {
-            background: #f9f9f9;
-            width: 120px;
-            min-width: 120px;
-            position: sticky;
-            left: 0;
-            z-index: 50;
-        }
-
-        thead th:nth-child(1) {
-            z-index: 102;
-        }
-
-        /* Alternating white and light gray for columns B onwards */
-        th:nth-child(2n) { background: #ffffff; }
-        th:nth-child(2n+1):not(:first-child) { background: #fafafa; }
-        
-        td:nth-child(2n) { background: #ffffff; }
-        td:nth-child(2n+1):not(:first-child) { background: #fafafa; }
-
-        td {
-            padding: 1.25rem 1rem;
-            border-bottom: 1px solid #e0e5eb;
-            color: #444;
-            vertical-align: top;
-            word-wrap: break-word;
-            max-width: 300px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        tbody tr {
-            transition: all 0.2s ease;
-        }
-
-        tbody tr:hover {
-            background-color: rgba(102, 126, 234, 0.04);
-            box-shadow: inset 2px 0 0 #667eea;
-        }
-
-        /* First column - row headers avec titres verticaux */
-        td:first-child,
-        th:first-child {
-            font-weight: 700;
-            color: #2c3e50;
-            max-width: 120px;
-            white-space: normal;
-            word-break: break-word;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            transform: rotate(180deg);
-            padding: 1.5rem 0.5rem;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-        }
-
-        /* Accordion toggle - Enhanced UX */
-        td.expandable {
-            position: relative;
-            user-select: none;
-        }
-
-        td.expandable::before {
-            content: '▼';
-            display: inline-block;
-            margin-right: 0.75rem;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 0.7rem;
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        td.expandable.collapsed::before {
-            transform: rotate(-90deg);
-        }
-
-        /* Visual feedback for expandable cells */
-        td.expandable:hover {
-            cursor: pointer;
-            background-color: rgba(102, 126, 234, 0.08) !important;
-        }
-
-        td.expandable.collapsed:hover::after {
-            content: 'Cliquer pour lire';
-            position: absolute;
-            bottom: -25px;
-            left: 0;
-            font-size: 0.75rem;
-            color: #667eea;
-            font-weight: 600;
-            white-space: nowrap;
-            opacity: 0;
-            animation: fadeInTip 0.3s ease forwards;
-        }
-
-        @keyframes fadeInTip {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Contenu masqué par défaut */
-        .cell-content {
-            white-space: normal;
-            word-wrap: break-word;
-            line-height: 1.6;
-            max-height: 100px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* État développé */
-        td.expanded .cell-content {
-            max-height: none;
-            overflow: visible;
-        }
-
-        /* Content formatting */
-        td ul, td ol {
-            margin: 0.5rem 0;
-            padding-left: 1.5rem;
-        }
-
-        td li {
-            margin: 0.4rem 0;
-            color: #555;
-            line-height: 1.5;
-        }
-
-        /* Line breaks in content */
-        .cell-content {
-            white-space: normal;
-            word-wrap: break-word;
-            line-height: 1.6;
-        }
-
-        .cell-content br {
-            display: block;
-            content: '';
-            margin: 0.3rem 0;
-        }
-
-        /* Empty State */
         .empty-state {
             padding: 3rem;
             text-align: center;
@@ -321,7 +434,6 @@
             margin-bottom: 1rem;
         }
 
-        /* Footer */
         .footer {
             background: white;
             padding: 1.5rem;
@@ -343,18 +455,17 @@
                 font-size: 1.5rem;
             }
 
-            .table-wrapper {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
+            .ue-grid, .charts-list {
+                grid-template-columns: 1fr;
+            }
+
+            .view-header {
+                flex-direction: column;
+                gap: 1rem;
             }
 
             th, td {
                 padding: 0.75rem 0.5rem;
-                font-size: 0.85rem;
-                max-width: 150px;
-            }
-
-            table {
                 font-size: 0.85rem;
             }
         }
@@ -368,14 +479,49 @@
                 <h1>🏥 Prises en Charge IDE</h1>
                 <p>Tableaux récapitulatifs par Unité d'Enseignement</p>
             </div>
-            <a href="./home.html" class="back-btn">← Retour à l'accueil</a>
+            <a href="./home.html" class="back-btn">← Accueil</a>
         </div>
 
-        <!-- Charts Container -->
-        <div class="charts-container" id="chartsContainer">
-            <div class="loading">
-                <div class="spinner"></div>
-                <p>Chargement des tableaux...</p>
+        <!-- ÉCRAN 1: PORTAIL UE -->
+        <div class="portal-screen active" id="portalScreen">
+            <div class="ue-grid" id="ueGrid">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Chargement des UE disponibles...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ÉCRAN 2: LISTE DES TABLEAUX -->
+        <div class="list-screen" id="listScreen">
+            <div class="breadcrumb">
+                <a onclick="backToPortal()">📚 Portail</a>
+                <span>›</span>
+                <span id="selectedUEName"></span>
+            </div>
+            <div class="charts-list" id="chartsList">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Chargement des tableaux...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ÉCRAN 3: VISUALISATION TABLEAU -->
+        <div class="view-screen" id="viewScreen">
+            <div class="view-header">
+                <div>
+                    <h2 id="viewTitle"></h2>
+                </div>
+                <div class="view-buttons">
+                    <button class="nav-btn secondary" onclick="backToList()">← Retour à la liste</button>
+                </div>
+            </div>
+            <div class="charts-container" id="tableContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Chargement du tableau...</p>
+                </div>
             </div>
         </div>
 
@@ -386,8 +532,13 @@
     </div>
 
     <script>
+        // État global
+        let allCharts = [];
+        let selectedUE = null;
+        let selectedChart = null;
+
         /**
-         * Parser CSV robuste avec support des guillemets et contenu multi-ligne
+         * Parser CSV robuste
          */
         function parseCSV(csvText) {
             const rows = [];
@@ -402,21 +553,17 @@
 
                 if (char === '"') {
                     if (insideQuotes && nextChar === '"') {
-                        // Échapper une guillemet doublée
                         currentCell += '"';
                         i += 2;
                     } else {
-                        // Toggle quote state
                         insideQuotes = !insideQuotes;
                         i++;
                     }
                 } else if (char === ',' && !insideQuotes) {
-                    // Fin de cellule
                     currentRow.push(currentCell.trim());
                     currentCell = '';
                     i++;
                 } else if ((char === '\n' || char === '\r') && !insideQuotes) {
-                    // Fin de ligne
                     if (currentCell.trim() || currentRow.length > 0) {
                         currentRow.push(currentCell.trim());
                         if (currentRow.some(cell => cell)) {
@@ -425,7 +572,6 @@
                         currentRow = [];
                         currentCell = '';
                     }
-                    // Skip \r\n
                     if (char === '\r' && nextChar === '\n') {
                         i += 2;
                     } else {
@@ -437,7 +583,6 @@
                 }
             }
 
-            // Ajouter la dernière cellule et ligne
             if (currentCell.trim() || currentRow.length > 0) {
                 currentRow.push(currentCell.trim());
                 if (currentRow.some(cell => cell)) {
@@ -449,74 +594,60 @@
         }
 
         /**
-         * Charger et afficher tous les fichiers CSV de role_ide_charts
+         * Extraire l'UE du nom de fichier
+         * Ex: "UE 2.4.S1 - Traumatismes.csv" => "UE 2.4.S1"
          */
-        async function loadAndDisplayCharts() {
+        function extractUE(filename) {
+            const match = filename.match(/^([^-]*)/);
+            return match ? match[1].trim() : filename;
+        }
+
+        /**
+         * Extraire le nom du tableau du nom de fichier
+         * Ex: "UE 2.4.S1 - Traumatismes.csv" => "Traumatismes"
+         */
+        function extractChartName(filename) {
+            const match = filename.match(/\s*-\s*(.+?)\.(csv|txt)$/i);
+            return match ? match[1].trim() : filename;
+        }
+
+        /**
+         * Charger tous les fichiers CSV disponibles
+         * Charge depuis deux sources: role_ide_charts et recap_charts
+         */
+        async function loadAllCharts() {
             try {
-                const container = document.getElementById('chartsContainer');
-                container.innerHTML = ''; // Vider le loading
+                allCharts = [];
 
-                // Liste des fichiers CSV à charger (à adapter selon les fichiers disponibles)
-                const csvFiles = [
+                // SOURCE 1: role_ide_charts (tableaux de prises en charge IDE)
+                const roleIdeCharts = [
                     'UE 2.4.S1 - Traumatismes.csv'
-                    // Ajouter d'autres fichiers ici à mesure que vous les uploadez
+                    // Ajouter d'autres fichiers ici
                 ];
-
-                let chartsLoaded = 0;
-
-                for (const filename of csvFiles) {
-                    try {
-                        const response = await fetch(`../../../src/data/role_ide_charts/${encodeURIComponent(filename)}`);
-                        
-                        if (!response.ok) {
-                            console.warn(`Fichier non trouvé: ${filename}`);
-                            continue;
-                        }
-
-                        const csvText = await response.text();
-                        const rows = parseCSV(csvText);
-
-                        if (rows.length === 0) {
-                            console.warn(`Fichier vide: ${filename}`);
-                            continue;
-                        }
-
-                        // Créer la carte du tableau
-                        const card = document.createElement('div');
-                        card.className = 'chart-card';
-
-                        // Extraire le titre du nom de fichier (sans .csv)
-                        const title = filename.replace('.csv', '');
-                        
-                        card.innerHTML = `
-                            <div class="chart-title">${title}</div>
-                            <div class="table-wrapper">
-                                ${createTableHTML(rows)}
-                            </div>
-                        `;
-
-                        container.appendChild(card);
-                        chartsLoaded++;
-
-                    } catch (error) {
-                        console.error(`Erreur chargement ${filename}:`, error);
-                    }
+                
+                for (const filename of roleIdeCharts) {
+                    await loadChartFromSource(`../../../src/data/role_ide_charts/${encodeURIComponent(filename)}`, filename);
                 }
 
-                // Si aucun fichier chargé
-                if (chartsLoaded === 0) {
-                    container.innerHTML = `
-                        <div class="empty-state">
-                            <div class="empty-state-icon">📭</div>
-                            <h3>Aucun tableau disponible</h3>
-                            <p>Veuillez uploader les fichiers CSV dans src/data/role_ide_charts/</p>
-                        </div>
-                    `;
+                // SOURCE 2: recap_charts (tableaux récapitulatifs - ex: familles de médicaments)
+                // Structure: fichiers CSV nommés par UE dans recap_charts
+                const recapCharts = [
+                    { ue: 'UE 4.4.S1 - Familles de médicaments', file: '' }
+                    // Ajouter d'autres tableaux ici
+                ];
+                
+                for (const chart of recapCharts) {
+                    const filename = chart.ue;
+                    const path = `../../../src/data/recap_charts/${encodeURIComponent(chart.ue)}.csv`;
+                    await loadChartFromSource(path, filename);
                 }
+
+                // Afficher le portail
+                displayPortal();
 
             } catch (error) {
                 console.error('Erreur chargement tableaux:', error);
-                document.getElementById('chartsContainer').innerHTML = `
+                document.getElementById('ueGrid').innerHTML = `
                     <div class="empty-state">
                         <div class="empty-state-icon">❌</div>
                         <h3>Erreur de chargement</h3>
@@ -527,11 +658,138 @@
         }
 
         /**
-         * Créer le HTML du tableau à partir des données CSV
+         * Charger un fichier CSV depuis un chemin donné
+         */
+        async function loadChartFromSource(path, filename) {
+            try {
+                const response = await fetch(path);
+                
+                if (!response.ok) {
+                    console.warn(`Fichier non trouvé: ${filename}`);
+                    return;
+                }
+
+                const csvText = await response.text();
+                const rows = parseCSV(csvText);
+
+                if (rows.length > 0) {
+                    allCharts.push({
+                        filename,
+                        ue: extractUE(filename),
+                        name: extractChartName(filename),
+                        rows
+                    });
+                    console.log(`✓ Tableau chargé: ${filename}`);
+                }
+
+            } catch (error) {
+                console.error(`Erreur chargement ${filename}:`, error);
+            }
+        }
+
+        /**
+         * Afficher le portail des UE
+         */
+        function displayPortal() {
+            const uees = [...new Set(allCharts.map(c => c.ue))].sort();
+            const grid = document.getElementById('ueGrid');
+
+            if (uees.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <h3>Aucun tableau disponible</h3>
+                        <p>Veuillez uploader les fichiers CSV dans src/data/role_ide_charts/</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = uees.map(ue => {
+                const count = allCharts.filter(c => c.ue === ue).length;
+                return `
+                    <div class="ue-card" onclick="selectUE('${ue}')">
+                        <h3>${ue}</h3>
+                        <p>Tableaux de prise en charge</p>
+                        <div class="count">${count} tableau${count > 1 ? 'x' : ''}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        /**
+         * Sélectionner une UE et afficher ses tableaux
+         */
+        function selectUE(ue) {
+            selectedUE = ue;
+            document.getElementById('selectedUEName').textContent = ue;
+
+            const chartsForUE = allCharts.filter(c => c.ue === ue);
+            const list = document.getElementById('chartsList');
+
+            if (chartsForUE.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <h3>Aucun tableau pour cette UE</h3>
+                    </div>
+                `;
+            } else {
+                list.innerHTML = chartsForUE.map((chart, idx) => `
+                    <div class="chart-item" onclick="selectChart(${idx})">
+                        <div class="chart-item-icon">📊</div>
+                        <h3>${chart.name}</h3>
+                        <p>${chart.rows.length - 1} entrées</p>
+                    </div>
+                `).join('');
+            }
+
+            // Changer d'écran
+            document.getElementById('portalScreen').classList.remove('active');
+            document.getElementById('listScreen').classList.add('active');
+        }
+
+        /**
+         * Sélectionner un tableau et l'afficher
+         */
+        function selectChart(chartIndex) {
+            const chart = allCharts.find(c => c.ue === selectedUE && allCharts.indexOf(allCharts.filter(x => x.ue === selectedUE)[chartIndex]) !== -1);
+            const chartsForUE = allCharts.filter(c => c.ue === selectedUE);
+            selectedChart = chartsForUE[chartIndex];
+
+            document.getElementById('viewTitle').textContent = `${selectedChart.ue} - ${selectedChart.name}`;
+            document.getElementById('tableContainer').innerHTML = createTableHTML(selectedChart.rows);
+
+            // Changer d'écran
+            document.getElementById('listScreen').classList.remove('active');
+            document.getElementById('viewScreen').classList.add('active');
+        }
+
+        /**
+         * Retourner au portail
+         */
+        function backToPortal() {
+            selectedUE = null;
+            selectedChart = null;
+            document.getElementById('portalScreen').classList.add('active');
+            document.getElementById('listScreen').classList.remove('active');
+            document.getElementById('viewScreen').classList.remove('active');
+        }
+
+        /**
+         * Retourner à la liste des tableaux
+         */
+        function backToList() {
+            document.getElementById('viewScreen').classList.remove('active');
+            document.getElementById('listScreen').classList.add('active');
+        }
+
+        /**
+         * Créer le HTML du tableau
          */
         function createTableHTML(rows) {
             if (rows.length < 2) {
-                return '<p>Données insuffisantes pour afficher le tableau</p>';
+                return '<p>Données insuffisantes</p>';
             }
 
             const headers = rows[0];
@@ -539,21 +797,16 @@
 
             let html = '<table><thead><tr>';
             
-            // Créer les en-têtes
-            headers.forEach((header, idx) => {
+            headers.forEach(header => {
                 html += `<th>${escapeHTML(header)}</th>`;
             });
             html += '</tr></thead><tbody>';
 
-            // Créer les lignes du tableau
-            bodyRows.forEach((row, rowIdx) => {
-                html += `<tr data-row="${rowIdx}">`;
+            bodyRows.forEach(row => {
+                html += '<tr>';
                 row.forEach((cell, colIdx) => {
-                    // Formater le contenu (gérer les listes à tirets)
                     const content = formatCellContent(cell);
-                    // Ajouter la classe expandable pour les cellules non-header
-                    const isHeaderCol = colIdx === 0;
-                    const expandClass = isHeaderCol ? '' : 'expandable collapsed';
+                    const expandClass = colIdx === 0 ? '' : 'expandable collapsed';
                     html += `<td class="${expandClass}" onclick="toggleCell(this, event)"><div class="cell-content">${content}</div></td>`;
                 });
                 html += '</tr>';
@@ -565,15 +818,11 @@
 
         /**
          * Formater le contenu d'une cellule
-         * Détecte les listes à tirets et les convertit en <ul>/<li>
          */
         function formatCellContent(text) {
             if (!text) return '';
             
-            // Échapper les caractères HTML d'abord
             let content = escapeHTML(text);
-            
-            // Splitter par les tirets au début de ligne
             const lines = content.split('\n').map(line => line.trim());
             
             let html = '';
@@ -581,18 +830,14 @@
             let listItems = [];
 
             lines.forEach(line => {
-                // Vérifie si la ligne commence par un tiret
                 if (line.startsWith('- ')) {
                     if (!inList) {
                         inList = true;
                         listItems = [];
                     }
-                    // Retirer le tiret et ajouter à la liste
                     listItems.push(line.substring(2));
                 } else if (line) {
-                    // Ligne normale
                     if (inList) {
-                        // Fermer la liste avant
                         html += '<ul>' + listItems.map(item => `<li>${item}</li>`).join('') + '</ul>';
                         inList = false;
                         listItems = [];
@@ -601,14 +846,11 @@
                 }
             });
 
-            // Fermer la liste s'il en reste
             if (inList && listItems.length > 0) {
                 html += '<ul>' + listItems.map(item => `<li>${item}</li>`).join('') + '</ul>';
             }
 
-            // Nettoyer les <br> inutiles
             html = html.replace(/<br>$/g, '').trim();
-
             return html;
         }
 
@@ -630,12 +872,9 @@
          * Toggle l'expansion d'une cellule
          */
         function toggleCell(cell, event) {
-            // Ne pas toggle si c'est la première colonne (header)
             if (cell.cellIndex === 0) return;
-            
             event.stopPropagation();
             
-            // Toggle les classes
             if (cell.classList.contains('collapsed')) {
                 cell.classList.remove('collapsed');
                 cell.classList.add('expanded');
@@ -645,8 +884,8 @@
             }
         }
 
-        // Charger les tableaux au démarrage
-        document.addEventListener('DOMContentLoaded', loadAndDisplayCharts);
+        // Charger au démarrage
+        document.addEventListener('DOMContentLoaded', loadAllCharts);
     </script>
 </body>
 </html>

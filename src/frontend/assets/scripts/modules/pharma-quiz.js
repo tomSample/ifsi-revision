@@ -20,14 +20,15 @@ class PharmaQuiz {
      */
     async loadPharmaData() {
         try {
-            const basePath = window.resolvePath ? window.resolvePath('/src/data/pharmaco.csv') : '/src/data/pharmaco.csv';
+            // Chemin: src/data/recap_charts/UE 4.4.S1 - Familles de médicaments.csv
+            const basePath = window.resolvePath ? window.resolvePath('/src/data/recap_charts/UE 4.4.S1 - Familles de médicaments.csv') : '/src/data/recap_charts/UE 4.4.S1 - Familles de médicaments.csv';
             const response = await fetch(basePath);
             const csvText = await response.text();
             this.parseCsvData(csvText);
             console.log(`✓ Pharmacologie chargée: ${this.pharmaData.length} entrées`);
             return true;
         } catch (error) {
-            console.error('Erreur chargement pharma.csv:', error);
+            console.error('Erreur chargement pharmaco.csv:', error);
             return false;
         }
     }
