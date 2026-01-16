@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-01-13T20:42:00.139124",
+  "exportDate": "2026-01-16T15:52:06.905804",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -5592,10 +5592,550 @@
         ],
         "filename": "Introduction à la démarche clinique.odt"
       }
+    ],
+    [
+      "ue_2_4_s1_soins_infirmiers_pose_drain_thoracique",
+      {
+        "title": "soins infirmiers pose drain thoracique",
+        "date": "08/01/2026",
+        "ue": "2.4.S1",
+        "author": "SC",
+        "definitions": [
+          {
+            "definition": "dispositif introduit dans la cavité pleurale pour évacuer un épanchement gazeux (air) ou liquidien (sang, exsudat…), rétablir la pression négative et permettre la réexpansion pulmonaire.",
+            "term": "Drain thoracique"
+          },
+          {
+            "definition": "présence d’air dans la cavité pleurale entraînant un décollement du poumon, responsable de douleur thoracique brutale et de dyspnée, pouvant évoluer vers un pneumothorax sous tension (urgence vitale).",
+            "term": "Pneumothorax"
+          },
+          {
+            "definition": "épanchement de sang dans la cavité pleurale, souvent d’origine traumatique ou post‑chirurgicale, nécessitant le drainage pour éviter la compression pulmonaire et les complications.",
+            "term": "Hémothorax"
+          },
+          {
+            "definition": "accumulation de liquide dans l’espace pleural (infectieux, métastatique, hémorragique…), traitée notamment par drainage pour améliorer la ventilation et le confort respiratoire.",
+            "term": "Pleurésie / épanchement pleural liquidien"
+          },
+          {
+            "definition": "membrane séreuse composée d’un feuillet viscéral tapissant le poumon et d’un feuillet pariétal tapissant la paroi thoracique, séparés par la cavité pleurale où règne une pression négative facilitant la ventilation.",
+            "term": "Plèvre"
+          },
+          {
+            "definition": "pression plus basse que la pression atmosphérique dans la cavité pleurale, permettant au poumon de rester expansé ; toute perte de cette pression (ouverture du thorax, pneumothorax) impose une restauration par drainage et aspiration.​",
+            "term": "Pression intrapleurale négative"
+          },
+          {
+            "definition": "ensemble fermé comprenant le drain, la tubulure, la chambre de recueil et éventuellement une valisette d’aspiration, permettant l’évacuation de l’air et/ou des liquides tout en empêchant leur retour dans la cavité pleurale.",
+            "term": "Système de drainage thoracique"
+          },
+          {
+            "definition": "vérification régulière de l’absence de coudure, d’écrasement ou de caillot dans la tubulure, afin d’assurer un drainage efficace et continu.",
+            "term": "Perméabilité (surveillance du drain)"
+          },
+          {
+            "definition": "propriété du système de drainage qui permet la sortie de l’air ou du liquide depuis la cavité pleurale tout en empêchant leur retour, souvent assurée par un dispositif sous eau ou une valisette adaptée.",
+            "term": "Irréversibilité"
+          },
+          {
+            "definition": "absence de fuite d’air entre le patient, le drain et le système de drainage, assurée par une bonne fixation cutanée, des connexions sécurisées et un pansement hermétique.",
+            "term": "Étanchéité"
+          },
+          {
+            "definition": "positionnement de la chambre de recueil en dessous du niveau du thorax du patient pour favoriser le drainage gravitationnel et éviter tout reflux vers la cavité pleurale.",
+            "term": "Déclivité du système"
+          },
+          {
+            "definition": "respect rigoureux de l’asepsie lors de la pose, des manipulations et des pansements pour prévenir l’infection locale et pleurale.",
+            "term": "Stérilité (sur le drain)"
+          },
+          {
+            "definition": "information / rassurer / préparation du matériel / installation du patient / pansement hermétique / surveillance clinique / surveillance du système de drainage / retrait du drain (sur PM).",
+            "term": "Rôle IDE"
+          }
+        ],
+        "filename": "soins infirmiers pose drain thoracique.odt"
+      }
+    ],
+    [
+      "ue_2_4_s1_rducation_posttraumatique_radaptation_rhabilitation",
+      {
+        "title": "rééducation post-traumatique / réadaptation / réhabilitation",
+        "date": "09/01/2026",
+        "ue": "2.4.S1",
+        "author": "ext",
+        "definitions": [
+          {
+            "definition": "Tout ce qui concerne le  nerveux (atteintes cérébrales, médullaires, pathologies neurodégénératives, etc.) pris en charge en SMR spécialisé « système nerveux ».​",
+            "term": "neuro"
+          },
+          {
+            "definition": "Ensemble des lésions liées à un traumatisme (AVP, chute, polytraumatisme, fractures, lésions de la main, TC…) et de leurs suites prises en charge en orthopédie et en SMR locomoteur.​",
+            "term": "traumato"
+          },
+          {
+            "definition": "Douleurs persistantes au long cours, souvent au-delà de 3 mois, comme les lombalgies chroniques, le syndrome douloureux régional complexe ou la fibromyalgie, nécessitant une prise en charge pluridisciplinaire en SMR.​",
+            "term": "douleurs chroniques"
+          },
+          {
+            "definition": "Douleurs récentes, d’apparition brutale ou rapide, en lien direct avec un traumatisme, une chirurgie ou une pathologie aiguë, prises en compte précocement pour éviter la chronicisation.​",
+            "term": "douleurs aigues"
+          },
+          {
+            "definition": "Structures de soins (anciens SSR) où le patient, après une phase aiguë ou chirurgicale, bénéficie d’une évaluation globale et d’un programme pluridisciplinaire pour restaurer un fonctionnement optimal, avec missions de soins médicaux, réadaptation, prévention, transition et coordination.​",
+            "term": "SMR (soins médicaux de réadaptation)"
+          },
+          {
+            "definition": "Restaurer le fonctionnement optimal du patient en proposant des soins médicaux et de réadaptation, de façon multidimensionnelle, pluridisciplinaire et personnalisée, en tenant compte de ses besoins et de son projet de vie, notamment pour la transition vers le domicile ou un autre lieu de vie.​",
+            "term": "objectifs du SMR"
+          },
+          {
+            "definition": "Processus qui vise à restaurer un malade ou une personne en situation de handicap à un mode de vie et d’activité le plus proche possible de la normale, en cherchant à retrouver des capacités normales, à compenser les limitations et à favoriser la réinsertion dans ses milieux de vie et activités.​",
+            "term": "réhabilitation"
+          },
+          {
+            "definition": "Modèle de compréhension du patient en SMR qui considère la personne dans ses dimensions physiques, cognitives, affectives et spirituelles, ses activités (soins personnels, productivité, loisirs) et ses environnements (social, institutionnel, culturel), pour structurer une prise en charge coordonnée et pluridisciplinaire.",
+            "term": "modèle MCRO (personne, activité, environnement)"
+          }
+        ],
+        "filename": "rééducation post-traumatique / réadaptation / réhabilitation.odt"
+      }
+    ],
+    [
+      "ue_2_4_s1_trauma_abdopelvien_et_du_bassin",
+      {
+        "title": "trauma abdo-pelvien et du bassin",
+        "date": "09/12/2025",
+        "ue": "2.4.S1",
+        "author": "Dr",
+        "definitions": [
+          {
+            "definition": "lésions de la paroi abdominale provoquée par un traumatisme contondant (trauma fermé) et/ou pénétrant (ouvert) et pouvant entraîner des blessures pariétales ou organiques (viscères). Risque principal = hémorragie ++ (lésion d’organe plein / vasculaire, fracture du bassin)",
+            "term": "Trauma abdominal"
+          },
+          {
+            "definition": "foie, pancréas, vessie, reins, rate, uretère, urètre, aorte abdo, veine cave inférieure, intestins grêles, colon, rectum, bas œsophage, estomac, prostate, utérus-vagin, rectum",
+            "term": "Organes de l’abdomen"
+          },
+          {
+            "definition": "peau, muscles, tendons, ligaments, vaisseaux, nerfs, cartilages/os",
+            "term": "Paroi de l’abdomen"
+          },
+          {
+            "definition": "80 % des cas, souvent choc direct = AVP, accident de sport, suicide...",
+            "term": "Traumatisme fermé"
+          },
+          {
+            "definition": "20 % des cas = plaie par arme blanche",
+            "term": "Traumatisme ouvert"
+          },
+          {
+            "definition": "iono urée créat",
+            "term": "IUC"
+          },
+          {
+            "definition": "coagulation",
+            "term": "TP/TCA/fibrinogène"
+          },
+          {
+            "definition": "en prévision de transfusion",
+            "term": "Deter x 2 + RAI"
+          },
+          {
+            "definition": "P1 + P2 ou P1+P3 = association synergique / jamais P2+P3 car agonistes compétitifs (sous efficacité)",
+            "term": "Antalgiques"
+          },
+          {
+            "definition": "péritoine préservé",
+            "term": "Éventration"
+          },
+          {
+            "definition": "péritoine atteint, viscères non contenues",
+            "term": "Éviscération"
+          },
+          {
+            "definition": "interrogatoire + inspection + palpation, anamnèse + éval douleur + description (œdème/ecchymose/hématome) + dermabrasion/plaie + signes de gravité clinique",
+            "term": "Examen clinique"
+          },
+          {
+            "definition": "Respiratoire (cyanose, tirage intercostal, balancement thoraco-abdominal (asymétrie), battement des ailes du nez, désaturation (Sp02), polypnée, sueurs (hypercapnie), difficulté à la parole, GASPS (respiration anarchique de sauvetage)... // Neurologique (altération de la vigilance, agitation, convulsions, anisocorie, mydriase, inconscience, Glasgow) // Hémodynamique (différence poul/TA, tachycardie, hTA, pâleur, marbrure, oligurie puis anurie (diminution puis arrêt des urines), ACR (arrêt cardio respi)…",
+            "term": "Défaillances vitales"
+          },
+          {
+            "definition": "cibler d’éventuels atteintes d’organes = perforation d’organe creux (hémo, pneumo ou hémo-pneumo en meme temps…) et/ou hémorragie d’organe plein. = FAST échographie (débrouillage) / scanner abdominal et pelvien injecté (GOLD standard) / bilan sanguin (nfs-p, IUC, coagulation BH avec Lipase, BP, BU, ± gaz du sang avec les lactates, ± groupe sanguin avec RAI",
+            "term": "Examens paracliniques"
+          },
+          {
+            "definition": "echo clinique au lit du patient = rapide, recherche d’épanchement liquidien ou aérique.",
+            "term": "FAST ECHO"
+          },
+          {
+            "definition": "en mmol/L, reflet indirect de la dette tissulaire en oxygène (produit des mécanismes anaérobies). Lactates augmentés = privation d’oxygène des tissus. Corrélation du taux de lactates avec la durée et l’importance du choc et donc la mortalité.",
+            "term": "Lactates"
+          },
+          {
+            "definition": "3 choses dont l’hemorragie à controler (médecine de guerre) ⇒ coagulopathie, hypothermie (défavorise la coagulation), acidose (pH diminué favorise le saignement)",
+            "term": "Damage control"
+          },
+          {
+            "definition": "alerter rapidement le médecin devant toute défaillance aigue, Suppléer sans délai tout défaillance (oxygène, position allongée voire trend +, PLS), orienter le patient vers le secteur des urgences adapté (trauma, Med, SAUV (déchoquage), antalgie adaptée +++, 2 voies veineuses périphériques, ± scope",
+            "term": "Conduite à tenir (résumé)"
+          }
+        ],
+        "filename": "trauma abdo-pelvien et du bassin.odt"
+      }
+    ],
+    [
+      "ue_2_4_s1_traumatisme_thoracique",
+      {
+        "title": "traumatisme thoracique",
+        "date": "16/12/2025",
+        "ue": "2.4.S1",
+        "author": "Dr",
+        "definitions": [
+          {
+            "definition": "lésions de la paroi thoracique provoquée par un traumatisme contondant (trauma fermé) et/ou pénétrant (ouvert) et pouvant entraîner des blessures pariétales ou organiques. Impliqué dans un polytraumatisme sur 4.",
+            "term": "Trauma thoracique"
+          },
+          {
+            "definition": "du diaphragme au cou",
+            "term": "Thorax"
+          },
+          {
+            "definition": "poumons, côtes, plèvre, muscles intercostaux, sternum, cœur, aorte, artère pulmonaire, péricarde, trachée, œsophage, carotides, jugulaires, veine pulmonaires, sub-clavières, médiastin, nerfs en particulier nerf vague (X) et phrénique",
+            "term": "Organes du thorax"
+          },
+          {
+            "definition": "trauma de plusieurs organes dont 1 met en jeu le pronostic vital",
+            "term": "Polytraumatisme"
+          },
+          {
+            "definition": "AVP, volant (écrasement), trait de ceinture (de voiture)",
+            "term": "Traumatisme fermé"
+          },
+          {
+            "definition": "plaie par arme blanche",
+            "term": "Traumatisme ouvert"
+          },
+          {
+            "definition": "poche de NaCl 0,9 % de 500ml sur 15/20 min pour améliorer état hémodynamique",
+            "term": "Remplissage"
+          },
+          {
+            "definition": "mini 2h pour eau et médicament per os sinon 6h (alimentation…)",
+            "term": "A jeun"
+          },
+          {
+            "definition": "0,05mg/kg initiale (80kg => 4mg) bolus initial (maxi 5mg)",
+            "term": "Morphine"
+          },
+          {
+            "definition": "enzymes cardiaques libérées en cas de souffrance cardiaque (d’origine traumatique ou non)",
+            "term": "Troponines"
+          },
+          {
+            "definition": "reflète l’état respiratoire d’un patient (ph, PaO2 = fct pulmonaire, PaCo2, mesure de la production d’HCO3- (bicarbonate) = fct rénale)",
+            "term": "Gaz du sang (GDS)"
+          },
+          {
+            "definition": "1/ pH modifié oui ou non ? – 2/ si pH modifie trble respi et/ou métabolique ? – 3/ mécanisme de compensation ?",
+            "term": "Interprétation GDS"
+          },
+          {
+            "definition": "pH 7,38-7,42 // PaCO2 38-42 mmHg // PaO2 80-100mmHg // HCO3- 23-27 mmol/L",
+            "term": "Normes"
+          },
+          {
+            "definition": "indication si BPCO décompensée ou hypercapnie (PaCo2 au dessus des normes)",
+            "term": "VNI"
+          },
+          {
+            "definition": "Fast echo, radio thoracique, ECG, biologie (nfs p, iuc, troponines, ± gaz du sang avec lactates, ± groupes sanguin avec RAI)",
+            "term": "Examens paramédicaux"
+          },
+          {
+            "definition": "Alerter devant toute défaillance vitale aiguë, suppléer sans délai (oxygène, PLS voire trend+, PLS), orienter vers le secteur des urg adapté (trauma, med, sauv), antalgie, VVP, ± scope",
+            "term": "Conduite à tenir"
+          },
+          {
+            "definition": "critères définis",
+            "term": "ECG normal"
+          }
+        ],
+        "filename": "traumatisme thoracique.odt"
+      }
+    ],
+    [
+      "ue_3_10_s1_allergies_alimentaires",
+      {
+        "title": "allergies alimentaires",
+        "date": "13/01/2026",
+        "ue": "3.10.S1",
+        "author": "SC",
+        "definitions": [
+          {
+            "definition": "Réaction anormale et exagérée du  immunitaire dirigée contre des protéines d’un aliment normalement inoffensif, entraînant des symptômes reproductibles à chaque contact (cutanés, digestifs, respiratoires ou systémiques).​",
+            "term": "Allergie alimentaire"
+          },
+          {
+            "definition": "Forme la plus grave de réaction allergique systémique, d’apparition brutale, associant atteinte cutanée et/ou respiratoire et surtout chute de la pression artérielle pouvant engager le  vital à très court terme.​",
+            "term": "Choc anaphylactique"
+          },
+          {
+            "definition": "Œdème aigu profond des tissus (paupières, lèvres, visage, langue, larynx…), souvent lié à une réaction allergique, pouvant entraîner une obstruction des voies aériennes supérieures et une détresse respiratoire.​",
+            "term": "Œdème de Quincke"
+          },
+          {
+            "definition": "Sensibilisation = premier contact avec l’allergène, production d’anticorps IgE spécifiques qui se fixent sur les mastocytes et basophiles, sans forcément de symptômes. // Réaction = nouveau contact avec le même allergène, réticulation des IgE, dégranulation des mastocytes avec libération de médiateurs (dont histamine) responsable des signes cliniques allergiques.​",
+            "term": "Mécanisme en deux temps (sensibilisation / réaction)"
+          },
+          {
+            "definition": "Réaction allergique chez un même patient à deux allergènes différents mais qui possèdent des structures protéiques proches, de sorte que des IgE dirigées contre l’un reconnaissent aussi l’autre (ex : pollens / certains fruits et légumes).​",
+            "term": "Allergie croisée"
+          },
+          {
+            "definition": "Principalement protéines de lait de vache, œuf, arachide/cacahuète, fruits à coque, poisson, parfois soja et blé.​",
+            "term": "Allergènes fréquents chez l’enfant"
+          },
+          {
+            "definition": "Arachide et fruits à coque, crustacés et poissons, mollusques, certains fruits (ex : rosacées), blé et autres céréales, parfois œuf et lait, ainsi que certains additifs.",
+            "term": "Allergènes fréquents chez l’adulte"
+          }
+        ],
+        "filename": "allergies alimentaires.odt"
+      }
+    ],
+    [
+      "ue_3_10_s1_ias_et_infections_nosocomiales",
+      {
+        "title": "IAS et infections nosocomiales",
+        "date": "13/01/2026",
+        "ue": "3.10.S1",
+        "author": "SC",
+        "definitions": [
+          {
+            "definition": "Infection qui survient au cours ou au décours d’une prise en charge (diagnostique, thérapeutique, palliative, de prévention ou d’éducation), et qui n’était ni présente ni en incubation au début de celle‑ci.​",
+            "term": "IAS"
+          },
+          {
+            "definition": "IAS ayant lieu à l’hôpital.",
+            "term": "Nosocomiale"
+          },
+          {
+            "definition": "Une infection du site opératoire est considérée comme IAS si elle survient dans les 30 jours suivant l’intervention, ou jusqu’à 90 jours (voire 1 an selon les référentiels) en cas de mise en place de prothèse ou d’implant.​",
+            "term": "Délai légal post‑op / post‑implantation"
+          },
+          {
+            "definition": "Les IAS résultent du contact du patient avec un environnement de soins contaminé (locaux, surfaces, eau, air, matériel) et/ou d’actes de soins invasifs ou mal maîtrisés (cathéters, sondes, chirurgie…).​",
+            "term": "Survenue IAS (environnement / aux actes de soin)"
+          },
+          {
+            "definition": "Ensemble des éléments nécessaires pour qu’une infection survienne, comprenant le réservoir, le porteur ou la source, les portes de sortie et d’entrée, et le mode de transmission reliant la source au patient récepteur.​",
+            "term": "Chaîne de transmission"
+          },
+          {
+            "definition": "Infection due à la propre flore du patient (cutanée, digestive, muqueuse) qui devient pathogène à la faveur d’un geste invasif, d’une brèche cutanée ou d’une immunodépression.​",
+            "term": "Contamination endogène"
+          },
+          {
+            "definition": "Infection due à des micro-organismes provenant de l’extérieur du patient (professionnels, autres patients, visiteurs, matériel, environnement, eau, air).​",
+            "term": "Contamination exogène"
+          },
+          {
+            "definition": "direct ou indirect,  par gouttelettes ou par voie aérienne ;  ou inoculation,  (eau/aliments contaminés)",
+            "term": "Modes de transmission"
+          },
+          {
+            "definition": "Passage d’un micro-organisme d’un patient à un autre par l’intermédiaire des mains des soignants, du matériel partagé ou de l’environnement, responsable de cas groupés voire d’épidémies.​",
+            "term": "Transmission croisée"
+          },
+          {
+            "definition": "État du patient, thérapies, techniques de soin, infrastructure (promiscuité, charge de travail…)",
+            "term": "Facteurs favorisants"
+          },
+          {
+            "definition": "Les IAS représentent une proportion importante des événements indésirables associés aux soins, avec une prédominance des infections urinaires, respiratoires, du site opératoire et liées aux dispositifs invasifs.​",
+            "term": "Épidémiologie"
+          },
+          {
+            "definition": "Pour le patient = morbidité accrue, mortalité possible, prolongation de l’hospitalisation, séquelles, altération de la qualité de vie.​ / Pour le système de santé = surcoûts importants, surcharge des services, impact sur l’image de l’établissement et la confiance du public.​",
+            "term": "Conséquences"
+          },
+          {
+            "definition": "Hygiène des mains systématique / Précautions standard et complémentaires adaptées au germe​ / Maîtrise de l’asepsie / Politique raisonnée d’antibiothérapie, vaccination des patients et des soignants, surveillance épidémiologique et signalement des IAS.",
+            "term": "Préventions"
+          }
+        ],
+        "filename": "IAS et infections nosocomiales.odt"
+      }
+    ],
+    [
+      "ue_3_10_s1_tiac_toxiinfection_alimentaire_collectives",
+      {
+        "title": "TIAC - toxi-infection alimentaire collectives",
+        "date": "13/01/2026",
+        "ue": "3.10.S1",
+        "author": "SC",
+        "definitions": [
+          {
+            "definition": "toxi-infection alimentaire collective = apparition d’au moins deux cas groupés de symptômes similaires, le plus souvent digestifs, dont la cause est rapportée à une même origine alimentaire commune ; les TIAC sont des maladies à déclaration obligatoire auprès de l’ARS.​",
+            "term": "TIAC"
+          },
+          {
+            "definition": "Organisation des locaux et des circuits alimentaires de façon à faire progresser les denrées du « sale » vers le « propre » sans retour en arrière, en séparant strictement zones sales (réception, déchets) et zones propres (préparation, dressage) pour éviter les contaminations croisées.​",
+            "term": "Prévention / principe de la marche en avant"
+          },
+          {
+            "definition": "Survenue rapide, chez au moins 2 personnes ayant partagé un même repas au même moment, de troubles digestifs de type nausées, vomissements, douleurs abdominales, diarrhées, parfois fièvre, céphalées ou malaise général.​",
+            "term": "Signes cliniques"
+          },
+          {
+            "definition": "Salmonella spp., Staphylococcus aureus producteur d’entérotoxines, Escherichia coli, Clostridium perfringens, Bacillus cereus, plus rarement Clostridium botulinum ou virus (ex : hépatite A).​",
+            "term": "Germes en cause"
+          },
+          {
+            "definition": "Identifier rapidement un foyer possible (≥ 2 cas après un même repas) et alerter sans délai le responsable de l’établissement.​ / Signaler la suspicion de TIAC à l’ARS via la déclaration obligatoire et collaborer à l’enquête (questionnaires, traçabilité, prélèvements alimentaires et biologiques).​",
+            "term": "Conduite à tenir (étapes administratives)"
+          },
+          {
+            "definition": "surveillance clinique, correction des pertes hydro‑électrolytiques, prise en charge symptomatique, orientation vers les urgences si signes de gravité (déshydratation, fièvre élevée, troubles neurologiques…).​ Isoler fonctionnellement les malades (toilettes dédiées si possible), renforcer l’hygiène des mains et des surfaces, limiter les activités collectives le temps de l’épisode.​",
+            "term": "Conduite à tenir (pour le patient)"
+          },
+          {
+            "definition": "Risque de déshydratation aiguë, troubles hydro‑électrolytiques, insuffisance rénale fonctionnelle, complications neurologiques ou respiratoires selon le germe (ex : botulisme), plus graves chez les personnes âgées, nourrissons ou immunodéprimés, pouvant conduire à l’hospitalisation voire au décès.​",
+            "term": "Complications patient"
+          },
+          {
+            "definition": "Respect strict des bonnes pratiques d’hygiène : hygiène des mains fréquente et correcte, tenue professionnelle propre et dédiée, protection des plaies, exclusion temporaire du travail de préparation/soins pour tout personnel symptomatique, formation régulière aux règles d’hygiène et de sécurité alimentaire.",
+            "term": "Hygiène du personnel"
+          }
+        ],
+        "filename": "TIAC - toxi-infection alimentaire collectives.odt"
+      }
+    ],
+    [
+      "ue_4_4_s1_antipyrtiques",
+      {
+        "title": "Antipyrétiques",
+        "date": "13/01/2026",
+        "ue": "4.4.S1",
+        "author": "ext",
+        "definitions": [
+          {
+            "definition": "Réaction naturelle de l’organisme pour lutter contre une agression, notamment infectieuse, définie par une température corporelle supérieure ou égale à 38 °C, le plus souvent bénigne mais pouvant être grave si très élevée, prolongée ou chez des patients fragiles.​",
+            "term": "Fièvre"
+          },
+          {
+            "definition": "Convulsions et de déshydratation chez le nourrisson et le jeune enfant, risque de déshydratation et de troubles du comportement chez la personne âgée, et risque de décompensation des comorbidités (cardiaques, etc.) du fait de l’augmentation de la fréquence cardiaque.​",
+            "term": "Risques de la fièvre"
+          },
+          {
+            "definition": "Symptomatique par antipyrétiques lorsque la fièvre est mal tolérée, associée à la lutte contre la déshydratation et à des mesures non médicamenteuses (apports hydriques, ne pas trop couvrir, ne pas surchauffer la pièce, éviter les bains froids) tout en recherchant et traitant la cause.​",
+            "term": "Traitements de la fièvre"
+          },
+          {
+            "definition": "Médicament de traitement symptomatique des états fébriles, agissant sur l’hypothalamus par inhibition de la synthèse des prostaglandines et pouvant aussi avoir des propriétés antalgiques.​",
+            "term": "Antipyrétique"
+          },
+          {
+            "definition": "Antalgique et antipyrétique de palier I utilisé en première intention grâce à sa bonne tolérance, agissant par inhibition de la synthèse des prostaglandines au niveau hypothalamique, avec administration possible chez l’enfant, la femme enceinte et la femme allaitante, sous réserve du respect des posologies pour éviter la toxicité hépatique.*",
+            "term": "Paracétamol"
+          },
+          {
+            "definition": "Médicaments inhibant les cyclo‑oxygénases (COX) et donc la synthèse des prostaglandines, à action antipyrétique, antalgique et, pour l’aspirine et les AINS, anti‑inflammatoire, présentant une forte liaison aux protéines plasmatiques et de nombreux effets indésirables graves, ce qui les exclut de la première intention comme antipyrétiques.​",
+            "term": "Aspirine / AINS"
+          },
+          {
+            "definition": "Prescription à éviter en pédiatrie, et contre-indiquée en cas de suspicion de virose chez l’enfant ou le jeune adulte en raison du risque de syndrome de Reye, encéphalopathie aiguë potentiellement mortelle.​",
+            "term": "Aspirine / AINS chez l’enfant"
+          },
+          {
+            "definition": "Médicaments déconseillés pendant la grossesse et l’allaitement, avec une contre-indication absolue au troisième trimestre de grossesse car ils peuvent retarder l’accouchement, prolonger le travail et majorer le risque hémorragique.​",
+            "term": "Aspirine / AINS et grossesse/allaitement"
+          },
+          {
+            "definition": "Hyperthermie aiguë grave, d’origine médicamenteuse (ex : curares), non liée à une infection, pouvant mettre en jeu le pronostic vital et nécessitant un traitement spécifique urgent.​",
+            "term": "Hyperthermie maligne"
+          },
+          {
+            "definition": "Complication iatrogène rare mais grave des neuroleptiques, associant hyperthermie, rigidité musculaire et altération de la conscience, à distinguer d’une fièvre infectieuse.​",
+            "term": "Syndrome malin des neuroleptiques"
+          },
+          {
+            "definition": "Intoxication aiguë responsable de cytolyse puis de nécrose hépatique potentiellement irréversible, liée à un métabolite toxique normalement neutralisé par le glutathion, nécessitant un traitement par N‑acétylcystéine comme antidote.",
+            "term": "Surdosage en paracétamol"
+          }
+        ],
+        "filename": "Antipyrétiques.odt"
+      }
+    ],
+    [
+      "ue_4_4_s1_polytraumatisme",
+      {
+        "title": "polytraumatisme",
+        "date": "06/01/2026",
+        "ue": "4.4.S1",
+        "author": "ext",
+        "definitions": [
+          {
+            "definition": "blessé présentant au moins 2 lésions traumatiques graves (crânio‑cérébrales, thoraciques, viscérales ou osseuses) dont au moins une met en jeu le pronostic vital par retentissement respiratoire ou cardio‑circulatoire.​",
+            "term": "Polytraumatisé"
+          },
+          {
+            "definition": "victime présentant plusieurs lésions traumatiques sans qu’aucune n’engage le pronostic vital.​",
+            "term": "Polyblessé / polycassé / polyfracturé"
+          },
+          {
+            "definition": "centre hospitalier structuré avec plateau technique complet et équipes entraînées, permettant une prise en charge collective, formalisée et rapide des traumatisés graves.​",
+            "term": "Trauma center"
+          },
+          {
+            "definition": "algorithme préhospitalier en plusieurs étapes (signes vitaux, cinétique, lésions anatomiques, facteurs aggravants) pour décider l’orientation vers un centre spécialisé.​",
+            "term": "Critères de Vittel"
+          },
+          {
+            "definition": "polytraumatisé présentant au moins un critère de gravité (PAS < 90 mmHg malgré remplissage, SaO₂ < 90%, GCS ≤ 8, nécessité de catécholamines).​",
+            "term": "Patient instable"
+          },
+          {
+            "definition": "absence de critère d’instabilité mais présence d’au moins un critère de gravité (détresse respiratoire stabilisée, PAS > 90 mmHg après remplissage, GCS 9–13, déficit neurologique, trauma pénétrant, volet thoracique, bassin grave…).​",
+            "term": "Patient critique"
+          },
+          {
+            "definition": "patient sans détresse vitale mais ayant une haute cinétique (chute > 6 m, projection, éjection, écrasement, blast, décès d’un autre occupant, désincarcération prolongée) ou facteurs aggravants (âge extrême, insuffisance cardio‑respiratoire, grossesse, coagulopathie).​",
+            "term": "Patient potentiellement grave"
+          },
+          {
+            "definition": "approche systématique d’évaluation et de traitement par priorités (Airway = voies aériennes, Breathing = respiration, Circulation = circulation et saignement, Disability = neurologique, Exposure = déshabillage/examen complet et terrain) pour traiter ce qui tue le plus vite.",
+            "term": "Méthode ABCDE"
+          },
+          {
+            "definition": "méthode de premier regard très rapide évaluant Comportement, Respiration, Coloration pour estimer d’emblée la sévérité et repérer une détresse vitale immédiate.",
+            "term": "Quick‑look CRC"
+          },
+          {
+            "definition": "rapport FC / PAS, avec valeur > 1 évoquant un état de choc probable.​",
+            "term": "Shock index"
+          },
+          {
+            "definition": "association coagulopathie, acidose et hypothermie favorisant la mortalité en contexte d’hémorragie grave.​",
+            "term": "Triade létale"
+          },
+          {
+            "definition": "stratégie de réanimation et de chirurgie limitée visant à contrôler rapidement les hémorragies et la contamination avant de stabiliser le patient puis de réaliser des gestes définitifs.​",
+            "term": "Damage control"
+          },
+          {
+            "definition": "score simple basé sur FC, PAS, épanchement intra‑abdominal et traumatisme pénétrant pour décider la mise en route d’un protocole de transfusion massive.",
+            "term": "Score ABC (transfusion massive)"
+          }
+        ],
+        "filename": "polytraumatisme.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 1028,
+    "totalTerms": 1136,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0
