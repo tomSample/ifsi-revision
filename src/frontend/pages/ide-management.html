@@ -710,8 +710,7 @@
                 return `
                     <div class="ue-card" onclick="selectUE('${ue}')">
                         <h3>${ue}</h3>
-                        <p>Tableaux de prise en charge</p>
-                        <div class="count">${count} tableau${count > 1 ? 'x' : ''}</div>
+                        <div class="count">${count} fiche(s)${count > 1 ? 'x' : ''}</div>
                     </div>
                 `;
             }).join('');
@@ -739,7 +738,6 @@
                     <div class="chart-item" onclick="selectChart(${idx})">
                         <div class="chart-item-icon">📊</div>
                         <h3>${chart.name}</h3>
-                        <p>${chart.rows.length - 1} entrées</p>
                     </div>
                 `).join('');
             }
