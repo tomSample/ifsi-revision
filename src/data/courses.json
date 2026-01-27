@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-01-16T15:52:06.905804",
+  "exportDate": "2026-01-27T12:33:22.789933",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -5667,35 +5667,43 @@
         "definitions": [
           {
             "definition": "Tout ce qui concerne le  nerveux (atteintes cérébrales, médullaires, pathologies neurodégénératives, etc.) pris en charge en SMR spécialisé « système nerveux ».​",
-            "term": "neuro"
+            "term": "neuro",
+            "importance": "utile"
           },
           {
             "definition": "Ensemble des lésions liées à un traumatisme (AVP, chute, polytraumatisme, fractures, lésions de la main, TC…) et de leurs suites prises en charge en orthopédie et en SMR locomoteur.​",
-            "term": "traumato"
+            "term": "traumato",
+            "importance": "utile"
           },
           {
             "definition": "Douleurs persistantes au long cours, souvent au-delà de 3 mois, comme les lombalgies chroniques, le syndrome douloureux régional complexe ou la fibromyalgie, nécessitant une prise en charge pluridisciplinaire en SMR.​",
-            "term": "douleurs chroniques"
+            "term": "douleurs chroniques",
+            "importance": "indispensable"
           },
           {
             "definition": "Douleurs récentes, d’apparition brutale ou rapide, en lien direct avec un traumatisme, une chirurgie ou une pathologie aiguë, prises en compte précocement pour éviter la chronicisation.​",
-            "term": "douleurs aigues"
+            "term": "douleurs aigues",
+            "importance": "indispensable"
           },
           {
             "definition": "Structures de soins (anciens SSR) où le patient, après une phase aiguë ou chirurgicale, bénéficie d’une évaluation globale et d’un programme pluridisciplinaire pour restaurer un fonctionnement optimal, avec missions de soins médicaux, réadaptation, prévention, transition et coordination.​",
-            "term": "SMR (soins médicaux de réadaptation)"
+            "term": "SMR (soins médicaux de réadaptation)",
+            "importance": "indispensable"
           },
           {
             "definition": "Restaurer le fonctionnement optimal du patient en proposant des soins médicaux et de réadaptation, de façon multidimensionnelle, pluridisciplinaire et personnalisée, en tenant compte de ses besoins et de son projet de vie, notamment pour la transition vers le domicile ou un autre lieu de vie.​",
-            "term": "objectifs du SMR"
+            "term": "objectifs du SMR",
+            "importance": "indispensable"
           },
           {
             "definition": "Processus qui vise à restaurer un malade ou une personne en situation de handicap à un mode de vie et d’activité le plus proche possible de la normale, en cherchant à retrouver des capacités normales, à compenser les limitations et à favoriser la réinsertion dans ses milieux de vie et activités.​",
-            "term": "réhabilitation"
+            "term": "réhabilitation",
+            "importance": "indispensable"
           },
           {
             "definition": "Modèle de compréhension du patient en SMR qui considère la personne dans ses dimensions physiques, cognitives, affectives et spirituelles, ses activités (soins personnels, productivité, loisirs) et ses environnements (social, institutionnel, culturel), pour structurer une prise en charge coordonnée et pluridisciplinaire.",
-            "term": "modèle MCRO (personne, activité, environnement)"
+            "term": "modèle MCRO (personne, activité, environnement)",
+            "importance": "utile"
           }
         ],
         "filename": "rééducation post-traumatique / réadaptation / réhabilitation.odt"
@@ -5915,19 +5923,23 @@
         "definitions": [
           {
             "definition": "Infection qui survient au cours ou au décours d’une prise en charge (diagnostique, thérapeutique, palliative, de prévention ou d’éducation), et qui n’était ni présente ni en incubation au début de celle‑ci.​",
-            "term": "IAS"
+            "term": "IAS",
+            "importance": "indispensable"
           },
           {
             "definition": "IAS ayant lieu à l’hôpital.",
-            "term": "Nosocomiale"
+            "term": "Nosocomiale",
+            "importance": "indispensable"
           },
           {
             "definition": "Une infection du site opératoire est considérée comme IAS si elle survient dans les 30 jours suivant l’intervention, ou jusqu’à 90 jours (voire 1 an selon les référentiels) en cas de mise en place de prothèse ou d’implant.​",
-            "term": "Délai légal post‑op / post‑implantation"
+            "term": "Délai légal post‑op / post‑implantation",
+            "importance": "indispensable"
           },
           {
             "definition": "Les IAS résultent du contact du patient avec un environnement de soins contaminé (locaux, surfaces, eau, air, matériel) et/ou d’actes de soins invasifs ou mal maîtrisés (cathéters, sondes, chirurgie…).​",
-            "term": "Survenue IAS (environnement / aux actes de soin)"
+            "term": "Survenue IAS (environnement / aux actes de soin)",
+            "importance": "indispensable"
           },
           {
             "definition": "Ensemble des éléments nécessaires pour qu’une infection survienne, comprenant le réservoir, le porteur ou la source, les portes de sortie et d’entrée, et le mode de transmission reliant la source au patient récepteur.​",
@@ -5935,11 +5947,13 @@
           },
           {
             "definition": "Infection due à la propre flore du patient (cutanée, digestive, muqueuse) qui devient pathogène à la faveur d’un geste invasif, d’une brèche cutanée ou d’une immunodépression.​",
-            "term": "Contamination endogène"
+            "term": "Contamination endogène",
+            "importance": "indispensable"
           },
           {
             "definition": "Infection due à des micro-organismes provenant de l’extérieur du patient (professionnels, autres patients, visiteurs, matériel, environnement, eau, air).​",
-            "term": "Contamination exogène"
+            "term": "Contamination exogène",
+            "importance": "indispensable"
           },
           {
             "definition": "direct ou indirect,  par gouttelettes ou par voie aérienne ;  ou inoculation,  (eau/aliments contaminés)",
@@ -5947,7 +5961,8 @@
           },
           {
             "definition": "Passage d’un micro-organisme d’un patient à un autre par l’intermédiaire des mains des soignants, du matériel partagé ou de l’environnement, responsable de cas groupés voire d’épidémies.​",
-            "term": "Transmission croisée"
+            "term": "Transmission croisée",
+            "importance": "indispensable"
           },
           {
             "definition": "État du patient, thérapies, techniques de soin, infrastructure (promiscuité, charge de travail…)",
@@ -5963,7 +5978,8 @@
           },
           {
             "definition": "Hygiène des mains systématique / Précautions standard et complémentaires adaptées au germe​ / Maîtrise de l’asepsie / Politique raisonnée d’antibiothérapie, vaccination des patients et des soignants, surveillance épidémiologique et signalement des IAS.",
-            "term": "Préventions"
+            "term": "Préventions",
+            "importance": "indispensable"
           }
         ],
         "filename": "IAS et infections nosocomiales.odt"
@@ -5979,35 +5995,43 @@
         "definitions": [
           {
             "definition": "toxi-infection alimentaire collective = apparition d’au moins deux cas groupés de symptômes similaires, le plus souvent digestifs, dont la cause est rapportée à une même origine alimentaire commune ; les TIAC sont des maladies à déclaration obligatoire auprès de l’ARS.​",
-            "term": "TIAC"
+            "term": "TIAC",
+            "importance": "indispensable"
           },
           {
             "definition": "Organisation des locaux et des circuits alimentaires de façon à faire progresser les denrées du « sale » vers le « propre » sans retour en arrière, en séparant strictement zones sales (réception, déchets) et zones propres (préparation, dressage) pour éviter les contaminations croisées.​",
-            "term": "Prévention / principe de la marche en avant"
+            "term": "Prévention / principe de la marche en avant",
+            "importance": "indispensable"
           },
           {
             "definition": "Survenue rapide, chez au moins 2 personnes ayant partagé un même repas au même moment, de troubles digestifs de type nausées, vomissements, douleurs abdominales, diarrhées, parfois fièvre, céphalées ou malaise général.​",
-            "term": "Signes cliniques"
+            "term": "Signes cliniques",
+            "importance": "indispensable"
           },
           {
             "definition": "Salmonella spp., Staphylococcus aureus producteur d’entérotoxines, Escherichia coli, Clostridium perfringens, Bacillus cereus, plus rarement Clostridium botulinum ou virus (ex : hépatite A).​",
-            "term": "Germes en cause"
+            "term": "Germes en cause",
+            "importance": "indispensable"
           },
           {
             "definition": "Identifier rapidement un foyer possible (≥ 2 cas après un même repas) et alerter sans délai le responsable de l’établissement.​ / Signaler la suspicion de TIAC à l’ARS via la déclaration obligatoire et collaborer à l’enquête (questionnaires, traçabilité, prélèvements alimentaires et biologiques).​",
-            "term": "Conduite à tenir (étapes administratives)"
+            "term": "Conduite à tenir (étapes administratives)",
+            "importance": "indispensable"
           },
           {
             "definition": "surveillance clinique, correction des pertes hydro‑électrolytiques, prise en charge symptomatique, orientation vers les urgences si signes de gravité (déshydratation, fièvre élevée, troubles neurologiques…).​ Isoler fonctionnellement les malades (toilettes dédiées si possible), renforcer l’hygiène des mains et des surfaces, limiter les activités collectives le temps de l’épisode.​",
-            "term": "Conduite à tenir (pour le patient)"
+            "term": "Conduite à tenir (pour le patient)",
+            "importance": "indispensable"
           },
           {
             "definition": "Risque de déshydratation aiguë, troubles hydro‑électrolytiques, insuffisance rénale fonctionnelle, complications neurologiques ou respiratoires selon le germe (ex : botulisme), plus graves chez les personnes âgées, nourrissons ou immunodéprimés, pouvant conduire à l’hospitalisation voire au décès.​",
-            "term": "Complications patient"
+            "term": "Complications patient",
+            "importance": "indispensable"
           },
           {
             "definition": "Respect strict des bonnes pratiques d’hygiène : hygiène des mains fréquente et correcte, tenue professionnelle propre et dédiée, protection des plaies, exclusion temporaire du travail de préparation/soins pour tout personnel symptomatique, formation régulière aux règles d’hygiène et de sécurité alimentaire.",
-            "term": "Hygiène du personnel"
+            "term": "Hygiène du personnel",
+            "importance": "indispensable"
           }
         ],
         "filename": "TIAC - toxi-infection alimentaire collectives.odt"
