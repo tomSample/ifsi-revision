@@ -1,0 +1,19 @@
+INFECTION,Affection,Agent causal,Mode de transmission,Incubation,Symptômes clés,Clinique,Facteurs de risque,Complications,Traitement,Mesures préventives
+Virale,Bronchite,"Virus respiratoire syncitial (VRS)
+Rhinovirus,Métapneumovirus,Grippe (Parainfluenza,Influenza)
+Coronavirus","Voie aérienne
+Gouttelettes
+Mains souillées",2-15j,Brûlure retrosternale,"Toux sèche ⇒ grasse (10-14j)
+Râle bronchique
+Fébricule
+Guérison spontanée","Enfants<5ans
+Tabac passif",Surinfection bactérienne,"Symptomatique = paracétamol, traitement de confort
+
+Pas d’antibiotiques, antitussifs, anti-inflammatoires","Lavage mains
+Aération"
+Virale,Bronchiolite aiguë,"VRS 60-70%,Métapneumovirus,Rhinovirus","Gouttelettes,Contact direct",3-7j,"Rhinopharyngite,Dyspnée sifflante","Nourrissons 2-8mois,Hiver",Prématurité<36SA<2mois,"Apnées,Hypoxie","DRP,Fractionner biberons","Tabac passif,Lavage mains"
+Virale,Pneumopathie virale,"VRS,Influenza,Rhinovirus",Voie aérienne,3-14j,"Fièvre,Toux persistante",Tachypnée 2-3sem,Immunodéprimés,Surinfection bact,"SYMPTOMATIQUE,O2 si besoin",Vaccins respiratoires
+Bactérienne,Pneumopathie bact,"Strep pneumo,H.influenzae",Gouttelettes,3-14j,"Fièvre 39-40°C,Toux purulente","Tirages,Hypoxie","Âge<5ans,Malnutrition","Empyème,Sepsis",ATB Amox-clav 7-10j,"Vaccin pneumo,Hib"
+Bactérienne,Coqueluche,Bordetella pertussis,"Gouttelettes,Iintra-familial",7-21j,Quintes toux+apnées,NRS<3mois mortel,Non-vaccinés,"Apnées,Maligne","Azithromycine,Hospitalisation","DTCoq,Co cocooning"
+Bactérienne,Tuberculose,Mycobact tuberculosis,Gouttelettes,2-10sem,"Toux>3sem,Amaigrissement",Foyers pulmonaires,"VIH,Contact TB","Miliaire,Méningite",HRZE 6mois,"BCG,IDR contacts"
+Chronique,BPCO,"Tabac 85-90%,Polluants professionnels,Pollution atmosphérique,Alpha-1 antitrypsine déficit (rare)","Inhalation chronique particules irritantes,Tabagisme actif/passif,",Années (40-50 ans),"Toux chronique matin,Expectoration,Dyspnée progressive,Fatigue","Obstruction irréversible VEMS/CV<70%,Exacerbations fréquentes,GOLD 1-4","Tabagisme>10paq-années,>40ans,Homme,Antécédents familiaux","Insuf respiratoire chronique,Cor pulmonale,Exacerbations fréquentes,Cancer poumon","Arrêt tabac OBLIGATOIRE,Bronchodilatateurs (LABA,LAMA),Corticoides inhalés,Oxygénothérapie,Réhab respiratoire","Arrêt tabac,Vaccins grippe/pneumocoque,Exercice régulier,Nutrition,Vaccin anti-COVID"
