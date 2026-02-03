@@ -1,0 +1,111 @@
+MALADIE ERUPTIVE,Affection,Agent causal,Mode de transmission,Incubation,Symptômes clés,Clinique,Facteurs à risque,Complications,Traitement,Mesures préventives
+Virale,Rougeole,Paramyxovirus,"Aérienne
+gouttelettes salive",10-12j,"• Phase invasive 4-5j: fièvre élevée, toux, rhinopharyngite, conjonctivite
+• Phase éruptive: énanthème maculo-papuleux débute orailles, extension corps entier 24-48h","Éruption rouge/orange diffuse
+Fièvre 39-40°C
+Toux, rhinopharyngite, conjonctivite
+Énanthème maculo-papuleux","Nourrisson <1an
+Immunodéprimé
+Contact femme enceinte","Infectieuses: bronchite, pneumopathie, OMA
+Neurologiques: encéphalite (1/1000)
+Décès rare
+FDR: <1an, immunodéprimé, femme enceinte","Symptomatique
+Paracétamol 15mg/kg/4-6h","VACCINATION RRO dès 1an + rappel 16-18 mois
+Déclaration obligatoire
+Éviction collectivité 5j avant éruption à 5j après début"
+Virale,Rubéole,Rubivirus,"Voie aérienne
+Transplacentaire (femme enceinte)",10-15j,"• Période invasive 7j: fièvre modérée, rhinopharyngite
+• Phase éruptive: énanthème maculo-papuleux 10-20j après contage
+Contagion: 1 semaine avant à 2 semaines après début éruption","Exanthème maculo-papuleux petit + clair que rougeole
+Macules plus petites et plus claires
+Débute face, extension descendante",FEMME ENCEINTE NON IMMUNISÉE (risque malformations fœtales graves),"Chez enfant: généralement bénigne
+Chez femme enceinte: malformations développement fœtal sévères
+Rubéole congénitale possible
+IMG possible","Symptomatique
+Paracétamol","VACCINATION RRO dès 1an
+Déclaration obligatoire si contact femme enceinte
+Sérologie d'urgence si contact femme enceinte
+Éviction collectivité jusqu'à 2 semaines après début éruption"
+Virale,Roséole (Exanthème subit),HHV6 (Herpesvirus humain 6),"Aérienne
+gouttelettes salive",10-15j,"• Phase invasive 2-3j: fièvre isolée bien tolérée 39-40°C
+• Disparition brutale → éruption cutanée
+• Exanthème maculo-papuleux fugace","Exanthème maculo-papuleux fugace (disparition <24h)
+Débute visage + tronc
+Fièvre isolée bien tolérée pendant 2-3j
+Disparition concomitante fièvre et éruption","Enfant 6 mois-3 ans
+60-90% adultes immunisés","Crises fébriles possibles
+Complications générales minimales (bénigne)","Symptomatique
+Paracétamol","Éviction collectivité recommandée (non obligatoire)
+Aucune mesure prophylactique cas contacts"
+Virale,Varicelle,VZV (Virus Varicelle-Zona),"Lésions cutanées + voie respiratoire (24-48h avant)
+Très contagieuse",14j,"• Phase invasive 2-3j: fièvre modérée bien tolérée
+• Phase éruptive: éruption vésiculeuse prurigineuse diffuse ensemble du corps (cheveux inclus)
+Plusieurs poussées successives (polyphase)","Éruption vésiculeuse diffuse prurigineuse
+Sur ensemble corps y compris cheveux
+Fièvre modérée bien tolérée
+Polyphase (vraies vésicules nouveau-nées)
+Énanthème buccal érosif","Fréquent: 600-700k cas/an France
+90% cas avant 10 ans
+RISQUE GRAVE: <1 an, immunodéprimés, femmes enceintes","3-5% avec complications:
+• Infectieuses: surinfection bactérienne abcès
+• Pleuro-pulmonaires: pneumopathie
+• Neurologiques: cérébélite, encéphalite
+FDR complications: <1 an, immunodéprimé, femme enceinte
+Avis médical obligatoire","Symptomatique
+Paracétamol 15mg/kg/4-6h
+Ongles coupés courts
+Solutions antiseptiques locales
+CONTRE-INDICATION ABSOLUE: AINS ++","Vaccination dès 1 an (NON au calendrier vaccinal FR actuellement)
+Éviction collectivité recommandée (non obligatoire)
+Cas contacts à risque (immunodéprimés, femmes enceintes, <1 an): avis médical obligatoire"
+Virale,Mégalérythème épidémique,Parvovirus B19,Voie respiratoire directe,6-14j,"• Phase invasive 2j: fièvre modérée bien tolérée, céphalées
+• Phase éruptive: énanthème maculo-papuleux 10-20j après contage","Exanthème maculo-papuleux typique
+Érythème joues (« soufflets ») + membres
+Épargne généralement le tronc
+Extensibilité en plusieurs poussées (1-3 semaines)",Survient par épidémies familiales ou scolaires,"Arthralgie/arthrite (surtout femme)
+ABC si immunodéprimé
+Complication rare anémie aplasique","Symptomatique
+Paracétamol",Éviction scolaire non obligatoire
+Virale,Syndrome Pied-Main-Bouche,"Entérovirus (Coxsackie A, B)","Contact direct (personne à personne)
+Indirect: gouttelettes, lésions cutanées, mains souillées",3-7j,"Syndrome grippal:
+• Fièvre modérée bien tolérée, céphalées
+• Lésions vésiculeuses extrémités + péribuccale + siège
+• Diarrhées/douleurs abdominales possibles
+Lésions buccales et cutanées douloureuses possibles","Vésicules extrémités (mains/pieds)
+Lésions buccales + péribuccale
+Lésions du siège
+Fièvre modérée
+Lésions buccales possiblement douloureuses",Enfant <5 ans généralement,"Complications digestives
+Difficultés alimentation si lésions buccales douloureuses","Symptomatique
+Paracétamol
+Surveillance locale des lésions",Éviction collectivité non obligatoire
+Virale,Mononucléose infectieuse,EBV (Epstein-Barr Virus),"Voie salivaire
+contacts rapprochés",30-50j,"Asthénie marquée + durable
+Fièvre intensité variable parfois prolongée
+Angine dans 1/3 des cas
+Éruption polymorphe discrète (favorisée par amoxicilline)","Asthénie importante + durable
+Fièvre prolongée variable
+Angine (1/3 cas)
+Éruption discrète + polymorphe
+Favorisée par prise d'amoxicilline","Adolescents > enfants
+60-90% adultes immunisés","Surinfection si amoxicilline
+Risque éruption si amoxicilline/ampicilline","Symptomatique
+Paracétamol
+Repos",Éviction collectivité non obligatoire
+Bactérienne,Scarlatine,"Streptocoque pyogènes (SGA)
+Strep B-hémolytique groupe A",Voie aérienne directe,2-5j,"• Phase invasive 24h: fièvre élevée mal tolérée (39-40°C), douleurs abdominales, angine
+• Phase éruptive: éruption érythémateuse nappes rouges, tronc, langue dépapillée puis framboisée","Fièvre élevée mal tolérée
+Douleurs abdominales
+Angine fébrile
+Éruption érythémateuse nappes rouges
+Tronc/extrémités
+Langue dépapillée puis framboisée
+Sans intervalle peau saine (décoloration continue)",Enfant préscolaire/scolaire,"Surinfection cutanée
+Complications aigüe rare (modern)
+Complications tardives rares (RHA, glomérulonéphrite)","ANTIBIOTHÉRAPIE
+Amoxicilline préconisée (per os)
+TDR Strep A obligatoire pour diagnostic
+Symptomatique
+Paracétamol 15mg/kg/4-6h","ÉVICTION OBLIGATOIRE collectivité jusqu'à 48h après début antibiothérapie
+Déclaration obligatoire
+Études cas contacts + sérologies"

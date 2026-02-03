@@ -3,6 +3,9 @@
 *.temp
 temp_*
 
+# Verrous LibreOffice
+.~lock*
+
 # Fichiers de test
 test_*.txt
 exemple_*.txt
