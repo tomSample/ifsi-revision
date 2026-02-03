@@ -653,32 +653,70 @@
         }
 
         /**
-         * Charger automatiquement tous les fichiers CSV du dossier recap_charts via l'API
+         * Charger automatiquement tous les fichiers CSV du dossier recap_charts
+         * Détecte si c'est local (API) ou GitHub Pages (mode static)
          */
         async function loadRecapChartsFromAPI() {
             try {
-                // Appeler l'API pour obtenir la liste des fichiers
+                const isLocal = window.location.hostname === 'localhost' || 
+                               window.location.hostname === '127.0.0.1' ||
+                               window.location.hostname.startsWith('10.');
+                
+                if (isLocal) {
+                    // Mode local: utiliser l'API Flask
+                    await loadFromAPI();
+                } else {
+                    // Mode GitHub Pages: charger depuis un JSON statique ou liste manuelle
+                    await loadFromStaticList();
+                }
+            } catch (error) {
+                console.warn('Erreur chargement recap_charts:', error);
+            }
+        }
+
+        /**
+         * Charger via l'API Flask (mode local)
+         */
+        async function loadFromAPI() {
+            try {
                 const response = await fetch('/api/recap-charts/list');
                 
                 if (!response.ok) {
-                    console.warn('API /api/recap-charts/list non disponible, mode manuel');
+                    console.warn('API indisponible');
                     return;
                 }
 
                 const data = await response.json();
-                
-                if (!data.success || !data.charts) {
-                    console.warn('Aucun fichier trouvé via l\'API');
-                    return;
-                }
+                if (!data.success || !data.charts) return;
 
-                console.log(`📊 ${data.count} fichier(s) CSV trouvé(s) via l'API`);
+                console.log(`[Local] ${data.count} fichier(s) CSV`);
 
-                // Charger chaque fichier CSV trouvé
                 for (const filename of data.charts) {
                     const path = `../../../src/data/recap_charts/${encodeURIComponent(filename)}`;
                     await loadChartFromSource(path, filename);
                 }
+            } catch (error) {
+                console.warn('Erreur API:', error);
+            }
+        }
+
+        /**
+         * Charger depuis liste statique (mode GitHub Pages)
+         */
+        async function loadFromStaticList() {
+            const basePath = window.BASE_PATH || '';
+            const csvFiles = [
+                'UE 2.5.S2 - Infections cutanées.csv',
+                'UE 2.5.S2 - Maladies éruptives pédiatriques.csv',
+                'UE 4.4.S1 - Familles de médicaments.csv'
+            ];
+            
+            console.log(`[GitHub Pages] ${csvFiles.length} fichier(s) CSV`);
+
+            for (const filename of csvFiles) {
+                const path = `${basePath}/src/data/recap_charts/${encodeURIComponent(filename)}`;
+                await loadChartFromSource(path, filename);
+            }
 
             } catch (error) {
                 console.warn('Erreur lors de l\'appel API recap_charts:', error);
