@@ -704,23 +704,22 @@
          * Charger depuis liste statique (mode GitHub Pages)
          */
         async function loadFromStaticList() {
-            const basePath = window.BASE_PATH || '';
-            const csvFiles = [
-                'UE 2.5.S2 - Infections cutanées.csv',
-                'UE 2.5.S2 - Maladies éruptives pédiatriques.csv',
-                'UE 4.4.S1 - Familles de médicaments.csv'
-            ];
-            
-            console.log(`[GitHub Pages] ${csvFiles.length} fichier(s) CSV`);
+            try {
+                const basePath = window.BASE_PATH || '';
+                const csvFiles = [
+                    'UE 2.5.S2 - Infections cutanées.csv',
+                    'UE 2.5.S2 - Maladies éruptives pédiatriques.csv',
+                    'UE 4.4.S1 - Familles de médicaments.csv'
+                ];
+                
+                console.log(`[GitHub Pages] ${csvFiles.length} fichier(s) CSV`);
 
-            for (const filename of csvFiles) {
-                const path = `${basePath}/src/data/recap_charts/${encodeURIComponent(filename)}`;
-                await loadChartFromSource(path, filename);
-            }
-
+                for (const filename of csvFiles) {
+                    const path = `${basePath}/src/data/recap_charts/${encodeURIComponent(filename)}`;
+                    await loadChartFromSource(path, filename);
+                }
             } catch (error) {
-                console.warn('Erreur lors de l\'appel API recap_charts:', error);
-                // Continuer sans erreur - l'API peut ne pas être disponible
+                console.warn('Erreur lors du chargement statique:', error);
             }
         }
 

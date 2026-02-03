@@ -1136,4 +1136,4 @@ if __name__ == '__main__':
     print("[*] Serveur IFSI Lannion demarrage sur http://localhost:5000")
     print("[*] Fichier JSON:", os.path.abspath(JSON_FILE_PATH))
     print("[*] Dossier statique:", os.path.abspath(app.static_folder))
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=False, host='0.0.0.0', port=5000)
