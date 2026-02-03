@@ -1,19 +1,101 @@
-INFECTION,Affection,Agent causal,Mode de transmission,Incubation,Symptômes clés,Clinique,Facteurs de risque,Complications,Traitement,Mesures préventives
+INFECTION RESPIRATOIRE,Affection,Agent causal,Mode de transmission,Incubation,Symptômes clés,Clinique,Facteurs de risque,Complications,Traitement,Mesures préventives
 Virale,Bronchite,"Virus respiratoire syncitial (VRS)
-Rhinovirus,Métapneumovirus,Grippe (Parainfluenza,Influenza)
+Rhinovirus
+Métapneumovirus
+Grippe (Parainfluenza,Influenza)
 Coronavirus","Voie aérienne
-Gouttelettes
+Gouttelettes (grippe)
 Mains souillées",2-15j,Brûlure retrosternale,"Toux sèche ⇒ grasse (10-14j)
 Râle bronchique
 Fébricule
 Guérison spontanée","Enfants<5ans
 Tabac passif",Surinfection bactérienne,"Symptomatique = paracétamol, traitement de confort
 
-Pas d’antibiotiques, antitussifs, anti-inflammatoires","Lavage mains
+Pas d’antibiotiques, antitussifs, anti-inflammatoires
+
+Si Grippe ⇒ antiviral = Oseltamivir dans les 48h du début des symptômes","Lavage mains
 Aération"
-Virale,Bronchiolite aiguë,"VRS 60-70%,Métapneumovirus,Rhinovirus","Gouttelettes,Contact direct",3-7j,"Rhinopharyngite,Dyspnée sifflante","Nourrissons 2-8mois,Hiver",Prématurité<36SA<2mois,"Apnées,Hypoxie","DRP,Fractionner biberons","Tabac passif,Lavage mains"
-Virale,Pneumopathie virale,"VRS,Influenza,Rhinovirus",Voie aérienne,3-14j,"Fièvre,Toux persistante",Tachypnée 2-3sem,Immunodéprimés,Surinfection bact,"SYMPTOMATIQUE,O2 si besoin",Vaccins respiratoires
-Bactérienne,Pneumopathie bact,"Strep pneumo,H.influenzae",Gouttelettes,3-14j,"Fièvre 39-40°C,Toux purulente","Tirages,Hypoxie","Âge<5ans,Malnutrition","Empyème,Sepsis",ATB Amox-clav 7-10j,"Vaccin pneumo,Hib"
+Bactérienne,Pneumopathie post-grippale,"Pneumocoque
+Strepto pyogenes
+Staphy",,,,Fièvre à J5-J7 après début infection grippale,,Surinfection bactérienne,ATB = amoxicilline-acide clavulanique,
+Bactérienne,Pneumopathie d’ihnalation,"Pneumocoque
+Strepto pyogenes
+Staphy",,,Vomissement précédant la pneumopathie,,,Surinfection bactérienne,ATB = amoxicilline-acide clavulanique (pour couvrir les bactéries du tube digestif qui sont anaérobies),
+Virale,Bronchiolite aiguë,"VRS 60-90%
+Para-influenza","Gouttelettes,Contact direct",3-7j,,"Dyspnée sifflante
+Comportement
+FR / FC / SpO2
+Pauses respiratoires
+Respiration superficielle
+Signes de lutte respiratoire intenses (tirage, entonnoir xyphoïdien…)
+Alimentation (déshydratation)","Prématurité<36SA<2mois
+Cardiopathie congénitale","Apnées,Hypoxie","Symptomatique : 
+- aspiration thino-pharyngés
+- kiné respi
+- alimentation / hydratation
+
+Hospitalisation : 
+- aérosol de broncho-dilatateurs
+- antibiotiques si surinfection","Eviter tabac passif
+Lavage de main
+Proclive dorsal 30°"
+Virale,"Pneumopathie virale
+
+= infection du parenchyme pulmonaire","VRS
+Grippe (Influenze)
+Coronavirus",Voie aérienne,3-14j,"Frissons
+Difficultés respiratoires","Dyspnée, toux, expectorations, douleur thoracique
+Fièvre
+Anomalie auscultatoires
+Signes radiologiques = atteinte du parenchyme pulmonaire ⇒ peut passer inaperçu si réalisée trop tôt","Âges extrêmes
+Prise de toxiques
+Patho chroniqie
+Déficits immunitaires",,"Oxygénothérapie pour SpO2 < 94 %
+Drainage bronchique
+Aérosol selon le terrain
+Corticothérapie",Vaccins respiratoires
+Bactérienne,"Pneumopathie bactérienne
+
+= infection du parenchyme pulmonaire","Pneumocoque +++, Haemophilus influenzae
+Staph aureus, strepto…
+Legionella pneumophia, Mycoplasma pneumoniae",Voie aérienne,3-14j,"Frissons 
+Difficultés respiratoires
+Toux purulente","Dyspnée, toux, expectorations, douleur thoracique
+Fièvre élevée
+Anomalie auscultatoires 
+Signes radiologiques = atteinte du parenchyme pulmonaire ⇒ peut passer inaperçu si réalisée trop tôt","Âges extrêmes
+Prise de toxiques
+Patho chroniqie
+Déficits immunitaires",Surinfection bactérienne,"ATB Amoxicilline per os ou IV
+Oxygénothérapie pour SpO2 < 94 % 
+Drainage bronchique
+Aérosol selon le terrain ",Vaccin pneumocoque
+Bactérienne,"PFLA 
+
+= pneumopathie franche lobaire aiguë",Pneumocoque +++,Goutelettes,3-14j,"Douleur localisée, soudaine et importante","Douleurs thoraciques
+Fièvre élevée",">40 ans
+VIH
+Ethylisme
+Immunodépression",Surinfection bactérienne,"ATB Amoxicilline per os ou IV
+",Vaccin pneumocoque
+Bactérienne,Pneumopathie atypiques,"Haemophilus influenzae, légionnelle
+Chlamydia psittaci","Eau
+Contacts professionnels (bovins, oiseaux)",3-14j,"début plus torpide, tableau moins franc","Dyspnée, toux, expectorations, douleur thoracique
+Fièvre élevée
+Anomalie auscultatoires 
+Atteintes extra-pulmonaires : digestive, hépatiques, myalgies, neurologiques",,Surinfection bactérienne,ATB ,Vaccin pneumocoque
 Bactérienne,Coqueluche,Bordetella pertussis,"Gouttelettes,Iintra-familial",7-21j,Quintes toux+apnées,NRS<3mois mortel,Non-vaccinés,"Apnées,Maligne","Azithromycine,Hospitalisation","DTCoq,Co cocooning"
 Bactérienne,Tuberculose,Mycobact tuberculosis,Gouttelettes,2-10sem,"Toux>3sem,Amaigrissement",Foyers pulmonaires,"VIH,Contact TB","Miliaire,Méningite",HRZE 6mois,"BCG,IDR contacts"
-Chronique,BPCO,"Tabac 85-90%,Polluants professionnels,Pollution atmosphérique,Alpha-1 antitrypsine déficit (rare)","Inhalation chronique particules irritantes,Tabagisme actif/passif,",Années (40-50 ans),"Toux chronique matin,Expectoration,Dyspnée progressive,Fatigue","Obstruction irréversible VEMS/CV<70%,Exacerbations fréquentes,GOLD 1-4","Tabagisme>10paq-années,>40ans,Homme,Antécédents familiaux","Insuf respiratoire chronique,Cor pulmonale,Exacerbations fréquentes,Cancer poumon","Arrêt tabac OBLIGATOIRE,Bronchodilatateurs (LABA,LAMA),Corticoides inhalés,Oxygénothérapie,Réhab respiratoire","Arrêt tabac,Vaccins grippe/pneumocoque,Exercice régulier,Nutrition,Vaccin anti-COVID"
+Bactérienne / Virale,Exacerbation de BPCO,,Gouttelettes/Contact selon l’agent causal,selon l’agent causal,,purulence inhabituelle ou majoration de la purulence à l’exacerbation = marqueur d’origine bactérienne,"Tabagisme>10paq/années
+>40ans
+Homme
+Antécédents familiaux","Insuffisance respiratoire chronique
+Majoration dyspnée, toux, volume des expéctorations ± de leur purulence
+Cancer poumon","Antibiotique si BPCO grave de base
+Bronchodilatateurs 
+Corticoides inhalés
+Oxygénothérapie (attention risque d’hypercapnie majorée si débit trop élevé)
+Kiné de drainage bronchique","Vaccins grippe/pneumocoque
+Vaccin anti-COVID
+Exercice régulier
+Arrêt tabac"

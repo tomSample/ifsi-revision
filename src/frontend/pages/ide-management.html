@@ -7,6 +7,8 @@
     <title>IFSI Lannion 2025 - Prises en Charge IDE</title>
     <link rel="manifest" href="../../../public/manifest.json">
     <meta name="theme-color" content="#667eea">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <style>
         * {
             margin: 0;
@@ -254,6 +256,16 @@
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #tableContainer {
+            width: 100%;
+            overflow-x: auto;
+            max-height: calc(100vh - 300px);
+            overflow-y: auto;
         }
 
         .chart-title {
@@ -264,134 +276,120 @@
             font-weight: 600;
         }
 
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            max-height: 70vh;
-            overflow-y: auto;
+        /* === DATATABLES CUSTOMIZATION === */
+        .dataTables_wrapper {
+            width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
         }
 
-        /* === TABLE STYLING === */
-        table {
-            width: 100%;
+        .dataTables_scroll {
+            width: 100% !important;
+        }
+
+        .dataTables_scrollBody {
+            width: 100% !important;
+        }
+
+        #dataTable {
+            width: 100% !important;
             border-collapse: collapse;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 0.85rem;
+            margin: 0 !important;
         }
 
-        thead {
+        #dataTable thead {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: none;
         }
 
-        th {
-            padding: 1.25rem 1rem;
-            text-align: left;
-            font-weight: 700;
-            color: #2c3e50;
-            white-space: nowrap;
-            word-wrap: break-word;
-            max-width: 300px;
-            position: sticky;
-            top: 0;
-            background: #f9f9f9;
-            z-index: 101;
-            font-size: 0.95rem;
-            letter-spacing: 0.3px;
-            border-bottom: 2px solid #667eea;
+        #dataTable thead th {
+            color: white !important;
+            font-weight: 700 !important;
+            padding: 1rem 0.75rem !important;
+            border-right: 1px solid rgba(255, 255, 255, 0.3) !important;
+            text-align: left !important;
+            font-size: 0.85rem !important;
+            line-height: 1.4 !important;
+            white-space: normal !important;
+            word-break: break-word !important;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+            border: none !important;
+            border-bottom: none !important;
         }
 
-        th:nth-child(1), td:nth-child(1) {
-            background: #f9f9f9;
-            width: 120px;
-            min-width: 120px;
-            position: sticky;
-            left: 0;
-            z-index: 50;
+        #dataTable tbody {
+            border-top: none !important;
         }
 
-        thead th:nth-child(1) {
-            z-index: 102;
+        /* Masquer la ligne de dimensionnement de DataTables */
+        .dataTables_sizing {
+            display: none !important;
         }
 
-        th:nth-child(2n) { background: #ffffff; }
-        th:nth-child(2n+1):not(:first-child) { background: #fafafa; }
-        
-        td:nth-child(2n) { background: #ffffff; }
-        td:nth-child(2n+1):not(:first-child) { background: #fafafa; }
-
-        td {
-            padding: 1.25rem 1rem;
-            border-bottom: 1px solid #e0e5eb;
-            color: #444;
+        #dataTable tbody td {
+            padding: 0.875rem 0.75rem !important;
             vertical-align: top;
-            word-wrap: break-word;
-            max-width: 300px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        tbody tr:hover {
-            background-color: rgba(102, 126, 234, 0.04);
-            box-shadow: inset 2px 0 0 #667eea;
-        }
-
-        td:first-child, th:first-child {
-            font-weight: 700;
-            color: #2c3e50;
-            max-width: 120px;
-            white-space: normal;
-            word-break: break-word;
-            padding: 1.5rem 0.5rem;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-        }
-
-        td.expandable {
-            position: relative;
-            user-select: none;
-        }
-
-        td.expandable::before {
-            content: '▼';
-            display: inline-block;
-            margin-right: 0.75rem;
-            transition: transform 0.3s ease;
-            font-size: 0.7rem;
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        td.expandable.collapsed::before {
-            transform: rotate(-90deg);
-        }
-
-        .cell-content {
             white-space: normal;
             word-wrap: break-word;
-            line-height: 1.6;
-            max-height: 100px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        td.expanded .cell-content {
-            max-height: none;
-            overflow: visible;
-        }
-
-        td ul, td ol {
-            margin: 0.5rem 0;
-            padding-left: 1.5rem;
-        }
-
-        td li {
-            margin: 0.4rem 0;
-            color: #555;
             line-height: 1.5;
+            font-size: 0.8rem !important;
+            color: #2c3e50;
+            border-bottom: 1px solid #e8eef5 !important;
+            border-right: 1px solid #f0f0f0 !important;
+        }
+
+        #dataTable tbody tr:hover td {
+            background-color: rgba(102, 126, 234, 0.08) !important;
+        }
+
+        #dataTable tbody tr:nth-child(odd) td {
+            background-color: #ffffff !important;
+        }
+
+        #dataTable tbody tr:nth-child(even) td {
+            background-color: #f8f9fc !important;
+        }
+
+        /* Barre de recherche */
+        .dataTables_filter {
+            text-align: left;
+            padding: 1rem 0.75rem !important;
+        }
+
+        .dataTables_filter input {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            width: 300px;
+        }
+
+        .dataTables_filter input:focus {
+            outline: none;
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+        }
+
+        .dataTables_filter label {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        /* Liste + UL dans les cellules */
+        #dataTable ul,
+        #dataTable ol {
+            margin: 0.3rem 0 !important;
+            padding-left: 1.2rem !important;
+        }
+
+        #dataTable li {
+            margin: 0.2rem 0 !important;
+            color: #2c3e50 !important;
+            line-height: 1.3 !important;
         }
 
         /* Loading State */
@@ -512,14 +510,15 @@
                     <h2 id="viewTitle"></h2>
                 </div>
                 <div class="view-buttons">
+                    <button class="nav-btn" onclick="exportTableToCSV()">📥 Exporter CSV</button>
                     <button class="nav-btn secondary" onclick="backToList()">← Retour à la liste</button>
                 </div>
             </div>
-            <div class="charts-container" id="tableContainer">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    <p>Chargement du tableau...</p>
-                </div>
+            <div class="charts-container">
+                <div id="tableContainer" style="width: 100%;"></div>
+            </div>
+            <div class="footer">
+                <p>📊 Scrollez horizontalement pour voir toutes les colonnes</p>
             </div>
         </div>
 
@@ -759,16 +758,74 @@
          * Sélectionner un tableau et l'afficher
          */
         function selectChart(chartIndex) {
-            const chart = allCharts.find(c => c.ue === selectedUE && allCharts.indexOf(allCharts.filter(x => x.ue === selectedUE)[chartIndex]) !== -1);
             const chartsForUE = allCharts.filter(c => c.ue === selectedUE);
             selectedChart = chartsForUE[chartIndex];
 
             document.getElementById('viewTitle').textContent = `${selectedChart.ue} - ${selectedChart.name}`;
-            document.getElementById('tableContainer').innerHTML = createTableHTML(selectedChart.rows);
+            
+            // Initialiser DataTables avec les données du CSV
+            initDataTable(selectedChart.rows);
 
             // Changer d'écran
             document.getElementById('listScreen').classList.remove('active');
             document.getElementById('viewScreen').classList.add('active');
+        }
+
+        /**
+         * Initialiser DataTables avec les données CSV
+         */
+        function initDataTable(rows) {
+            if (rows.length < 2) {
+                document.getElementById('tableContainer').innerHTML = '<p>Données insuffisantes</p>';
+                return;
+            }
+
+            const headers = rows[0];
+            const dataRows = rows.slice(1);
+
+            // Construire le HTML du tableau
+            let tableHtml = '<table id="dataTable" class="display" style="width:100%"><thead><tr>';
+            headers.forEach(header => {
+                tableHtml += `<th>${escapeHTML(header)}</th>`;
+            });
+            tableHtml += '</tr></thead><tbody>';
+
+            dataRows.forEach(row => {
+                tableHtml += '<tr>';
+                row.forEach(cell => {
+                    tableHtml += `<td>${formatCellContent(cell || '')}</td>`;
+                });
+                tableHtml += '</tr>';
+            });
+
+            tableHtml += '</tbody></table>';
+
+            // Remplacer le contenu
+            document.getElementById('tableContainer').innerHTML = tableHtml;
+
+            // Détruire DataTable précédent s'il existe
+            if (window.dataTableInstance) {
+                window.dataTableInstance.destroy();
+            }
+
+            // Initialiser DataTables avec configuration optimisée pour la lecture
+            window.dataTableInstance = $('#dataTable').DataTable({
+                paging: false,                  // Pas de pagination
+                ordering: false,                // Pas de tri
+                searching: true,                // Barre de recherche
+                info: false,                    // Pas d'infos (showing x to y)
+                autoWidth: false,               // Pas d'auto width
+                colReorder: false,              // Pas de réorganisation des colonnes
+                columnDefs: [{
+                    targets: '_all',
+                    className: 'text-wrap'
+                }],
+                language: {
+                    search: 'Rechercher:',
+                    zeroRecords: 'Aucun résultat trouvé',
+                    emptyTable: 'Aucune donnée disponible'
+                }
+            });
         }
 
         /**
@@ -791,39 +848,7 @@
         }
 
         /**
-         * Créer le HTML du tableau
-         */
-        function createTableHTML(rows) {
-            if (rows.length < 2) {
-                return '<p>Données insuffisantes</p>';
-            }
-
-            const headers = rows[0];
-            const bodyRows = rows.slice(1);
-
-            let html = '<table><thead><tr>';
-            
-            headers.forEach(header => {
-                html += `<th>${escapeHTML(header)}</th>`;
-            });
-            html += '</tr></thead><tbody>';
-
-            bodyRows.forEach(row => {
-                html += '<tr>';
-                row.forEach((cell, colIdx) => {
-                    const content = formatCellContent(cell);
-                    const expandClass = colIdx === 0 ? '' : 'expandable collapsed';
-                    html += `<td class="${expandClass}" onclick="toggleCell(this, event)"><div class="cell-content">${content}</div></td>`;
-                });
-                html += '</tr>';
-            });
-
-            html += '</tbody></table>';
-            return html;
-        }
-
-        /**
-         * Formater le contenu d'une cellule
+         * Formater le contenu d'une cellule (HTML sûr + listes)
          */
         function formatCellContent(text) {
             if (!text) return '';
@@ -875,19 +900,51 @@
         }
 
         /**
-         * Toggle l'expansion d'une cellule
+         * Exporter le tableau en CSV
          */
-        function toggleCell(cell, event) {
-            if (cell.cellIndex === 0) return;
-            event.stopPropagation();
-            
-            if (cell.classList.contains('collapsed')) {
-                cell.classList.remove('collapsed');
-                cell.classList.add('expanded');
-            } else if (cell.classList.contains('expanded')) {
-                cell.classList.remove('expanded');
-                cell.classList.add('collapsed');
+        function exportTableToCSV() {
+            if (!window.dataTableInstance) {
+                alert('Aucun tableau à exporter');
+                return;
             }
+            
+            // Récupérer les données du tableau
+            const table = window.dataTableInstance;
+            const headers = [];
+            const rows = [];
+
+            // Récupérer les en-têtes
+            table.columns().header().toArray().forEach(th => {
+                headers.push(th.textContent);
+            });
+
+            // Récupérer les données filtrées
+            table.rows({ search: 'applied' }).data().toArray().forEach(row => {
+                rows.push(row);
+            });
+
+            // Convertir en CSV
+            let csv = headers.map(h => `"${h.replace(/"/g, '""')}"`).join(',') + '\n';
+            rows.forEach(row => {
+                const rowData = Object.values(row).map(cell => {
+                    if (cell && typeof cell === 'string') {
+                        return `"${cell.replace(/"/g, '""').replace(/<[^>]*>/g, '')}"`;
+                    }
+                    return `"${cell || ''}"`;
+                }).join(',');
+                csv += rowData + '\n';
+            });
+
+            // Télécharger le fichier
+            const fileName = document.getElementById('viewTitle').textContent.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '_' + new Date().toISOString().split('T')[0];
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.setAttribute('href', URL.createObjectURL(blob));
+            link.setAttribute('download', fileName + '.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         // Callback pour le changement de semestre
@@ -907,6 +964,12 @@
             loadAllCharts();
         });
     </script>
+    
+    <!-- jQuery (requis pour DataTables) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     
     <!-- Sélecteur de semestre -->
     <script src="../assets/scripts/semester-selector.js"></script>
