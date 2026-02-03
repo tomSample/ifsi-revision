@@ -7,6 +7,11 @@
     <title>IFSI Lannion 2025 - Prises en Charge IDE</title>
     <link rel="manifest" href="../../../public/manifest.json">
     <meta name="theme-color" content="#667eea">
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+    
     <style>
         * {
             margin: 0;
@@ -253,30 +258,27 @@
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            overflow: visible;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            margin-bottom: 2rem;
         }
 
-        .chart-title {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            max-height: 70vh;
-            overflow-y: auto;
+        .dataTables_wrapper {
+            width: 100% !important;
+            padding: 0 20px;
         }
 
         /* === TABLE STYLING === */
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 0.75rem;
+            line-height: 1.4;
         }
 
         thead {
@@ -287,26 +289,27 @@
         }
 
         th {
-            padding: 1.25rem 1rem;
+            padding: 0.75rem 0.5rem;
             text-align: left;
             font-weight: 700;
             color: #2c3e50;
             white-space: nowrap;
             word-wrap: break-word;
-            max-width: 300px;
+            max-width: 200px;
             position: sticky;
             top: 0;
             background: #f9f9f9;
             z-index: 101;
-            font-size: 0.95rem;
+            font-size: 0.8rem;
             letter-spacing: 0.3px;
             border-bottom: 2px solid #667eea;
         }
 
         th:nth-child(1), td:nth-child(1) {
             background: #f9f9f9;
-            width: 120px;
-            min-width: 120px;
+            width: 80px;
+            min-width: 80px;
+            max-width: 80px;
             position: sticky;
             left: 0;
             z-index: 50;
@@ -323,15 +326,14 @@
         td:nth-child(2n+1):not(:first-child) { background: #fafafa; }
 
         td {
-            padding: 1.25rem 1rem;
+            padding: 0.6rem 0.4rem;
             border-bottom: 1px solid #e0e5eb;
             color: #444;
             vertical-align: top;
             word-wrap: break-word;
-            max-width: 300px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
+            max-width: 200px;
+            font-size: 0.75rem;
+            line-height: 1.4;
         }
 
         tbody tr:hover {
@@ -342,23 +344,24 @@
         td:first-child, th:first-child {
             font-weight: 700;
             color: #2c3e50;
-            max-width: 120px;
+            max-width: 80px;
             white-space: normal;
             word-break: break-word;
-            padding: 1.5rem 0.5rem;
-            font-size: 0.9rem;
+            padding: 0.6rem 0.4rem;
+            font-size: 0.75rem;
             letter-spacing: 0.5px;
         }
 
         td.expandable {
             position: relative;
             user-select: none;
+            cursor: pointer;
         }
 
         td.expandable::before {
             content: '▼';
             display: inline-block;
-            margin-right: 0.75rem;
+            margin-right: 0.5rem;
             transition: transform 0.3s ease;
             font-size: 0.7rem;
             color: #667eea;
@@ -372,13 +375,19 @@
         .cell-content {
             white-space: normal;
             word-wrap: break-word;
-            line-height: 1.6;
-            max-height: 100px;
-            overflow: hidden;
+            line-height: 1.4;
             position: relative;
         }
 
-        td.expanded .cell-content {
+        /* Contenu limité seulement si la cellule est collapsed */
+        td.expandable.collapsed .cell-content {
+            max-height: 50px;
+            overflow: hidden;
+        }
+
+        /* Contenu complet si cellule expanded ou non-expandable */
+        td.expandable.expanded .cell-content,
+        td:not(.expandable) .cell-content {
             max-height: none;
             overflow: visible;
         }
@@ -558,15 +567,13 @@
                         i++;
                     }
                 } else if (char === ',' && !insideQuotes) {
-                    currentRow.push(currentCell.trim());
+                    currentRow.push(currentCell.trim()); // Garder la cellule même si vide
                     currentCell = '';
                     i++;
                 } else if ((char === '\n' || char === '\r') && !insideQuotes) {
-                    if (currentCell.trim() || currentRow.length > 0) {
-                        currentRow.push(currentCell.trim());
-                        if (currentRow.some(cell => cell)) {
-                            rows.push(currentRow);
-                        }
+                    if (currentRow.length > 0 || currentCell.trim()) {
+                        currentRow.push(currentCell.trim()); // Ajouter la dernière cellule
+                        rows.push(currentRow); // Toujours conserver la ligne si elle a des colonnes
                         currentRow = [];
                         currentCell = '';
                     }
@@ -581,11 +588,9 @@
                 }
             }
 
-            if (currentCell.trim() || currentRow.length > 0) {
+            if (currentRow.length > 0 || currentCell.trim()) {
                 currentRow.push(currentCell.trim());
-                if (currentRow.some(cell => cell)) {
-                    rows.push(currentRow);
-                }
+                rows.push(currentRow); // Toujours conserver la dernière ligne
             }
 
             return rows;
@@ -628,18 +633,9 @@
                 }
 
                 // SOURCE 2: recap_charts (tableaux récapitulatifs - ex: familles de médicaments)
-                // Structure: fichiers CSV nommés par UE dans recap_charts
-                const recapCharts = [
-                    { ue: 'UE 4.4.S1 - Familles de médicaments', file: '' },
-                    { ue: 'UE 2.5.S2 - Infections cutanées', file: '' }
-                    // Ajouter d'autres tableaux ici
-                ];
-                
-                for (const chart of recapCharts) {
-                    const filename = chart.ue;
-                    const path = `../../../src/data/recap_charts/${encodeURIComponent(chart.ue)}.csv`;
-                    await loadChartFromSource(path, filename);
-                }
+                // Charger automatiquement depuis l'API
+                console.log('📡 Chargement automatique des fichiers recap_charts...');
+                await loadRecapChartsFromAPI();
 
                 // Afficher le portail
                 displayPortal();
@@ -653,6 +649,40 @@
                         <p>${error.message}</p>
                     </div>
                 `;
+            }
+        }
+
+        /**
+         * Charger automatiquement tous les fichiers CSV du dossier recap_charts via l'API
+         */
+        async function loadRecapChartsFromAPI() {
+            try {
+                // Appeler l'API pour obtenir la liste des fichiers
+                const response = await fetch('/api/recap-charts/list');
+                
+                if (!response.ok) {
+                    console.warn('API /api/recap-charts/list non disponible, mode manuel');
+                    return;
+                }
+
+                const data = await response.json();
+                
+                if (!data.success || !data.charts) {
+                    console.warn('Aucun fichier trouvé via l\'API');
+                    return;
+                }
+
+                console.log(`📊 ${data.count} fichier(s) CSV trouvé(s) via l'API`);
+
+                // Charger chaque fichier CSV trouvé
+                for (const filename of data.charts) {
+                    const path = `../../../src/data/recap_charts/${encodeURIComponent(filename)}`;
+                    await loadChartFromSource(path, filename);
+                }
+
+            } catch (error) {
+                console.warn('Erreur lors de l\'appel API recap_charts:', error);
+                // Continuer sans erreur - l'API peut ne pas être disponible
             }
         }
 
@@ -790,7 +820,7 @@
         }
 
         /**
-         * Créer le HTML du tableau
+         * Créer le HTML du tableau avec gestion des cellules fusionnées
          */
         function createTableHTML(rows) {
             if (rows.length < 2) {
@@ -807,12 +837,50 @@
             });
             html += '</tr></thead><tbody>';
 
-            bodyRows.forEach(row => {
+            // Déterminer les cellules fusionnées
+            const mergedCells = new Set();
+            
+            bodyRows.forEach((row, rowIdx) => {
                 html += '<tr>';
                 row.forEach((cell, colIdx) => {
+                    const key = `${rowIdx}-${colIdx}`;
+                    
+                    // Ignorer si la cellule est déjà fusionnée
+                    if (mergedCells.has(key)) {
+                        return;
+                    }
+                    
                     const content = formatCellContent(cell);
-                    const expandClass = colIdx === 0 ? '' : 'expandable collapsed';
-                    html += `<td class="${expandClass}" onclick="toggleCell(this, event)"><div class="cell-content">${content}</div></td>`;
+                    
+                    // Détecter les fusions verticales (cellules vides dans la même colonne)
+                    let rowspan = 1;
+                    for (let i = rowIdx + 1; i < bodyRows.length; i++) {
+                        if (bodyRows[i][colIdx] && bodyRows[i][colIdx].trim() === '') {
+                            rowspan++;
+                            mergedCells.add(`${i}-${colIdx}`);
+                        } else {
+                            break;
+                        }
+                    }
+                    
+                    // Détecter les fusions horizontales (cellules vides consécutives)
+                    let colspan = 1;
+                    for (let j = colIdx + 1; j < row.length; j++) {
+                        if (row[j] && row[j].trim() === '') {
+                            colspan++;
+                        } else {
+                            break;
+                        }
+                    }
+                    
+                    const attrs = rowspan > 1 ? ` rowspan="${rowspan}"` : '';
+                    const colAttrs = colspan > 1 ? ` colspan="${colspan}"` : '';
+                    
+                    // Ajouter classe expandable seulement à la première colonne
+                    const expandClass = colIdx === 0 ? ' class="expandable collapsed"' : '';
+                    const clickHandler = colIdx === 0 ? ' onclick="toggleCell(this, event)"' : '';
+                    
+                    html += `<td${attrs}${colAttrs}${expandClass}${clickHandler}><div class="cell-content">${content}</div></td>`;
                 });
                 html += '</tr>';
             });
@@ -874,10 +942,9 @@
         }
 
         /**
-         * Toggle l'expansion d'une cellule
+         * Toggle l'expansion d'une cellule (première colonne seulement)
          */
         function toggleCell(cell, event) {
-            if (cell.cellIndex === 0) return;
             event.stopPropagation();
             
             if (cell.classList.contains('collapsed')) {
@@ -904,6 +971,55 @@
             
             // Charger les tableaux
             loadAllCharts();
+        });
+    </script>
+    
+    <!-- jQuery (requis pour DataTables) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    
+    <!-- Initialisation DataTables -->
+    <script>
+        // Initialiser DataTables sur tous les tableaux
+        $(document).ready(function() {
+            // Observer pour appliquer DataTables quand la table est créée
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.addedNodes.length) {
+                        mutation.addedNodes.forEach(function(node) {
+                            if (node.nodeName === 'TABLE') {
+                                // Appliquer DataTables au nouveau tableau
+                                if (!$.fn.dataTable.isDataTable(node)) {
+                                    $(node).DataTable({
+                                        paging: false,
+                                        pageLength: 10,
+                                        lengthChange: false,
+                                        searching: true,
+                                        ordering: false,
+                                        info: false,
+                                        responsive: false,
+                                        language: {
+                                            url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/fr-FR.json'
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Observer le conteneur des tableaux
+            const tableContainer = document.getElementById('tableContainer');
+            if (tableContainer) {
+                observer.observe(tableContainer, {
+                    childList: true,
+                    subtree: true
+                });
+            }
         });
     </script>
     

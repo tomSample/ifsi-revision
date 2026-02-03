@@ -898,6 +898,51 @@ def upload_image():
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/recap-charts/list')
+def get_recap_charts():
+    """Récupérer la liste de tous les fichiers CSV du dossier recap_charts"""
+    try:
+        # Chemin du dossier recap_charts
+        recap_charts_dir = os.path.join(SCRIPT_DIR, '../data/recap_charts')
+        
+        # Vérifier que le dossier existe
+        if not os.path.exists(recap_charts_dir):
+            print(f"[WARN] Dossier recap_charts non trouve: {recap_charts_dir}")
+            return jsonify({
+                'success': True,
+                'charts': [],
+                'message': 'Dossier recap_charts non trouve'
+            }), 200
+        
+        # Lister tous les fichiers CSV
+        csv_files = []
+        for filename in os.listdir(recap_charts_dir):
+            if filename.lower().endswith('.csv'):
+                csv_files.append(filename)
+        
+        # Trier alphabétiquement
+        csv_files.sort()
+        
+        print(f"[OK] {len(csv_files)} fichiers CSV trouves dans recap_charts")
+        for f in csv_files:
+            print(f"  - {f}")
+        
+        return jsonify({
+            'success': True,
+            'charts': csv_files,
+            'count': len(csv_files)
+        }), 200
+        
+    except Exception as e:
+        print(f"[ERROR] Erreur dans get_recap_charts: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'charts': []
+        }), 500
+
 @app.route('/api/images')
 def get_images():
     """Récupérer la liste des images"""
@@ -1088,7 +1133,7 @@ def update_courses():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    print("🚀 Serveur IFSI Lannion démarré sur http://localhost:5000")
-    print("📁 Fichier JSON:", os.path.abspath(JSON_FILE_PATH))
-    print("📂 Dossier statique:", os.path.abspath(app.static_folder))
+    print("[*] Serveur IFSI Lannion demarrage sur http://localhost:5000")
+    print("[*] Fichier JSON:", os.path.abspath(JSON_FILE_PATH))
+    print("[*] Dossier statique:", os.path.abspath(app.static_folder))
     app.run(debug=True, host='0.0.0.0', port=5000)
