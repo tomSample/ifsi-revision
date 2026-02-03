@@ -111,6 +111,9 @@
 
     <script src="../assets/scripts/auth/auth.js"></script>
     
+    <!-- Sélecteur de semestre -->
+    <script src="../assets/scripts/semester-selector.js"></script>
+    
     <!-- Badge administrateur -->
     <div id="adminBadge" class="admin-badge admin-only">
         🔐 Mode Administrateur
@@ -178,10 +181,16 @@
         
         let coursesData = null;
         let filteredCourses = [];
+        let currentSemester = 'S1'; // Semestre actuellement sélectionné
 
         // Chargement des données au démarrage
         document.addEventListener('DOMContentLoaded', function() {
             loadCourses();
+            
+            // Initialiser le sélecteur de semestre avec le callback
+            setTimeout(() => {
+                SemesterSelector.init(onSemesterChanged);
+            }, 100);
         });
 
         // Charger les cours depuis le JSON
@@ -191,9 +200,8 @@
                 const data = await response.json();
                 coursesData = data;
                 
-                updateStats();
-                populateUEFilter();
-                displayCourses(data.courses);
+                // Filtrer par semestre
+                filterByCurrentSemester();
                 
             } catch (error) {
                 console.error('Erreur lors du chargement:', error);
@@ -202,15 +210,72 @@
             }
         }
 
-        // Mettre à jour les statistiques
-        function updateStats() {
-            if (!coursesData) return;
+        /**
+         * Filtre les cours par semestre actuel
+         */
+        function filterByCurrentSemester() {
+            if (!coursesData || !coursesData.courses) return;
+            
+            const filtered = SemesterSelector.filterCoursesBySemester(
+                coursesData.courses,
+                currentSemester
+            );
+            
+            updateStats(filtered);
+            populateUEFilter(filtered);
+            displayCourses(filtered);
+        }
 
-            const totalCourses = coursesData.courses.length;
-            const totalTerms = coursesData.courses.reduce((sum, course) => 
+        /**
+         * Callback appelé lors du changement de semestre
+         */
+        function onSemesterChanged(semester) {
+            currentSemester = semester;
+            console.log(`📚 Changement vers ${semester}`);
+            
+            if (!coursesData) {
+                console.warn('Les données des cours ne sont pas encore chargées');
+                return;
+            }
+            
+            // Réappliquer le filtre UE et la recherche avec le nouveau semestre
+            filterByCurrentSemester();
+            filterCourses(); // Réappliquer les autres filtres
+        }
+
+        // Charger les données des cours au démarrage
+        function loadCourses() {
+            fetch('/src/data/courses.json')
+                .then(response => response.json())
+                .then(data => {
+                    coursesData = data;
+                    updateStats();
+                    populateUEFilter();
+                    filterByCurrentSemester();
+                })
+                .catch(error => {
+                    console.error('Erreur lors du chargement des données:', error);
+                    document.getElementById('coursesGrid').innerHTML =
+                    '<div class="error">❌ Erreur lors du chargement des données</div>';
+                });
+        }
+
+        // Mettre à jour les statistiques
+        function updateStats(courses = null) {
+            const coursesToCount = courses || (coursesData ? coursesData.courses : []);
+            
+            if (!coursesToCount || coursesToCount.length === 0) {
+                document.getElementById('totalCourses').textContent = '0';
+                document.getElementById('totalTerms').textContent = '0';
+                document.getElementById('totalUE').textContent = '0';
+                return;
+            }
+
+            const totalCourses = coursesToCount.length;
+            const totalTerms = coursesToCount.reduce((sum, course) => 
                 sum + (course[1].definitions ? course[1].definitions.length : 0), 0);
             
-            const ues = [...new Set(coursesData.courses.map(course => course[1].ue))];
+            const ues = [...new Set(coursesToCount.map(course => course[1].ue))];
             const totalUE = ues.length;
 
             document.getElementById('totalCourses').textContent = totalCourses;
@@ -219,11 +284,20 @@
         }
 
         // Peupler le filtre UE
-        function populateUEFilter() {
-            if (!coursesData) return;
+        function populateUEFilter(courses = null) {
+            const coursesToFilter = courses || (coursesData ? coursesData.courses : []);
+            
+            if (!coursesToFilter || coursesToFilter.length === 0) {
+                return;
+            }
 
-            const ues = [...new Set(coursesData.courses.map(course => course[1].ue))];
+            const ues = [...new Set(coursesToFilter.map(course => course[1].ue))];
             const select = document.getElementById('ueFilter');
+            
+            // Vider les options existantes sauf la première
+            while (select.options.length > 1) {
+                select.remove(1);
+            }
             
             ues.forEach(ue => {
                 const option = document.createElement('option');
@@ -244,7 +318,7 @@
 
             grid.innerHTML = courses.map(course => {
                 const [key, data] = course;
-                const courseTitle = (data.title || 'Titre non défini').replace(/'/g, '\\\'');
+                const courseTitle = (data.title || 'Titre non défini').replace(/"/g, '&quot;');
                 return `
                     <div class="course-card" onclick="showCourseDetails('${key}')">
                         <div class="course-header">
@@ -259,10 +333,10 @@
                         
                         <!-- Boutons admin (masqués par défaut) -->
                         <div class="course-admin-actions admin-only">
-                            <button onclick="event.stopPropagation(); editCourse('${key}', '${courseTitle}')" class="admin-btn edit-btn" title="Éditer le cours">
+                            <button onclick="event.stopPropagation(); editCourse('${key}', &quot;${courseTitle}&quot;)" class="admin-btn edit-btn" title="Éditer le cours">
                                 ✏️
                             </button>
-                            <button onclick="event.stopPropagation(); deleteCourse('${key}', '${courseTitle}')" class="admin-btn delete-btn" title="Supprimer le cours">
+                            <button onclick="event.stopPropagation(); deleteCourse('${key}', &quot;${courseTitle}&quot;)" class="admin-btn delete-btn" title="Supprimer le cours">
                                 🗑️
                             </button>
                         </div>
@@ -281,7 +355,11 @@
             const ueFilter = document.getElementById('ueFilter').value;
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
 
-            let filtered = coursesData.courses;
+            // Commencer par les cours du semestre actuel
+            let filtered = SemesterSelector.filterCoursesBySemester(
+                coursesData.courses,
+                currentSemester
+            );
 
             if (ueFilter) {
                 filtered = filtered.filter(course => course[1].ue === ueFilter);

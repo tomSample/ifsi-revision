@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IFSI Lannion 2025 - Prises en Charge IDE</title>
     <link rel="manifest" href="../../../public/manifest.json">
@@ -344,9 +345,6 @@
             max-width: 120px;
             white-space: normal;
             word-break: break-word;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            transform: rotate(180deg);
             padding: 1.5rem 0.5rem;
             font-size: 0.9rem;
             letter-spacing: 0.5px;
@@ -632,7 +630,8 @@
                 // SOURCE 2: recap_charts (tableaux récapitulatifs - ex: familles de médicaments)
                 // Structure: fichiers CSV nommés par UE dans recap_charts
                 const recapCharts = [
-                    { ue: 'UE 4.4.S1 - Familles de médicaments', file: '' }
+                    { ue: 'UE 4.4.S1 - Familles de médicaments', file: '' },
+                    { ue: 'UE 2.5.S2 - Infections cutanées', file: '' }
                     // Ajouter d'autres tableaux ici
                 ];
                 
@@ -688,25 +687,33 @@
         }
 
         /**
-         * Afficher le portail des UE
+         * Afficher le portail des UE avec filtrage par semestre
          */
         function displayPortal() {
-            const uees = [...new Set(allCharts.map(c => c.ue))].sort();
+            const currentSemester = SemesterSelector.getSemester();
+            
+            // Filtrer les tableaux par semestre actif
+            const filteredCharts = allCharts.filter(chart => {
+                const ue = chart.ue;
+                return ue.includes(currentSemester);
+            });
+            
+            const uees = [...new Set(filteredCharts.map(c => c.ue))].sort();
             const grid = document.getElementById('ueGrid');
 
             if (uees.length === 0) {
                 grid.innerHTML = `
                     <div class="empty-state">
                         <div class="empty-state-icon">📭</div>
-                        <h3>Aucun tableau disponible</h3>
-                        <p>Veuillez uploader les fichiers CSV dans src/data/role_ide_charts/</p>
+                        <h3>Aucun tableau disponible pour ${currentSemester}</h3>
+                        <p>Veuillez uploader les fichiers CSV dans src/data/recap_charts/ ou role_ide_charts/</p>
                     </div>
                 `;
                 return;
             }
 
             grid.innerHTML = uees.map(ue => {
-                const count = allCharts.filter(c => c.ue === ue).length;
+                const count = filteredCharts.filter(c => c.ue === ue).length;
                 return `
                     <div class="ue-card" onclick="selectUE('${ue}')">
                         <h3>${ue}</h3>
@@ -882,9 +889,26 @@
             }
         }
 
+        // Callback pour le changement de semestre
+        function onSemesterChanged(semester) {
+            console.log(`📚 Changement vers ${semester}`);
+            displayPortal();
+        }
+
         // Charger au démarrage
-        document.addEventListener('DOMContentLoaded', loadAllCharts);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialiser le sélecteur de semestre avec le callback
+            setTimeout(() => {
+                SemesterSelector.init(onSemesterChanged);
+            }, 100);
+            
+            // Charger les tableaux
+            loadAllCharts();
+        });
     </script>
+    
+    <!-- Sélecteur de semestre -->
+    <script src="../assets/scripts/semester-selector.js"></script>
 </body>
 </html>
 

@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-01-27T12:33:22.789933",
+  "exportDate": "2026-02-02T15:26:53.465678",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -6156,10 +6156,30 @@
         ],
         "filename": "polytraumatisme.odt"
       }
+    ],
+    [
+      "ue_4_4_s2_test",
+      {
+        "title": "TEST",
+        "date": "08/01/2026",
+        "ue": "4.4.S2",
+        "author": "SC",
+        "definitions": [
+          {
+            "definition": "adasdasd",
+            "term": "TEST"
+          },
+          {
+            "definition": "mplpldfs",
+            "term": "tt"
+          }
+        ],
+        "filename": "TEST.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 1136,
+    "totalTerms": 1138,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0

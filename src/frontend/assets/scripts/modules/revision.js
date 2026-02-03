@@ -37,6 +37,7 @@ let db = null;
 let syncManager = null;
 let spacedRepetition = null;
 let userProgress = {};
+let currentSemester = 'S1'; // Semestre actuellement sélectionné
 
 // Initialisation au chargement de la page
 document.addEventListener('DOMContentLoaded', async function() {
@@ -45,6 +46,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     // La progression est chargée automatiquement dans onAuthStateChanged
     loadReportedTerms();
     setupEventListeners();
+    
+    // Initialiser le sélecteur de semestre avec le callback de filtrage
+    setTimeout(() => {
+        SemesterSelector.init(onSemesterChanged);
+    }, 100);
 });
 
 /**
@@ -231,7 +237,143 @@ function setupEventListeners() {
     });
 }
 
+/**
+ * Callback appelé lors du changement de semestre
+ * Filtre les cours et réinitialise les listes d'UE
+ */
+function onSemesterChanged(semester) {
+    currentSemester = semester;
+    console.log(`📚 Changement vers ${semester}`);
+    
+    if (!coursesData || !coursesData.courses) {
+        console.warn('Les données des cours ne sont pas encore chargées');
+        return;
+    }
+    
+    // Filtrer les cours par semestre
+    const filteredCourses = SemesterSelector.filterCoursesBySemester(
+        coursesData.courses,
+        semester
+    );
+    
+    // Créer une copie temporaire des données
+    const tempCoursesData = {
+        ...coursesData,
+        courses: filteredCourses
+    };
+    
+    // Réextraire les termes et UE pour le semestre sélectionné
+    allTerms = [];
+    const ueSet = new Set();
+    
+    const courses = tempCoursesData.courses;
+    for (let i = 0; i < courses.length; i++) {
+        const [courseKey, courseData] = courses[i];
+        if (courseData.definitions && courseData.definitions.length > 0) {
+            ueSet.add(courseData.ue);
+            
+            for (let j = 0; j < courseData.definitions.length; j++) {
+                const def = courseData.definitions[j];
+                allTerms.push({
+                    term: def.term,
+                    definition: def.definition,
+                    importance: def.importance || 'optionnel',
+                    ue: courseData.ue,
+                    course: courseData.title,
+                    courseKey: courseKey
+                });
+            }
+        }
+    }
+    
+    availableUEs = Array.from(ueSet).sort((a, b) => {
+        const parseUE = (ue) => {
+            const match = ue.match(/(\d+)\.(\d+)\.S\d/);
+            return match ? [parseInt(match[1]), parseInt(match[2])] : [0, 0];
+        };
+        
+        const [a1, a2] = parseUE(a);
+        const [b1, b2] = parseUE(b);
+        
+        if (a1 !== b1) return a1 - b1;
+        return a2 - b2;
+    });
+    
+    // Réinitialiser la sélection des UE
+    selectedUEs = [...availableUEs];
+    
+    // Mettre à jour les termes filtrés pour le nouveau semestre
+    updateFilteredTerms();
+    
+    // Mettre à jour le dropdown des UE
+    updateUEDropdown();
+    
+    // Réinitialiser les statistiques
+    updateStatsDisplay();
+    
+    console.log(`✅ ${allTerms.length} termes disponibles pour ${semester}`);
+}
+
+/**
+ * Mets à jour le dropdown des UE pour le semestre actuel
+ */
+function updateUEDropdown() {
+    const ueOptions = document.getElementById('ueOptions');
+    if (!ueOptions) return;
+    
+    ueOptions.innerHTML = '';
+    
+    // Option pour sélectionner toutes les UE
+    const allOption = document.createElement('div');
+    allOption.className = 'ue-option checked';
+    allOption.innerHTML = `
+        <input type="checkbox" id="allUEs" checked onchange="toggleAllUEs()">
+        <label for="allUEs">Toutes les UE</label>
+    `;
+    // Rendre toute la div cliquable
+    allOption.style.cursor = 'pointer';
+    allOption.addEventListener('click', function(e) {
+        if (e.target.tagName !== 'INPUT') {
+            const checkbox = this.querySelector('input[type="checkbox"]');
+            if (checkbox) {
+                checkbox.checked = !checkbox.checked;
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        }
+    });
+    ueOptions.appendChild(allOption);
+    
+    // Options individuelles pour chaque UE
+    availableUEs.forEach(ue => {
+        const option = document.createElement('div');
+        option.className = 'ue-option checked';
+        const id = `ue_${ue.replace(/\./g, '_')}`;
+        
+        option.innerHTML = `
+            <input type="checkbox" id="${id}" value="${ue}" checked onchange="toggleUE('${ue}')">
+            <label for="${id}">${ue}</label>
+        `;
+        
+        // Rendre toute la div cliquable
+        option.style.cursor = 'pointer';
+        option.addEventListener('click', function(e) {
+            if (e.target.tagName !== 'INPUT') {
+                const checkbox = this.querySelector('input[type="checkbox"]');
+                if (checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            }
+        });
+        ueOptions.appendChild(option);
+    });
+    
+    // Mettre à jour l'affichage
+    updateUEDisplay();
+}
+
 // Charger les données des cours
+
 async function loadCoursesData() {
     try {
         console.log('🔍 Début chargement des données...');
@@ -483,9 +625,9 @@ document.addEventListener('click', function(event) {
 // Basculer toutes les UE
 function toggleAllUEs() {
     const allCheckbox = document.getElementById('allUEs');
-    const isChecked = !allCheckbox.checked;
     
-    allCheckbox.checked = isChecked;
+    // Lire l'état actuel du checkbox (déjà changé par le navigateur)
+    const isChecked = allCheckbox.checked;
     
     // Mettre à jour toutes les autres checkboxes
     availableUEs.forEach(ue => {
@@ -506,10 +648,10 @@ function toggleUE(ue) {
     const checkbox = document.getElementById(`ue_${ue.replace(/\./g, '_')}`);
     const allCheckbox = document.getElementById('allUEs');
     
-    // Inverser l'état de la checkbox
-    checkbox.checked = !checkbox.checked;
+    // Lire l'état actuel du checkbox (déjà changé par le navigateur lors du clic)
+    const isChecked = checkbox.checked;
     
-    if (checkbox.checked) {
+    if (isChecked) {
         // Ajouter l'UE si elle n'est pas déjà sélectionnée
         if (!selectedUEs.includes(ue)) {
             selectedUEs.push(ue);
@@ -588,6 +730,12 @@ async function startRevision() {
     // Afficher immédiatement l'écran de révision avec un loader
     document.getElementById('startScreen').style.display = 'none';
     document.getElementById('revisionScreen').style.display = 'block';
+    
+    // Masquer les boutons de semestre pendant la révision
+    const semesterSelector = document.getElementById('semesterSelector');
+    if (semesterSelector) {
+        semesterSelector.style.display = 'none';
+    }
     
     // Sélectionner les termes pour cette session depuis les termes disponibles
     currentSession = await selectTermsForSession(termCount, availableTerms);
@@ -1241,7 +1389,13 @@ function startNewSession() {
     // Réafficher l'écran de démarrage
     document.getElementById('resultsScreen').style.display = 'none';
     document.getElementById('revisionScreen').style.display = 'none';
-    document.getElementById('startScreen').style.display = 'block';
+    document.getElementById('startScreen').style.display = 'flex';
+    
+    // Réafficher les boutons de semestre
+    const semesterSelector = document.getElementById('semesterSelector');
+    if (semesterSelector) {
+        semesterSelector.style.display = 'block';
+    }
     
     // Mettre à jour les statistiques
     updateStatsDisplay();
