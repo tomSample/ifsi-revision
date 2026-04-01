@@ -1,100 +1,101 @@
-INFECTION RESPIRATOIRE,Affection,Agent causal,Mode de transmission,Incubation,Symptômes clés,Clinique,Facteurs de risque,Complications,Traitement,Mesures préventives
-Virale,Bronchite,"Virus respiratoire syncitial (VRS)
-Rhinovirus
-Métapneumovirus
-Grippe (Parainfluenza,Influenza)
-Coronavirus","Voie aérienne
-Gouttelettes (grippe)
-Mains souillées",2-15j,Brûlure retrosternale,"Toux sèche ⇒ grasse (10-14j)
-Râle bronchique
-Fébricule
-Guérison spontanée","Enfants<5ans
-Tabac passif",Surinfection bactérienne,"Symptomatique = paracétamol, traitement de confort
-
-Pas d’antibiotiques, antitussifs, anti-inflammatoires
-
-Si Grippe ⇒ antiviral = Oseltamivir dans les 48h du début des symptômes","Lavage mains
-Aération"
-Bactérienne,Pneumopathie post-grippale,"Pneumocoque
-Strepto pyogenes
-Staphy",,,,Fièvre à J5-J7 après début infection grippale,,Surinfection bactérienne,ATB = amoxicilline-acide clavulanique,
-Bactérienne,Pneumopathie d’ihnalation,"Pneumocoque
-Strepto pyogenes
-Staphy",,,Vomissement précédant la pneumopathie,,,Surinfection bactérienne,ATB = amoxicilline-acide clavulanique (pour couvrir les bactéries du tube digestif qui sont anaérobies),
-Virale,Bronchiolite aiguë,"VRS 60-90%
-Para-influenza","Gouttelettes,Contact direct",3-7j,,"Dyspnée sifflante
+Affection,Symptômes clés,Clinique,Facteurs de risque,Complications,Infection respiratoire,Agent causal,Mode de transmission,Incubation,Traitement,Mesures préventives
+Bronchiolite aiguë,,"Dyspnée sifflante
 Comportement
 FR / FC / SpO2
 Pauses respiratoires
 Respiration superficielle
 Signes de lutte respiratoire intenses (tirage, entonnoir xyphoïdien…)
 Alimentation (déshydratation)","Prématurité<36SA<2mois
-Cardiopathie congénitale","Apnées,Hypoxie","Symptomatique : 
+Cardiopathie congénitale","Apnées,Hypoxie
+Surinfection bactérienne",Virale,"VRS 60-90%
+Para-influenza","Gouttelettes,Contact direct",3-7j,"Symptomatique : 
 - aspiration thino-pharyngés
 - kiné respi
 - alimentation / hydratation
 
-Hospitalisation : 
+Hospitalisation : 
 - aérosol de broncho-dilatateurs
 - antibiotiques si surinfection","Eviter tabac passif
 Lavage de main
 Proclive dorsal 30°"
-Virale,"Pneumopathie virale
+Bronchite,Brûlure retrosternale,"Toux sèche ⇒ grasse (10-14j)
+Râle bronchique
+Fébricule
+Guérison spontanée","Enfants<5ans
+Tabac passif",Surinfection bactérienne,Virale,"Virus respiratoire syncitial (VRS)
+Rhinovirus
+Métapneumovirus
+Grippe (Parainfluenza,Influenza)
+Coronavirus","Voie aérienne
+Gouttelettes (grippe)
+Mains souillées",2-15j,"Symptomatique = paracétamol, traitement de confort
 
-= infection du parenchyme pulmonaire","VRS
-Grippe (Influenze)
-Coronavirus",Voie aérienne,3-14j,"Frissons
+Pas d'antibiotiques, antitussifs, anti-inflammatoires
+
+Si Grippe ⇒ antiviral = Oseltamivir dans les 48h du début des symptômes","Lavage mains
+Aération"
+"Pneumopathie virale
+= infection du parenchyme pulmonaire","Frissons
 Difficultés respiratoires","Dyspnée, toux, expectorations, douleur thoracique
 Fièvre
-Anomalie auscultatoires
-Signes radiologiques = atteinte du parenchyme pulmonaire ⇒ peut passer inaperçu si réalisée trop tôt","Âges extrêmes
+Anomalies uscultatoires
+Signes radiologiques = atteinte du parenchyme pulmonaire ⇒ peut passer inaperçu si réalisée trop tôts","Âges extrêmes
 Prise de toxiques
-Patho chroniqie
-Déficits immunitaires",,"Oxygénothérapie pour SpO2 < 94 %
+Patho chronique
+Déficits immunitaires",,Virale,"VRS
+Grippe (Influenze)
+Coronavirus",Voie aérienne,3-14j,"Oxygénothérapie pour SpO2 < 94 %
 Drainage bronchique
 Aérosol selon le terrain
 Corticothérapie",Vaccins respiratoires
-Bactérienne,"Pneumopathie bactérienne
-
-= infection du parenchyme pulmonaire","Pneumocoque +++, Haemophilus influenzae
-Staph aureus, strepto…
-Legionella pneumophia, Mycoplasma pneumoniae",Voie aérienne,3-14j,"Frissons 
+Coqueluche,Quintes toux+apnées,"+/- cyanose du visage
++/- vomissements","Non-vaccinés
+Nourrisson <3mois mortel","fracture de côtes
+Infectieuses (otites, sinusites, pneumonie)
+Neurologiques (convulsions, encéphalopathie)",Bactérienne,Bordetella pertussis,"Gouttelettes,Intra-familial",7-21j,"Azithromycine,Hospitalisation","DTCoq,Co cocooning"
+"Pneumopathie bactérienne
+= infection du parenchyme pulmonaire","Frissons 
 Difficultés respiratoires
 Toux purulente","Dyspnée, toux, expectorations, douleur thoracique
 Fièvre élevée
-Anomalie auscultatoires 
+Anomalies auscultatoires 
 Signes radiologiques = atteinte du parenchyme pulmonaire ⇒ peut passer inaperçu si réalisée trop tôt","Âges extrêmes
 Prise de toxiques
-Patho chroniqie
-Déficits immunitaires",Surinfection bactérienne,"ATB Amoxicilline per os ou IV
-Oxygénothérapie pour SpO2 < 94 % 
+Patho chronique
+Déficits immunitaires",Surinfection bactérienne,Bactérienne,"Pneumocoque +++
+Mycoplasma pneumoniae",Voie aérienne,3-14j,"ATB Amoxicilline per os ou IV
+Oxygénothérapie pour SpO2 < 94 % 
 Drainage bronchique
 Aérosol selon le terrain ",Vaccin pneumocoque
-Bactérienne,"PFLA 
-
-= pneumopathie franche lobaire aiguë",Pneumocoque +++,Goutelettes,3-14j,"Douleur localisée, soudaine et importante","Douleurs thoraciques
+"PFLA 
+= pne-umopathie franche lobaire aiguë","Douleur localisée, soudaine et importante","Douleurs thoraciques
 Fièvre élevée",">40 ans
 VIH
 Ethylisme
-Immunodépression",Surinfection bactérienne,"ATB Amoxicilline per os ou IV
+Immunodépression",Surinfection bactérienne,Bactérienne,Pneumocoque +++,Goutelettes,3-14j,"ATB Amoxicilline per os ou IV
 ",Vaccin pneumocoque
-Bactérienne,Pneumopathie atypiques,"Haemophilus influenzae, légionnelle
-Chlamydia psittaci","Eau
-Contacts professionnels (bovins, oiseaux)",3-14j,"début plus torpide, tableau moins franc","Dyspnée, toux, expectorations, douleur thoracique
+Pneumopathie atypiques,"début plus torpide, tableau moins franc","Dyspnée, toux, expectorations, douleur thoracique
 Fièvre élevée
 Anomalie auscultatoires 
-Atteintes extra-pulmonaires : digestive, hépatiques, myalgies, neurologiques",,Surinfection bactérienne,ATB ,Vaccin pneumocoque
-Bactérienne,Coqueluche,Bordetella pertussis,"Gouttelettes,Iintra-familial",7-21j,Quintes toux+apnées,NRS<3mois mortel,Non-vaccinés,"Apnées,Maligne","Azithromycine,Hospitalisation","DTCoq,Co cocooning"
-Bactérienne,Tuberculose,Mycobact tuberculosis,Gouttelettes,2-10sem,"Toux>3sem,Amaigrissement",Foyers pulmonaires,"VIH,Contact TB","Miliaire,Méningite",HRZE 6mois,"BCG,IDR contacts"
-Bactérienne / Virale,Exacerbation de BPCO,,Gouttelettes/Contact selon l’agent causal,selon l’agent causal,,purulence inhabituelle ou majoration de la purulence à l’exacerbation = marqueur d’origine bactérienne,"Tabagisme>10paq/années
->40ans
-Homme
-Antécédents familiaux","Insuffisance respiratoire chronique
-Majoration dyspnée, toux, volume des expéctorations ± de leur purulence
-Cancer poumon","Antibiotique si BPCO grave de base
+Atteintes extra-pulmonaires : digestive, hépatiques, myalgies, neurologiques",,,Bactérienne,"Haemophilus influenzae, légionnelle
+Chlamydia psittaci","Eau
+Contacts professionnels (bovins, oiseaux)",3-14j,ATB,Vaccin pneumocoque
+Pneumopathie post-grippale,Fièvre à J5-J7 après début infection grippale,,,Surinfection bactérienne,Bactérienne,"Pneumocoque
+Strepto pyogenes
+Staphy",,,ATB = amoxicilline-acide clavulanique,
+Pneumopathie d'inhalation,Vomissement précédant la pneumopathie,,,Surinfection bactérienne,Bactérienne,"Pneumocoque
+Strepto pyogenes
+Staphy",,,ATB = amoxicilline-acide clavulanique (pour couvrir les bactéries du tube digestif qui sont anaérobies),
+Tuberculose,"Toux, fièvre, sueurs, amaigrissement, asthénie > 3 semaines",Foyers pulmonaires,VIH,"forme miliaire
+Tuberculose extra-pulmonaire ( ganglionnaire, osseuse, uro-génitale, méningo-encéphalique, etc)",Bactérienne,Mycobact tuberculosis = bacille de Koch,Gouttelettes,2-10sem,"Rifampicine
+Isoniazide
+Pyrazinamide
+Ethambutol",vaccin BCG
+Exacerbation de BPCO,purulence inhabituelle ou majoration de la purulence = marqueur d'origine bactérienne,"Majoration dyspnée, toux, volume des expéctorations ± de leur purulence","Insuffisance respiratoire chronique
+Cancer poumon",,Bactérienne / Virale,,Gouttelettes/Contact selon l'agent causal,selon l'agent causal,"Antibiotique si BPCO grave de base
 Bronchodilatateurs 
 Corticoides inhalés
-Oxygénothérapie (attention risque d’hypercapnie majorée si débit trop élevé)
+Oxygénothérapie (attention risque d'hypercapnie majorée si débit trop élevé)
 Kiné de drainage bronchique","Vaccins grippe/pneumocoque
 Vaccin anti-COVID
 Exercice régulier

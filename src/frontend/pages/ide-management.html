@@ -616,28 +616,29 @@
             try {
                 allCharts = [];
 
-                // SOURCE 1: role_ide_charts (tableaux de prises en charge IDE)
-                const roleIdeCharts = [
-                    'UE 2.4.S1 - Traumatismes.csv'
-                    // Ajouter d'autres fichiers ici
-                ];
+                // Charger la liste dynamiquement depuis l'API backend
+                const response = await fetch('/api/charts/list');
                 
-                for (const filename of roleIdeCharts) {
-                    await loadChartFromSource(`../../../src/data/role_ide_charts/${encodeURIComponent(filename)}`, filename);
+                if (!response.ok) {
+                    console.error('Erreur API:', response.status);
+                    displayPortal(); // Afficher message d'erreur
+                    return;
                 }
-
-                // SOURCE 2: recap_charts (tableaux récapitulatifs - ex: familles de médicaments)
-                // Structure: fichiers CSV nommés par UE dans recap_charts
-                const recapCharts = [
-                    { ue: 'UE 4.4.S1 - Familles de médicaments', file: '' },
-                    { ue: 'UE 2.5.S2 - Infections cutanées', file: '' },
-                    { ue: 'UE 2.5.S2 - Infections respiratoires basses', file: '' },
-                    { ue: 'UE 2.5.S2 - Maladies éruptives pédiatriques', file: '' }
-                ];
                 
-                for (const chart of recapCharts) {
+                const data = await response.json();
+                
+                if (!data.success || !data.charts) {
+                    console.error('Réponse API invalide');
+                    displayPortal();
+                    return;
+                }
+                
+                console.log(`📊 ${data.count} fichiers trouvés`);
+                
+                // Charger chaque fichier CSV
+                for (const chart of data.charts) {
+                    const path = `../../../${chart.path}`;
                     const filename = chart.ue;
-                    const path = `../../../src/data/recap_charts/${encodeURIComponent(chart.ue)}.csv`;
                     await loadChartFromSource(path, filename);
                 }
 

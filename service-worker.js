@@ -113,6 +113,12 @@ self.addEventListener('fetch', (event) => {
         return;
     }
     
+    // 2b. Fichiers CSV (recap_charts): Network First pour toujours avoir les derniers
+    if (request.url.includes('.csv') && (request.url.includes('recap_charts') || request.url.includes('role_ide_charts'))) {
+        event.respondWith(networkFirstWithFallback(request));
+        return;
+    }
+    
     // 3. Pages HTML: Network First avec fallback offline
     if (request.destination === 'document') {
         event.respondWith(networkFirstWithFallback(request));

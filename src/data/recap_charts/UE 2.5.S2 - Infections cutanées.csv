@@ -1,4 +1,4 @@
-INFECTION CUTANEE,Affection,Agent infectieux,Mode de transmission,Clinique,Facteurs favorisants,Complications Liées à linfection,Traitement,Contre-indication
+Type,Affection,Agent infectieux,Mode de transmission,Clinique,Facteurs favorisants,Complications Liées à linfection,Traitement,Contre-indication
 "Bactérienne 
 
 = atteinte dun mécanisme de défense cutané :
@@ -10,23 +10,24 @@ INFECTION CUTANEE,Affection,Agent infectieux,Mode de transmission,Clinique,Facte
 - chaleur
 - humidité
 - macération",Impetigo,Staph aureus Strep pyogenes,"Endogène 
-Non immunisable","Bulle couche cornée ? érosion suintante ? croûte mélicérique 
+Non immunisable","Bulle couche cornée ⇒ érosion suintante ⇒ croûte mélicérique 
 
 Extension centrifuge 
 Touche principalement le pourtour de la bouche 
-Absence de fièvre",Âge (touche préférablement les enfants) Hygiène insuffisante,Surinfection,"Soins dhygiène 
+Absence de fièvre",Âge (touche préférablement les enfants) Hygiène insuffisante,Surinfection,"Soins d’hygiène 
 Antiseptiques locaux 
 Pommade antibiotique",Pommade corticoïde
 ,"Panaris, abcès, furoncle",Staph aureus,,,,,,
-,Eryspèle,Strep pyogenes,,"Rougeur aiguë fébrile (membre inférieurs > visage)
+,Erysipèle,Strep pyogenes,,"Rougeur aiguë fébrile (membre inférieurs > visage)
 Fièvre initiale 39-40°C 
-Placard inflammatoire douloureux à la palpation ± décollement bulleux ± adénopathie ± lymphangite","Porte dentrée locorégionale (plaie, piqure, intertrigo) 
-Diabète Insuffisance veineuse chronique
+Placard inflammatoire douloureux à la palpation ± décollement bulleux ± adénopathie ± lymphangite","Porte d’entrée locorégionale (plaie, piqure, intertrigo) 
+Diabète 
+Insuffisance veineuse chronique
 Lymphoedème 
 Obésité",Fasciite nécrosante,"ATB per os 
 Repos ± anticoag préventive 
 Antalgiques 
-Traitement porte dentrée 
+Traitement porte d’entrée 
 Vaccination antitétanique / rappel",AINS
 "Fongique 
 
@@ -36,7 +37,7 @@ Vaccination antitétanique / rappel",AINS
 - fréquent
 - absence d’anomalie biologique (pas d’indication bilan bio)
 
-- signes cliniques variés +++ (plaques érythémateuses bordées, alopécie, leucorrhées)",Candidoses (pas de prélèvement ou rare),"Candida albicans-levure saprophyte, vit habituellement au niveau des muqueuses- ne se retrouve pas sur une peau saine",Endogène,"'- Buccale (muguet, glossite, perlèche)
+- signes cliniques variés +++ (plaques érythémateuses bordées, alopécie, leucorrhées)",Candidoses (pas de prélèvement ou rare),"Candida albicans-levure saprophyte, vit habituellement au niveau des muqueuses- ne se retrouve pas sur une peau saine",Endogène,"- Buccale (muguet, glossite, perlèche)
 - Anale (érythème vif périanal, prurit)
 - Génitale- Intertrigo
 - Onyxis
@@ -56,7 +57,13 @@ Vaccination antitétanique / rappel",AINS
 
 (non saprophyte)","Exogène 
 
-Contact avec les animaux, le sol ou inter-humaine (squames contaminés)","Atteinte des phanères, de la peau glabre et des plis Pas datteinte des muqueuses","- Promiscuité- Vie en collevticité- Macération- Hygiène,- Diabète- Traumatismes de lépiderme- etc",,,
+Contact avec les animaux, le sol ou inter-humaine (squames contaminés)","Atteinte des phanères, de la peau glabre et des plis Pas datteinte des muqueuses","- Promiscuité
+- Vie en collectivité
+- Macération
+- Hygiène
+- Diabète
+- Traumatismes de l’épiderme
+- etc",,,
 Virale,Herpès cutané et muqueux,"Herpès simplex virus HSV1 = sphère ORL HSV2 = sphère génitale
 
 On peut retrouver les 2 HSV dans les sphères ORL et génitale (herpès du nouveau né, pratiques sexuelles)","Exogène 
@@ -100,7 +107,8 @@ Parasite,"Gale
 ? Prévention contact standard + complémentaire (peau + objets contaminés)",Acarien (Sarcoptes scabiei),Exogène (contact direct ou indirect),"- Prurit vespérale (début de nuit/nocturne)
 - Localisation = espace interdigitaux, face antérieure des poignets, mamelons, organes génitaux externes SAUF la tête
 - Sillons scabieux parfois observables ou nodules
-- Risque d'impetigo (impetiginisation) si grattage important et prolongé",,Risque de sur-diagnostic = traiter des personnes (px + entourage) contre la gale alors quils nen sont pas atteints,"Patient :
+- Risque d'impetigo (impetiginisation) si grattage important et prolongé","- Promiscuité
+- Vie en collectivité",Risque de sur-diagnostic = traiter des personnes (px + entourage) contre la gale alors quils nen sont pas atteints,"Patient :
 
 - lotions/crèmes corporels locales
 - et / ou ttmt systémique ivermectine per os en 2 prises à 10 jours dintervalle (éclosion des ufs à distance)
@@ -111,5 +119,6 @@ Parasite,"Gale
 - 1 prise unique divermectine per os",
 ,"Pédiculoses 
 
-= poux ? éducation ++",poux,Contact,"Cuir chevelu = prurit, parasite visibles à loeil nu Corps = prurit, pou de corps Pubis = prurit, phtiriase",- Promiscuité- Vie en collevticité,,"- Local en 2 temps à 7 jours dintervalle pour tuer les lentes
+= poux ? éducation ++",poux,Exogène (contact direct ou indirect),"Cuir chevelu = prurit, parasite visibles à loeil nu Corps = prurit, pou de corps Pubis = prurit, phtiriase","- Promiscuité
+- Vie en collectivité",,"- Local en 2 temps à 7 jours dintervalle pour tuer les lentes
 - traitement du linge",

@@ -1087,6 +1087,56 @@ def update_courses():
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/charts/list')
+def list_charts():
+    """Liste tous les fichiers CSV disponibles dans recap_charts et role_ide_charts"""
+    try:
+        charts = []
+        
+        # Répertoires à scanner
+        data_dir = os.path.join(SCRIPT_DIR, '../data')
+        recap_charts_dir = os.path.join(data_dir, 'recap_charts')
+        role_ide_charts_dir = os.path.join(data_dir, 'role_ide_charts')
+        
+        # Scanner recap_charts
+        if os.path.isdir(recap_charts_dir):
+            for filename in os.listdir(recap_charts_dir):
+                if filename.endswith('.csv'):
+                    filepath = os.path.join(recap_charts_dir, filename)
+                    charts.append({
+                        'filename': filename,
+                        'type': 'recap',
+                        'path': f'/src/data/recap_charts/{filename}',
+                        'ue': filename.replace('.csv', '')  # Nom du fichier = UE
+                    })
+                    print(f"✓ Fichier recap trouvé: {filename}")
+        
+        # Scanner role_ide_charts
+        if os.path.isdir(role_ide_charts_dir):
+            for filename in os.listdir(role_ide_charts_dir):
+                if filename.endswith('.csv'):
+                    filepath = os.path.join(role_ide_charts_dir, filename)
+                    charts.append({
+                        'filename': filename,
+                        'type': 'role_ide',
+                        'path': f'/src/data/role_ide_charts/{filename}',
+                        'ue': filename.replace('.csv', '')
+                    })
+                    print(f"✓ Fichier role_ide trouvé: {filename}")
+        
+        print(f"📊 Total de fichiers trouvés: {len(charts)}")
+        return jsonify({
+            'success': True,
+            'charts': charts,
+            'count': len(charts)
+        })
+        
+    except Exception as e:
+        print(f"❌ Erreur dans list_charts: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
     print("🚀 Serveur IFSI Lannion démarré sur http://localhost:5000")
     print("📁 Fichier JSON:", os.path.abspath(JSON_FILE_PATH))
