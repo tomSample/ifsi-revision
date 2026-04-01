@@ -6,6 +6,7 @@
 const SemesterSelector = (() => {
     let currentSemester = 'S1';
     let filterCallback = null;
+    const SEMESTER_RANGE = { min: 1, max: 6 };
 
     /**
      * Initialise le sélecteur de semestre
@@ -26,6 +27,20 @@ const SemesterSelector = (() => {
             return;
         }
 
+        const semesterButtonsHTML = Array.from(
+            { length: SEMESTER_RANGE.max - SEMESTER_RANGE.min + 1 },
+            (_, idx) => {
+                const semesterNumber = SEMESTER_RANGE.min + idx;
+                const semester = `S${semesterNumber}`;
+                const activeClass = semester === currentSemester ? ' active' : '';
+                return `
+                    <button class="semester-btn${activeClass}" data-semester="${semester}">
+                        ${semester}
+                    </button>
+                `;
+            }
+        ).join('');
+
         const selector = document.createElement('div');
         selector.id = 'semesterSelector';
         selector.className = 'semester-selector';
@@ -33,17 +48,22 @@ const SemesterSelector = (() => {
             <div class="semester-selector-content">
                 <label for="semesterToggle" class="semester-label">📚 Semestre:</label>
                 <div class="semester-buttons">
-                    <button class="semester-btn active" data-semester="S1">
-                        Semestre 1
-                    </button>
-                    <button class="semester-btn" data-semester="S2">
-                        Semestre 2
-                    </button>
+                    ${semesterButtonsHTML}
                 </div>
             </div>
         `;
 
-        // Insérer après le header ou au début du main
+        // Insérer dans la welcome-card juste au-dessus du dropdown UE si présent
+        const welcomeCard = document.querySelector('.welcome-card');
+        const ueFilterSimple = document.querySelector('.ue-filter-simple');
+
+        if (welcomeCard && ueFilterSimple && welcomeCard.contains(ueFilterSimple)) {
+            welcomeCard.insertBefore(selector, ueFilterSimple);
+            addStylesIfNeeded();
+            return;
+        }
+
+        // Fallback: insérer après le header ou au début du main
         const header = document.querySelector('header');
         const main = document.querySelector('main');
         
@@ -109,9 +129,10 @@ const SemesterSelector = (() => {
      * @returns {Array} Les cours filtrés
      */
     function filterCoursesBySemester(courses, semester) {
+        const semesterRegex = new RegExp(`\\.(${semester})$`);
         return courses.filter(([key, courseData]) => {
-            // La clé ou le champ 'ue' doit contenir le semestre
-            return courseData.ue && courseData.ue.includes(semester);
+            // L'UE doit se terminer strictement par .Sx (ex: 2.4.S1)
+            return typeof courseData.ue === 'string' && semesterRegex.test(courseData.ue);
         });
     }
 
@@ -128,9 +149,10 @@ const SemesterSelector = (() => {
         style.textContent = `
             .semester-selector {
                 background: #f8f9fa;
-                border-bottom: 2px solid #e9ecef;
-                padding: 1rem;
-                margin-bottom: 1.5rem;
+                border: 1px solid #e9ecef;
+                border-radius: 10px;
+                padding: 0.6rem 0.75rem;
+                margin: 0 0 1rem 0;
             }
 
             .semester-selector-content {
@@ -138,7 +160,7 @@ const SemesterSelector = (() => {
                 margin: 0 auto;
                 display: flex;
                 align-items: center;
-                gap: 1rem;
+                gap: 0.6rem;
             }
 
             .semester-label {
@@ -146,23 +168,27 @@ const SemesterSelector = (() => {
                 color: #2c3e50;
                 margin: 0;
                 white-space: nowrap;
+                font-size: 0.9rem;
             }
 
             .semester-buttons {
                 display: flex;
                 gap: 0.5rem;
+                flex-wrap: wrap;
             }
 
             .semester-btn {
-                padding: 0.6rem 1.2rem;
+                padding: 0.35rem 0.65rem;
                 border: 2px solid #dee2e6;
                 background: white;
                 color: #495057;
-                border-radius: 8px;
+                border-radius: 6px;
                 font-weight: 500;
                 cursor: pointer;
                 transition: all 0.2s ease;
-                font-size: 0.95rem;
+                font-size: 0.82rem;
+                line-height: 1.1;
+                min-width: 44px;
             }
 
             .semester-btn:hover {
