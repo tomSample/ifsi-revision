@@ -1,0 +1,20 @@
+Affection,Définition,Facteurs de risques,Agents infectieux,Mode de transmission,Précautions,Isolement/éviction,Physiopathologie,Signes cliniques,Symptômes,Examens spécifiques,Signes biologiques,Traitements,Contre-indications,Conseils patient/entourage,Surveillances IDE,Complications,Vaccins,Mesures préventives
+Méningites,"Inflammation du LCR et des méninges par bactérie/virus
+NB : meningo-encephalite = idem + atteinte cérébrale","Enfants, immunodéprimés, splénectomisés","Méningocoque, pneumocoque, listeria, HSV",Exogène (voies respiratoires),gouttelettes,Oui (24h après début ATB et prolognée si meningocoque),"Hématogène dans les deux cas (via circulation sanguine)
+
+Bactérienne : envahissement de l’esapce sous-arachnoïdien, prolifération bactérienne dans le LCR. La cascade inflammatoire réduit la résorption du LCR et altère la perfusion cérébrale.
+
+Virale : atteinte des méninges par le virus entrainant une inflammation lymphocytaire.","Rigidité nucale, fièvre, vomissement en jet, confusion, coma","Sd méningé : Céphalées intenses, photophobie, photophonie, vomissements
+Sd infectieux : fièvre, tachycardie, début aigu
+Signes cérébraux
+
+NB : méningite bactérienne = début aigu vs herpétique = progressif (qques jours)","PL (LCR trouble/protéiné/glucose↓), hémocultures, TROD (sérologie), PCR (amplification virus)
+Glycémie capillaire simultanée pour comparer taux glucose sanguin et LCR
+
+NB : norme glucose LCR = au moins 0,4 x glycémie","Hyperleucocytose (PNN) impotante dans LCR (>> 10/mm cube) + LCR trouble + abaissement du glucose = bactérien
+Hyperleucocytose (lymphocytes) variable dans LCR + LCR clair => méningite virale ou meningo-encéphalite herpétique
+
+NFS, CRP↑, VS↑, plaquettes↓, créatinine","Bactérien : corticoïdes (complication par hyperinflammation) puis ATB IV Ceftriaxone environ 6g/jour (6x la dose, efficace sur meningocoque et pneumocoque) ou Amoxicilline (listeria) puis corticoïdes (dexaméthasone)
+Virale :  antivirales si HSV","liée à la PL (infection cutanée au site de prélèvement, trouble de l’hémostase connus, de prise d’anticoagulant sans antidote)","Surveillance signes méningés, hydratation, repos
+Prévention dans l’entourage","T°C, signes neurologiques, diurèse, hydratation, douleur","Choc septique, engagement cérébral, surdité, décès",Anti-méningo,"Hygiène respiratoire, éviction contacts"
+Purpura fulminans,septicémie bactérienne,"Enfants, immunodéprimés, splénectomisés",Méningocoque (neisseria meningitidis),Exogène (voies respiratoires),gouttelettes,Oui (24h après début ATB et prolognée si meningocoque),"Endotoxines → CIVD (coagulation intra-vasculaire disséminée), nécrose vasculaire","Purpura étendu (tâches rouges non blanchissantes), choc septique, nécrose membres","Fièvre, malaise","Biologie (CIVD), cultures","TP↑, TCA↑, fibrinogène↓, schizocytes, thrombopénie","ATB (Ceftriaxone), héparine",Héparine si hémorragie active,"Isolement, prophylaxie contacts","Hémodynamique, plaquettes, coagulation","Amputations, gangrène",Anti-méningo,"Prophylaxie ATB contacts, vaccination"
