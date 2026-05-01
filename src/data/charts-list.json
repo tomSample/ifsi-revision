@@ -1,21 +1,36 @@
 {
   "success": true,
-  "count": 3,
+  "count": 5,
   "charts": [
+    {
+      "ue": "UE 2.4.S1 - Traumatismes",
+      "path": "data/recap_charts/charts_definitive/UE 2.4.S1 - Traumatismes.csv",
+      "type": "recap",
+      "semester": 1
+    },
     {
       "ue": "UE 2.5.S2 - meningites purpura fulminans infection à meningocoque",
       "path": "data/recap_charts/charts_definitive/UE 2.5.S2 - meningites purpura fulminans infection à meningocoque.csv",
-      "type": "recap"
+      "type": "recap",
+      "semester": 2
     },
     {
       "ue": "UE 2.5.S2 - PR Crohn Horton Psoriasis",
       "path": "data/recap_charts/charts_definitive/UE 2.5.S2 - PR Crohn Horton Psoriasis.csv",
-      "type": "recap"
+      "type": "recap",
+      "semester": 2
     },
     {
       "ue": "UE 2.5.S2 - septicémie",
       "path": "data/recap_charts/charts_definitive/UE 2.5.S2 - septicémie.csv",
-      "type": "recap"
+      "type": "recap",
+      "semester": 2
+    },
+    {
+      "ue": "UE 4.4.S1 - Familles de médicaments",
+      "path": "data/recap_charts/charts_definitive/UE 4.4.S1 - Familles de médicaments.csv",
+      "type": "recap",
+      "semester": 1
     }
   ]
 }
