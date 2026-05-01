@@ -1,0 +1,7 @@
+"Hépatite
+(virus)",Antigènes,Anticorps principaux,Détection du virus (ARN/ADN),Interprétation clé
+A (VHA),Aucun antigène systématique recherché,"IgM anti-VHA (aiguë, récente) ; IgG anti-VHA (passée/immunité à vie)","ARN-VHA (rare, confirmation)",IgM+ : infection aiguë ; IgG+ seul : guérie ou vaccinée  
+B (VHB),"HBsAg (surface, infection active) ; HBeAg (réplication élevée)",Anti-HBs (immunité) ; Anti-HBc IgM (aiguë) ; Anti-HBc total (contact passé) ; Anti-HBe (réplication faible),ADN-VHB (charge virale),HBsAg+ : aiguë/chronique ; Anti-HBs+ : immunité
+C (VHC),Aucun antigène courant,"Anti-VHC (contact, non protecteur)",ARN-VHC (infection active),Anti-VHC+ + ARN+ : aiguë/chronique ; ARN- : guérie  ?
+D (VHD),"HDAg (intra-hépatique, rare)",Anti-VHD (IgM aiguë ; IgG chronique),ARN-VHD (nécessite VHB),Superinfection ou co-infection avec VHB ; Anti-VHD+ confirme  ?
+E (VHE),Aucun antigène systématique,IgM anti-VHE (aiguë) ; IgG anti-VHE (passée/immunité),ARN-VHE (confirmation),IgM+ : aiguë (fécale-orale) ; similaire à VHA

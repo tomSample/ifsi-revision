@@ -616,11 +616,11 @@
             try {
                 allCharts = [];
 
-                // Charger la liste dynamiquement depuis l'API backend
-                const response = await fetch('/api/charts/list');
+                // Charger la liste statique depuis le fichier JSON
+                const response = await fetch('../../data/charts-list.json');
                 
                 if (!response.ok) {
-                    console.error('Erreur API:', response.status);
+                    console.error('Erreur chargement JSON:', response.status);
                     displayPortal(); // Afficher message d'erreur
                     return;
                 }
@@ -628,7 +628,7 @@
                 const data = await response.json();
                 
                 if (!data.success || !data.charts) {
-                    console.error('Réponse API invalide');
+                    console.error('Réponse JSON invalide');
                     displayPortal();
                     return;
                 }
@@ -637,7 +637,7 @@
                 
                 // Charger chaque fichier CSV
                 for (const chart of data.charts) {
-                    const path = `../../../${chart.path}`;
+                    const path = `../../data/${chart.path.split('data/')[1]}`;
                     const filename = chart.ue;
                     await loadChartFromSource(path, filename);
                 }

@@ -1087,6 +1087,24 @@ def update_courses():
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/ue25/pathologies')
+def get_ue25_pathologies():
+    """Retourne les données des pathologies UE25"""
+    try:
+        ue25_file = os.path.join(SCRIPT_DIR, '../data/recap_charts/ue25_pathologies.json')
+        
+        if not os.path.exists(ue25_file):
+            return jsonify({'error': 'Fichier de pathologies non trouvé'}), 404
+        
+        with open(ue25_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        
+        return jsonify(data)
+    
+    except Exception as e:
+        print(f"Erreur dans get_ue25_pathologies: {e}")
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/api/charts/list')
 def list_charts():
     """Liste tous les fichiers CSV disponibles dans recap_charts et role_ide_charts"""

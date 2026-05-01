@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz & Flashcards UE 2.5.S2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.95;
+        }
+
+        .mode-selector {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .mode-btn {
+            padding: 15px 30px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .mode-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .mode-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .content {
+            padding: 40px;
+            min-height: 600px;
+        }
+
+        /* ========== SETUP SCREEN ========== */
+        .setup-screen {
+            display: none;
+        }
+
+        .setup-screen.active {
+            display: block;
+        }
+
+        .setup-section {
+            margin-bottom: 30px;
+        }
+
+        .setup-label {
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .pathologies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .pathology-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pathology-checkbox:hover {
+            border-color: #667eea;
+            background: #f9f9ff;
+        }
+
+        .pathology-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .pathology-checkbox label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .columns-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .column-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .column-checkbox:hover {
+            border-color: #667eea;
+            background: #f9f9ff;
+        }
+
+        .column-checkbox input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .column-checkbox label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 0.9em;
+        }
+
+        .setup-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-start {
+            flex: 1;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-start:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ========== QUIZ MODE ========== */
+        .quiz-screen {
+            display: none;
+        }
+
+        .quiz-screen.active {
+            display: block;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-progress {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .quiz-exit {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-exit:hover {
+            background: #e0e0e0;
+        }
+
+        .quiz-question {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .question-label {
+            font-size: 0.9em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 1.5em;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .quiz-answer {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .answer-text {
+            font-size: 1.1em;
+            color: #333;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .answer-masked {
+            text-align: center;
+            color: #999;
+            font-weight: 500;
+            padding: 20px;
+        }
+
+        .quiz-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-reveal {
+            flex: 1;
+            padding: 12px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-reveal:hover {
+            background: #5568d3;
+        }
+
+        .btn-reveal.revealed {
+            background: #ccc;
+            cursor: default;
+        }
+
+        .btn-nav {
+            padding: 12px 25px;
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover:not(:disabled) {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-nav:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ========== FLASHCARDS MODE ========== */
+        .flashcard-screen {
+            display: none;
+        }
+
+        .flashcard-screen.active {
+            display: block;
+        }
+
+        .flashcard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .flashcard-progress {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .flashcard-container {
+            perspective: 1000px;
+            height: 400px;
+            margin-bottom: 30px;
+        }
+
+        .flashcard {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .flashcard-front {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .flashcard-back {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-question {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .flashcard-hint {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .flashcard-answer {
+            font-size: 1.3em;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .flashcard-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .card-action-btn {
+            padding: 12px 25px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card-action-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .card-action-btn.known {
+            background: #4caf50;
+            color: white;
+            border-color: #4caf50;
+        }
+
+        .card-action-btn.unknown {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+        }
+
+        .flashcard-nav {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .card-nav-btn {
+            padding: 12px 25px;
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card-nav-btn:hover:not(:disabled) {
+            background: #667eea;
+            color: white;
+        }
+
+        .card-nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .card-stats {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            display: inline-block;
+            margin: 0 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* ========== RESULTS SCREEN ========== */
+        .results-screen {
+            display: none;
+        }
+
+        .results-screen.active {
+            display: block;
+        }
+
+        .results-content {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .results-score {
+            font-size: 3em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .results-message {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .results-stats {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .results-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn-restart {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-restart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .mode-selector {
+                flex-direction: column;
+            }
+
+            .pathologies-grid, .columns-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flashcard-container {
+                height: 300px;
+            }
+
+            .results-score {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Quiz & Flashcards UE 2.5.S2</h1>
+            <p>Testez vos connaissances sur les pathologies du semestre</p>
+        </div>
+
+        <div class="mode-selector">
+            <button class="mode-btn active" data-mode="quiz">🎯 Quiz</button>
+            <button class="mode-btn" data-mode="flashcards">🃏 Flashcards</button>
+        </div>
+
+        <div class="content">
+            <!-- SETUP SCREEN -->
+            <div class="setup-screen active" id="setupScreen">
+                <div class="setup-section">
+                    <div class="setup-label">1️⃣ Sélectionnez les pathologies à étudier</div>
+                    <div class="pathologies-grid" id="pathologiesGrid"></div>
+                </div>
+
+                <div class="setup-section">
+                    <div class="setup-label">2️⃣ Choisissez les concepts à tester</div>
+                    <div class="columns-grid" id="columnsGrid"></div>
+                </div>
+
+                <div class="setup-actions">
+                    <button class="btn-start" id="startBtn" disabled>Démarrer →</button>
+                </div>
+            </div>
+
+            <!-- QUIZ SCREEN -->
+            <div class="quiz-screen" id="quizScreen">
+                <div class="quiz-header">
+                    <div class="quiz-progress">
+                        Question <span id="quizCount">1</span> / <span id="quizTotal">0</span>
+                    </div>
+                    <button class="quiz-exit" onclick="goBackToSetup()">← Retour</button>
+                </div>
+
+                <div class="quiz-question">
+                    <div class="question-label">Question</div>
+                    <div class="question-text" id="questionText"></div>
+                </div>
+
+                <div class="quiz-answer">
+                    <div class="answer-masked" id="answerMasked">Cliquez sur "Révéler" pour voir la réponse</div>
+                    <div class="answer-text" id="answerText" style="display:none;"></div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button class="btn-reveal" id="revealBtn" onclick="revealAnswer()">Révéler la réponse</button>
+                    <button class="btn-nav" id="prevBtn" onclick="quizPrevious()" disabled>← Précédent</button>
+                    <button class="btn-nav" id="nextBtn" onclick="quizNext()">Suivant →</button>
+                </div>
+            </div>
+
+            <!-- FLASHCARDS SCREEN -->
+            <div class="flashcard-screen" id="flashcardScreen">
+                <div class="flashcard-header">
+                    <div class="flashcard-progress">
+                        Carte <span id="cardCount">1</span> / <span id="cardTotal">0</span>
+                    </div>
+                    <button class="quiz-exit" onclick="goBackToSetup()">← Retour</button>
+                </div>
+
+                <div class="flashcard-container" id="flashcardContainer">
+                    <div class="flashcard" id="flashcard" onclick="flipCard()">
+                        <div class="flashcard-face flashcard-front">
+                            <div class="flashcard-question" id="cardQuestion"></div>
+                            <div class="flashcard-hint">Cliquez pour voir la réponse</div>
+                        </div>
+                        <div class="flashcard-face flashcard-back">
+                            <div class="flashcard-answer" id="cardAnswer"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard-actions">
+                    <button class="card-action-btn" onclick="cardMarkKnown()">✓ Je connais</button>
+                    <button class="card-action-btn" onclick="cardMarkUnknown()">✗ Je ne connais pas</button>
+                </div>
+
+                <div class="flashcard-nav">
+                    <button class="card-nav-btn" id="cardPrevBtn" onclick="cardPrevious()" disabled>← Précédent</button>
+                    <button class="card-nav-btn" id="cardNextBtn" onclick="cardNext()">Suivant →</button>
+                </div>
+
+                <div class="card-stats">
+                    <div class="stat-item">
+                        ✓ <span id="knownCount">0</span>
+                        <div class="stat-label">Maîtrisées</div>
+                    </div>
+                    <div class="stat-item">
+                        ✗ <span id="unknownCount">0</span>
+                        <div class="stat-label">À améliorer</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESULTS SCREEN -->
+            <div class="results-screen" id="resultsScreen">
+                <div class="results-content">
+                    <div class="results-score" id="scoreDisplay">0%</div>
+                    <div class="results-message" id="resultMessage"></div>
+
+                    <div class="results-stats">
+                        <div class="stat-row">
+                            <span>Questions répondues:</span>
+                            <strong id="answeredCount">0</strong>
+                        </div>
+                        <div class="stat-row">
+                            <span>Réponses correctes:</span>
+                            <strong id="correctCount">0</strong>
+                        </div>
+                        <div class="stat-row">
+                            <span>Taux de réussite:</span>
+                            <strong id="percentCount">0%</strong>
+                        </div>
+                    </div>
+
+                    <div class="results-actions">
+                        <button class="btn-restart" onclick="goBackToSetup()">← Recommencer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class QuizFlashcards {
+            constructor() {
+                this.data = null;
+                this.currentMode = 'quiz';
+                this.selectedPathologies = new Set();
+                this.selectedColumns = new Set();
+                this.questions = [];
+                this.currentQuestionIndex = 0;
+                this.answeredQuestions = new Set();
+                this.cards = [];
+                this.currentCardIndex = 0;
+                this.knownCards = new Set();
+                this.unknownCards = new Set();
+                this.revealedAnswers = new Set();
+
+                this.init();
+            }
+
+            async init() {
+                try {
+                    const response = await fetch('/api/ue25/pathologies');
+                    this.data = await response.json();
+                    this.setupInterface();
+                } catch (error) {
+                    console.error('Erreur:', error);
+                    document.querySelector('#setupScreen').innerHTML = 
+                        '<div class="empty-state">❌ Erreur lors du chargement des données</div>';
+                }
+            }
+
+            setupInterface() {
+                // Remplir les pathologies
+                const pathoGrid = document.getElementById('pathologiesGrid');
+                this.data.pathologies.forEach((p, idx) => {
+                    const div = document.createElement('div');
+                    div.className = 'pathology-checkbox';
+                    div.innerHTML = `
+                        <input type="checkbox" id="patho_${idx}" value="${p.id}">
+                        <label for="patho_${idx}">${p.nom}</label>
+                    `;
+                    div.querySelector('input').addEventListener('change', () => this.updateStart());
+                    pathoGrid.appendChild(div);
+                    this.selectedPathologies.add(p.id);
+                });
+
+                // Remplir les colonnes (exclure Affection)
+                const colGrid = document.getElementById('columnsGrid');
+                this.data.columns.filter(c => c !== 'Affection').forEach((col, idx) => {
+                    const div = document.createElement('div');
+                    div.className = 'column-checkbox';
+                    div.innerHTML = `
+                        <input type="checkbox" id="col_${idx}" value="${col}">
+                        <label for="col_${idx}">${col}</label>
+                    `;
+                    div.querySelector('input').addEventListener('change', () => this.updateStart());
+                    colGrid.appendChild(div);
+                    this.selectedColumns.add(col);
+                });
+
+                // Event listeners
+                document.querySelectorAll('[data-mode]').forEach(btn => {
+                    btn.addEventListener('click', (e) => this.switchMode(e.target.dataset.mode));
+                });
+
+                document.getElementById('startBtn').addEventListener('click', () => this.startQuiz());
+            }
+
+            updateStart() {
+                this.selectedPathologies.clear();
+                this.selectedColumns.clear();
+
+                document.querySelectorAll('#pathologiesGrid input:checked').forEach(cb => {
+                    this.selectedPathologies.add(cb.value);
+                });
+
+                document.querySelectorAll('#columnsGrid input:checked').forEach(cb => {
+                    this.selectedColumns.add(cb.value);
+                });
+
+                const startBtn = document.getElementById('startBtn');
+                startBtn.disabled = this.selectedPathologies.size === 0 || this.selectedColumns.size === 0;
+            }
+
+            switchMode(mode) {
+                this.currentMode = mode;
+                document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+                event.target.classList.add('active');
+            }
+
+            startQuiz() {
+                if (this.currentMode === 'quiz') {
+                    this.generateQuestions();
+                    this.showQuizScreen();
+                } else {
+                    this.generateFlashcards();
+                    this.showFlashcardsScreen();
+                }
+            }
+
+            generateQuestions() {
+                this.questions = [];
+                
+                this.data.pathologies.forEach(path => {
+                    if (!this.selectedPathologies.has(path.id)) return;
+
+                    this.selectedColumns.forEach(col => {
+                        const value = path.data[col];
+                        if (value && value.trim()) {
+                            this.questions.push({
+                                pathology: path.nom,
+                                column: col,
+                                question: `${col} : ${path.nom}`,
+                                answer: value
+                            });
+                        }
+                    });
+                });
+
+                // Mélanger les questions
+                this.questions.sort(() => Math.random() - 0.5);
+                this.currentQuestionIndex = 0;
+                this.answeredQuestions.clear();
+                this.revealedAnswers.clear();
+            }
+
+            generateFlashcards() {
+                this.cards = [];
+                
+                this.data.pathologies.forEach(path => {
+                    if (!this.selectedPathologies.has(path.id)) return;
+
+                    this.selectedColumns.forEach(col => {
+                        const value = path.data[col];
+                        if (value && value.trim()) {
+                            this.cards.push({
+                                pathology: path.nom,
+                                column: col,
+                                question: `${col}\n${path.nom}`,
+                                answer: value
+                            });
+                        }
+                    });
+                });
+
+                // Mélanger les cartes
+                this.cards.sort(() => Math.random() - 0.5);
+                this.currentCardIndex = 0;
+                this.knownCards.clear();
+                this.unknownCards.clear();
+            }
+
+            showQuizScreen() {
+                document.getElementById('setupScreen').classList.remove('active');
+                document.getElementById('quizScreen').classList.add('active');
+                document.getElementById('flashcardScreen').classList.remove('active');
+                document.getElementById('resultsScreen').classList.remove('active');
+
+                document.getElementById('quizTotal').textContent = this.questions.length;
+                this.displayQuestion();
+            }
+
+            showFlashcardsScreen() {
+                document.getElementById('setupScreen').classList.remove('active');
+                document.getElementById('quizScreen').classList.remove('active');
+                document.getElementById('flashcardScreen').classList.add('active');
+                document.getElementById('resultsScreen').classList.remove('active');
+
+                document.getElementById('cardTotal').textContent = this.cards.length;
+                this.displayFlashcard();
+            }
+
+            displayQuestion() {
+                const q = this.questions[this.currentQuestionIndex];
+                document.getElementById('questionText').textContent = q.question;
+                document.getElementById('answerText').textContent = q.answer;
+                document.getElementById('answerMasked').style.display = 'block';
+                document.getElementById('answerText').style.display = 'none';
+                document.getElementById('quizCount').textContent = this.currentQuestionIndex + 1;
+                document.getElementById('revealBtn').textContent = 'Révéler la réponse';
+
+                document.getElementById('prevBtn').disabled = this.currentQuestionIndex === 0;
+                document.getElementById('nextBtn').disabled = this.currentQuestionIndex === this.questions.length - 1;
+
+                this.revealedAnswers.delete(this.currentQuestionIndex);
+            }
+
+            displayFlashcard() {
+                const card = this.cards[this.currentCardIndex];
+                document.getElementById('cardQuestion').textContent = card.question;
+                document.getElementById('cardAnswer').textContent = card.answer;
+                document.getElementById('cardCount').textContent = this.currentCardIndex + 1;
+
+                document.getElementById('flashcard').classList.remove('flipped');
+                document.getElementById('cardPrevBtn').disabled = this.currentCardIndex === 0;
+                document.getElementById('cardNextBtn').disabled = this.currentCardIndex === this.cards.length - 1;
+
+                this.updateCardStats();
+            }
+
+            updateCardStats() {
+                document.getElementById('knownCount').textContent = this.knownCards.size;
+                document.getElementById('unknownCount').textContent = this.unknownCards.size;
+            }
+        }
+
+        const app = new QuizFlashcards();
+
+        // Quiz functions
+        function revealAnswer() {
+            const idx = app.currentQuestionIndex;
+            const btn = document.getElementById('revealBtn');
+            
+            if (btn.textContent.includes('Révéler')) {
+                document.getElementById('answerMasked').style.display = 'none';
+                document.getElementById('answerText').style.display = 'block';
+                btn.textContent = 'Réponse révélée';
+                app.revealedAnswers.add(idx);
+                app.answeredQuestions.add(idx);
+            }
+        }
+
+        function quizNext() {
+            if (app.currentQuestionIndex < app.questions.length - 1) {
+                app.currentQuestionIndex++;
+                app.displayQuestion();
+            } else {
+                showQuizResults();
+            }
+        }
+
+        function quizPrevious() {
+            if (app.currentQuestionIndex > 0) {
+                app.currentQuestionIndex--;
+                app.displayQuestion();
+            }
+        }
+
+        // Flashcard functions
+        function flipCard() {
+            const card = document.getElementById('flashcard');
+            card.classList.toggle('flipped');
+        }
+
+        function cardMarkKnown() {
+            app.knownCards.add(app.currentCardIndex);
+            app.unknownCards.delete(app.currentCardIndex);
+            app.updateCardStats();
+            cardNext();
+        }
+
+        function cardMarkUnknown() {
+            app.unknownCards.add(app.currentCardIndex);
+            app.knownCards.delete(app.currentCardIndex);
+            app.updateCardStats();
+            cardNext();
+        }
+
+        function cardNext() {
+            if (app.currentCardIndex < app.cards.length - 1) {
+                app.currentCardIndex++;
+                app.displayFlashcard();
+            } else {
+                showFlashcardsResults();
+            }
+        }
+
+        function cardPrevious() {
+            if (app.currentCardIndex > 0) {
+                app.currentCardIndex--;
+                app.displayFlashcard();
+            }
+        }
+
+        // Results
+        function showQuizResults() {
+            const total = app.questions.length;
+            const correct = app.answeredQuestions.size;
+            const percent = Math.round((correct / total) * 100);
+
+            document.getElementById('scoreDisplay').textContent = percent + '%';
+            document.getElementById('resultMessage').textContent = 
+                percent >= 80 ? '🎉 Excellent travail!' : 
+                percent >= 60 ? '👍 Bonne révision' : 
+                '📚 Continue à réviser';
+            document.getElementById('answeredCount').textContent = total;
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('percentCount').textContent = percent + '%';
+
+            document.getElementById('quizScreen').classList.remove('active');
+            document.getElementById('resultsScreen').classList.add('active');
+        }
+
+        function showFlashcardsResults() {
+            const total = app.cards.length;
+            const known = app.knownCards.size;
+            const percent = Math.round((known / total) * 100);
+
+            document.getElementById('scoreDisplay').textContent = percent + '%';
+            document.getElementById('resultMessage').textContent = 
+                percent >= 80 ? '🎉 Excellent! Vous maîtrisez bien!' : 
+                percent >= 60 ? '👍 Bonne progression' : 
+                '📚 À continuer';
+            document.getElementById('answeredCount').textContent = total;
+            document.getElementById('correctCount').textContent = known;
+            document.getElementById('percentCount').textContent = percent + '%';
+
+            document.getElementById('flashcardScreen').classList.remove('active');
+            document.getElementById('resultsScreen').classList.add('active');
+        }
+
+        function goBackToSetup() {
+            document.getElementById('setupScreen').classList.add('active');
+            document.getElementById('quizScreen').classList.remove('active');
+            document.getElementById('flashcardScreen').classList.remove('active');
+            document.getElementById('resultsScreen').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

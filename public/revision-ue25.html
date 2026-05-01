@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Révision UE 2.5.S2 - Tableau de Pathologies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: 600px;
+        }
+
+        .sidebar {
+            background: #f5f5f5;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+            overflow-y: auto;
+            max-height: 800px;
+        }
+
+        .main {
+            padding: 30px;
+            overflow-y: auto;
+            max-height: 800px;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .btn-mode {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-mode:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        .btn-mode.active {
+            background: #764ba2;
+            box-shadow: 0 4px 12px rgba(118, 75, 162, 0.3);
+        }
+
+        .pathologie-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95em;
+        }
+
+        .pathologie-item:hover {
+            border-color: #667eea;
+            background: #f9f9ff;
+            transform: translateX(5px);
+        }
+
+        .pathologie-item.active {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        .field-group {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .field-group:last-child {
+            border-bottom: none;
+        }
+
+        .field-label {
+            font-weight: 700;
+            color: #667eea;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .field-value {
+            color: #333;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .field-value.hidden {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .field-value.hidden:hover {
+            transform: scale(1.02);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .mode-label {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 15px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .filters {
+            margin-bottom: 15px;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .column-filters {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 6px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px;
+            font-size: 0.85em;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .stats {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            color: #666;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                max-height: none;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Révision UE 2.5.S2</h1>
+            <p>Pathologies - Cours de Nursing</p>
+        </div>
+
+        <div class="content">
+            <div class="sidebar">
+                <div class="controls">
+                    <div>
+                        <div class="filter-label">Mode de révision</div>
+                        <div class="btn-group">
+                            <button class="btn-mode active" data-mode="full">Vue complète</button>
+                            <button class="btn-mode" data-mode="hidden">Définitions masquées</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="filter-label">Colonnes à afficher</div>
+                        <div class="column-filters" id="columnFilters"></div>
+                    </div>
+
+                    <div class="stats" id="stats"></div>
+                </div>
+
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #ddd;">
+                    <div class="filter-label">Pathologies</div>
+                    <div id="pathologiesList"></div>
+                </div>
+            </div>
+
+            <div class="main">
+                <div id="mainContent">
+                    <div class="empty-state">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path>
+                            <path d="M12 6v6m0 4v.01"></path>
+                        </svg>
+                        <p>Sélectionnez une pathologie pour commencer la révision</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class RevisionModule {
+            constructor() {
+                this.data = null;
+                this.currentMode = 'full';
+                this.visibleColumns = new Set();
+                this.selectedPathologie = null;
+                this.revealedFields = new Set();
+                
+                this.init();
+            }
+
+            async init() {
+                try {
+                    const response = await fetch('/api/ue25/pathologies');
+                    this.data = await response.json();
+                    
+                    // Initialiser les colonnes visibles
+                    this.data.columns.forEach(col => this.visibleColumns.add(col));
+                    
+                    this.renderPathologiesList();
+                    this.renderColumnFilters();
+                    this.updateStats();
+                    this.setupEventListeners();
+                } catch (error) {
+                    console.error('Erreur chargement données:', error);
+                    this.showError('Impossible de charger les données');
+                }
+            }
+
+            setupEventListeners() {
+                // Mode buttons
+                document.querySelectorAll('[data-mode]').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('[data-mode]').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.currentMode = e.target.dataset.mode;
+                        this.revealedFields.clear();
+                        if (this.selectedPathologie) {
+                            this.renderPathologie(this.selectedPathologie);
+                        }
+                    });
+                });
+
+                // Column filters
+                document.querySelectorAll('.checkbox-group input').forEach(checkbox => {
+                    checkbox.addEventListener('change', (e) => {
+                        const column = e.target.value;
+                        if (e.target.checked) {
+                            this.visibleColumns.add(column);
+                        } else {
+                            this.visibleColumns.delete(column);
+                        }
+                        if (this.selectedPathologie) {
+                            this.renderPathologie(this.selectedPathologie);
+                        }
+                    });
+                });
+            }
+
+            renderPathologiesList() {
+                const list = document.getElementById('pathologiesList');
+                list.innerHTML = '';
+
+                this.data.pathologies.forEach(path => {
+                    const item = document.createElement('div');
+                    item.className = 'pathologie-item';
+                    item.textContent = path.nom;
+                    item.addEventListener('click', () => this.selectPathologie(path));
+                    list.appendChild(item);
+                });
+            }
+
+            renderColumnFilters() {
+                const container = document.getElementById('columnFilters');
+                container.innerHTML = '';
+
+                this.data.columns.forEach(col => {
+                    const group = document.createElement('div');
+                    group.className = 'checkbox-group';
+                    
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.value = col;
+                    checkbox.checked = true;
+                    
+                    const label = document.createElement('label');
+                    label.textContent = col;
+                    
+                    group.appendChild(checkbox);
+                    group.appendChild(label);
+                    container.appendChild(group);
+                });
+            }
+
+            selectPathologie(pathologie) {
+                this.selectedPathologie = pathologie;
+                this.revealedFields.clear();
+                
+                // Mettre à jour l'UI
+                document.querySelectorAll('.pathologie-item').forEach(item => {
+                    item.classList.remove('active');
+                    if (item.textContent === pathologie.nom) {
+                        item.classList.add('active');
+                    }
+                });
+
+                this.renderPathologie(pathologie);
+            }
+
+            renderPathologie(pathologie) {
+                const mainContent = document.getElementById('mainContent');
+                mainContent.innerHTML = '';
+
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                const title = document.createElement('div');
+                title.className = 'card-title';
+                title.textContent = pathologie.nom;
+                card.appendChild(title);
+
+                this.data.columns.forEach(col => {
+                    if (!this.visibleColumns.has(col) || col === 'Affection') return;
+
+                    const group = document.createElement('div');
+                    group.className = 'field-group';
+
+                    const label = document.createElement('div');
+                    label.className = 'field-label';
+                    label.textContent = col;
+                    group.appendChild(label);
+
+                    const valueDiv = document.createElement('div');
+                    valueDiv.className = 'field-value';
+                    const value = pathologie.data[col] || '-';
+
+                    if (this.currentMode === 'hidden' && col !== 'Affection') {
+                        valueDiv.className = 'field-value hidden';
+                        valueDiv.textContent = '🔒 Cliquer pour révéler';
+                        valueDiv.dataset.fieldKey = col;
+                        valueDiv.dataset.actualValue = value;
+                        
+                        valueDiv.addEventListener('click', (e) => {
+                            if (this.revealedFields.has(col)) {
+                                valueDiv.textContent = '🔒 Cliquer pour révéler';
+                                this.revealedFields.delete(col);
+                                valueDiv.classList.remove('revealed');
+                            } else {
+                                valueDiv.textContent = value;
+                                valueDiv.classList.add('revealed');
+                                this.revealedFields.add(col);
+                            }
+                        });
+                    } else {
+                        valueDiv.textContent = value;
+                    }
+
+                    group.appendChild(valueDiv);
+                    card.appendChild(group);
+                });
+
+                mainContent.appendChild(card);
+            }
+
+            updateStats() {
+                const stats = document.getElementById('stats');
+                if (this.data) {
+                    stats.innerHTML = `<strong>${this.data.pathologies.length}</strong> pathologies<br>
+                                     <strong>${this.data.columns.length}</strong> concepts`;
+                }
+            }
+
+            showError(message) {
+                const mainContent = document.getElementById('mainContent');
+                mainContent.innerHTML = `<div class="empty-state"><p style="color: #e74c3c;">❌ ${message}</p></div>`;
+            }
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            new RevisionModule();
+        });
+    </script>
+</body>
+</html>
