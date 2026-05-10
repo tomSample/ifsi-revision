@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire IFSI - Révisions</title>
+    <link rel="manifest" href="../../../public/manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .questionnaire-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+        }
+
+        .questionnaire-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 1.5rem;
+        }
+
+        .questionnaire-title {
+            margin: 0;
+            color: #6366f1;
+            font-size: 1.8rem;
+        }
+
+        .questionnaire-subtitle {
+            color: #999;
+            font-size: 0.9rem;
+            margin: 0.5rem 0 0 0;
+        }
+
+        .btn-back {
+            background: transparent;
+            border: 2px solid #ddd;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-back:hover {
+            background: #f9f9f9;
+            border-color: #6366f1;
+            color: #6366f1;
+        }
+
+        /* Screen visibility */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === START SCREEN === */
+        .start-screen {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .start-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .start-screen h2 {
+            color: #2c3e50;
+            font-size: 1.6rem;
+            margin: 0 0 1rem 0;
+        }
+
+        .start-screen p {
+            color: #999;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin: 0 0 2rem 0;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .option-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .option-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .option-group input[type="checkbox"],
+        .option-group input[type="radio"] {
+            cursor: pointer;
+            accent-color: #6366f1;
+            width: 18px;
+            height: 18px;
+        }
+
+        .quiz-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        /* === QUESTIONNAIRE SCREEN === */
+        .questionnaire-card {
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+            transition: width 0.3s ease;
+        }
+
+        .question-counter {
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .question-text {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 1.5rem 0;
+            line-height: 1.6;
+        }
+
+        .answer-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .answer-label {
+            font-size: 0.85rem;
+            color: #999;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.8rem;
+        }
+
+        .answer-text {
+            color: #2c3e50;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .answer-hidden {
+            color: #999;
+            text-align: center;
+            padding: 1rem;
+            font-style: italic;
+        }
+
+        .btn-reveal {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+
+        .btn-reveal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .questionnaire-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .btn-nav {
+            padding: 0.7rem 1.2rem;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-nav:hover:not(:disabled) {
+            background: #f9f9f9;
+            border-color: #6366f1;
+            color: #6366f1;
+        }
+
+        .btn-nav:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* === RESULTS SCREEN === */
+        .results-screen {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .results-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .results-screen h2 {
+            color: #2c3e50;
+            font-size: 1.6rem;
+            margin: 0 0 2rem 0;
+        }
+
+        .results-stats {
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid #e0e0e0;
+        }
+
+        .stat-item {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin: 0.8rem 0;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: #6366f1;
+            font-size: 1.3rem;
+        }
+
+        /* === LOADING === */
+        .loading-screen {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f0f0f0;
+            border-top: 4px solid #6366f1;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #999;
+            font-size: 1rem;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .questionnaire-container {
+                padding: 1.5rem;
+            }
+
+            .questionnaire-title {
+                font-size: 1.4rem;
+            }
+
+            .questionnaire-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .question-text {
+                font-size: 1.1rem;
+            }
+
+            .questionnaire-buttons {
+                flex-direction: column;
+            }
+
+            .btn-nav {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="questionnaire-container">
+        <!-- HEADER -->
+        <div class="questionnaire-header">
+            <div>
+                <h1 class="questionnaire-title" id="pageTitle">📝 Questionnaire</h1>
+                <p class="questionnaire-subtitle" id="pageSubtitle">Testez vos connaissances</p>
+            </div>
+            <a href="./home.html" class="btn-back">← Retour</a>
+        </div>
+
+        <!-- LOADING SCREEN -->
+        <div class="screen active" id="loadingScreen">
+            <div class="loading-screen">
+                <div class="spinner"></div>
+                <p class="loading-text">Chargement du questionnaire...</p>
+            </div>
+        </div>
+
+        <!-- START SCREEN -->
+        <div class="screen" id="startScreen">
+            <div class="start-screen">
+                <div class="start-icon">📚</div>
+                <h2>Prêt à réviser?</h2>
+                <p>Configurez votre session de révision</p>
+
+                <div class="quiz-options">
+                    <div class="option-group">
+                        <label>
+                            <input type="checkbox" id="randomOrder" checked>
+                            Ordre aléatoire
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button class="btn btn-primary" onclick="window.startQuestionnaire()">Démarrer</button>
+                    <a href="./home.html" class="btn btn-secondary">Annuler</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUESTIONNAIRE SCREEN -->
+        <div class="screen" id="questionnaireScreen">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="question-counter" id="questionCounter">1/10</div>
+
+            <div class="questionnaire-card">
+                <div class="question-text" id="questionText">Question?</div>
+
+                <div class="answer-section">
+                    <div class="answer-label">Réponse</div>
+                    <div id="answerContent">
+                        <div class="answer-hidden" id="answerHidden">
+                            Cliquez sur "Révéler la réponse" pour voir la réponse
+                        </div>
+                        <div class="answer-text" id="answerText" style="display: none;"></div>
+                    </div>
+                    <button class="btn-reveal" id="revealBtn" onclick="window.toggleAnswer()">Révéler la réponse</button>
+                </div>
+            </div>
+
+            <div class="questionnaire-buttons">
+                <button class="btn-nav" onclick="window.previousQuestion()" id="prevBtn">← Précédent</button>
+                <button class="btn-nav btn-primary" onclick="window.nextQuestion()" id="nextBtn">Suivant →</button>
+            </div>
+        </div>
+
+        <!-- RESULTS SCREEN -->
+        <div class="screen" id="resultsScreen">
+            <div class="results-screen">
+                <div class="results-icon">✅</div>
+                <h2>Questionnaire terminé!</h2>
+                
+                <div class="results-stats">
+                    <div class="stat-item">
+                        Vous avez examiné <span class="stat-value" id="totalReviewed">0</span> questions
+                    </div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button class="btn btn-primary" onclick="window.location.href='./home.html'">Retour à l'accueil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let currentQuestionnaire = null;
+        let questionnaireData = [];
+        let currentIndex = 0;
+        let questionsVisited = new Set();
+
+        // Get UE from URL parameter (default: UE_2.3)
+        const urlParams = new URLSearchParams(window.location.search);
+        const ueFile = urlParams.get('ue') || 'UE_2.3';
+        const randomOrder = true;
+
+        /**
+         * Initialize questionnaire on page load
+         */
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log(`📚 Chargement du questionnaire: ${ueFile}`);
+            
+            showScreen('loadingScreen');
+            
+            try {
+                // Determine file path based on environment
+                const isGitHubPages = window.location.hostname.includes('github.io');
+                const basePath = isGitHubPages ? '/ifsi-revision' : '';
+                const filePath = `${basePath}/src/data/questionnaire/${ueFile}.json`;
+                
+                const response = await fetch(filePath);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                
+                questionnaireData = await response.json();
+                
+                if (!Array.isArray(questionnaireData) || questionnaireData.length === 0) {
+                    throw new Error('Données invalides');
+                }
+
+                console.log(`✓ ${questionnaireData.length} questions chargées`);
+                
+                // Update UI
+                document.getElementById('pageTitle').textContent = `📝 ${ueFile}`;
+                document.getElementById('pageSubtitle').textContent = `${questionnaireData.length} questions disponibles`;
+                
+                showScreen('startScreen');
+            } catch (error) {
+                console.error('❌ Erreur:', error);
+                showScreen('startScreen');
+                alert(`Erreur: Impossible de charger le questionnaire.\n${error.message}`);
+            }
+        });
+
+        /**
+         * Show specific screen
+         */
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        /**
+         * Start questionnaire
+         */
+        window.startQuestionnaire = function() {
+            if (questionnaireData.length === 0) {
+                alert('Aucune question disponible');
+                return;
+            }
+
+            currentIndex = 0;
+            questionsVisited.clear();
+
+            // Shuffle if needed
+            currentQuestionnaire = [...questionnaireData];
+            if (document.getElementById('randomOrder').checked) {
+                currentQuestionnaire = currentQuestionnaire.sort(() => Math.random() - 0.5);
+            }
+
+            console.log(`▶ Questionnaire démarré avec ${currentQuestionnaire.length} questions`);
+            displayQuestion();
+            showScreen('questionnaireScreen');
+        };
+
+        /**
+         * Display current question
+         */
+        function displayQuestion() {
+            const current = currentIndex + 1;
+            const total = currentQuestionnaire.length;
+            const question = currentQuestionnaire[currentIndex];
+
+            // Update counter and progress
+            document.getElementById('questionCounter').textContent = `${current}/${total}`;
+            const progress = (current / total) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+
+            // Display question
+            document.getElementById('questionText').textContent = question.question;
+
+            // Reset answer display
+            document.getElementById('answerText').style.display = 'none';
+            document.getElementById('answerHidden').style.display = 'block';
+            document.getElementById('answerText').textContent = question.response;
+            document.getElementById('revealBtn').textContent = 'Révéler la réponse';
+
+            // Track visited questions
+            questionsVisited.add(currentIndex);
+
+            // Update buttons
+            document.getElementById('prevBtn').disabled = current === 1;
+            
+            const nextBtn = document.getElementById('nextBtn');
+            if (current === total) {
+                nextBtn.textContent = 'Terminer →';
+                nextBtn.onclick = window.finishQuestionnaire;
+            } else {
+                nextBtn.textContent = 'Suivant →';
+                nextBtn.onclick = window.nextQuestion;
+            }
+        }
+
+        /**
+         * Toggle answer visibility
+         */
+        window.toggleAnswer = function() {
+            const answerText = document.getElementById('answerText');
+            const answerHidden = document.getElementById('answerHidden');
+            const revealBtn = document.getElementById('revealBtn');
+
+            if (answerText.style.display === 'none') {
+                answerText.style.display = 'block';
+                answerHidden.style.display = 'none';
+                revealBtn.textContent = 'Masquer la réponse';
+            } else {
+                answerText.style.display = 'none';
+                answerHidden.style.display = 'block';
+                revealBtn.textContent = 'Révéler la réponse';
+            }
+        };
+
+        /**
+         * Navigate to next question
+         */
+        window.nextQuestion = function() {
+            if (currentIndex < currentQuestionnaire.length - 1) {
+                currentIndex++;
+                displayQuestion();
+            }
+        };
+
+        /**
+         * Navigate to previous question
+         */
+        window.previousQuestion = function() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                displayQuestion();
+            }
+        };
+
+        /**
+         * Finish questionnaire
+         */
+        window.finishQuestionnaire = function() {
+            console.log(`✓ Questionnaire terminé. ${questionsVisited.size} questions examinées`);
+            document.getElementById('totalReviewed').textContent = questionsVisited.size;
+            showScreen('resultsScreen');
+        };
+    </script>
+</body>
+</html>
