@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-02-02T15:26:53.465678",
+  "exportDate": "2026-05-18T08:41:53.791556",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -6176,10 +6176,210 @@
         ],
         "filename": "TEST.odt"
       }
+    ],
+    [
+      "ue_2_3_s2_synthse_cours",
+      {
+        "title": "synthèse cours",
+        "date": "12/05/2026",
+        "ue": "2.3.S2",
+        "author": "TG",
+        "definitions": [
+          {
+            "definition": "État complet de bien-être physique, mental et social, ne consistant pas seulement en l'absence de maladie ou d'infirmité (définition OMS).",
+            "term": "Santé"
+          },
+          {
+            "definition": "Altération de l'état de santé par rapport à un fonctionnement physiologique normal, pouvant être aiguë ou chronique.",
+            "term": "Maladie"
+          },
+          {
+            "definition": "Maladie de longue durée (au moins 3 mois), évolutive, avec retentissement sur la vie quotidienne (limitation fonctionnelle, dépendance à un traitement/régime/assistance, ou besoin de soins prolongés) ; définition HCSP 2009 et OMS.",
+            "term": "Maladie chronique"
+          },
+          {
+            "definition": "Maladie grave ou chronique nécessitant un traitement prolongé ; ALD exonérante (coûteuse, prise en charge 100%) ou non exonérante (soins aux taux normaux, arrêt >6 mois).",
+            "term": "Affection de longue durée (ALD)"
+          },
+          {
+            "definition": "Démarche partenariale visant à aider le patient à acquérir/maintenir des compétences d'autosoins pour gérer sa maladie chronique et améliorer sa qualité de vie ; 4 étapes (bilan, objectifs, mise en œuvre, évaluation) par HAS.",
+            "term": "Éducation thérapeutique du patient (ETP)"
+          },
+          {
+            "definition": "Désavantage social résultant d'une déficience ou incapacité limitant l'accomplissement d'un rôle normal selon l'âge, sexe, facteurs sociaux/culturels (indépendance physique, mobilité, intégration sociale) ; conséquences sur vie personnelle, professionnelle, sociale.",
+            "term": "Handicap"
+          },
+          {
+            "definition": "Association de déficiences graves, multiples, touchant plusieurs fonctions (physiques et mentales). [user notes]",
+            "term": "Polyhandicap"
+          },
+          {
+            "definition": "Perte ou altération d'une structure ou fonction psychologique, physiologique ou anatomique (sensorielle, intellectuelle, organique, esthétique...).",
+            "term": "Déficience"
+          },
+          {
+            "definition": "Réduction partielle/totale de la capacité d'accomplir une activité normale (locomotion, soins corporels, professionnelle...).",
+            "term": "Incapacité"
+          },
+          {
+            "definition": "Modèle biopsychosocial OMS (ex-CIDIH de Wood) en 2 parties : fonctionnement (fonctions/structures corporelles, activités, participation) et handicap (facteurs contextuels) ; décrit interactions déficience/activité/participation.",
+            "term": "Classification Internationale du Fonctionnement, du Handicap et de la Santé (CIF)"
+          },
+          {
+            "definition": "Implication d'une personne dans une situation de vie réelle.",
+            "term": "Participation"
+          },
+          {
+            "definition": "Problèmes ou limites rencontrés dans une situation de vie réelle.",
+            "term": "Restrictions de participation"
+          },
+          {
+            "definition": "Environnement physique, social, attitudinal agissant comme facilitateur ou obstacle (accessibilité, lieu de vie) ; à évaluer avec aidants et assistants sociaux.",
+            "term": "Facteurs personnels et environnementaux"
+          },
+          {
+            "definition": "Pour l'égalité des droits et des chances, la participation et la citoyenneté des personnes handicapées ; réforme la définition du handicap, vise accessibilité généralisée (bâtiments publics, transports), droit à compensation, crée les MDPH.",
+            "term": "Loi du 11/02/2005"
+          },
+          {
+            "definition": "Entité départementale informant/accompagnant les handicapés ; équipe pluridisciplinaire évalue besoins, propose Plan Personnalisé de Compensation (PPC) ; 8 missions totales.",
+            "term": "MDPH (Maison Départementale des Personnes Handicapées)"
+          },
+          {
+            "definition": "Principe de la loi 2005 favorisant participation citoyenne et accessibilité pour tous.",
+            "term": "Égalité des chances"
+          },
+          {
+            "definition": "Processus visant à réduire les déficiences et incapacités. [user notes]",
+            "term": "Rééducation"
+          },
+          {
+            "definition": "Aide à l'individu pour s'adapter fonctionnellement/psychologiquement (projet de vie) aux déficiences/incapacités stabilisées. [user notes]",
+            "term": "Réadaptation"
+          },
+          {
+            "definition": "Mesures médico-sociales favorisant le retour dans la société. [user notes]",
+            "term": "Réinsertion"
+          },
+          {
+            "definition": "Approche interprofessionnelle considérant le patient, ses problématiques et celles de ses aidants ; rééduquer pour replacer dans le quotidien. [user notes]",
+            "term": "Mettre le patient au centre"
+          },
+          {
+            "definition": "Personnes soutenant le patient handicapé ou malade chronique dans ses besoins quotidiens.",
+            "term": "Aidants"
+          },
+          {
+            "definition": "Au domicile, de l'emploi, des activités, de la scolarité pour personnes handicapées ou chroniquement malades. [user notes]",
+            "term": "Maintien"
+          },
+          {
+            "definition": "Échanges/communication entre IDE, AS, ergothérapeutes, psychomotriciens, diététiciens, neuropsychologues, kinésithérapeutes, cadres pour une prise en charge coordonnée. [user notes]",
+            "term": "Interdisciplinarité"
+          },
+          {
+            "definition": "Accidents non intentionnels ni routiers ni professionnels (domestiques, sportifs, scolaires, extérieurs) causant blessures ou invalidité ; nécessitent évaluation infirmière et prévention.",
+            "term": "Accidents de la vie courante"
+          },
+          {
+            "definition": "Ensemble des mesures (physiques, techniques, humaines) permettant à tous, y compris les personnes handicapées, d'accéder aux bâtiments publics (intérieur/extérieur), transports (délai de 10 ans ou alternative par la loi 2005), logements, loisirs ; \"impératif démocratique\" renforcé par la loi 2005 face à l'insuffisance de 1975.",
+            "term": "Accessibilité"
+          },
+          {
+            "definition": "Maintien ou adaptation de la personne handicapée dans son cadre de vie via accessibilité logement (extérieur/intérieur), aides techniques (lit médicalisé, barres d'appui, rehausseur), aides financières (AAH, PCH via MDPH/CDAPH, rente accident du travail, assurance tiers), aides humaines (tierce personne, garde-malade).",
+            "term": "Vie personnelle"
+          },
+          {
+            "definition": "Structures pour personnes handicapées : Foyer d’hébergement (logement), Foyer de vie (vie quotidienne autonome), MAS (Maison d'Accueil Spécialisée pour polyhandicap graves), FAM (Foyer d'Accueil Médicalisé), SAMSAH (Service d'Accompagnement Médico-Social pour Adultes Handicapés).",
+            "term": "Établissements médico-sociaux"
+          },
+          {
+            "definition": "Reconnaissance par CDAPH (Commission des Droits et de l'Autonomie des Personnes Handicapées, remplaçant COTOREP 1975) de la qualité de Travailleur Handicapé (TH) ; orientation milieu ordinaire/protégé, accès aides à l'emploi (6% priorité AGEFIPH).",
+            "term": "Vie professionnelle"
+          },
+          {
+            "definition": "Participation via accessibilité transports/immobilier/loisirs (sorties, cinéma), conduite automobile adaptée, handisport (local/ordinaire), associations (APF...), voyages adaptés.",
+            "term": "Vie sociale"
+          },
+          {
+            "definition": "Accompagnement quotidien en SSR (Soins de Suite et Réadaptation : orienté, polyvalent, gériatrique), utilisation d'échelles dédiées, suivi moyen/long terme, formations spécialisées ; projection transdisciplinaire pour changer le regard (focus sur capacités).",
+            "term": "Rôle IDE (infirmier)"
+          },
+          {
+            "definition": "Commission au sein MDPH évaluant besoins, reconnaissant handicap/travailleur handicapé, orientant (emploi, structures), accordant aides (AAH, PCH, PPC).",
+            "term": "CDAPH"
+          },
+          {
+            "definition": "varie selon les fibres nerveuses (rapide pour douleur aiguë, lente pour douleur diffuse).",
+            "term": "Vitesse de conduction de la douleur"
+          },
+          {
+            "definition": "récepteur → nerf périphérique → corne dorsale de la moelle épinière → cerveau → rétrocontrôle inhibiteur.",
+            "term": "Voie de la douleur"
+          },
+          {
+            "definition": "diminution puis disparition du rétrocontrôle inhibiteur, entraînant une persistance de la douleur.",
+            "term": "Douleur aiguë → chronique"
+          },
+          {
+            "definition": "liée à une lésion tissulaire (traumatisme, inflammation).",
+            "term": "Douleur nociceptive"
+          },
+          {
+            "definition": "due à une atteinte du système nerveux (lésion ou dysfonction), souvent résistante aux antalgiques classiques.",
+            "term": "Douleur neuropathique"
+          },
+          {
+            "definition": "altération du traitement de la douleur sans lésion identifiable",
+            "term": "Douleur nociplastique"
+          },
+          {
+            "definition": "prédomine la nuit, avec dérouillage matinal.",
+            "term": "Douleur inflammatoire"
+          },
+          {
+            "definition": "liée aux mouvements, soulagée par le repos, sans dérouillage matinal.",
+            "term": "Douleur mécanique"
+          },
+          {
+            "definition": "ressentie à distance de la zone lésée (ex : douleur cardiaque dans le bras).",
+            "term": "Douleur projetée"
+          },
+          {
+            "definition": "diffuse, mal localisée, liée aux organes internes.",
+            "term": "Douleur viscérale"
+          },
+          {
+            "definition": "douleur sans cause organique identifiée, d’origine psychique.",
+            "term": "Douleur somatoforme"
+          },
+          {
+            "definition": "zone cutanée innervée par une racine nerveuse, utile pour localiser une atteinte.",
+            "term": "Dermatome"
+          },
+          {
+            "definition": "fréquente (post-op, zona, AVC, SEP…), peu sensible aux morphiniques.",
+            "term": "Douleur neuropathique (clinique)"
+          },
+          {
+            "definition": "douleur chronique avec troubles vasomoteurs et trophiques après traumatisme.",
+            "term": "SDRC (algodystrophie)"
+          },
+          {
+            "definition": "modifications neurochimiques cérébrales → impact sur humeur (anxiété, irritabilité).",
+            "term": "Effets de la douleur"
+          },
+          {
+            "definition": "classe les traitements antalgiques selon leur mécanisme d’action (et non seulement leur intensité).",
+            "term": "Classification Lussier & Beaulieu"
+          }
+        ],
+        "filename": "synthèse cours.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 1138,
+    "totalTerms": 1185,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0
