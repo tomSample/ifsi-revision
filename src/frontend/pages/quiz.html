@@ -553,8 +553,30 @@
             <a href="./home.html" class="btn-back">← Retour</a>
         </div>
 
+        <!-- QUIZ SELECTION SCREEN -->
+        <div class="screen active" id="quizSelectionScreen">
+            <div class="start-screen">
+                <div class="start-icon">📚</div>
+                <h2>Quel quiz voulez-vous faire?</h2>
+                <p>Sélectionnez le sujet de révision</p>
+
+                <div class="quiz-options" style="display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0;">
+                    <button class="btn btn-primary" style="padding: 1.5rem; font-size: 1.1rem; text-align: left; cursor: pointer; transition: all 0.3s ease;" 
+                            onclick="window.selectQuiz('UE_2.3')">
+                        <div style="font-weight: 600; margin-bottom: 0.5rem;">💊 Pharmacologie générale</div>
+                        <div style="font-size: 0.9rem; color: #999;">Quiz sur les familles de médicaments et leurs indications</div>
+                    </button>
+                    <button class="btn btn-primary" style="padding: 1.5rem; font-size: 1.1rem; text-align: left; cursor: pointer; transition: all 0.3s ease;" 
+                            onclick="window.selectQuiz('UE_4.4.S2_antibiotiques')">
+                        <div style="font-weight: 600; margin-bottom: 0.5rem;">🔬 Antibiotiques</div>
+                        <div style="font-size: 0.9rem; color: #999;">Mémorisation et sécurité des antibiotiques</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- START SCREEN -->
-        <div class="screen active" id="startScreen">
+        <div class="screen" id="startScreen">
             <div class="start-screen">
                 <div class="start-icon">💊</div>
                 <h2>Prêt à réviser?</h2>
@@ -654,12 +676,18 @@
     <!-- Scripts -->
     <script>
         if (!window.resolvePath) {
-            const isGitHubPages = window.location.hostname.includes('github.io');
+            const hostname = window.location.hostname;
+            const isGitHubPages = hostname.includes('github.io');
             const basePath = isGitHubPages ? '/ifsi-revision' : '';
-            window.resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
+            window.resolvePath = (path) => {
+                const resolved = path.startsWith('/') ? basePath + path : path;
+                console.log(`[resolvePath] hostname=${hostname}, isGitHub=${isGitHubPages}, basePath=${basePath}, path=${path} -> ${resolved}`);
+                return resolved;
+            };
         }
     </script>
     <script src="../assets/scripts/modules/pharma-quiz.js"></script>
+    <script src="../assets/scripts/modules/mcq-quiz.js"></script>
     <script src="./quiz-controller.js"></script>
 </body>
 </html>

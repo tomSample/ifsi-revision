@@ -1,39 +1,258 @@
 /**
- * QUIZ CONTROLLER
- * Gère la logique d'affichage et d'interaction du quiz
+ * QUIZ CONTROLLER UNIVERSEL
+ * Gère l'affichage et l'interaction pour tous les types de quiz
  */
 
-let pharmaQuiz = null;
+let currentQuizType = null;  // 'pharma' ou 'mcq'
+let quizInstance = null;     // Instance du quiz (PharmaQuiz ou McqQuiz)
 let currentAnswerSelected = null;
 
 /**
- * Initialise le quiz au chargement
+ * Initialise l'app au chargement
  */
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log('📚 Initialisation du quiz pharmacologie...');
-    
-    // Créer l'instance du quiz
-    pharmaQuiz = new PharmaQuiz();
-    
-    // Charger les données pharmacologiques
-    showScreen('loadingScreen');
-    const loaded = await pharmaQuiz.loadPharmaData();
-    
-    if (loaded && pharmaQuiz.pharmaData.length > 0) {
-        console.log('✓ Données chargées, quiz prêt');
-        populateFilters();
-        showScreen('startScreen');
-    } else {
-        showError('❌ Erreur: Impossible de charger les données pharmacologiques');
-    }
+    console.log('📚 Initialisation de l\'application quiz...');
+    showScreen('quizSelectionScreen');
 });
+
+
+/**
+ * Sélectionne un type de quiz
+ */
+window.selectQuiz = async function(quizType) {
+    console.log(`📖 Sélection du quiz: ${quizType}`);
+    
+    currentQuizType = quizType;
+    showScreen('loadingScreen');
+    
+    try {
+        if (quizType === 'UE_2.3') {
+            // Quiz Pharmacologie existant
+            quizInstance = new PharmaQuiz();
+            const loaded = await quizInstance.loadPharmaData();
+            
+            if (loaded && quizInstance.pharmaData.length > 0) {
+                console.log('✓ Quiz Pharmacologie chargé');
+                setupPharmaCourseUI();
+                populatePharmaCourseFilters();
+                showScreen('startScreen');
+            } else {
+                throw new Error('Données pharmacologiques non chargées');
+            }
+        } else if (quizType === 'UE_4.4.S2_antibiotiques') {
+            // Quiz Antibiotiques (MCQ)
+            quizInstance = new McqQuiz();
+            const filePath = '/src/data/questionnaire/UE_4.4.S2_antibiotiques.json';
+            const loaded = await quizInstance.loadQuizData(filePath);
+            
+            if (loaded && quizInstance.quizData.length > 0) {
+                console.log('✓ Quiz Antibiotiques chargé');
+                setupMcqUI();
+                populateMcqFilters();
+                showScreen('startScreen');
+            } else {
+                throw new Error('Questions antibiotiques non chargées');
+            }
+        }
+    } catch (error) {
+        console.error('Erreur:', error);
+        showError(`❌ Erreur: ${error.message}`);
+    }
+};
+
+/**
+ * Configure l'UI pour le quiz Pharmacologie
+ */
+function setupPharmaCourseUI() {
+    const startScreen = document.getElementById('startScreen');
+    startScreen.innerHTML = `
+        <div class="start-screen">
+            <div class="start-icon">💊</div>
+            <h2>Configurez votre quiz de pharmacologie</h2>
+            <p>Prêt à réviser?</p>
+
+            <div class="quiz-options">
+                <div class="option-group">
+                    <label>
+                        <input type="number" id="questionsCount" value="10" min="5" max="50" style="width: 60px; padding: 0.5rem;">
+                        <strong>Nombre de questions</strong>
+                    </label>
+                </div>
+            </div>
+
+            <div class="filters-section">
+                <div class="filters-title">🎯 Filtrer par familles et domaines (tous sélectionnés par défaut)</div>
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <h3>Familles de médicaments</h3>
+                        <div class="filter-options" id="familiesContainer"></div>
+                    </div>
+                    <div class="filter-group">
+                        <h3>Domaines d'étude</h3>
+                        <div class="filter-options" id="domainsContainer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="btn btn-secondary" onclick="window.backToSelection()">← Changer de quiz</button>
+                <button class="btn btn-primary" onclick="window.startPharmaCourseQuiz()">Démarrer le Quiz</button>
+            </div>
+        </div>
+    `;
+}
+
+/**
+ * Configure l'UI pour le quiz MCQ
+ */
+function setupMcqUI() {
+    const startScreen = document.getElementById('startScreen');
+    startScreen.innerHTML = `
+        <div class="start-screen">
+            <div class="start-icon">🔬</div>
+            <h2>Configurez votre quiz d'antibiotiques</h2>
+            <p>Testez vos connaissances en mémorisation et sécurité</p>
+
+            <div class="quiz-options">
+                <div class="option-group">
+                    <label>
+                        <input type="number" id="questionsCount" value="20" min="5" max="25" style="width: 60px; padding: 0.5rem;">
+                        <strong>Nombre de questions</strong>
+                    </label>
+                </div>
+            </div>
+
+            <div class="filters-section">
+                <div class="filters-title">🎯 Filtrer par type (tous sélectionnés par défaut)</div>
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <h3>Type de question</h3>
+                        <div class="filter-options" id="typesContainer"></div>
+                    </div>
+                    <div class="filter-group">
+                        <h3>Thème</h3>
+                        <div class="filter-options" id="themesContainer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-actions">
+                <button class="btn btn-secondary" onclick="window.backToSelection()">← Changer de quiz</button>
+                <button class="btn btn-primary" onclick="window.startMcqQuiz()">Démarrer le Quiz</button>
+            </div>
+        </div>
+    `;
+}
+
+/**
+ * Remplit les filtres pour le quiz Pharmacologie
+ */
+function populatePharmaCourseFilters() {
+    const families = quizInstance.getFamilies();
+    const familiesContainer = document.getElementById('familiesContainer');
+    familiesContainer.innerHTML = '';
+    
+    families.forEach(family => {
+        const label = document.createElement('label');
+        label.className = 'filter-label';
+        label.innerHTML = `
+            <input type="checkbox" class="family-checkbox" value="${family}" checked>
+            ${family}
+        `;
+        familiesContainer.appendChild(label);
+    });
+    
+    const domains = quizInstance.getAvailableDomains();
+    const domainsContainer = document.getElementById('domainsContainer');
+    domainsContainer.innerHTML = '';
+    
+    domains.forEach(domain => {
+        const label = document.createElement('label');
+        label.className = 'filter-label';
+        label.innerHTML = `
+            <input type="checkbox" class="domain-checkbox" value="${domain.id}" checked>
+            ${domain.label}
+        `;
+        domainsContainer.appendChild(label);
+    });
+}
+
+/**
+ * Remplit les filtres pour le quiz MCQ
+ */
+function populateMcqFilters() {
+    const types = quizInstance.getTypes();
+    const typesContainer = document.getElementById('typesContainer');
+    typesContainer.innerHTML = '';
+    
+    types.forEach(type => {
+        const label = document.createElement('label');
+        label.className = 'filter-label';
+        label.innerHTML = `
+            <input type="checkbox" class="type-checkbox" value="${type}" checked>
+            ${type === 'memorization' ? '📚 Mémorisation' : '⚠️ Sécurité'}
+        `;
+        typesContainer.appendChild(label);
+    });
+    
+    const themes = quizInstance.getThemes();
+    const themesContainer = document.getElementById('themesContainer');
+    themesContainer.innerHTML = '';
+    
+    themes.forEach(theme => {
+        const label = document.createElement('label');
+        label.className = 'filter-label';
+        label.innerHTML = `
+            <input type="checkbox" class="theme-checkbox" value="${theme}" checked>
+            ${theme}
+        `;
+        themesContainer.appendChild(label);
+    });
+}
+
+/**
+ * Démarre le quiz Pharmacologie
+ */
+window.startPharmaCourseQuiz = function() {
+    const selectedFamilies = Array.from(document.querySelectorAll('.family-checkbox:checked'))
+        .map(cb => cb.value);
+    const selectedDomains = Array.from(document.querySelectorAll('.domain-checkbox:checked'))
+        .map(cb => cb.value);
+    const count = parseInt(document.getElementById('questionsCount').value);
+    
+    quizInstance.generateFilteredQuiz(count, selectedFamilies, selectedDomains);
+    
+    console.log(`▶ Quiz Pharmacologie démarré: ${count} questions`);
+    displayPharmaCourseQuestion();
+    showScreen('quizScreen');
+};
+
+/**
+ * Démarre le quiz MCQ
+ */
+window.startMcqQuiz = function() {
+    const selectedTypes = Array.from(document.querySelectorAll('.type-checkbox:checked'))
+        .map(cb => cb.value);
+    const selectedThemes = Array.from(document.querySelectorAll('.theme-checkbox:checked'))
+        .map(cb => cb.value);
+    const count = parseInt(document.getElementById('questionsCount').value);
+    
+    quizInstance.generateQuiz(count, {
+        type: selectedTypes,
+        theme: selectedThemes
+    });
+    
+    console.log(`▶ Quiz Antibiotiques démarré: ${count} questions`);
+    displayMcqQuestion();
+    showScreen('quizScreen');
+};
 
 /**
  * Remplit les checkboxes des familles et domaines
  */
 function populateFilters() {
     // Familles
-    const families = pharmaQuiz.getFamilies();
+    const families = quizInstance.getFamilies();
     const familiesContainer = document.getElementById('familiesContainer');
     familiesContainer.innerHTML = '';
     
@@ -48,7 +267,7 @@ function populateFilters() {
     });
     
     // Domaines
-    const domains = pharmaQuiz.getAvailableDomains();
+    const domains = quizInstance.getAvailableDomains();
     const domainsContainer = document.getElementById('domainsContainer');
     domainsContainer.innerHTML = '';
     
@@ -74,50 +293,23 @@ function showScreen(screenId) {
 }
 
 /**
- * Démarre le quiz
+ * Affiche la question actuelle (Pharmacologie)
  */
-window.startQuiz = function() {
-    // Récupérer les filtres sélectionnés
-    const selectedFamilies = Array.from(document.querySelectorAll('.family-checkbox:checked'))
-        .map(cb => cb.value);
-    const selectedDomains = Array.from(document.querySelectorAll('.domain-checkbox:checked'))
-        .map(cb => cb.value);
+function displayPharmaCourseQuestion() {
+    const question = quizInstance.getCurrentQuestion();
+    const total = quizInstance.currentQuiz.length;
+    const current = quizInstance.currentQuestionIndex + 1;
     
-    const count = parseInt(document.getElementById('questionsCount').value);
-    
-    // Générer le quiz avec les filtres
-    pharmaQuiz.generateFilteredQuiz(count, selectedFamilies, selectedDomains);
-    
-    console.log(`▶ Quiz démarré:`);
-    console.log(`  - ${count} questions`);
-    console.log(`  - Familles: ${selectedFamilies.join(', ')}`);
-    console.log(`  - Domaines: ${selectedDomains.join(', ')}`);
-    
-    displayQuestion();
-    showScreen('quizScreen');
-};
-
-/**
- * Affiche la question actuelle
- */
-function displayQuestion() {
-    const question = pharmaQuiz.getCurrentQuestion();
-    const total = pharmaQuiz.currentQuiz.length;
-    const current = pharmaQuiz.currentQuestionIndex + 1;
-    
-    // Mettre à jour le compteur et la barre de progression
     document.getElementById('questionCounter').textContent = `${current}/${total}`;
     const progress = (current / total) * 100;
     document.getElementById('progressFill').style.width = `${progress}%`;
     
-    // Afficher la question
     let html = `
         <div class="question">
             <span class="question-type">Vrai/Faux</span>
             <div class="question-text">${question.question}</div>
     `;
     
-    // Question Vrai/Faux uniquement
     const isAnswered = question.userAnswer !== null;
     html += `
         <div class="vrai-faux-group">
@@ -133,13 +325,60 @@ function displayQuestion() {
     `;
     
     html += `</div>`;
-    
     document.getElementById('questionContent').innerHTML = html;
     
-    // Mettre à jour les boutons
-    document.querySelector('button[onclick="window.previousQuestion()"]').disabled = current === 1;
+    updateNavigationButtons(current, total, 'pharmacy');
+}
+
+/**
+ * Affiche la question actuelle (MCQ)
+ */
+function displayMcqQuestion() {
+    const question = quizInstance.getCurrentQuestion();
+    const total = quizInstance.currentQuiz.length;
+    const current = quizInstance.currentQuestionIndex + 1;
     
+    document.getElementById('questionCounter').textContent = `${current}/${total}`;
+    const progress = (current / total) * 100;
+    document.getElementById('progressFill').style.width = `${progress}%`;
+    
+    let html = `
+        <div class="question">
+            <span class="question-type">${question.type === 'memorization' ? '📚 Mémorisation' : '⚠️ Sécurité'}</span>
+            <div class="question-text">${question.variante}</div>
+            <div class="answers">
+    `;
+    
+    const selectedAnswer = quizInstance.userAnswers[quizInstance.currentQuestionIndex];
+    
+    question.reponsesMelangees.forEach((answer, index) => {
+        const isSelected = selectedAnswer === answer;
+        const ansId = `answer-${quizInstance.currentQuestionIndex}-${index}`;
+        html += `
+            <div class="answer-option ${isSelected ? 'selected' : ''}" 
+                 style="background: ${isSelected ? '#fff5f8' : 'white'}; border-color: ${isSelected ? '#fa709a' : '#e0e0e0'};"
+                 onclick="window.selectMcqAnswer('${answer.replace(/'/g, "\\'")}')">
+                <input type="radio" id="${ansId}" name="answer" value="${answer}" ${isSelected ? 'checked' : ''}>
+                <label for="${ansId}" style="cursor: pointer; margin: 0; padding: 0; flex: 1;">${answer}</label>
+            </div>
+        `;
+    });
+    
+    html += `</div></div>`;
+    document.getElementById('questionContent').innerHTML = html;
+    
+    updateNavigationButtons(current, total, 'mcq');
+}
+
+/**
+ * Met à jour les boutons de navigation
+ */
+function updateNavigationButtons(current, total, quizType) {
+    const prevBtn = document.querySelector('button[onclick="window.previousQuestion()"]');
     const nextBtn = document.getElementById('nextBtn');
+    
+    prevBtn.disabled = current === 1;
+    
     if (current === total) {
         nextBtn.textContent = 'Terminer le quiz →';
         nextBtn.onclick = function() { window.finishQuiz(); };
@@ -147,50 +386,85 @@ function displayQuestion() {
         nextBtn.textContent = 'Suivant →';
         nextBtn.onclick = function() { window.nextQuestion(); };
     }
-    
-    // Auto-focus sur la première réponse
-    const firstAnswer = document.querySelector('.btn-vf');
-    if (firstAnswer) firstAnswer.focus();
-};
+}
 
 /**
- * Sélectionne une réponse QCM
- * OBSOLÈTE: remplacé par selectVFAnswer
- * Conservé pour compatibilité (ne fait rien)
+ * Démarre le quiz
  */
-window.selectAnswer = function(element) {
-    // Non utilisé - QCU uniquement
-};
+window.startQuiz = function() {
+    // Récupérer les filtres sélectionnés
+    const selectedFamilies = Array.from(document.querySelectorAll('.family-checkbox:checked'))
+        .map(cb => cb.value);
+    const selectedDomains = Array.from(document.querySelectorAll('.domain-checkbox:checked'))
+        .map(cb => cb.value);
+    
+    const count = parseInt(document.getElementById('questionsCount').value);
+    
+    // Générer le quiz avec les filtres
+    quizInstance.generateFilteredQuiz(count, selectedFamilies, selectedDomains);
+    
+    console.log(`▶ Quiz démarré:`);
+    console.log(`  - ${count} questions`);
+    console.log(`  - Familles: ${selectedFamilies.join(', ')}`);
+    console.log(`  - Domaines: ${selectedDomains.join(', ')}`);
+    
+    displayPharmaCourseQuestion();
+    showScreen('quizScreen');
+}
 
 /**
  * Sélectionne une réponse Vrai/Faux
  */
 window.selectVFAnswer = function(value) {
-    const question = pharmaQuiz.getCurrentQuestion();
+    const question = quizInstance.getCurrentQuestion();
     question.userAnswer = value;
     
-    // Mettre à jour l'affichage
     document.querySelectorAll('.btn-vf').forEach(btn => {
         btn.classList.remove('selected');
     });
     event.target.classList.add('selected');
+};
+
+/**
+ * Sélectionne une réponse MCQ
+ */
+window.selectMcqAnswer = function(answer) {
+    quizInstance.setAnswer(answer);
     
-    console.log('✓ Vrai/Faux sélectionné:', value);
+    document.querySelectorAll('.answer-option').forEach(opt => {
+        opt.classList.remove('selected');
+        opt.style.background = 'white';
+        opt.style.borderColor = '#e0e0e0';
+    });
+    
+    event.target.closest('.answer-option').classList.add('selected');
+    event.target.closest('.answer-option').style.background = '#fff5f8';
+    event.target.closest('.answer-option').style.borderColor = '#fa709a';
 };
 
 /**
  * Passe à la question suivante
  */
 window.nextQuestion = function() {
-    const question = pharmaQuiz.getCurrentQuestion();
-    
-    if (question.userAnswer === null) {
-        alert('⚠️ Veuillez sélectionner une réponse avant de continuer');
-        return;
+    if (currentQuizType === 'UE_2.3') {
+        const question = quizInstance.getCurrentQuestion();
+        if (question.userAnswer === null) {
+            alert('⚠️ Veuillez sélectionner une réponse');
+            return;
+        }
+    } else if (currentQuizType === 'UE_4.4.S2_antibiotiques') {
+        if (quizInstance.userAnswers[quizInstance.currentQuestionIndex] === null) {
+            alert('⚠️ Veuillez sélectionner une réponse');
+            return;
+        }
     }
     
-    if (pharmaQuiz.nextQuestion()) {
-        displayQuestion();
+    if (quizInstance.nextQuestion()) {
+        if (currentQuizType === 'UE_2.3') {
+            displayPharmaCourseQuestion();
+        } else {
+            displayMcqQuestion();
+        }
     }
 };
 
@@ -198,9 +472,12 @@ window.nextQuestion = function() {
  * Revient à la question précédente
  */
 window.previousQuestion = function() {
-    if (pharmaQuiz.currentQuestionIndex > 0) {
-        pharmaQuiz.currentQuestionIndex--;
-        displayQuestion();
+    if (quizInstance.previousQuestion()) {
+        if (currentQuizType === 'UE_2.3') {
+            displayPharmaCourseQuestion();
+        } else {
+            displayMcqQuestion();
+        }
     }
 };
 
@@ -208,20 +485,26 @@ window.previousQuestion = function() {
  * Termine le quiz
  */
 window.finishQuiz = function() {
-    const question = pharmaQuiz.getCurrentQuestion();
-    
-    if (question.userAnswer === null) {
-        alert('⚠️ Veuillez sélectionner une réponse avant de terminer');
-        return;
+    if (currentQuizType === 'UE_2.3') {
+        const question = quizInstance.getCurrentQuestion();
+        if (question.userAnswer === null) {
+            alert('⚠️ Veuillez sélectionner une réponse');
+            return;
+        }
+        
+        quizInstance.score = 0;
+        quizInstance.currentQuiz.forEach(q => {
+            const isCorrect = quizInstance.normalizeAnswer(q.userAnswer) === 
+                             quizInstance.normalizeAnswer(q.correctAnswer);
+            if (isCorrect) quizInstance.score++;
+        });
+    } else if (currentQuizType === 'UE_4.4.S2_antibiotiques') {
+        if (quizInstance.userAnswers[quizInstance.currentQuestionIndex] === null) {
+            alert('⚠️ Veuillez sélectionner une réponse');
+            return;
+        }
+        quizInstance.calculateScore();
     }
-    
-    // Calculer le score final en vérifiant toutes les réponses
-    pharmaQuiz.score = 0;
-    pharmaQuiz.currentQuiz.forEach(q => {
-        const isCorrect = pharmaQuiz.normalizeAnswer(q.userAnswer) === 
-                         pharmaQuiz.normalizeAnswer(q.correctAnswer);
-        if (isCorrect) pharmaQuiz.score++;
-    });
     
     displayResults();
 };
@@ -230,63 +513,73 @@ window.finishQuiz = function() {
  * Affiche les résultats
  */
 function displayResults() {
-    const results = pharmaQuiz.getResults();
+    let results, percentage;
     
-    // Mettre à jour l'affichage du score
-    document.getElementById('scoreDisplay').textContent = `${results.score}/${results.total}`;
-    document.getElementById('scorePercentage').textContent = `${results.percentage}%`;
+    if (currentQuizType === 'UE_2.3') {
+        results = quizInstance.getResults();
+        percentage = Math.round((quizInstance.score / quizInstance.currentQuiz.length) * 100);
+        
+        document.getElementById('scoreDisplay').textContent = `${quizInstance.score}/${quizInstance.currentQuiz.length}`;
+    } else if (currentQuizType === 'UE_4.4.S2_antibiotiques') {
+        results = quizInstance.getResults();
+        percentage = Math.round((quizInstance.score / quizInstance.currentQuiz.length) * 100);
+        
+        document.getElementById('scoreDisplay').textContent = `${quizInstance.score}/${quizInstance.currentQuiz.length}`;
+    }
     
-    // Feedback selon le score
+    document.getElementById('scorePercentage').textContent = `${percentage}%`;
+    
     let feedback, className;
-    if (results.percentage >= 90) {
-        feedback = '🌟 Excellent! Vous maîtrisez très bien la pharmacologie!';
+    if (percentage >= 90) {
+        feedback = '🌟 Excellent! Vous avez une excellente compréhension!';
         className = 'excellent';
-    } else if (results.percentage >= 75) {
-        feedback = '👍 Très bon! Vous avez de bonnes connaissances.';
+    } else if (percentage >= 75) {
+        feedback = '👍 Très bon! Continuez comme ça!';
         className = 'good';
-    } else if (results.percentage >= 60) {
-        feedback = '📚 Correct, mais continuez à réviser!';
+    } else if (percentage >= 60) {
+        feedback = '📚 Correct, continuez à réviser!';
         className = 'average';
     } else {
-        feedback = '💪 Continuez vos efforts, la pratique améliorera votre score!';
+        feedback = '💪 Ne vous découragez pas, pratiquez encore!';
         className = 'poor';
     }
     
     document.getElementById('feedback').textContent = feedback;
     document.getElementById('feedback').className = `results-feedback ${className}`;
     
-    // Afficher la revue des réponses
     let reviewHtml = '';
-    results.questions.forEach((question, index) => {
-        const isCorrect = pharmaQuiz.normalizeAnswer(question.userAnswer) === 
-                         pharmaQuiz.normalizeAnswer(question.correctAnswer);
-        
+    results.forEach((result, index) => {
         reviewHtml += `
-            <div class="review-question ${isCorrect ? 'correct' : 'incorrect'}">
-                <div class="review-q-number">Question ${index + 1} ${isCorrect ? '✓' : '✗'}</div>
-                <div class="review-q-text"><strong>${question.question}</strong></div>
+            <div class="review-question ${result.isCorrect ? 'correct' : 'incorrect'}">
+                <div class="review-q-number">Question ${index + 1} ${result.isCorrect ? '✓' : '✗'}</div>
+                <div class="review-q-text"><strong>${result.question}</strong></div>
                 <div class="review-answers-info">
                     <div class="review-answer-user">
-                        Votre réponse: <strong>${question.userAnswer}</strong>
+                        Votre réponse: <strong>${result.userAnswer}</strong>
                     </div>
-                    ${!isCorrect ? `<div class="review-answer-correct">Bonne réponse: <strong>${question.correctAnswer}</strong></div>` : ''}
-                    <div class="explanation">${question.explanation}</div>
+                    ${!result.isCorrect ? `<div class="review-answer-correct">Bonne réponse: <strong>${result.correctAnswer}</strong></div>` : ''}
                 </div>
             </div>
         `;
     });
     
     document.getElementById('reviewAnswers').innerHTML = reviewHtml;
-    
     showScreen('resultsScreen');
 }
+
+/**
+ * Revient à la sélection du quiz
+ */
+window.backToSelection = function() {
+    currentQuizType = null;
+    quizInstance = null;
+    showScreen('quizSelectionScreen');
+};
 
 /**
  * Réinitialise le quiz
  */
 window.resetQuiz = function() {
-    pharmaQuiz.reset();
-    currentAnswerSelected = null;
     window.location.href = './home.html';
 };
 
@@ -294,6 +587,14 @@ window.resetQuiz = function() {
  * Recommence le quiz
  */
 window.retakeQuiz = function() {
+    if (currentQuizType === 'UE_2.3') {
+        setupPharmaCourseUI();
+        populatePharmaCourseFilters();
+    } else if (currentQuizType === 'UE_4.4.S2_antibiotiques') {
+        setupMcqUI();
+        populateMcqFilters();
+    }
+    quizInstance.reset();
     showScreen('startScreen');
 };
 
@@ -301,11 +602,11 @@ window.retakeQuiz = function() {
  * Affiche une erreur
  */
 function showError(message) {
-    document.getElementById('loadingScreen').innerHTML = `
+    const loadingScreen = document.getElementById('loadingScreen');
+    loadingScreen.innerHTML = `
         <div class="loading">
             <p style="color: #dc3545; font-weight: 600;">${message}</p>
-            <p style="margin-top: 1rem; color: #999;">Assurez-vous que le fichier pharmaco.csv est présent dans src/data/</p>
-            <button class="btn btn-secondary" onclick="window.location.href='./home.html'">
+            <button class="btn btn-secondary" onclick="window.backToSelection()" style="margin-top: 1rem;">
                 Retour
             </button>
         </div>
@@ -315,6 +616,6 @@ function showError(message) {
 /**
  * Ouvre le quiz depuis la page d'accueil
  */
-window.openPharmaQuiz = function() {
+window.openQuiz = function() {
     window.location.href = './quiz.html';
 };

@@ -20,10 +20,39 @@ class PharmaQuiz {
      */
     async loadPharmaData() {
         try {
-            // Chemin: src/data/recap_charts/UE 4.4.S1 - Familles de médicaments.csv
-            const basePath = window.resolvePath ? window.resolvePath('/src/data/recap_charts/UE 4.4.S1 - Familles de médicaments.csv') : '/src/data/recap_charts/UE 4.4.S1 - Familles de médicaments.csv';
-            const response = await fetch(basePath);
-            const csvText = await response.text();
+            // Essayer différents chemins
+            const paths = [
+                // Chemin relatif à partir de quiz.html
+                '../../data/recap_charts/UE 4.4.S1 - Familles de médicaments.csv',
+                // Chemin absolu
+                '/src/data/recap_charts/UE 4.4.S1 - Familles de médicaments.csv',
+                // Chemin avec resolvePath
+                (window.resolvePath ? window.resolvePath('/src/data/recap_charts/UE 4.4.S1 - Familles de médicaments.csv') : null)
+            ].filter(p => p !== null);
+            
+            let csvText = null;
+            let loadedFrom = null;
+            
+            for (const path of paths) {
+                try {
+                    console.log(`[PharmaQuiz] Essai de charger: ${path}`);
+                    const response = await fetch(path);
+                    if (response.ok) {
+                        csvText = await response.text();
+                        loadedFrom = path;
+                        console.log(`✓ Chargé depuis: ${path}`);
+                        break;
+                    }
+                } catch (err) {
+                    console.log(`  ✗ Échec: ${err.message}`);
+                    continue;
+                }
+            }
+            
+            if (!csvText) {
+                throw new Error('Impossible de charger le fichier CSV');
+            }
+            
             this.parseCsvData(csvText);
             console.log(`✓ Pharmacologie chargée: ${this.pharmaData.length} entrées`);
             return true;

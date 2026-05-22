@@ -1,6 +1,6 @@
 {
   "success": true,
-  "count": 5,
+  "count": 6,
   "charts": [
     {
       "ue": "UE 2.4.S1 - Traumatismes",
@@ -31,6 +31,12 @@
       "path": "data/recap_charts/charts_definitive/UE 4.4.S1 - Familles de médicaments.csv",
       "type": "recap",
       "semester": 1
+    },
+    {
+      "ue": "UE 4.4.S2 - antibiotiques",
+      "path": "data/recap_charts/charts_definitive/UE 4.4.S2 - antibiotiques.csv",
+      "type": "recap",
+      "semester": 2
     }
   ]
 }

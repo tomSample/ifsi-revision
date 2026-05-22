@@ -186,5 +186,21 @@
   {
     "question": "Définissez santé.",
     "response": "État de complet bien-être physique, mental et social, et pas seulement absence de maladie ou d'infirmité."
+  },
+  {
+    "question": "Définissez qualité de vie.",
+    "response": "la perception qu’a un individu de sa place dans l’existence, en relation avec ses objectifs, ses attentes, et ses inquiétudes."
+  },
+  {
+    "question": "Définissez maladie chronique.",
+    "response": "maladie de longue durée, évolutive, avec un retentissement sur la vie quotidienne."
+  },
+  {
+    "question": "Définissez danger.",
+    "response": "Toute source potentielle de dommage, de préjudice ou d'effet nocif à l'égard d'une chose ou d'une personne."
+  },
+  {
+    "question": "Définissez douleur.",
+    "response": "Expérience sensorielle et émotionnelle désagréable liée à une lésion tissulaire existante ou potentielle."
   }
 ]
