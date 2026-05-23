@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="IFSI Lannion 2025 - Révisions Quotidiennes avec Flashcards">
+    <meta name="description" content="IFSI Lannion 2025 - Révisions quotidiennes avec flashcards interactives">
     <meta name="theme-color" content="#2563EB">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
-    <title>Révisions Quotidiennes - IFSI Lannion 2025</title>
+    <title>IFSI Lannion - Révisions Quotidiennes</title>
     
     <!-- Manifest & Icons -->
     <link rel="manifest" href="../../../public/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Design System CSS (New unified system - Mobile-first) -->
+    <!-- Design System CSS (Mobile-first unified system) -->
     <link rel="stylesheet" href="../assets/styles/theme.css">
     <link rel="stylesheet" href="../assets/styles/design-system.css">
     <link rel="stylesheet" href="../assets/styles/animations.css">
@@ -56,70 +56,52 @@
         .header-content {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             padding: var(--space-4);
             max-width: 1280px;
             margin: 0 auto;
             width: 100%;
-        }
-
-        .header-brand {
-            display: flex;
-            align-items: center;
+            flex-direction: column;
             gap: var(--space-2);
-            text-decoration: none;
-            color: var(--color-text-dark);
-        }
-
-        .header-brand-icon {
-            font-size: 1.5rem;
-        }
-
-        .header-brand-text h1 {
-            font-size: var(--font-size-base);
-            font-weight: var(--font-weight-bold);
-            margin: 0;
-            color: var(--color-primary);
-        }
-
-        .header-brand-text p {
-            font-size: 0.65rem;
-            color: var(--color-text-muted);
-            margin: var(--space-1) 0 0 0;
-        }
-
-        .breadcrumb-nav {
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-        }
-
-        .breadcrumb-nav a {
-            color: var(--color-primary);
-            text-decoration: none;
-            transition: color var(--transition-fast);
-        }
-
-        .breadcrumb-nav a:hover {
-            color: var(--color-primary-dark);
         }
 
         @media (min-width: 641px) {
             .header-content {
-                padding: var(--space-6);
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
             }
+        }
 
-            .header-brand-text h1 {
-                font-size: var(--font-size-lg);
-            }
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
 
-            .header-brand-text p {
-                font-size: var(--font-size-xs);
-            }
+        .breadcrumb a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--color-primary-dark);
+        }
+
+        .breadcrumb .current {
+            color: var(--color-text-body);
+            font-weight: 500;
         }
 
         /* ===== MAIN CONTAINER ===== */
         .main-container {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: var(--space-4);
             width: 100%;
@@ -131,7 +113,11 @@
             }
         }
 
-        /* ===== WELCOME CARD / START SCREEN ===== */
+        /* ===== START SCREEN ===== */
+        .start-screen {
+            animation: fadeIn var(--transition-base);
+        }
+
         .welcome-card {
             background: var(--color-bg);
             border-radius: var(--radius-xl);
@@ -139,66 +125,62 @@
             box-shadow: var(--shadow-md);
         }
 
+        @media (min-width: 641px) {
+            .welcome-card {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+        }
+
         .welcome-card h3 {
             font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
             color: var(--color-text-dark);
-            margin-bottom: var(--space-4);
+            margin-bottom: var(--space-2);
             text-align: center;
         }
 
         .welcome-card > p {
-            text-align: center;
             color: var(--color-text-muted);
+            text-align: center;
             margin-bottom: var(--space-6);
-        }
-
-        /* ===== FORM SECTIONS ===== */
-        .form-section {
-            margin-bottom: var(--space-6);
-            padding-bottom: var(--space-6);
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .form-section:last-of-type {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .form-section label {
-            display: block;
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text-dark);
-            margin-bottom: var(--space-2);
+            font-size: var(--font-size-sm);
         }
 
         /* ===== UE FILTER ===== */
+        .ue-filter-simple {
+            margin-bottom: var(--space-6);
+        }
+
+        .ue-filter-simple > label {
+            display: block;
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-2);
+            color: var(--color-text-dark);
+            font-size: var(--font-size-sm);
+        }
+
         .ue-dropdown {
             background: var(--color-bg-lighter);
             border: 1px solid var(--color-border);
             border-radius: var(--radius-lg);
-            padding: var(--space-3);
+            padding: var(--space-3) var(--space-4);
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all var(--transition-base);
+            transition: all var(--transition-fast);
             user-select: none;
         }
 
         .ue-dropdown:hover {
-            background: var(--color-bg-light);
             border-color: var(--color-primary);
-        }
-
-        .ue-dropdown:focus-visible {
-            outline: var(--focus-outline);
-            outline-offset: var(--focus-outline-offset);
+            background: var(--color-bg);
         }
 
         .dropdown-arrow {
-            font-size: var(--font-size-sm);
             transition: transform var(--transition-fast);
+            color: var(--color-primary);
         }
 
         .ue-dropdown.open .dropdown-arrow {
@@ -208,49 +190,55 @@
         .ue-options {
             background: var(--color-bg);
             border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            margin-top: var(--space-2);
+            border-top: none;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            padding: var(--space-2);
+            display: none;
             max-height: 300px;
             overflow-y: auto;
-            box-shadow: var(--shadow-lg);
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: var(--space-2);
-            padding: var(--space-3);
+            animation: slideInDown var(--transition-base);
+        }
+
+        .ue-options.open {
+            display: block;
         }
 
         .ue-option {
-            padding: var(--space-2) var(--space-3);
-            background: var(--color-bg-lighter);
-            border-radius: var(--radius-md);
+            padding: var(--space-3) var(--space-4);
             cursor: pointer;
+            border-radius: var(--radius-md);
             transition: all var(--transition-fast);
-            border: 2px solid transparent;
             font-size: var(--font-size-sm);
         }
 
         .ue-option:hover {
             background: var(--color-primary-lighter);
-            border-color: var(--color-primary);
+            color: var(--color-primary-dark);
         }
 
         .ue-option.active {
             background: var(--color-primary);
             color: white;
-            border-color: var(--color-primary-dark);
+            font-weight: var(--font-weight-semibold);
         }
 
-        /* ===== MODE SELECTOR ===== */
+        /* ===== REVISION MODE SELECTOR ===== */
+        .revision-mode-selector {
+            margin-bottom: var(--space-6);
+        }
+
+        .revision-mode-selector > label {
+            display: block;
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-3);
+            color: var(--color-text-dark);
+            font-size: var(--font-size-sm);
+        }
+
         .mode-options {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: var(--space-3);
-        }
-
-        @media (min-width: 641px) {
-            .mode-options {
-                grid-template-columns: repeat(4, 1fr);
-            }
         }
 
         .mode-option {
@@ -265,7 +253,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: var(--space-3);
+            padding: var(--space-4);
             border: 2px solid var(--color-border);
             border-radius: var(--radius-lg);
             background: var(--color-bg-lighter);
@@ -288,7 +276,7 @@
         }
 
         .mode-icon {
-            font-size: var(--font-size-2xl);
+            font-size: 1.5rem;
             margin-bottom: var(--space-2);
         }
 
@@ -300,19 +288,33 @@
 
         .mode-desc {
             font-size: var(--font-size-xs);
-            opacity: 0.7;
+            color: var(--color-text-muted);
+            line-height: 1.3;
         }
 
-        /* ===== TERM COUNT SELECTOR ===== */
+        .mode-option input[type="radio"]:checked + .mode-card .mode-name,
+        .mode-option input[type="radio"]:checked + .mode-card .mode-desc {
+            color: white;
+        }
+
+        /* ===== TERM SELECTOR ===== */
         .term-selector {
-            margin-bottom: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+
+        .term-selector > label {
+            display: block;
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-2);
+            color: var(--color-text-dark);
+            font-size: var(--font-size-sm);
         }
 
         .term-count-controls {
             display: flex;
             gap: var(--space-2);
-            margin-bottom: var(--space-3);
             align-items: center;
+            margin-bottom: var(--space-3);
         }
 
         .count-btn {
@@ -323,6 +325,8 @@
             height: 44px;
             cursor: pointer;
             font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
             transition: all var(--transition-fast);
             display: flex;
             align-items: center;
@@ -330,8 +334,7 @@
         }
 
         .count-btn:hover {
-            background: var(--color-primary);
-            color: white;
+            background: var(--color-primary-lighter);
             border-color: var(--color-primary);
         }
 
@@ -341,44 +344,64 @@
 
         .term-count-input {
             flex: 1;
-            padding: var(--space-3);
+            padding: var(--space-2) var(--space-3);
             border: 1px solid var(--color-border);
             border-radius: var(--radius-md);
             font-size: var(--font-size-base);
             text-align: center;
             font-weight: var(--font-weight-semibold);
+            transition: all var(--transition-fast);
         }
 
         .term-count-input:focus {
-            outline: var(--focus-outline);
-            outline-offset: var(--focus-outline-offset);
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-primary-lighter);
         }
 
         .term-count-presets {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: flex;
             gap: var(--space-2);
+            flex-wrap: wrap;
         }
 
         .preset-btn {
-            padding: var(--space-2);
+            flex: 1;
+            min-width: 70px;
+            padding: var(--space-2) var(--space-3);
             background: var(--color-bg-lighter);
             border: 1px solid var(--color-border);
             border-radius: var(--radius-md);
             cursor: pointer;
-            font-weight: var(--font-weight-semibold);
+            font-weight: var(--font-weight-medium);
+            font-size: var(--font-size-sm);
             transition: all var(--transition-fast);
         }
 
         .preset-btn:hover {
-            background: var(--color-primary-lighter);
             border-color: var(--color-primary);
+            background: var(--color-primary-lighter);
         }
 
         .preset-btn.active {
             background: var(--color-primary);
             color: white;
-            border-color: var(--color-primary-dark);
+            border-color: var(--color-primary);
+        }
+
+        /* ===== TIME ESTIMATE ===== */
+        .time-estimate {
+            background: var(--color-success-lighter);
+            color: var(--color-success-dark);
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-6);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            animation: slideInUp var(--transition-base);
         }
 
         /* ===== START BUTTON ===== */
@@ -390,11 +413,11 @@
             border: none;
             border-radius: var(--radius-lg);
             font-size: var(--font-size-base);
-            font-weight: var(--font-weight-semibold);
+            font-weight: var(--font-weight-bold);
             cursor: pointer;
             transition: all var(--transition-base);
             box-shadow: var(--shadow-md);
-            margin-top: var(--space-4);
+            min-height: 44px;
         }
 
         .start-btn:hover {
@@ -406,38 +429,51 @@
             transform: translateY(0);
         }
 
-        /* ===== FLASHCARD SECTION ===== */
+        /* ===== REVISION SCREEN ===== */
+        .revision-screen {
+            animation: fadeIn var(--transition-base);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
         .term-card {
             background: var(--color-bg);
             border-radius: var(--radius-xl);
             padding: var(--space-6);
             box-shadow: var(--shadow-md);
-            margin-bottom: var(--space-6);
+        }
+
+        @media (min-width: 641px) {
+            .term-card {
+                max-width: 900px;
+                margin: 0 auto;
+            }
         }
 
         .term-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: var(--space-4);
-            padding-bottom: var(--space-4);
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .term-ue {
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-primary);
-            text-transform: uppercase;
-            letter-spacing: var(--letter-spacing-wide);
-        }
-
-        .term-number {
+            margin-bottom: var(--space-6);
             font-size: var(--font-size-sm);
             color: var(--color-text-muted);
         }
 
-        /* ===== FLASHCARD 3D ===== */
+        .term-ue {
+            background: var(--color-primary-lighter);
+            color: var(--color-primary-dark);
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .term-number {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-primary);
+        }
+
+        /* ===== FLASHCARD ===== */
         .flashcard-container {
             perspective: 1000px;
             margin: var(--space-6) 0;
@@ -448,7 +484,7 @@
             position: relative;
             width: 100%;
             min-height: 300px;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             transform-style: preserve-3d;
             cursor: pointer;
         }
@@ -470,8 +506,8 @@
             width: 100%;
             min-height: 300px;
             backface-visibility: hidden;
-            background: var(--color-bg-lighter);
-            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--color-primary-lighter) 0%, var(--color-bg) 100%);
+            border-radius: var(--radius-xl);
             padding: var(--space-6);
             box-shadow: var(--shadow-lg);
             display: flex;
@@ -479,11 +515,11 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            border: 2px solid var(--color-border);
         }
 
         .flashcard-back {
             transform: rotateY(180deg);
+            background: linear-gradient(135deg, var(--color-success-lighter) 0%, var(--color-bg) 100%);
         }
 
         .card-label {
@@ -492,20 +528,16 @@
             left: var(--space-4);
             font-size: var(--font-size-xs);
             text-transform: uppercase;
-            color: var(--color-primary);
-            font-weight: var(--font-weight-semibold);
+            color: var(--color-primary-dark);
+            font-weight: var(--font-weight-bold);
             letter-spacing: var(--letter-spacing-wide);
-        }
-
-        .flashcard-front h3,
-        .flashcard-back h3 {
-            color: var(--color-text-dark);
-            margin: 0;
-            line-height: var(--line-height-tight);
         }
 
         .flashcard-front h3 {
             font-size: var(--font-size-2xl);
+            color: var(--color-text-dark);
+            margin: 0 0 var(--space-4) 0;
+            line-height: var(--line-height-tight);
         }
 
         @media (min-width: 641px) {
@@ -518,7 +550,7 @@
             color: var(--color-text-muted);
             font-size: var(--font-size-sm);
             margin-top: var(--space-4);
-            animation: pulse 2s ease-in-out infinite;
+            animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
@@ -526,20 +558,94 @@
             50% { opacity: 1; }
         }
 
-        .definition-text {
+        .flashcard-back .definition-text {
             font-size: var(--font-size-base);
             line-height: var(--line-height-relaxed);
-            color: var(--color-text-body);
-            max-width: 90%;
+            color: var(--color-text-dark);
+            max-width: 700px;
         }
 
         .flashcard-back h3 {
             font-size: var(--font-size-lg);
-            margin-bottom: var(--space-3);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-dark);
+            margin-bottom: var(--space-4);
+            margin-top: var(--space-4);
+        }
+
+        /* ===== CONTROLS ===== */
+        .revision-controls {
+            display: flex;
+            gap: var(--space-3);
             margin-top: var(--space-6);
+            flex-wrap: wrap;
+        }
+
+        @media (min-width: 641px) {
+            .revision-controls {
+                justify-content: center;
+            }
+        }
+
+        .control-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: var(--space-3) var(--space-4);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            min-height: 44px;
+        }
+
+        .btn-correct {
+            background: var(--color-success);
+            color: white;
+        }
+
+        .btn-correct:hover {
+            background: var(--color-success-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-partial {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .btn-partial:hover {
+            background: var(--color-accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-wrong {
+            background: var(--color-wrong);
+            color: white;
+        }
+
+        .btn-wrong:hover {
+            background: var(--color-wrong-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-skip {
+            background: var(--color-bg-lighter);
+            color: var(--color-text-body);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-skip:hover {
+            background: var(--color-bg);
+            border-color: var(--color-text-body);
         }
 
         /* ===== RESULTS SCREEN ===== */
+        .results-screen {
+            animation: fadeIn var(--transition-base);
+        }
+
         .results-card {
             background: var(--color-bg);
             border-radius: var(--radius-xl);
@@ -551,264 +657,119 @@
 
         .results-card h3 {
             font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
             color: var(--color-text-dark);
-            margin-bottom: var(--space-4);
             text-align: center;
+            margin-bottom: var(--space-4);
         }
 
         .session-stats-text {
             text-align: center;
-            font-size: var(--font-size-base);
             color: var(--color-text-body);
             margin-bottom: var(--space-6);
-            line-height: var(--line-height-relaxed);
+            font-size: var(--font-size-base);
+        }
+
+        .session-stats-text strong {
+            color: var(--color-primary);
+            font-weight: var(--font-weight-bold);
         }
 
         .terms-summary {
-            background: var(--color-bg-lighter);
-            border-radius: var(--radius-lg);
-            padding: var(--space-4);
             margin-bottom: var(--space-6);
+            max-height: 400px;
+            overflow-y: auto;
         }
 
+        .term-result {
+            background: var(--color-bg-lighter);
+            padding: var(--space-3);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-2);
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .term-result.correct {
+            border-left-color: var(--color-success);
+        }
+
+        .term-result.partial {
+            border-left-color: var(--color-accent);
+        }
+
+        .term-result.wrong {
+            border-left-color: var(--color-wrong);
+        }
+
+        .term-result-name {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-dark);
+            margin-bottom: var(--space-1);
+        }
+
+        .term-result-definition {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+            line-height: var(--line-height-relaxed);
+        }
+
+        /* ===== ACTION BUTTONS ===== */
         .action-buttons {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex;
             gap: var(--space-3);
+            flex-direction: column;
         }
 
         @media (min-width: 641px) {
             .action-buttons {
-                grid-template-columns: repeat(2, 1fr);
+                flex-direction: row;
             }
         }
 
         .new-session-btn,
         .export-btn {
+            flex: 1;
             padding: var(--space-4);
             border: none;
             border-radius: var(--radius-lg);
-            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-bold);
             cursor: pointer;
             transition: all var(--transition-base);
-            font-size: var(--font-size-base);
+            min-height: 44px;
         }
 
         .new-session-btn {
-            background: var(--gradient-primary);
+            background: var(--color-primary);
             color: white;
-            box-shadow: var(--shadow-md);
         }
 
         .new-session-btn:hover {
+            background: var(--color-primary-dark);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
         }
 
         .export-btn {
             background: var(--color-bg-lighter);
-            color: var(--color-text-dark);
+            color: var(--color-text-body);
             border: 1px solid var(--color-border);
         }
 
         .export-btn:hover {
-            background: var(--color-primary-lighter);
+            background: var(--color-bg);
             border-color: var(--color-primary);
         }
 
-        /* ===== REVIEW SCREEN ===== */
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--space-6);
-            padding-bottom: var(--space-4);
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .review-header h3 {
-            font-size: var(--font-size-lg);
-            margin: 0;
-            color: var(--color-text-dark);
-        }
-
-        .close-review-btn {
-            background: none;
-            border: none;
-            font-size: var(--font-size-xl);
-            cursor: pointer;
-            color: var(--color-text-muted);
-            transition: color var(--transition-fast);
-        }
-
-        .close-review-btn:hover {
-            color: var(--color-text-dark);
-        }
-
-        .review-content {
-            display: grid;
-            gap: var(--space-4);
-        }
-
-        /* ===== REPORT MODAL ===== */
-        .report-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-            padding: var(--space-4);
-        }
-
-        .report-content {
-            background: var(--color-bg);
-            border-radius: var(--radius-xl);
-            max-width: 500px;
-            width: 100%;
-            box-shadow: var(--shadow-2xl);
-            overflow: hidden;
-        }
-
-        .report-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: var(--space-4);
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .report-header h3 {
-            margin: 0;
-            font-size: var(--font-size-base);
-            color: var(--color-text-dark);
-        }
-
-        .close-report {
-            background: none;
-            border: none;
-            font-size: var(--font-size-lg);
-            cursor: pointer;
-            color: var(--color-text-muted);
-        }
-
-        .report-body {
-            padding: var(--space-4);
-            display: grid;
-            gap: var(--space-3);
-        }
-
-        .report-body label {
-            font-weight: var(--font-weight-semibold);
-            font-size: var(--font-size-sm);
-            color: var(--color-text-dark);
-        }
-
-        .report-body select,
-        .report-body textarea {
-            width: 100%;
-            padding: var(--space-2) var(--space-3);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            font-family: inherit;
-            font-size: var(--font-size-sm);
-        }
-
-        .report-body select:focus,
-        .report-body textarea:focus {
-            outline: var(--focus-outline);
-            outline-offset: var(--focus-outline-offset);
-        }
-
-        .current-definition {
-            background: var(--color-bg-lighter);
-            padding: var(--space-3);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-sm);
-            color: var(--color-text-body);
-        }
-
-        .report-actions {
-            padding: var(--space-4);
-            border-top: 1px solid var(--color-border);
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-2);
-        }
-
-        .action-btn {
-            padding: var(--space-3);
-            border: none;
-            border-radius: var(--radius-md);
-            font-weight: var(--font-weight-semibold);
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            font-size: var(--font-size-sm);
-        }
-
-        .action-btn.primary {
-            background: var(--gradient-primary);
-            color: white;
-        }
-
-        .action-btn.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .action-btn.secondary {
-            background: var(--color-bg-lighter);
-            color: var(--color-text-dark);
-            border: 1px solid var(--color-border);
-        }
-
-        .action-btn.secondary:hover {
-            background: var(--color-border);
-        }
-
-        /* ===== FOOTER ===== */
-        .app-footer {
-            background: var(--color-bg-lighter);
-            border-top: 1px solid var(--color-border);
-            padding: var(--space-6) var(--space-4);
-            text-align: center;
-            color: var(--color-text-muted);
-            font-size: var(--font-size-xs);
-            margin-top: var(--space-12);
-        }
-
-        /* ===== SCREENS VISIBILITY ===== */
-        .hidden {
-            display: none !important;
-        }
-
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
-        }
-
-        /* ===== MASQUER BUTTONS DE DIFFICULTÉ ===== */
-        #difficultySection {
-            display: none !important;
-        }
-
-        .difficulty-buttons {
-            display: none !important;
-        }
-
+        /* ===== HIDDEN ELEMENTS ===== */
+        #difficultySection,
+        .difficulty-buttons,
         .difficulty-btn {
             display: none !important;
+        }
+
+        /* ===== UTILITIES ===== */
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -816,15 +777,14 @@
     <!-- ===== HEADER ===== -->
     <header class="app-header">
         <div class="header-content">
-            <a href="./home.html" class="header-brand">
-                <span class="header-brand-icon">📚</span>
-                <div class="header-brand-text">
-                    <h1>IFSI Lannion</h1>
-                    <p>Révisions 2025</p>
-                </div>
-            </a>
-            <nav class="breadcrumb-nav">
-                <a href="./home.html">Hub</a> › <span>Révisions</span>
+            <div>
+                <h1 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-bold); margin: 0; color: var(--color-primary);">📚 IFSI Lannion 2025</h1>
+                <p style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin: var(--space-1) 0 0 0;">Révisions - Flashcards</p>
+            </div>
+            <nav class="breadcrumb">
+                <a href="./home.html">🏠 Hub</a>
+                <span>›</span>
+                <span class="current">Révisions Quotidiennes</span>
             </nav>
         </div>
     </header>
@@ -832,26 +792,26 @@
     <!-- ===== MAIN CONTENT ===== -->
     <main>
         <div class="main-container">
-            <!-- START SCREEN: Configuration initiale -->
+            <!-- Écran de démarrage -->
             <div class="start-screen" id="startScreen">
                 <div class="welcome-card">
                     <h3>🎯 Prêt pour vos révisions ?</h3>
                     <p>Révisez avec des flashcards interactives - Cliquez pour révéler la réponse !</p>
                     
-                    <!-- UE FILTER -->
-                    <div class="form-section">
+                    <!-- Filtre UE simple -->
+                    <div class="ue-filter-simple">
                         <label>📚 Unités d'Enseignement</label>
                         <div class="ue-dropdown" onclick="toggleUEDropdown()">
                             <span id="ueFilterText">Toutes les UE</span>
                             <span class="dropdown-arrow">▼</span>
                         </div>
-                        <div class="ue-options" id="ueOptions" style="display: none;">
+                        <div class="ue-options" id="ueOptions">
                             <!-- Généré par JavaScript -->
                         </div>
                     </div>
                     
-                    <!-- REVISION MODE SELECTOR -->
-                    <div class="form-section">
+                    <!-- Mode de révision -->
+                    <div class="revision-mode-selector">
                         <label>🎲 Mode de révision</label>
                         <div class="mode-options">
                             <label class="mode-option">
@@ -889,8 +849,8 @@
                         </div>
                     </div>
                     
-                    <!-- TERM COUNT SELECTOR -->
-                    <div class="form-section" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+                    <!-- Sélecteur du nombre de termes -->
+                    <div class="term-selector">
                         <label for="termCount">Nombre de termes :</label>
                         <div class="term-count-controls">
                             <button type="button" class="count-btn minus" onclick="adjustTermCount(-1)">−</button>
@@ -905,13 +865,18 @@
                         </div>
                     </div>
 
+                    <!-- Estimation du temps -->
+                    <div class="time-estimate" id="timeEstimate" style="display: none;">
+                        ⏱️ <span id="estimatedTime">-</span> minutes estimées
+                    </div>
+
                     <button class="start-btn" onclick="startRevision()">
                         🚀 Commencer la révision
                     </button>
                 </div>
             </div>
 
-            <!-- REVISION SCREEN: Flashcards -->
+            <!-- Interface de révision avec flashcards -->
             <div class="revision-screen" id="revisionScreen" style="display: none;">
                 <div class="term-card">
                     <div class="term-header">
@@ -919,32 +884,40 @@
                         <span class="term-number" id="termNumber">1/10</span>
                     </div>
                     
-                    <!-- FLASHCARD 3D -->
+                    <!-- Flashcard avec rotation 3D -->
                     <div class="flashcard-container">
                         <div class="flashcard" id="flashcard" onclick="flipCard()">
                             <div class="flashcard-inner">
-                                <!-- Front: Question -->
+                                <!-- Face avant: Terme -->
                                 <div class="flashcard-front">
                                     <div class="card-label">Question</div>
-                                    <div style="font-size: 14px; color: var(--color-primary); font-weight: 600; margin-bottom: 10px;" id="courseTitle"></div>
+                                    <div style="font-size: 0.875rem; color: var(--color-primary); font-weight: 600; margin-bottom: var(--space-2);" id="courseTitle"></div>
                                     <h3 id="termNameSimple">Terme à définir</h3>
-                                    <p class="flip-instruction" id="flip-instruction">👆 Cliquez pour révéler la définition</p>
+                                    <p class="flip-instruction">👆 Cliquez pour révéler la définition</p>
                                 </div>
                                 
-                                <!-- Back: Answer -->
+                                <!-- Face arrière: Définition -->
                                 <div class="flashcard-back">
                                     <div class="card-label">Réponse</div>
-                                    <div style="font-size: 14px; color: var(--color-primary); font-weight: 600; margin-bottom: 10px;" id="courseTitleBack"></div>
-                                    <h3 id="termNameBack" style="margin-bottom: 20px; color: var(--color-text-dark); font-weight: 700;">Terme</h3>
+                                    <div style="font-size: 0.875rem; color: var(--color-success-dark); font-weight: 600; margin-bottom: var(--space-2);" id="courseTitleBack"></div>
+                                    <h3 id="termNameBack" style="margin-bottom: var(--space-4); color: var(--color-text-dark); font-weight: 700;">Terme</h3>
                                     <div class="definition-text" id="termDefinition"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Contrôles -->
+                    <div class="revision-controls">
+                        <button class="control-btn btn-correct" onclick="markCorrect()">✓ Correct</button>
+                        <button class="control-btn btn-partial" onclick="markPartial()">◐ Partiel</button>
+                        <button class="control-btn btn-wrong" onclick="markWrong()">✗ Faux</button>
+                        <button class="control-btn btn-skip" onclick="skipTerm()">⊘ Passer</button>
+                    </div>
                 </div>
             </div>
 
-            <!-- RESULTS SCREEN: Session recap -->
+            <!-- Écran de résultats -->
             <div class="results-screen" id="resultsScreen" style="display: none;">
                 <div class="results-card">
                     <h3>📚 Récapitulatif de votre session</h3>
@@ -954,7 +927,7 @@
                     </p>
                     
                     <div class="terms-summary" id="termsSummary">
-                        <!-- Généré dynamiquement par JavaScript -->
+                        <!-- Le contenu sera généré dynamiquement -->
                     </div>
 
                     <div class="action-buttons">
@@ -967,59 +940,9 @@
                     </div>
                 </div>
             </div>
-
-            <!-- REVIEW SCREEN: Answer review -->
-            <div class="review-screen" id="reviewScreen" style="display: none;">
-                <div class="review-header">
-                    <h3>📋 Révision de vos réponses</h3>
-                    <button class="close-review-btn" onclick="closeReview()">✖</button>
-                </div>
-                <div class="review-content" id="reviewContent">
-                    <!-- Généré dynamiquement par JavaScript -->
-                </div>
-            </div>
         </div>
     </main>
 
-    <!-- ===== REPORT MODAL ===== -->
-    <div class="report-modal" id="reportModal" style="display: none;">
-        <div class="report-content">
-            <div class="report-header">
-                <h3>⚠️ Signaler la définition</h3>
-                <button class="close-report" onclick="closeReport()">✖</button>
-            </div>
-            
-            <div class="report-body">
-                <p><strong>Terme :</strong> <span id="reportTermName"></span></p>
-                <p><strong>Définition actuelle :</strong></p>
-                <div class="current-definition" id="reportCurrentDefinition"></div>
-                
-                <label for="reportType">Que souhaitez-vous signaler ?</label>
-                <select id="reportType">
-                    <option value="unclear">Définition peu claire</option>
-                    <option value="incomplete">Définition incomplète</option>
-                    <option value="error">Erreur dans la définition</option>
-                    <option value="suggestion">Suggestion d'amélioration</option>
-                </select>
-                
-                <label for="reportComment">Votre commentaire :</label>
-                <textarea id="reportComment" placeholder="Décrivez le problème ou votre suggestion..." rows="4"></textarea>
-            </div>
-            
-            <div class="report-actions">
-                <button onclick="submitReport()" class="action-btn primary">📤 Envoyer le signalement</button>
-                <button onclick="closeReport()" class="action-btn secondary">❌ Annuler</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="app-footer">
-        <p id="versionInfo">IFSI Lannion 2025 - Plateforme v3.0</p>
-    </footer>
-
-    <!-- ===== SCRIPTS ===== -->
-    
     <!-- Firebase -->
     <script src="../assets/scripts/config/firebase-config.js"></script>
     
@@ -1029,18 +952,18 @@
     <!-- Cache Manager -->
     <script src="../assets/scripts/utils/cache-manager.js?v=3.1"></script>
     
-    <!-- 🚀 Performance optimizations -->
+    <!-- 🚀 Optimisations de performance -->
     <script src="../assets/scripts/utils/smart-cache.js"></script>
     <script src="../assets/scripts/utils/performance-utils.js"></script>
     
-    <!-- Progression management modules -->
+    <!-- Modules de gestion de progression -->
     <script src="../assets/scripts/modules/sync-manager.js"></script>
     <script src="../assets/scripts/modules/spaced-repetition.js"></script>
     
-    <!-- Semester selector -->
+    <!-- Sélecteur de semestre -->
     <script src="../assets/scripts/semester-selector.js"></script>
     
-    <!-- Main revision script with flashcards -->
+    <!-- Script principal de révision avec flashcards -->
     <script src="../assets/scripts/modules/revision.js?v=3.4.5"></script>
 </body>
 </html>
