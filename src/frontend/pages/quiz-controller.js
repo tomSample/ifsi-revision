@@ -26,20 +26,7 @@ window.selectQuiz = async function(quizType) {
     showScreen('loadingScreen');
     
     try {
-        if (quizType === 'UE_2.3') {
-            // Quiz Pharmacologie existant
-            quizInstance = new PharmaQuiz();
-            const loaded = await quizInstance.loadPharmaData();
-            
-            if (loaded && quizInstance.pharmaData.length > 0) {
-                console.log('✓ Quiz Pharmacologie chargé');
-                setupPharmaCourseUI();
-                populatePharmaCourseFilters();
-                showScreen('startScreen');
-            } else {
-                throw new Error('Données pharmacologiques non chargées');
-            }
-        } else if (quizType === 'UE_4.4.S2_antibiotiques') {
+        if (quizType === 'UE_4.4.S2_antibiotiques') {
             // Quiz Antibiotiques (MCQ)
             quizInstance = new McqQuiz();
             const filePath = '/src/data/questionnaire/UE_4.4.S2_antibiotiques.json';
@@ -53,6 +40,8 @@ window.selectQuiz = async function(quizType) {
             } else {
                 throw new Error('Questions antibiotiques non chargées');
             }
+        } else {
+            throw new Error('Quiz non trouvé');
         }
     } catch (error) {
         console.error('Erreur:', error);
@@ -446,25 +435,13 @@ window.selectMcqAnswer = function(answer) {
  * Passe à la question suivante
  */
 window.nextQuestion = function() {
-    if (currentQuizType === 'UE_2.3') {
-        const question = quizInstance.getCurrentQuestion();
-        if (question.userAnswer === null) {
-            alert('⚠️ Veuillez sélectionner une réponse');
-            return;
-        }
-    } else if (currentQuizType === 'UE_4.4.S2_antibiotiques') {
-        if (quizInstance.userAnswers[quizInstance.currentQuestionIndex] === null) {
-            alert('⚠️ Veuillez sélectionner une réponse');
-            return;
-        }
+    if (quizInstance.userAnswers[quizInstance.currentQuestionIndex] === null) {
+        alert('⚠️ Veuillez sélectionner une réponse');
+        return;
     }
     
     if (quizInstance.nextQuestion()) {
-        if (currentQuizType === 'UE_2.3') {
-            displayPharmaCourseQuestion();
-        } else {
-            displayMcqQuestion();
-        }
+        displayMcqQuestion();
     }
 };
 
@@ -473,11 +450,7 @@ window.nextQuestion = function() {
  */
 window.previousQuestion = function() {
     if (quizInstance.previousQuestion()) {
-        if (currentQuizType === 'UE_2.3') {
-            displayPharmaCourseQuestion();
-        } else {
-            displayMcqQuestion();
-        }
+        displayMcqQuestion();
     }
 };
 
@@ -485,27 +458,11 @@ window.previousQuestion = function() {
  * Termine le quiz
  */
 window.finishQuiz = function() {
-    if (currentQuizType === 'UE_2.3') {
-        const question = quizInstance.getCurrentQuestion();
-        if (question.userAnswer === null) {
-            alert('⚠️ Veuillez sélectionner une réponse');
-            return;
-        }
-        
-        quizInstance.score = 0;
-        quizInstance.currentQuiz.forEach(q => {
-            const isCorrect = quizInstance.normalizeAnswer(q.userAnswer) === 
-                             quizInstance.normalizeAnswer(q.correctAnswer);
-            if (isCorrect) quizInstance.score++;
-        });
-    } else if (currentQuizType === 'UE_4.4.S2_antibiotiques') {
-        if (quizInstance.userAnswers[quizInstance.currentQuestionIndex] === null) {
-            alert('⚠️ Veuillez sélectionner une réponse');
-            return;
-        }
-        quizInstance.calculateScore();
+    if (quizInstance.userAnswers[quizInstance.currentQuestionIndex] === null) {
+        alert('⚠️ Veuillez sélectionner une réponse');
+        return;
     }
-    
+    quizInstance.calculateScore();
     displayResults();
 };
 
@@ -515,17 +472,10 @@ window.finishQuiz = function() {
 function displayResults() {
     let results, percentage;
     
-    if (currentQuizType === 'UE_2.3') {
-        results = quizInstance.getResults();
-        percentage = Math.round((quizInstance.score / quizInstance.currentQuiz.length) * 100);
-        
-        document.getElementById('scoreDisplay').textContent = `${quizInstance.score}/${quizInstance.currentQuiz.length}`;
-    } else if (currentQuizType === 'UE_4.4.S2_antibiotiques') {
-        results = quizInstance.getResults();
-        percentage = Math.round((quizInstance.score / quizInstance.currentQuiz.length) * 100);
-        
-        document.getElementById('scoreDisplay').textContent = `${quizInstance.score}/${quizInstance.currentQuiz.length}`;
-    }
+    results = quizInstance.getResults();
+    percentage = Math.round((quizInstance.score / quizInstance.currentQuiz.length) * 100);
+    
+    document.getElementById('scoreDisplay').textContent = `${quizInstance.score}/${quizInstance.currentQuiz.length}`;
     
     document.getElementById('scorePercentage').textContent = `${percentage}%`;
     
@@ -587,13 +537,8 @@ window.resetQuiz = function() {
  * Recommence le quiz
  */
 window.retakeQuiz = function() {
-    if (currentQuizType === 'UE_2.3') {
-        setupPharmaCourseUI();
-        populatePharmaCourseFilters();
-    } else if (currentQuizType === 'UE_4.4.S2_antibiotiques') {
-        setupMcqUI();
-        populateMcqFilters();
-    }
+    setupMcqUI();
+    populateMcqFilters();
     quizInstance.reset();
     showScreen('startScreen');
 };

@@ -499,9 +499,9 @@
         let currentIndex = 0;
         let questionsVisited = new Set();
 
-        // Get UE from URL parameter (default: UE_2.3)
+        // Get UE from URL parameter
         const urlParams = new URLSearchParams(window.location.search);
-        const ueFile = urlParams.get('ue') || 'UE_2.3';
+        const ueFile = urlParams.get('ue');
         const randomOrder = true;
 
         /**

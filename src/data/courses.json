@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-05-18T08:41:53.791556",
+  "exportDate": "2026-05-23T20:44:07.827695",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -6376,10 +6376,210 @@
         ],
         "filename": "synthèse cours.odt"
       }
+    ],
+    [
+      "ue_3_1_s2_transmissions_et_interprofessionnalit",
+      {
+        "title": "transmissions et interprofessionnalité",
+        "date": "28/04/2026",
+        "ue": "3.1.S2",
+        "author": "GN",
+        "definitions": [
+          {
+            "definition": "outil d’information et de communication professionnel et interprofessionnel. Respectent une méthode de structuration des informations écrites. Sont horodatées, signature + nom, prénom et qualification de la personne. Objectifs = traçabilité, lisibilité, continuité, sécurité.",
+            "term": "Transmissions ciblées"
+          },
+          {
+            "definition": "nouvelles responsabilités et actes infirmiers",
+            "term": "Décret exercice profession infirmier du 24/12/2025"
+          },
+          {
+            "definition": "aucun manque d’information dans le dossier/transmission",
+            "term": "Complétude des informations"
+          },
+          {
+            "definition": "valorisée par les transmissions",
+            "term": "Expertise infirmière"
+          },
+          {
+            "definition": "données, actions, résultats",
+            "term": "Parties d’une transmission ciblée"
+          },
+          {
+            "definition": "réalisée à l’entrée ou à la sortie en service du px. Exemple : modèle de Louis. Séquence ou paragraphe dans le parcours de la personne qui décrit une phase précise de la prise en charge. N’est pas une cible.",
+            "term": "Macrocible"
+          },
+          {
+            "definition": "Maladie (motif entrée, symptômes...) Thérapeutique (ttmt, atcd, allergie, bilan sanguin...) Vécu (expression verbale du patient) Environnement (habitat, famille, aide à domicile…) Développement (sexe, âge, situation sociale, ressources…)",
+            "term": "Modèle MTVED"
+          },
+          {
+            "definition": "signes de maladie, risques (hémorragie, escarre…) , symptômes (fatigue, inquiétude…)",
+            "term": "Cible"
+          },
+          {
+            "definition": "précisent la cible, l’expliquent et la décrivent (exple TILT pour la douleur ; tpture, frissons etc pour la fièvre).",
+            "term": "Données"
+          },
+          {
+            "definition": "gage de qualité de la PEC",
+            "term": "Résultats"
+          },
+          {
+            "definition": "SAPP (orale/écrite) et SAED (orale)",
+            "term": "Modèles"
+          }
+        ],
+        "filename": "transmissions et interprofessionnalité.odt"
+      }
+    ],
+    [
+      "ue_3_1_s2_diagramme_de_gantt",
+      {
+        "title": "diagramme de Gantt",
+        "date": "03/04/2026",
+        "ue": "3.1.S2",
+        "author": "EC",
+        "definitions": [
+          {
+            "definition": "outil de gestion de projet, planification visuelle permettant de représenter toutes les tâches d’un projet de leur début à la fin.",
+            "term": "Définition"
+          }
+        ],
+        "filename": "diagramme de Gantt.odt"
+      }
+    ],
+    [
+      "ue_3_1_s2_diagramme_de_soins",
+      {
+        "title": "diagramme de soins",
+        "date": "03/04/2026",
+        "ue": "3.1.S2",
+        "author": "EC",
+        "definitions": [
+          {
+            "definition": "tableau de bord des activités de soins réalisées par les soignants pour un patient. Outil de contrôle et de traçabilité, à inclure dans le dossier patient informatisé.",
+            "term": "Définition"
+          },
+          {
+            "definition": "indique le niveau de dépendance de la personne prise en soins (+ de oins = + de dépendance)",
+            "term": "Lecture verticale"
+          },
+          {
+            "definition": "indique une évolution des soins",
+            "term": "Lecture horizontale"
+          }
+        ],
+        "filename": "diagramme de soins.odt"
+      }
+    ],
+    [
+      "ue_3_1_s2_normes_de_bonnes_pratiques_procdures_protocoles_fiche_technique",
+      {
+        "title": "normes de bonnes pratiques, procédures, protocoles, fiche technique",
+        "date": "27/04/2026",
+        "ue": "3.1.S2",
+        "author": "GN",
+        "definitions": [
+          {
+            "definition": "réponse aux exigences de qualité et sécurité des usagers et des praticiens.",
+            "term": "Normes de bonne pratique"
+          },
+          {
+            "definition": "consensus, élaborés par des sociétés savantes pour aider le patient et le praticien à rechercher les soins les plus appropriés dans les circonstances cliniques données.",
+            "term": "Recommandations"
+          },
+          {
+            "definition": "manière spécifiée d’accomplir une activité (comment, par qui, quand…).",
+            "term": "Procédure"
+          },
+          {
+            "definition": "guide d’application synthétique d’une procédure, centré sur une cible.",
+            "term": "Protocole"
+          },
+          {
+            "definition": "description méthodique et chronologique des opérations à effectuer pour un acte de soin.",
+            "term": "Fiche technique"
+          },
+          {
+            "definition": "Evidence Based Practice = recommandations mondiales pour des prises en soin",
+            "term": "EBP"
+          },
+          {
+            "definition": "Evidence Based Medical = appliquées aux soins médicaux",
+            "term": "EBM"
+          },
+          {
+            "definition": "Evidence Based Nursing = appliquées aux soins infirmiers",
+            "term": "EBN"
+          }
+        ],
+        "filename": "normes de bonnes pratiques, procédures, protocoles, fiche technique.odt"
+      }
+    ],
+    [
+      "ue_3_1_s2_planification_des_soins",
+      {
+        "title": "planification des soins",
+        "date": "03/04/2026",
+        "ue": "3.1.S2",
+        "author": "EC",
+        "definitions": [
+          {
+            "definition": "outil visuel qui centralise les soins et relevés de surveillances au quotidien. Doit être claire, précise, complète et réajustée selon les évènements. Doit être conforme à la loi (secret professionnel).",
+            "term": "Planification des soins (définition)"
+          },
+          {
+            "definition": "soins sur rôle prescrit/autonome, soins protocolisés, soins d’autres professionnels (paramed), interventions (radio, bloc…), éléments de vie (scolarité des enfants, animations…).",
+            "term": "Détails de la planification des soins"
+          },
+          {
+            "definition": "coordination des soins, collaboration entre professionnels, gestion du temps, structurer les transmissions ciblées, évaluation de la charge de travail.",
+            "term": "Avantages de la planification des soins"
+          },
+          {
+            "definition": "« obligation de réaliser, organiser, évaluer les actes infirmiers » (R4311-1 et R4311-2), « secret professionnel » (R4312-5), « responsabilité des actes » (R4312-32) « responsabilité du personnel encadré » (R4312-36).",
+            "term": "Législation"
+          },
+          {
+            "definition": "doc à imprimer en quantité limitée, document à la date du jour, détruite à la fin du service, responsabilité de chaque professionnel, confidentialité. En version papier : anonymat, pas de diagnostic médical, pas de retranscription de la PM.",
+            "term": "Règles"
+          }
+        ],
+        "filename": "planification des soins.odt"
+      }
+    ],
+    [
+      "ue_3_1_s2_plans_de_soins_types_et_chemins_cliniques_dans_le_parcours_de_soins",
+      {
+        "title": "plans de soins types et chemins cliniques dans le parcours de soins",
+        "date": "26/03/2026",
+        "ue": "3.1.S2",
+        "author": "GN",
+        "definitions": [
+          {
+            "definition": "améliorer le fonctionnement des établissements de santé (loi HPST, Ma santé 2022) dans une logique financière/économique.",
+            "term": "Plan de soins (objectifs)"
+          },
+          {
+            "definition": "préalable indispensable au chemin clinique. Nécessite un raisonnement clinique partagé et un jugement clinique. A partir du tri-focal les éléments du focus 1 sont des cibles (pathologies, hypothèses). Pour 1 cible on regroupe les données (signes cliniques, symptomes...) puis les actions du projet de soin (actions IDE sur PM et rôle autonome). Ajouter une colonne résultat escompté et enfin une colonne pour l’argumentation théorique/scientifique. Hiérarchiser les cibles et dérouler les éléments liés aux risques (élément du focus 2, puis 3)",
+            "term": "Plan de soins type"
+          },
+          {
+            "definition": "étapes de la première consultation chez le généraliste à la résolution des soins (trajectoire variant selon lieu d’habitation, histoire de la maladie et selon les compétences des professionnels participant à la prise en soin) ⇒ logigramme de Pert, diagramme de Gantt. Se réfère aux bonnes pratiques, s’appuie sur l’inter-professionnalité et concerne un groupe homogène de patients.",
+            "term": "Chemin clinique"
+          },
+          {
+            "definition": "regroupe des patients pour lesquels la prise en soins est de même nature, c’est-à-dire des caractéristiques comparables.",
+            "term": "Groupe homogène de patients (GHP)"
+          }
+        ],
+        "filename": "plans de soins types et chemins cliniques dans le parcours de soins.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 1185,
+    "totalTerms": 1217,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0
