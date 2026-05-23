@@ -38,6 +38,8 @@
 
         main {
             flex: 1;
+            display: flex;
+            min-height: 0;
         }
 
         /* ===== HEADER ===== */
@@ -55,8 +57,7 @@
             justify-content: space-between;
             align-items: center;
             padding: var(--space-4);
-            max-width: 1280px;
-            margin: 0 auto;
+            max-width: 100%;
             width: 100%;
         }
 
@@ -106,44 +107,22 @@
             }
         }
 
-        /* ===== PAGE CONTAINER ===== */
-        .page-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: var(--space-4);
-            width: 100%;
-        }
-
-        @media (min-width: 641px) {
-            .page-container {
-                padding: var(--space-8) var(--space-6);
-            }
-        }
-
-        .page-title {
-            font-size: var(--font-size-2xl);
-            font-weight: var(--font-weight-bold);
-            color: var(--color-text-dark);
-            margin-bottom: var(--space-6);
-            animation: slideInUp var(--transition-base);
-        }
-
-        /* ===== FILTERS ===== */
-        .filters-section {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--space-4);
-            margin-bottom: var(--space-8);
-            padding: var(--space-4);
+        /* ===== SIDEBAR (DESKTOP) ===== */
+        .sidebar {
+            display: none;
+            flex-direction: column;
+            gap: var(--space-6);
+            padding: var(--space-6);
             background: var(--color-bg);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--color-border);
+            border-right: 1px solid var(--color-border);
+            min-width: 280px;
+            max-width: 280px;
+            overflow-y: auto;
         }
 
-        @media (min-width: 641px) {
-            .filters-section {
-                grid-template-columns: repeat(2, 1fr);
-                gap: var(--space-6);
+        @media (min-width: 1025px) {
+            .sidebar {
+                display: flex;
             }
         }
 
@@ -177,61 +156,156 @@
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
-        /* ===== COURSES GRID ===== */
-        .courses-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--space-4);
+        .ue-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
         }
 
-        @media (min-width: 641px) {
-            .courses-grid {
-                gap: var(--space-6);
+        .ue-item {
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            background: var(--color-bg-light);
+            transition: all var(--transition-base);
+            border: 2px solid transparent;
+        }
+
+        .ue-item:hover {
+            background: var(--color-bg-lighter);
+        }
+
+        .ue-item.active {
+            background: var(--color-primary-lighter);
+            border-color: var(--color-primary);
+            color: var(--color-primary-dark);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .ue-item-text {
+            font-size: var(--font-size-xs);
+        }
+
+        /* ===== MOBILE FILTERS ===== */
+        .mobile-filters {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3);
+            padding: var(--space-4);
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-filters {
+                display: none;
             }
         }
 
-        .course-card {
-            background: var(--color-bg);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: all var(--transition-base);
+        /* ===== CONTENT AREA ===== */
+        .content-area {
+            flex: 1;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
+        }
+
+        .page-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--space-4);
+        }
+
+        @media (min-width: 641px) {
+            .page-container {
+                padding: var(--space-6);
+            }
+        }
+
+        .page-title {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-dark);
+            margin-bottom: var(--space-6);
+            animation: slideInUp var(--transition-base);
+        }
+
+        /* ===== ACCORDIONS/COURSES ===== */
+        .courses-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .accordion {
+            background: var(--color-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            overflow: hidden;
             animation: slideInUp var(--transition-base) both;
         }
 
-        .course-card:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-2px);
-        }
+        .accordion:nth-child(1) { animation-delay: 0ms; }
+        .accordion:nth-child(2) { animation-delay: 50ms; }
+        .accordion:nth-child(3) { animation-delay: 100ms; }
+        .accordion:nth-child(4) { animation-delay: 150ms; }
+        .accordion:nth-child(n+5) { animation-delay: 200ms; }
 
-        .course-header {
+        .accordion-header {
             padding: var(--space-4);
             background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
             color: white;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
         }
 
-        .course-ue {
+        .accordion-header:hover {
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .accordion-title {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .accordion-ue {
             font-size: var(--font-size-xs);
             opacity: 0.9;
-            margin-bottom: var(--space-1);
             text-transform: uppercase;
             letter-spacing: var(--letter-spacing-wide);
         }
 
-        .course-title {
+        .accordion-course {
             font-size: var(--font-size-lg);
             font-weight: var(--font-weight-bold);
             margin: 0;
-            color: white;
         }
 
-        .course-body {
-            padding: var(--space-4);
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+        .accordion-toggle {
+            font-size: var(--font-size-xl);
+            transition: transform var(--transition-base);
+        }
+
+        .accordion.open .accordion-toggle {
+            transform: rotate(180deg);
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-base);
+        }
+
+        .accordion.open .accordion-body {
+            max-height: 2000px;
         }
 
         .term-list {
@@ -241,9 +315,13 @@
         }
 
         .term-item {
-            padding: var(--space-3);
+            padding: var(--space-4);
             border-bottom: 1px solid var(--color-border);
             transition: background var(--transition-fast);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: var(--space-3);
         }
 
         .term-item:last-child {
@@ -256,6 +334,11 @@
 
         .term-item:hover {
             background: var(--color-bg-lighter);
+        }
+
+        .term-content {
+            flex: 1;
+            min-width: 0;
         }
 
         .term-item-title {
@@ -271,12 +354,35 @@
             line-height: var(--line-height-relaxed);
         }
 
-        .course-footer {
-            padding: var(--space-3) var(--space-4);
-            background: var(--color-bg-lighter);
-            border-top: 1px solid var(--color-border);
+        .term-rating {
+            display: flex;
+            gap: var(--space-1);
+            flex-shrink: 0;
+        }
+
+        .rating-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 1px solid var(--color-border);
+            background: var(--color-bg);
+            cursor: pointer;
             font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rating-btn:hover {
+            background: var(--color-primary-lighter);
+            border-color: var(--color-primary);
+        }
+
+        .rating-btn.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
         }
 
         /* ===== EMPTY STATE ===== */
@@ -304,7 +410,6 @@
             text-align: center;
             color: var(--color-text-muted);
             font-size: var(--font-size-xs);
-            margin-top: var(--space-12);
         }
     </style>
 </head>
@@ -325,30 +430,46 @@
 
     <!-- ===== MAIN CONTENT ===== -->
     <main>
-        <div class="page-container">
-            <h1 class="page-title">📖 Parcourir les Cours</h1>
+        <!-- SIDEBAR (DESKTOP) -->
+        <aside class="sidebar">
+            <div class="filter-group">
+                <label for="desktopSemester" class="filter-label">Semestre</label>
+                <select id="desktopSemester" class="filter-select">
+                    <option value="">Tous les semestres</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Cours</label>
+                <ul class="ue-list" id="desktopUEList"></ul>
+            </div>
+        </aside>
 
-            <!-- FILTERS -->
-            <div class="filters-section">
+        <!-- CONTENT AREA -->
+        <div class="content-area">
+            <!-- MOBILE FILTERS -->
+            <div class="mobile-filters">
                 <div class="filter-group">
-                    <label for="filterUE" class="filter-label">Filtrer par UE</label>
-                    <select id="filterUE" class="filter-select">
-                        <option value="">Toutes les UE</option>
+                    <label for="mobileSemester" class="filter-label">Semestre</label>
+                    <select id="mobileSemester" class="filter-select">
+                        <option value="">Tous</option>
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="filterSemester" class="filter-label">Filtrer par Semestre</label>
-                    <select id="filterSemester" class="filter-select">
-                        <option value="">Tous les Semestres</option>
+                    <label for="mobileUE" class="filter-label">UE</label>
+                    <select id="mobileUE" class="filter-select">
+                        <option value="">Toutes les UE</option>
                     </select>
                 </div>
             </div>
 
-            <!-- COURSES GRID -->
-            <div id="coursesContainer" class="courses-grid">
-                <div class="empty-state">
-                    <div class="empty-state-icon">📚</div>
-                    <h3>Chargement des cours...</h3>
+            <!-- PAGE CONTENT -->
+            <div class="page-container">
+                <h1 class="page-title">📖 Parcourir les Cours</h1>
+                <div id="coursesContainer" class="courses-list">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📚</div>
+                        <h3>Chargement des cours...</h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -365,6 +486,10 @@
         let filteredCourses = [];
         let highlightedTerm = null;
         let highlightedUE = null;
+        let currentFilters = {
+            semester: '',
+            ue: ''
+        };
 
         // Get URL parameters
         function getUrlParams() {
@@ -373,6 +498,22 @@
                 term: params.get('term'),
                 ue: params.get('ue')
             };
+        }
+
+        // Load term ratings from localStorage
+        function getTermRating(termKey) {
+            const ratings = JSON.parse(localStorage.getItem('termRatings') || '{}');
+            return ratings[termKey] || null;
+        }
+
+        function setTermRating(termKey, rating) {
+            const ratings = JSON.parse(localStorage.getItem('termRatings') || '{}');
+            if (rating === null) {
+                delete ratings[termKey];
+            } else {
+                ratings[termKey] = rating;
+            }
+            localStorage.setItem('termRatings', JSON.stringify(ratings));
         }
 
         // Load courses
@@ -387,7 +528,7 @@
                 highlightedUE = urlParams.ue;
                 
                 populateFilters();
-                renderCourses(allCourses);
+                applyFilters();
                 
                 // Auto-scroll to highlighted term if present
                 if (highlightedTerm) {
@@ -407,17 +548,39 @@
 
         // Populate filter dropdowns
         function populateFilters() {
-            const ueSet = new Set();
-            const semesterSet = new Set();
+            const semesters = new Set();
+            const uesByUE = {};
 
             allCourses.forEach(([, course]) => {
-                ueSet.add(course.ue);
-                const semester = course.ue.split('.')[2]; // e.g., "S1" from "2.2.S1"
-                semesterSet.add(semester);
+                const semester = course.ue.split('.')[2];
+                semesters.add(semester);
+                
+                if (!uesByUE[course.ue]) {
+                    uesByUE[course.ue] = course.title;
+                }
+            });
+
+            // Sort semesters
+            const semesterArray = Array.from(semesters).sort((a, b) => {
+                const aNum = parseInt(a.replace('S', ''));
+                const bNum = parseInt(b.replace('S', ''));
+                return aNum - bNum;
+            });
+
+            [document.getElementById('desktopSemester'), document.getElementById('mobileSemester')].forEach(select => {
+                if (select) {
+                    semesterArray.forEach(sem => {
+                        const option = document.createElement('option');
+                        option.value = sem;
+                        option.textContent = sem;
+                        select.appendChild(option);
+                    });
+                    select.addEventListener('change', applyFilters);
+                }
             });
 
             // Sort UEs
-            const ueArray = Array.from(ueSet).sort((a, b) => {
+            const ueArray = Object.keys(uesByUE).sort((a, b) => {
                 const aParts = a.split('.');
                 const bParts = b.split('.');
                 const aNum = parseInt(aParts[0]) * 100 + parseInt(aParts[1]);
@@ -425,56 +588,68 @@
                 return aNum - bNum;
             });
 
-            const ueSelect = document.getElementById('filterUE');
+            // Populate desktop sidebar
+            const desktopUEList = document.getElementById('desktopUEList');
             ueArray.forEach(ue => {
-                const option = document.createElement('option');
-                option.value = ue;
-                option.textContent = `UE ${ue}`;
-                ueSelect.appendChild(option);
+                const li = document.createElement('li');
+                li.className = 'ue-item' + (highlightedUE === ue ? ' active' : '');
+                li.innerHTML = `<span class="ue-item-text"><strong>${ue}</strong><br/>${escapeHtml(uesByUE[ue])}</span>`;
+                li.onclick = () => selectUE(ue);
+                desktopUEList.appendChild(li);
             });
 
-            // Sort Semesters
-            const semesterArray = Array.from(semesterSet).sort((a, b) => {
-                const aNum = parseInt(a.replace('S', ''));
-                const bNum = parseInt(b.replace('S', ''));
-                return aNum - bNum;
-            });
-
-            const semesterSelect = document.getElementById('filterSemester');
-            semesterArray.forEach(semester => {
-                const option = document.createElement('option');
-                option.value = semester;
-                option.textContent = semester;
-                semesterSelect.appendChild(option);
-            });
-
-            // Set initial values if URL params exist
-            if (highlightedUE) {
-                ueSelect.value = highlightedUE;
+            // Populate mobile UE select
+            const mobileUE = document.getElementById('mobileUE');
+            if (mobileUE) {
+                ueArray.forEach(ue => {
+                    const option = document.createElement('option');
+                    option.value = ue;
+                    option.textContent = `${ue} - ${uesByUE[ue]}`;
+                    mobileUE.appendChild(option);
+                });
+                mobileUE.addEventListener('change', applyFilters);
             }
         }
 
-        // Filter courses
+        // Select UE from sidebar
+        function selectUE(ue) {
+            currentFilters.ue = (currentFilters.ue === ue) ? '' : ue;
+            applyFilters();
+            
+            // Update UI
+            document.querySelectorAll('.ue-item').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.ue-item').forEach(item => {
+                if (item.textContent.includes(ue)) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        // Apply filters
         function applyFilters() {
-            const ueFilter = document.getElementById('filterUE').value;
-            const semesterFilter = document.getElementById('filterSemester').value;
+            const desktopSem = document.getElementById('desktopSemester')?.value || '';
+            const mobileSem = document.getElementById('mobileSemester')?.value || '';
+            const mobileUE = document.getElementById('mobileUE')?.value || '';
+            
+            currentFilters.semester = desktopSem || mobileSem;
+            currentFilters.ue = mobileUE || currentFilters.ue;
 
             filteredCourses = allCourses.filter(([, course]) => {
-                const ueMatch = !ueFilter || course.ue === ueFilter;
-                const semesterMatch = !semesterFilter || course.ue.includes(semesterFilter);
-                return ueMatch && semesterMatch;
+                const semMatch = !currentFilters.semester || course.ue.includes(currentFilters.semester);
+                const ueMatch = !currentFilters.ue || course.ue === currentFilters.ue;
+                return semMatch && ueMatch;
             });
 
             renderCourses(filteredCourses);
         }
 
-        // Render courses
+        // Render courses as accordions
         function renderCourses(courses) {
             const container = document.getElementById('coursesContainer');
 
             if (courses.length === 0) {
                 container.innerHTML = `
-                    <div class="empty-state" style="grid-column: 1 / -1;">
+                    <div class="empty-state">
                         <div class="empty-state-icon">🔍</div>
                         <h3>Aucun cours trouvé</h3>
                         <p>Essayez de modifier vos filtres</p>
@@ -486,32 +661,62 @@
             container.innerHTML = courses.map(([, course], index) => {
                 const definitions = course.definitions || [];
                 const termsHtml = definitions.map((def, defIndex) => {
+                    const termKey = `${course.ue}|${def.term}`;
+                    const rating = getTermRating(termKey);
                     const isHighlighted = highlightedTerm && def.term === highlightedTerm;
+                    
                     return `
                         <li class="term-item ${isHighlighted ? 'highlighted' : ''}" ${isHighlighted ? 'id="highlighted-term"' : ''}>
-                            <div class="term-item-title">${escapeHtml(def.term)}</div>
-                            <div class="term-item-def">${escapeHtml(def.definition)}</div>
+                            <div class="term-content">
+                                <div class="term-item-title">${escapeHtml(def.term)}</div>
+                                <div class="term-item-def">${escapeHtml(def.definition)}</div>
+                            </div>
+                            <div class="term-rating">
+                                <button class="rating-btn ${rating === 'T' ? 'active' : ''}" onclick="rateTermAdmin('${course.ue}', '${def.term}', 'T')" title="Ciblé">🎯</button>
+                                <button class="rating-btn ${rating === 'E' ? 'active' : ''}" onclick="rateTermAdmin('${course.ue}', '${def.term}', 'E')" title="Élargi">📖</button>
+                                <button class="rating-btn ${rating === 'C' ? 'active' : ''}" onclick="rateTermAdmin('${course.ue}', '${def.term}', 'C')" title="Complet">✓</button>
+                            </div>
                         </li>
                     `;
                 }).join('');
 
                 return `
-                    <div class="course-card" style="animation-delay: ${index * 50}ms">
-                        <div class="course-header">
-                            <div class="course-ue">${escapeHtml(course.ue)}</div>
-                            <h2 class="course-title">${escapeHtml(course.title)}</h2>
+                    <div class="accordion" style="animation-delay: ${index * 50}ms">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <div class="accordion-title">
+                                <div class="accordion-ue">${escapeHtml(course.ue)}</div>
+                                <h2 class="accordion-course">${escapeHtml(course.title)}</h2>
+                            </div>
+                            <div class="accordion-toggle">▼</div>
                         </div>
-                        <div class="course-body">
+                        <div class="accordion-body">
                             <ul class="term-list">
                                 ${termsHtml}
                             </ul>
                         </div>
-                        <div class="course-footer">
-                            ${definitions.length} terme${definitions.length > 1 ? 's' : ''}
-                        </div>
                     </div>
                 `;
             }).join('');
+        }
+
+        // Toggle accordion
+        function toggleAccordion(header) {
+            const accordion = header.parentElement;
+            accordion.classList.toggle('open');
+        }
+
+        // Rate term (admin only)
+        function rateTermAdmin(ue, term, rating) {
+            const termKey = `${ue}|${term}`;
+            const currentRating = getTermRating(termKey);
+            
+            if (currentRating === rating) {
+                setTermRating(termKey, null);
+            } else {
+                setTermRating(termKey, rating);
+            }
+            
+            applyFilters();
         }
 
         // Escape HTML
@@ -525,10 +730,6 @@
             };
             return text.replace(/[&<>"']/g, m => map[m]);
         }
-
-        // Event listeners
-        document.getElementById('filterUE').addEventListener('change', applyFilters);
-        document.getElementById('filterSemester').addEventListener('change', applyFilters);
 
         // Load on page load
         window.addEventListener('load', loadCourses);
