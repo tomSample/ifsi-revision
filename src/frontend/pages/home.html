@@ -2,625 +2,659 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IFSI Lannion 2025 - Navigation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="IFSI Lannion 2025 - Plateforme de révisions intelligente pour étudiants en soins infirmiers">
+    <meta name="theme-color" content="#2563EB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <title>IFSI Lannion 2025 - Plateforme de Révisions</title>
+    
+    <!-- Manifest & Icons -->
     <link rel="manifest" href="../../../public/manifest.json">
-    <meta name="theme-color" content="#667eea">
+    <link rel="icon" type="image/x-icon" href="../../../public/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Design System CSS (New unified system - Mobile-first) -->
+    <link rel="stylesheet" href="../assets/styles/theme.css">
+    <link rel="stylesheet" href="../assets/styles/design-system.css">
+    <link rel="stylesheet" href="../assets/styles/animations.css">
+    <link rel="stylesheet" href="../assets/styles/layout.css">
+    
+    <!-- Page-specific styles -->
     <style>
-        * {
-            box-sizing: border-box;
+        /* ===== PAGE STRUCTURE ===== */
+        html, body {
+            height: 100%;
+            width: 100%;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            background: var(--color-bg-light);
         }
 
-        .auth-status {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-            z-index: 1000;
+        main {
+            flex: 1;
         }
 
-        .auth-status .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .auth-status .user-email {
-            color: #667eea;
-            font-weight: 600;
-        }
-
-        .auth-status .auth-links {
-            display: flex;
-            gap: 10px;
-        }
-
-        .auth-status a {
-            color: #667eea;
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .auth-status a:hover {
-            background: #f0f0f0;
-        }
-
-        .auth-status .btn-account {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-weight: 600;
-        }
-
-        .auth-status .btn-account:hover {
-            background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);
-        }
-        
-        .nav-container {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            max-width: 600px;
-            width: 90%;
-        }
-        
-        .nav-container h1 {
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-            font-size: 2.5rem;
-        }
-        
-        .nav-container h2 {
-            color: #7f8c8d;
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-        
-        .nav-buttons {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .nav-btn {
-            display: flex;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        .nav-btn.admin {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        
-        .nav-btn.browse {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-        }
-        
-        .nav-btn.revision {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        
-        .nav-btn.stats {
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            color: white;
-        }
-        
-        .nav-btn.gallery {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ffa726 100%);
-            color: white;
-        }
-        
-        .nav-btn.feedback {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-            color: white;
-        }
-
-        .nav-btn.quiz {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            color: white;
-        }
-        
-        .nav-btn-icon {
-            font-size: 2rem;
-            margin-right: 1rem;
-        }
-        
-        .nav-btn-content {
-            text-align: left;
-        }
-        
-        .nav-btn-content h3 {
-            margin: 0 0 0.5rem 0;
-            font-size: 1.1rem;
-        }
-        
-        .nav-btn-content p {
-            margin: 0;
-            opacity: 0.9;
-            font-size: 0.85rem;
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-        
-        /* === FEEDBACK MODAL STYLES === */
-        .feedback-modal {
-            display: none;
-            position: fixed;
+        /* ===== HEADER ===== */
+        .app-header {
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            z-index: 50;
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+            box-shadow: var(--shadow-xs);
         }
-        
-        .feedback-modal-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
-        }
-        
-        .feedback-modal-content {
-            position: relative;
-            background: white;
-            border-radius: 20px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            z-index: 10000;
-        }
-        
-        .feedback-header {
+
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid #e0e0e0;
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-            border-radius: 20px 20px 0 0;
-        }
-        
-        .feedback-header h3 {
-            margin: 0;
-            color: white;
-            font-size: 1.5rem;
-        }
-        
-        .close-feedback {
-            background: transparent;
-            border: none;
-            font-size: 1.5rem;
-            color: white;
-            cursor: pointer;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-        
-        .close-feedback:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(90deg);
-        }
-        
-        .feedback-body {
-            padding: 2rem;
-        }
-        
-        .feedback-intro {
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: flex;
-            align-items: center;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-        
-        .label-icon {
-            margin-right: 0.5rem;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+            padding: var(--space-4);
+            max-width: 1280px;
+            margin: 0 auto;
             width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
         }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #43e97b;
-        }
-        
-        .char-count {
-            text-align: right;
-            font-size: 0.85rem;
-            color: #999;
-            margin-top: 0.25rem;
-        }
-        
-        .feedback-actions {
+
+        .header-brand {
             display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
+            align-items: center;
+            gap: var(--space-2);
+            text-decoration: none;
+            color: var(--color-text-dark);
         }
-        
-        .btn-submit,
-        .btn-cancel {
-            flex: 1;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+
+        .header-brand-icon {
+            font-size: 1.5rem;
         }
-        
-        .btn-submit {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+
+        .header-brand-text h1 {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-bold);
+            margin: 0;
+            color: var(--color-primary);
+        }
+
+        .header-brand-text p {
+            font-size: 0.65rem;
+            color: var(--color-text-muted);
+            margin: var(--space-1) 0 0 0;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .user-badge {
+            display: none;
+            align-items: center;
+            gap: var(--space-1);
+            padding: var(--space-1) var(--space-2);
+            background: var(--color-primary-lighter);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            color: var(--color-primary-dark);
+        }
+
+        .user-badge.active {
+            display: flex;
+        }
+
+        /* Mobile-first: Hide on small screens */
+        @media (min-width: 641px) {
+            .header-content {
+                padding: var(--space-6);
+            }
+
+            .header-brand-text h1 {
+                font-size: var(--font-size-lg);
+            }
+
+            .header-brand-text p {
+                font-size: var(--font-size-xs);
+            }
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            padding: var(--space-6) var(--space-4);
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+        }
+
+        @media (min-width: 641px) {
+            .hero-section {
+                padding: var(--space-12) var(--space-6);
+            }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-2);
+            color: white;
+            animation: slideInUp var(--transition-base);
+            letter-spacing: var(--letter-spacing-tight);
+        }
+
+        @media (min-width: 641px) {
+            .hero-title {
+                font-size: var(--font-size-4xl);
+                margin-bottom: var(--space-4);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: var(--font-size-sm);
+            color: rgba(255, 255, 255, 0.95);
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--space-6);
+            animation: slideInUp var(--transition-base) 100ms both;
+        }
+
+        @media (min-width: 641px) {
+            .hero-subtitle {
+                font-size: var(--font-size-base);
+                margin-bottom: var(--space-8);
+            }
+        }
+
+        /* ===== STATS PREVIEW ===== */
+        .stats-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-2);
+            margin-bottom: var(--space-6);
+            max-width: 100%;
+        }
+
+        @media (min-width: 641px) {
+            .stats-preview {
+                gap: var(--space-4);
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: var(--space-3);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            animation: slideInUp var(--transition-base) both;
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 100ms; }
+        .stat-card:nth-child(2) { animation-delay: 150ms; }
+        .stat-card:nth-child(3) { animation-delay: 200ms; }
+
+        .stat-value {
+            display: block;
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
             color: white;
         }
-        
-        .btn-submit:hover {
+
+        @media (min-width: 641px) {
+            .stat-value {
+                font-size: var(--font-size-2xl);
+            }
+        }
+
+        .stat-label {
+            display: block;
+            font-size: var(--font-size-xs);
+            color: rgba(255, 255, 255, 0.85);
+            margin-top: var(--space-1);
+            text-transform: uppercase;
+            letter-spacing: var(--letter-spacing-wide);
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: var(--space-4);
+            width: 100%;
+        }
+
+        @media (min-width: 641px) {
+            .main-container {
+                padding: var(--space-8) var(--space-6);
+            }
+        }
+
+        /* ===== PRIMARY ACTION CARDS ===== */
+        .action-cards-section {
+            margin-bottom: var(--space-12);
+        }
+
+        .section-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-dark);
+            margin-bottom: var(--space-4);
+            text-align: center;
+        }
+
+        .action-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+        }
+
+        @media (min-width: 641px) {
+            .action-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-6);
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .action-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .action-card {
+            background: var(--color-bg);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            text-decoration: none;
+            color: inherit;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .action-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-primary);
+        }
+
+        .action-card:active {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(67, 233, 123, 0.3);
         }
-        
-        .btn-submit:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+
+        .action-card:focus-visible {
+            outline: var(--focus-outline);
+            outline-offset: var(--focus-outline-offset);
         }
-        
-        .btn-cancel {
-            background: #f0f0f0;
-            color: #666;
+
+        .action-card-icon {
+            font-size: 2rem;
+            display: block;
+            animation: slideInUp var(--transition-base);
         }
-        
-        .btn-cancel:hover {
-            background: #e0e0e0;
+
+        .action-card h3 {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-dark);
+            margin: 0;
+            animation: slideInUp var(--transition-base) 50ms both;
         }
-        
-        @media (max-width: 600px) {
-            .nav-container {
-                padding: 2rem;
+
+        .action-card p {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-relaxed);
+            margin: 0;
+            animation: slideInUp var(--transition-base) 100ms both;
+        }
+
+        .action-card-meta {
+            display: flex;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--color-border);
+            animation: slideInUp var(--transition-base) 150ms both;
+        }
+
+        .action-card-meta span {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+
+        .meta-badge {
+            background: var(--color-bg-lighter);
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-full);
+        }
+
+        .action-card-btn {
+            align-self: flex-start;
+            margin-top: var(--space-2);
+            animation: slideInUp var(--transition-base) 200ms both;
+        }
+
+        /* ===== SECONDARY ACTIONS ===== */
+        .secondary-section {
+            margin-bottom: var(--space-12);
+        }
+
+        .secondary-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-3);
+        }
+
+        @media (min-width: 641px) {
+            .secondary-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-4);
             }
-            
-            .nav-container h1 {
-                font-size: 2rem;
-            }
-            
-            .nav-buttons {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-btn {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .nav-btn-icon {
-                margin-right: 0;
-                margin-bottom: 0.5rem;
-            }
-            
-            /* Feedback modal responsive */
-            .feedback-modal {
-                padding: 10px;
-            }
-            
-            .feedback-modal-content {
-                max-height: 95vh;
-            }
-            
-            .feedback-header,
-            .feedback-body {
-                padding: 1rem;
-            }
-            
-            .feedback-actions {
-                flex-direction: column;
-            }
-            
-            .btn-submit,
-            .btn-cancel {
-                width: 100%;
-            }
-                padding: 1rem;
-            }
-            
-            .nav-btn-icon {
-                margin-right: 0;
-                margin-bottom: 0.5rem;
-            }
+        }
+
+        .secondary-card {
+            background: var(--color-bg);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .secondary-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(4px);
+        }
+
+        .secondary-card-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .secondary-card-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .secondary-card-content h4 {
+            margin: 0 0 var(--space-1) 0;
+            color: var(--color-text-dark);
+            font-size: var(--font-size-sm);
+        }
+
+        .secondary-card-content p {
+            margin: 0;
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        /* ===== FOOTER ===== */
+        .app-footer {
+            background: var(--color-bg-lighter);
+            border-top: 1px solid var(--color-border);
+            padding: var(--space-6) var(--space-4);
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: var(--font-size-xs);
+            margin-top: var(--space-12);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-3);
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-primary-dark);
+            text-decoration: underline;
+        }
+
+        /* ===== UTILITIES ===== */
+        .hidden {
+            display: none;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Statut d'authentification - MASQUÉ (accès public) -->
-    <div class="auth-status" id="authStatus" style="display: none;">
-        <!-- Contenu généré dynamiquement -->
-    </div>
-
-    <div class="nav-container">
-        <h1>📚 IFSI Lannion 2025</h1>
-        <h2>Interface de révision et de gestion</h2>
-        
-        <div class="nav-buttons">
-            <a href="./admin.html" class="nav-btn admin" id="adminBtn">
-                <div class="nav-btn-icon">⚙️</div>
-                <div class="nav-btn-content">
-                    <h3>Administration</h3>
-                    <p>Gestion des cours et des images</p>
+    <!-- ===== HEADER ===== -->
+    <header class="app-header">
+        <div class="header-content">
+            <a href="#" class="header-brand">
+                <span class="header-brand-icon">📚</span>
+                <div class="header-brand-text">
+                    <h1>IFSI Lannion</h1>
+                    <p>Révisions 2025</p>
                 </div>
             </a>
-            
-            <a href="./browse-courses.html" class="nav-btn browse">
-                <div class="nav-btn-icon">📖</div>
-                <div class="nav-btn-content">
-                    <h3>Consulter les Cours</h3>
-                    <p>Parcourir et rechercher dans la base de données</p>
+            <div class="header-actions">
+                <div class="user-badge" id="userBadge">
+                    <span id="userInitials">👤</span>
+                    <span id="userEmail" class="user-email">Utilisateur</span>
                 </div>
-            </a>
-            
-            <a href="./revision.html" class="nav-btn revision">
-                <div class="nav-btn-icon">🎯</div>
-                <div class="nav-btn-content">
-                    <h3>Révisions</h3>
-                    <p>Tester ses connaissances sur 10 termes aléatoires</p>
-                </div>
-            </a>
-            
-            <a href="./statistics.html" class="nav-btn stats" style="display: none;" id="statsBtn">
-                <div class="nav-btn-icon">📊</div>
-                <div class="nav-btn-content">
-                    <h3>Statistiques</h3>
-                    <p>Suivre votre progression et vos performances</p>
-                </div>
-            </a>
-            
-            <button class="nav-btn quiz" onclick="window.openPharmaQuiz()" style="cursor: pointer; border: none; text-decoration: none;">
-                <div class="nav-btn-icon">💊</div>
-                <div class="nav-btn-content">
-                    <h3>Quiz Pharmacologie</h3>
-                    <p>Testez vos connaissances avec des QCM/QCU</p>
-                </div>
-            </button>
-            
-
-            <a href="./ide-management.html" class="nav-btn" style="background: linear-gradient(135deg, #9966ff 0%, #6633cc 100%); color: white;">
-                <div class="nav-btn-icon">🏥</div>
-                <div class="nav-btn-content">
-                    <h3>Fiches récapitulatives</h3>
-                    <p>Organisées par UE</p>
-                </div>
-            </a>
-            
-            <!-- Gallery cachée pour tous les utilisateurs -->
-            <!--
-            <a href="./gallery.html" class="nav-btn gallery hidden">
-                <div class="nav-btn-icon">🖼️</div>
-                <div class="nav-btn-content">
-                    <h3>Galerie d'Images</h3>
-                    <p>Visualiser schémas et supports par catégorie</p>
-                </div>
-            </a>
-            -->
-            
-            <button class="nav-btn feedback" onclick="window.feedbackManager.openFeedbackModal()" style="cursor: pointer;">
-                <div class="nav-btn-icon">💬</div>
-                <div class="nav-btn-content">
-                    <h3>Votre Feedback</h3>
-                    <p>Signaler un bug, suggérer une amélioration</p>
-                </div>
-            </button>
+            </div>
         </div>
-        
-        <!-- Version badge dans le footer -->
-        <div style="text-align: center; margin-top: 40px; opacity: 0.6;" id="versionBadge"></div>
-    </div>
+    </header>
 
-    <!-- Firebase -->
-    <script src="../assets/scripts/config/firebase-config.js"></script>
-    <script type="module">
-        // Initialiser Firebase pour les feedbacks
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
-        import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
-        import { getAuth } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js';
-        
-        if (window.firebaseConfig) {
-            const app = initializeApp(window.firebaseConfig);
-            window.db = getFirestore(app);
-            window.auth = getAuth(app);
-            
-            // Exposer les fonctions Firestore pour feedback-manager
-            window.firestoreUtils = {
-                collection,
-                addDoc,
-                serverTimestamp
-            };
-            
-            // Créer un objet firebase compatible (pour legacy code)
-            window.firebase = {
-                firestore: {
-                    FieldValue: {
-                        serverTimestamp: serverTimestamp
-                    }
-                }
-            };
-            
-            console.log('✅ Firebase initialisé pour feedbacks');
-        }
-    </script>
-    
-    <!-- 🚀 Optimisations de performance -->
-    <script src="../assets/scripts/utils/smart-cache.js"></script>
-    <script src="../assets/scripts/utils/performance-utils.js"></script>
-    
-    <!-- Version, Error Handler, Feedback -->
-    <script src="../assets/scripts/utils/version-manager.js"></script>
-    <script src="../assets/scripts/utils/error-handler.js"></script>
-    <script src="../assets/scripts/utils/feedback-manager.js"></script>
-    <script src="../assets/scripts/utils/security-manager.js"></script>
-    
-    <script>
-        // Injecter le badge de version
-        window.addEventListener('DOMContentLoaded', () => {
-            if (window.versionManager) {
-                window.versionManager.injectVersionBadge('versionBadge', { 
-                    style: 'compact', 
-                    showDate: false 
-                });
-            }
-        });
-    </script>
-    
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
-        // Initialisation Firebase
-        const app = initializeApp(window.firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // Gérer l'affichage du statut d'authentification
-        onAuthStateChanged(auth, async (user) => {
-            const authStatus = document.getElementById('authStatus');
-            const adminBtn = document.getElementById('adminBtn');
-            
-            if (user) {
-                // Utilisateur connecté
-                console.log('✅ Utilisateur connecté');
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2 class="hero-title">Bienvenue sur votre plateforme de révisions</h2>
+                <p class="hero-subtitle">Apprenez intelligemment avec nos outils de révision interactifs. Progressez à votre rythme.</p>
                 
-                // Vérifier le rôle admin
-                try {
-                    const userDoc = await getDoc(doc(db, 'users', user.uid));
-                    const userData = userDoc.data();
-                    const isAdmin = userData?.role === 'admin';
-                    
-                    if (isAdmin) {
-                        console.log('👤 Rôle admin détecté');
-                        adminBtn.classList.remove('hidden');
-                    } else {
-                        console.log('👤 Utilisateur standard');
-                        adminBtn.classList.add('hidden');
-                    }
-                } catch (error) {
-                    console.error('Erreur vérification rôle:', error);
-                    adminBtn.classList.add('hidden'); // Par défaut, cacher le bouton
-                }
-                
-                authStatus.innerHTML = `
-                    <div class="auth-links">
-                        <a href="./account.html" class="btn-account">⚙️ Mon compte</a>
-                        <a href="#" id="logoutBtn" style="color: #dc3545; font-weight: 600;">🚪 Déconnexion</a>
+                <!-- STATS PREVIEW -->
+                <div class="stats-preview">
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalTerms">0</span>
+                        <span class="stat-label">Termes</span>
                     </div>
-                `;
-                
-                // Ajouter l'événement de déconnexion
-                document.getElementById('logoutBtn').addEventListener('click', async (e) => {
-                    e.preventDefault();
-                    try {
-                        // 1. Synchroniser les modifications en attente
-                        if (window.syncManager && typeof window.syncManager.syncPendingChanges === 'function') {
-                            await window.syncManager.syncPendingChanges();
-                        }
-                        
-                        // 2. Déconnexion Firebase
-                        await signOut(auth);
-                        
-                        // 3. Nettoyer les caches de session
-                        sessionStorage.removeItem('coursesData_session');
-                        sessionStorage.removeItem('userProgress_session');
-                        
-                        console.log('✅ Déconnexion réussie, redirection automatique...');
-                        // Note: La redirection se fait automatiquement via onAuthStateChanged
-                    } catch (error) {
-                        console.error('Erreur lors de la déconnexion:', error);
-                        alert('❌ Erreur lors de la déconnexion : ' + error.message);
-                    }
-                });
-            } else {
-                // Utilisateur non connecté → ACCÈS PUBLIC, pas de redirection
-                console.log('✅ Accès public autorisé (pas d\'authentification requise)');
-                // Logique de redirection SUSPENDUE pour permettre l'accès public
-            }
-        });
-    </script>
+                    <div class="stat-card">
+                        <span class="stat-value" id="masteredTerms">0</span>
+                        <span class="stat-label">Maîtrisés</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="weeklyStreak">0</span>
+                        <span class="stat-label">Semaine</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Quiz Pharmacologie -->
+        <!-- PRIMARY ACTIONS -->
+        <div class="main-container">
+            <section class="action-cards-section">
+                <h2 class="section-title">Commencez votre révision</h2>
+                <div class="action-cards">
+                    <!-- Card 1: Révisions -->
+                    <a href="./revision.html" class="action-card">
+                        <span class="action-card-icon">🎯</span>
+                        <h3>Révisions Quotidiennes</h3>
+                        <p>Testez vos connaissances avec 10 termes aléatoires. Système adaptatif pour les domaines à améliorer.</p>
+                        <div class="action-card-meta">
+                            <span class="meta-badge">⏱️ ~10 min</span>
+                            <span class="meta-badge">📊 Adaptatif</span>
+                        </div>
+                        <button class="btn btn-primary btn-sm action-card-btn" onclick="event.preventDefault(); window.location.href='./revision.html'">
+                            Commencer →
+                        </button>
+                    </a>
+
+                    <!-- Card 2: Quiz -->
+                    <a href="./quiz.html" class="action-card">
+                        <span class="action-card-icon">🧪</span>
+                        <h3>Quiz Antibiotiques</h3>
+                        <p>Évaluez vos connaissances en pharmacologie. 50 questions variées avec feedback détaillé.</p>
+                        <div class="action-card-meta">
+                            <span class="meta-badge">🎓 50 questions</span>
+                            <span class="meta-badge">⚕️ Pharmacologie</span>
+                        </div>
+                        <button class="btn btn-primary btn-sm action-card-btn" onclick="event.preventDefault(); window.location.href='./quiz.html'">
+                            Démarrer →
+                        </button>
+                    </a>
+
+                    <!-- Card 3: Cours -->
+                    <a href="./browse-courses.html" class="action-card">
+                        <span class="action-card-icon">📖</span>
+                        <h3>Consulter les Cours</h3>
+                        <p>Parcourez la base de données complète des cours. Recherchez par UE, semestre ou mot-clé.</p>
+                        <div class="action-card-meta">
+                            <span class="meta-badge">🔍 Recherche</span>
+                            <span class="meta-badge">📚 Base complète</span>
+                        </div>
+                        <button class="btn btn-primary btn-sm action-card-btn" onclick="event.preventDefault(); window.location.href='./browse-courses.html'">
+                            Explorer →
+                        </button>
+                    </a>
+                </div>
+            </section>
+
+            <!-- SECONDARY ACTIONS -->
+            <section class="secondary-section">
+                <h2 class="section-title" style="margin-bottom: var(--space-3);">Ressources supplémentaires</h2>
+                <div class="secondary-cards">
+                    <!-- Card: Admin (hidden by default) -->
+                    <a href="./admin.html" class="secondary-card hidden" id="adminLink">
+                        <span class="secondary-card-icon">⚙️</span>
+                        <div class="secondary-card-content">
+                            <h4>Administration</h4>
+                            <p>Gestion des cours et données</p>
+                        </div>
+                    </a>
+
+                    <!-- Card: IDE Management -->
+                    <a href="./ide-management.html" class="secondary-card">
+                        <span class="secondary-card-icon">🏥</span>
+                        <div class="secondary-card-content">
+                            <h4>Fiches récapitulatives</h4>
+                            <p>Organisées par UE et domaines</p>
+                        </div>
+                    </a>
+
+                    <!-- Card: Feedback -->
+                    <button class="secondary-card" onclick="openFeedback()" style="border: none; background: inherit; cursor: pointer; box-shadow: var(--shadow-sm); border-radius: var(--radius-lg);">
+                        <span class="secondary-card-icon">💬</span>
+                        <div class="secondary-card-content">
+                            <h4>Nous contacters</h4>
+                            <p>Signaler un bug ou suggérer une amélioration</p>
+                        </div>
+                    </button>
+
+                    <!-- Card: Aide (Coming soon) -->
+                    <div class="secondary-card" style="opacity: 0.6; cursor: not-allowed;">
+                        <span class="secondary-card-icon">❓</span>
+                        <div class="secondary-card-content">
+                            <h4>Centre d'aide</h4>
+                            <p>Guides et tutoriels (à venir)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer">
+        <div class="footer-links">
+            <a href="#privacy">Confidentialité</a>
+            <a href="#terms">Conditions</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p id="versionInfo">IFSI Lannion 2025 - Plateforme v3.0</p>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
     <script>
-        window.openPharmaQuiz = function() {
-            window.location.href = './quiz.html';
-        };
+        // Initialize stats on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            updateStats();
+            checkUserAuth();
+        });
+
+        async function updateStats() {
+            try {
+                // Fetch courses data
+                const response = await fetch('/src/data/courses.json');
+                const coursesData = await response.json();
+                
+                // Calculate stats
+                const totalTerms = coursesData.reduce((sum, [, course]) => {
+                    return sum + (course.definitions ? course.definitions.length : 0);
+                }, 0);
+
+                // Get from localStorage
+                const userProgress = JSON.parse(localStorage.getItem('userProgress') || '{}');
+                const masteredCount = Object.keys(userProgress).filter(k => userProgress[k]?.mastered).length;
+                
+                // Update DOM
+                document.getElementById('totalTerms').textContent = totalTerms;
+                document.getElementById('masteredTerms').textContent = masteredCount;
+                document.getElementById('weeklyStreak').textContent = userProgress.weeklyStreak || 0;
+            } catch (error) {
+                console.warn('Could not load stats:', error);
+            }
+        }
+
+        function checkUserAuth() {
+            // Check if user is authenticated
+            const userEmail = localStorage.getItem('userEmail');
+            if (userEmail) {
+                const badge = document.getElementById('userBadge');
+                const emailElement = document.getElementById('userEmail');
+                badge.classList.add('active');
+                emailElement.textContent = userEmail.split('@')[0];
+            }
+        }
+
+        function openFeedback() {
+            alert('Formulaire de feedback - À implémenter');
+        }
     </script>
 </body>
 </html>

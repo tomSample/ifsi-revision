@@ -1,0 +1,563 @@
+/* ============================================================
+   LAYOUT.CSS - RESPONSIVE MOBILE-FIRST LAYOUTS
+   Grid, Flex, and Container utilities for all screen sizes
+   ============================================================ */
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+/* Mobile: 320px - 640px */
+.container {
+  max-width: 100%;
+}
+
+/* Tablet portrait: 641px - 768px */
+@media (min-width: 641px) {
+  .container {
+    max-width: 620px;
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+/* Tablet landscape: 769px - 1024px */
+@media (min-width: 769px) {
+  .container {
+    max-width: 750px;
+  }
+}
+
+/* Small desktop: 1025px - 1280px */
+@media (min-width: 1025px) {
+  .container {
+    max-width: 1000px;
+  }
+}
+
+/* Large desktop: 1281px+ */
+@media (min-width: 1281px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+/* ============================================================
+   GRID SYSTEM (Mobile-first)
+   ============================================================ */
+
+.grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+}
+
+/* 2 columns on tablet */
+@media (min-width: 641px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* 3 columns on larger screens */
+@media (min-width: 1025px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* Auto-fit grid (responsive columns) */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-4);
+}
+
+@media (min-width: 641px) {
+  .grid-auto {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-6);
+  }
+}
+
+.grid-gap-2 { gap: var(--space-2); }
+.grid-gap-3 { gap: var(--space-3); }
+.grid-gap-4 { gap: var(--space-4); }
+.grid-gap-6 { gap: var(--space-6); }
+
+/* ============================================================
+   FLEX LAYOUTS
+   ============================================================ */
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-start {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.flex-end {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.items-baseline { align-items: baseline; }
+.items-stretch { align-items: stretch; }
+
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.justify-evenly { justify-content: space-evenly; }
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+.gap-8 { gap: var(--space-8); }
+
+/* ============================================================
+   HEADER & NAVIGATION
+   ============================================================ */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-fixed-header);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 641px) {
+  .header {
+    padding: var(--space-6);
+  }
+}
+
+.header-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+}
+
+.header-nav {
+  display: none;
+  gap: var(--space-4);
+}
+
+@media (min-width: 641px) {
+  .header-nav {
+    display: flex;
+  }
+}
+
+.header-nav a {
+  color: var(--color-text-body);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-fast);
+}
+
+.header-nav a:hover,
+.header-nav a.active {
+  color: var(--color-primary);
+}
+
+.header-mobile-menu {
+  display: flex;
+  gap: var(--space-2);
+}
+
+@media (min-width: 641px) {
+  .header-mobile-menu {
+    display: none;
+  }
+}
+
+/* ============================================================
+   SIDEBAR & TWO-COLUMN
+   ============================================================ */
+
+.sidebar-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+@media (min-width: 769px) {
+  .sidebar-layout {
+    flex-direction: row;
+  }
+}
+
+.sidebar {
+  width: 100%;
+}
+
+@media (min-width: 769px) {
+  .sidebar {
+    width: 280px;
+    flex-shrink: 0;
+  }
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.footer {
+  background: var(--color-bg-lighter);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-6) var(--space-4);
+  margin-top: var(--space-12);
+}
+
+@media (min-width: 641px) {
+  .footer {
+    padding: var(--space-8) var(--space-6);
+  }
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+@media (min-width: 641px) {
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1025px) {
+  .footer-content {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.footer-section h3 {
+  font-size: var(--font-size-base);
+  margin-bottom: var(--space-3);
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section li {
+  margin-bottom: var(--space-2);
+}
+
+.footer-section a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: var(--color-primary);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-4);
+  margin-top: var(--space-4);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+
+.hero {
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  background: var(--gradient-primary);
+  color: white;
+  border-radius: var(--radius-lg);
+}
+
+@media (min-width: 641px) {
+  .hero {
+    padding: var(--space-12) var(--space-6);
+  }
+}
+
+.hero h1 {
+  color: white;
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 641px) {
+  .hero h1 {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--font-size-lg);
+  max-width: 600px;
+  margin: 0 auto var(--space-6);
+  line-height: var(--line-height-relaxed);
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+@media (min-width: 641px) {
+  .hero-actions {
+    flex-direction: row;
+    gap: var(--space-4);
+  }
+}
+
+/* ============================================================
+   CARD GRID LAYOUTS
+   ============================================================ */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 641px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 1025px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* ============================================================
+   SPACING UTILITIES (Mobile-first responsive)
+   ============================================================ */
+
+.p-2 { padding: var(--space-2); }
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+.p-6 { padding: var(--space-6); }
+
+.px-2 { padding-left: var(--space-2); padding-right: var(--space-2); }
+.px-3 { padding-left: var(--space-3); padding-right: var(--space-3); }
+.px-4 { padding-left: var(--space-4); padding-right: var(--space-4); }
+.px-6 { padding-left: var(--space-6); padding-right: var(--space-6); }
+
+.py-2 { padding-top: var(--space-2); padding-bottom: var(--space-2); }
+.py-3 { padding-top: var(--space-3); padding-bottom: var(--space-3); }
+.py-4 { padding-top: var(--space-4); padding-bottom: var(--space-4); }
+.py-6 { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+
+.m-2 { margin: var(--space-2); }
+.m-3 { margin: var(--space-3); }
+.m-4 { margin: var(--space-4); }
+.m-6 { margin: var(--space-6); }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+.my-auto { margin-top: auto; margin-bottom: auto; }
+
+.mt-2 { margin-top: var(--space-2); }
+.mt-3 { margin-top: var(--space-3); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-6 { margin-top: var(--space-6); }
+
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+
+.ml-2 { margin-left: var(--space-2); }
+.ml-3 { margin-left: var(--space-3); }
+.ml-4 { margin-left: var(--space-4); }
+
+.mr-2 { margin-right: var(--space-2); }
+.mr-3 { margin-right: var(--space-3); }
+.mr-4 { margin-right: var(--space-4); }
+
+/* ============================================================
+   VISIBILITY & DISPLAY
+   ============================================================ */
+
+.block { display: block; }
+.inline { display: inline; }
+.inline-block { display: inline-block; }
+.hidden { display: none; }
+.invisible { visibility: hidden; }
+
+@media (max-width: 640px) {
+  .hide-mobile { display: none; }
+}
+
+@media (max-width: 768px) {
+  .hide-tablet { display: none; }
+}
+
+@media (min-width: 1025px) {
+  .hide-desktop { display: none; }
+}
+
+@media (max-width: 640px) {
+  .show-mobile-only { display: block; }
+}
+
+@media (min-width: 641px) {
+  .show-mobile-only { display: none; }
+}
+
+/* ============================================================
+   WIDTH & HEIGHT
+   ============================================================ */
+
+.w-full { width: 100%; }
+.w-1\/2 { width: 50%; }
+.w-1\/3 { width: 33.333%; }
+.w-1\/4 { width: 25%; }
+
+.h-full { height: 100%; }
+.min-h-screen { min-height: 100vh; }
+.min-h-0 { min-height: 0; }
+
+.max-w-sm { max-width: 384px; }
+.max-w-md { max-width: 448px; }
+.max-w-lg { max-width: 512px; }
+.max-w-xl { max-width: 576px; }
+.max-w-2xl { max-width: 672px; }
+.max-w-4xl { max-width: 896px; }
+.max-w-6xl { max-width: 1152px; }
+
+/* ============================================================
+   OVERFLOW
+   ============================================================ */
+
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-x-auto { overflow-x: auto; }
+.overflow-y-auto { overflow-y: auto; }
+.overflow-x-hidden { overflow-x: hidden; }
+.overflow-y-hidden { overflow-y: hidden; }
+
+/* ============================================================
+   POSITION
+   ============================================================ */
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+
+.top-0 { top: 0; }
+.right-0 { right: 0; }
+.bottom-0 { bottom: 0; }
+.left-0 { left: 0; }
+
+/* ============================================================
+   TRUNCATE & TEXT OVERFLOW
+   ============================================================ */
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
