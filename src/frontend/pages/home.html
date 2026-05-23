@@ -174,60 +174,6 @@
             }
         }
 
-        /* ===== STATS PREVIEW ===== */
-        .stats-preview {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-2);
-            margin-bottom: var(--space-6);
-            max-width: 100%;
-        }
-
-        @media (min-width: 641px) {
-            .stats-preview {
-                gap: var(--space-4);
-                max-width: 500px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: var(--space-3);
-            border-radius: var(--radius-lg);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            animation: slideInUp var(--transition-base) both;
-        }
-
-        .stat-card:nth-child(1) { animation-delay: 100ms; }
-        .stat-card:nth-child(2) { animation-delay: 150ms; }
-        .stat-card:nth-child(3) { animation-delay: 200ms; }
-
-        .stat-value {
-            display: block;
-            font-size: var(--font-size-lg);
-            font-weight: var(--font-weight-bold);
-            color: white;
-        }
-
-        @media (min-width: 641px) {
-            .stat-value {
-                font-size: var(--font-size-2xl);
-            }
-        }
-
-        .stat-label {
-            display: block;
-            font-size: var(--font-size-xs);
-            color: rgba(255, 255, 255, 0.85);
-            margin-top: var(--space-1);
-            text-transform: uppercase;
-            letter-spacing: var(--letter-spacing-wide);
-        }
-
         /* ===== MAIN CONTAINER ===== */
         .main-container {
             max-width: 1280px;
@@ -439,7 +385,6 @@
 
         .footer-links a:hover {
             color: var(--color-primary-dark);
-            text-decoration: underline;
         }
 
         /* ===== UTILITIES ===== */
@@ -487,22 +432,6 @@
             <div class="hero-content">
                 <h2 class="hero-title">Bienvenue sur votre plateforme de révisions</h2>
                 <p class="hero-subtitle">Apprenez intelligemment avec nos outils de révision interactifs. Progressez à votre rythme.</p>
-                
-                <!-- STATS PREVIEW -->
-                <div class="stats-preview">
-                    <div class="stat-card">
-                        <span class="stat-value" id="totalTerms">0</span>
-                        <span class="stat-label">Termes</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-value" id="masteredTerms">0</span>
-                        <span class="stat-label">Maîtrisés</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-value" id="weeklyStreak">0</span>
-                        <span class="stat-label">Semaine</span>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -576,24 +505,6 @@
                             <p>Organisées par UE et domaines</p>
                         </div>
                     </a>
-
-                    <!-- Card: Feedback -->
-                    <button class="secondary-card" onclick="openFeedback()" style="border: none; background: inherit; cursor: pointer; box-shadow: var(--shadow-sm); border-radius: var(--radius-lg);">
-                        <span class="secondary-card-icon">💬</span>
-                        <div class="secondary-card-content">
-                            <h4>Nous contacters</h4>
-                            <p>Signaler un bug ou suggérer une amélioration</p>
-                        </div>
-                    </button>
-
-                    <!-- Card: Aide (Coming soon) -->
-                    <div class="secondary-card" style="opacity: 0.6; cursor: not-allowed;">
-                        <span class="secondary-card-icon">❓</span>
-                        <div class="secondary-card-content">
-                            <h4>Centre d'aide</h4>
-                            <p>Guides et tutoriels (à venir)</p>
-                        </div>
-                    </div>
                 </div>
             </section>
         </div>
@@ -650,10 +561,6 @@
                 badge.classList.add('active');
                 emailElement.textContent = userEmail.split('@')[0];
             }
-        }
-
-        function openFeedback() {
-            alert('Formulaire de feedback - À implémenter');
         }
     </script>
 </body>
