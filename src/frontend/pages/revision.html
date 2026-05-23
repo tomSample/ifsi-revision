@@ -2,481 +2,28 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="IFSI Lannion 2025 - Révisions quotidiennes avec flashcards interactives">
-    <meta name="theme-color" content="#2563EB">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IFSI Lannion - Révisions Quotidiennes</title>
-    
-    <!-- Manifest & Icons -->
     <link rel="manifest" href="../../../public/manifest.json">
-    <link rel="icon" type="image/x-icon" href="../../../public/favicon.ico">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Design System CSS (Mobile-first unified system) -->
-    <link rel="stylesheet" href="../assets/styles/theme.css">
-    <link rel="stylesheet" href="../assets/styles/design-system.css">
-    <link rel="stylesheet" href="../assets/styles/animations.css">
-    <link rel="stylesheet" href="../assets/styles/layout.css">
-    
-    <!-- Page-specific styles -->
+    <meta name="theme-color" content="#667eea">
+    <link rel="stylesheet" href="../assets/styles/style-revision.css">
     <style>
-        /* ===== PAGE STRUCTURE ===== */
-        html, body {
-            height: 100%;
-            width: 100%;
+        /* === MASQUAGE DES BOUTONS DE DIFFICULTÉ === */
+        /* Les boutons et section sont masqués mais la logique reste active */
+        #difficultySection {
+            display: none !important;
+        }
+        .difficulty-buttons {
+            display: none !important;
+        }
+        .difficulty-btn {
+            display: none !important;
         }
 
-        body {
-            display: flex;
-            flex-direction: column;
-            background: var(--color-bg-light);
-        }
-
-        main {
-            flex: 1;
-        }
-
-        /* ===== HEADER ===== */
-        .app-header {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: var(--color-bg);
-            border-bottom: 1px solid var(--color-border);
-            box-shadow: var(--shadow-xs);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: var(--space-4);
-            max-width: 1280px;
-            margin: 0 auto;
-            width: 100%;
-            flex-direction: column;
-            gap: var(--space-2);
-        }
-
-        @media (min-width: 641px) {
-            .header-content {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
-        }
-
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-        }
-
-        .breadcrumb a {
-            color: var(--color-primary);
-            text-decoration: none;
-            transition: color var(--transition-fast);
-            display: flex;
-            align-items: center;
-            gap: var(--space-1);
-        }
-
-        .breadcrumb a:hover {
-            color: var(--color-primary-dark);
-        }
-
-        .breadcrumb .current {
-            color: var(--color-text-body);
-            font-weight: 500;
-        }
-
-        /* ===== MAIN CONTAINER ===== */
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: var(--space-4);
-            width: 100%;
-        }
-
-        @media (min-width: 641px) {
-            .main-container {
-                padding: var(--space-8) var(--space-6);
-            }
-        }
-
-        /* ===== START SCREEN ===== */
-        .start-screen {
-            animation: fadeIn var(--transition-base);
-        }
-
-        .welcome-card {
-            background: var(--color-bg);
-            border-radius: var(--radius-xl);
-            padding: var(--space-6);
-            box-shadow: var(--shadow-md);
-        }
-
-        @media (min-width: 641px) {
-            .welcome-card {
-                max-width: 800px;
-                margin: 0 auto;
-            }
-        }
-
-        .welcome-card h3 {
-            font-size: var(--font-size-xl);
-            font-weight: var(--font-weight-bold);
-            color: var(--color-text-dark);
-            margin-bottom: var(--space-2);
-            text-align: center;
-        }
-
-        .welcome-card > p {
-            color: var(--color-text-muted);
-            text-align: center;
-            margin-bottom: var(--space-6);
-            font-size: var(--font-size-sm);
-        }
-
-        /* ===== UE FILTER ===== */
-        .ue-filter-simple {
-            margin-bottom: var(--space-6);
-        }
-
-        .ue-filter-simple > label {
-            display: block;
-            font-weight: var(--font-weight-semibold);
-            margin-bottom: var(--space-2);
-            color: var(--color-text-dark);
-            font-size: var(--font-size-sm);
-        }
-
-        .ue-dropdown {
-            background: var(--color-bg-lighter);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-3) var(--space-4);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all var(--transition-fast);
-            user-select: none;
-        }
-
-        .ue-dropdown:hover {
-            border-color: var(--color-primary);
-            background: var(--color-bg);
-        }
-
-        .dropdown-arrow {
-            transition: transform var(--transition-fast);
-            color: var(--color-primary);
-        }
-
-        .ue-dropdown.open .dropdown-arrow {
-            transform: rotateZ(180deg);
-        }
-
-        .ue-options {
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-top: none;
-            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-            padding: var(--space-2);
-            display: none;
-            max-height: 300px;
-            overflow-y: auto;
-            animation: slideInDown var(--transition-base);
-        }
-
-        .ue-options.open {
-            display: block;
-        }
-
-        .ue-option {
-            padding: var(--space-3) var(--space-4);
-            cursor: pointer;
-            border-radius: var(--radius-md);
-            transition: all var(--transition-fast);
-            font-size: var(--font-size-sm);
-        }
-
-        .ue-option:hover {
-            background: var(--color-primary-lighter);
-            color: var(--color-primary-dark);
-        }
-
-        .ue-option.active {
-            background: var(--color-primary);
-            color: white;
-            font-weight: var(--font-weight-semibold);
-        }
-
-        /* ===== REVISION MODE SELECTOR ===== */
-        .revision-mode-selector {
-            margin-bottom: var(--space-6);
-        }
-
-        .revision-mode-selector > label {
-            display: block;
-            font-weight: var(--font-weight-semibold);
-            margin-bottom: var(--space-3);
-            color: var(--color-text-dark);
-            font-size: var(--font-size-sm);
-        }
-
-        .mode-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: var(--space-3);
-        }
-
-        .mode-option {
-            cursor: pointer;
-        }
-
-        .mode-option input[type="radio"] {
-            display: none;
-        }
-
-        .mode-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: var(--space-4);
-            border: 2px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            background: var(--color-bg-lighter);
-            transition: all var(--transition-base);
-            text-align: center;
-        }
-
-        .mode-option:hover .mode-card {
-            border-color: var(--color-primary);
-            background: var(--color-primary-lighter);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .mode-option input[type="radio"]:checked + .mode-card {
-            border-color: var(--color-primary);
-            background: var(--gradient-primary);
-            color: white;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .mode-icon {
-            font-size: 1.5rem;
-            margin-bottom: var(--space-2);
-        }
-
-        .mode-name {
-            font-weight: var(--font-weight-semibold);
-            font-size: var(--font-size-sm);
-            margin-bottom: var(--space-1);
-        }
-
-        .mode-desc {
-            font-size: var(--font-size-xs);
-            color: var(--color-text-muted);
-            line-height: 1.3;
-        }
-
-        .mode-option input[type="radio"]:checked + .mode-card .mode-name,
-        .mode-option input[type="radio"]:checked + .mode-card .mode-desc {
-            color: white;
-        }
-
-        /* ===== TERM SELECTOR ===== */
-        .term-selector {
-            margin-bottom: var(--space-6);
-        }
-
-        .term-selector > label {
-            display: block;
-            font-weight: var(--font-weight-semibold);
-            margin-bottom: var(--space-2);
-            color: var(--color-text-dark);
-            font-size: var(--font-size-sm);
-        }
-
-        .term-count-controls {
-            display: flex;
-            gap: var(--space-2);
-            align-items: center;
-            margin-bottom: var(--space-3);
-        }
-
-        .count-btn {
-            background: var(--color-bg-lighter);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            width: 44px;
-            height: 44px;
-            cursor: pointer;
-            font-size: var(--font-size-lg);
-            font-weight: var(--font-weight-bold);
-            color: var(--color-primary);
-            transition: all var(--transition-fast);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .count-btn:hover {
-            background: var(--color-primary-lighter);
-            border-color: var(--color-primary);
-        }
-
-        .count-btn:active {
-            transform: scale(0.95);
-        }
-
-        .term-count-input {
-            flex: 1;
-            padding: var(--space-2) var(--space-3);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-base);
-            text-align: center;
-            font-weight: var(--font-weight-semibold);
-            transition: all var(--transition-fast);
-        }
-
-        .term-count-input:focus {
-            outline: none;
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px var(--color-primary-lighter);
-        }
-
-        .term-count-presets {
-            display: flex;
-            gap: var(--space-2);
-            flex-wrap: wrap;
-        }
-
-        .preset-btn {
-            flex: 1;
-            min-width: 70px;
-            padding: var(--space-2) var(--space-3);
-            background: var(--color-bg-lighter);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-weight: var(--font-weight-medium);
-            font-size: var(--font-size-sm);
-            transition: all var(--transition-fast);
-        }
-
-        .preset-btn:hover {
-            border-color: var(--color-primary);
-            background: var(--color-primary-lighter);
-        }
-
-        .preset-btn.active {
-            background: var(--color-primary);
-            color: white;
-            border-color: var(--color-primary);
-        }
-
-        /* ===== TIME ESTIMATE ===== */
-        .time-estimate {
-            background: var(--color-success-lighter);
-            color: var(--color-success-dark);
-            padding: var(--space-3) var(--space-4);
-            border-radius: var(--radius-lg);
-            margin-bottom: var(--space-6);
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-medium);
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-            animation: slideInUp var(--transition-base);
-        }
-
-        /* ===== START BUTTON ===== */
-        .start-btn {
-            width: 100%;
-            padding: var(--space-4);
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            border-radius: var(--radius-lg);
-            font-size: var(--font-size-base);
-            font-weight: var(--font-weight-bold);
-            cursor: pointer;
-            transition: all var(--transition-base);
-            box-shadow: var(--shadow-md);
-            min-height: 44px;
-        }
-
-        .start-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .start-btn:active {
-            transform: translateY(0);
-        }
-
-        /* ===== REVISION SCREEN ===== */
-        .revision-screen {
-            animation: fadeIn var(--transition-base);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .term-card {
-            background: var(--color-bg);
-            border-radius: var(--radius-xl);
-            padding: var(--space-6);
-            box-shadow: var(--shadow-md);
-        }
-
-        @media (min-width: 641px) {
-            .term-card {
-                max-width: 900px;
-                margin: 0 auto;
-            }
-        }
-
-        .term-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--space-6);
-            font-size: var(--font-size-sm);
-            color: var(--color-text-muted);
-        }
-
-        .term-ue {
-            background: var(--color-primary-lighter);
-            color: var(--color-primary-dark);
-            padding: var(--space-1) var(--space-2);
-            border-radius: var(--radius-full);
-            font-weight: var(--font-weight-semibold);
-        }
-
-        .term-number {
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-primary);
-        }
-
-        /* ===== FLASHCARD ===== */
+        /* Styles flashcard avec rotation 3D */
         .flashcard-container {
             perspective: 1000px;
-            margin: var(--space-6) 0;
+            margin: 30px 0;
             min-height: 300px;
         }
 
@@ -484,7 +31,7 @@
             position: relative;
             width: 100%;
             min-height: 300px;
-            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: transform 0.6s;
             transform-style: preserve-3d;
             cursor: pointer;
         }
@@ -506,10 +53,10 @@
             width: 100%;
             min-height: 300px;
             backface-visibility: hidden;
-            background: linear-gradient(135deg, var(--color-primary-lighter) 0%, var(--color-bg) 100%);
-            border-radius: var(--radius-xl);
-            padding: var(--space-6);
-            box-shadow: var(--shadow-lg);
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -519,37 +66,29 @@
 
         .flashcard-back {
             transform: rotateY(180deg);
-            background: linear-gradient(135deg, var(--color-success-lighter) 0%, var(--color-bg) 100%);
         }
 
         .card-label {
             position: absolute;
-            top: var(--space-4);
-            left: var(--space-4);
-            font-size: var(--font-size-xs);
+            top: 15px;
+            left: 20px;
+            font-size: 12px;
             text-transform: uppercase;
-            color: var(--color-primary-dark);
-            font-weight: var(--font-weight-bold);
-            letter-spacing: var(--letter-spacing-wide);
+            color: #667eea;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .flashcard-front h3 {
-            font-size: var(--font-size-2xl);
-            color: var(--color-text-dark);
-            margin: 0 0 var(--space-4) 0;
-            line-height: var(--line-height-tight);
-        }
-
-        @media (min-width: 641px) {
-            .flashcard-front h3 {
-                font-size: var(--font-size-3xl);
-            }
+            font-size: 32px;
+            color: #2c3e50;
+            margin: 0 0 20px 0;
         }
 
         .flip-instruction {
-            color: var(--color-text-muted);
-            font-size: var(--font-size-sm);
-            margin-top: var(--space-4);
+            color: #6c757d;
+            font-size: 14px;
+            margin-top: 20px;
             animation: pulse 2s infinite;
         }
 
@@ -559,239 +98,120 @@
         }
 
         .flashcard-back .definition-text {
-            font-size: var(--font-size-base);
-            line-height: var(--line-height-relaxed);
-            color: var(--color-text-dark);
-            max-width: 700px;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #2c3e50;
+            max-width: 600px;
         }
 
         .flashcard-back h3 {
-            font-size: var(--font-size-lg);
-            font-weight: var(--font-weight-bold);
-            color: var(--color-text-dark);
-            margin-bottom: var(--space-4);
-            margin-top: var(--space-4);
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            margin-top: 30px;
         }
 
-        /* ===== CONTROLS ===== */
-        .revision-controls {
-            display: flex;
-            gap: var(--space-3);
-            margin-top: var(--space-6);
-            flex-wrap: wrap;
+        .difficulty-section {
+            margin-top: 30px;
+            animation: slideIn 0.5s ease;
         }
 
-        @media (min-width: 641px) {
-            .revision-controls {
-                justify-content: center;
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-
-        .control-btn {
-            flex: 1;
-            min-width: 120px;
-            padding: var(--space-3) var(--space-4);
-            border: none;
-            border-radius: var(--radius-lg);
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-semibold);
+        
+        /* Styles pour le sélecteur de mode de révision */
+        .revision-mode-selector {
+            margin: 1.5rem 0;
+        }
+        
+        .revision-mode-selector label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #2c3e50;
+        }
+        
+        .mode-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .mode-option {
             cursor: pointer;
-            transition: all var(--transition-base);
-            min-height: 44px;
         }
-
-        .btn-correct {
-            background: var(--color-success);
-            color: white;
-        }
-
-        .btn-correct:hover {
-            background: var(--color-success-dark);
-            transform: translateY(-2px);
-        }
-
-        .btn-partial {
-            background: var(--color-accent);
-            color: white;
-        }
-
-        .btn-partial:hover {
-            background: var(--color-accent-dark);
-            transform: translateY(-2px);
-        }
-
-        .btn-wrong {
-            background: var(--color-wrong);
-            color: white;
-        }
-
-        .btn-wrong:hover {
-            background: var(--color-wrong-dark);
-            transform: translateY(-2px);
-        }
-
-        .btn-skip {
-            background: var(--color-bg-lighter);
-            color: var(--color-text-body);
-            border: 1px solid var(--color-border);
-        }
-
-        .btn-skip:hover {
-            background: var(--color-bg);
-            border-color: var(--color-text-body);
-        }
-
-        /* ===== RESULTS SCREEN ===== */
-        .results-screen {
-            animation: fadeIn var(--transition-base);
-        }
-
-        .results-card {
-            background: var(--color-bg);
-            border-radius: var(--radius-xl);
-            padding: var(--space-6);
-            box-shadow: var(--shadow-md);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .results-card h3 {
-            font-size: var(--font-size-xl);
-            font-weight: var(--font-weight-bold);
-            color: var(--color-text-dark);
-            text-align: center;
-            margin-bottom: var(--space-4);
-        }
-
-        .session-stats-text {
-            text-align: center;
-            color: var(--color-text-body);
-            margin-bottom: var(--space-6);
-            font-size: var(--font-size-base);
-        }
-
-        .session-stats-text strong {
-            color: var(--color-primary);
-            font-weight: var(--font-weight-bold);
-        }
-
-        .terms-summary {
-            margin-bottom: var(--space-6);
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .term-result {
-            background: var(--color-bg-lighter);
-            padding: var(--space-3);
-            border-radius: var(--radius-lg);
-            margin-bottom: var(--space-2);
-            border-left: 4px solid var(--color-primary);
-        }
-
-        .term-result.correct {
-            border-left-color: var(--color-success);
-        }
-
-        .term-result.partial {
-            border-left-color: var(--color-accent);
-        }
-
-        .term-result.wrong {
-            border-left-color: var(--color-wrong);
-        }
-
-        .term-result-name {
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text-dark);
-            margin-bottom: var(--space-1);
-        }
-
-        .term-result-definition {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-muted);
-            line-height: var(--line-height-relaxed);
-        }
-
-        /* ===== ACTION BUTTONS ===== */
-        .action-buttons {
-            display: flex;
-            gap: var(--space-3);
-            flex-direction: column;
-        }
-
-        @media (min-width: 641px) {
-            .action-buttons {
-                flex-direction: row;
-            }
-        }
-
-        .new-session-btn,
-        .export-btn {
-            flex: 1;
-            padding: var(--space-4);
-            border: none;
-            border-radius: var(--radius-lg);
-            font-size: var(--font-size-base);
-            font-weight: var(--font-weight-bold);
-            cursor: pointer;
-            transition: all var(--transition-base);
-            min-height: 44px;
-        }
-
-        .new-session-btn {
-            background: var(--color-primary);
-            color: white;
-        }
-
-        .new-session-btn:hover {
-            background: var(--color-primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .export-btn {
-            background: var(--color-bg-lighter);
-            color: var(--color-text-body);
-            border: 1px solid var(--color-border);
-        }
-
-        .export-btn:hover {
-            background: var(--color-bg);
-            border-color: var(--color-primary);
-        }
-
-        /* ===== HIDDEN ELEMENTS ===== */
-        #difficultySection,
-        .difficulty-buttons,
-        .difficulty-btn {
-            display: none !important;
-        }
-
-        /* ===== UTILITIES ===== */
-        .hidden {
+        
+        .mode-option input[type="radio"] {
             display: none;
+        }
+        
+        .mode-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: #f8f9fa;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        
+        .mode-option:hover .mode-card {
+            border-color: #667eea;
+            background: #f0f2ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+        
+        .mode-option input[type="radio"]:checked + .mode-card {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .mode-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.4rem;
+        }
+        
+        .mode-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .mode-desc {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+        
+        .mode-option input[type="radio"]:checked + .mode-card .mode-desc {
+            opacity: 0.9;
         }
     </style>
 </head>
 <body>
-    <!-- ===== HEADER ===== -->
-    <header class="app-header">
-        <div class="header-content">
-            <div>
-                <h1 style="font-size: var(--font-size-lg); font-weight: var(--font-weight-bold); margin: 0; color: var(--color-primary);">📚 IFSI Lannion 2025</h1>
-                <p style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin: var(--space-1) 0 0 0;">Révisions - Flashcards</p>
-            </div>
+    <div class="container">
+        <header>
+            <h1>📚 IFSI Lannion 2025</h1>
+            <h2>Révisions - Flashcards</h2>
             <nav class="breadcrumb">
-                <a href="./home.html">🏠 Hub</a>
-                <span>›</span>
-                <span class="current">Révisions Quotidiennes</span>
+                <a href="./home.html">🏠 Hub</a> › <span class="current">Révisions Quotidiennes</span>
             </nav>
-        </div>
-    </header>
+        </header>
 
-    <!-- ===== MAIN CONTENT ===== -->
-    <main>
-        <div class="main-container">
+        <main>
             <!-- Écran de démarrage -->
             <div class="start-screen" id="startScreen">
                 <div class="welcome-card">
@@ -805,7 +225,7 @@
                             <span id="ueFilterText">Toutes les UE</span>
                             <span class="dropdown-arrow">▼</span>
                         </div>
-                        <div class="ue-options" id="ueOptions">
+                        <div class="ue-options" id="ueOptions" style="display: none;">
                             <!-- Généré par JavaScript -->
                         </div>
                     </div>
@@ -865,11 +285,6 @@
                         </div>
                     </div>
 
-                    <!-- Estimation du temps -->
-                    <div class="time-estimate" id="timeEstimate" style="display: none;">
-                        ⏱️ <span id="estimatedTime">-</span> minutes estimées
-                    </div>
-
                     <button class="start-btn" onclick="startRevision()">
                         🚀 Commencer la révision
                     </button>
@@ -891,28 +306,22 @@
                                 <!-- Face avant: Terme -->
                                 <div class="flashcard-front">
                                     <div class="card-label">Question</div>
-                                    <div style="font-size: 0.875rem; color: var(--color-primary); font-weight: 600; margin-bottom: var(--space-2);" id="courseTitle"></div>
+                                    
+                                    <div style="font-size: 14px; color: #667eea; font-weight: 600; margin-bottom: 10px;" id="courseTitle"></div>
                                     <h3 id="termNameSimple">Terme à définir</h3>
-                                    <p class="flip-instruction">👆 Cliquez pour révéler la définition</p>
+                                    
+                                    <p class="flip-instruction" id="flip-instruction">👆 Cliquez pour révéler la définition</p>
                                 </div>
                                 
                                 <!-- Face arrière: Définition -->
                                 <div class="flashcard-back">
                                     <div class="card-label">Réponse</div>
-                                    <div style="font-size: 0.875rem; color: var(--color-success-dark); font-weight: 600; margin-bottom: var(--space-2);" id="courseTitleBack"></div>
-                                    <h3 id="termNameBack" style="margin-bottom: var(--space-4); color: var(--color-text-dark); font-weight: 700;">Terme</h3>
+                                    <div style="font-size: 14px; color: #667eea; font-weight: 600; margin-bottom: 10px;" id="courseTitleBack"></div>
+                                    <h3 id="termNameBack" style="margin-bottom: 20px; color: #2c3e50; font-weight: 700;">Terme</h3>
                                     <div class="definition-text" id="termDefinition"></div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Contrôles -->
-                    <div class="revision-controls">
-                        <button class="control-btn btn-correct" onclick="markCorrect()">✓ Correct</button>
-                        <button class="control-btn btn-partial" onclick="markPartial()">◐ Partiel</button>
-                        <button class="control-btn btn-wrong" onclick="markWrong()">✗ Faux</button>
-                        <button class="control-btn btn-skip" onclick="skipTerm()">⊘ Passer</button>
                     </div>
                 </div>
             </div>
@@ -940,8 +349,51 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Écran de révision des réponses -->
+            <div class="review-screen" id="reviewScreen" style="display: none;">
+                <div class="review-header">
+                    <h3>📋 Révision de vos réponses</h3>
+                    <button class="close-review-btn" onclick="closeReview()">✖</button>
+                </div>
+                <div class="review-content" id="reviewContent">
+                    <!-- Le contenu sera généré dynamiquement -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de signalement -->
+    <div class="report-modal" id="reportModal" style="display: none;">
+        <div class="report-content">
+            <div class="report-header">
+                <h3>⚠️ Signaler la définition</h3>
+                <button class="close-report" onclick="closeReport()">✖</button>
+            </div>
+            
+            <div class="report-body">
+                <p><strong>Terme :</strong> <span id="reportTermName"></span></p>
+                <p><strong>Définition actuelle :</strong></p>
+                <div class="current-definition" id="reportCurrentDefinition"></div>
+                
+                <label for="reportType">Que souhaitez-vous signaler ?</label>
+                <select id="reportType">
+                    <option value="unclear">Définition peu claire</option>
+                    <option value="incomplete">Définition incomplète</option>
+                    <option value="error">Erreur dans la définition</option>
+                    <option value="suggestion">Suggestion d'amélioration</option>
+                </select>
+                
+                <label for="reportComment">Votre commentaire :</label>
+                <textarea id="reportComment" placeholder="Décrivez le problème ou votre suggestion..." rows="4"></textarea>
+            </div>
+            
+            <div class="report-actions">
+                <button onclick="submitReport()" class="action-btn primary">📤 Envoyer le signalement</button>
+                <button onclick="closeReport()" class="action-btn secondary">❌ Annuler</button>
+            </div>
         </div>
-    </main>
+    </div>
 
     <!-- Firebase -->
     <script src="../assets/scripts/config/firebase-config.js"></script>

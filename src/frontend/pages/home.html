@@ -403,6 +403,224 @@
             white-space: nowrap;
             border-width: 0;
         }
+
+        /* ===== SEARCH SECTION ===== */
+        .search-section {
+            background: var(--color-bg-lighter);
+            padding: var(--space-6) var(--space-4);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        @media (min-width: 641px) {
+            .search-section {
+                padding: var(--space-8) var(--space-6);
+            }
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .search-label {
+            display: block;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-dark);
+            margin-bottom: var(--space-2);
+        }
+
+        .search-input-wrapper {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            padding-right: var(--space-12);
+            font-size: var(--font-size-base);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            background: var(--color-bg);
+            color: var(--color-text-dark);
+            transition: all var(--transition-base);
+            font-family: inherit;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: var(--space-4);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-text-muted);
+            font-size: var(--font-size-lg);
+            pointer-events: none;
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-top: none;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 40;
+            display: none;
+        }
+
+        .search-suggestions.active {
+            display: block;
+        }
+
+        .suggestion-item {
+            padding: var(--space-3) var(--space-4);
+            cursor: pointer;
+            transition: background var(--transition-fast);
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item:hover {
+            background: var(--color-bg-lighter);
+        }
+
+        .suggestion-term {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-dark);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-1);
+        }
+
+        .suggestion-ue {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        /* ===== TERM MODAL ===== */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: var(--space-4);
+            animation: fadeIn var(--transition-base);
+        }
+
+        .modal-backdrop.active {
+            display: flex;
+        }
+
+        .term-modal {
+            background: var(--color-bg);
+            border-radius: var(--radius-xl);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            animation: slideInUp var(--transition-base);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: var(--space-6);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .modal-title {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-dark);
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: var(--font-size-xl);
+            color: var(--color-text-muted);
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color var(--transition-fast);
+        }
+
+        .modal-close:hover {
+            color: var(--color-text-dark);
+        }
+
+        .modal-body {
+            padding: var(--space-6);
+        }
+
+        .term-info {
+            margin-bottom: var(--space-6);
+        }
+
+        .term-ue {
+            display: inline-block;
+            background: var(--color-primary-lighter);
+            color: var(--color-primary-dark);
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-3);
+        }
+
+        .term-definition {
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-relaxed);
+            color: var(--color-text-body);
+            padding: var(--space-4);
+            background: var(--color-bg-lighter);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .modal-footer {
+            padding: var(--space-4) var(--space-6) var(--space-6) var(--space-6);
+            display: flex;
+            gap: var(--space-3);
+            flex-direction: column;
+        }
+
+        @media (min-width: 641px) {
+            .modal-footer {
+                flex-direction: row-reverse;
+            }
+        }
+
+        .modal-footer-btn {
+            flex: 1;
+            min-width: 120px;
+        }
     </style>
 </head>
 <body>
@@ -434,6 +652,50 @@
                 <p class="hero-subtitle">Apprenez intelligemment avec nos outils de révision interactifs. Progressez à votre rythme.</p>
             </div>
         </section>
+
+        <!-- SEARCH SECTION -->
+        <section class="search-section">
+            <div class="search-container">
+                <label for="searchInput" class="search-label">🔍 Chercher un terme ou une définition</label>
+                <div class="search-input-wrapper">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Ex: cellule, noyau, membrane..." 
+                        minlength="2"
+                        aria-label="Rechercher un terme">
+                    <span class="search-icon">🔎</span>
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TERM RESULT MODAL -->
+        <div id="termModal" class="modal-backdrop">
+            <div class="term-modal">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modalTermTitle">Terme</h2>
+                    <button class="modal-close" aria-label="Fermer" onclick="closeTermModal()">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="term-info">
+                        <span class="term-ue" id="modalTermUE">UE X.X</span>
+                    </div>
+                    <div class="term-definition" id="modalTermDefinition">
+                        Définition...
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary modal-footer-btn" id="viewCourseBtn" onclick="viewCourse()">
+                        📖 Voir le cours complet
+                    </button>
+                    <button class="btn btn-outline modal-footer-btn" onclick="closeTermModal()">
+                        Fermer
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <!-- PRIMARY ACTIONS -->
         <div class="main-container">
@@ -562,6 +824,186 @@
                 emailElement.textContent = userEmail.split('@')[0];
             }
         }
+
+        // ===== SEARCH FUNCTIONALITY =====
+        let allCourses = [];
+        let selectedTerm = null;
+        let selectedCourse = null;
+
+        // Load courses data
+        async function loadCoursesData() {
+            try {
+                const response = await fetch('/src/data/courses.json');
+                const data = await response.json();
+                allCourses = data.courses || [];
+            } catch (error) {
+                console.error('Could not load courses:', error);
+            }
+        }
+
+        // Fuzzy search algorithm
+        function levenshteinDistance(str1, str2) {
+            const lower1 = str1.toLowerCase();
+            const lower2 = str2.toLowerCase();
+            const matrix = [];
+
+            for (let i = 0; i <= lower2.length; i++) {
+                matrix[i] = [i];
+            }
+            for (let j = 0; j <= lower1.length; j++) {
+                matrix[0][j] = j;
+            }
+
+            for (let i = 1; i <= lower2.length; i++) {
+                for (let j = 1; j <= lower1.length; j++) {
+                    if (lower2.charAt(i - 1) === lower1.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1,
+                            matrix[i][j - 1] + 1,
+                            matrix[i - 1][j] + 1
+                        );
+                    }
+                }
+            }
+            return matrix[lower2.length][lower1.length];
+        }
+
+        // Search for terms and definitions
+        function searchTerms(query) {
+            if (query.length < 2) {
+                document.getElementById('searchSuggestions').classList.remove('active');
+                return [];
+            }
+
+            const results = [];
+            const maxDistance = Math.ceil(query.length * 0.3); // Allow 30% typo tolerance
+
+            allCourses.forEach(([, course]) => {
+                if (course.definitions) {
+                    course.definitions.forEach(def => {
+                        const termDistance = levenshteinDistance(query, def.term);
+                        const defDistance = levenshteinDistance(query, def.definition);
+                        const minDistance = Math.min(termDistance, defDistance);
+
+                        if (minDistance <= maxDistance || 
+                            def.term.toLowerCase().includes(query.toLowerCase()) ||
+                            def.definition.toLowerCase().includes(query.toLowerCase())) {
+                            results.push({
+                                term: def.term,
+                                definition: def.definition,
+                                ue: course.ue,
+                                courseId: course.id || course.title,
+                                distance: minDistance,
+                                isTermMatch: termDistance <= maxDistance || def.term.toLowerCase().includes(query.toLowerCase())
+                            });
+                        }
+                    });
+                }
+            });
+
+            // Sort by relevance
+            results.sort((a, b) => {
+                if (a.isTermMatch && !b.isTermMatch) return -1;
+                if (!a.isTermMatch && b.isTermMatch) return 1;
+                return a.distance - b.distance;
+            });
+
+            return results.slice(0, 8); // Return top 8 results
+        }
+
+        // Display suggestions
+        function displaySuggestions(results) {
+            const container = document.getElementById('searchSuggestions');
+            
+            if (results.length === 0) {
+                container.innerHTML = '<div style="padding: var(--space-4); color: var(--color-text-muted); text-align: center;">Aucun résultat trouvé</div>';
+                container.classList.add('active');
+                return;
+            }
+
+            container.innerHTML = results.map((result, index) => `
+                <div class="suggestion-item" onclick="selectTerm(${index})">
+                    <div class="suggestion-term">${escapeHtml(result.term)}</div>
+                    <div class="suggestion-ue">${escapeHtml(result.ue)}</div>
+                </div>
+            `).join('');
+            container.classList.add('active');
+        }
+
+        // Select term and show modal
+        function selectTerm(index) {
+            const results = searchTerms(document.getElementById('searchInput').value);
+            if (index < results.length) {
+                selectedTerm = results[index];
+                selectedCourse = allCourses.find(([, course]) => 
+                    course.ue === selectedTerm.ue && 
+                    course.definitions?.some(d => d.term === selectedTerm.term)
+                );
+                
+                // Update modal
+                document.getElementById('modalTermTitle').textContent = selectedTerm.term;
+                document.getElementById('modalTermUE').textContent = selectedTerm.ue;
+                document.getElementById('modalTermDefinition').textContent = selectedTerm.definition;
+                
+                // Show modal
+                document.getElementById('termModal').classList.add('active');
+                document.getElementById('searchSuggestions').classList.remove('active');
+            }
+        }
+
+        // Close modal
+        function closeTermModal() {
+            document.getElementById('termModal').classList.remove('active');
+            selectedTerm = null;
+            selectedCourse = null;
+        }
+
+        // View course
+        function viewCourse() {
+            if (selectedTerm) {
+                // Pass term as parameter to browse-courses
+                window.location.href = `./browse-courses.html?ue=${encodeURIComponent(selectedTerm.ue)}&term=${encodeURIComponent(selectedTerm.term)}`;
+            }
+        }
+
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Event listeners for search
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value;
+            const results = searchTerms(query);
+            displaySuggestions(results);
+        });
+
+        // Close suggestions when clicking outside
+        document.addEventListener('click', (e) => {
+            const searchContainer = document.querySelector('.search-input-wrapper');
+            if (!searchContainer?.contains(e.target)) {
+                document.getElementById('searchSuggestions').classList.remove('active');
+            }
+        });
+
+        // Close modal when clicking backdrop
+        document.getElementById('termModal').addEventListener('click', (e) => {
+            if (e.target.id === 'termModal') {
+                closeTermModal();
+            }
+        });
+
+        // Initialize
+        window.addEventListener('load', loadCoursesData);
     </script>
 </body>
 </html>

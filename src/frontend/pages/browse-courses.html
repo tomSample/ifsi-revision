@@ -2,898 +2,536 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IFSI Lannion - Révisions 2025</title>
-    <link rel="stylesheet" href="../assets/styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Parcourir les cours - IFSI Lannion 2025">
+    <meta name="theme-color" content="#2563EB">
+    
+    <title>Parcourir les Cours - IFSI Lannion 2025</title>
+    
+    <!-- Manifest & Icons -->
+    <link rel="manifest" href="../../../public/manifest.json">
+    <link rel="icon" type="image/x-icon" href="../../../public/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="../assets/styles/theme.css">
+    <link rel="stylesheet" href="../assets/styles/design-system.css">
+    <link rel="stylesheet" href="../assets/styles/animations.css">
+    <link rel="stylesheet" href="../assets/styles/layout.css">
+    
+    <!-- Page-specific styles -->
     <style>
-        /* Styles pour les boutons admin */
-        .course-admin-actions {
-            margin-top: 0.5rem;
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
             display: flex;
-            gap: 0.3rem;
-            justify-content: flex-end;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
+            flex-direction: column;
+            background: var(--color-bg-light);
         }
 
-        .course-card:hover .course-admin-actions {
-            opacity: 1;
+        main {
+            flex: 1;
         }
 
-        .admin-btn {
-            padding: 0.3rem 0.5rem;
-            border: none;
-            border-radius: 4px;
+        /* ===== HEADER ===== */
+        .app-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+            box-shadow: var(--shadow-xs);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-4);
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            text-decoration: none;
+            color: var(--color-text-dark);
+        }
+
+        .header-brand-icon {
+            font-size: 1.5rem;
+        }
+
+        .header-brand-text h1 {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-bold);
+            margin: 0;
+            color: var(--color-primary);
+        }
+
+        .header-brand-text p {
+            font-size: 0.65rem;
+            color: var(--color-text-muted);
+            margin: var(--space-1) 0 0 0;
+        }
+
+        .header-link {
+            font-size: var(--font-size-base);
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .header-link:hover {
+            color: var(--color-primary-dark);
+        }
+
+        @media (min-width: 641px) {
+            .header-content {
+                padding: var(--space-6);
+            }
+
+            .header-brand-text h1 {
+                font-size: var(--font-size-lg);
+            }
+        }
+
+        /* ===== PAGE CONTAINER ===== */
+        .page-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: var(--space-4);
+            width: 100%;
+        }
+
+        @media (min-width: 641px) {
+            .page-container {
+                padding: var(--space-8) var(--space-6);
+            }
+        }
+
+        .page-title {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-dark);
+            margin-bottom: var(--space-6);
+            animation: slideInUp var(--transition-base);
+        }
+
+        /* ===== FILTERS ===== */
+        .filters-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+            margin-bottom: var(--space-8);
+            padding: var(--space-4);
+            background: var(--color-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+        }
+
+        @media (min-width: 641px) {
+            .filters-section {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-6);
+            }
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .filter-label {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-dark);
+        }
+
+        .filter-select {
+            padding: var(--space-2) var(--space-3);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            background: var(--color-bg-light);
+            color: var(--color-text-dark);
+            font-family: inherit;
+            font-size: var(--font-size-sm);
             cursor: pointer;
-            font-size: 0.75rem;
-            font-weight: 400;
-            transition: all 0.2s ease;
-            background: rgba(108, 117, 125, 0.1);
-            color: #6c757d;
-            border: 1px solid rgba(108, 117, 125, 0.2);
+            transition: all var(--transition-base);
         }
 
-        .admin-btn:hover {
-            background: rgba(108, 117, 125, 0.2);
-            color: #495057;
-            transform: translateY(-1px);
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
-        /* Badge administrateur */
-        .admin-badge {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        /* ===== COURSES GRID ===== */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+        }
+
+        @media (min-width: 641px) {
+            .courses-grid {
+                gap: var(--space-6);
+            }
+        }
+
+        .course-card {
+            background: var(--color-bg);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            display: flex;
+            flex-direction: column;
+            animation: slideInUp var(--transition-base) both;
+        }
+
+        .course-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .course-header {
+            padding: var(--space-4);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
         }
-        
-        /* Styles pour les badges d'importance */
-        .importance-badge-inline {
-            display: inline-block;
-            font-size: 0.75rem;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            margin-left: 0.5rem;
-            font-weight: 500;
+
+        .course-ue {
+            font-size: var(--font-size-xs);
+            opacity: 0.9;
+            margin-bottom: var(--space-1);
+            text-transform: uppercase;
+            letter-spacing: var(--letter-spacing-wide);
         }
-        
-        .admin-importance-selector {
-            flex-shrink: 0;
+
+        .course-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+            margin: 0;
+            color: white;
         }
-        
-        .admin-importance-selector select {
-            cursor: pointer;
-            background: white;
-            transition: all 0.2s ease;
+
+        .course-body {
+            padding: var(--space-4);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
-        
-        .admin-importance-selector select:hover {
-            border-color: #667eea;
-            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+
+        .term-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+
+        .term-item {
+            padding: var(--space-3);
+            border-bottom: 1px solid var(--color-border);
+            transition: background var(--transition-fast);
         }
-        
-        @keyframes slideOut {
-            from {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateX(100px);
-            }
+
+        .term-item:last-child {
+            border-bottom: none;
+        }
+
+        .term-item.highlighted {
+            background: var(--color-primary-lighter);
+        }
+
+        .term-item:hover {
+            background: var(--color-bg-lighter);
+        }
+
+        .term-item-title {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-dark);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-1);
+        }
+
+        .term-item-def {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .course-footer {
+            padding: var(--space-3) var(--space-4);
+            background: var(--color-bg-lighter);
+            border-top: 1px solid var(--color-border);
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            text-align: center;
+            padding: var(--space-12) var(--space-4);
+            color: var(--color-text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-4);
+        }
+
+        .empty-state h3 {
+            color: var(--color-text-dark);
+            margin-bottom: var(--space-2);
+        }
+
+        /* ===== FOOTER ===== */
+        .app-footer {
+            background: var(--color-bg-lighter);
+            border-top: 1px solid var(--color-border);
+            padding: var(--space-6) var(--space-4);
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: var(--font-size-xs);
+            margin-top: var(--space-12);
         }
     </style>
 </head>
 <body>
-    <!-- Firebase Config -->
-    <script src="../assets/scripts/config/firebase-config.js"></script>
-    
-    <!-- Auth Guard: Rediriger si non connecté -->
-
-    <script src="../assets/scripts/auth/auth.js"></script>
-    
-    <!-- Sélecteur de semestre -->
-    <script src="../assets/scripts/semester-selector.js"></script>
-    
-    <!-- Badge administrateur -->
-    <div id="adminBadge" class="admin-badge admin-only">
-        🔐 Mode Administrateur
-    </div>
-    <div class="container">
-        <header>
-            <h1>📚 IFSI Lannion 2025</h1>
-            <h2>Révisions - Base de données des cours</h2>
-            <nav class="breadcrumb">
-                <a href="./home.html">🏠 Hub</a> › <span class="current">Consultation Cours</span>
-            </nav>
-        </header>
-
-        <main>
-            <div class="stats-section">
-                <div class="stats-header">
-                    <h3>📊 Statistiques des cours</h3>
-                    <button class="refresh-btn" onclick="loadCourses()" title="Actualiser les données">
-                        🔄
-                    </button>
+    <!-- ===== HEADER ===== -->
+    <header class="app-header">
+        <div class="header-content">
+            <a href="./home.html" class="header-brand">
+                <span class="header-brand-icon">📚</span>
+                <div class="header-brand-text">
+                    <h1>IFSI Lannion</h1>
+                    <p>Révisions 2025</p>
                 </div>
-                <div class="stats-grid" id="statsGrid">
-                    <div class="stat-item">
-                        <span class="stat-number" id="totalCourses">-</span>
-                        <span class="stat-label">Cours</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" id="totalTerms">-</span>
-                        <span class="stat-label">Termes</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" id="totalUE">-</span>
-                        <span class="stat-label">UE</span>
-                    </div>
-                </div>
-            </div>
+            </a>
+            <a href="./home.html" class="header-link">← Retour</a>
+        </div>
+    </header>
 
-            <div class="courses-section">
-                <h3>📖 Cours disponibles</h3>
-                <div class="filters">
-                    <select id="ueFilter" onchange="filterCourses()">
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+        <div class="page-container">
+            <h1 class="page-title">📖 Parcourir les Cours</h1>
+
+            <!-- FILTERS -->
+            <div class="filters-section">
+                <div class="filter-group">
+                    <label for="filterUE" class="filter-label">Filtrer par UE</label>
+                    <select id="filterUE" class="filter-select">
                         <option value="">Toutes les UE</option>
                     </select>
-                    <input type="text" id="searchInput" placeholder="Rechercher un cours..." onkeyup="filterCourses()">
                 </div>
-                <div class="courses-grid" id="coursesGrid">
-                    <!-- Les cours seront chargés ici -->
+                <div class="filter-group">
+                    <label for="filterSemester" class="filter-label">Filtrer par Semestre</label>
+                    <select id="filterSemester" class="filter-select">
+                        <option value="">Tous les Semestres</option>
+                    </select>
                 </div>
             </div>
 
-            <div class="terms-section" id="termsSection" style="display: none;">
-                <h3>📝 Termes et définitions</h3>
-                <div class="terms-container" id="termsContainer">
-                    <!-- Les termes seront affichés ici -->
+            <!-- COURSES GRID -->
+            <div id="coursesContainer" class="courses-grid">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📚</div>
+                    <h3>Chargement des cours...</h3>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer">
+        <p>IFSI Lannion 2025 - Plateforme v3.0</p>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
     <script>
-        // Helper pour résoudre les chemins sur GitHub Pages
-        const isGitHubPages = window.location.hostname.includes('github.io');
-        const basePath = isGitHubPages ? '/ifsi-revision' : '';
-        const resolvePath = (path) => path.startsWith('/') ? basePath + path : path;
-        
-        let coursesData = null;
+        let allCourses = [];
         let filteredCourses = [];
-        let currentSemester = 'S1'; // Semestre actuellement sélectionné
+        let highlightedTerm = null;
+        let highlightedUE = null;
 
-        // Chargement des données au démarrage
-        document.addEventListener('DOMContentLoaded', function() {
-            loadCourses();
-            
-            // Initialiser le sélecteur de semestre avec le callback
-            setTimeout(() => {
-                SemesterSelector.init(onSemesterChanged);
-            }, 100);
-        });
+        // Get URL parameters
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                term: params.get('term'),
+                ue: params.get('ue')
+            };
+        }
 
-        // Charger les cours depuis le JSON
+        // Load courses
         async function loadCourses() {
             try {
-                const response = await fetch(resolvePath('/src/data/courses.json'));
+                const response = await fetch('/src/data/courses.json');
                 const data = await response.json();
-                coursesData = data;
+                allCourses = data.courses || [];
                 
-                // Filtrer par semestre
-                filterByCurrentSemester();
+                const urlParams = getUrlParams();
+                highlightedTerm = urlParams.term;
+                highlightedUE = urlParams.ue;
                 
+                populateFilters();
+                renderCourses(allCourses);
+                
+                // Auto-scroll to highlighted term if present
+                if (highlightedTerm) {
+                    setTimeout(() => {
+                        const element = document.querySelector('.term-item.highlighted');
+                        if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }, 300);
+                }
             } catch (error) {
-                console.error('Erreur lors du chargement:', error);
-                document.getElementById('coursesGrid').innerHTML = 
-                    '<div class="error">❌ Erreur lors du chargement des données</div>';
+                console.error('Could not load courses:', error);
+                document.getElementById('coursesContainer').innerHTML = 
+                    '<div class="empty-state"><div class="empty-state-icon">❌</div><h3>Erreur de chargement</h3></div>';
             }
         }
 
-        /**
-         * Filtre les cours par semestre actuel
-         */
-        function filterByCurrentSemester() {
-            if (!coursesData || !coursesData.courses) return;
-            
-            const filtered = SemesterSelector.filterCoursesBySemester(
-                coursesData.courses,
-                currentSemester
-            );
-            
-            updateStats(filtered);
-            populateUEFilter(filtered);
-            displayCourses(filtered);
-        }
+        // Populate filter dropdowns
+        function populateFilters() {
+            const ueSet = new Set();
+            const semesterSet = new Set();
 
-        /**
-         * Callback appelé lors du changement de semestre
-         */
-        function onSemesterChanged(semester) {
-            currentSemester = semester;
-            console.log(`📚 Changement vers ${semester}`);
-            
-            if (!coursesData) {
-                console.warn('Les données des cours ne sont pas encore chargées');
-                return;
-            }
-            
-            // Réappliquer le filtre UE et la recherche avec le nouveau semestre
-            filterByCurrentSemester();
-            filterCourses(); // Réappliquer les autres filtres
-        }
+            allCourses.forEach(([, course]) => {
+                ueSet.add(course.ue);
+                const semester = course.ue.split('.')[2]; // e.g., "S1" from "2.2.S1"
+                semesterSet.add(semester);
+            });
 
-        // Charger les données des cours au démarrage
-        function loadCourses() {
-            fetch('/src/data/courses.json')
-                .then(response => response.json())
-                .then(data => {
-                    coursesData = data;
-                    updateStats();
-                    populateUEFilter();
-                    filterByCurrentSemester();
-                })
-                .catch(error => {
-                    console.error('Erreur lors du chargement des données:', error);
-                    document.getElementById('coursesGrid').innerHTML =
-                    '<div class="error">❌ Erreur lors du chargement des données</div>';
-                });
-        }
+            // Sort UEs
+            const ueArray = Array.from(ueSet).sort((a, b) => {
+                const aParts = a.split('.');
+                const bParts = b.split('.');
+                const aNum = parseInt(aParts[0]) * 100 + parseInt(aParts[1]);
+                const bNum = parseInt(bParts[0]) * 100 + parseInt(bParts[1]);
+                return aNum - bNum;
+            });
 
-        // Mettre à jour les statistiques
-        function updateStats(courses = null) {
-            const coursesToCount = courses || (coursesData ? coursesData.courses : []);
-            
-            if (!coursesToCount || coursesToCount.length === 0) {
-                document.getElementById('totalCourses').textContent = '0';
-                document.getElementById('totalTerms').textContent = '0';
-                document.getElementById('totalUE').textContent = '0';
-                return;
-            }
-
-            const totalCourses = coursesToCount.length;
-            const totalTerms = coursesToCount.reduce((sum, course) => 
-                sum + (course[1].definitions ? course[1].definitions.length : 0), 0);
-            
-            const ues = [...new Set(coursesToCount.map(course => course[1].ue))];
-            const totalUE = ues.length;
-
-            document.getElementById('totalCourses').textContent = totalCourses;
-            document.getElementById('totalTerms').textContent = totalTerms;
-            document.getElementById('totalUE').textContent = totalUE;
-        }
-
-        // Peupler le filtre UE
-        function populateUEFilter(courses = null) {
-            const coursesToFilter = courses || (coursesData ? coursesData.courses : []);
-            
-            if (!coursesToFilter || coursesToFilter.length === 0) {
-                return;
-            }
-
-            const ues = [...new Set(coursesToFilter.map(course => course[1].ue))];
-            const select = document.getElementById('ueFilter');
-            
-            // Vider les options existantes sauf la première
-            while (select.options.length > 1) {
-                select.remove(1);
-            }
-            
-            ues.forEach(ue => {
+            const ueSelect = document.getElementById('filterUE');
+            ueArray.forEach(ue => {
                 const option = document.createElement('option');
                 option.value = ue;
                 option.textContent = `UE ${ue}`;
-                select.appendChild(option);
+                ueSelect.appendChild(option);
             });
+
+            // Sort Semesters
+            const semesterArray = Array.from(semesterSet).sort((a, b) => {
+                const aNum = parseInt(a.replace('S', ''));
+                const bNum = parseInt(b.replace('S', ''));
+                return aNum - bNum;
+            });
+
+            const semesterSelect = document.getElementById('filterSemester');
+            semesterArray.forEach(semester => {
+                const option = document.createElement('option');
+                option.value = semester;
+                option.textContent = semester;
+                semesterSelect.appendChild(option);
+            });
+
+            // Set initial values if URL params exist
+            if (highlightedUE) {
+                ueSelect.value = highlightedUE;
+            }
         }
 
-        // Afficher les cours
-        function displayCourses(courses) {
-            const grid = document.getElementById('coursesGrid');
-            
+        // Filter courses
+        function applyFilters() {
+            const ueFilter = document.getElementById('filterUE').value;
+            const semesterFilter = document.getElementById('filterSemester').value;
+
+            filteredCourses = allCourses.filter(([, course]) => {
+                const ueMatch = !ueFilter || course.ue === ueFilter;
+                const semesterMatch = !semesterFilter || course.ue.includes(semesterFilter);
+                return ueMatch && semesterMatch;
+            });
+
+            renderCourses(filteredCourses);
+        }
+
+        // Render courses
+        function renderCourses(courses) {
+            const container = document.getElementById('coursesContainer');
+
             if (courses.length === 0) {
-                grid.innerHTML = '<div class="no-results">Aucun cours trouvé</div>';
+                container.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <div class="empty-state-icon">🔍</div>
+                        <h3>Aucun cours trouvé</h3>
+                        <p>Essayez de modifier vos filtres</p>
+                    </div>
+                `;
                 return;
             }
 
-            grid.innerHTML = courses.map(course => {
-                const [key, data] = course;
-                const courseTitle = (data.title || 'Titre non défini').replace(/"/g, '&quot;');
+            container.innerHTML = courses.map(([, course], index) => {
+                const definitions = course.definitions || [];
+                const termsHtml = definitions.map((def, defIndex) => {
+                    const isHighlighted = highlightedTerm && def.term === highlightedTerm;
+                    return `
+                        <li class="term-item ${isHighlighted ? 'highlighted' : ''}" ${isHighlighted ? 'id="highlighted-term"' : ''}>
+                            <div class="term-item-title">${escapeHtml(def.term)}</div>
+                            <div class="term-item-def">${escapeHtml(def.definition)}</div>
+                        </li>
+                    `;
+                }).join('');
+
                 return `
-                    <div class="course-card" onclick="showCourseDetails('${key}')">
+                    <div class="course-card" style="animation-delay: ${index * 50}ms">
                         <div class="course-header">
-                            <span class="course-ue">UE ${data.ue}</span>
-                            <span class="course-date">${data.date || ''}</span>
+                            <div class="course-ue">${escapeHtml(course.ue)}</div>
+                            <h2 class="course-title">${escapeHtml(course.title)}</h2>
                         </div>
-                        <h4 class="course-title">${data.title}</h4>
-                        <div class="course-meta">
-                            <span class="course-author">👤 ${data.author || 'Non défini'}</span>
-                            <span class="course-terms">📝 ${data.definitions ? data.definitions.length : 0} termes</span>
+                        <div class="course-body">
+                            <ul class="term-list">
+                                ${termsHtml}
+                            </ul>
                         </div>
-                        
-                        <!-- Boutons admin (masqués par défaut) -->
-                        <div class="course-admin-actions admin-only">
-                            <button onclick="event.stopPropagation(); editCourse('${key}', &quot;${courseTitle}&quot;)" class="admin-btn edit-btn" title="Éditer le cours">
-                                ✏️
-                            </button>
-                            <button onclick="event.stopPropagation(); deleteCourse('${key}', &quot;${courseTitle}&quot;)" class="admin-btn delete-btn" title="Supprimer le cours">
-                                🗑️
-                            </button>
+                        <div class="course-footer">
+                            ${definitions.length} terme${definitions.length > 1 ? 's' : ''}
                         </div>
                     </div>
                 `;
             }).join('');
-            
-            // Réactiver les boutons admin si connecté
-            authManager.checkAuthStatus();
         }
 
-        // Filtrer les cours
-        function filterCourses() {
-            if (!coursesData) return;
-
-            const ueFilter = document.getElementById('ueFilter').value;
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-
-            // Commencer par les cours du semestre actuel
-            let filtered = SemesterSelector.filterCoursesBySemester(
-                coursesData.courses,
-                currentSemester
-            );
-
-            if (ueFilter) {
-                filtered = filtered.filter(course => course[1].ue === ueFilter);
-            }
-
-            if (searchTerm) {
-                filtered = filtered.filter(course => 
-                    course[1].title.toLowerCase().includes(searchTerm) ||
-                    course[1].author.toLowerCase().includes(searchTerm)
-                );
-            }
-
-            displayCourses(filtered);
-        }
-
-        // Afficher les détails d'un cours
-        function showCourseDetails(courseKey) {
-            const course = coursesData.courses.find(c => c[0] === courseKey);
-            if (!course) return;
-
-            const [key, data] = course;
-            const termsSection = document.getElementById('termsSection');
-            const termsContainer = document.getElementById('termsContainer');
-            
-            // Vérifier l'authentification et le statut admin de façon fiable
-            authManager.checkAuthStatus();
-            const isAdmin = authManager && authManager.isAdmin();
-            
-            // Stocker la clé du cours actuel pour les raccourcis clavier
-            window.currentCourseKey = courseKey;
-            window.selectedTerms = new Set();
-
-            termsContainer.innerHTML = `
-                <div class="course-details-header">
-                    <h4>${data.title}</h4>
-                    <button onclick="hideTerms()" class="close-btn">✖</button>
-                </div>
-                <div class="course-details-meta">
-                    <span>UE ${data.ue}</span> • 
-                    <span>${data.author}</span> • 
-                    <span>${data.date}</span>
-                </div>
-                ${isAdmin ? `
-                <div class="bulk-edit-toolbar" style="background: #f8f9fa; border: 2px solid #e9ecef; border-radius: 8px; padding: 1rem; margin: 1rem 0; display: none;" id="bulkToolbar">
-                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
-                        <div style="font-weight: 600; color: #495057;">
-                            <span id="selectedCount">0</span> terme(s) sélectionné(s)
-                        </div>
-                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                            <button onclick="bulkApplyImportance('indispensable')" style="background: #dc3545; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.9rem;">🔴 Indispensable</button>
-                            <button onclick="bulkApplyImportance('utile')" style="background: #ffc107; color: #333; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.9rem;">🟡 Utile</button>
-                            <button onclick="bulkApplyImportance('optionnel')" style="background: #28a745; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.9rem;">🟢 Optionnel</button>
-                            <button onclick="bulkClearSelection()" style="background: #6c757d; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.9rem;">✖ Désélectionner tout</button>
-                        </div>
-                    </div>
-                    <div style="font-size: 0.85rem; color: #6c757d; margin-top: 0.5rem;">💡 Raccourcis: <kbd>1</kbd>=Indispensable • <kbd>2</kbd>=Utile • <kbd>3</kbd>=Optionnel</div>
-                </div>
-                ` : ''}
-                <div class="definitions-list">
-                    ${data.definitions ? data.definitions.map((def, index) => {
-                        const importance = def.importance || '';
-                        const importanceBadge = getImportanceBadge(importance);
-                        
-                        return `
-                        <div class="definition-item" data-term-index="${index}" style="position: relative;">
-                            <div class="definition-header" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem;">
-                                ${isAdmin ? `<input type="checkbox" class="term-checkbox" data-index="${index}" onchange="toggleTermSelection(${index})" style="margin-top: 4px; cursor: pointer; width: 18px; height: 18px;">` : ''}
-                                <div style="flex: 1;">
-                                    <div class="definition-term">${index + 1}. ${def.term}</div>
-                                    ${importance ? `<span class="importance-badge-inline">${importanceBadge}</span>` : ''}
-                                </div>
-                            </div>
-                            <div class="definition-text">${def.definition}</div>
-                        </div>
-                    `}).join('') : '<p>Aucune définition disponible</p>'}
-                </div>
-            `;
-
-            termsSection.style.display = 'block';
-            termsSection.scrollIntoView({ behavior: 'smooth' });
-            
-            // Attacher les event listeners pour les raccourcis clavier si admin
-            if (isAdmin) {
-                document.removeEventListener('keydown', handleBulkKeyboard);
-                document.addEventListener('keydown', handleBulkKeyboard);
-            }
-        }
-        
-        // Obtenir le badge d'importance
-        function getImportanceBadge(importance) {
-            const badges = {
-                'indispensable': '🔴 Indispensable',
-                'utile': '🟡 Utile',
-                'optionnel': '🟢 Optionnel'
+        // Escape HTML
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
             };
-            return badges[importance] || '';
-        }
-        
-        // Mettre à jour l'importance d'un terme (admin uniquement)
-        function updateTermImportance(courseKey, termIndex, importance) {
-            if (!authManager || !authManager.isAdmin()) {
-                alert('❌ Accès refusé: Vous devez être administrateur');
-                return;
-            }
-            
-            // Trouver le cours dans les données
-            const courseIndex = coursesData.courses.findIndex(c => c[0] === courseKey);
-            if (courseIndex === -1) {
-                alert('❌ Cours non trouvé');
-                return;
-            }
-            
-            const [key, data] = coursesData.courses[courseIndex];
-            
-            if (!data.definitions || !data.definitions[termIndex]) {
-                alert('❌ Terme non trouvé');
-                return;
-            }
-            
-            // Mettre à jour l'importance localement
-            if (importance === '') {
-                delete data.definitions[termIndex].importance;
-            } else {
-                data.definitions[termIndex].importance = importance;
-            }
-            
-            // Sauvegarder sur le serveur
-            saveCoursesToServer()
-                .then(() => {
-                    showNotification('✅ Importance mise à jour', 'success');
-                    // Rafraîchir l'affichage
-                    showCourseDetails(courseKey);
-                })
-                .catch(error => {
-                    console.error('Erreur sauvegarde:', error);
-                    showNotification('❌ Erreur lors de la sauvegarde', 'error');
-                });
-        }
-        
-        // Sauvegarder courses.json sur le serveur
-        async function saveCoursesToServer() {
-            try {
-                const response = await fetch('/api/update_courses', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(coursesData)
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
-                
-                const result = await response.json();
-                if (!result.success) {
-                    throw new Error(result.error || 'Erreur inconnue');
-                }
-                
-                return result;
-            } catch (error) {
-                console.error('Erreur sauvegarde courses.json:', error);
-                throw error;
-            }
-        }
-        
-        // Afficher une notification
-        function showNotification(message, type = 'info') {
-            // Supprimer les anciennes notifications
-            const existingNotifs = document.querySelectorAll('.notification');
-            existingNotifs.forEach(notif => notif.remove());
-            
-            // Créer la nouvelle notification
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 1rem 1.5rem;
-                border-radius: 8px;
-                background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#007bff'};
-                color: white;
-                font-weight: 500;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                z-index: 10000;
-                animation: slideIn 0.3s ease;
-            `;
-            notification.textContent = message;
-            
-            document.body.appendChild(notification);
-            
-            // Masquer après 3 secondes
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
+            return text.replace(/[&<>"']/g, m => map[m]);
         }
 
-        // Masquer les termes
-        function hideTerms() {
-            document.getElementById('termsSection').style.display = 'none';
-            document.removeEventListener('keydown', handleBulkKeyboard);
-            window.selectedTerms = null;
-        }
+        // Event listeners
+        document.getElementById('filterUE').addEventListener('change', applyFilters);
+        document.getElementById('filterSemester').addEventListener('change', applyFilters);
 
-        // ===== NOUVELLES FONCTIONS POUR SÉLECTION MULTIPLE =====
-        
-        // Basculer la sélection d'un terme
-        function toggleTermSelection(index) {
-            if (!window.selectedTerms) {
-                window.selectedTerms = new Set();
-            }
-            
-            if (window.selectedTerms.has(index)) {
-                window.selectedTerms.delete(index);
-            } else {
-                window.selectedTerms.add(index);
-            }
-            
-            updateBulkToolbar();
-        }
-        
-        // Mettre à jour l'affichage de la barre d'outils
-        function updateBulkToolbar() {
-            const toolbar = document.getElementById('bulkToolbar');
-            const countSpan = document.getElementById('selectedCount');
-            const selectedCount = window.selectedTerms ? window.selectedTerms.size : 0;
-            
-            if (toolbar) {
-                toolbar.style.display = selectedCount > 0 ? 'block' : 'none';
-                if (countSpan) {
-                    countSpan.textContent = selectedCount;
-                }
-            }
-            
-            // Mettre à jour les checkboxes
-            document.querySelectorAll('.term-checkbox').forEach((checkbox, index) => {
-                checkbox.checked = window.selectedTerms && window.selectedTerms.has(index);
-            });
-        }
-        
-        // Appliquer l'importance à tous les termes sélectionnés
-        function bulkApplyImportance(importance) {
-            if (!window.selectedTerms || window.selectedTerms.size === 0) {
-                alert('❌ Aucun terme sélectionné');
-                return;
-            }
-            
-            if (!window.currentCourseKey || !coursesData) return;
-            
-            const courseIndex = coursesData.courses.findIndex(c => c[0] === window.currentCourseKey);
-            if (courseIndex === -1) return;
-            
-            const [key, data] = coursesData.courses[courseIndex];
-            
-            // Appliquer l'importance à chaque terme sélectionné
-            window.selectedTerms.forEach(index => {
-                if (data.definitions && data.definitions[index]) {
-                    data.definitions[index].importance = importance;
-                }
-            });
-            
-            // Sauvegarder sur le serveur
-            saveCoursesToServer()
-                .then(() => {
-                    const labels = {
-                        'indispensable': '🔴 Indispensable',
-                        'utile': '🟡 Utile',
-                        'optionnel': '🟢 Optionnel'
-                    };
-                    showNotification(`✅ ${window.selectedTerms.size} terme(s) marqué(s) comme "${labels[importance]}"`, 'success');
-                    
-                    // Réinitialiser la sélection et rafraîchir
-                    window.selectedTerms.clear();
-                    showCourseDetails(window.currentCourseKey);
-                })
-                .catch(error => {
-                    console.error('Erreur sauvegarde:', error);
-                    showNotification('❌ Erreur lors de la sauvegarde', 'error');
-                });
-        }
-        
-        // Désélectionner tous les termes
-        function bulkClearSelection() {
-            window.selectedTerms.clear();
-            updateBulkToolbar();
-        }
-        
-        // Gérer les raccourcis clavier (1, 2, 3)
-        function handleBulkKeyboard(event) {
-            // Vérifier que le focus n'est pas sur un input ou textarea
-            if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA' || event.target.tagName === 'SELECT') {
-                return;
-            }
-            
-            if (!window.selectedTerms || window.selectedTerms.size === 0) {
-                return;
-            }
-            
-            switch(event.key) {
-                case '1':
-                    event.preventDefault();
-                    bulkApplyImportance('indispensable');
-                    break;
-                case '2':
-                    event.preventDefault();
-                    bulkApplyImportance('utile');
-                    break;
-                case '3':
-                    event.preventDefault();
-                    bulkApplyImportance('optionnel');
-                    break;
-            }
-        }
-
-        // Fonctions d'administration des cours
-        function editCourse(courseKey, courseTitle) {
-            authManager.adminAction(() => {
-                const course = coursesData.courses.find(c => c[0] === courseKey);
-                if (!course) return;
-
-                const [key, data] = course;
-                
-                // Créer la modal d'édition
-                const modal = document.createElement('div');
-                modal.style.cssText = `
-                    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                    background: rgba(0,0,0,0.5); z-index: 1000; display: flex;
-                    align-items: center; justify-content: center; padding: 20px;
-                `;
-                
-                modal.innerHTML = `
-                    <div style="background: white; border-radius: 12px; max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 0;">
-                        <div style="padding: 20px; border-bottom: 1px solid #e9ecef;">
-                            <h3 style="margin: 0; color: #2c3e50;">✏️ Éditer le cours</h3>
-                        </div>
-                        <div style="padding: 20px;">
-                            <div style="margin-bottom: 20px;">
-                                <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #495057;">Titre du cours :</label>
-                                <input type="text" id="editTitle" value="${data.title}" style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px;">
-                            </div>
-                            
-                            <div style="margin-bottom: 20px;">
-                                <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #495057;">UE :</label>
-                                <input type="text" id="editUE" value="${data.ue || ''}" style="width: 100px; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px;">
-                            </div>
-                            
-                            <div style="margin-bottom: 20px;">
-                                <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #495057;">Auteur :</label>
-                                <input type="text" id="editAuthor" value="${data.author || ''}" style="width: 100%; padding: 12px; border: 2px solid #e9ecef; border-radius: 8px; font-size: 16px;">
-                            </div>
-                            
-                            <div style="margin-bottom: 20px;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                                    <label style="font-weight: 600; color: #495057;">Termes et définitions :</label>
-                                    <button onclick="addNewTerm()" style="background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">+ Ajouter un terme</button>
-                                </div>
-                                <div id="termsEditContainer">
-                                    ${(data.definitions || []).map((def, index) => `
-                                        <div class="term-edit-item" style="border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin-bottom: 12px; background: #f8f9fa;">
-                                            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
-                                                <div style="flex: 1;">
-                                                    <label style="display: block; font-weight: 500; margin-bottom: 5px; color: #6c757d;">Terme :</label>
-                                                    <input type="text" value="${def.term}" onchange="updateTerm(${index}, 'term', this.value)" style="width: 100%; padding: 8px; border: 1px solid #dee2e6; border-radius: 4px;">
-                                                </div>
-                                                <button onclick="removeTerm(${index})" style="background: #dc3545; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; margin-top: 24px;">🗑️</button>
-                                            </div>
-                                            <div style="margin-top: 10px;">
-                                                <label style="display: block; font-weight: 500; margin-bottom: 5px; color: #6c757d;">Définition :</label>
-                                                <textarea onchange="updateTerm(${index}, 'definition', this.value)" style="width: 100%; padding: 8px; border: 1px solid #dee2e6; border-radius: 4px; min-height: 80px; resize: vertical;">${def.definition}</textarea>
-                                            </div>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-                            
-                            <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 30px;">
-                                <button onclick="closeEditModal()" style="background: #6c757d; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer;">Annuler</button>
-                                <button onclick="saveEditedCourse('${courseKey}')" style="background: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer;">💾 Sauvegarder</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                document.body.appendChild(modal);
-                document.getElementById('editTitle').focus();
-                
-                // Variables globales pour l'édition
-                window.currentEditData = JSON.parse(JSON.stringify(data));
-                window.editModal = modal;
-            });
-        }
-
-        function deleteCourse(courseKey, courseTitle) {
-            authManager.adminAction(() => {
-                if (confirm(`⚠️ SUPPRESSION DE COURS\n\nÊtes-vous sûr de vouloir supprimer le cours:\n"${courseTitle}"\n\n❌ Cette action est IRRÉVERSIBLE !`)) {
-                    if (confirm(`🚨 CONFIRMATION FINALE\n\nDernière chance pour annuler.\n\nSupprimer définitivement "${courseTitle}" ?`)) {
-                        // Appel API de suppression
-                        fetch('/api/delete_course', {
-                            method: 'DELETE',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ courseKey: courseKey })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                alert('✅ Cours supprimé avec succès !');
-                                location.reload(); // Recharger la page
-                            } else {
-                                alert('❌ Erreur lors de la suppression:\n' + (data.error || 'Erreur inconnue'));
-                            }
-                        })
-                        .catch(error => {
-                            alert('❌ Erreur de connexion:\n' + error.message);
-                            console.error('Erreur:', error);
-                        });
-                    }
-                }
-            });
-        }
-
-        // Fonctions auxiliaires pour l'édition des termes
-        function updateTerm(index, field, value) {
-            if (!window.currentEditData.definitions) {
-                window.currentEditData.definitions = [];
-            }
-            if (!window.currentEditData.definitions[index]) {
-                window.currentEditData.definitions[index] = {};
-            }
-            window.currentEditData.definitions[index][field] = value;
-        }
-
-        function addNewTerm() {
-            if (!window.currentEditData.definitions) {
-                window.currentEditData.definitions = [];
-            }
-            
-            const newIndex = window.currentEditData.definitions.length;
-            window.currentEditData.definitions.push({
-                term: '',
-                definition: ''
-            });
-            
-            // Reconstruire le container des termes
-            refreshTermsContainer();
-        }
-
-        function removeTerm(index) {
-            if (confirm('Supprimer ce terme et sa définition ?')) {
-                window.currentEditData.definitions.splice(index, 1);
-                refreshTermsContainer();
-            }
-        }
-
-        function refreshTermsContainer() {
-            const container = document.getElementById('termsEditContainer');
-            if (!container || !window.currentEditData.definitions) return;
-            
-            container.innerHTML = window.currentEditData.definitions.map((def, index) => `
-                <div class="term-edit-item" style="border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin-bottom: 12px; background: #f8f9fa;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
-                        <div style="flex: 1;">
-                            <label style="display: block; font-weight: 500; margin-bottom: 5px; color: #6c757d;">Terme :</label>
-                            <input type="text" value="${def.term || ''}" onchange="updateTerm(${index}, 'term', this.value)" style="width: 100%; padding: 8px; border: 1px solid #dee2e6; border-radius: 4px;">
-                        </div>
-                        <button onclick="removeTerm(${index})" style="background: #dc3545; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; margin-top: 24px;">🗑️</button>
-                    </div>
-                    <div style="margin-top: 10px;">
-                        <label style="display: block; font-weight: 500; margin-bottom: 5px; color: #6c757d;">Définition :</label>
-                        <textarea onchange="updateTerm(${index}, 'definition', this.value)" style="width: 100%; padding: 8px; border: 1px solid #dee2e6; border-radius: 4px; min-height: 80px; resize: vertical;">${def.definition || ''}</textarea>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function closeEditModal() {
-            if (window.editModal) {
-                document.body.removeChild(window.editModal);
-                window.editModal = null;
-                window.currentEditData = null;
-            }
-        }
-
-        function saveEditedCourse(courseKey) {
-            // Récupérer les données du formulaire
-            const title = document.getElementById('editTitle').value.trim();
-            const ue = document.getElementById('editUE').value.trim();
-            const author = document.getElementById('editAuthor').value.trim();
-            
-            if (!title) {
-                alert('Le titre est obligatoire !');
-                return;
-            }
-            
-            // Préparer les données à envoyer
-            const updatedCourse = {
-                title: title,
-                ue: ue,
-                author: author,
-                definitions: window.currentEditData.definitions || [],
-                date: window.currentEditData.date || new Date().toISOString().split('T')[0]
-            };
-            
-            // Appel API pour sauvegarder
-            fetch('/api/update_course', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    key: courseKey,
-                    data: updatedCourse
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('✅ Cours mis à jour avec succès !');
-                    closeEditModal();
-                    loadCourses(); // Recharger la liste
-                } else {
-                    alert('❌ Erreur : ' + (data.error || 'Impossible de mettre à jour le cours'));
-                }
-            })
-            .catch(error => {
-                console.error('Erreur:', error);
-                alert('❌ Erreur de connexion au serveur');
-            });
-        }
-
-        // Vérifier l'authentification au chargement
-        document.addEventListener('DOMContentLoaded', function() {
-            authManager.checkAuthStatus();
-        });
+        // Load on page load
+        window.addEventListener('load', loadCourses);
     </script>
 </body>
 </html>
