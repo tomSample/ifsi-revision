@@ -727,6 +727,7 @@
                 <div class="modal-body">
                     <div class="term-info">
                         <span class="term-ue" id="modalTermUE">UE X.X</span>
+                        <div style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--space-2);">📖 <strong id="modalCourseTitle">Titre du cours</strong></div>
                     </div>
                     <div class="term-definition" id="modalTermDefinition">
                         Définition...
@@ -936,7 +937,7 @@
             const results = [];
             const maxDistance = Math.ceil(query.length * 0.3); // Allow 30% typo tolerance
 
-            allCourses.forEach(([, course]) => {
+            allCourses.forEach(([courseKey, course]) => {
                 if (course.definitions) {
                     course.definitions.forEach(def => {
                         const termDistance = levenshteinDistance(query, def.term);
@@ -950,6 +951,8 @@
                                 term: def.term,
                                 definition: def.definition,
                                 ue: course.ue,
+                                courseTitle: course.title,
+                                courseKey: courseKey,
                                 courseId: course.id || course.title,
                                 distance: minDistance,
                                 isTermMatch: termDistance <= maxDistance || def.term.toLowerCase().includes(query.toLowerCase())
@@ -993,14 +996,14 @@
             const results = searchTerms(document.getElementById('searchInput').value);
             if (index < results.length) {
                 selectedTerm = results[index];
-                selectedCourse = allCourses.find(([, course]) => 
-                    course.ue === selectedTerm.ue && 
-                    course.definitions?.some(d => d.term === selectedTerm.term)
+                selectedCourse = allCourses.find(([courseKey, course]) => 
+                    courseKey === selectedTerm.courseKey
                 );
                 
                 // Update modal
                 document.getElementById('modalTermTitle').textContent = selectedTerm.term;
                 document.getElementById('modalTermUE').textContent = selectedTerm.ue;
+                document.getElementById('modalCourseTitle').textContent = selectedTerm.courseTitle || 'Cours';
                 document.getElementById('modalTermDefinition').textContent = selectedTerm.definition;
                 
                 // Show modal
@@ -1019,8 +1022,8 @@
         // View course
         function viewCourse() {
             if (selectedTerm) {
-                // Pass term as parameter to browse-courses
-                window.location.href = `./browse-courses.html?ue=${encodeURIComponent(selectedTerm.ue)}&term=${encodeURIComponent(selectedTerm.term)}`;
+                // Pass term and courseKey as parameters to browse-courses
+                window.location.href = `./browse-courses.html?ue=${encodeURIComponent(selectedTerm.ue)}&courseKey=${encodeURIComponent(selectedTerm.courseKey)}&term=${encodeURIComponent(selectedTerm.term)}`;
             }
         }
 

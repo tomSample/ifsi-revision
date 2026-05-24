@@ -246,6 +246,8 @@
             border: 1px solid var(--color-border);
             overflow: hidden;
             animation: slideInUp var(--transition-base) both;
+            position: relative;
+            z-index: 0;
         }
 
         .accordion:nth-child(1) { animation-delay: 0ms; }
@@ -264,6 +266,8 @@
             justify-content: space-between;
             align-items: center;
             user-select: none;
+            position: relative;
+            z-index: 2;
         }
 
         .accordion-header:hover {
@@ -302,10 +306,12 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height var(--transition-base);
+            position: relative;
+            z-index: 1;
         }
 
         .accordion.open .accordion-body {
-            max-height: 2000px;
+            max-height: 5000px;
         }
 
         .term-list {
@@ -1161,6 +1167,7 @@
             const params = new URLSearchParams(window.location.search);
             const requestedTerm = params.get('term');
             const requestedUE = params.get('ue');
+            const requestedCourseKey = params.get('courseKey');
             
             if (!requestedTerm || !requestedUE) return;
             
@@ -1168,47 +1175,72 @@
             setTimeout(() => {
                 const accordions = document.querySelectorAll('.accordion');
                 let foundAccordion = null;
+                let foundTermItem = null;
                 
-                // Parcourir les accordéons pour trouver celui contenant le terme
-                for (let accordion of accordions) {
-                    const termItems = accordion.querySelectorAll('.term-item');
-                    for (let termItem of termItems) {
-                        const termTitle = termItem.querySelector('.term-item-title');
-                        if (termTitle && termTitle.textContent.includes(decodeURIComponent(requestedTerm))) {
-                            foundAccordion = accordion;
-                            
-                            // Mettre en surbrillance le terme trouvé
-                            termItem.classList.add('highlighted');
-                            termItem.id = 'highlighted-term';
-                            
-                            // Ouvrir cet accordéon
-                            if (!accordion.classList.contains('open')) {
-                                accordion.classList.add('open');
+                // Si courseKey est fourni, chercher directement cet accordéon
+                if (requestedCourseKey) {
+                    foundAccordion = document.querySelector(`[data-ue="${requestedCourseKey}"]`);
+                    
+                    if (foundAccordion) {
+                        // Chercher le terme dans cet accordéon spécifique
+                        const termItems = foundAccordion.querySelectorAll('.term-item');
+                        for (let termItem of termItems) {
+                            const termTitle = termItem.querySelector('.term-item-title');
+                            if (termTitle && termTitle.textContent.includes(decodeURIComponent(requestedTerm))) {
+                                foundTermItem = termItem;
+                                break;
                             }
-                            
-                            // Fermer les autres accordéons
-                            accordions.forEach(acc => {
-                                if (acc !== accordion && acc.classList.contains('open')) {
-                                    acc.classList.remove('open');
-                                }
-                            });
-                            
-                            // Scroller jusqu'à ce terme
-                            termItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            
-                            // Estomper le highlight après 3 secondes avec transition douce
-                            setTimeout(() => {
-                                termItem.classList.add('fade-out');
-                                // Retirer complètement après la transition (1.5s)
-                                setTimeout(() => {
-                                    termItem.classList.remove('highlighted');
-                                    termItem.classList.remove('fade-out');
-                                }, 1500);
-                            }, 3000);
-                            
-                            return;
                         }
                     }
+                } else {
+                    // Sinon, parcourir les accordéons pour trouver celui contenant le terme
+                    for (let accordion of accordions) {
+                        const termItems = accordion.querySelectorAll('.term-item');
+                        for (let termItem of termItems) {
+                            const termTitle = termItem.querySelector('.term-item-title');
+                            if (termTitle && termTitle.textContent.includes(decodeURIComponent(requestedTerm))) {
+                                foundAccordion = accordion;
+                                foundTermItem = termItem;
+                                break;
+                            }
+                        }
+                        if (foundTermItem) break;
+                    }
+                }
+                
+                // Si accordéon et terme trouvés
+                if (foundAccordion && foundTermItem) {
+                    // Mettre en surbrillance le terme trouvé
+                    foundTermItem.classList.add('highlighted');
+                    foundTermItem.id = 'highlighted-term';
+                    
+                    // Ouvrir cet accordéon
+                    if (!foundAccordion.classList.contains('open')) {
+                        foundAccordion.classList.add('open');
+                    }
+                    
+                    // Fermer les autres accordéons
+                    accordions.forEach(acc => {
+                        if (acc !== foundAccordion && acc.classList.contains('open')) {
+                            acc.classList.remove('open');
+                        }
+                    });
+                    
+                    // Attendre que l'accordéon soit complètement ouvert avant de scroller
+                    setTimeout(() => {
+                        // Scroller jusqu'à ce terme et le centrer à l'écran
+                        foundTermItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                        // Estomper le highlight après 3 secondes avec transition douce
+                        setTimeout(() => {
+                            foundTermItem.classList.add('fade-out');
+                            // Retirer complètement après la transition (1.5s)
+                            setTimeout(() => {
+                                foundTermItem.classList.remove('highlighted');
+                                foundTermItem.classList.remove('fade-out');
+                            }, 1500);
+                        }, 3000);
+                    }, 350); // Attendre l'animation CSS de l'accordéon (environ 300ms)
                 }
             }, 150);
         }
