@@ -109,6 +109,46 @@
             display: flex;
         }
 
+        /* Admin Badge */
+        .admin-status-badge {
+            display: none;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-3);
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            border-radius: 8px;
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+            animation: slideInDown 0.3s ease;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .admin-status-badge.visible {
+            display: flex;
+        }
+
+        .admin-status-badge button {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .admin-status-badge button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
         /* Mobile-first: Hide on small screens */
         @media (min-width: 641px) {
             .header-content {
@@ -209,14 +249,14 @@
 
         @media (min-width: 641px) {
             .action-cards {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
                 gap: var(--space-6);
             }
         }
 
         @media (min-width: 1025px) {
             .action-cards {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: 1fr;
             }
         }
 
@@ -643,6 +683,12 @@
         </div>
     </header>
 
+    <!-- Admin Status Badge (Fixed) -->
+    <div class="admin-status-badge" id="adminStatusBadge">
+        <span>🔓 ADMINISTRATEUR</span>
+        <button onclick="authManager.logout()">Déconnexion</button>
+    </div>
+
     <!-- ===== MAIN CONTENT ===== -->
     <main>
         <!-- HERO SECTION -->
@@ -716,21 +762,7 @@
                         </button>
                     </a>
 
-                    <!-- Card 2: Quiz -->
-                    <a href="./quiz.html" class="action-card">
-                        <span class="action-card-icon">🧪</span>
-                        <h3>Quiz Antibiotiques</h3>
-                        <p>Évaluez vos connaissances en pharmacologie. 50 questions variées avec feedback détaillé.</p>
-                        <div class="action-card-meta">
-                            <span class="meta-badge">🎓 50 questions</span>
-                            <span class="meta-badge">⚕️ Pharmacologie</span>
-                        </div>
-                        <button class="btn btn-primary btn-sm action-card-btn" onclick="event.preventDefault(); window.location.href='./quiz.html'">
-                            Démarrer →
-                        </button>
-                    </a>
-
-                    <!-- Card 3: Cours -->
+                    <!-- Card 2: Cours -->
                     <a href="./browse-courses.html" class="action-card">
                         <span class="action-card-icon">📖</span>
                         <h3>Consulter les Cours</h3>
@@ -750,8 +782,8 @@
             <section class="secondary-section">
                 <h2 class="section-title" style="margin-bottom: var(--space-3);">Ressources supplémentaires</h2>
                 <div class="secondary-cards">
-                    <!-- Card: Admin (hidden by default) -->
-                    <a href="./admin.html" class="secondary-card hidden" id="adminLink">
+                    <!-- Card: Admin -->
+                    <a href="./admin.html" class="secondary-card">
                         <span class="secondary-card-icon">⚙️</span>
                         <div class="secondary-card-content">
                             <h4>Administration</h4>
@@ -765,6 +797,15 @@
                         <div class="secondary-card-content">
                             <h4>Fiches récapitulatives</h4>
                             <p>Organisées par UE et domaines</p>
+                        </div>
+                    </a>
+
+                    <!-- Card: Quiz Antibiotiques -->
+                    <a href="./quiz.html" class="secondary-card">
+                        <span class="secondary-card-icon">🧪</span>
+                        <div class="secondary-card-content">
+                            <h4>Quiz Antibiotiques</h4>
+                            <p>50 questions en pharmacologie</p>
                         </div>
                     </a>
                 </div>
@@ -783,11 +824,13 @@
     </footer>
 
     <!-- ===== SCRIPTS ===== -->
+    <script src="../assets/scripts/auth/auth.js"></script>
     <script>
         // Initialize stats on page load
         document.addEventListener('DOMContentLoaded', async () => {
             updateStats();
             checkUserAuth();
+            updateAdminStatus();
         });
 
         async function updateStats() {
@@ -824,6 +867,19 @@
                 emailElement.textContent = userEmail.split('@')[0];
             }
         }
+
+        // Update admin status badge
+        function updateAdminStatus() {
+            const adminBadge = document.getElementById('adminStatusBadge');
+            if (window.authManager && authManager.isAdmin()) {
+                adminBadge.classList.add('visible');
+            } else {
+                adminBadge.classList.remove('visible');
+            }
+        }
+
+        // Vérifier le statut admin régulièrement (toutes les 5 secondes)
+        setInterval(updateAdminStatus, 5000);
 
         // ===== SEARCH FUNCTIONALITY =====
         let allCourses = [];

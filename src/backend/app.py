@@ -1105,6 +1105,84 @@ def get_ue25_pathologies():
         print(f"Erreur dans get_ue25_pathologies: {e}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/term/importance', methods=['POST'])
+def update_term_importance():
+    """
+    Met à jour l'importance d'un terme dans courses.json
+    
+    Body JSON:
+    {
+        "ue": "2.2.S1",
+        "term": "Cellule",
+        "importance": "indispensable" | "utile" | "optionnel" | null (pour supprimer)
+    }
+    """
+    try:
+        data = request.get_json()
+        
+        if not data or 'ue' not in data or 'term' not in data:
+            return jsonify({'error': 'Données manquantes: ue et term requis'}), 400
+        
+        ue = data.get('ue')
+        term = data.get('term')
+        importance = data.get('importance')  # peut être null
+        
+        # Valider l'importance si fournie
+        valid_importance = ['indispensable', 'utile', 'optionnel']
+        if importance is not None and importance not in valid_importance:
+            return jsonify({'error': f'Importance invalide. Doit être: {", ".join(valid_importance)} ou null'}), 400
+        
+        print(f"📝 Mise à jour du terme: {term} ({ue}) -> {importance}")
+        
+        # Charger les données actuelles
+        courses_data = read_json_file()
+        
+        # Chercher le cours et le terme correspondant
+        found = False
+        for course_key, course in courses_data.get('courses', []):
+            if course.get('ue') == ue:
+                definitions = course.get('definitions', [])
+                for definition in definitions:
+                    if definition.get('term') == term:
+                        # Mettre à jour ou supprimer l'importance
+                        if importance is None:
+                            if 'importance' in definition:
+                                del definition['importance']
+                                print(f"✂️ Importance supprimée de {term}")
+                        else:
+                            definition['importance'] = importance
+                            print(f"✅ Importance mise à jour: {importance}")
+                        
+                        found = True
+                        break
+                
+                if found:
+                    break
+        
+        if not found:
+            return jsonify({'error': f'Terme "{term}" non trouvé dans l\'UE "{ue}"'}), 404
+        
+        # Mettre à jour la date d'export
+        courses_data['exportDate'] = datetime.now().isoformat()
+        
+        # Sauvegarder le fichier
+        write_json_file(courses_data)
+        
+        return jsonify({
+            'success': True,
+            'message': f'Importance du terme "{term}" mise à jour avec succès',
+            'term': term,
+            'ue': ue,
+            'importance': importance
+        })
+        
+    except Exception as e:
+        print(f"❌ Erreur dans update_term_importance: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/api/charts/list')
 def list_charts():
     """Liste tous les fichiers CSV disponibles dans recap_charts et role_ide_charts"""

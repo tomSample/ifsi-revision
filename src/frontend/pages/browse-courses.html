@@ -329,7 +329,32 @@
         }
 
         .term-item.highlighted {
-            background: var(--color-primary-lighter);
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            box-shadow: 0 0 12px rgba(255, 193, 7, 0.3);
+            animation: pulse-highlight 1s ease-in-out;
+            transition: background 1.5s ease-out, border-left 1.5s ease-out, box-shadow 1.5s ease-out;
+        }
+
+        .term-item.highlighted.fade-out {
+            background: transparent;
+            border-left-color: transparent;
+            box-shadow: none;
+        }
+
+        @keyframes pulse-highlight {
+            0% {
+                background: #fff8e1;
+                box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+            }
+            50% {
+                background: #fff3cd;
+                box-shadow: 0 0 12px rgba(255, 193, 7, 0.3);
+            }
+            100% {
+                background: #fff3cd;
+                box-shadow: 0 0 12px rgba(255, 193, 7, 0.3);
+            }
         }
 
         .term-item:hover {
@@ -352,37 +377,65 @@
             font-size: var(--font-size-xs);
             color: var(--color-text-muted);
             line-height: var(--line-height-relaxed);
+            margin-bottom: var(--space-2);
         }
 
-        .term-rating {
+        .term-classification {
             display: flex;
-            gap: var(--space-1);
-            flex-shrink: 0;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
-        .rating-btn {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border: 1px solid var(--color-border);
-            background: var(--color-bg);
+        .classification-btn {
+            padding: 0.5rem 0.75rem;
+            border: none;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: var(--font-size-xs);
-            transition: all var(--transition-fast);
-            display: flex;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
+            gap: 0.35rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
-        .rating-btn:hover {
-            background: var(--color-primary-lighter);
-            border-color: var(--color-primary);
+        .classification-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
         }
 
-        .rating-btn.active {
-            background: var(--color-primary);
+        .classification-btn.active {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Delete course button */
+        .delete-course-btn {
+            background: #dc3545;
             color: white;
-            border-color: var(--color-primary);
+            padding: 0.35rem 0.7rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-left: auto;
+        }
+
+        .delete-course-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .delete-course-btn:active {
+            transform: translateY(0);
         }
 
         /* ===== EMPTY STATE ===== */
@@ -439,7 +492,7 @@
                 </select>
             </div>
             <div class="filter-group">
-                <label class="filter-label">Cours</label>
+                <label class="filter-label">Liste des UE</label>
                 <ul class="ue-list" id="desktopUEList"></ul>
             </div>
         </aside>
@@ -481,6 +534,7 @@
     </footer>
 
     <!-- ===== SCRIPTS ===== -->
+    <script src="../assets/scripts/auth/auth.js"></script>
     <script>
         let allCourses = [];
         let filteredCourses = [];
@@ -500,7 +554,7 @@
             };
         }
 
-        // Load term ratings from localStorage
+        // Load term ratings from localStorage (legacy - kept for backwards compatibility)
         function getTermRating(termKey) {
             const ratings = JSON.parse(localStorage.getItem('termRatings') || '{}');
             return ratings[termKey] || null;
@@ -514,6 +568,263 @@
                 ratings[termKey] = rating;
             }
             localStorage.setItem('termRatings', JSON.stringify(ratings));
+        }
+
+        // Get importance from courses data
+        function getTermImportance(ue, term) {
+            for (let [, course] of allCourses) {
+                if (course.ue === ue) {
+                    for (let definition of (course.definitions || [])) {
+                        if (definition.term === term) {
+                            return definition.importance || null;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        // Update term importance via API (WITHOUT full page reload)
+        async function updateTermImportance(ue, term, importance) {
+            try {
+                // Vérifier que l'utilisateur est admin
+                if (!authManager.isAdmin()) {
+                    alert('🔐 Cette action est réservée aux administrateurs.');
+                    return false;
+                }
+
+                // Convertir 'null' string en null réel
+                const importanceValue = importance === 'null' ? null : importance;
+
+                // Chercher l'élément du terme dans le DOM
+                const termElement = Array.from(document.querySelectorAll('.term-item')).find(el => {
+                    const title = el.querySelector('.term-item-title');
+                    return title && title.textContent.includes(term);
+                });
+
+                if (!termElement) {
+                    console.error('Élément du terme non trouvé dans le DOM');
+                    return false;
+                }
+
+                // Ajouter un état "en cours" visuel
+                termElement.style.opacity = '0.6';
+                const buttons = termElement.querySelectorAll('.classification-btn');
+                buttons.forEach(btn => btn.disabled = true);
+
+                const response = await fetch('/api/term/importance', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ue: ue,
+                        term: term,
+                        importance: importanceValue
+                    })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    alert('❌ Erreur: ' + error.error);
+                    termElement.style.opacity = '1';
+                    buttons.forEach(btn => btn.disabled = false);
+                    return false;
+                }
+
+                const result = await response.json();
+                console.log('✅ Importance mise à jour:', result);
+
+                // Mettre à jour les données locales
+                for (let [, course] of allCourses) {
+                    if (course.ue === ue) {
+                        for (let definition of (course.definitions || [])) {
+                            if (definition.term === term) {
+                                if (importanceValue === null) {
+                                    delete definition.importance;
+                                } else {
+                                    definition.importance = importanceValue;
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+
+                // Mettre à jour UNIQUEMENT cet élément dans le DOM sans recharger la page
+                updateTermElementDOM(termElement, ue, term);
+
+                // Animation de succès
+                termElement.style.transition = 'opacity 0.3s ease';
+                termElement.style.opacity = '1';
+                
+                // Petit feedback visuel
+                showClassificationToast(`✅ ${term} mis à jour`, importanceValue);
+
+                return true;
+            } catch (error) {
+                console.error('❌ Erreur lors de la mise à jour:', error);
+                alert('❌ Erreur lors de la sauvegarde: ' + error.message);
+                return false;
+            }
+        }
+
+        // Mettre à jour uniquement l'élément DOM du terme
+        function updateTermElementDOM(termElement, ue, term) {
+            const importance = getTermImportance(ue, term);
+
+            // Mettre à jour le badge d'importance
+            const titleDiv = termElement.querySelector('.term-item-title');
+            const existingBadge = titleDiv.querySelector('span[style*="background"]');
+            if (existingBadge) {
+                existingBadge.remove();
+            }
+
+            let importanceBadge = '';
+            if (importance) {
+                const badgeColors = {
+                    'indispensable': '#dc3545',
+                    'utile': '#ffc107',
+                    'optionnel': '#6c757d'
+                };
+                const badgeLabels = {
+                    'indispensable': '🔴 Indispensable',
+                    'utile': '🟡 Utile',
+                    'optionnel': '⚪ Optionnel'
+                };
+                importanceBadge = `<span style="display: inline-block; background: ${badgeColors[importance]}; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; margin-right: 0.5rem; font-weight: 500;">${badgeLabels[importance]}</span>`;
+            } else {
+                importanceBadge = `<span style="display: inline-block; background: #e9ecef; color: #6c757d; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; margin-right: 0.5rem; font-weight: 500;">À classer</span>`;
+            }
+
+            titleDiv.innerHTML = importanceBadge + escapeHtml(term);
+
+            // Mettre à jour les boutons de classification
+            const classificationDiv = termElement.querySelector('.term-classification');
+            if (classificationDiv) {
+                classificationDiv.innerHTML = '';
+                
+                const btnConfigs = [
+                    { importance: 'indispensable', label: '🔴', color: '#dc3545' },
+                    { importance: 'utile', label: '🟡', color: '#ffc107' },
+                    { importance: 'optionnel', label: '⚪', color: '#6c757d' }
+                ];
+
+                btnConfigs.forEach(config => {
+                    const isActive = importance === config.importance;
+                    const newImportance = isActive ? 'null' : config.importance;
+                    const bgColor = isActive ? config.color : '#f8f9fa';
+                    const textColor = isActive ? 'white' : '#6c757d';
+
+                    const btn = document.createElement('button');
+                    btn.className = `classification-btn ${isActive ? 'active' : ''}`;
+                    btn.innerHTML = config.label;
+                    btn.style.background = bgColor;
+                    btn.style.color = textColor;
+                    btn.title = config.importance.charAt(0).toUpperCase() + config.importance.slice(1);
+                    btn.onclick = () => updateTermImportance(ue, term, newImportance);
+                    
+                    classificationDiv.appendChild(btn);
+                });
+            }
+
+            // Ré-activer les boutons
+            const buttons = termElement.querySelectorAll('.classification-btn');
+            buttons.forEach(btn => btn.disabled = false);
+        }
+
+        // Toast notification
+        function showClassificationToast(message, importance) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: ${importance ? '#28a745' : '#dc3545'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                z-index: 10000;
+                font-weight: 500;
+                animation: slideInUp 0.3s ease;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'slideOutDown 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 2000);
+        }
+
+        // Supprimer un cours (admin only)
+        async function deleteCourse(ue) {
+            if (!authManager.isAdmin()) {
+                alert('🔐 Cette action est réservée aux administrateurs.');
+                return false;
+            }
+
+            // Confirmation
+            if (!confirm(`⚠️ Êtes-vous sûr de vouloir supprimer le cours ${ue} ?\nCette action est irréversible.`)) {
+                return false;
+            }
+
+            try {
+                const courseElement = document.querySelector(`[data-ue="${ue}"]`);
+                if (courseElement) {
+                    courseElement.style.opacity = '0.6';
+                }
+
+                const response = await fetch('/api/delete_course', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        courseKey: ue
+                    })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    alert('❌ Erreur: ' + error.error);
+                    if (courseElement) {
+                        courseElement.style.opacity = '1';
+                    }
+                    return false;
+                }
+
+                const result = await response.json();
+                console.log('✅ Cours supprimé:', result);
+
+                // Supprimer du DOM
+                if (courseElement) {
+                    courseElement.style.animation = 'fadeOut 0.3s ease';
+                    setTimeout(() => {
+                        courseElement.remove();
+                        showClassificationToast(`✅ Cours ${ue} supprimé`, null);
+                        
+                        // Recharger si aucun cours ne reste
+                        const remaining = document.querySelectorAll('.accordion').length;
+                        if (remaining === 0) {
+                            setTimeout(() => {
+                                loadCourses();
+                            }, 1500);
+                        }
+                    }, 300);
+                }
+
+                return true;
+            } catch (error) {
+                console.error('❌ Erreur lors de la suppression:', error);
+                alert('❌ Erreur: ' + error.message);
+                if (courseElement) {
+                    courseElement.style.opacity = '1';
+                }
+                return false;
+            }
         }
 
         // Load courses
@@ -560,6 +871,9 @@
                 }
             });
 
+            // Stocker les UE globalement pour utilisation dans updateUEList
+            window.allUEsByUE = uesByUE;
+
             // Sort semesters
             const semesterArray = Array.from(semesters).sort((a, b) => {
                 const aNum = parseInt(a.replace('S', ''));
@@ -575,32 +889,26 @@
                         option.textContent = sem;
                         select.appendChild(option);
                     });
-                    select.addEventListener('change', applyFilters);
+                    select.addEventListener('change', (e) => {
+                        updateUEList();
+                        applyFilters();
+                    });
                 }
             });
 
-            // Sort UEs
-            const ueArray = Object.keys(uesByUE).sort((a, b) => {
-                const aParts = a.split('.');
-                const bParts = b.split('.');
-                const aNum = parseInt(aParts[0]) * 100 + parseInt(aParts[1]);
-                const bNum = parseInt(bParts[0]) * 100 + parseInt(bParts[1]);
-                return aNum - bNum;
-            });
-
-            // Populate desktop sidebar
-            const desktopUEList = document.getElementById('desktopUEList');
-            ueArray.forEach(ue => {
-                const li = document.createElement('li');
-                li.className = 'ue-item' + (highlightedUE === ue ? ' active' : '');
-                li.innerHTML = `<span class="ue-item-text"><strong>${ue}</strong><br/>${escapeHtml(uesByUE[ue])}</span>`;
-                li.onclick = () => selectUE(ue);
-                desktopUEList.appendChild(li);
-            });
+            // Remplir la liste des UE du semestre sélectionné
+            updateUEList();
 
             // Populate mobile UE select
             const mobileUE = document.getElementById('mobileUE');
             if (mobileUE) {
+                const ueArray = Object.keys(uesByUE).sort((a, b) => {
+                    const aParts = a.split('.');
+                    const bParts = b.split('.');
+                    const aNum = parseInt(aParts[0]) * 100 + parseInt(aParts[1]);
+                    const bNum = parseInt(bParts[0]) * 100 + parseInt(bParts[1]);
+                    return aNum - bNum;
+                });
                 ueArray.forEach(ue => {
                     const option = document.createElement('option');
                     option.value = ue;
@@ -609,6 +917,63 @@
                 });
                 mobileUE.addEventListener('change', applyFilters);
             }
+        }
+
+        // Mettre à jour la liste des UE basée sur le semestre sélectionné
+        function updateUEList() {
+            const selectedSemester = document.getElementById('desktopSemester')?.value || '';
+            const desktopUEList = document.getElementById('desktopUEList');
+            
+            if (!desktopUEList) return;
+
+            // Vider la liste
+            desktopUEList.innerHTML = '';
+
+            // Récupérer les UE
+            const uesByUE = window.allUEsByUE || {};
+            let ueArray = Object.keys(uesByUE);
+
+            // Filtrer par semestre si sélectionné
+            if (selectedSemester) {
+                ueArray = ueArray.filter(ue => ue.endsWith(selectedSemester));
+            }
+
+            // Trier : d'abord par semestre, puis par numéro d'UE
+            ueArray.sort((a, b) => {
+                // Extraire semestre et numéro d'UE
+                const aMatch = a.match(/^(.*?)\.S(\d+)$/);
+                const bMatch = b.match(/^(.*?)\.S(\d+)$/);
+                
+                const aSem = aMatch ? parseInt(aMatch[2]) : 999;
+                const bSem = bMatch ? parseInt(bMatch[2]) : 999;
+                
+                // D'abord trier par semestre
+                if (aSem !== bSem) return aSem - bSem;
+                
+                // Même semestre, trier par numéro d'UE
+                const aNum = aMatch ? aMatch[1] : a;
+                const bNum = bMatch ? bMatch[1] : b;
+                
+                // Comparaison numérique des parties
+                const aParts = aNum.split('.').map(p => parseInt(p) || 0);
+                const bParts = bNum.split('.').map(p => parseInt(p) || 0);
+                
+                for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+                    const aVal = aParts[i] || 0;
+                    const bVal = bParts[i] || 0;
+                    if (aVal !== bVal) return aVal - bVal;
+                }
+                return 0;
+            });
+
+            // Ajouter les UE filtrées à la liste (juste le code, pas le titre)
+            ueArray.forEach(ue => {
+                const li = document.createElement('li');
+                li.className = 'ue-item' + (highlightedUE === ue ? ' active' : '');
+                li.innerHTML = `<span class="ue-item-text"><strong>${ue}</strong></span>`;
+                li.onclick = () => selectUE(ue);
+                desktopUEList.appendChild(li);
+            });
         }
 
         // Select UE from sidebar
@@ -658,36 +1023,76 @@
                 return;
             }
 
-            container.innerHTML = courses.map(([, course], index) => {
+            container.innerHTML = courses.map(([courseKey, course], index) => {
                 const definitions = course.definitions || [];
+                const isAdmin = authManager.isAdmin();
+                
                 const termsHtml = definitions.map((def, defIndex) => {
-                    const termKey = `${course.ue}|${def.term}`;
-                    const rating = getTermRating(termKey);
+                    const importance = def.importance || null;
                     const isHighlighted = highlightedTerm && def.term === highlightedTerm;
+                    
+                    // Badge d'importance (visible seulement pour admin)
+                    let importanceBadge = '';
+                    if (isAdmin) {
+                        if (importance) {
+                            const badgeColors = {
+                                'indispensable': '#dc3545',
+                                'utile': '#ffc107',
+                                'optionnel': '#6c757d'
+                            };
+                            const badgeLabels = {
+                                'indispensable': '🔴 Indispensable',
+                                'utile': '🟡 Utile',
+                                'optionnel': '⚪ Optionnel'
+                            };
+                            importanceBadge = `<span style="display: inline-block; background: ${badgeColors[importance]}; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; margin-right: 0.5rem; font-weight: 500;">${badgeLabels[importance]}</span>`;
+                        } else {
+                            importanceBadge = `<span style="display: inline-block; background: #e9ecef; color: #6c757d; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; margin-right: 0.5rem; font-weight: 500;">À classer</span>`;
+                        }
+                    }
+                    
+                    // Boutons de classification pour admin
+                    let classificationBtns = '';
+                    if (isAdmin) {
+                        classificationBtns = `
+                            <div class="term-classification" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <button class="classification-btn ${importance === 'indispensable' ? 'active' : ''}" 
+                                    onclick="updateTermImportance('${course.ue}', '${escapeHtmlAttr(def.term)}', '${importance === 'indispensable' ? 'null' : 'indispensable'}')" 
+                                    title="Indispensable" style="background: ${importance === 'indispensable' ? '#dc3545' : '#f8f9fa'}; color: ${importance === 'indispensable' ? 'white' : '#6c757d'};">🔴</button>
+                                <button class="classification-btn ${importance === 'utile' ? 'active' : ''}" 
+                                    onclick="updateTermImportance('${course.ue}', '${escapeHtmlAttr(def.term)}', '${importance === 'utile' ? 'null' : 'utile'}')" 
+                                    title="Utile" style="background: ${importance === 'utile' ? '#ffc107' : '#f8f9fa'}; color: ${importance === 'utile' ? 'white' : '#6c757d'};">🟡</button>
+                                <button class="classification-btn ${importance === 'optionnel' ? 'active' : ''}" 
+                                    onclick="updateTermImportance('${course.ue}', '${escapeHtmlAttr(def.term)}', '${importance === 'optionnel' ? 'null' : 'optionnel'}')" 
+                                    title="Optionnel" style="background: ${importance === 'optionnel' ? '#6c757d' : '#f8f9fa'}; color: ${importance === 'optionnel' ? 'white' : '#6c757d'};">⚪</button>
+                            </div>
+                        `;
+                    }
                     
                     return `
                         <li class="term-item ${isHighlighted ? 'highlighted' : ''}" ${isHighlighted ? 'id="highlighted-term"' : ''}>
                             <div class="term-content">
-                                <div class="term-item-title">${escapeHtml(def.term)}</div>
+                                <div class="term-item-title">
+                                    ${importanceBadge}${escapeHtml(def.term)}
+                                </div>
                                 <div class="term-item-def">${escapeHtml(def.definition)}</div>
-                            </div>
-                            <div class="term-rating">
-                                <button class="rating-btn ${rating === 'T' ? 'active' : ''}" onclick="rateTermAdmin('${course.ue}', '${def.term}', 'T')" title="Ciblé">🎯</button>
-                                <button class="rating-btn ${rating === 'E' ? 'active' : ''}" onclick="rateTermAdmin('${course.ue}', '${def.term}', 'E')" title="Élargi">📖</button>
-                                <button class="rating-btn ${rating === 'C' ? 'active' : ''}" onclick="rateTermAdmin('${course.ue}', '${def.term}', 'C')" title="Complet">✓</button>
+                                ${classificationBtns}
                             </div>
                         </li>
                     `;
                 }).join('');
 
                 return `
-                    <div class="accordion" style="animation-delay: ${index * 50}ms">
+                    <div class="accordion" style="animation-delay: ${index * 50}ms" data-ue="${courseKey}">
                         <div class="accordion-header" onclick="toggleAccordion(this)">
                             <div class="accordion-title">
                                 <div class="accordion-ue">${escapeHtml(course.ue)}</div>
                                 <h2 class="accordion-course">${escapeHtml(course.title)}</h2>
                             </div>
-                            <div class="accordion-toggle">▼</div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                ${isAdmin ? `<button class="delete-course-btn" onclick="event.stopPropagation(); deleteCourse('${courseKey}');" title="Supprimer ce cours">🗑️ Supprimer</button>` : ''}
+                                <div class="accordion-toggle">▼</div>
+                            </div>
                         </div>
                         <div class="accordion-body">
                             <ul class="term-list">
@@ -705,20 +1110,6 @@
             accordion.classList.toggle('open');
         }
 
-        // Rate term (admin only)
-        function rateTermAdmin(ue, term, rating) {
-            const termKey = `${ue}|${term}`;
-            const currentRating = getTermRating(termKey);
-            
-            if (currentRating === rating) {
-                setTermRating(termKey, null);
-            } else {
-                setTermRating(termKey, rating);
-            }
-            
-            applyFilters();
-        }
-
         // Escape HTML
         function escapeHtml(text) {
             const map = {
@@ -731,8 +1122,103 @@
             return text.replace(/[&<>"']/g, m => map[m]);
         }
 
+        // Escape HTML for attributes
+        function escapeHtmlAttr(text) {
+            return text.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
+
+        // Appliquer les filtres basés sur les paramètres URL
+        function applyURLFilters() {
+            const params = new URLSearchParams(window.location.search);
+            const requestedUE = params.get('ue');
+            
+            if (!requestedUE) return;
+            
+            // Extraire le semestre du code UE (ex: "2.4.S1" → "S1")
+            const ueParts = requestedUE.split('.');
+            const semester = ueParts[ueParts.length - 1]; // Dernière partie = S1 ou S2
+            
+            // Pré-sélectionner le semestre dans les dropdowns
+            const desktopSemester = document.getElementById('desktopSemester');
+            const mobileSemester = document.getElementById('mobileSemester');
+            
+            if (desktopSemester) desktopSemester.value = semester;
+            if (mobileSemester) mobileSemester.value = semester;
+            
+            // Mettre à jour la liste des UE
+            updateUEList();
+            
+            // Pré-sélectionner l'UE dans le dropdown mobile
+            const mobileUE = document.getElementById('mobileUE');
+            if (mobileUE) mobileUE.value = requestedUE;
+            
+            // Appliquer les filtres
+            applyFilters();
+        }
+
+        // Auto-scroll et highlight du terme si passé en paramètre
+        function scrollToTermIfRequested() {
+            const params = new URLSearchParams(window.location.search);
+            const requestedTerm = params.get('term');
+            const requestedUE = params.get('ue');
+            
+            if (!requestedTerm || !requestedUE) return;
+            
+            // Attendre un peu pour que les accordéons soient rendus
+            setTimeout(() => {
+                const accordions = document.querySelectorAll('.accordion');
+                let foundAccordion = null;
+                
+                // Parcourir les accordéons pour trouver celui contenant le terme
+                for (let accordion of accordions) {
+                    const termItems = accordion.querySelectorAll('.term-item');
+                    for (let termItem of termItems) {
+                        const termTitle = termItem.querySelector('.term-item-title');
+                        if (termTitle && termTitle.textContent.includes(decodeURIComponent(requestedTerm))) {
+                            foundAccordion = accordion;
+                            
+                            // Mettre en surbrillance le terme trouvé
+                            termItem.classList.add('highlighted');
+                            termItem.id = 'highlighted-term';
+                            
+                            // Ouvrir cet accordéon
+                            if (!accordion.classList.contains('open')) {
+                                accordion.classList.add('open');
+                            }
+                            
+                            // Fermer les autres accordéons
+                            accordions.forEach(acc => {
+                                if (acc !== accordion && acc.classList.contains('open')) {
+                                    acc.classList.remove('open');
+                                }
+                            });
+                            
+                            // Scroller jusqu'à ce terme
+                            termItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            
+                            // Estomper le highlight après 3 secondes avec transition douce
+                            setTimeout(() => {
+                                termItem.classList.add('fade-out');
+                                // Retirer complètement après la transition (1.5s)
+                                setTimeout(() => {
+                                    termItem.classList.remove('highlighted');
+                                    termItem.classList.remove('fade-out');
+                                }, 1500);
+                            }, 3000);
+                            
+                            return;
+                        }
+                    }
+                }
+            }, 150);
+        }
+
         // Load on page load
-        window.addEventListener('load', loadCourses);
+        window.addEventListener('load', async () => {
+            await loadCourses();
+            applyURLFilters();
+            scrollToTermIfRequested();
+        });
     </script>
 </body>
 </html>

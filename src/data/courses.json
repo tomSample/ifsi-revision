@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-05-23T20:44:07.827695",
+  "exportDate": "2026-05-24T14:46:57.710807",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -92,7 +92,7 @@
           {
             "definition": "Structures membranaires assurant la cohésion et la communication entre cellules (jonctions serrées, adhérentes, desmosomes, communicantes).",
             "term": "Jonctions cellulaires",
-            "importance": "optionnel"
+            "importance": "indispensable"
           },
           {
             "definition": "Ensemble de cellules partageant une structure et une fonction communes, avec une substance intercellulaire variable.",
@@ -2019,7 +2019,7 @@
           {
             "definition": "Ensemble des parcours/flux réservés à la circulation des éléments non contaminés (linge propre, médicaments, matériel stérile), totalement séparé du circuit sale pour éviter la contamination croisée.",
             "term": "Circuit propre",
-            "importance": "indispensable"
+            "importance": "utile"
           },
           {
             "definition": "Parcours réservé à la circulation des objets et matières potentiellement contaminants (linge sale, déchets, matériel usagé), séparé du circuit propre.",
@@ -6158,26 +6158,6 @@
       }
     ],
     [
-      "ue_4_4_s2_test",
-      {
-        "title": "TEST",
-        "date": "08/01/2026",
-        "ue": "4.4.S2",
-        "author": "SC",
-        "definitions": [
-          {
-            "definition": "adasdasd",
-            "term": "TEST"
-          },
-          {
-            "definition": "mplpldfs",
-            "term": "tt"
-          }
-        ],
-        "filename": "TEST.odt"
-      }
-    ],
-    [
       "ue_2_3_s2_synthse_cours",
       {
         "title": "synthèse cours",
@@ -6443,7 +6423,7 @@
         "definitions": [
           {
             "definition": "outil de gestion de projet, planification visuelle permettant de représenter toutes les tâches d’un projet de leur début à la fin.",
-            "term": "Définition"
+            "term": "Diagramme de Gant"
           }
         ],
         "filename": "diagramme de Gantt.odt"
@@ -6459,7 +6439,7 @@
         "definitions": [
           {
             "definition": "tableau de bord des activités de soins réalisées par les soignants pour un patient. Outil de contrôle et de traçabilité, à inclure dans le dossier patient informatisé.",
-            "term": "Définition"
+            "term": "Diagramme de soins"
           },
           {
             "definition": "indique le niveau de dépendance de la personne prise en soins (+ de oins = + de dépendance)",
@@ -6579,7 +6559,7 @@
     ]
   ],
   "stats": {
-    "totalTerms": 1217,
+    "totalTerms": 1215,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0
