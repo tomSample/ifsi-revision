@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../assets/styles/design-system.css">
     <link rel="stylesheet" href="../assets/styles/animations.css">
     <link rel="stylesheet" href="../assets/styles/layout.css">
+    <link rel="stylesheet" href="../assets/styles/style-revision.css">
     
     <!-- Page-specific styles -->
     <style>
@@ -529,6 +530,64 @@
             background: var(--color-primary);
             color: white;
             border-color: var(--color-primary);
+        }
+
+        /* ===== MODE SUMMARY ===== */
+        .mode-summary {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+            padding: var(--space-3) var(--space-4);
+            background: rgba(37, 99, 235, 0.08);
+            border-left: 3px solid var(--color-primary);
+            border-radius: var(--radius-md);
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .summary-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .summary-value {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-dark);
+            font-weight: var(--font-weight-bold);
+            padding: var(--space-1) var(--space-2);
+            background: var(--color-bg);
+            border-radius: var(--radius-sm);
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .summary-count {
+            font-size: var(--font-size-base);
+            color: var(--color-primary);
+            font-weight: var(--font-weight-bold);
+            padding: var(--space-1) var(--space-3);
+            background: var(--color-bg);
+            border-radius: var(--radius-sm);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        @media (max-width: 640px) {
+            .mode-summary {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-2);
+            }
+            
+            .summary-item {
+                width: 100%;
+            }
         }
 
         /* ===== START BUTTON ===== */
@@ -1123,6 +1182,18 @@
                             <button class="preset-btn active" onclick="setTermCount(10)">10</button>
                             <button class="preset-btn" onclick="setTermCount(15)">15</button>
                             <button class="preset-btn" onclick="setTermCount(20)">20</button>
+                        </div>
+                        
+                        <!-- Indicateur de termes disponibles par mode -->
+                        <div class="mode-summary">
+                            <div class="summary-item">
+                                <span class="summary-label">Mode sélectionné :</span>
+                                <span class="summary-value" id="selectedModeName">Aléatoire</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Termes disponibles :</span>
+                                <span class="summary-count" id="modeTermCount">-</span>
+                            </div>
                         </div>
                     </div>
 

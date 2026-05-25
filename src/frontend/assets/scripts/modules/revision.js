@@ -460,6 +460,7 @@ async function loadCoursesData() {
         
         // Initialiser le filtre UE
         initUEFilter();
+        updateModeCounters(); // Mettre à jour les compteurs d'indicateurs
         updateStatsDisplay();
         
         console.log(`${allTerms.length} termes chargés depuis ${coursesData.courses.length} cours`);
@@ -513,6 +514,9 @@ function updateStatsDisplay() {
         const minutes = Math.ceil(totalSeconds / 60);
         estimatedTimeElement.textContent = `${minutes} min`;
     }
+    
+    // Mettre à jour la synthèse du mode sélectionné
+    updateModeCounters();
 }
 
 /**
@@ -536,6 +540,38 @@ function getFilteredTermsByMode() {
     // Mode 'random' : tous les termes (filteredTerms)
     
     return terms;
+}
+
+/**
+ * Mettre à jour les compteurs d'indicateurs pour le mode sélectionné
+ */
+function updateModeCounters() {
+    // Obtenir le mode sélectionné et le nombre de termes correspondants
+    const selectedMode = document.querySelector('input[name="revisionMode"]:checked')?.value || 'random';
+    
+    // Obtenir les termes filtrés par le mode actuel
+    const modeTerms = getFilteredTermsByMode();
+    const count = modeTerms.length;
+    
+    // Mapper les modes aux labels d'affichage
+    const modeLabels = {
+        'random': 'Aléatoire',
+        'indispensable': 'Ciblé',
+        'elargi': 'Élargi',
+        'complet': 'Complet'
+    };
+    
+    // Mettre à jour le nom du mode
+    const modeNameElement = document.getElementById('selectedModeName');
+    if (modeNameElement) {
+        modeNameElement.textContent = modeLabels[selectedMode] || selectedMode;
+    }
+    
+    // Mettre à jour le compteur de termes
+    const countElement = document.getElementById('modeTermCount');
+    if (countElement) {
+        countElement.textContent = `📊 ${count} terme${count !== 1 ? 's' : ''}`;
+    }
 }
 
 /**
@@ -679,6 +715,7 @@ function updateFilteredTerms() {
     } else {
         filteredTerms = allTerms.filter(term => selectedUEs.includes(term.ue));
     }
+    updateModeCounters(); // Mettre à jour les compteurs d'indicateurs
     updateStatsDisplay();
 }
 
