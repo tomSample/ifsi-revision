@@ -620,7 +620,6 @@
                     </div>
                     <button class="filter-btn" onclick="toggleFavoritesOnly()" id="favoritesToggle">⭐ Favoris</button>
                     <button class="filter-btn" onclick="toggleComparisonMode()" id="comparisonToggle">⚖️ Comparer</button>
-                    <button class="filter-btn" onclick="goBack()" style="background: var(--color-ide-primary); color: white;">← Retour</button>
                 </div>
                 
                 <!-- COMPARISON MODE -->
@@ -651,12 +650,6 @@
                         <button class="action-btn" onclick="toggleComparisonSelect()" id="compareBtn" title="Ajouter à la comparaison" style="display: none;">✓</button>
                         <button class="action-btn" onclick="downloadPathology()" title="Télécharger">⬇️</button>
                     </div>
-                </div>
-
-                <!-- PATHOLOGIES LIST BAR -->
-                <div style="background: var(--color-bg-lighter); border-bottom: 1px solid var(--color-border); padding: var(--space-3); margin-bottom: var(--space-4); border-radius: var(--radius-md); max-height: 120px; overflow-y: auto;">
-                    <div style="font-size: var(--font-size-xs); font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: var(--space-2);">📋 Pathologies disponibles:</div>
-                    <div id="pathologiesList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-2);"></div>
                 </div>
 
                 <!-- TABS -->
@@ -823,24 +816,27 @@
 
         // ===== DISPLAY PATHOLOGIES =====
         function displayPathologies(charts) {
-            const container = document.getElementById('pathologiesList');
-            container.innerHTML = '';
+            const grid = document.getElementById('ueGrid');
+            grid.innerHTML = '';
 
             charts.forEach((chart, idx) => {
+                const headers = chart.rows[0] || [];
+                const data = Object.fromEntries(headers.map((h, i) => [h, chart.rows[1]?.[i] || '']));
+
                 const card = document.createElement('div');
                 card.className = 'ue-card';
-                card.style.cursor = 'pointer';
-                card.style.padding = 'var(--space-2)';
-                card.style.fontSize = 'var(--font-size-sm)';
                 card.onclick = () => selectPathology(chart, idx);
-                card.innerHTML = `<div class="ue-card-title">${chart.name}</div>`;
-                container.appendChild(card);
+                card.innerHTML = `
+                    <div class="ue-card-title">${chart.name}</div>
+                    <div style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin-top: var(--space-1);">
+                        ${data['Définition'] ? data['Définition'].substring(0, 50) + '...' : ''}
+                    </div>
+                `;
+                grid.appendChild(card);
             });
 
-            // Sélectionner automatiquement la première
-            if (charts.length > 0) {
-                selectPathology(charts[0], 0);
-            }
+            document.getElementById('ueSelector').style.display = 'block';
+            document.getElementById('ueSelector').querySelector('.ue-selector-header h2').textContent = `📋 ${selectedUE}`;
         }
 
         // ===== SELECT PATHOLOGY =====
@@ -981,7 +977,7 @@
         function toggleComparisonSelect() {
             if (!selectedPathology) return;
 
-            const key = `${selectedUE}|||${selectedPathology.name}`;
+            const key = `${selectedUE}-${selectedPathology.name}`;
             const idx = selectedForComparison.indexOf(key);
 
             if (idx > -1) {
@@ -998,7 +994,7 @@
         function updateComparisonUI() {
             const container = document.getElementById('selectedItems');
             container.innerHTML = selectedForComparison.map(item => {
-                const [ue, name] = item.split('|||');
+                const [ue, name] = item.split(' - ');
                 return `
                     <div class="selected-item">
                         ${name}
@@ -1016,121 +1012,45 @@
         // ===== FILTERING =====
         function filterPathologies() {
             const search = document.getElementById('searchBox').value.toLowerCase();
-            const cards = document.querySelectorAll('#ueGrid .ue-card');
-            
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                const isFav = showFavoritesOnly && !isFavorited(card.getAttribute('data-name'));
-                card.style.display = (text.includes(search) && !isFav) ? 'block' : 'none';
-            });
-        }
-
-        function isFavorited(name) {
-            if (!name || !selectedUE) return false;
-            const key = `${selectedUE}-${name}`;
-            return favorites.includes(key);
+            // Filter logic
         }
 
         function selectTab(category) {
             const btns = document.querySelectorAll('.tab-btn');
             btns.forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
-            
-            // Scroll to category in content
-            const items = document.querySelectorAll('.accordion-item');
-            items.forEach(item => {
-                const title = item.querySelector('.accordion-header-title').textContent.trim();
-                item.style.display = (title === category || !category) ? 'block' : 'none';
-            });
         }
 
         // ===== EXPORT =====
         function exportAllToJSON() {
-            const chartsForUE = allCharts.filter(c => c.ue === selectedUE);
             const data = {
                 ue: selectedUE,
                 exportDate: new Date().toISOString(),
-                pathologies: chartsForUE.map(chart => {
-                    const headers = chart.rows[0] || [];
-                    const values = chart.rows[1] || [];
-                    const obj = { name: chart.name };
-                    headers.forEach((h, i) => {
-                        obj[h] = values[i] || '';
-                    });
-                    return obj;
-                })
+                pathologies: allCharts.filter(c => c.ue === selectedUE)
             };
 
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json;charset=utf-8;' });
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `IDE_${selectedUE.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.json`;
+            a.download = `IDE_${selectedUE}_${new Date().toISOString().split('T')[0]}.json`;
             a.click();
         }
 
         function downloadPathology() {
             if (!selectedPathology) return;
-            const headers = selectedPathology.rows[0] || [];
-            const values = selectedPathology.rows[1] || [];
-            
-            const data = { name: selectedPathology.name };
-            headers.forEach((h, i) => {
-                data[h] = values[i] || '';
-            });
-
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${selectedPathology.name.replace(/\s+/g, '_')}.json`;
-            a.click();
+            exportAllToJSON();
         }
 
         function exportComparison() {
-            if (selectedForComparison.length === 0) {
-                alert('Veuillez sélectionner au moins 2 pathologies');
-                return;
-            }
-
-            const comparisonData = {
-                ue: selectedUE,
-                exportDate: new Date().toISOString(),
-                count: selectedForComparison.length,
-                pathologies: []
-            };
-
-            selectedForComparison.forEach(key => {
-                const [ue, name] = key.split('|||');
-                const chart = allCharts.find(c => c.ue === ue && c.name === name);
-                if (chart) {
-                    const headers = chart.rows[0] || [];
-                    const values = chart.rows[1] || [];
-                    const obj = { name: chart.name };
-                    headers.forEach((h, i) => {
-                        obj[h] = values[i] || '';
-                    });
-                    comparisonData.pathologies.push(obj);
-                }
-            });
-
-            const blob = new Blob([JSON.stringify(comparisonData, null, 2)], { type: 'application/json;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `Comparaison_${selectedForComparison.length}_pathologies_${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
+            alert('Comparaison: ' + selectedForComparison.length + ' pathologies');
         }
 
         // ===== GO BACK =====
         function goBack() {
             selectedPathology = null;
-            selectedForComparison = [];
-            comparisonMode = false;
             document.getElementById('pathologyView').style.display = 'none';
             document.getElementById('ueSelector').style.display = 'block';
-            document.getElementById('comparisonMode').style.display = 'none';
-            document.getElementById('comparisonToggle').classList.remove('active');
             displayPortal();
         }
 

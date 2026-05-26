@@ -305,6 +305,172 @@
             margin-bottom: var(--space-6);
         }
 
+        /* ===== UE GLOBAL SELECTOR ===== */
+        .filters-section {
+            background: var(--color-bg-lighter);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2) var(--space-3);
+            margin-bottom: var(--space-3);
+        }
+
+        .filters-title {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text-dark);
+            margin: 0 0 var(--space-1) 0;
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+
+        .filter-block {
+            margin-bottom: var(--space-2);
+        }
+
+        .filter-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-label {
+            display: block;
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-dark);
+            margin-bottom: var(--space-1);
+        }
+
+        /* Sélecteur semestre - conteneur */
+        .semester-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-1);
+        }
+
+        /* Boutons semestre - rendre homogènes */
+        .semester-btn {
+            padding: var(--space-1) var(--space-2);
+            border: 1.5px solid var(--color-primary);
+            border-radius: var(--radius-md);
+            background: white;
+            color: var(--color-primary);
+            cursor: pointer;
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-sm);
+            transition: all var(--transition-base);
+            white-space: nowrap;
+            min-width: fit-content;
+            text-align: center;
+        }
+
+        .semester-btn:hover {
+            background: var(--color-primary-lighter);
+            transform: translateY(-1px);
+        }
+
+        .semester-btn.active {
+            background: var(--color-primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Boutons d'action UE (Toutes/Aucune) */
+        .ue-bulk-actions {
+            display: flex;
+            gap: var(--space-1);
+            margin-bottom: var(--space-2);
+            padding-bottom: var(--space-1);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .ue-bulk-btn {
+            flex: 1;
+            padding: var(--space-1) var(--space-2);
+            border: 1.5px solid var(--color-primary);
+            border-radius: var(--radius-md);
+            background: white;
+            color: var(--color-primary);
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .ue-bulk-btn:hover {
+            background: var(--color-primary-lighter);
+            transform: translateY(-1px);
+        }
+
+        .ue-bulk-btn.active {
+            background: var(--color-primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Groupes d'UE */
+        .ue-groups-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .ue-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .ue-group-label {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-primary-dark);
+            font-size: var(--font-size-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+            margin-bottom: 0;
+        }
+
+        .ue-group-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-1);
+        }
+
+        .ue-global-btn {
+            padding: var(--space-1) var(--space-2);
+            border: 1.5px solid var(--color-primary);
+            border-radius: var(--radius-md);
+            background: white;
+            color: var(--color-primary);
+            cursor: pointer;
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-sm);
+            transition: all var(--transition-base);
+            white-space: nowrap;
+            min-width: fit-content;
+            text-align: center;
+        }
+
+        .ue-global-btn:hover {
+            background: var(--color-primary-lighter);
+            transform: translateY(-1px);
+        }
+
+        .ue-global-btn.active {
+            background: var(--color-primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ue-global-btn:not(.active) {
+            opacity: 0.6;
+            background: var(--color-bg);
+        }
+
+        .ue-global-btn:not(.active):hover {
+            opacity: 1;
+        }
+
         /* ===== UE FILTER ===== */
         .ue-filter-simple {
             margin-bottom: var(--space-6);
@@ -379,7 +545,7 @@
 
         /* ===== REVISION MODE SELECTOR ===== */
         .revision-mode-selector {
-            margin: var(--space-6) 0;
+            margin: var(--space-3) 0;
         }
 
         .revision-mode-selector label {
@@ -387,13 +553,13 @@
             font-weight: var(--font-weight-semibold);
             font-size: var(--font-size-sm);
             color: var(--color-text-dark);
-            margin-bottom: var(--space-3);
+            margin-bottom: var(--space-1);
         }
 
         .mode-options {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: var(--space-3);
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: var(--space-1);
         }
 
         .mode-option {
@@ -408,37 +574,39 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: var(--space-3);
-            border: 2px solid var(--color-border);
+            justify-content: center;
+            padding: var(--space-1) var(--space-2);
+            border: 1.5px solid var(--color-border);
             border-radius: var(--radius-lg);
             background: var(--color-bg-lighter);
             transition: all var(--transition-base);
             text-align: center;
+            min-height: 90px;
         }
 
         .mode-option:hover .mode-card {
             border-color: var(--color-primary);
             background: var(--color-bg);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
         }
 
         .mode-option input[type="radio"]:checked + .mode-card {
             border-color: var(--color-primary);
             background: var(--gradient-primary);
             color: white;
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-md);
         }
 
         .mode-icon {
-            font-size: 1.5rem;
-            margin-bottom: var(--space-2);
+            font-size: 1.2rem;
+            margin-bottom: var(--space-1);
         }
 
         .mode-name {
             font-weight: var(--font-weight-semibold);
             font-size: var(--font-size-sm);
-            margin-bottom: var(--space-1);
+            margin-bottom: 0;
         }
 
         .mode-desc {
@@ -1118,15 +1286,33 @@
                     <h3>🎯 Prêt pour vos révisions ?</h3>
                     <p>Révisez avec des flashcards interactives - Cliquez pour révéler la réponse !</p>
                     
-                    <!-- Filtre UE simple -->
-                    <div class="ue-filter-simple">
-                        <label>📚 Unités d'Enseignement</label>
-                        <div class="ue-dropdown" onclick="toggleUEDropdown()">
-                            <span id="ueFilterText">Toutes les UE</span>
-                            <span class="dropdown-arrow">▼</span>
+                    <!-- SECTION FILTRES UNIFIÉE -->
+                    <div class="filters-section">
+                        <h4 class="filters-title">🔍 Filtres de révision</h4>
+                        
+                        <!-- Sélecteur Semestre -->
+                        <div class="filter-block">
+                            <label class="filter-label">📅 Semestre</label>
+                            <div id="semesterButtonsContainer" class="semester-buttons-container">
+                                <!-- Généré par JavaScript -->
+                            </div>
                         </div>
-                        <div class="ue-options" id="ueOptions" style="display: none;">
-                            <!-- Généré par JavaScript -->
+                        
+                        <!-- Sélecteur UE -->
+                        <div class="filter-block">
+                            <label class="filter-label">🎓 Unités d'Enseignement</label>
+                            
+                            <!-- Bouton "Toutes les UE" -->
+                            <div class="ue-bulk-actions">
+                                <button id="ueSelectAll" class="ue-bulk-btn active" onclick="selectAllBaseUEs()">
+                                    ✓ Toutes les UE
+                                </button>
+                            </div>
+                            
+                            <!-- UE organisées par groupe -->
+                            <div id="ueGroupsContainer" class="ue-groups-container">
+                                <!-- Généré par JavaScript -->
+                            </div>
                         </div>
                     </div>
                     

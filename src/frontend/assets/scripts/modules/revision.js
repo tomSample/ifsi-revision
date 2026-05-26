@@ -9,7 +9,9 @@ if (!window.resolvePath) {
 let allTerms = [];
 let filteredTerms = []; // Termes filtrés selon les UE
 let availableUEs = []; // Liste des UE disponibles
+let baseUEs = []; // Liste des UE de base (sans semestre: 3.2, 3.3, etc.)
 let selectedUEs = []; // UE sélectionnées
+let selectedBaseUEs = []; // UE de base sélectionnées
 let revisionMode = 'random'; // Mode de révision: 'random', 'indispensable', 'elargi', 'complet'
 let currentSession = [];
 let currentTermIndex = 0;
@@ -41,16 +43,14 @@ let currentSemester = 'S1'; // Semestre actuellement sélectionné
 
 // Initialisation au chargement de la page
 document.addEventListener('DOMContentLoaded', async function() {
+    // Initialiser les boutons de semestre
+    initSemesterButtons();
+    
     await initializeFirebase();
     loadCoursesData();
     // La progression est chargée automatiquement dans onAuthStateChanged
     loadReportedTerms();
     setupEventListeners();
-    
-    // Initialiser le sélecteur de semestre avec le callback de filtrage
-    setTimeout(() => {
-        SemesterSelector.init(onSemesterChanged);
-    }, 100);
 });
 
 /**
@@ -237,6 +237,27 @@ function setupEventListeners() {
     });
 }
 
+// ===== GESTION DES CHANGEMENTS DE SEMESTRE =====
+
+/**
+ * Filtrer les cours en fonction du semestre
+ * @param {Array} courses - Liste des cours
+ * @param {string} semester - Le semestre à filtrer (S1, S2, ... ou 'ALL')
+ * @returns {Array} Les cours filtrés
+ */
+function filterCoursesBySemesterLocal(courses, semester) {
+    // Si mode "Tous les semestres", retourner tous les cours
+    if (semester === 'ALL') {
+        return courses;
+    }
+    
+    const semesterRegex = new RegExp(`\\.(${semester})$`);
+    return courses.filter(([key, courseData]) => {
+        // L'UE doit se terminer strictement par .Sx (ex: 2.4.S1)
+        return typeof courseData.ue === 'string' && semesterRegex.test(courseData.ue);
+    });
+}
+
 /**
  * Callback appelé lors du changement de semestre
  * Filtre les cours et réinitialise les listes d'UE
@@ -250,11 +271,8 @@ function onSemesterChanged(semester) {
         return;
     }
     
-    // Filtrer les cours par semestre
-    const filteredCourses = SemesterSelector.filterCoursesBySemester(
-        coursesData.courses,
-        semester
-    );
+    // Filtrer les cours par semestre (fonction locale)
+    const filteredCourses = filterCoursesBySemesterLocal(coursesData.courses, semester);
     
     // Créer une copie temporaire des données
     const tempCoursesData = {
@@ -299,8 +317,8 @@ function onSemesterChanged(semester) {
         return a2 - b2;
     });
     
-    // Réinitialiser la sélection des UE
-    selectedUEs = [...availableUEs];
+    // Mettre à jour les UE sélectionnées en fonction des UE de base
+    updateSelectedUEsFromBaseAndSemester();
     
     // Mettre à jour les termes filtrés pour le nouveau semestre
     updateFilteredTerms();
@@ -458,6 +476,9 @@ async function loadCoursesData() {
         
         globalStats.totalTerms = allTerms.length;
         
+        // Initialiser les UE de base et leur sélecteur
+        updateBaseUEs();
+        
         // Initialiser le filtre UE
         initUEFilter();
         updateModeCounters(); // Mettre à jour les compteurs d'indicateurs
@@ -478,6 +499,198 @@ async function loadCoursesData() {
         const errorMsg = `Erreur de chargement: ${error.message}\n\nVérifiez:\n- Votre connexion Internet\n- La console pour plus de détails`;
         alert(errorMsg);
     }
+}
+
+/**
+ * Extraire l'UE de base d'une UE complète
+ * Exemple: "3.2.S1" → "3.2", "2.4.S3" → "2.4"
+ */
+function getBaseUE(fullUE) {
+    const match = fullUE.match(/^(\d+\.\d+)\./);
+    return match ? match[1] : fullUE;
+}
+
+/**
+ * Mettre à jour la liste des UE de base et initialiser les sélections
+ */
+function updateBaseUEs() {
+    const baseUESet = new Set();
+    
+    // Extraire toutes les UE de base
+    availableUEs.forEach(ue => {
+        baseUESet.add(getBaseUE(ue));
+    });
+    
+    // Trier les UE de base
+    baseUEs = Array.from(baseUESet).sort((a, b) => {
+        const parseUE = (ue) => {
+            const match = ue.match(/(\d+)\.(\d+)/);
+            return match ? [parseInt(match[1]), parseInt(match[2])] : [999, 999];
+        };
+        
+        const [a1, a2] = parseUE(a);
+        const [b1, b2] = parseUE(b);
+        
+        if (a1 !== b1) return a1 - b1;
+        return a2 - b2;
+    });
+    
+    // Initialiser toutes les UE de base comme sélectionnées
+    selectedBaseUEs = [...baseUEs];
+    
+    console.log(`📚 ${baseUEs.length} UE de base extraites:`, baseUEs);
+    
+    // Mettre à jour le sélecteur d'UE globale
+    updateGlobalUESelector();
+}
+
+/**
+ * Mettre à jour le sélecteur d'UE globale (boutons organisés par groupes)
+ */
+function updateGlobalUESelector() {
+    const container = document.getElementById('ueGroupsContainer');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    // Grouper les UE par premier numéro (2.x, 3.x, 4.x, etc.)
+    const grouped = groupUEsByPrefix(baseUEs);
+    
+    // Afficher les groupes
+    Object.keys(grouped).sort((a, b) => parseInt(a) - parseInt(b)).forEach(prefix => {
+        const group = grouped[prefix];
+        
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'ue-group';
+        
+        // Label du groupe
+        const label = document.createElement('div');
+        label.className = 'ue-group-label';
+        label.textContent = `${prefix}.x`;
+        groupDiv.appendChild(label);
+        
+        // Conteneur des boutons
+        const buttonsContainer = document.createElement('div');
+        buttonsContainer.className = 'ue-group-buttons';
+        
+        // Ajouter les boutons pour ce groupe
+        group.forEach(baseUE => {
+            const isSelected = selectedBaseUEs.includes(baseUE);
+            const btn = document.createElement('button');
+            btn.className = `ue-global-btn ${isSelected ? 'active' : ''}`;
+            btn.textContent = baseUE;
+            btn.title = `Sélectionner UE ${baseUE}`;
+            btn.onclick = () => toggleBaseUE(baseUE);
+            buttonsContainer.appendChild(btn);
+        });
+        
+        groupDiv.appendChild(buttonsContainer);
+        container.appendChild(groupDiv);
+    });
+    
+    // Mettre à jour les boutons "Toutes/Aucune"
+    updateUEBulkActionButtons();
+}
+
+/**
+ * Grouper les UE par leur préfixe (2.x, 3.x, 4.x, etc.)
+ */
+function groupUEsByPrefix(ueList) {
+    const groups = {};
+    
+    ueList.forEach(ue => {
+        // Extraire le premier numéro: "2.2" → "2", "3.10" → "3"
+        const prefix = ue.split('.')[0];
+        
+        if (!groups[prefix]) {
+            groups[prefix] = [];
+        }
+        groups[prefix].push(ue);
+    });
+    
+    // Trier chaque groupe numériquement
+    Object.keys(groups).forEach(prefix => {
+        groups[prefix].sort((a, b) => {
+            const aNum = parseFloat(a);
+            const bNum = parseFloat(b);
+            return aNum - bNum;
+        });
+    });
+    
+    return groups;
+}
+
+/**
+ * Mettre à jour l'état du bouton "Toutes les UE"
+ */
+function updateUEBulkActionButtons() {
+    const allBtn = document.getElementById('ueSelectAll');
+    
+    if (!allBtn) return;
+    
+    const allSelected = selectedBaseUEs.length === baseUEs.length;
+    
+    // Bouton "Toutes"
+    if (allSelected) {
+        allBtn.classList.add('active');
+    } else {
+        allBtn.classList.remove('active');
+    }
+}
+
+/**
+ * Sélectionner/désélectionner une UE de base
+ */
+function toggleBaseUE(baseUE) {
+    const index = selectedBaseUEs.indexOf(baseUE);
+    
+    if (index > -1) {
+        // Retirer la sélection
+        selectedBaseUEs.splice(index, 1);
+    } else {
+        // Ajouter la sélection
+        selectedBaseUEs.push(baseUE);
+    }
+    
+    // Mettre à jour les UE sélectionnées en fonction du mode semestre
+    updateSelectedUEsFromBaseAndSemester();
+    
+    // Mettre à jour l'affichage
+    updateGlobalUESelector();
+    updateUEDropdown();
+    updateFilteredTerms();
+}
+
+/**
+ * Sélectionner toutes les UE de base
+ */
+function selectAllBaseUEs() {
+    selectedBaseUEs = [...baseUEs];
+    updateSelectedUEsFromBaseAndSemester();
+    updateGlobalUESelector();
+    updateUEDropdown();
+    updateFilteredTerms();
+}
+
+/**
+ * Mettre à jour les UE sélectionnées à partir des UE de base et du semestre
+ */
+function updateSelectedUEsFromBaseAndSemester() {
+    if (currentSemester === 'ALL') {
+        // Mode "Tous les semestres": sélectionner tous les variants des UE de base sélectionnées
+        selectedUEs = availableUEs.filter(ue => {
+            const baseUE = getBaseUE(ue);
+            return selectedBaseUEs.includes(baseUE);
+        });
+    } else {
+        // Mode semestre spécifique: sélectionner les UE du semestre actuel qui correspondent aux UE de base sélectionnées
+        selectedUEs = availableUEs.filter(ue => {
+            const baseUE = getBaseUE(ue);
+            return selectedBaseUEs.includes(baseUE) && ue.endsWith(currentSemester);
+        });
+    }
+    
+    console.log(`✅ UE sélectionnées: ${selectedUEs.length} termes (Semestre: ${currentSemester})`);
 }
 
 // Charger la progression de l'utilisateur depuis localStorage
@@ -588,12 +801,61 @@ function updateRevisionMode() {
 // Rendre la fonction accessible globalement
 window.updateRevisionMode = updateRevisionMode;
 
+// ===== GESTION DES SÉLECTEURS DE SEMESTRE ET UE =====
+
+/**
+ * Initialiser les boutons de semestre
+ */
+function initSemesterButtons() {
+    const container = document.getElementById('semesterButtonsContainer');
+    if (!container) {
+        console.warn('Conteneur semesterButtonsContainer non trouvé');
+        return;
+    }
+    
+    const semesters = ['🌍 Tous', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6'];
+    const semesterValues = ['ALL', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6'];
+    
+    container.innerHTML = '';
+    
+    semesters.forEach((label, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'semester-btn' + (semesterValues[idx] === currentSemester ? ' active' : '');
+        btn.textContent = label;
+        btn.setAttribute('data-semester', semesterValues[idx]);
+        btn.addEventListener('click', function() {
+            const semester = this.getAttribute('data-semester');
+            changeSemesterUI(semester);
+        });
+        container.appendChild(btn);
+    });
+    
+    console.log('✅ Boutons de semestre initialisés');
+}
+
+/**
+ * Changer le semestre via l'UI
+ */
+function changeSemesterUI(semester) {
+    currentSemester = semester;
+    
+    // Mettre à jour les boutons
+    document.querySelectorAll('.semester-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-semester') === semester) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Appeler onSemesterChanged
+    onSemesterChanged(semester);
+}
+
 // ===== FILTRAGE UE SIMPLE =====
 
 // Initialiser le filtre UE
 function initUEFilter() {
-    generateUEOptions();
-    updateUEDisplay();
+    updateGlobalUESelector();
 }
 
 // Générer les options UE

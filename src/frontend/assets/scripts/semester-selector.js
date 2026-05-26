@@ -7,6 +7,7 @@ const SemesterSelector = (() => {
     let currentSemester = 'S1';
     let filterCallback = null;
     const SEMESTER_RANGE = { min: 1, max: 6 };
+    const ALL_SEMESTERS = 'ALL';
 
     /**
      * Initialise le sélecteur de semestre
@@ -23,9 +24,70 @@ const SemesterSelector = (() => {
      */
     function createSelectorHTML() {
         // Vérifier si le sélecteur existe déjà
-        if (document.getElementById('semesterSelector')) {
+        if (document.getElementById('semesterButtonsContainer')) {
+            // Les boutons seront injectés dans le container existant
+            injectSemesterButtons();
             return;
         }
+
+        // Fallback: créer la structure si elle n'existe pas
+        const header = document.querySelector('header');
+        const main = document.querySelector('main');
+        
+        if (header) {
+            header.insertAdjacentElement('afterend', createSelectorElement());
+        } else if (main) {
+            main.insertAdjacentElement('beforebegin', createSelectorElement());
+        }
+    }
+
+    /**
+     * Injecter les boutons de semestre dans le container
+     */
+    function injectSemesterButtons() {
+        const container = document.getElementById('semesterButtonsContainer');
+        if (!container) return;
+
+        container.innerHTML = '';
+
+        // Bouton "Tous les semestres"
+        const allSemestersBtn = document.createElement('button');
+        allSemestersBtn.className = 'semester-btn';
+        allSemestersBtn.textContent = '🌍 Tous';
+        allSemestersBtn.setAttribute('data-semester', ALL_SEMESTERS);
+        allSemestersBtn.addEventListener('click', function() {
+            const semester = this.getAttribute('data-semester');
+            changeSemester(semester);
+        });
+        container.appendChild(allSemestersBtn);
+
+        // Boutons S1-S6
+        for (let i = SEMESTER_RANGE.min; i <= SEMESTER_RANGE.max; i++) {
+            const semester = `S${i}`;
+            const btn = document.createElement('button');
+            btn.className = `semester-btn ${semester === currentSemester ? 'active' : ''}`;
+            btn.textContent = semester;
+            btn.setAttribute('data-semester', semester);
+            btn.addEventListener('click', function() {
+                const sem = this.getAttribute('data-semester');
+                changeSemester(sem);
+            });
+            container.appendChild(btn);
+        }
+
+        addStylesIfNeeded();
+    }
+
+    /**
+     * Crée l'élément complet du sélecteur (fallback)
+     */
+    function createSelectorElement() {
+        // Bouton "Tous les semestres"
+        const allSemestersBtn = `
+            <button class="semester-btn" data-semester="${ALL_SEMESTERS}">
+                🌍 Tous
+            </button>
+        `;
 
         const semesterButtonsHTML = Array.from(
             { length: SEMESTER_RANGE.max - SEMESTER_RANGE.min + 1 },
@@ -48,36 +110,13 @@ const SemesterSelector = (() => {
             <div class="semester-selector-content">
                 <label for="semesterToggle" class="semester-label">📚 Semestre:</label>
                 <div class="semester-buttons">
+                    ${allSemestersBtn}
                     ${semesterButtonsHTML}
                 </div>
             </div>
         `;
 
-        // Insérer dans la welcome-card juste au-dessus du dropdown UE si présent
-        const welcomeCard = document.querySelector('.welcome-card');
-        const ueFilterSimple = document.querySelector('.ue-filter-simple');
-
-        if (welcomeCard && ueFilterSimple && welcomeCard.contains(ueFilterSimple)) {
-            welcomeCard.insertBefore(selector, ueFilterSimple);
-            addStylesIfNeeded();
-            return;
-        }
-
-        // Fallback: insérer après le header ou au début du main
-        const header = document.querySelector('header');
-        const main = document.querySelector('main');
-        
-        if (header) {
-            header.insertAdjacentElement('afterend', selector);
-        } else if (main) {
-            main.insertAdjacentElement('beforebegin', selector);
-        } else {
-            document.body.insertAdjacentElement('afterbegin', selector);
-        }
-
-        // Ajouter les styles s'ils ne sont pas déjà présents
-        addStylesIfNeeded();
-    }
+        return selector;
 
     /**
      * Attache les événements aux boutons
@@ -116,19 +155,32 @@ const SemesterSelector = (() => {
 
     /**
      * Retourne le semestre actuellement sélectionné
-     * @returns {string} Le semestre (S1, S2, etc.)
+     * @returns {string} Le semestre (S1, S2, ... ou 'ALL')
      */
     function getSemester() {
         return currentSemester;
     }
 
     /**
+     * Vérifie si le mode "Tous les semestres" est actif
+     * @returns {boolean}
+     */
+    function isAllSemestersMode() {
+        return currentSemester === ALL_SEMESTERS;
+    }
+
+    /**
      * Filtre les cours en fonction du semestre
      * @param {Array} courses - Liste des cours
-     * @param {string} semester - Le semestre à filtrer
+     * @param {string} semester - Le semestre à filtrer (S1, S2, ... ou 'ALL')
      * @returns {Array} Les cours filtrés
      */
     function filterCoursesBySemester(courses, semester) {
+        // Si mode "Tous les semestres", retourner tous les cours
+        if (semester === ALL_SEMESTERS) {
+            return courses;
+        }
+        
         const semesterRegex = new RegExp(`\\.(${semester})$`);
         return courses.filter(([key, courseData]) => {
             // L'UE doit se terminer strictement par .Sx (ex: 2.4.S1)
@@ -235,6 +287,8 @@ const SemesterSelector = (() => {
         init,
         getSemester,
         changeSemester,
-        filterCoursesBySemester
+        filterCoursesBySemester,
+        isAllSemestersMode,
+        ALL_SEMESTERS
     };
 })();
