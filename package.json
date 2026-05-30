@@ -4,8 +4,11 @@
   "description": "Application de révision IFSI avec répétition espacée",
   "main": "src/backend/app.py",
   "scripts": {
-    "dev": "python src/backend/app.py",
-    "start": "python src/backend/app.py",
+    "sync-data": "node scripts/sync-data.js",
+    "build": "npm run sync-data && npm run minify",
+    "minify": "node minify.js",
+    "dev": "npm run sync-data && python src/backend/app.py",
+    "start": "npm run sync-data && python src/backend/app.py",
     "lint": "eslint src/frontend/assets/scripts/ --fix",
     "format": "prettier --write \"src/**/*.{js,css,html}\"",
     "test": "echo \"Tests à implémenter\" && exit 0"

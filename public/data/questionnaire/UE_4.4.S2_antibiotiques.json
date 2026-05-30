@@ -1,0 +1,451 @@
+[
+  {
+    "id": "abx-001",
+    "type": "memorization",
+    "theme": "Mode d'action",
+    "variantes": [
+      "La doxycycline agit par ?",
+      "Quel est le mécanisme d'action de la doxycycline ?",
+      "Doxycycline: inhibition de ?"
+    ],
+    "reponses": [
+      "Inhibition de la synthèse protéique",
+      "Inhibition de la paroi bactérienne",
+      "Inhibition de la réplication ADN"
+    ],
+    "correcte": "Inhibition de la synthèse protéique",
+    "shuffle": true,
+    "difficulte": "facile"
+  },
+  {
+    "id": "abx-002",
+    "type": "memorization",
+    "theme": "Familles",
+    "variantes": [
+      "Ceftriaxone appartient à quelle famille ?",
+      "Ceftriaxone = ?",
+      "Quel est la classification de la ceftriaxone ?"
+    ],
+    "reponses": [
+      "Céphalosporine",
+      "Carbapénème",
+      "Pénicilline A"
+    ],
+    "correcte": "Céphalosporine",
+    "shuffle": true,
+    "difficulte": "facile"
+  },
+  {
+    "id": "abx-003",
+    "type": "memorization",
+    "theme": "Familles",
+    "variantes": [
+      "Gentamicine appartient à quelle famille ?",
+      "Gentamicine = ?",
+      "La gentamicine est un ?"
+    ],
+    "reponses": [
+      "Aminoside",
+      "Fluoroquinolone",
+      "Macrolide"
+    ],
+    "correcte": "Aminoside",
+    "shuffle": true,
+    "difficulte": "facile"
+  },
+  {
+    "id": "abx-004",
+    "type": "memorization",
+    "theme": "Mode d'action",
+    "variantes": [
+      "Quel groupe d'antibiotiques agit sur la paroi bactérienne ?",
+      "Inhibition de la synthèse de la paroi bactérienne: quelle(s) famille(s) ?",
+      "Paroi bactérienne = inhibition par ?"
+    ],
+    "reponses": [
+      "Bêta-lactamines, fosfomycine, glycopeptides",
+      "Fluoroquinolones, macrolides",
+      "Aminosides, tétracyclines"
+    ],
+    "correcte": "Bêta-lactamines, fosfomycine, glycopeptides",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-005",
+    "type": "memorization",
+    "theme": "Spectre",
+    "variantes": [
+      "Quel antibiotique a le spectre le plus large ?",
+      "Spectre le plus étendu parmi les bêta-lactamines ?",
+      "Spectre très large = ?"
+    ],
+    "reponses": [
+      "Carbapénèmes",
+      "Pénicillines V",
+      "Céphalosporines"
+    ],
+    "correcte": "Carbapénèmes",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-006",
+    "type": "memorization",
+    "theme": "Spectre",
+    "variantes": [
+      "Vancomycine cible quel type de bactéries ?",
+      "Spectre de la vancomycine = ?",
+      "Vancomycine: ciblée sur ?"
+    ],
+    "reponses": [
+      "Gram+ seulement",
+      "Gram- seulement",
+      "Anaérobies seulement"
+    ],
+    "correcte": "Gram+ seulement",
+    "shuffle": true,
+    "difficulte": "facile"
+  },
+  {
+    "id": "abx-007",
+    "type": "memorization",
+    "theme": "Familles",
+    "variantes": [
+      "Métronidazole = ?",
+      "Métronidazole appartient à ?",
+      "Quelle est la classification du métronidazole ?"
+    ],
+    "reponses": [
+      "Nitroimidazolé",
+      "Oxazolidinone",
+      "Lincosamide"
+    ],
+    "correcte": "Nitroimidazolé",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-008",
+    "type": "memorization",
+    "theme": "Associations",
+    "variantes": [
+      "Amoxicilline + acide clavulanique: effet de l'acide clavulanique ?",
+      "Acide clavulanique: rôle ?",
+      "Pourquoi ajouter de l'acide clavulanique à l'amoxicilline ?"
+    ],
+    "reponses": [
+      "Inhibe les bêta-lactamases",
+      "Augmente la toxicité",
+      "Élargit le spectre Gram-"
+    ],
+    "correcte": "Inhibe les bêta-lactamases",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-009",
+    "type": "security",
+    "theme": "Contre-indications",
+    "variantes": [
+      "Doxycycline avant 8 ans: risque principal ?",
+      "En pédiatrie, la doxycycline avant 8 ans est ?",
+      "Pourquoi éviter la doxycycline chez l'enfant < 8 ans ?"
+    ],
+    "reponses": [
+      "Risque de décoloration dentaire",
+      "Risque de néphrotoxicité",
+      "Efficacité insuffisante"
+    ],
+    "correcte": "Risque de décoloration dentaire",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-010",
+    "type": "security",
+    "theme": "Contre-indications",
+    "variantes": [
+      "Doxycycline en grossesse: risque ?",
+      "Grossesse et doxycycline: ?",
+      "Femme enceinte: doxycycline est ?"
+    ],
+    "reponses": [
+      "Contre-indiquée",
+      "Possible au 3e trimestre",
+      "Autorisée avec surveillance"
+    ],
+    "correcte": "Contre-indiquée",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-011",
+    "type": "security",
+    "theme": "Interactions médicamenteuses",
+    "variantes": [
+      "Ceftriaxone + calcium = ?",
+      "Ceftriaxone et calcium: interaction ?",
+      "Pourquoi ne pas administrer ceftriaxone et calcium ensemble ?"
+    ],
+    "reponses": [
+      "À éviter simultanément",
+      "Synergie bénéfique",
+      "Compatible sans risque"
+    ],
+    "correcte": "À éviter simultanément",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-012",
+    "type": "security",
+    "theme": "Interactions médicamenteuses",
+    "variantes": [
+      "Macrolides et CYP3A4: type d'interaction ?",
+      "Macrolides: interactions médicamenteuses via ?",
+      "Nombreuses interactions des macrolides = inhibition de ?"
+    ],
+    "reponses": [
+      "Nombreuses interactions via inhibition du CYP3A4",
+      "Synergie avec anticoagulants",
+      "Interaction avec aliments gras"
+    ],
+    "correcte": "Nombreuses interactions via inhibition du CYP3A4",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-013",
+    "type": "security",
+    "theme": "Interactions médicamenteuses",
+    "variantes": [
+      "Imipénem + acide valproïque: risque ?",
+      "Acide valproïque et imipénem: interaction ?",
+      "Imipénem interagit avec ?"
+    ],
+    "reponses": [
+      "Interaction importante",
+      "Pas d'interaction",
+      "Synergie favorable"
+    ],
+    "correcte": "Interaction importante",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-014",
+    "type": "security",
+    "theme": "Surveillance/Dosage",
+    "variantes": [
+      "Vancomycine nécessite quel type de surveillance ?",
+      "Vancomycine: dosage ?",
+      "Pic et vallée: surveillance de ?"
+    ],
+    "reponses": [
+      "Dosage au pic et en vallée",
+      "Dosage une fois par jour",
+      "Pas de surveillance particulière"
+    ],
+    "correcte": "Dosage au pic et en vallée",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-015",
+    "type": "security",
+    "theme": "Surveillance/Dosage",
+    "variantes": [
+      "Aminosides: risques principaux ?",
+      "Gentamicine surveillance: ?",
+      "Néphrotoxicité et ototoxicité = surveillance de ?"
+    ],
+    "reponses": [
+      "Néphrotoxicité et ototoxicité",
+      "Risque d'allergie seulement",
+      "Risque de photosensibilisation"
+    ],
+    "correcte": "Néphrotoxicité et ototoxicité",
+    "shuffle": true,
+    "difficulte": "facile"
+  },
+  {
+    "id": "abx-016",
+    "type": "security",
+    "theme": "Pièges cliniques",
+    "variantes": [
+      "Linézolide traitement prolongé: risque ?",
+      "Toxicité du linézolide si traitement long ?",
+      "Linézolide long terme = risque de ?"
+    ],
+    "reponses": [
+      "Toxicité neuro-hématologique",
+      "Toxicité rénale uniquement",
+      "Allergie cutanée sévère"
+    ],
+    "correcte": "Toxicité neuro-hématologique",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-017",
+    "type": "security",
+    "theme": "Pièges cliniques",
+    "variantes": [
+      "Fluoroquinolones: risques importants ?",
+      "Ciprofloxacine: effets indésirables ?",
+      "Fluoroquinolones surveillance: ?"
+    ],
+    "reponses": [
+      "Tendinopathie, allongement QT, photosensibilisation",
+      "Néphrotoxicité uniquement",
+      "Allergie immédiate seulement"
+    ],
+    "correcte": "Tendinopathie, allongement QT, photosensibilisation",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-018",
+    "type": "memorization",
+    "theme": "Mode d'action",
+    "variantes": [
+      "Métronidazole agit sur quel type de germes ?",
+      "Spectre du métronidazole = ?",
+      "Métronidazole cible surtout ?"
+    ],
+    "reponses": [
+      "Anaérobies",
+      "Gram+ seulement",
+      "Bacilles Gram-"
+    ],
+    "correcte": "Anaérobies",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-019",
+    "type": "memorization",
+    "theme": "Stratégies",
+    "variantes": [
+      "Aminosides: stratégie d'utilisation ?",
+      "Aminosides toujours en ?",
+      "Comment utiliser les aminosides ?"
+    ],
+    "reponses": [
+      "En association",
+      "En monothérapie",
+      "En remplacement des bêta-lactamines"
+    ],
+    "correcte": "En association",
+    "shuffle": true,
+    "difficulte": "facile"
+  },
+  {
+    "id": "abx-020",
+    "type": "security",
+    "theme": "Stratégies",
+    "variantes": [
+      "Clindamycine peut traiter les infections à SARM ?",
+      "SARM: clindamycine peut être utilisée ?",
+      "Clindamycine et Staphylococcus aureus résistant à la méticilline ?"
+    ],
+    "reponses": [
+      "Oui, peut être utilisée",
+      "Non, inefficace",
+      "Seulement en association"
+    ],
+    "correcte": "Oui, peut être utilisée",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-021",
+    "type": "memorization",
+    "theme": "Stratégies",
+    "variantes": [
+      "Pénicillines M: utilité principale ?",
+      "Oxacilline/Cloxacilline: indication ?",
+      "Pourquoi utiliser les pénicillines M ?"
+    ],
+    "reponses": [
+      "Traiter les Staphylocoques sensibles à la méticilline",
+      "Traiter les infections à Gram-",
+      "Élargir le spectre des pénicillines"
+    ],
+    "correcte": "Traiter les Staphylocoques sensibles à la méticilline",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-022",
+    "type": "memorization",
+    "theme": "Spectre",
+    "variantes": [
+      "Fosfomycine: spectre et indication ?",
+      "Fosfomycine utilisée surtout pour ?",
+      "Indication principale de la fosfomycine ?"
+    ],
+    "reponses": [
+      "Cystite aiguë simple",
+      "Infections sévères",
+      "Prophylaxie pré-opératoire"
+    ],
+    "correcte": "Cystite aiguë simple",
+    "shuffle": true,
+    "difficulte": "facile"
+  },
+  {
+    "id": "abx-023",
+    "type": "memorization",
+    "theme": "Familles",
+    "variantes": [
+      "Cotrimoxazole = ?",
+      "Cotrimoxazole appartient à ?",
+      "Quelle est la composition du cotrimoxazole ?"
+    ],
+    "reponses": [
+      "Sulfamides + triméthoprime",
+      "Fluoroquinolone + aminoside",
+      "Pénicilline + inhibiteur de bêta-lactamase"
+    ],
+    "correcte": "Sulfamides + triméthoprime",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-024",
+    "type": "memorization",
+    "theme": "Familles",
+    "variantes": [
+      "Linézolide appartient à quelle famille ?",
+      "Linézolide = ?",
+      "Oxazolidinone: exemple ?"
+    ],
+    "reponses": [
+      "Oxazolidinone",
+      "Macrolide",
+      "Glycopeptide"
+    ],
+    "correcte": "Oxazolidinone",
+    "shuffle": true,
+    "difficulte": "moyen"
+  },
+  {
+    "id": "abx-025",
+    "type": "memorization",
+    "theme": "Familles",
+    "variantes": [
+      "Aztréonam appartient à quelle famille ?",
+      "Aztréonam = ?"
+    ],
+    "reponses": [
+      "Monobactame",
+      "Céphalosporine",
+      "Carbapénème"
+    ],
+    "correcte": "Monobactame",
+    "shuffle": true,
+    "difficulte": "difficile"
+  }
+]
