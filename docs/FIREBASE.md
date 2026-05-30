@@ -207,3 +207,63 @@ Ton Firebase est configuré. L'application peut maintenant :
 - ✅ Gérer le compte utilisateur
 
 **Durée totale : ~10 minutes** ⏱️
+
+---
+
+## 🌐 Configuration OAuth pour GitHub Pages
+
+### Problème : Domaines non autorisés
+
+Si tu déploies sur GitHub Pages, une erreur apparaît dans la console :
+
+```
+Info: The current domain is not authorized for OAuth operations. 
+Add your domain (tomsample.github.io) to the OAuth redirect domains list 
+in the Firebase console -> Authentication -> Settings -> Authorized domains tab.
+```
+
+### Solution : Autoriser le domaine GitHub Pages
+
+#### Domaines qui doivent être autorisés :
+
+- ✅ `localhost` (déjà présent par défaut)
+- ✅ `ifsi-revision.firebaseapp.com` (déjà présent par défaut)
+- ✅ `[tonusername].github.io` (À AJOUTER pour ton déploiement)
+
+#### Étapes à suivre dans Firebase Console
+
+1. **Aller sur Firebase Console** → https://console.firebase.google.com/
+2. Sélectionner le projet : `ifsi-revision`
+3. Menu latéral → **"Authentication"** (🔐)
+4. Onglet **"Settings"** (en haut)
+5. Scroll vers **"Authorized domains"**
+6. Cliquer sur **"Add domain"**
+7. Entrer ton domaine GitHub Pages : `[tonusername].github.io`
+8. Cliquer sur **"Add"**
+
+#### Résultat attendu
+
+Après cette configuration :
+- ✅ Les utilisateurs peuvent se connecter depuis GitHub Pages
+- ✅ Les opérations OAuth (Google, Facebook, etc.) fonctionnent
+- ✅ Plus d'avertissement dans la console
+
+#### Délai de propagation
+
+- Les changements sont généralement **immédiats**
+- Rafraîchir la page après l'ajout
+- Vider le cache si nécessaire (Ctrl+Shift+R ou Cmd+Shift+R)
+
+### Pourquoi cette configuration ?
+
+Firebase Auth vérifie que les requêtes d'authentification proviennent de domaines autorisés pour des raisons de sécurité. Sans cette autorisation :
+- ✅ `signInWithEmailAndPassword()` fonctionne
+- ❌ `signInWithPopup()` NE fonctionne PAS
+- ❌ `signInWithRedirect()` NE fonctionne PAS
+
+### Sécurité
+
+Cette configuration est **SAFE** :
+- Tu autorises uniquement ton propre domaine GitHub Pages
+- Les clés API dans `firebase-config.js` sont publiques par design
+- La sécurité réelle est assurée par les Firestore Security Rules

@@ -87,24 +87,88 @@ Le sélecteur inclut ses propres styles CSS injected au DOM :
 - Design responsive (mobile-first)
 - Gradient de couleur pour l'état actif
 
+---
+
+## 📝 Historique de l'implémentation
+
+### Fichiers affectés
+
+#### Création
+- **`src/frontend/assets/scripts/semester-selector.js`** (nouveau module IIFE)
+  - Crée les boutons toggles S1/S2
+  - Injecte automatiquement les styles CSS
+  - Expose l'API publique
+
+#### Modifications
+
+**`src/frontend/pages/revision.html`**
+- Ajout du script du sélecteur
+
+**`src/frontend/assets/scripts/modules/revision.js`**
+- Ajout de la variable `currentSemester = 'S1'`
+- Initialisation du sélecteur avec callback
+- Nouvelles fonctions : `onSemesterChanged()` et `updateUEDropdown()`
+
+**`src/frontend/pages/browse-courses.html`**
+- Ajout du script du sélecteur
+- Variable `currentSemester` et initialisation
+- Refactorisation de `loadCourses()`
+- Nouvelles fonctions : `filterByCurrentSemester()` et `onSemesterChanged()`
+
+### Comportement utilisateur
+
+1. **Au chargement** : Le Semestre 1 est sélectionné par défaut
+2. **Clic sur bouton S2** : 
+   - Les boutons toggles changent d'état
+   - Les cours et termes sont filtrés par S2
+   - Les listes d'UE sont mises à jour
+3. **Clic sur S1** : Retour au Semestre 1
+
+### Structure visuelle
+
+```
+┌─────────────────────────────────────┐
+│ 📚 Semestre:                        │
+│ [Semestre 1] [Semestre 2]           │
+└─────────────────────────────────────┘
+```
+
+- **Design** : Boutons toggles avec gradient au survol
+- **État actif** : Gradient bleu + ombre
+- **Responsive** : Adapté aux mobiles
+
+---
+
+## Prêt pour le Semestre 2
+
+Quand vous uploadez des cours S2 :
+1. Ajoutez simplement `"ue": "X.X.S2"` dans courses.json
+2. Le bouton S2 s'activera automatiquement
+3. Aucun code à modifier
+
+## Compatibilité
+
+- ✅ Fonctionne avec les données existantes en S1
+- ✅ Compatible avec les filtres UE existants
+- ✅ Compatible avec la recherche par texte
+- ✅ Aucune rupture des fonctionnalités existantes
+
+## Testing
+
+Pour tester :
+
+1. **Ouvrir revision.html ou browse-courses.html**
+2. **Vérifier que le sélecteur apparaît en haut**
+3. **Cliquer sur S2 (bouton grisé pour maintenant)**
+4. **Cliquer sur S1 (bouton actif)**
+5. **Ouvrir la console** : `SemesterSelector.getSemester()` affiche "S1"
+
 ## Améliorations futures
 
 1. **Sauvegarde du semestre en localStorage** (optionnel)
 2. **Support de semestres dynamiques** (génération automatique basée sur les données)
 3. **Sélecteur d'année académique** (si plusieurs années sont ajoutées)
 4. **Badges de disponibilité** (montre combien de cours par semestre)
-
-## Exemple d'utilisation
-
-### Pour ajouter un nouveau semestre
-
-1. Ajouter des cours avec `"ue": "X.X.S3"` dans courses.json
-2. Créer un bouton dans le sélecteur (le module se met à jour automatiquement)
-3. Aucun code JavaScript supplémentaire n'est nécessaire
-
-### Pour modifier le style
-
-Éditer les styles dans `SemesterSelector.addStylesIfNeeded()` dans le fichier `semester-selector.js`.
 
 ## Débogage
 
@@ -120,3 +184,9 @@ Voir les logs pour le filtrage :
 📚 Changement vers S1
 ✅ 15 termes disponibles pour S1
 ```
+
+## Notes
+
+- Le module `SemesterSelector` est réutilisable pour d'autres pages
+- Les styles CSS sont auto-injectés (pas besoin de fichier CSS séparé)
+- Zero dépendance externe (vanilla JavaScript)
