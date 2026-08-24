@@ -72,7 +72,7 @@ async function getCoursesData() {
     
     // Si pas de cache, charger depuis le serveur
     console.log('🌐 Chargement depuis le serveur...');
-    const url = window.resolvePath('/src/data/courses.json');
+    const url = window.resolvePath('/api/data/courses.json');
     console.log('📍 URL complète:', url);
     
     const response = await fetch(url);
