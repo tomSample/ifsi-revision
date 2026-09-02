@@ -25,7 +25,7 @@ class PharmaQuiz {
                 // Chemin relatif à partir de quiz.html
                 '../../data/recap_charts/UE 4.4.S1 - Familles de médicaments.csv',
                 // Chemin absolu
-                '/src/data/recap_charts/UE 4.4.S1 - Familles de médicaments.csv',
+                '../../data/recap_charts/UE 4.4.S1 - Familles de médicaments.csv',
                 // Chemin avec resolvePath
                 (window.resolvePath ? window.resolvePath('/src/data/recap_charts/UE 4.4.S1 - Familles de médicaments.csv') : null)
             ].filter(p => p !== null);

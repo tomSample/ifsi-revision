@@ -837,7 +837,7 @@
         async function updateStats() {
             try {
                 // Fetch courses data
-                const response = await fetch('/src/data/courses.json');
+                const response = await fetch('../../data/courses.json');
                 const coursesData = await response.json();
                 
                 // Calculate stats
@@ -890,7 +890,7 @@
         // Load courses data
         async function loadCoursesData() {
             try {
-                const response = await fetch('/src/data/courses.json');
+                const response = await fetch('../../data/courses.json');
                 const data = await response.json();
                 allCourses = data.courses || [];
             } catch (error) {

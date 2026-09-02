@@ -25,7 +25,7 @@ class McqQuiz {
                 // Chemin relatif à partir de quiz.html
                 '../../data/questionnaire/UE_4.4.S2_antibiotiques.json',
                 // Chemin absolu
-                '/src/data/questionnaire/UE_4.4.S2_antibiotiques.json',
+                '../../data/questionnaire/UE_4.4.S2_antibiotiques.json',
                 // Chemin avec resolvePath
                 (window.resolvePath ? window.resolvePath('/src/data/questionnaire/UE_4.4.S2_antibiotiques.json') : null)
             ].filter(p => p !== null);

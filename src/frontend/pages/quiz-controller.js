@@ -29,7 +29,7 @@ window.selectQuiz = async function(quizType) {
         if (quizType === 'UE_4.4.S2_antibiotiques') {
             // Quiz Antibiotiques (MCQ)
             quizInstance = new McqQuiz();
-            const filePath = '/src/data/questionnaire/UE_4.4.S2_antibiotiques.json';
+            const filePath = '../../data/questionnaire/UE_4.4.S2_antibiotiques.json';
             const loaded = await quizInstance.loadQuizData(filePath);
             
             if (loaded && quizInstance.quizData.length > 0) {
