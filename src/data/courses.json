@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-05-24T14:46:57.710807",
+  "exportDate": "2026-09-02T10:24:38.905483",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -6556,10 +6556,130 @@
         ],
         "filename": "plans de soins types et chemins cliniques dans le parcours de soins.odt"
       }
+    ],
+    [
+      "ue_1_1_s3_le_dveloppement_humain",
+      {
+        "title": "Le développement humain",
+        "date": "01/09/2026",
+        "ue": "1.1.S3",
+        "author": "PDF",
+        "definitions": [
+          {
+            "definition": "caractérise les transformations qui se produissesnt chez l’être humain au cours de sa vie",
+            "term": "Développement"
+          },
+          {
+            "definition": "développement individuelle",
+            "term": "Ontogenèse"
+          },
+          {
+            "definition": "évolution de l’espèce",
+            "term": "Phylogenèse"
+          },
+          {
+            "definition": "modèles généraux du développement",
+            "term": "Développement global"
+          },
+          {
+            "definition": "étude d’un ou de plusieurs domaines spécifiques du développement (psychomoteur, cognitif, social...)",
+            "term": "Développement local"
+          },
+          {
+            "definition": "évolutions psychologiques se produisant sur un temps court",
+            "term": "Microgenèse"
+          },
+          {
+            "definition": "évolutions psychologiques se produisant sur un temps long",
+            "term": "Macrogenèse"
+          },
+          {
+            "definition": "acquisition de connaissances ou de savoir-faire grâce à l’expérience, à l’enseignement ou à l’interaction avec l’environnement",
+            "term": "Apprentissage"
+          },
+          {
+            "definition": "capacité ou potentialité d’une personne, non directement observable",
+            "term": "Compétence"
+          },
+          {
+            "definition": "Comportement ou résultat effectivement observable.",
+            "term": "Performance"
+          },
+          {
+            "definition": "Succession ordonnée d’étapes liées entre elles",
+            "term": "Séquence développementale"
+          },
+          {
+            "definition": "capacité nécessaire à l’acquisition d’une compétence ultérieure",
+            "term": "Prérequis"
+          },
+          {
+            "definition": "étude des évolutions intra-individuelles chez des individus suivis en temps réel",
+            "term": "Approche longitudinale"
+          },
+          {
+            "definition": "étude et comparaison des performances inter-individuelles de personnes d’âges différents à un même moment.",
+            "term": "Approche transversale"
+          },
+          {
+            "definition": "élément interne lié notamment aux gènes, au système nerveux, aux hormones ou à la croissance",
+            "term": "Facteur biologique"
+          },
+          {
+            "definition": "élément extérieur lié au milieu physique, social, familial ou culturel",
+            "term": "Facteur environnemental"
+          },
+          {
+            "definition": "activité mentale permettant de traiter les informations et de construire des connaissances",
+            "term": "Facteur cognitif"
+          },
+          {
+            "definition": "processus interne de croissance anatomique et physiologique permettant l’apparition progressive de capacités",
+            "term": "Maturation"
+          },
+          {
+            "definition": "ensemble des activités mentales liées à la connaissance, à la compréhension et à l’adaptation",
+            "term": "Cognition"
+          },
+          {
+            "definition": "conception selon laquelle le développement dépend principalement de facteurs biologiques internes",
+            "term": "Innéisme"
+          },
+          {
+            "definition": "conception selon laquelle le développement dépend principalement de l’expérience et de l’environnement",
+            "term": "Empirisme"
+          },
+          {
+            "definition": "conception selon laquelle le développement résulte de l’interaction entre facteurs biologiques et environnementaux",
+            "term": "Interactionnisme"
+          },
+          {
+            "definition": "Théorie selon laquelle l’individu construit activement ses connaissances par son interaction avec l’environnement",
+            "term": "Constructivisme"
+          },
+          {
+            "definition": "Théorie qui insiste sur le rôle des interactions sociales dans la construction des connaissances",
+            "term": "Socioconstructivisme"
+          },
+          {
+            "definition": "processus par lequel les expériences et l’environnement modulent l’expression des potentialités génétiques",
+            "term": "Épigénèse"
+          },
+          {
+            "definition": "période durant laquelle une acquisition dépend de stimuli adaptés et devient ensuite très difficile, voire impossible",
+            "term": "Période critique"
+          },
+          {
+            "definition": "période particulièrement favorable à une acquisition, sans forcément rendre celle-ci impossible par la suite",
+            "term": "Période sensible"
+          }
+        ],
+        "filename": "Le développement humain.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 1215,
+    "totalTerms": 1242,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0
