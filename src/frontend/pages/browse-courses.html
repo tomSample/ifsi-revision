@@ -156,6 +156,172 @@
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto var(--space-6);
+            width: 100%;
+        }
+
+        .search-label {
+            display: block;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-dark);
+            margin-bottom: var(--space-2);
+        }
+
+        .search-input-wrapper {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            padding-right: var(--space-12);
+            font-size: var(--font-size-base);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            background: var(--color-bg);
+            color: var(--color-text-dark);
+            transition: all var(--transition-base);
+            font-family: inherit;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: var(--space-4);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-text-muted);
+            font-size: var(--font-size-lg);
+            pointer-events: none;
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-top: none;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 40;
+            display: none;
+        }
+
+        .search-suggestions.active {
+            display: block;
+        }
+
+        .suggestion-item {
+            padding: var(--space-3) var(--space-4);
+            cursor: pointer;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .suggestion-item:hover {
+            background: var(--color-bg-lighter);
+        }
+
+        .suggestion-term {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-dark);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-1);
+        }
+
+        .suggestion-ue {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: var(--space-4);
+        }
+
+        .modal-backdrop.active {
+            display: flex;
+        }
+
+        .term-modal {
+            background: var(--color-bg);
+            border-radius: var(--radius-xl);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-header, .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-6);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .modal-title {
+            margin: 0;
+            color: var(--color-text-dark);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: var(--font-size-xl);
+            color: var(--color-text-muted);
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: var(--space-6);
+        }
+
+        .term-info {
+            margin-bottom: var(--space-6);
+        }
+
+        .term-ue {
+            display: inline-block;
+            background: var(--color-primary-lighter);
+            color: var(--color-primary-dark);
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .term-definition {
+            padding: var(--space-4);
+            background: var(--color-bg-lighter);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--color-primary);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .modal-footer {
+            justify-content: flex-start;
+            gap: var(--space-3);
+            border-bottom: none;
+        }
+
         .ue-list {
             list-style: none;
             padding: 0;
@@ -524,6 +690,14 @@
             <!-- PAGE CONTENT -->
             <div class="page-container">
                 <h1 class="page-title">📖 Parcourir les Cours</h1>
+                <div class="search-container">
+                    <label for="searchInput" class="search-label">🔍 Chercher un terme ou une définition</label>
+                    <div class="search-input-wrapper">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Ex: cellule, noyau, membrane..." minlength="2" aria-label="Rechercher un terme">
+                        <span class="search-icon">🔎</span>
+                        <div id="searchSuggestions" class="search-suggestions"></div>
+                    </div>
+                </div>
                 <div id="coursesContainer" class="courses-list">
                     <div class="empty-state">
                         <div class="empty-state-icon">📚</div>
@@ -533,6 +707,26 @@
             </div>
         </div>
     </main>
+
+    <div id="termModal" class="modal-backdrop">
+        <div class="term-modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTermTitle">Terme</h2>
+                <button class="modal-close" aria-label="Fermer" onclick="closeTermModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="term-info">
+                    <span class="term-ue" id="modalTermUE">UE X.X</span>
+                    <div style="margin-top: var(--space-2); color: var(--color-text-muted);">📖 <strong id="modalCourseTitle">Titre du cours</strong></div>
+                </div>
+                <div class="term-definition" id="modalTermDefinition">Définition...</div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="viewCourse()">📖 Voir le cours complet</button>
+                <button class="btn btn-outline" onclick="closeTermModal()">Fermer</button>
+            </div>
+        </div>
+    </div>
 
     <!-- ===== FOOTER ===== -->
     <footer class="app-footer">
@@ -546,6 +740,8 @@
         let filteredCourses = [];
         let highlightedTerm = null;
         let highlightedUE = null;
+        let selectedTerm = null;
+        let selectedCourse = null;
         let currentFilters = {
             semester: '',
             ue: ''
@@ -1022,6 +1218,95 @@
             renderCourses(filteredCourses);
         }
 
+        function displaySearchSuggestions(query) {
+            const container = document.getElementById('searchSuggestions');
+            if (query.length < 2) {
+                container.innerHTML = '';
+                container.classList.remove('active');
+                return;
+            }
+
+            const normalizedQuery = query.toLowerCase();
+            const maxDistance = Math.ceil(query.length * 0.3);
+            const suggestions = [];
+            allCourses.forEach(([courseKey, course]) => {
+                (course.definitions || []).forEach(definition => {
+                    const termDistance = levenshteinDistance(query, definition.term);
+                    const definitionDistance = levenshteinDistance(query, definition.definition);
+                    const isTermMatch = termDistance <= maxDistance ||
+                        definition.term.toLowerCase().includes(normalizedQuery);
+                    if (isTermMatch || definitionDistance <= maxDistance ||
+                        definition.definition.toLowerCase().includes(normalizedQuery)) {
+                        suggestions.push({
+                            term: definition.term,
+                            definition: definition.definition,
+                            ue: course.ue,
+                            courseTitle: course.title,
+                            courseKey,
+                            distance: Math.min(termDistance, definitionDistance),
+                            isTermMatch
+                        });
+                    }
+                });
+            });
+
+            suggestions.sort((a, b) =>
+                (b.isTermMatch - a.isTermMatch) || (a.distance - b.distance)
+            );
+            container.innerHTML = suggestions.slice(0, 8).map((suggestion, index) => `
+                <div class="suggestion-item" data-suggestion-index="${index}">
+                    <div class="suggestion-term">${escapeHtml(suggestion.term)}</div>
+                    <div class="suggestion-ue">${escapeHtml(suggestion.ue)}</div>
+                </div>
+            `).join('');
+            container.classList.toggle('active', suggestions.length > 0);
+            container.querySelectorAll('.suggestion-item').forEach((item, index) => {
+                item.addEventListener('click', () => selectTerm(index, suggestions));
+            });
+        }
+
+        function levenshteinDistance(first, second) {
+            const a = first.toLowerCase();
+            const b = second.toLowerCase();
+            const matrix = Array.from({ length: b.length + 1 }, (_, row) => [row]);
+            for (let column = 0; column <= a.length; column++) matrix[0][column] = column;
+            for (let row = 1; row <= b.length; row++) {
+                for (let column = 1; column <= a.length; column++) {
+                    matrix[row][column] = b[row - 1] === a[column - 1]
+                        ? matrix[row - 1][column - 1]
+                        : Math.min(matrix[row - 1][column - 1], matrix[row][column - 1], matrix[row - 1][column]) + 1;
+                }
+            }
+            return matrix[b.length][a.length];
+        }
+
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return String(text).replace(/[&<>"']/g, character => map[character]);
+        }
+
+        function selectTerm(index, suggestions) {
+            selectedTerm = suggestions[index];
+            selectedCourse = allCourses.find(([courseKey]) => courseKey === selectedTerm.courseKey);
+            document.getElementById('modalTermTitle').textContent = selectedTerm.term;
+            document.getElementById('modalTermUE').textContent = selectedTerm.ue;
+            document.getElementById('modalCourseTitle').textContent = selectedTerm.courseTitle || 'Cours';
+            document.getElementById('modalTermDefinition').textContent = selectedTerm.definition;
+            document.getElementById('termModal').classList.add('active');
+            document.getElementById('searchSuggestions').classList.remove('active');
+        }
+
+        function closeTermModal() {
+            document.getElementById('termModal').classList.remove('active');
+            selectedTerm = null;
+            selectedCourse = null;
+        }
+
+        function viewCourse() {
+            if (!selectedTerm) return;
+            window.location.href = `./browse-courses.html?ue=${encodeURIComponent(selectedTerm.ue)}&courseKey=${encodeURIComponent(selectedTerm.courseKey)}&term=${encodeURIComponent(selectedTerm.term)}`;
+        }
+
         // Render courses as accordions
         function renderCourses(courses) {
             const container = document.getElementById('coursesContainer');
@@ -1252,6 +1537,21 @@
                 }
             }, 150);
         }
+
+        document.getElementById('searchInput').addEventListener('input', event => {
+            displaySearchSuggestions(event.target.value.trim());
+        });
+
+        document.addEventListener('click', event => {
+            const searchWrapper = document.querySelector('.search-input-wrapper');
+            if (!searchWrapper.contains(event.target)) {
+                document.getElementById('searchSuggestions').classList.remove('active');
+            }
+        });
+
+        document.getElementById('termModal').addEventListener('click', event => {
+            if (event.target.id === 'termModal') closeTermModal();
+        });
 
         // Load on page load
         window.addEventListener('load', async () => {
