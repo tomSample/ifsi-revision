@@ -896,6 +896,10 @@
                         select.appendChild(option);
                     });
                     select.addEventListener('change', (e) => {
+                        // A semester change invalidates the previously selected UE.
+                        currentFilters.ue = '';
+                        const mobileUE = document.getElementById('mobileUE');
+                        if (mobileUE) mobileUE.value = '';
                         updateUEList();
                         applyFilters();
                     });
@@ -927,7 +931,10 @@
 
         // Mettre à jour la liste des UE basée sur le semestre sélectionné
         function updateUEList() {
-            const selectedSemester = document.getElementById('desktopSemester')?.value || '';
+            const selectedSemester =
+                document.getElementById('desktopSemester')?.value ||
+                document.getElementById('mobileSemester')?.value ||
+                '';
             const desktopUEList = document.getElementById('desktopUEList');
             
             if (!desktopUEList) return;
