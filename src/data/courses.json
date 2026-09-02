@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-09-02T10:24:38.905483",
+  "exportDate": "2026-09-02T16:43:17.428747",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -6676,10 +6676,494 @@
         ],
         "filename": "Le développement humain.odt"
       }
+    ],
+    [
+      "ue_1_1_s3_psychologie_gnralits",
+      {
+        "title": "Psychologie généralités",
+        "date": "31/08/2026",
+        "ue": "1.1.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "étude scientifique du comportement et des processus mentaux d’une personne et de la façon dont cet ensemble est influencé par des facteurs intrinsèque (la personne) et extrinsèque (son environnement)",
+            "term": "Psychologie"
+          },
+          {
+            "definition": "profession réglementée comportant différents secteurs d’exercice (clinicien, du travail, de l’éducation)",
+            "term": "Psychologue"
+          },
+          {
+            "definition": "descriptive, expérimentale, imagerie cérébrale et occulométrie pour la psychologie, etc.",
+            "term": "Méthodes en psychologie"
+          },
+          {
+            "definition": "par exemple Observation, Entretien, Enquêtes, Etude de cas. Elles permettent de décrire les comportements humains sans avoir vocation à mettre en évidence les liens de causalité entre processus mentaux et comportement.",
+            "term": "Méthodes descriptives"
+          },
+          {
+            "definition": "itération = énoncé d’un problème => choix méthodologie => terrain / mesure => analyse + interprétation => discussion => publication",
+            "term": "Méthodes expérimentale"
+          },
+          {
+            "definition": "méthodes non invasives permettant accès au cerveau ou au SNA avec l’analyse des zones du cerveau stimulées, la taille des pupilles et des mouvements oculaires. Important pour l’aide au dépistage de l’autisme, dépression, Alzheimer par exemple.",
+            "term": "Imagerie cérébrale/ occulométrie"
+          },
+          {
+            "definition": "Psychologie cognitive, sociale, du développement, etc",
+            "term": "Secteurs disciplinaires"
+          },
+          {
+            "definition": "étudie les fonctions psycho et les processus cognitifs communs (mémoire, attention, émotion...)",
+            "term": "Psychologie cognitive"
+          },
+          {
+            "definition": "étudie les différences psychologiques entre individus, au sein d’un même individu, entre des groupes d’individus.",
+            "term": "Psychologie différentielle"
+          },
+          {
+            "definition": "étudie l’individu en tant que membre de collectifs sociaux ou occupant des positions sociales",
+            "term": "Psychologie sociale"
+          },
+          {
+            "definition": "étudie les changements développementaux au cours de l’existence de l’être humain et les facteurs explicatifs.",
+            "term": "Psychologie du développement"
+          },
+          {
+            "definition": "étude scientifique et clinique des troubles mentaux",
+            "term": "Psychopathologie"
+          },
+          {
+            "definition": "étude des processus psychique d’un individu dans la totalité de sa situation et de son évolution",
+            "term": "Psychologie clinique"
+          },
+          {
+            "definition": "étudie les rapports entre les conduites humaines et le fonctionnement cérébral (langage, geste, perception, mémoire)",
+            "term": "Neuropsychologie"
+          }
+        ],
+        "filename": "Psychologie généralités.odt"
+      }
+    ],
+    [
+      "ue_1_2_s3_dterminants_de_la_sant",
+      {
+        "title": "Déterminants de la santé",
+        "date": "02/09/2026",
+        "ue": "1.2.S3",
+        "author": "KLN",
+        "definitions": [
+          {
+            "definition": "période hygiéniste (19e) ⇒ révolution pasteurienne (fin 19e – mi 20e) ⇒ éducation à la santé (20e) ⇒ promotion de la santé (fin 20e – aujourd’hui)",
+            "term": "Histoire"
+          },
+          {
+            "definition": "Circonstances dans lesquelles les individus naissent, grandissent, vivent, travaillent et vieillissent ainsi que les systèmes mis en place pour faire face à la maladie – OMS 2008. Inclus l’état de santé de la population (santé globale, physique, mentale, psychosociale) < les caractéristiques individuelles (caractéristiques biologiques et génétiques...) < milieux de vie (familial, travail, hébergement,...) < systèmes (éducation, santé…) < contexte global (politique, économique, démographique…). Ces déterminants évoluent dans le temps et l’espace ; il se potentialisent ou s’annulent.",
+            "term": "Déterminants de la santé"
+          },
+          {
+            "definition": "repose sur la conviction qu’il est possible d’agir pour faire évoluer les choses (par opposition au terme « déterminants de la santé) et pour provoquer des changements favorables à la santé (alimentation, activité physique…). Cela implique d’aller chercher la cause des causes pour agir sur les déterminants environnementaux et les facteurs plus proches de la personne (éducation, compétences psychosociales…)",
+            "term": "Promotion de la santé"
+          }
+        ],
+        "filename": "Déterminants de la santé.odt"
+      }
+    ],
+    [
+      "ue_2_6_s3_smiologie_en_sant_mentale",
+      {
+        "title": "Sémiologie en santé mentale",
+        "date": "27/04/2026",
+        "ue": "2.6.S3",
+        "author": "KM",
+        "definitions": [
+          {
+            "definition": "souffrance psychologique marquée par une peur panique et irrationnelle d’être rejeté ou laissé seul",
+            "term": "Abandonnisme"
+          },
+          {
+            "definition": "diminution de la volonté avec indécision et impuissance à agir (boulê = volonté)",
+            "term": "Aboulie / Avolition"
+          },
+          {
+            "definition": "Abolition de la capacité à reconnaître les chiffres, à les utiliser ou à effectuer des opérations arithmétiques élémentaires",
+            "term": "Acalculie"
+          },
+          {
+            "definition": "Perte totale de contrôle et envie compulsive de consommer, jouer...",
+            "term": "Addiction"
+          },
+          {
+            "definition": "Expression observable et immédiate d'un état émotionnel",
+            "term": "Affect"
+          },
+          {
+            "definition": "Ensemble des sentiments, émotions, passions et des réaction psychiques d’un individu face au monde extérieur",
+            "term": "Affectivité"
+          },
+          {
+            "definition": "Abolition du goût",
+            "term": "Agueusie"
+          },
+          {
+            "definition": "impossibilité de reconnaître les objets d’après leurs qualités avec des fonctions sensorielles intactes (gnosis = connaissance)",
+            "term": "Agnosie"
+          },
+          {
+            "definition": "peur des espaces ouverts et de la foule (environnement dont on ne peut se soustraire facilement en cas d’urgence)",
+            "term": "Agoraphobie"
+          },
+          {
+            "definition": "Impossibilité de rester en place avec sensation angoissante d’impatience (kathizô = s’asseoir)",
+            "term": "Akathisie"
+          },
+          {
+            "definition": "Abolition du mouvement",
+            "term": "Akinésie"
+          },
+          {
+            "definition": "Difficulté à identifier, exprimer ses propres émotions",
+            "term": "Alexithymie"
+          },
+          {
+            "definition": "Pauvreté du discours avec des difficultés à converser = réponses brèves et évasives",
+            "term": "Alogie"
+          },
+          {
+            "definition": "Coexistence simultanée de sentiments / désirs / pensées opposées envers un même sujet / objet / situation",
+            "term": "Ambivalence"
+          },
+          {
+            "definition": "Absence d’expression faciale, incapacité à imiter les mimiques.",
+            "term": "Amimie"
+          },
+          {
+            "definition": "Abolition de la mémoire",
+            "term": "Amnésie"
+          },
+          {
+            "definition": "État de dépendance affective profonde d’une personne envers une autre (dépendance anaclitique = observée chez le nourrisson abandonné par sa mère survenant pendant sa première année de vie)",
+            "term": "Anaclitique"
+          },
+          {
+            "definition": "Historique médical et personnel recueilli par le clinicien",
+            "term": "Anamnèse"
+          },
+          {
+            "definition": "Sensation de manquer d’énergie, de tonus",
+            "term": "Anergie"
+          },
+          {
+            "definition": "Manifestation physique de l’anxiété = sensation d’oppression, d’étouffement, tachycardie, sueurs, tremblements, douleurs thoracique",
+            "term": "Angoisse"
+          },
+          {
+            "definition": "Absence de plaisir",
+            "term": "Anhédonie"
+          },
+          {
+            "definition": "État de désorientation psychologique et de détresse lié à une perte de repères normatifs, de règles ou de valeurs sociales partagées",
+            "term": "Anomie"
+          },
+          {
+            "definition": "Trouble des conduites alimentaires (TCA) motivé par une peur obsessionnelle de grossir et une perception altérée de son propre corps conduisant à une perte de poids intentionnelle, des carences importantes voire fatales.",
+            "term": "Anorexie"
+          },
+          {
+            "definition": "Abolition de l’odorat",
+            "term": "Anosmie"
+          },
+          {
+            "definition": "Ignorance du trouble par le patient (nosos = maladie // gnosis = connaissance)",
+            "term": "Anosognosie"
+          },
+          {
+            "definition": "Appréhension diffuse face à un danger événement futur ou sans objet précis.",
+            "term": "Anxiété"
+          },
+          {
+            "definition": "Impassibilité et indifférence affective",
+            "term": "Apathie"
+          },
+          {
+            "definition": "Incapacité psychique d’effectuer des tâches de la vie quotidienne",
+            "term": "Apragmatisme"
+          },
+          {
+            "definition": "Trouble de l’activité gestuelle apparaissant chez un sujet dont les organes d’exécutions sont intacts et qui possède la pleine connaissance de l’acte à accomplir (praxis = action)",
+            "term": "Apraxie"
+          },
+          {
+            "definition": "Affaiblissement général",
+            "term": "Asthénie"
+          },
+          {
+            "definition": "Absence ou difficulté de coordination des mouvements volontaires (taxis = ordre / séquence)",
+            "term": "Ataxie"
+          },
+          {
+            "definition": "Perte d’élan vital (thumos = l’âme, le coeur // horme = élan, pulsion)",
+            "term": "Athymhormie"
+          },
+          {
+            "definition": "Comportement autodestructeur conduisant à la mort",
+            "term": "Autolyse"
+          },
+          {
+            "definition": "ensemble de phénomènes psychiques qui s’imposent à la conscience (idées, perception) tel que des actes ou échos de pensées",
+            "term": "Automatisme mental"
+          },
+          {
+            "definition": "impression d’entendre des voix intérieures qui répètent ou commentent ses propres pensées",
+            "term": "Echos de pensées"
+          },
+          {
+            "definition": "Diminution de la motivation, incapacité à mettre en œuvre ou à maintenir une action",
+            "term": "Abolition"
+          },
+          {
+            "definition": "Interruption brusque d’un mouvement, d’une activité ou d’un discours (réaction de défense)",
+            "term": "Barrage"
+          },
+          {
+            "definition": "Lenteur des mouvements",
+            "term": "Bradykinésie"
+          },
+          {
+            "definition": "Discours lent (phéme = parole, parler)",
+            "term": "Bradyphémie"
+          },
+          {
+            "definition": "Lenteur dans les réactions psychiques ou mentales",
+            "term": "Bradypsychie"
+          },
+          {
+            "definition": "Immobilité complète, hypotonie, absence de réponse aux stimulations externes (souvent en schizophrénie)",
+            "term": "Catatonie"
+          },
+          {
+            "definition": "Impression de bien-être ou de malaise fondé sur un ensemble de sensations internes et indépendante de l’appareil sensoriel (syn = avec // aisthesis = sensation)",
+            "term": "Cénésthesie / Synesthésie"
+          },
+          {
+            "definition": "Comportement pathologique d’une personne restant couchée en permanence (klinê = lit // philein = aimer)",
+            "term": "Clinophilie"
+          },
+          {
+            "definition": "Distorsion de la relation entre l’individu et la réalité = conviction erronée opposée au sens commun",
+            "term": "Délire"
+          },
+          {
+            "definition": "Etat psychique caractérisé par une altération de la perception du monde extérieur et de son propre corps ou esprit = impression de ne plus être soi même tel une personne étrangère (schizophrénie, drogue, etc)",
+            "term": "Dépersonnalisation"
+          },
+          {
+            "definition": "Perte de cohésion des associations d’idées, par l’incohérence de la pensée, le caractère insolite et bizarre de l’action et par l’ambivalence de l’affectivité. (Exemple : Imaginez une personne à qui l'on annonce que son meilleur ami a eu un accident. Réactions possibles : réponse verbale sans lien logique dans la réflexion, actes étranges sans motif apparent, exprimer de la tristesse en souriant puis riant.)",
+            "term": "Dissociation / Désorganisation"
+          },
+          {
+            "definition": "Crainte obsédante d’être laid ou malformé",
+            "term": "Dysmorphophobie"
+          },
+          {
+            "definition": "Difficulté de mouvements",
+            "term": "Dyskinésie"
+          },
+          {
+            "definition": "Impulsion morbide chez des malades mentaux à répéter comme un écho les paroles prononcées devant eux (ekho = répéter // lalein = parler)",
+            "term": "Echolalie"
+          },
+          {
+            "definition": "Imite les mouvements des autres",
+            "term": "Echokinésie"
+          },
+          {
+            "definition": "Imite les mimiques",
+            "term": "Echomimie"
+          },
+          {
+            "definition": "Qualifie une personne persuadée à tort qu’une autre personne est amoureuse d’elle (erôtomanês = fou d’amour)",
+            "term": "Erotomaniaque"
+          },
+          {
+            "definition": "Rupture progressive du discours avec baisse du rythme et de l’intensité de la parole, puis reprise d’un rythme normal sur le même discours",
+            "term": "Fading"
+          },
+          {
+            "definition": "Conviction intime d’une sensation actuellement dénuée de sens, perçue sans objet extérieur",
+            "term": "Hallucination"
+          },
+          {
+            "definition": "Adhésion très rapide à l’ambiance, hypersensibilité aux émotions des autres",
+            "term": "Hypersyntonie"
+          },
+          {
+            "definition": "Névrose caractérisée par l’exagération des modalités d’expression psychique et affective = Symptômes d’apparence organiques et par manifestations psychiques pathologiques. (Exemple : Une personne subit un , comme la perte brutale d'un proche ou un accident évité de justesse. Quelques heures plus tard, elle se réveille totalement .)",
+            "term": "Hystérie"
+          },
+          {
+            "definition": "Accomplir certaines actions de façon irrésistible qui s‘imposent à leur volonté = malades conscients de leurs actes",
+            "term": "Impulsion"
+          },
+          {
+            "definition": "Négligence, indifférence complète",
+            "term": "Incurie"
+          },
+          {
+            "definition": "Action d’un fait psychique qui empêche d’autres faits de se produire ou d’arriver à la conscience",
+            "term": "Inhibition psycho-motrice"
+          },
+          {
+            "definition": "phase de surexcitation psychique et physique majeure caractérisée par une euphorie intense, une énergie décuplée et un besoin de sommeil très réduit (cf trouble bipolaire // mania = folie, démence, état de fureur).",
+            "term": "Manie"
+          },
+          {
+            "definition": "Vocabulaire décalé, précieux",
+            "term": "Maniérisme"
+          },
+          {
+            "definition": "Psychose caractérisée par l’existence d’une émotion pénible et dépressive",
+            "term": "Mélancolie"
+          },
+          {
+            "definition": "Refus de contact",
+            "term": "Négativisme"
+          },
+          {
+            "definition": "Invention de mots",
+            "term": "Néologisme"
+          },
+          {
+            "definition": "Troubles psychiques dus à des conflits inconscients et anciens",
+            "term": "Névrose"
+          },
+          {
+            "definition": "Masturbation",
+            "term": "Onanisme"
+          },
+          {
+            "definition": "Activité mentale pathologique, faite de visions de scènes animées semblables au rêve",
+            "term": "Onirisme"
+          },
+          {
+            "definition": "Usage de mots inappropriés aux contexte",
+            "term": "Paralogisme"
+          },
+          {
+            "definition": "Le sujet voit chez autrui des idées qui lui sont propres => mécanisme de défense",
+            "term": "Projection"
+          },
+          {
+            "definition": "Maladie mentale affectant de manière essentielle le comportement = malade inconscient de son trouble",
+            "term": "Psychose"
+          },
+          {
+            "definition": "Réponse qui se situe entre le réflexe et la volonté",
+            "term": "Raptus"
+          },
+          {
+            "definition": "Logique incompréhensible ne reposant pas sur la réalité",
+            "term": "Rationalisme morbide"
+          },
+          {
+            "definition": "Action de rejeter le désir dans l’inconscient",
+            "term": "Refoulement"
+          },
+          {
+            "definition": "Piétinement des idées",
+            "term": "Rumination"
+          },
+          {
+            "definition": "Langage hermétique incohérent",
+            "term": "Schizophasie"
+          },
+          {
+            "definition": "Personne relatant seule ses pensées/sentiments à haute voix",
+            "term": "Soliloquie"
+          },
+          {
+            "definition": "Sentiment d’être dépossédé de sa vie intérieure, d’être entièrement dirigé de l’extérieur",
+            "term": "Syndrome d’influence"
+          },
+          {
+            "definition": "Déambulation anxieuse avec besoin irrésistible de mouvement",
+            "term": "Tachykinésie"
+          },
+          {
+            "definition": "Accélération des processus intellectuels",
+            "term": "Tachypsychie"
+          },
+          {
+            "definition": "Désigne les maladies du psychisme = altération des processus chez l’individu. Altération de la perception que la personne a d’elle même et de son environnement entraînant des conséquences dans son rapport à elle même et au monde",
+            "term": "Psychopathologie"
+          },
+          {
+            "definition": "Groupe de symptômes et/ou de signes cliniques permettant d’identifier un trouble",
+            "term": "Syndrome"
+          },
+          {
+            "definition": "positifs, négatifs, troubles cognitifs",
+            "term": "Classification des symptômes"
+          },
+          {
+            "definition": "Hallucinations, délires… = s’ajoute à la vie du sujet et dans une certaine limite ne vient pas entraver le quotidien, impact limité sur le quotidien.",
+            "term": "Symptômes positifs"
+          },
+          {
+            "definition": "Apathie, aboulie… = perte ou baisse des fonctions et des comportements, impacte le quotidien.",
+            "term": "Symptômes négatifs"
+          },
+          {
+            "definition": "Déficits de la mémoire, de l’attention, délirium (confusion aiguë, trouble de l’attention)",
+            "term": "Troubles cognitifs et neurocognitifs"
+          },
+          {
+            "definition": "Modification des pensées / croyances (= psychique) ou des perceptions (= psychosensorielle). Également délires, dissociations",
+            "term": "Troubles psychotiques"
+          },
+          {
+            "definition": "dépression, anhédonie, bipolaire",
+            "term": "Troubles de l’humeur"
+          },
+          {
+            "definition": "anxiété, crise de panique, phobies",
+            "term": "Troubles anxieux"
+          },
+          {
+            "definition": "trouble borderline (instabilité émotionnelle, impulsivité), antisocial (mépris de règles, absence de remords), narcissique (besoin d’admiration, manque d’empathie)",
+            "term": "Troubles de la personnalité"
+          },
+          {
+            "definition": "liées au comportement et aux activités psychomotrices (maniérisme, TOC...) + apparence générale (allure, tenue vestimentaire, coiffure, ongles...)",
+            "term": "Anomalies de la présentation et de l’expression"
+          },
+          {
+            "definition": "liées au rythme et à la forme du discours, au cours et au contenu de la pensée et enfin à la distorsion du jugement",
+            "term": "Anomalies du discours et des pensées"
+          },
+          {
+            "definition": "liées à l’état de vigilance, de l’attention, de la conscience, de la mémoire",
+            "term": "Anomalies de la cognition"
+          },
+          {
+            "definition": "liées aux hallucinations intrapsychique, sensorielle et autres",
+            "term": "Anomalies de la perception"
+          },
+          {
+            "definition": "liées à l’humeur, aux émotions et une variabilité de la physiologie (= comportement) associées aux affects (alimentation, sommeil, sexualité, transit…)",
+            "term": "Anomalie de l’affect et des fonctions instinctuelles"
+          },
+          {
+            "definition": "liées au comportement regroupant les fugues, les passages à l’acte (auto / hétéro), le contrôle des impulsions et du fonctionnement interpersonnel et à l’insight (recul relatif du patient vis a vis de son trouble permettant souvent une meilleure adhésion au traitement)",
+            "term": "Anomalie des conduites"
+          }
+        ],
+        "filename": "Sémiologie en santé mentale.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 1242,
+    "totalTerms": 1354,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0

@@ -317,6 +317,10 @@ function onSemesterChanged(semester) {
         return a2 - b2;
     });
     
+    // Recalculer les UE de base visibles pour le semestre sélectionné.
+    // Les sélections manuelles sont conservées autant que possible.
+    updateBaseUEs(false);
+
     // Mettre à jour les UE sélectionnées en fonction des UE de base
     updateSelectedUEsFromBaseAndSemester();
     
@@ -434,7 +438,7 @@ async function loadCoursesData() {
         const ueSet = new Set();
         
         // Optimisation: extraction plus rapide
-        const courses = coursesData.courses;
+        const courses = filterCoursesBySemesterLocal(coursesData.courses, currentSemester);
         for (let i = 0; i < courses.length; i++) {
             const [courseKey, courseData] = courses[i];
             if (courseData.definitions && courseData.definitions.length > 0) {
@@ -511,9 +515,11 @@ function getBaseUE(fullUE) {
 }
 
 /**
- * Mettre à jour la liste des UE de base et initialiser les sélections
+ * Mettre à jour la liste des UE de base et gérer les sélections
  */
-function updateBaseUEs() {
+function updateBaseUEs(resetSelection = true) {
+    const hadAllVisibleUEsSelected = baseUEs.length > 0 &&
+        baseUEs.every(baseUE => selectedBaseUEs.includes(baseUE));
     const baseUESet = new Set();
     
     // Extraire toutes les UE de base
@@ -535,8 +541,13 @@ function updateBaseUEs() {
         return a2 - b2;
     });
     
-    // Initialiser toutes les UE de base comme sélectionnées
-    selectedBaseUEs = [...baseUEs];
+    if (resetSelection || hadAllVisibleUEsSelected) {
+        // Une sélection globale reste globale quand le semestre change.
+        selectedBaseUEs = [...baseUEs];
+    } else {
+        // Retirer uniquement les UE qui ne sont plus disponibles.
+        selectedBaseUEs = selectedBaseUEs.filter(baseUE => baseUEs.includes(baseUE));
+    }
     
     console.log(`📚 ${baseUEs.length} UE de base extraites:`, baseUEs);
     
@@ -1834,4 +1845,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
