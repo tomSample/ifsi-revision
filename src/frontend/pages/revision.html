@@ -896,6 +896,13 @@
             letter-spacing: 1px;
         }
 
+        .flashcard-meta {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-2);
+        }
+
         .flashcard-front h3 {
             font-size: var(--font-size-2xl);
             color: var(--color-text-dark);
@@ -1409,7 +1416,8 @@
                                 <!-- Face avant: Terme -->
                                 <div class="flashcard-front">
                                     <div class="card-label">Question</div>
-                                    
+                                    <div class="flashcard-meta" id="cardMeta"></div>
+
                                     <div style="font-size: 14px; color: var(--color-primary); font-weight: 600; margin-bottom: 10px;" id="courseTitle"></div>
                                     <h3 id="termNameSimple">Terme à définir</h3>
                                     
@@ -1419,6 +1427,7 @@
                                 <!-- Face arrière: Définition -->
                                 <div class="flashcard-back">
                                     <div class="card-label">Réponse</div>
+                                    <div class="flashcard-meta" id="cardMetaBack"></div>
                                     <div style="font-size: 14px; color: var(--color-primary); font-weight: 600; margin-bottom: 10px;" id="courseTitleBack"></div>
                                     <h3 id="termNameBack" style="margin-bottom: 20px; color: var(--color-text-dark); font-weight: 700;">Terme</h3>
                                     <div class="definition-text" id="termDefinition"></div>

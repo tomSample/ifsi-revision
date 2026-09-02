@@ -311,7 +311,7 @@ function onSemesterChanged(semester) {
                     definition: def.definition,
                     importance: def.importance || 'optionnel',
                     ue: courseData.ue,
-                    course: courseData.title,
+                    courseTitle: courseData.title,
                     courseKey: courseKey
                 });
             }
@@ -1222,6 +1222,19 @@ async function showCurrentTerm() {
     
     document.getElementById('termDefinition').textContent = currentTerm.definition;
     
+    const ueCode = typeof currentTerm.ue === 'string'
+        ? currentTerm.ue.replace(/\.S\d+$/, '')
+        : 'non spécifiée';
+    const cardMeta = `UE ${ueCode}`;
+    const cardMetaEl = document.getElementById('cardMeta');
+    const cardMetaBackEl = document.getElementById('cardMetaBack');
+    if (cardMetaEl) {
+        cardMetaEl.textContent = cardMeta;
+    }
+    if (cardMetaBackEl) {
+        cardMetaBackEl.textContent = cardMeta;
+    }
+
     // Afficher le titre du cours sur les deux faces
     const courseTitle = currentTerm.courseTitle || 'Cours non spécifié';
     const courseTitleEl = document.getElementById('courseTitle');
