@@ -12,7 +12,7 @@
     
     <!-- Manifest & Icons -->
     <link rel="manifest" href="../../../public/manifest.json">
-    <link rel="icon" type="image/x-icon" href="../../../public/favicon.ico">
+    <link rel="icon" type="image/png" href="../../../public/images/icon-192.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -841,7 +841,7 @@
                 const coursesData = await response.json();
                 
                 // Calculate stats
-                const totalTerms = coursesData.reduce((sum, [, course]) => {
+                const totalTerms = (coursesData.courses || []).reduce((sum, [, course]) => {
                     return sum + (course.definitions ? course.definitions.length : 0);
                 }, 0);
 
