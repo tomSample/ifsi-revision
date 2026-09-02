@@ -4,6 +4,7 @@ Refactored with modular structure: config, routes, utils
 """
 import os
 import sys
+import importlib.util
 from pathlib import Path
 
 # Add backend dir to path to import modules
@@ -79,6 +80,27 @@ app.register_blueprint(courses_bp)
 app.register_blueprint(images_bp)
 app.register_blueprint(data_bp)
 app.register_blueprint(api_bp)
+
+# Keep the course upload API compatible with the admin interface. These
+# handlers are loaded from the last complete implementation preserved during
+# the backend refactor.
+_legacy_app_path = os.path.join(SCRIPT_DIR, 'app-old-backup.py')
+_legacy_spec = importlib.util.spec_from_file_location('legacy_app', _legacy_app_path)
+if _legacy_spec is None or _legacy_spec.loader is None:
+    raise ImportError(f"Unable to load legacy upload handlers from {_legacy_app_path}")
+_legacy_app = importlib.util.module_from_spec(_legacy_spec)
+_legacy_spec.loader.exec_module(_legacy_app)
+
+
+@app.route('/api/extract_odt', methods=['POST'])
+def extract_odt():
+    return _legacy_app.extract_odt()
+
+
+@app.route('/api/add_course', methods=['POST'])
+def add_course():
+    return _legacy_app.add_course()
+
 
 logger.info("All blueprints registered successfully")
 

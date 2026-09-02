@@ -1,3 +1,5 @@
 Flask==2.3.3
 Flask-CORS==4.0.0
+Flask-Compress==1.14
+Flask-Talisman==1.1.0
 python-odf==1.4.0
