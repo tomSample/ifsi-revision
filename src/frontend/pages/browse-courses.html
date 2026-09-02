@@ -777,8 +777,9 @@
                 return false;
             }
 
+            const courseElement = document.querySelector(`[data-ue="${ue}"]`);
+
             try {
-                const courseElement = document.querySelector(`[data-ue="${ue}"]`);
                 if (courseElement) {
                     courseElement.style.opacity = '0.6';
                 }

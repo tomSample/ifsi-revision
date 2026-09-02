@@ -117,6 +117,7 @@ const SemesterSelector = (() => {
         `;
 
         return selector;
+    }
 
     /**
      * Attache les événements aux boutons

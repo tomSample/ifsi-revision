@@ -163,6 +163,9 @@ async function uploadCourse() {
         if (addResponse.ok && addResult.success) {
             showStatus(`✅ Cours "${extractResult.metadata.title}" ajouté avec succès ! (${extractResult.definitions.length} définitions)`, 'success');
             resetCourseForm();
+        } else if (addResponse.status === 409 && addResult.action_required === 'duplicate_no_change') {
+            showStatus('⚠️ Ce fichier est déjà présent : aucun cours ajouté', 'info');
+            resetCourseForm();
         } else if (addResponse.status === 409 && addResult.action_required === 'confirm_update') {
             // Cours déjà existant - demander confirmation
             handleDuplicateCourse(extractResult, addResult);

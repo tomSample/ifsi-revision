@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-09-02T16:43:17.428747",
+  "exportDate": "2026-09-02T20:09:08.861463",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -6570,7 +6570,7 @@
             "term": "Développement"
           },
           {
-            "definition": "développement individuelle",
+            "definition": "développement individuel",
             "term": "Ontogenèse"
           },
           {
@@ -6762,7 +6762,7 @@
             "term": "Déterminants de la santé"
           },
           {
-            "definition": "repose sur la conviction qu’il est possible d’agir pour faire évoluer les choses (par opposition au terme « déterminants de la santé) et pour provoquer des changements favorables à la santé (alimentation, activité physique…). Cela implique d’aller chercher la cause des causes pour agir sur les déterminants environnementaux et les facteurs plus proches de la personne (éducation, compétences psychosociales…)",
+            "definition": "repose sur la conviction qu’il est possible d’agir pour faire évoluer les choses (par opposition au terme « déterminants de la santé ») et pour provoquer des changements favorables à la santé (alimentation, activité physique…). Cela implique d’aller chercher la cause des causes pour agir sur les déterminants environnementaux et les facteurs plus proches de la personne (éducation, compétences psychosociales…)",
             "term": "Promotion de la santé"
           }
         ],
@@ -7160,10 +7160,218 @@
         ],
         "filename": "Sémiologie en santé mentale.odt"
       }
+    ],
+    [
+      "ue_4_2_s3_la_communication",
+      {
+        "title": "La communication",
+        "date": "02/09/2026",
+        "ue": "4.2.S3",
+        "author": "CCR",
+        "definitions": [
+          {
+            "definition": "concept obsolète, transmission linéaire d’information entre deux individus via un canal pouvant être parasité",
+            "term": "Modèle émetteur-récepteur"
+          },
+          {
+            "definition": "processus d’influence comportant un leader d’opinion. 1er niveau : la source transmet le message aux leaders d’opinion. 2e niveau : les leaders l’expliquent et le transmettent à leur groupe",
+            "term": "Modèle de diffusion à 2 niveaux"
+          },
+          {
+            "definition": "consiste à identifier un problème dans une organisation et à mettre en place une stratégie de communication adaptée pour le résoudre. (diagnostic de la situation => définition des objectifs => élaboration d’une stratégie => mise en œuvre d’actions ciblées => évaluation des résultats)",
+            "term": "Modèle du marketing positiviste"
+          },
+          {
+            "definition": "Échange d’informations verbales et non-verbales (mimiques, ton de voix, vitesse d’élocution, gestuelle…) où les interlocuteurs ne sont pas au même niveau (meneur/suiveur) et où chacun y trouve un intérêt",
+            "term": "Modèle transactionnel"
+          },
+          {
+            "definition": "Adaptation du soignant en fonction de la personne, du contexte, et de la situation clinique",
+            "term": "Modèle situationnel"
+          },
+          {
+            "definition": "échange hiérarchisé qui fait intervenir un intermédiaire afin d’éviter le face à face. L’intermédiaire centralise la demande et le transmet de manière majorée à sa hiérarchie (message amplifié) afin d’obtenir ce qu’il demandait à la base",
+            "term": "Modèle interactionniste/systémique de Palo Alto"
+          },
+          {
+            "definition": "Production collective d’un groupe qui travaille sous la conduite d’un leader",
+            "term": "Modèle de l’Orchestre"
+          }
+        ],
+        "filename": "La communication.odt"
+      }
+    ],
+    [
+      "ue_4_4_s2_antibiotiques",
+      {
+        "title": "antibiotiques",
+        "date": "07/05/2026",
+        "ue": "4.4.S2",
+        "author": "ext",
+        "definitions": [
+          {
+            "definition": "mode d’action, spectre, profil pharmacocinétique, effets indésirables communs…",
+            "term": "famille d’antibiotique"
+          },
+          {
+            "definition": "penicillines, cephalosporines, céphamycines, cabapénèmes, monobactames",
+            "term": "beta-lactamines"
+          },
+          {
+            "definition": "biodispo identique en per os et IV // ± acide clavulanique (inhibiteur beta lactamase) // IM amox + allopurinol, amox + methotrexate",
+            "term": "penicilline A"
+          },
+          {
+            "definition": "spectre etroit",
+            "term": "penicilline V"
+          },
+          {
+            "definition": "spectre etroit",
+            "term": "penicilline G"
+          },
+          {
+            "definition": "plusieurs générations de 1 à 5 = modification structurelle pour élargir le spectre d’action",
+            "term": "cephalosporines"
+          },
+          {
+            "definition": "Ceftriaxone IV mais ne pas administrer Calcium simultanément ⇒ forme un complexe en solution",
+            "term": "C3G"
+          },
+          {
+            "definition": "Céfépime IV ou IM",
+            "term": "C4G"
+          },
+          {
+            "definition": "spectre le plus étendu des betalactamines,",
+            "term": "Carbapénème"
+          },
+          {
+            "definition": "toujours associée à Cilastatine (enzyme rénale",
+            "term": "Imipénème"
+          },
+          {
+            "definition": "trouble digestifs, diarrhées, déséquilibre INR, réaction à la pénicilline (seulement 1 à 2 % d’allergie vraie).",
+            "term": "Effets indésirables"
+          },
+          {
+            "definition": "action par inhibition de la synthèse protéique, large spectre d’activité",
+            "term": "Tetracyclines"
+          },
+          {
+            "definition": "nombreux effets indésirables, CI enfants <8ans, femme enceinte, ne pas administrer avec du calcium",
+            "term": "Doxycycline IV ou per os"
+          },
+          {
+            "definition": "action par inhibition de la synthèse de la paroi bactérienne, large spectre d’activité, peut être associé avec betalactamines.",
+            "term": "Fosfomycine"
+          },
+          {
+            "definition": "action par inhibition de la synthèse protéique, marge thérapeutique étroite, toujours associé avec un autre ATB, EI = néphrotoxique, ototoxique, dosage à réaliser « au pic » et « en vallée » cad 30min après administration (c°mesurée = c° efficace) et 1h avant la nouvelle injection (c° mesurée = c° résiduelle ⇒ permet d’éviter un sur-dosage).",
+            "term": "Aminosides"
+          },
+          {
+            "definition": "action par inhibition de la réplication de l’ADN, spectre large, bonne biodisponibilité, utilisation limitée pour limiter les résistances et les nombreux EI (photosensibilisation, allongement QT). CI = tendinopathie. IM = augmentation INR si associé AVK",
+            "term": "Fluoroquinolones"
+          },
+          {
+            "definition": "action par inhibition de la biosynthèse de la paroi, EI = néphrotoxique, ototoxique, dosage nécessaire pour vérifier l’efficacité et le risque de toxicité",
+            "term": "Glycopeptides"
+          },
+          {
+            "definition": "inhibiteur du cytochrome CYP3A4 (métabolisation du médicament) = potentielles interactions médicamenteuses, risque de sur-sous dosage",
+            "term": "Macrolides"
+          },
+          {
+            "definition": "concentration minimale inhibitrice en complément de l’antibiogramme pour connaître la concentration minimale efficace",
+            "term": "CMI"
+          }
+        ],
+        "filename": "antibiotiques.odt"
+      }
+    ],
+    [
+      "ue_5_9_s2_conduites_addictives_et_les_risques",
+      {
+        "title": "conduites addictives et les risques",
+        "date": "05/02/2026",
+        "ue": "5.9.S2",
+        "author": "CCR",
+        "definitions": [
+          {
+            "definition": "centre consulte anonyme addictologie",
+            "term": "CSAPA"
+          },
+          {
+            "definition": "equipe de liaison en addictologie",
+            "term": "ELSA"
+          },
+          {
+            "definition": "antenne medico-psychiatrique (équipe psychiatre + ide)",
+            "term": "AMP"
+          },
+          {
+            "definition": "consultation individuelle, consultation opiacés, jeunes consommateurs (début de conso), guichet unique (éradication hépatite C), accueil de jour (permanence), formation",
+            "term": "Role IDE"
+          },
+          {
+            "definition": "sevrage physique du produit (alcool et benzo = risque de décès) + restauration physique",
+            "term": "service précure"
+          },
+          {
+            "definition": "prise en soins après sevrage",
+            "term": "service cure"
+          },
+          {
+            "definition": "verbaliser le problème pour la première fois avec IDE, explorer parcours de vie, environnement ⇒ création d’une relation de confiance, évaluation des répercutions, recueillir les objectifs du patient",
+            "term": "entretien de première intention"
+          }
+        ],
+        "filename": "conduites addictives et les risques.odt"
+      }
+    ],
+    [
+      "ue_5_9_s2_approche_de_la_gestion_des_risques",
+      {
+        "title": "approche de la gestion des risques",
+        "date": "06/02/2026",
+        "ue": "5.9.S2",
+        "author": "ext",
+        "definitions": [
+          {
+            "definition": "probabilité qu’un événement indésirable se produise",
+            "term": "Risque"
+          },
+          {
+            "definition": "évènement grave associé aux soins, inattendu et pouvant aboutir au décès (= never events)",
+            "term": "EIGAS"
+          },
+          {
+            "definition": "liés aux soins, liés aux activités de soutien (RH, gestion des compétences...), liés à la vie hospitalière et à l’environnement (sécurité)",
+            "term": "Catégories de risques"
+          },
+          {
+            "definition": "dangereux, sûrs, de qualité, optimaux (prendre en compte l’entourage)",
+            "term": "Niveaux de qualité des soins"
+          },
+          {
+            "definition": "attendue, prévue, fournie, perçue",
+            "term": "Approche qualité (4)"
+          },
+          {
+            "definition": "efficacité, sécurité, réactivité/pertinence",
+            "term": "Qualité des soins (3 composantes)"
+          },
+          {
+            "definition": "âge, polypatho, multi-dépendance, vie en collectivité, dénutrition...",
+            "term": "Facteurs de risque"
+          }
+        ],
+        "filename": "approche de la gestion des risques.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 1354,
+    "totalTerms": 1394,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0

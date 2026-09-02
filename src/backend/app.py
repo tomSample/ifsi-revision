@@ -102,6 +102,11 @@ def add_course():
     return _legacy_app.add_course()
 
 
+@app.route('/api/delete_course', methods=['DELETE'])
+def delete_course():
+    return _legacy_app.delete_course()
+
+
 logger.info("All blueprints registered successfully")
 
 

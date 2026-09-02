@@ -66,6 +66,18 @@ def write_json_file(data):
     with open(JSON_FILE_PATH, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
+def is_identical_course(existing_data, new_data):
+    """Vérifie si un cours extrait correspond exactement à un cours existant."""
+    course_fields = ('title', 'date', 'ue', 'author', 'definitions')
+    return all(
+        existing_data.get(field, '') == (
+            new_data.get('definitions', [])
+            if field == 'definitions'
+            else new_data.get('metadata', {}).get(field, '')
+        )
+        for field in course_fields
+    )
+
 def extract_text_from_odt(file_path):
     """Extrait le texte d'un fichier ODT en préservant la structure"""
     
@@ -598,6 +610,19 @@ def add_course():
             existing_title = existing_data.get('title', '').strip()
             existing_filename = existing_data.get('filename', '').strip()
             
+            if is_identical_course(existing_data, data):
+                return jsonify({
+                    'error': 'Ce fichier de cours est déjà présent',
+                    'action_required': 'duplicate_no_change',
+                    'existing_course': {
+                        'title': existing_data.get('title'),
+                        'date': existing_data.get('date'),
+                        'author': existing_data.get('author'),
+                        'ue': existing_data.get('ue'),
+                        'definitions_count': len(existing_data.get('definitions', []))
+                    }
+                }), 409
+
             # Vérifier plusieurs critères de doublon
             if (existing_key == course_key or 
                 existing_title == course_title or 
