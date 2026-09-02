@@ -56,9 +56,9 @@ function clearCoursesCache() {
  * Récupérer les données depuis le cache ou le serveur
  * @returns {Promise<Object>} Les données des cours
  */
-async function getCoursesData() {
+async function getCoursesData(forceRefresh = false) {
     // Vérifier le cache de session d'abord
-    const sessionCache = sessionStorage.getItem('coursesData_session');
+    const sessionCache = forceRefresh ? null : sessionStorage.getItem('coursesData_session');
     
     if (sessionCache) {
         console.log('📦 Chargement depuis le cache de session');
@@ -72,10 +72,10 @@ async function getCoursesData() {
     
     // Si pas de cache, charger depuis le serveur
     console.log('🌐 Chargement depuis le serveur...');
-    const url = window.resolvePath('/api/data/courses.json');
+    const url = window.resolvePath('/src/data/courses.json');
     console.log('📍 URL complète:', url);
     
-    const response = await fetch(url);
+    const response = await fetch(url, { cache: 'no-store' });
     
     if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText} - URL: ${url}`);

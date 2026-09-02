@@ -307,6 +307,7 @@
 
         /* ===== UE GLOBAL SELECTOR ===== */
         .filters-section {
+            --semester-color: #0cb2afff;
             background: var(--color-bg-lighter);
             border: 2px solid var(--color-border);
             border-radius: var(--radius-xl);
@@ -363,14 +364,21 @@
             text-align: center;
         }
 
+        .semester-btn[data-semester="S1"] { --semester-color: #0cb2afff; }
+        .semester-btn[data-semester="S2"] { --semester-color: #a1c65dff; }
+        .semester-btn[data-semester="S3"] { --semester-color: #fac723ff; }
+        .semester-btn[data-semester="S4"] { --semester-color: #f29222ff; }
+        .semester-btn[data-semester="S5"] { --semester-color: #e95e50ff; }
+        .semester-btn[data-semester="S6"] { --semester-color: #936facff; }
+
         .semester-btn:hover {
-            background: var(--color-primary-lighter);
+            background: color-mix(in srgb, var(--semester-color) 18%, white);
             transform: translateY(-1px);
         }
 
         .semester-btn.active {
-            background: var(--color-primary);
-            color: white;
+            background: var(--semester-color);
+            color: var(--semester-text-color, white);
             box-shadow: var(--shadow-sm);
         }
 
@@ -438,10 +446,10 @@
 
         .ue-global-btn {
             padding: var(--space-1) var(--space-2);
-            border: 1.5px solid var(--color-primary);
+            border: 1.5px solid var(--semester-color);
             border-radius: var(--radius-md);
             background: white;
-            color: var(--color-primary);
+            color: var(--semester-color);
             cursor: pointer;
             font-weight: var(--font-weight-semibold);
             font-size: var(--font-size-sm);
@@ -452,13 +460,13 @@
         }
 
         .ue-global-btn:hover {
-            background: var(--color-primary-lighter);
+            background: color-mix(in srgb, var(--semester-color) 18%, white);
             transform: translateY(-1px);
         }
 
         .ue-global-btn.active {
-            background: var(--color-primary);
-            color: white;
+            background: var(--semester-color);
+            color: var(--semester-text-color, white);
             box-shadow: var(--shadow-sm);
         }
 
@@ -1511,7 +1519,7 @@
     <script src="../assets/scripts/auth/auth.js"></script>
     
     <!-- Cache Manager -->
-    <script src="../assets/scripts/utils/cache-manager.js?v=3.1"></script>
+    <script src="../assets/scripts/utils/cache-manager.js?v=3.2"></script>
     
     <!-- 🚀 Optimisations de performance -->
     <script src="../assets/scripts/utils/smart-cache.js"></script>
@@ -1525,7 +1533,7 @@
     <script src="../assets/scripts/semester-selector.js"></script>
     
     <!-- Script principal de révision avec flashcards -->
-    <script src="../assets/scripts/modules/revision.js?v=3.4.5"></script>
+    <script src="../assets/scripts/modules/revision.js?v=3.4.6"></script>
 
     <!-- Page initialization script -->
     <script>

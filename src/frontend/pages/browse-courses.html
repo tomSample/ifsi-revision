@@ -139,6 +139,7 @@
         }
 
         .filter-select {
+            --semester-color: var(--color-primary);
             padding: var(--space-2) var(--space-3);
             border: 1px solid var(--color-border);
             border-radius: var(--radius-lg);
@@ -148,6 +149,22 @@
             font-size: var(--font-size-sm);
             cursor: pointer;
             transition: all var(--transition-base);
+        }
+
+        .filter-select.semester-S1 { --semester-color: #0cb2afff; }
+        .filter-select.semester-S2 { --semester-color: #a1c65dff; }
+        .filter-select.semester-S3 { --semester-color: #fac723ff; }
+        .filter-select.semester-S4 { --semester-color: #f29222ff; }
+        .filter-select.semester-S5 { --semester-color: #e95e50ff; }
+        .filter-select.semester-S6 { --semester-color: #936facff; }
+
+        .filter-select.semester-S1,
+        .filter-select.semester-S2,
+        .filter-select.semester-S3,
+        .filter-select.semester-S4,
+        .filter-select.semester-S5,
+        .filter-select.semester-S6 {
+            border-color: var(--semester-color);
         }
 
         .filter-select:focus {
@@ -340,14 +357,35 @@
             border: 2px solid transparent;
         }
 
+        .ue-item.semester-S1,
+        .accordion-title.semester-S1 { background: #0cb2afff; color: white; }
+        .ue-item.semester-S2,
+        .accordion-title.semester-S2 { background: #a1c65dff; color: #264653; }
+        .ue-item.semester-S3,
+        .accordion-title.semester-S3 { background: #fac723ff; color: #264653; }
+        .ue-item.semester-S4,
+        .accordion-title.semester-S4 { background: #f29222ff; color: #264653; }
+        .ue-item.semester-S5,
+        .accordion-title.semester-S5 { background: #e95e50ff; color: white; }
+        .ue-item.semester-S6,
+        .accordion-title.semester-S6 { background: #936facff; color: white; }
+
+        .accordion-title.semester-S1,
+        .accordion-title.semester-S2,
+        .accordion-title.semester-S3,
+        .accordion-title.semester-S4,
+        .accordion-title.semester-S5,
+        .accordion-title.semester-S6 {
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-md);
+        }
+
         .ue-item:hover {
             background: var(--color-bg-lighter);
         }
 
         .ue-item.active {
-            background: var(--color-primary-lighter);
-            border-color: var(--color-primary);
-            color: var(--color-primary-dark);
+            border-color: currentColor;
             font-weight: var(--font-weight-semibold);
         }
 
@@ -424,8 +462,8 @@
 
         .accordion-header {
             padding: var(--space-4);
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-            color: white;
+            background: var(--color-bg-lighter);
+            color: var(--color-text-dark);
             cursor: pointer;
             transition: all var(--transition-base);
             display: flex;
@@ -437,7 +475,7 @@
         }
 
         .accordion-header:hover {
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            filter: brightness(0.98);
         }
 
         .accordion-title {
@@ -1001,6 +1039,7 @@
 
                 const result = await response.json();
                 console.log('✅ Cours supprimé:', result);
+                sessionStorage.removeItem('coursesData_session');
 
                 // Supprimer du DOM
                 if (courseElement) {
@@ -1093,6 +1132,7 @@
                         select.appendChild(option);
                     });
                     select.addEventListener('change', (e) => {
+                        select.className = `filter-select${select.value ? ` semester-${select.value}` : ''}`;
                         // A semester change invalidates the previously selected UE.
                         currentFilters.ue = '';
                         const mobileUE = document.getElementById('mobileUE');
@@ -1179,7 +1219,8 @@
             // Ajouter les UE filtrées à la liste (juste le code, pas le titre)
             ueArray.forEach(ue => {
                 const li = document.createElement('li');
-                li.className = 'ue-item' + (highlightedUE === ue ? ' active' : '');
+                const semester = ue.split('.').pop();
+                li.className = `ue-item semester-${semester}${highlightedUE === ue ? ' active' : ''}`;
                 li.innerHTML = `<span class="ue-item-text"><strong>${ue}</strong></span>`;
                 li.onclick = () => selectUE(ue);
                 desktopUEList.appendChild(li);
@@ -1384,7 +1425,7 @@
                 return `
                     <div class="accordion" style="animation-delay: ${index * 50}ms" data-ue="${courseKey}">
                         <div class="accordion-header" onclick="toggleAccordion(this)">
-                            <div class="accordion-title">
+                            <div class="accordion-title semester-${escapeHtml(course.ue.split('.').pop())}">
                                 <div class="accordion-ue">${escapeHtml(course.ue)}</div>
                                 <h2 class="accordion-course">${escapeHtml(course.title)}</h2>
                             </div>

@@ -161,6 +161,7 @@ async function uploadCourse() {
         const addResult = await addResponse.json();
         
         if (addResponse.ok && addResult.success) {
+            sessionStorage.removeItem('coursesData_session');
             showStatus(`✅ Cours "${extractResult.metadata.title}" ajouté avec succès ! (${extractResult.definitions.length} définitions)`, 'success');
             resetCourseForm();
         } else if (addResponse.status === 409 && addResult.action_required === 'duplicate_no_change') {
@@ -234,6 +235,7 @@ async function updateExistingCourse(courseData) {
         const result = await response.json();
         
         if (response.ok && result.success) {
+            sessionStorage.removeItem('coursesData_session');
             showStatus(`✅ Cours "${courseData.metadata.title}" mis à jour avec succès !`, 'success');
             resetCourseForm();
         } else {

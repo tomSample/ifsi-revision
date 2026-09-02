@@ -39,7 +39,16 @@ let db = null;
 let syncManager = null;
 let spacedRepetition = null;
 let userProgress = {};
-let currentSemester = 'S1'; // Semestre actuellement sélectionné
+let currentSemester = 'ALL'; // Semestre actuellement sélectionné
+
+const SEMESTER_COLORS = {
+    S1: '#0cb2afff',
+    S2: '#a1c65dff',
+    S3: '#fac723ff',
+    S4: '#f29222ff',
+    S5: '#e95e50ff',
+    S6: '#936facff'
+};
 
 // Initialisation au chargement de la page
 document.addEventListener('DOMContentLoaded', async function() {
@@ -102,7 +111,7 @@ async function initializeFirebase() {
 async function preloadCoursesCache() {
     try {
         console.log('🔄 Préchargement du cache des cours...');
-        const response = await fetch(window.resolvePath('/src/data/courses.json'));
+        const response = await fetch(window.resolvePath('/src/data/courses.json'), { cache: 'no-store' });
         const data = await response.json();
         
         // Stocker dans le cache de session (sans expiration)
@@ -264,6 +273,11 @@ function filterCoursesBySemesterLocal(courses, semester) {
  */
 function onSemesterChanged(semester) {
     currentSemester = semester;
+    const filtersSection = document.querySelector('.filters-section');
+    if (filtersSection) {
+        filtersSection.style.setProperty('--semester-color', SEMESTER_COLORS[semester] || 'var(--color-primary)');
+        filtersSection.style.setProperty('--semester-text-color', semester === 'S4' || semester === 'S5' ? '#264653' : 'white');
+    }
     console.log(`📚 Changement vers ${semester}`);
     
     if (!coursesData || !coursesData.courses) {
@@ -403,7 +417,7 @@ async function loadCoursesData() {
         // Utiliser la fonction globale de cache (définie dans cache-manager.js)
         if (typeof getCoursesData === 'function') {
             console.log('✅ getCoursesData disponible, utilisation du cache manager');
-            coursesData = await getCoursesData();
+            coursesData = await getCoursesData(true);
         } else {
             console.log('⚠️ getCoursesData non disponible, fallback manuel');
             // Fallback si cache-manager.js n'est pas chargé
@@ -415,7 +429,7 @@ async function loadCoursesData() {
                 console.log('🌐 Chargement depuis le serveur...');
                 const url = window.resolvePath('/src/data/courses.json');
                 console.log('📍 URL à charger:', url);
-                const response = await fetch(url);
+                const response = await fetch(url, { cache: 'no-store' });
                 
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
