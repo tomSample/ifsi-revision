@@ -42,6 +42,7 @@ let userProgress = {};
 let currentSemester = 'ALL'; // Semestre actuellement sélectionné
 
 const SEMESTER_COLORS = {
+    ALL: '#2563EB',
     S1: '#0cb2afff',
     S2: '#a1c65dff',
     S3: '#fac723ff',
@@ -587,12 +588,6 @@ function updateGlobalUESelector() {
         
         const groupDiv = document.createElement('div');
         groupDiv.className = 'ue-group';
-        
-        // Label du groupe
-        const label = document.createElement('div');
-        label.className = 'ue-group-label';
-        label.textContent = `${prefix}.x`;
-        groupDiv.appendChild(label);
         
         // Conteneur des boutons
         const buttonsContainer = document.createElement('div');
