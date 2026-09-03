@@ -1133,11 +1133,18 @@
                     });
                     select.addEventListener('change', (e) => {
                         select.className = `filter-select${select.value ? ` semester-${select.value}` : ''}`;
+                        const selectedSemester = select.value;
+                        const desktopSemester = document.getElementById('desktopSemester');
+                        const mobileSemester = document.getElementById('mobileSemester');
+                        if (desktopSemester) desktopSemester.value = selectedSemester;
+                        if (mobileSemester) mobileSemester.value = selectedSemester;
                         // A semester change invalidates the previously selected UE.
                         currentFilters.ue = '';
                         const mobileUE = document.getElementById('mobileUE');
                         if (mobileUE) mobileUE.value = '';
                         updateUEList();
+                        updateMobileUESelect();
+                        clearSearchContext();
                         applyFilters();
                     });
                 }
@@ -1146,24 +1153,49 @@
             // Remplir la liste des UE du semestre sélectionné
             updateUEList();
 
-            // Populate mobile UE select
+            // Remplir le select UE mobile selon le semestre sélectionné
+            updateMobileUESelect();
+
             const mobileUE = document.getElementById('mobileUE');
             if (mobileUE) {
-                const ueArray = Object.keys(uesByUE).sort((a, b) => {
+                mobileUE.addEventListener('change', () => {
+                    clearSearchContext();
+                    applyFilters();
+                });
+            }
+        }
+
+        // Mettre à jour le select UE mobile selon le semestre actif
+        function updateMobileUESelect() {
+            const mobileUE = document.getElementById('mobileUE');
+            if (!mobileUE) return;
+
+            const selectedSemester =
+                document.getElementById('desktopSemester')?.value ||
+                document.getElementById('mobileSemester')?.value ||
+                '';
+            const uesByUE = window.allUEsByUE || {};
+            const currentUE = mobileUE.value;
+            const ueArray = Object.keys(uesByUE)
+                .filter(ue => !selectedSemester || ue.endsWith(`.${selectedSemester}`))
+                .sort((a, b) => {
                     const aParts = a.split('.');
                     const bParts = b.split('.');
                     const aNum = parseInt(aParts[0]) * 100 + parseInt(aParts[1]);
                     const bNum = parseInt(bParts[0]) * 100 + parseInt(bParts[1]);
                     return aNum - bNum;
                 });
-                ueArray.forEach(ue => {
-                    const option = document.createElement('option');
-                    option.value = ue;
-                    option.textContent = `${ue} - ${uesByUE[ue]}`;
-                    mobileUE.appendChild(option);
-                });
-                mobileUE.addEventListener('change', applyFilters);
-            }
+
+            mobileUE.innerHTML = '<option value="">Toutes les UE</option>';
+            ueArray.forEach(ue => {
+                const option = document.createElement('option');
+                option.value = ue;
+                option.textContent = ue;
+                mobileUE.appendChild(option);
+            });
+
+            // Conserver la sélection uniquement si elle appartient encore au semestre.
+            mobileUE.value = ueArray.includes(currentUE) ? currentUE : '';
         }
 
         // Mettre à jour la liste des UE basée sur le semestre sélectionné
@@ -1185,7 +1217,7 @@
 
             // Filtrer par semestre si sélectionné
             if (selectedSemester) {
-                ueArray = ueArray.filter(ue => ue.endsWith(selectedSemester));
+                ueArray = ueArray.filter(ue => ue.endsWith(`.${selectedSemester}`));
             }
 
             // Trier : d'abord par semestre, puis par numéro d'UE
@@ -1230,6 +1262,7 @@
         // Select UE from sidebar
         function selectUE(ue) {
             currentFilters.ue = (currentFilters.ue === ue) ? '' : ue;
+            clearSearchContext();
             applyFilters();
             
             // Update UI
@@ -1239,6 +1272,14 @@
                     item.classList.add('active');
                 }
             });
+        }
+
+        // Retirer le contexte de recherche lorsqu'un filtre est modifié.
+        function clearSearchContext() {
+            highlightedTerm = null;
+            highlightedUE = null;
+            const cleanUrl = `${window.location.pathname}${window.location.hash}`;
+            window.history.replaceState({}, document.title, cleanUrl);
         }
 
         // Apply filters
