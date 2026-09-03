@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-09-02T20:09:08.861463",
+  "exportDate": "2026-09-03T21:53:50.972396",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -7368,10 +7368,310 @@
         ],
         "filename": "approche de la gestion des risques.odt"
       }
+    ],
+    [
+      "ue_2_8_s3_cardiopathie_ischmique_mvte_et_athromateuse",
+      {
+        "title": "Cardiopathie ischémique, MVTE et athéromateuse",
+        "date": "02/09/2026",
+        "ue": "2.8.S3",
+        "author": "Dr",
+        "definitions": [
+          {
+            "definition": "Obstruction d’une veine profonde par un thrombus, le plus souvent au niveau de la jambe. TVP distale = en amont de la veine poplitée",
+            "term": "TVP - définition"
+          },
+          {
+            "definition": "Formation d’un thrombus favorisée par la triade de Virchow",
+            "term": "TVP - physiopathologie"
+          },
+          {
+            "definition": "1/ Stase veineuse (immobilisation, insuffisance cardiaque, plâtre, long voyage), 2/ Lésion endothéliale (chirurgie, traumatisme, cathéter). 3/ Hypercoagulabilité (cancer, thrombophilies, grossesse)",
+            "term": "Triade de Virchow"
+          },
+          {
+            "definition": "1/ chirurgie, traumatisme, grossesse ou post-partum, immobilisation). 2/ âge, obésité, antécédent de MVTE, thrombophilie constitutionnelle ou acquise, cancer, etc)",
+            "term": "TVP – FDR principaux"
+          },
+          {
+            "definition": "thrombophilie, cancer, chirurgie",
+            "term": "TVP – étiologie"
+          },
+          {
+            "definition": "Peut être asymptomatique. Douleur spontanée ou à la palpation d’un trajet veineux, signe de Homans (douleur mollet provoquée par flexion dorsale du pied), œdème blanc ou inflammatoire, ne prenant pas le godet, perte du ballant du mollet, inflammation.",
+            "term": "TVP – tableau clinique"
+          },
+          {
+            "definition": "Erysipèle, TV superficielle, rupture d’un kyste poplité, etc.",
+            "term": "TVP – diag différentiels principaux"
+          },
+          {
+            "definition": "Clinique ++ (douleur, chaleur, inflammation, perte du ballant du mollet...)",
+            "term": "TVP – Diagnostic"
+          },
+          {
+            "definition": "écho-doppler verineux des MI, dosage D-dimères, angioscanner, bilan pré-thérapeutique (NFS, plaquettes, TP, TCA, fonction rénale)",
+            "term": "TVP - Examens complémentaires et marqueurs"
+          },
+          {
+            "definition": "Anticoagulation efficace (AOD, AVK, parentérale si nécessaire puis relais AVK) pendant minimum 3 mois et non limitée si récidive, SAPL ou néoplasie. Majoritairement en ambulatoire.",
+            "term": "TVP – Traitements"
+          },
+          {
+            "definition": "embolie pulmonaire.  récidive de TVP ou d’EP, syndrome post-thrombotique (= insuffisance veineuse des MI par destruction ou dommages causées aux valves)",
+            "term": "TVP – Complications"
+          },
+          {
+            "definition": "Obstruction d’une artère pulmonaire le plus souvent causée par la migration d’un thrombus originaire d’une TVP",
+            "term": "EP – définition"
+          },
+          {
+            "definition": "Migration d’un thrombus, généralement issu d’une TVP, vers les artères pulmonaires",
+            "term": "EP – Physiopathologie"
+          },
+          {
+            "definition": "1/ chirurgie, traumatisme, grossesse ou post-partum, immobilisation). 2/ âge, obésité, antécédent de MVTE, thrombophilie constitutionnelle ou acquise, cancer, etc)",
+            "term": "EP – FDR principaux"
+          },
+          {
+            "definition": "Secondaire à la migration d’un thrombus constitué lors d’une TVP",
+            "term": "EP – étiologie"
+          },
+          {
+            "definition": "Présentation très variable, va d’asymptomatique à une dyspnée importante en passant par des douleurs pleurales, toux, tachycardie, hyperthermie, TVP…",
+            "term": "EP – tableau clinique"
+          },
+          {
+            "definition": "pathologie thoracique ou cardiaque (pneumonie, pneumothorax, infarctus du myocarde, IC aiguë…)",
+            "term": "EP – diag différentiels principaux"
+          },
+          {
+            "definition": "Clinique ++ (score de Wells) puis confirmation par angioscanner pulmonaire. A défaut, une scintigraphie ventilation-perfusion est une alternative ne permettant pas toutefois de poser le diagnostic.",
+            "term": "EP – Diagnostic"
+          },
+          {
+            "definition": "D-dimères uniquement en vas de probabilité faible ou intermédiaire (seuil à adapter à l’âge), GDS (rechercher effet shunt = PO2 + PCO2 < 120) , ECG, RT, ETT, Echodoppler veineux des MI, biologie (NFS, plaquettes, TP, TCA, fonction rénale, troponine)",
+            "term": "EP - Examens complémentaires et marqueurs"
+          },
+          {
+            "definition": "Anticoagulation efficace (AOD, AVK, HBPM, anti-Xa, thrombolyse, thrombectomie, thrombo-aspiration percutanée (en fort développement)) pendant minimum 3 mois et non limitée si idiopathique, récidive, SAPL, néoplasie, FDR permanent ou transitoire.",
+            "term": "EP – Traitements"
+          },
+          {
+            "definition": "infarctus pulmonaire, infection pulmonaire, choc cardiogénique, hypotension, décès.  cœur pulmonaire chronique et récidive de TVP ou d’EP.",
+            "term": "EP – Complications"
+          },
+          {
+            "definition": "Douleur thoracique d’effort, reproductible dans des circonstances relativement constantes, cédant à l’arrêt de l’effort ou à la trinitrine",
+            "term": "Angor stable - définition"
+          },
+          {
+            "definition": "Inadéquation entre la consommation de O2​ du myocarde et les apports. Athérosclérose réduisant la lumière coronaire",
+            "term": "Angor stable - Physiopathologie"
+          },
+          {
+            "definition": "Âge, sexe masculin, hérédité ; tabagisme, hypercholestérolémie, HTA, diabète, obésité et stress",
+            "term": "Angor stable - FDR"
+          },
+          {
+            "definition": "Athérosclérose coronaire => rupture de plaque (90% des cas)",
+            "term": "Angor stable – étiologie"
+          },
+          {
+            "definition": "Douleur thoracique rétrosternale ou précordiale gauche, constrictive, parfois en barre, irradiant vers le membre supérieur — surtout gauche —, le cou, la mâchoire ou le dos",
+            "term": "Angor stable – tableau clinique"
+          },
+          {
+            "definition": "Reflux gastro-œsophagien ou œsophagite, pneumopathie, pneumothorax...",
+            "term": "Angor stable – diag différentiels principaux"
+          },
+          {
+            "definition": "Clinique compatible, puis mise en évidence d’une ischémie ou d’une maladie coronaire par examen fonctionnel ou anatomique",
+            "term": "Angor stable – Diagnostic"
+          },
+          {
+            "definition": "echographie / IRM / scintigraphie de stress, coroscanner",
+            "term": "Angor stable – Examens complémentaires et marqueurs"
+          },
+          {
+            "definition": "bêtabloquant, antiagrégant plaquettaire simple, statine, IEC selon indication et correction des facteurs de risque (mémo = BASIC)",
+            "term": "Angor stable - Traitements"
+          },
+          {
+            "definition": "SCA ou un infarctus, insuffisance cardiaque, troubles du rythme et décès",
+            "term": "Angor stable – Complications"
+          },
+          {
+            "definition": "Angor nouvellement apparu, crescendo ou survenant au repos. Traduit une ischémie aiguë. Comprend l’angor instable, le NSTEMI (IDM non Q) et le STEMI typique (IDM Q)",
+            "term": "Angor instable – définition"
+          },
+          {
+            "definition": "Obstruction partielle ou transitoire causée par rupture / érosion d’une plaque, activation de la coagulation et formation d’un thrombus plaquettaire et/ou fibrino-cruorique (= formé à l’intérieur du coeur via fibrine + éléments sanguins)",
+            "term": "Angor instable – Physiopathologie"
+          },
+          {
+            "definition": "idem Angor + dyslipidémie",
+            "term": "Angor instable – FDR principaux"
+          },
+          {
+            "definition": "rupture ou érosion d’une plaque d’athérome avec thrombus non occlusif le plus souvent",
+            "term": "Angor instable – étiologie"
+          },
+          {
+            "definition": "Douleur plus récente, plus intense, plus fréquente, prolongée, apparaissant pour un effort moindre ou au repos. Peut s’accompagner de dyspnée, sueurs, pâleur, nausées",
+            "term": "Angor instable - tableau clinique"
+          },
+          {
+            "definition": "IDM, EP, DA",
+            "term": "Angor instable – diag différentiels principaux"
+          },
+          {
+            "definition": "Clinique, ECG, ± coronarographie",
+            "term": "Angor instable – Diagnostic"
+          },
+          {
+            "definition": "dosage répété des troponines, coronarographie selon le risque.",
+            "term": "Angor instable – Examens complémentaires et marqueurs"
+          },
+          {
+            "definition": "bêtabloquant, antiagrégant plaquettaire double, statine, IEC selon indication et correction des facteurs de risque (mémo = BASIC) ± réadaptation cardiaque",
+            "term": "Angor instable – Traitements"
+          },
+          {
+            "definition": "IDM, troubles du rythme, insuffisance cardiaque, choc cardiogénique et décès.",
+            "term": "Angor instable – Complications"
+          },
+          {
+            "definition": "Ensemble des manifestations aiguës liées à une ischémie myocardique, provoquées pas le rétrécissement ou l’obstruction d’artères coronaires (=angor instable, infarctus non Q ou NSTEMI et Q ou STEMI)",
+            "term": "SCA – définition"
+          },
+          {
+            "definition": "Rupture de plaque, plus rarement érosion endothéliale, activation plaquettaire et coagulation. S’en suit une réduction de la lumière (SCA ST-) ou une occlusion complète (SCA ST+)",
+            "term": "SCA – Physiopathologie"
+          },
+          {
+            "definition": "Âge, sexe masculin, hérédité ; tabagisme, hypercholestérolémie, HTA, diabète, obésité et stress + dyslipidémie",
+            "term": "SCA – FDR principaux"
+          },
+          {
+            "definition": "Athérosclérose coronaire avec rupture de plaque majoritairement.",
+            "term": "SCA – étiologie"
+          },
+          {
+            "definition": "Douleur thoracique typique ou atypique, dyspnée, syncope, troubles du rythme ou mort subite. Les symptômes peuvent être atypiques, notamment chez la femme",
+            "term": "SCA – tableau clinique"
+          },
+          {
+            "definition": "Embolie pulmonaire, dissection aortique, péricardite ou myocardite",
+            "term": "SCA – diag différentiels"
+          },
+          {
+            "definition": "Clinique, ECG, Coronarographie",
+            "term": "SCA – Diagnostic"
+          },
+          {
+            "definition": "dosage troponine (très sensible mais peu spécifique), ETT, autres bilans biologiques",
+            "term": "SCA – Examens complémentaires"
+          },
+          {
+            "definition": "bêtabloquant, antiagrégant plaquettaire double, statine, IEC selon indication et correction des facteurs de risque (mémo = BASIC) + réadaptation cardiaque. Parfois une désobstruction médicamenteuse ou mécanique est nécessaire (en cas de SCA ST+)",
+            "term": "SCA – Traitements"
+          },
+          {
+            "definition": "Insuffisance cardiaque aiguë, OAP, choc cardiogénique, complications rythmiques, complications mécaniques, récidive et décès",
+            "term": "SCA – Complications"
+          },
+          {
+            "definition": "fragments de protéines issus de la dégradation d'un caillot sanguin. Très sensible et peu spéficique.",
+            "term": "D-dimères"
+          },
+          {
+            "definition": "syndrome des anti-phospholipides, maladie auto-immune rare caractérisée par une tendance anormale du sang à coaguler. Favorise fortement la formation de caillots sanguins.",
+            "term": "SAPL"
+          },
+          {
+            "definition": "Maladie Veineuse Thrombo-Embolique, nécessitant principalement une anticoagulation efficace préventive ou curative et le port de bas de compression veineuse de classe II",
+            "term": "MVTE"
+          },
+          {
+            "definition": "infarctus du myocarde",
+            "term": "IDM"
+          },
+          {
+            "definition": "dissection aortique",
+            "term": "DA"
+          },
+          {
+            "definition": "syndrome coronarien aigu",
+            "term": "SCA"
+          },
+          {
+            "definition": "épaississement et rigidification vasculaire liée au vieillissement",
+            "term": "Artériosclérose"
+          },
+          {
+            "definition": "formation de plaque d’athérome dans les vaisseaux sanguins",
+            "term": "Athérosclérose"
+          }
+        ],
+        "filename": "Cardiopathie ischémique, MVTE et athéromateuse.odt"
+      }
+    ],
+    [
+      "ue_2_8_s3_troubles_du_rythme_et_de_la_conduction",
+      {
+        "title": "Troubles du rythme et de la conduction",
+        "date": "02/09/2026",
+        "ue": "2.8.S3",
+        "author": "Dr",
+        "definitions": [
+          {
+            "definition": "accélération du rythme sinusal (origine nœud sinusal), souvent physiologique ou réactionnelle (effort, stress, anémie, hyperthyroïdie).",
+            "term": "Tachycardie sinusale"
+          },
+          {
+            "definition": "arythmie atriale rapide et désorganisée, avec perte de la contraction atriale efficace ; risque embolique important.",
+            "term": "Fibrillation atriale (FA)"
+          },
+          {
+            "definition": "arythmie atriale rapide et organisée, avec conduction variable aux ventricules.",
+            "term": "Flutter atrial"
+          },
+          {
+            "definition": "tachycardie issue d’un foyer électrique ectopique situé dans l’oreillette.",
+            "term": "Tachycardie atriale"
+          },
+          {
+            "definition": "tachycardie liée à un circuit impliquant la jonction AV",
+            "term": "Tachycardie jonctionnelle"
+          },
+          {
+            "definition": "rythme ventriculaire ectopique rapide, régulier, à QRS larges (> 140 ms), souvent sur cœur pathologique.",
+            "term": "Tachycardie ventriculaire (TV)"
+          },
+          {
+            "definition": "tachycardie ventriculaire polymorphe avec alternance régulière du sens des QRS, associée à un QT anormal et/ou une hypokaliémie.",
+            "term": "Torsade de pointe"
+          },
+          {
+            "definition": "activité électrique ventriculaire rapide et anarchique, entraînant une dissociation électromécanique = arrêt cardio-circulatoire.",
+            "term": "Fibrillation ventriculaire (FV)"
+          },
+          {
+            "definition": "ensemble des troubles du nœud sinusal (bradycardie sinusale, pauses, blocs sino-atriaux).",
+            "term": "Dysfonction sinusale"
+          },
+          {
+            "definition": "trouble de conduction entre oreillettes et ventricules, classé en I, II (Mobitz 1 et 2) et III.",
+            "term": "Bloc atrio-ventriculaire (BAV)"
+          }
+        ],
+        "filename": "Troubles du rythme et de la conduction.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 1394,
+    "totalTerms": 1463,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0
