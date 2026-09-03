@@ -507,15 +507,20 @@
         }
 
         .accordion-body {
-            max-height: 0;
+            display: grid;
+            grid-template-rows: 0fr;
             overflow: hidden;
-            transition: max-height var(--transition-base);
+            transition: grid-template-rows var(--transition-base);
             position: relative;
             z-index: 1;
         }
 
         .accordion.open .accordion-body {
-            max-height: 5000px;
+            grid-template-rows: 1fr;
+        }
+
+        .accordion-body > .term-list {
+            min-height: 0;
         }
 
         .term-list {
