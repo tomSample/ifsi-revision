@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-09-03T21:53:50.972396",
+  "exportDate": "2026-09-04T13:32:18.486841",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -7668,10 +7668,134 @@
         ],
         "filename": "Troubles du rythme et de la conduction.odt"
       }
+    ],
+    [
+      "ue_2_6_s3_soins_sans_consentement",
+      {
+        "title": "Soins sans consentement",
+        "date": "04/09/2026",
+        "ue": "2.6.S3",
+        "author": "CCR",
+        "definitions": [
+          {
+            "definition": "2 modalités = placement volontaire ou d’office",
+            "term": "Loi de 1838"
+          },
+          {
+            "definition": "2 modalités = HDT (à la demande d’un tiers) et HO (hospitalisation d’office)",
+            "term": "Loi de 1990"
+          },
+          {
+            "definition": "Arrivée du JLD (juge des libertés et de la détention) + apparition du programme de soin + nouvelles nouvelles modalités = SPL (soins psychiatrique libre), SPDT (= emande d’un Tiers), SPDT Urgence, SPPI (Peril Imminent), SPDRE (Représentant de l’État). Pose le principe de consentement aux soins des personnes atteintes de troubles mentaux. Pas de restriction complète comme mode de prise en charge des malades.",
+            "term": "Loi de 2011"
+          },
+          {
+            "definition": "mesure de prise en charge extra-hospitalière (ambulatoire) qui organise le suivi d'un patient faisant l'objet de",
+            "term": "Programme de soin"
+          },
+          {
+            "definition": "à privilégier +++ (consentement du patient, conserve son libre arbitre), information obligatoire concernant les soins et les alternatives thérapeutiques. Sortie = accord patient/médecin ou contre avis médical",
+            "term": "SPL"
+          },
+          {
+            "definition": "article L.3212-1 du CSP. Nécessite l’état du patient rendant impossible le consentement + une demande par un tiers pouvant justifier l’existence de relation avec le malade + 2 certificats médicaux (1 Dr externe au CH + 1 Dr interne au CH)",
+            "term": "SPDT - formalités"
+          },
+          {
+            "definition": "article L.3212-3 du CSP. Nécessite l’état du patient rendant impossible le consentement + une demande par un tiers pouvant justifier l’existence de relation avec le malade + 1 certificat médical (Dr interne au CH)",
+            "term": "SPDTU - formalités"
+          },
+          {
+            "definition": "article L.3212-1, II 2° du CSP. Nécessite l’état du patient rendant impossible le consentement + souvent absence d’un tiers + 1 certificat médical (Dr extérieur au CH)",
+            "term": "SPPI - formalités"
+          },
+          {
+            "definition": "étape obligatoire d'une  sous forme d'hospitalisation complète, qui s'applique lors d'une admission en soins sans consentement",
+            "term": "Période d’observation"
+          },
+          {
+            "definition": "peut être demandée par : psychiatre, curateur, conjoints, ascendants/descendants, la personne qui a signé la demande d’hospitalisation, le JLD en cas de vice de forme.",
+            "term": "Levée des mesures"
+          },
+          {
+            "definition": "article de référence diffère selon rang du RE (préfet, maire, juge)",
+            "term": "SPDRE - formalités"
+          },
+          {
+            "definition": "Unité pour Malades Difficiles - unité fermée = pathologies psychiatriques lourdes",
+            "term": "UMD"
+          },
+          {
+            "definition": "Commissions Départementales des Soins Psychiatriques, recentrées sur les situations les plus sensibles. Doit être informée des hospit sans consentement, des réclamations, d’examiner la situation de ces personnes, peut saisir le JLD, etc.",
+            "term": "CDSP"
+          }
+        ],
+        "filename": "Soins sans consentement.odt"
+      }
+    ],
+    [
+      "ue_1_1_s3_vulnrabilits_et_facteurs_de_risque_de_protection_rsilience",
+      {
+        "title": "Vulnérabilités et facteurs de risque, de protection, résilience",
+        "date": "04/09/2026",
+        "ue": "1.1.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "agit comme une  car elle force le système psychologique, cognitif ou moteur de l'individu à se réorganiser pour inventer des solutions plus complexes et adaptées. Peut être biologique, physique ou environnementale",
+            "term": "Contraintes"
+          },
+          {
+            "definition": "désigne les  à un moment précis de sa croissance",
+            "term": "Opportunités"
+          },
+          {
+            "definition": "prendre en compte l’individu et ses environnements dans une relation dynamique (micro < méso < exo < macrosystème)",
+            "term": "Modèle écosystémique"
+          },
+          {
+            "definition": "série d’embranchements successifs qui vont conduire à des trajectoires différentes (= non linéaire, toujours complexes). Ces trajectoires mettent en jeu des facteurs de protection (optimisation du développement) et des facteurs de vulnérabilité (fragiliser/ralentir) le développement",
+            "term": "Trajection développementale"
+          },
+          {
+            "definition": "fondateur de la Théorie de l’attachement (= besoin social primaire, établir un lien privilégié avec une personne de l’entourage de l’enfant ⇒ expériences précoces ont un rôle important mais la trajectoire peut évoluer tout au long de la vie = pas de déterminisme",
+            "term": "Bowlby"
+          },
+          {
+            "definition": "différents facteurs peuvent conduire au même résultat",
+            "term": "Equifinalité"
+          },
+          {
+            "definition": "un même facteur peut avoir différentes conséquences",
+            "term": "Multifinalité"
+          },
+          {
+            "definition": "favorisent ou maintiennent le développement optimal / harmonieux (bonne santé, image de soi, cercle familial/social, environnement social, accès aux soins…)",
+            "term": "Facteurs de protection"
+          },
+          {
+            "definition": "fragilité consécutive à la diminution de la capacité de résistance (endogène et/ou facteurs extérieurs à l’individu)",
+            "term": "Vulnérabilité"
+          },
+          {
+            "definition": "augmentent la probabilité de survenue d’un évènement troublant le développement de l’individu (individuel, familial, environnemental…) + acucumulation de certains facteurs ⇒ garder en tête la variabilité interindividuelle par rapport à un FDR donné.",
+            "term": "Facteurs de risque"
+          },
+          {
+            "definition": "processus dynamique a dimension développementale ⇒ ensemble des ressources disponibles à un moment donné + résultats d’expériences individuelles",
+            "term": "Résilience"
+          },
+          {
+            "definition": "outil majeur dans la recherche clinique permettant un suivi longitudinal individuel d’un vaste groupe de personnes",
+            "term": "Étude de cohorte"
+          }
+        ],
+        "filename": "Vulnérabilités et facteurs de risque, de protection, résilience.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 1463,
+    "totalTerms": 1488,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0
