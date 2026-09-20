@@ -6,6 +6,10 @@
   ],
   "aboulie": [
     "manque de volonté",
+    "difficulté à initier une action",
+    "avolition",
+    "diminution de la volonté",
+    "manque de volonté",
     "difficulté à initier une action"
   ],
   "logorrhée": [
@@ -18,7 +22,8 @@
   ],
   "hypervigilance": [
     "vigilance excessive",
-    "surveillance constante"
+    "surveillance constante",
+    "état d’alerte permanent"
   ],
   "tachycardie": [
     "coeur qui bat vite",
@@ -32,5 +37,164 @@
   "insomnie": [
     "difficultés de sommeil",
     "trouble du sommeil"
+  ],
+  "agitation": [
+    "agitation psychomotrice",
+    "sensation d’être survolté",
+    "besoin de bouger"
+  ],
+  "agoraphobie": [
+    "peur des espaces ouverts",
+    "peur de la foule",
+    "peur de ne pas pouvoir s’échapper"
+  ],
+  "amnésie": [
+    "trou de mémoire",
+    "oubli d’informations autobiographiques",
+    "amnésie dissociative"
+  ],
+  "anhédonie": [
+    "perte d’intérêt pour les activités plaisantes"
+  ],
+  "anxiété": [
+    "inquiétude",
+    "appréhension",
+    "angoisse",
+    "peur diffuse"
+  ],
+  "apathie": [
+    "indifférence",
+    "impassibilité",
+    "manque d’intérêt"
+  ],
+  "asthénie": [
+    "fatigabilité",
+    "fatigue",
+    "manque d’énergie",
+    "épuisement"
+  ],
+  "autolyse": [
+    "conduite suicidaire",
+    "tentative de suicide",
+    "auto-agression",
+    "passage à l’acte suicidaire"
+  ],
+  "barrage": [
+    "blocage de la pensée",
+    "interruption brusque du discours",
+    "thought blocking"
+  ],
+  "bradyphémie": [
+    "parole lente",
+    "discours ralenti",
+    "ralentissement de la parole"
+  ],
+  "bradypsychie": [
+    "ralentissement de la pensée",
+    "lenteur intellectuelle",
+    "pensée ralentie"
+  ],
+  "catatonie": [
+    "syndrome catatonique",
+    "stupeur catatonique",
+    "mutisme et immobilité catatoniques"
+  ],
+  "délire": [
+    "idée délirante",
+    "conviction délirante",
+    "croyance fausse et fixe"
+  ],
+  "dépersonnalisation": [
+    "sentiment d’être détaché de soi",
+    "impression d’être spectateur de soi",
+    "étrangeté de soi"
+  ],
+  "dissociation": [
+    "sentiment de détachement",
+    "déconnexion de soi ou de l’environnement",
+    "état dissociatif"
+  ],
+  "dysmorphophobie": [
+    "préoccupation par un défaut physique",
+    "peur d’être laid",
+    "préoccupation excessive de l’apparence"
+  ],
+  "écholalie": [
+    "répétition des paroles",
+    "répète les mots entendus",
+    "imitation verbale"
+  ],
+  "hallucination": [
+    "perception sans objet",
+    "entendre des voix",
+    "voir ou entendre des choses inexistantes"
+  ],
+  "impulsivité": [
+    "agir sans réfléchir",
+    "difficulté à contrôler ses impulsions",
+    "passage à l’acte impulsif"
+  ],
+  "incurie": [
+    "négligence de l’hygiène",
+    "négligence des soins personnels",
+    "laisser-aller"
+  ],
+  "inhibition psychomotrice": [
+    "ralentissement psychomoteur",
+    "lenteur des gestes",
+    "ralentissement de l’activité"
+  ],
+  "irritabilité": [
+    "humeur irritable",
+    "nervosité",
+    "susceptibilité",
+    "agacement"
+  ],
+  "logorrhée": [
+    "parole abondante",
+    "pression du discours",
+    "parle beaucoup",
+    "débit de parole accéléré"
+  ],
+  "manie": [
+    "épisode maniaque",
+    "phase d’excitation",
+    "surexcitation psychique et physique"
+  ],
+  "mélancolie": [
+    "caractéristiques mélancoliques",
+    "dépression mélancolique",
+    "état mélancolique"
+  ],
+  "néologisme": [
+    "invention de mots",
+    "mots nouveaux incompréhensibles",
+    "langage néologique"
+  ],
+  "négativisme": [
+    "refus de contact",
+    "opposition systématique",
+    "résistance passive"
+  ],
+  "paralogisme": [
+    "raisonnement illogique",
+    "logique pathologique",
+    "raisonnement incohérent"
+  ],
+  "rumination": [
+    "pensées répétitives",
+    "préoccupation persistante",
+    "tourner une idée en boucle",
+    "inquiétude répétitive"
+  ],
+  "syndrome d’influence": [
+    "sentiment d’être contrôlé",
+    "pensée imposée",
+    "impression d’être dirigé de l’extérieur"
+  ],
+  "tachypsychie": [
+    "pensée accélérée",
+    "accélération idéique",
+    "fuite des idées"
   ]
 }
