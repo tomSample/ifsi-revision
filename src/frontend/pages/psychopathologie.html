@@ -31,11 +31,6 @@
         </div>
     </header>
 
-    <div class="admin-status-badge" id="adminStatusBadge">
-        <span>🔓 ADMINISTRATEUR</span>
-        <button onclick="authManager.logout()">Déconnexion</button>
-    </div>
-
     <main>
         <section class="psychopathologie-hero">
             <h1>Psychopathologie</h1>
@@ -44,17 +39,20 @@
 
         <div class="psychopathologie-container">
             <div class="psychopathologie-choice-grid">
-                <a class="psychopathologie-choice-card" href="./psychopathologie-recherche.html">
-                    <span class="choice-icon">🔎</span>
-                    <h2>Des symptômes vers les syndromes</h2>
-                    <p>Saisissez et sélectionnez un ou plusieurs symptômes pour retrouver les catégories et sous-catégories correspondantes.</p>
-                    <span class="btn btn-primary">Ouvrir le moteur de recherche →</span>
-                </a>
+                <!-- Card 1: Recherche de symptômes -->
                 <a class="psychopathologie-choice-card" href="./psychopathologie-recap.html">
                     <span class="choice-icon">📚</span>
-                    <h2>Récapitulatif des troubles</h2>
-                    <p>Parcourez le JSON normalisé par catégorie, sous-catégorie et symptôme, avec une barre de recherche.</p>
+                    <h2>Troubles principaux</h2>
+                    <p>Parcourez les troubles et leurs symptômes associés.</p>
                     <span class="btn btn-primary">Voir le récapitulatif →</span>
+                </a>
+
+                <!-- Card 2: Récapitulatif des troubles -->
+                <a class="psychopathologie-choice-card" href="./psychopathologie-recherche.html">
+                    <span class="choice-icon">🔎</span>
+                    <h2>Recherche</h2>
+                    <p>Saisissez et sélectionnez un ou plusieurs symptômes à l'aide d'un dictionnaire intelligent.</p>
+                    <span class="btn btn-primary">Ouvrir le moteur de recherche →</span>
                 </a>
             </div>
         </div>
