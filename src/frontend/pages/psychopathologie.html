@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recherche interactive des symptômes en psychopathologie">
+    <title>Psychopathologie - Pitch in 2025</title>
+    <link rel="manifest" href="../../../public/manifest.json">
+    <link rel="stylesheet" href="../assets/styles/theme.css">
+    <link rel="stylesheet" href="../assets/styles/design-system.css">
+    <link rel="stylesheet" href="../assets/styles/animations.css">
+    <link rel="stylesheet" href="../assets/styles/layout.css">
+    <link rel="stylesheet" href="../assets/styles/psychopathologie.css">
+</head>
+<body class="psychopathologie-page">
+    <header class="app-header">
+        <div class="header-content">
+            <a href="./home.html" class="header-brand">
+                <span class="header-brand-icon">📚</span>
+                <div class="header-brand-text">
+                    <h1>Pitch in</h1>
+                    <p>2025</p>
+                </div>
+            </a>
+            <div class="header-actions">
+                <div class="user-badge" id="userBadge">
+                    <span id="userInitials">👤</span>
+                    <span id="userEmail" class="user-email">Utilisateur</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-status-badge" id="adminStatusBadge">
+        <span>🔓 ADMINISTRATEUR</span>
+        <button onclick="authManager.logout()">Déconnexion</button>
+    </div>
+
+    <main>
+        <section class="psychopathologie-hero">
+            <h1>Psychopathologie</h1>
+            <p>Choisissez un outil pour explorer les troubles, les symptômes et leurs correspondances.</p>
+        </section>
+
+        <div class="psychopathologie-container">
+            <div class="psychopathologie-choice-grid">
+                <a class="psychopathologie-choice-card" href="./psychopathologie-recherche.html">
+                    <span class="choice-icon">🔎</span>
+                    <h2>Des symptômes vers les syndromes</h2>
+                    <p>Saisissez et sélectionnez un ou plusieurs symptômes pour retrouver les catégories et sous-catégories correspondantes.</p>
+                    <span class="btn btn-primary">Ouvrir le moteur de recherche →</span>
+                </a>
+                <a class="psychopathologie-choice-card" href="./psychopathologie-recap.html">
+                    <span class="choice-icon">📚</span>
+                    <h2>Récapitulatif des troubles</h2>
+                    <p>Parcourez le JSON normalisé par catégorie, sous-catégorie et symptôme, avec une barre de recherche.</p>
+                    <span class="btn btn-primary">Voir le récapitulatif →</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-links">
+            <a href="./mentions-legales.html">Mentions légales</a>
+            <a href="#privacy">Confidentialité</a>
+            <a href="#terms">Conditions</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p id="versionInfo">Pitch in 2025 - Plateforme v3.0</p>
+    </footer>
+
+    <script src="../assets/scripts/auth/auth.js"></script>
+</body>
+</html>

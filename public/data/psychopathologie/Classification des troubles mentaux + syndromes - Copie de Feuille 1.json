@@ -1,0 +1,158 @@
+[
+ {
+   "Catégorie": "Troubles de la personnalité",
+   "Sous-catégorie": "Psychotiques : paranoïaque, schizoïde, schizotypique",
+   "Prévalence": "",
+   "Symptomatologie": "méfiance et suspicion envahissantes, interprétation malveillante des intentions d’autrui, rancune tenace, sensibilité, détachement des relations sociales, restriction de l’expression émotionnelle, indifférence aux éloges/critiques, préférence marquée pour les activités solitaires, anhédonie, excessive aux critiques, tendance à se sentir persécuté, idées de référence, croyances magiques/perceptions inhabituelles, discours vague ou métaphorique, comportement/excentricité, anxiété sociale intense liée à des idées paranoïdes"
+ },
+ {
+   "Catégorie": "Troubles de la personnalité",
+   "Sous-catégorie": "Emotionnelles : antisociale, borderline, histrionique, narcissique",
+   "Prévalence": "",
+   "Symptomatologie": "mépris et violation des droits d’autrui, impulsivité, irritabilité/agressivité, irresponsabilité, absence de remords, tromperie/manipulation, instabilité affective intense, impulsivité, relations interpersonnelles chaotiques (idéalisation/dévaluation), sentiment chronique de vide, peur de l’abandon, conduites auto‑agressives/suicidaires, théâtralité, expressivité émotionnelle excessive, recherche d’attention, suggestibilité, séduction inappropriée, émotion labile et superficielle, sentiment grandiose de soi, besoin d’admiration, manque d’empathie, fantasmes de succès/puissance, sentiment d’être « spécial », exploitation d’autrui"
+ },
+ {
+   "Catégorie": "Troubles de la personnalité",
+   "Sous-catégorie": "Anxieuses : évitante, dépendante, obsessionnelle-compulsive",
+   "Prévalence": "",
+   "Symptomatologie": "inhibition sociale, sentiment d’inadéquation, hypersensibilité aux jugements négatifs, évitement des activités impliquant autrui par crainte de rejet, besoin excessif d’être pris en charge, difficultés à prendre des décisions sans réassurance, crainte de la séparation, soumission, perfectionnisme rigide, souci du contrôle, ordre, listes, dévotion au travail au détriment des loisirs, rigidité morale, difficulté à déléguer"
+ },
+ {
+   "Catégorie": "Troubles du neurodéveloppement",
+   "Sous-catégorie": "Troubles du spectre de l’autisme",
+   "Prévalence": "",
+   "Symptomatologie": "déficits persistants de la communication sociale (réciprocité, communication non verbale, relations) et comportements/intérêts restreints et répétitifs (stéréotypies, routines, intérêts absorbants, hyper/hyporéactivité sensorielle)"
+ },
+ {
+   "Catégorie": "Troubles du neurodéveloppement",
+   "Sous-catégorie": " TDAH et apparentés",
+   "Prévalence": "",
+   "Symptomatologie": "inattention (difficultés de concentration, oublis, désorganisation), hyperactivité (agitation, besoin de bouger) et impulsivité (agir sans réfléchir, interruptions)"
+ },
+ {
+   "Catégorie": "Troubles du neurodéveloppement",
+   "Sous-catégorie": "Troubles des acquisitions (communication, coordinations motrices) et des apprentissages (dyslexie, dyscalculie)",
+   "Prévalence": "",
+   "Symptomatologie": "troubles du langage réceptif/expressif, phonation, fluidité, pragmatique, maladresse, lenteur, difficultés de motricité fine/globale, dyslexie (lecture), dysorthographie/dysgraphie (écriture), dyscalculie (calcul/raisonnement mathématique)"
+ },
+ {
+   "Catégorie": "Troubles du neurodéveloppement",
+   "Sous-catégorie": " Troubles du développement intellectuel",
+   "Prévalence": "",
+   "Symptomatologie": "limitations du fonctionnement intellectuel (raisonnement, résolution de problèmes) et du fonctionnement adaptatif (communication, autonomie, vie sociale)"
+ },
+ {
+   "Catégorie": "Troubles psychotiques \n(altération du contact à la réalité)",
+   "Sous-catégorie": "Schizophrénie et formes limites",
+   "Prévalence": "1,50%",
+   "Symptomatologie": "délire (persécution, référence, contrôle, grandeur), hallucinations (souvent auditives), désorganisation du discours et du comportement, symptômes négatifs (émoussement affectif, alogie, aboulie, anhédonie), troubles cognitifs"
+ },
+ {
+   "Catégorie": "Troubles psychotiques \n(altération du contact à la réalité)",
+   "Sous-catégorie": " Trouble délirant persistant",
+   "Prévalence": "",
+   "Symptomatologie": "délire(s) systématisé(s) non bizarres (persécution, jalousie, érotomanie, somatique, mégalomanie) durant ≥ 1 mois sans autres symptômes schizophréniques majeurs"
+ },
+ {
+   "Catégorie": "Troubles de l’humeur \n(perturbation de l’humeur avec modifications cognitives et physiologiques)",
+   "Sous-catégorie": "Trouble bipolaire ",
+   "Prévalence": "1,50%",
+   "Symptomatologie": "alternance d’épisodes maniaques/hypomaniaques (humeur exaltée/irritable, augmentation de l’énergie, idées de grandeur, diminution du sommeil, logorrhée, impulsivité) et d’épisodes dépressifs majeurs"
+ },
+ {
+   "Catégorie": "Troubles de l’humeur \n(perturbation de l’humeur avec modifications cognitives et physiologiques)",
+   "Sous-catégorie": "Trouble dépressif caractérisé ",
+   "Prévalence": "10%",
+   "Symptomatologie": "humeur dépressive et/ou anhédonie persistante avec symptômes cognitifs (culpabilité, dévalorisation, idées de mort), neurovégétatifs (sommeil, appétit, libido), psychomoteurs (ralentissement/agitation) et asthénie"
+ },
+ {
+   "Catégorie": "Troubles anxieux \n(anxiété excessive et perturbations comportementales associées)",
+   "Sous-catégorie": "Trouble anxieux généralisé ",
+   "Prévalence": "8%",
+   "Symptomatologie": "inquiétude excessive et difficile à contrôler, sur plusieurs thèmes, ≥ 6 mois, associée à tension musculaire, agitation, fatigue, troubles du sommeil, irritabilité, difficultés de concentration"
+ },
+ {
+   "Catégorie": "Troubles anxieux \n(anxiété excessive et perturbations comportementales associées)",
+   "Sous-catégorie": "Trouble panique et agoraphobie",
+   "Prévalence": "",
+   "Symptomatologie": "attaques de panique récurrentes (pic de peur intense avec symptômes autonomiques : tachycardie, dyspnée, sueurs, tremblements, peur de mourir/de perdre le contrôle) et/ou évitement de situations par crainte de faire une attaque (agoraphobie)"
+ },
+ {
+   "Catégorie": "Troubles anxieux \n(anxiété excessive et perturbations comportementales associées)",
+   "Sous-catégorie": " Troubles phobiques ",
+   "Prévalence": "15%",
+   "Symptomatologie": "peur marquée, excessive et persistante d’un objet/situation spécifique (animaux, sang, hauteurs, avion, etc.) entraînant évitement et détresse"
+ },
+ {
+   "Catégorie": "Troubles anxieux \n(anxiété excessive et perturbations comportementales associées)",
+   "Sous-catégorie": " Trouble stress post-traumatique (TSPT)",
+   "Prévalence": "",
+   "Symptomatologie": "après un traumatisme, intrusion (reviviscences, cauchemars), évitement, altérations cognitives/émotionnelles négatives, hyperactivation neurovégétative (hypervigilance, sursaut)"
+ },
+ {
+   "Catégorie": "Troubles anxieux \n(anxiété excessive et perturbations comportementales associées)",
+   "Sous-catégorie": "Trouble de l’adaptation",
+   "Prévalence": "",
+   "Symptomatologie": "symptômes émotionnels/comportementaux en réponse à un facteur de stress identifiable, survenant dans les 3 mois, avec détresse ou altération fonctionnelle."
+ },
+ {
+   "Catégorie": "TOC et apparentés",
+   "Sous-catégorie": "Trouble obsessionnel compulsif (TOC)",
+   "Prévalence": "",
+   "Symptomatologie": "obsessions (pensées/impulsions/images intrusives, anxiogènes, reconnues comme excessives) et compulsions (comportements/actes mentels répétés visant à réduire l’anxiété), chronophages et invalidant"
+ },
+ {
+   "Catégorie": "Troubles somatomorphes \n(signes physiques prédominants avec détresse ou handicap significatif)",
+   "Sous-catégorie": "Trouble de somatisation",
+   "Prévalence": "",
+   "Symptomatologie": "multiples symptômes somatiques variés et persistants, avec pensées/angoisses/comportements excessifs liés à ces symptômes"
+ },
+ {
+   "Catégorie": "Troubles somatomorphes \n(signes physiques prédominants avec détresse ou handicap significatif)",
+   "Sous-catégorie": "Trouble de conversion",
+   "Prévalence": "",
+   "Symptomatologie": "symptômes neurologiques (moteurs/sensitifs, crises non épileptiques, cécité, paralysie) incompatibles avec les maladies neurologiques, liés à des facteurs psychologiques"
+ },
+ {
+   "Catégorie": "Troubles somatomorphes \n(signes physiques prédominants avec détresse ou handicap significatif)",
+   "Sous-catégorie": "Trouble douloureux",
+   "Prévalence": "",
+   "Symptomatologie": "douleur prédominante, persistante, avec détresse/altération fonctionnelle et facteurs psychologiques contributifs"
+ },
+ {
+   "Catégorie": "Troubles somatomorphes \n(signes physiques prédominants avec détresse ou handicap significatif)",
+   "Sous-catégorie": "Hypochondrie",
+   "Prévalence": "",
+   "Symptomatologie": "préoccupation excessive d’avoir une maladie grave, interprétation catastrophiste de symptômes bénins, comportements de vérification/évitement"
+ },
+ {
+   "Catégorie": "Troubles somatomorphes \n(signes physiques prédominants avec détresse ou handicap significatif)",
+   "Sous-catégorie": "\nDysmorphophobies",
+   "Prévalence": "",
+   "Symptomatologie": "préoccupation centrée sur un défaut perçu de l’apparence, mineur ou imaginaire, avec comportements répétitifs (miroir, camouflages) et détresse"
+ },
+ {
+   "Catégorie": "Troubles dissociatifs\n(perturbation / discontinuité dans l’intégration de la conscience, mémoire, identité, émotions, perception, représentation du corps, contrôle moteur et du comportement)",
+   "Sous-catégorie": "Dépersonnalisation, déréalisation",
+   "Prévalence": "",
+   "Symptomatologie": "sentiment persistant/récurrent d’être détaché de soi (dépersonnalisation) et/ou de son environnement (déréalisation), avec conservation du sens de la réalité"
+ },
+ {
+   "Catégorie": "Troubles dissociatifs\n(perturbation / discontinuité dans l’intégration de la conscience, mémoire, identité, émotions, perception, représentation du corps, contrôle moteur et du comportement)",
+   "Sous-catégorie": "\n Amnésies dissociatives avec ou sans fugue",
+   "Prévalence": "",
+   "Symptomatologie": "incapacité à se souvenir d’informations personnelles importantes (souvent traumatiques), non expliquée par une cause organique ; la fugue ajoute un déplacement inattendu avec amnésie de l’identité"
+ },
+ {
+   "Catégorie": "Addictions",
+   "Sous-catégorie": "Troubles liés à l’usage d’une substance : \n – Alcool\n – Amphétamines\n – Cannabis\n – Cathinones\n – Cocaïne\n – GHB / GHL\n – Hallucinogènes\n – Kétamine\n – Médicaments (BZD)\n – Opiacés\n – Tabac",
+   "Prévalence": "10% (alcool)",
+   "Symptomatologie": "consommation compulsive, perte de contrôle, craving, tolérance, sevrage, poursuite malgré conséquences négatives, temps important consacré à la substance, abandon d’activités."
+ },
+ {
+   "Catégorie": "Addictions",
+   "Sous-catégorie": "Addictions comportementales :\n – Achats compulsifs\n – Addiction à l’exercice physique\n – Addiction aux jeux vidéo sur internet\n – Addiction sexuelle\n – Jeu pathologique",
+   "Prévalence": "",
+   "Symptomatologie": "consommation compulsive, perte de contrôle, craving, tolérance, sevrage, poursuite malgré conséquences négatives, temps important consacré à la substance, abandon d’activités."
+ }
+]

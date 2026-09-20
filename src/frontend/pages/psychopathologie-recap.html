@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Récapitulatif des troubles et symptômes en psychopathologie">
+    <title>Récapitulatif psychopathologie - Pitch in 2025</title>
+    <link rel="manifest" href="../../../public/manifest.json">
+    <link rel="stylesheet" href="../assets/styles/theme.css">
+    <link rel="stylesheet" href="../assets/styles/design-system.css">
+    <link rel="stylesheet" href="../assets/styles/animations.css">
+    <link rel="stylesheet" href="../assets/styles/layout.css">
+    <link rel="stylesheet" href="../assets/styles/psychopathologie.css">
+</head>
+<body class="psychopathologie-page psychopathologie-recap-page">
+    <header class="app-header">
+        <div class="header-content">
+            <a href="./home.html" class="header-brand">
+                <span class="header-brand-icon">📚</span>
+                <div class="header-brand-text">
+                    <h1>Pitch in</h1>
+                    <p>2025</p>
+                </div>
+            </a>
+            <div class="header-actions">
+                <div class="user-badge" id="userBadge">
+                    <span id="userInitials">👤</span>
+                    <span id="userEmail" class="user-email">Utilisateur</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-status-badge" id="adminStatusBadge">
+        <span>🔓 ADMINISTRATEUR</span>
+        <button onclick="authManager.logout()">Déconnexion</button>
+    </div>
+
+    <main class="psychopathologie-recap-main">
+        <aside class="psychopathologie-sidebar" aria-label="Catégories de troubles">
+            <h2>Catégories</h2>
+            <div id="psychopathologieCategoryList" class="psychopathologie-category-list"></div>
+        </aside>
+
+        <section class="psychopathologie-recap-content">
+            <div class="psychopathologie-recap-container">
+                <h1 class="page-title">📚 Récapitulatif des troubles</h1>
+                <div class="psychopathologie-mobile-filters">
+                    <label for="psychopathologieMobileCategory">Catégorie</label>
+                    <select id="psychopathologieMobileCategory">
+                        <option value="">Toutes les catégories</option>
+                    </select>
+                </div>
+                <div class="search-panel psychopathologie-recap-search-panel">
+                    <label for="psychopathologieRecapSearch">🔍 Rechercher dans les catégories et symptômes</label>
+                    <div class="psychopathologie-search-wrapper">
+                        <input id="psychopathologieRecapSearch" class="psychopathologie-search" type="search"
+                            placeholder="Ex. psychotique, hallucination, anxiété..." autocomplete="off">
+                    </div>
+                    <p id="psychopathologieRecapCount" class="results-summary"></p>
+                </div>
+                <div id="psychopathologieRecapResults" class="psychopathologie-accordion-list">
+                    <div class="empty-state"><div class="empty-state-icon">📚</div><h3>Chargement...</h3></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-links">
+            <a href="./mentions-legales.html">Mentions légales</a>
+            <a href="#privacy">Confidentialité</a>
+            <a href="#terms">Conditions</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p id="versionInfo">Pitch in 2025 - Plateforme v3.0</p>
+    </footer>
+
+    <script src="../assets/scripts/auth/auth.js"></script>
+    <script src="../assets/scripts/modules/psychopathologie-recap.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recherche interactive des symptômes en psychopathologie">
+    <title>Recherche psychopathologique - Pitch in 2025</title>
+    <link rel="manifest" href="../../../public/manifest.json">
+    <link rel="stylesheet" href="../assets/styles/theme.css">
+    <link rel="stylesheet" href="../assets/styles/design-system.css">
+    <link rel="stylesheet" href="../assets/styles/animations.css">
+    <link rel="stylesheet" href="../assets/styles/layout.css">
+    <link rel="stylesheet" href="../assets/styles/psychopathologie.css">
+</head>
+<body class="psychopathologie-page">
+    <header class="app-header">
+        <div class="header-content">
+            <a href="./home.html" class="header-brand">
+                <span class="header-brand-icon">📚</span>
+                <div class="header-brand-text">
+                    <h1>Pitch in</h1>
+                    <p>2025</p>
+                </div>
+            </a>
+            <div class="header-actions">
+                <div class="user-badge" id="userBadge">
+                    <span id="userInitials">👤</span>
+                    <span id="userEmail" class="user-email">Utilisateur</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-status-badge" id="adminStatusBadge">
+        <span>🔓 ADMINISTRATEUR</span>
+        <button onclick="authManager.logout()">Déconnexion</button>
+    </div>
+
+    <main>
+        <section class="psychopathologie-hero">
+            <h1>Des symptômes vers les syndromes</h1>
+            <p>Sélectionnez un ou plusieurs symptômes pour retrouver les catégories et sous-catégories associées.</p>
+        </section>
+
+        <div class="psychopathologie-container">
+            <section class="search-panel" aria-labelledby="searchTitle">
+                <label id="searchTitle" for="symptomSearch">Rechercher un symptôme</label>
+                <div class="psychopathologie-search-wrapper">
+                    <input id="symptomSearch" class="psychopathologie-search" type="search"
+                        placeholder="Ex. hallucinations, perte de plaisir, agitation..."
+                        autocomplete="off" aria-autocomplete="list" aria-controls="symptomSuggestions">
+                    <div id="symptomSuggestions" class="symptom-suggestions" role="listbox"></div>
+                </div>
+                <p class="notice" style="margin: var(--space-4) 0 0;">La recherche utilise les symptômes du tableau et un dictionnaire local de termes associés. Elle ne constitue pas un diagnostic.</p>
+            </section>
+
+            <section class="selected-panel" aria-labelledby="selectedTitle">
+                <div class="selected-actions">
+                    <h2 id="selectedTitle" class="panel-heading">Symptômes sélectionnés</h2>
+                    <button id="clearSymptoms" class="btn btn-secondary" type="button">Effacer tout</button>
+                </div>
+                <div id="selectedSymptoms" class="selected-symptoms"></div>
+            </section>
+
+            <section class="results-panel" aria-labelledby="resultsTitle">
+                <h2 id="resultsTitle" class="panel-heading">Correspondances</h2>
+                <p id="resultsSummary" class="results-summary"></p>
+                <div id="psychopathologyResults"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-links">
+            <a href="./mentions-legales.html">Mentions légales</a>
+            <a href="#privacy">Confidentialité</a>
+            <a href="#terms">Conditions</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p id="versionInfo">Pitch in 2025 - Plateforme v3.0</p>
+    </footer>
+
+    <script src="../assets/scripts/auth/auth.js"></script>
+    <script src="../assets/scripts/modules/psychopathologie-search.js"></script>
+</body>
+</html>

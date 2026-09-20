@@ -1,0 +1,36 @@
+{
+  "anhédonie": [
+    "perte de plaisir",
+    "absence de plaisir",
+    "incapacité à ressentir du plaisir"
+  ],
+  "aboulie": [
+    "manque de volonté",
+    "difficulté à initier une action"
+  ],
+  "logorrhée": [
+    "parole abondante",
+    "débit de parole accéléré"
+  ],
+  "idées de référence": [
+    "impression que les événements parlent de soi",
+    "interprétation personnelle des événements"
+  ],
+  "hypervigilance": [
+    "vigilance excessive",
+    "surveillance constante"
+  ],
+  "tachycardie": [
+    "coeur qui bat vite",
+    "accélération du rythme cardiaque"
+  ],
+  "dyspnée": [
+    "difficulté à respirer",
+    "essoufflement",
+    "manque d'air"
+  ],
+  "insomnie": [
+    "difficultés de sommeil",
+    "trouble du sommeil"
+  ]
+}

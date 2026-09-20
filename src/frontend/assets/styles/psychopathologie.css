@@ -1,0 +1,660 @@
+.psychopathologie-page {
+    min-height: 100vh;
+    background: var(--color-bg-light);
+}
+
+.psychopathologie-page .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-xs);
+}
+
+.psychopathologie-page .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--space-4);
+}
+
+.psychopathologie-page .header-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text-dark);
+    text-decoration: none;
+}
+
+.psychopathologie-page .header-brand-icon {
+    font-size: 1.5rem;
+}
+
+.psychopathologie-page .header-brand-text h1 {
+    margin: 0;
+    color: var(--color-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+}
+
+.psychopathologie-page .header-brand-text p {
+    margin: var(--space-1) 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.65rem;
+}
+
+.psychopathologie-page .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.psychopathologie-page .user-badge {
+    display: none;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+    background: var(--color-primary-lighter);
+    color: var(--color-primary-dark);
+    font-size: var(--font-size-xs);
+}
+
+.psychopathologie-page .user-badge.active {
+    display: flex;
+}
+
+.psychopathologie-page .admin-status-badge {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: 8px;
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+    color: white;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+}
+
+.psychopathologie-page .admin-status-badge.visible {
+    display: flex;
+}
+
+.psychopathologie-page .admin-status-badge button {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.psychopathologie-page .app-footer {
+    margin-top: var(--space-12);
+    padding: var(--space-6) var(--space-4);
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg-lighter);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    text-align: center;
+}
+
+.psychopathologie-page .footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-bottom: var(--space-3);
+}
+
+.psychopathologie-page .footer-links a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.psychopathologie-page .footer-links a:hover {
+    color: var(--color-primary-dark);
+}
+
+.legal-section h2 {
+    margin-top: 0;
+    color: var(--color-text-dark);
+}
+
+.psychopathologie-hero {
+    padding: var(--space-8) var(--space-4);
+    background: var(--gradient-primary);
+    color: white;
+    text-align: center;
+}
+
+.psychopathologie-hero h1 {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-2xl);
+}
+
+.psychopathologie-hero p {
+    max-width: 720px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: var(--line-height-relaxed);
+}
+
+.psychopathologie-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--space-6) var(--space-4) var(--space-12);
+}
+
+.search-panel,
+.selected-panel,
+.results-panel {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-5);
+    margin-bottom: var(--space-5);
+}
+
+.search-panel label,
+.panel-heading {
+    display: block;
+    margin-bottom: var(--space-3);
+    color: var(--color-text-dark);
+    font-weight: var(--font-weight-semibold);
+}
+
+.psychopathologie-search-wrapper {
+    position: relative;
+}
+
+.psychopathologie-search {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: var(--min-touch-target);
+    padding: var(--space-3) var(--space-4);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-dark);
+    font: inherit;
+}
+
+.psychopathologie-search:focus {
+    border-color: var(--color-primary);
+    outline: var(--focus-outline);
+}
+
+.symptom-suggestions {
+    position: absolute;
+    z-index: 5;
+    top: calc(100% + var(--space-1));
+    left: 0;
+    right: 0;
+    display: none;
+    max-height: 280px;
+    overflow-y: auto;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+}
+
+.symptom-suggestions.active {
+    display: block;
+}
+
+.symptom-suggestion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    border: 0;
+    border-bottom: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-body);
+    cursor: pointer;
+    text-align: left;
+}
+
+.symptom-suggestion:last-child {
+    border-bottom: 0;
+}
+
+.symptom-suggestion:hover,
+.symptom-suggestion:focus-visible {
+    background: var(--color-primary-lighter);
+    outline: none;
+}
+
+.symptom-match-type {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+}
+
+.selected-symptoms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    min-height: 32px;
+}
+
+.symptom-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-primary-lighter);
+    color: var(--color-primary-dark);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+}
+
+.symptom-chip button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.selected-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+}
+
+.empty-state {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.results-summary {
+    margin: 0 0 var(--space-4);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.psychopathology-result {
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-3);
+}
+
+.psychopathology-result.multiple-match {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+}
+
+.result-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    align-items: flex-start;
+}
+
+.result-category {
+    margin: 0;
+    color: var(--color-text-dark);
+    font-size: var(--font-size-lg);
+}
+
+.result-subcategory {
+    margin: var(--space-1) 0 0;
+    color: var(--color-primary-dark);
+    font-weight: var(--font-weight-semibold);
+}
+
+.prevalence {
+    flex: 0 0 auto;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+    background: var(--color-bg-light);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+}
+
+.matched-symptoms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: var(--space-3) 0;
+}
+
+.matched-symptom {
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    background: #dcfce7;
+    color: #166534;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+}
+
+.symptom-list {
+    margin: 0;
+    padding-left: var(--space-5);
+    color: var(--color-text-body);
+    line-height: var(--line-height-relaxed);
+}
+
+.notice {
+    padding: var(--space-3) var(--space-4);
+    border-left: 3px solid var(--color-primary);
+    background: var(--color-primary-lighter);
+    color: var(--color-text-body);
+    font-size: var(--font-size-sm);
+}
+
+.psychopathologie-choice-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+    max-width: 1000px;
+    margin: var(--space-8) auto;
+}
+
+.psychopathologie-choice-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 260px;
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    background: var(--color-bg);
+    box-shadow: var(--shadow-md);
+    color: inherit;
+    text-decoration: none;
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.psychopathologie-choice-card:hover,
+.psychopathologie-choice-card:focus-visible {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+    outline: none;
+}
+
+.choice-icon {
+    margin-bottom: var(--space-4);
+    font-size: 2.5rem;
+}
+
+.psychopathologie-choice-card h2 {
+    margin: 0 0 var(--space-3);
+    color: var(--color-text-dark);
+    font-size: var(--font-size-xl);
+}
+
+.psychopathologie-choice-card p {
+    flex: 1;
+    margin: 0 0 var(--space-5);
+    color: var(--color-text-body);
+    line-height: var(--line-height-relaxed);
+}
+
+.psychopathologie-recap-main {
+    display: flex;
+    min-height: calc(100vh - 130px);
+}
+
+.psychopathologie-sidebar {
+    display: none;
+    flex-direction: column;
+    gap: var(--space-4);
+    width: 280px;
+    min-width: 280px;
+    padding: var(--space-6);
+    overflow-y: auto;
+    background: var(--color-bg);
+    border-right: 1px solid var(--color-border);
+}
+
+.psychopathologie-sidebar h2 {
+    margin: 0;
+    color: var(--color-text-dark);
+    font-size: var(--font-size-lg);
+}
+
+.psychopathologie-category-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.psychopathologie-category-item {
+    padding: var(--space-3);
+    border: 2px solid transparent;
+    border-radius: var(--radius-lg);
+    color: var(--color-text-dark);
+    cursor: pointer;
+    font: inherit;
+    font-size: var(--font-size-sm);
+    text-align: left;
+    transition: all var(--transition-base);
+}
+
+.psychopathologie-category-item.active {
+    border-color: currentColor;
+    box-shadow: var(--shadow-sm);
+    font-weight: var(--font-weight-semibold);
+}
+
+.category-color-1 { background: #0cb2afff; color: white; }
+.category-color-2 { background: #a1c65dff; color: #264653; }
+.category-color-3 { background: #fac723ff; color: #264653; }
+.category-color-4 { background: #f29222ff; color: #264653; }
+.category-color-5 { background: #e95e50ff; color: white; }
+.category-color-6 { background: #936facff; color: white; }
+
+.psychopathologie-recap-content {
+    flex: 1;
+    min-width: 0;
+    overflow-y: auto;
+}
+
+.psychopathologie-recap-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--space-4);
+}
+
+.psychopathologie-mobile-filters {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+
+.psychopathologie-mobile-filters label {
+    color: var(--color-text-dark);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+}
+
+.psychopathologie-mobile-filters select {
+    min-height: var(--min-touch-target);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg);
+    color: var(--color-text-dark);
+    font: inherit;
+}
+
+.psychopathologie-recap-search-panel {
+    margin-bottom: var(--space-5);
+}
+
+.psychopathologie-accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.psychopathologie-accordion {
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-left: 5px solid var(--color-primary);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg);
+    box-shadow: var(--shadow-sm);
+}
+
+.category-border-1 { border-left-color: #0cb2afff; }
+.category-border-2 { border-left-color: #a1c65dff; }
+.category-border-3 { border-left-color: #fac723ff; }
+.category-border-4 { border-left-color: #f29222ff; }
+.category-border-5 { border-left-color: #e95e50ff; }
+.category-border-6 { border-left-color: #936facff; }
+
+.psychopathologie-accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    border: 0;
+    background: var(--color-bg-lighter);
+    color: var(--color-text-dark);
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+}
+
+.psychopathologie-accordion-header:hover,
+.psychopathologie-accordion-header:focus-visible {
+    filter: brightness(0.98);
+    outline: var(--focus-outline);
+    outline-offset: -2px;
+}
+
+.psychopathologie-accordion-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+}
+
+.psychopathologie-category-label {
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+}
+
+.psychopathologie-accordion-toggle {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+    transition: transform var(--transition-base);
+}
+
+.psychopathologie-accordion.open .psychopathologie-accordion-toggle {
+    transform: rotate(180deg);
+}
+
+.psychopathologie-accordion-body {
+    border-top: 1px solid var(--color-border);
+}
+
+.psychopathologie-detail {
+    padding: var(--space-5);
+}
+
+.psychopathologie-detail h3 {
+    margin: var(--space-4) 0 var(--space-2);
+    color: var(--color-text-dark);
+    font-size: var(--font-size-base);
+}
+
+.recap-symptoms {
+    margin: var(--space-3) 0 0;
+    padding-left: var(--space-5);
+    color: var(--color-text-body);
+    line-height: var(--line-height-relaxed);
+}
+
+@media (max-width: 640px) {
+    .psychopathologie-choice-grid {
+        grid-template-columns: 1fr;
+        margin: var(--space-5) auto;
+    }
+
+    .psychopathologie-accordion-header {
+        padding: var(--space-3);
+    }
+
+    .psychopathologie-detail {
+        padding: var(--space-4);
+    }
+}
+
+@media (min-width: 1025px) {
+    .psychopathologie-sidebar {
+        display: flex;
+    }
+
+    .psychopathologie-mobile-filters {
+        display: none;
+    }
+}
+
+@media (min-width: 641px) {
+    .psychopathologie-page .header-content {
+        padding: var(--space-6);
+    }
+
+    .psychopathologie-page .header-brand-text h1 {
+        font-size: var(--font-size-lg);
+    }
+
+    .psychopathologie-page .header-brand-text p {
+        font-size: var(--font-size-xs);
+    }
+
+    .psychopathologie-hero {
+        padding: var(--space-12) var(--space-6);
+    }
+
+    .psychopathologie-hero h1 {
+        font-size: var(--font-size-4xl);
+    }
+
+    .psychopathologie-container {
+        padding: var(--space-8) var(--space-6) var(--space-12);
+    }
+
+    .psychopathologie-recap-container {
+        padding: var(--space-6);
+    }
+}
+
+@media (max-width: 640px) {
+    .result-heading,
+    .selected-actions {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

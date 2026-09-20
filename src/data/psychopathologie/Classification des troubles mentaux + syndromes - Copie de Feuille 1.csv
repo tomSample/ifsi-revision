@@ -1,0 +1,61 @@
+Catégorie,Sous-catégorie,Prévalence,Symptomatologie
+Troubles de la personnalité,"Psychotiques : paranoïaque, schizoïde, schizotypique",,"méfiance et suspicion envahissantes, interprétation malveillante des intentions d’autrui, rancune tenace, sensibilité, détachement des relations sociales, restriction de l’expression émotionnelle, indifférence aux éloges/critiques, préférence marquée pour les activités solitaires, anhédonie, excessive aux critiques, tendance à se sentir persécuté, idées de référence, croyances magiques/perceptions inhabituelles, discours vague ou métaphorique, comportement/excentricité, anxiété sociale intense liée à des idées paranoïdes"
+Troubles de la personnalité,"Emotionnelles : antisociale, borderline, histrionique, narcissique",,"mépris et violation des droits d’autrui, impulsivité, irritabilité/agressivité, irresponsabilité, absence de remords, tromperie/manipulation, instabilité affective intense, impulsivité, relations interpersonnelles chaotiques (idéalisation/dévaluation), sentiment chronique de vide, peur de l’abandon, conduites auto‑agressives/suicidaires, théâtralité, expressivité émotionnelle excessive, recherche d’attention, suggestibilité, séduction inappropriée, émotion labile et superficielle, sentiment grandiose de soi, besoin d’admiration, manque d’empathie, fantasmes de succès/puissance, sentiment d’être « spécial », exploitation d’autrui"
+Troubles de la personnalité,"Anxieuses : évitante, dépendante, obsessionnelle-compulsive",,"inhibition sociale, sentiment d’inadéquation, hypersensibilité aux jugements négatifs, évitement des activités impliquant autrui par crainte de rejet, besoin excessif d’être pris en charge, difficultés à prendre des décisions sans réassurance, crainte de la séparation, soumission, perfectionnisme rigide, souci du contrôle, ordre, listes, dévotion au travail au détriment des loisirs, rigidité morale, difficulté à déléguer"
+Troubles du neurodéveloppement,Troubles du spectre de l’autisme,,"déficits persistants de la communication sociale (réciprocité, communication non verbale, relations) et comportements/intérêts restreints et répétitifs (stéréotypies, routines, intérêts absorbants, hyper/hyporéactivité sensorielle)"
+Troubles du neurodéveloppement, TDAH et apparentés,,"inattention (difficultés de concentration, oublis, désorganisation), hyperactivité (agitation, besoin de bouger) et impulsivité (agir sans réfléchir, interruptions)"
+Troubles du neurodéveloppement,"Troubles des acquisitions (communication, coordinations motrices) et des apprentissages (dyslexie, dyscalculie)",,"troubles du langage réceptif/expressif, phonation, fluidité, pragmatique, maladresse, lenteur, difficultés de motricité fine/globale, dyslexie (lecture), dysorthographie/dysgraphie (écriture), dyscalculie (calcul/raisonnement mathématique)"
+Troubles du neurodéveloppement, Troubles du développement intellectuel,,"limitations du fonctionnement intellectuel (raisonnement, résolution de problèmes) et du fonctionnement adaptatif (communication, autonomie, vie sociale)"
+"Troubles psychotiques 
+(altération du contact à la réalité)",Schizophrénie et formes limites,"1,50%","délire (persécution, référence, contrôle, grandeur), hallucinations (souvent auditives), désorganisation du discours et du comportement, symptômes négatifs (émoussement affectif, alogie, aboulie, anhédonie), troubles cognitifs"
+"Troubles psychotiques 
+(altération du contact à la réalité)", Trouble délirant persistant,,"délire(s) systématisé(s) non bizarres (persécution, jalousie, érotomanie, somatique, mégalomanie) durant ≥ 1 mois sans autres symptômes schizophréniques majeurs"
+"Troubles de l’humeur 
+(perturbation de l’humeur avec modifications cognitives et physiologiques)",Trouble bipolaire ,"1,50%","alternance d’épisodes maniaques/hypomaniaques (humeur exaltée/irritable, augmentation de l’énergie, idées de grandeur, diminution du sommeil, logorrhée, impulsivité) et d’épisodes dépressifs majeurs"
+"Troubles de l’humeur 
+(perturbation de l’humeur avec modifications cognitives et physiologiques)",Trouble dépressif caractérisé ,10%,"humeur dépressive et/ou anhédonie persistante avec symptômes cognitifs (culpabilité, dévalorisation, idées de mort), neurovégétatifs (sommeil, appétit, libido), psychomoteurs (ralentissement/agitation) et asthénie"
+"Troubles anxieux 
+(anxiété excessive et perturbations comportementales associées)",Trouble anxieux généralisé ,8%,"inquiétude excessive et difficile à contrôler, sur plusieurs thèmes, ≥ 6 mois, associée à tension musculaire, agitation, fatigue, troubles du sommeil, irritabilité, difficultés de concentration"
+"Troubles anxieux 
+(anxiété excessive et perturbations comportementales associées)",Trouble panique et agoraphobie,,"attaques de panique récurrentes (pic de peur intense avec symptômes autonomiques : tachycardie, dyspnée, sueurs, tremblements, peur de mourir/de perdre le contrôle) et/ou évitement de situations par crainte de faire une attaque (agoraphobie)"
+"Troubles anxieux 
+(anxiété excessive et perturbations comportementales associées)", Troubles phobiques ,15%,"peur marquée, excessive et persistante d’un objet/situation spécifique (animaux, sang, hauteurs, avion, etc.) entraînant évitement et détresse"
+"Troubles anxieux 
+(anxiété excessive et perturbations comportementales associées)", Trouble stress post-traumatique (TSPT),,"après un traumatisme, intrusion (reviviscences, cauchemars), évitement, altérations cognitives/émotionnelles négatives, hyperactivation neurovégétative (hypervigilance, sursaut)"
+"Troubles anxieux 
+(anxiété excessive et perturbations comportementales associées)",Trouble de l’adaptation,,"symptômes émotionnels/comportementaux en réponse à un facteur de stress identifiable, survenant dans les 3 mois, avec détresse ou altération fonctionnelle."
+TOC et apparentés,Trouble obsessionnel compulsif (TOC),,"obsessions (pensées/impulsions/images intrusives, anxiogènes, reconnues comme excessives) et compulsions (comportements/actes mentels répétés visant à réduire l’anxiété), chronophages et invalidant"
+"Troubles somatomorphes 
+(signes physiques prédominants avec détresse ou handicap significatif)",Trouble de somatisation,,"multiples symptômes somatiques variés et persistants, avec pensées/angoisses/comportements excessifs liés à ces symptômes"
+"Troubles somatomorphes 
+(signes physiques prédominants avec détresse ou handicap significatif)",Trouble de conversion,,"symptômes neurologiques (moteurs/sensitifs, crises non épileptiques, cécité, paralysie) incompatibles avec les maladies neurologiques, liés à des facteurs psychologiques"
+"Troubles somatomorphes 
+(signes physiques prédominants avec détresse ou handicap significatif)",Trouble douloureux,,"douleur prédominante, persistante, avec détresse/altération fonctionnelle et facteurs psychologiques contributifs"
+"Troubles somatomorphes 
+(signes physiques prédominants avec détresse ou handicap significatif)",Hypochondrie,,"préoccupation excessive d’avoir une maladie grave, interprétation catastrophiste de symptômes bénins, comportements de vérification/évitement"
+"Troubles somatomorphes 
+(signes physiques prédominants avec détresse ou handicap significatif)","
+Dysmorphophobies",,"préoccupation centrée sur un défaut perçu de l’apparence, mineur ou imaginaire, avec comportements répétitifs (miroir, camouflages) et détresse"
+"Troubles dissociatifs
+(perturbation / discontinuité dans l’intégration de la conscience, mémoire, identité, émotions, perception, représentation du corps, contrôle moteur et du comportement)","Dépersonnalisation, déréalisation",,"sentiment persistant/récurrent d’être détaché de soi (dépersonnalisation) et/ou de son environnement (déréalisation), avec conservation du sens de la réalité"
+"Troubles dissociatifs
+(perturbation / discontinuité dans l’intégration de la conscience, mémoire, identité, émotions, perception, représentation du corps, contrôle moteur et du comportement)","
+ Amnésies dissociatives avec ou sans fugue",,"incapacité à se souvenir d’informations personnelles importantes (souvent traumatiques), non expliquée par une cause organique ; la fugue ajoute un déplacement inattendu avec amnésie de l’identité"
+Addictions,"Troubles liés à l’usage d’une substance : 
+ – Alcool
+ – Amphétamines
+ – Cannabis
+ – Cathinones
+ – Cocaïne
+ – GHB / GHL
+ – Hallucinogènes
+ – Kétamine
+ – Médicaments (BZD)
+ – Opiacés
+ – Tabac",10% (alcool),"consommation compulsive, perte de contrôle, craving, tolérance, sevrage, poursuite malgré conséquences négatives, temps important consacré à la substance, abandon d’activités."
+Addictions,"Addictions comportementales :
+ – Achats compulsifs
+ – Addiction à l’exercice physique
+ – Addiction aux jeux vidéo sur internet
+ – Addiction sexuelle
+ – Jeu pathologique",,"consommation compulsive, perte de contrôle, craving, tolérance, sevrage, poursuite malgré conséquences négatives, temps important consacré à la substance, abandon d’activités."
