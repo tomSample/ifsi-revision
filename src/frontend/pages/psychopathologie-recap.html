@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Récapitulatif des troubles et symptômes en psychopathologie">
     <title>Récapitulatif psychopathologie - IFSI Lannion</title>
     <link rel="manifest" href="../../../public/manifest.json">
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../assets/styles/layout.css">
     <link rel="stylesheet" href="../assets/styles/psychopathologie.css">
 </head>
-<body class="psychopathologie-page">
+<body class="psychopathologie-page psychopathologie-recap-page">
     <header class="app-header">
         <div class="header-content">
             <a href="./psychopathologie.html" class="header-brand">
@@ -26,24 +26,34 @@
         </div>
     </header>
 
-    <main>
-        <section class="psychopathologie-hero">
-            <h1>Récapitulatif des troubles</h1>
-            <p>Parcourez les catégories, sous-catégories et symptômes du tableau de psychopathologie.</p>
-        </section>
+    <main class="psychopathologie-recap-main">
+        <aside class="psychopathologie-sidebar" aria-label="Catégories de troubles">
+            <h2>Catégories</h2>
+            <div id="psychopathologieCategoryList" class="psychopathologie-category-list"></div>
+        </aside>
 
-        <div class="psychopathologie-container recap-container">
-            <section class="search-panel" aria-labelledby="recapSearchTitle">
-                <label id="recapSearchTitle" for="psychopathologieRecapSearch">Rechercher dans le récapitulatif</label>
-                <div class="psychopathologie-search-wrapper">
-                    <input id="psychopathologieRecapSearch" class="psychopathologie-search" type="search"
-                        placeholder="Ex. psychotique, hallucination, anxiété..."
-                        autocomplete="off">
+        <section class="psychopathologie-recap-content">
+            <div class="psychopathologie-recap-container">
+                <h1 class="page-title">📚 Récapitulatif des troubles</h1>
+                <div class="psychopathologie-mobile-filters">
+                    <label for="psychopathologieMobileCategory">Catégorie</label>
+                    <select id="psychopathologieMobileCategory">
+                        <option value="">Toutes les catégories</option>
+                    </select>
                 </div>
-                <p id="psychopathologieRecapCount" class="results-summary"></p>
-            </section>
-            <div id="psychopathologieRecapResults"></div>
-        </div>
+                <div class="search-panel psychopathologie-recap-search-panel">
+                    <label for="psychopathologieRecapSearch">🔍 Rechercher dans les catégories et symptômes</label>
+                    <div class="psychopathologie-search-wrapper">
+                        <input id="psychopathologieRecapSearch" class="psychopathologie-search" type="search"
+                            placeholder="Ex. psychotique, hallucination, anxiété..." autocomplete="off">
+                    </div>
+                    <p id="psychopathologieRecapCount" class="results-summary"></p>
+                </div>
+                <div id="psychopathologieRecapResults" class="psychopathologie-accordion-list">
+                    <div class="empty-state"><div class="empty-state-icon">📚</div><h3>Chargement...</h3></div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="app-footer">
