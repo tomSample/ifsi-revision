@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-05-24T14:46:57.710807",
+  "exportDate": "2026-09-07T20:26:03.892187",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -6556,10 +6556,1758 @@
         ],
         "filename": "plans de soins types et chemins cliniques dans le parcours de soins.odt"
       }
+    ],
+    [
+      "ue_1_1_s3_le_dveloppement_humain",
+      {
+        "title": "Le développement humain",
+        "date": "01/09/2026",
+        "ue": "1.1.S3",
+        "author": "PDF",
+        "definitions": [
+          {
+            "definition": "caractérise les transformations qui se produisent chez l’être humain au cours de sa vie",
+            "term": "Développement"
+          },
+          {
+            "definition": "développement individuelle",
+            "term": "Ontogenèse"
+          },
+          {
+            "definition": "évolution de l’espèce",
+            "term": "Phylogenèse"
+          },
+          {
+            "definition": "modèles généraux du développement",
+            "term": "Développement global"
+          },
+          {
+            "definition": "étude d’un ou de plusieurs domaines spécifiques du développement (psychomoteur, cognitif, social...)",
+            "term": "Développement local"
+          },
+          {
+            "definition": "évolutions psychologiques se produisant sur un temps court",
+            "term": "Microgenèse"
+          },
+          {
+            "definition": "évolutions psychologiques se produisant sur un temps long",
+            "term": "Macrogenèse"
+          },
+          {
+            "definition": "acquisition de connaissances ou de savoir-faire grâce à l’expérience, à l’enseignement ou à l’interaction avec l’environnement",
+            "term": "Apprentissage"
+          },
+          {
+            "definition": "capacité ou potentialité d’une personne, non directement observable",
+            "term": "Compétence"
+          },
+          {
+            "definition": "Comportement ou résultat effectivement observable.",
+            "term": "Performance"
+          },
+          {
+            "definition": "Succession ordonnée d’étapes liées entre elles",
+            "term": "Séquence développementale"
+          },
+          {
+            "definition": "capacité nécessaire à l’acquisition d’une compétence ultérieure",
+            "term": "Prérequis"
+          },
+          {
+            "definition": "étude des évolutions intra-individuelles chez des individus suivis en temps réel",
+            "term": "Approche longitudinale"
+          },
+          {
+            "definition": "étude et comparaison des performances inter-individuelles de personnes d’âges différents à un même moment.",
+            "term": "Approche transversale"
+          },
+          {
+            "definition": "élément interne lié notamment aux gènes, au système nerveux, aux hormones ou à la croissance",
+            "term": "Facteur biologique"
+          },
+          {
+            "definition": "élément extérieur lié au milieu physique, social, familial ou culturel",
+            "term": "Facteur environnemental"
+          },
+          {
+            "definition": "activité mentale permettant de traiter les informations et de construire des connaissances",
+            "term": "Facteur cognitif"
+          },
+          {
+            "definition": "processus interne de croissance anatomique et physiologique permettant l’apparition progressive de capacités",
+            "term": "Maturation"
+          },
+          {
+            "definition": "ensemble des activités mentales liées à la connaissance, à la compréhension et à l’adaptation",
+            "term": "Cognition"
+          },
+          {
+            "definition": "conception selon laquelle le développement dépend principalement de facteurs biologiques internes",
+            "term": "Innéisme"
+          },
+          {
+            "definition": "conception selon laquelle le développement dépend principalement de l’expérience et de l’environnement",
+            "term": "Empirisme"
+          },
+          {
+            "definition": "conception selon laquelle le développement résulte de l’interaction entre facteurs biologiques et environnementaux",
+            "term": "Interactionnisme"
+          },
+          {
+            "definition": "Théorie selon laquelle l’individu construit activement ses connaissances par son interaction avec l’environnement",
+            "term": "Constructivisme"
+          },
+          {
+            "definition": "Théorie qui insiste sur le rôle des interactions sociales dans la construction des connaissances",
+            "term": "Socioconstructivisme"
+          },
+          {
+            "definition": "processus par lequel les expériences et l’environnement modulent l’expression des potentialités génétiques",
+            "term": "Épigénèse"
+          },
+          {
+            "definition": "période durant laquelle une acquisition dépend de stimuli adaptés et devient ensuite très difficile, voire impossible",
+            "term": "Période critique"
+          },
+          {
+            "definition": "période particulièrement favorable à une acquisition, sans forcément rendre celle-ci impossible par la suite",
+            "term": "Période sensible"
+          }
+        ],
+        "filename": "Le développement humain.odt"
+      }
+    ],
+    [
+      "ue_1_1_s3_psychologie_gnralits",
+      {
+        "title": "Psychologie généralités",
+        "date": "31/08/2026",
+        "ue": "1.1.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "étude scientifique du comportement et des processus mentaux d’une personne et de la façon dont cet ensemble est influencé par des facteurs intrinsèque (la personne) et extrinsèque (son environnement)",
+            "term": "Psychologie"
+          },
+          {
+            "definition": "profession réglementée comportant différents secteurs d’exercice (clinicien, du travail, de l’éducation)",
+            "term": "Psychologue"
+          },
+          {
+            "definition": "descriptive, expérimentale, imagerie cérébrale et occulométrie pour la psychologie, etc.",
+            "term": "Méthodes en psychologie"
+          },
+          {
+            "definition": "par exemple Observation, Entretien, Enquêtes, Etude de cas. Elles permettent de décrire les comportements humains sans avoir vocation à mettre en évidence les liens de causalité entre processus mentaux et comportement.",
+            "term": "Méthodes descriptives"
+          },
+          {
+            "definition": "itération = énoncé d’un problème => choix méthodologie => terrain / mesure => analyse + interprétation => discussion => publication",
+            "term": "Méthodes expérimentale"
+          },
+          {
+            "definition": "méthodes non invasives permettant accès au cerveau ou au SNA avec l’analyse des zones du cerveau stimulées, la taille des pupilles et des mouvements oculaires. Important pour l’aide au dépistage de l’autisme, dépression, Alzheimer par exemple.",
+            "term": "Imagerie cérébrale/ occulométrie"
+          },
+          {
+            "definition": "Psychologie cognitive, sociale, du développement, etc",
+            "term": "Secteurs disciplinaires"
+          },
+          {
+            "definition": "étudie les fonctions psycho et les processus cognitifs communs (mémoire, attention, émotion...)",
+            "term": "Psychologie cognitive"
+          },
+          {
+            "definition": "étudie les différences psychologiques entre individus, au sein d’un même individu, entre des groupes d’individus.",
+            "term": "Psychologie différentielle"
+          },
+          {
+            "definition": "étudie l’individu en tant que membre de collectifs sociaux ou occupant des positions sociales",
+            "term": "Psychologie sociale"
+          },
+          {
+            "definition": "étudie les changements développementaux au cours de l’existence de l’être humain et les facteurs explicatifs.",
+            "term": "Psychologie du développement"
+          },
+          {
+            "definition": "étude scientifique et clinique des troubles mentaux",
+            "term": "Psychopathologie"
+          },
+          {
+            "definition": "étude des processus psychique d’un individu dans la totalité de sa situation et de son évolution",
+            "term": "Psychologie clinique"
+          },
+          {
+            "definition": "étudie les rapports entre les conduites humaines et le fonctionnement cérébral (langage, geste, perception, mémoire)",
+            "term": "Neuropsychologie"
+          }
+        ],
+        "filename": "Psychologie généralités.odt"
+      }
+    ],
+    [
+      "ue_1_2_s3_dterminants_de_la_sant",
+      {
+        "title": "Déterminants de la santé",
+        "date": "02/09/2026",
+        "ue": "1.2.S3",
+        "author": "KLN",
+        "definitions": [
+          {
+            "definition": "période hygiéniste (19e) ⇒ révolution pasteurienne (fin 19e – mi 20e) ⇒ éducation à la santé (20e) ⇒ promotion de la santé (fin 20e – aujourd’hui)",
+            "term": "Histoire"
+          },
+          {
+            "definition": "Circonstances dans lesquelles les individus naissent, grandissent, vivent, travaillent et vieillissent ainsi que les systèmes mis en place pour faire face à la maladie – OMS 2008. Inclus l’état de santé de la population (santé globale, physique, mentale, psychosociale) < les caractéristiques individuelles (caractéristiques biologiques et génétiques...) < milieux de vie (familial, travail, hébergement,...) < systèmes (éducation, santé…) < contexte global (politique, économique, démographique…). Ces déterminants évoluent dans le temps et l’espace ; il se potentialisent ou s’annulent.",
+            "term": "Déterminants de la santé"
+          },
+          {
+            "definition": "repose sur la conviction qu’il est possible d’agir pour faire évoluer les choses (par opposition au terme « déterminants de la santé) et pour provoquer des changements favorables à la santé (alimentation, activité physique…). Cela implique d’aller chercher la cause des causes pour agir sur les déterminants environnementaux et les facteurs plus proches de la personne (éducation, compétences psychosociales…)",
+            "term": "Promotion de la santé"
+          }
+        ],
+        "filename": "Déterminants de la santé.odt"
+      }
+    ],
+    [
+      "ue_2_6_s3_smiologie_en_sant_mentale",
+      {
+        "title": "Sémiologie en santé mentale",
+        "date": "27/04/2026",
+        "ue": "2.6.S3",
+        "author": "KM",
+        "definitions": [
+          {
+            "definition": "souffrance psychologique marquée par une peur panique et irrationnelle d’être rejeté ou laissé seul",
+            "term": "Abandonnisme"
+          },
+          {
+            "definition": "diminution de la volonté avec indécision et impuissance à agir (boulê = volonté)",
+            "term": "Aboulie / Avolition"
+          },
+          {
+            "definition": "Abolition de la capacité à reconnaître les chiffres, à les utiliser ou à effectuer des opérations arithmétiques élémentaires",
+            "term": "Acalculie"
+          },
+          {
+            "definition": "Perte totale de contrôle et envie compulsive de consommer, jouer...",
+            "term": "Addiction"
+          },
+          {
+            "definition": "Expression observable et immédiate d'un état émotionnel",
+            "term": "Affect"
+          },
+          {
+            "definition": "Ensemble des sentiments, émotions, passions et des réaction psychiques d’un individu face au monde extérieur",
+            "term": "Affectivité"
+          },
+          {
+            "definition": "Abolition du goût",
+            "term": "Agueusie"
+          },
+          {
+            "definition": "impossibilité de reconnaître les objets d’après leurs qualités avec des fonctions sensorielles intactes (gnosis = connaissance)",
+            "term": "Agnosie"
+          },
+          {
+            "definition": "peur des espaces ouverts et de la foule (environnement dont on ne peut se soustraire facilement en cas d’urgence)",
+            "term": "Agoraphobie"
+          },
+          {
+            "definition": "Impossibilité de rester en place avec sensation angoissante d’impatience (kathizô = s’asseoir)",
+            "term": "Akathisie"
+          },
+          {
+            "definition": "Abolition du mouvement",
+            "term": "Akinésie"
+          },
+          {
+            "definition": "Difficulté à identifier, exprimer ses propres émotions",
+            "term": "Alexithymie"
+          },
+          {
+            "definition": "Pauvreté du discours avec des difficultés à converser = réponses brèves et évasives",
+            "term": "Alogie"
+          },
+          {
+            "definition": "Coexistence simultanée de sentiments / désirs / pensées opposées envers un même sujet / objet / situation",
+            "term": "Ambivalence"
+          },
+          {
+            "definition": "Absence d’expression faciale, incapacité à imiter les mimiques.",
+            "term": "Amimie"
+          },
+          {
+            "definition": "Abolition de la mémoire",
+            "term": "Amnésie"
+          },
+          {
+            "definition": "État de dépendance affective profonde d’une personne envers une autre (dépendance anaclitique = observée chez le nourrisson abandonné par sa mère survenant pendant sa première année de vie)",
+            "term": "Anaclitique"
+          },
+          {
+            "definition": "Historique médical et personnel recueilli par le clinicien",
+            "term": "Anamnèse"
+          },
+          {
+            "definition": "Sensation de manquer d’énergie, de tonus",
+            "term": "Anergie"
+          },
+          {
+            "definition": "Manifestation physique de l’anxiété = sensation d’oppression, d’étouffement, tachycardie, sueurs, tremblements, douleurs thoracique",
+            "term": "Angoisse"
+          },
+          {
+            "definition": "Absence de plaisir",
+            "term": "Anhédonie"
+          },
+          {
+            "definition": "État de désorientation psychologique et de détresse lié à une perte de repères normatifs, de règles ou de valeurs sociales partagées",
+            "term": "Anomie"
+          },
+          {
+            "definition": "Trouble des conduites alimentaires (TCA) motivé par une peur obsessionnelle de grossir et une perception altérée de son propre corps conduisant à une perte de poids intentionnelle, des carences importantes voire fatales.",
+            "term": "Anorexie"
+          },
+          {
+            "definition": "Abolition de l’odorat",
+            "term": "Anosmie"
+          },
+          {
+            "definition": "Ignorance du trouble par le patient (nosos = maladie // gnosis = connaissance)",
+            "term": "Anosognosie"
+          },
+          {
+            "definition": "Appréhension diffuse face à un danger événement futur ou sans objet précis.",
+            "term": "Anxiété"
+          },
+          {
+            "definition": "Impassibilité et indifférence affective",
+            "term": "Apathie"
+          },
+          {
+            "definition": "Incapacité psychique d’effectuer des tâches de la vie quotidienne",
+            "term": "Apragmatisme"
+          },
+          {
+            "definition": "Trouble de l’activité gestuelle apparaissant chez un sujet dont les organes d’exécutions sont intacts et qui possède la pleine connaissance de l’acte à accomplir (praxis = action)",
+            "term": "Apraxie"
+          },
+          {
+            "definition": "Affaiblissement général",
+            "term": "Asthénie"
+          },
+          {
+            "definition": "Absence ou difficulté de coordination des mouvements volontaires (taxis = ordre / séquence)",
+            "term": "Ataxie"
+          },
+          {
+            "definition": "Perte d’élan vital (thumos = l’âme, le coeur // horme = élan, pulsion)",
+            "term": "Athymhormie"
+          },
+          {
+            "definition": "Comportement autodestructeur conduisant à la mort",
+            "term": "Autolyse"
+          },
+          {
+            "definition": "ensemble de phénomènes psychiques qui s’imposent à la conscience (idées, perception) tel que des actes ou échos de pensées",
+            "term": "Automatisme mental"
+          },
+          {
+            "definition": "impression d’entendre des voix intérieures qui répètent ou commentent ses propres pensées",
+            "term": "Echos de pensées"
+          },
+          {
+            "definition": "Diminution de la motivation, incapacité à mettre en œuvre ou à maintenir une action",
+            "term": "Abolition"
+          },
+          {
+            "definition": "Interruption brusque d’un mouvement, d’une activité ou d’un discours (réaction de défense)",
+            "term": "Barrage"
+          },
+          {
+            "definition": "Lenteur des mouvements",
+            "term": "Bradykinésie"
+          },
+          {
+            "definition": "Discours lent (phéme = parole, parler)",
+            "term": "Bradyphémie"
+          },
+          {
+            "definition": "Lenteur dans les réactions psychiques ou mentales",
+            "term": "Bradypsychie"
+          },
+          {
+            "definition": "Immobilité complète, hypotonie, absence de réponse aux stimulations externes (souvent en schizophrénie)",
+            "term": "Catatonie"
+          },
+          {
+            "definition": "Impression de bien-être ou de malaise fondé sur un ensemble de sensations internes et indépendante de l’appareil sensoriel (syn = avec // aisthesis = sensation)",
+            "term": "Cénésthesie / Synesthésie"
+          },
+          {
+            "definition": "Comportement pathologique d’une personne restant couchée en permanence (klinê = lit // philein = aimer)",
+            "term": "Clinophilie"
+          },
+          {
+            "definition": "Distorsion de la relation entre l’individu et la réalité = conviction erronée opposée au sens commun",
+            "term": "Délire"
+          },
+          {
+            "definition": "Etat psychique caractérisé par une altération de la perception du monde extérieur et de son propre corps ou esprit = impression de ne plus être soi même tel une personne étrangère (schizophrénie, drogue, etc)",
+            "term": "Dépersonnalisation"
+          },
+          {
+            "definition": "Perte de cohésion des associations d’idées, par l’incohérence de la pensée, le caractère insolite et bizarre de l’action et par l’ambivalence de l’affectivité. (Exemple : Imaginez une personne à qui l'on annonce que son meilleur ami a eu un accident. Réactions possibles : réponse verbale sans lien logique dans la réflexion, actes étranges sans motif apparent, exprimer de la tristesse en souriant puis riant.)",
+            "term": "Dissociation / Désorganisation"
+          },
+          {
+            "definition": "Crainte obsédante d’être laid ou malformé",
+            "term": "Dysmorphophobie"
+          },
+          {
+            "definition": "Difficulté de mouvements",
+            "term": "Dyskinésie"
+          },
+          {
+            "definition": "Impulsion morbide chez des malades mentaux à répéter comme un écho les paroles prononcées devant eux (ekho = répéter // lalein = parler)",
+            "term": "Echolalie"
+          },
+          {
+            "definition": "Imite les mouvements des autres",
+            "term": "Echokinésie"
+          },
+          {
+            "definition": "Imite les mimiques",
+            "term": "Echomimie"
+          },
+          {
+            "definition": "Qualifie une personne persuadée à tort qu’une autre personne est amoureuse d’elle (erôtomanês = fou d’amour)",
+            "term": "Erotomaniaque"
+          },
+          {
+            "definition": "Rupture progressive du discours avec baisse du rythme et de l’intensité de la parole, puis reprise d’un rythme normal sur le même discours",
+            "term": "Fading"
+          },
+          {
+            "definition": "Conviction intime d’une sensation actuellement dénuée de sens, perçue sans objet extérieur",
+            "term": "Hallucination"
+          },
+          {
+            "definition": "Adhésion très rapide à l’ambiance, hypersensibilité aux émotions des autres",
+            "term": "Hypersyntonie"
+          },
+          {
+            "definition": "Névrose caractérisée par l’exagération des modalités d’expression psychique et affective = Symptômes d’apparence organiques et par manifestations psychiques pathologiques. (Exemple : Une personne subit un , comme la perte brutale d'un proche ou un accident évité de justesse. Quelques heures plus tard, elle se réveille totalement .)",
+            "term": "Hystérie"
+          },
+          {
+            "definition": "Accomplir certaines actions de façon irrésistible qui s‘imposent à leur volonté = malades conscients de leurs actes",
+            "term": "Impulsion"
+          },
+          {
+            "definition": "Négligence, indifférence complète",
+            "term": "Incurie"
+          },
+          {
+            "definition": "Action d’un fait psychique qui empêche d’autres faits de se produire ou d’arriver à la conscience",
+            "term": "Inhibition psycho-motrice"
+          },
+          {
+            "definition": "phase de surexcitation psychique et physique majeure caractérisée par une euphorie intense, une énergie décuplée et un besoin de sommeil très réduit (cf trouble bipolaire // mania = folie, démence, état de fureur).",
+            "term": "Manie"
+          },
+          {
+            "definition": "Vocabulaire décalé, précieux",
+            "term": "Maniérisme"
+          },
+          {
+            "definition": "Psychose caractérisée par l’existence d’une émotion pénible et dépressive",
+            "term": "Mélancolie"
+          },
+          {
+            "definition": "Refus de contact",
+            "term": "Négativisme"
+          },
+          {
+            "definition": "Invention de mots",
+            "term": "Néologisme"
+          },
+          {
+            "definition": "Troubles psychiques dus à des conflits inconscients et anciens",
+            "term": "Névrose"
+          },
+          {
+            "definition": "Masturbation",
+            "term": "Onanisme"
+          },
+          {
+            "definition": "Activité mentale pathologique, faite de visions de scènes animées semblables au rêve",
+            "term": "Onirisme"
+          },
+          {
+            "definition": "Usage de mots inappropriés aux contexte",
+            "term": "Paralogisme"
+          },
+          {
+            "definition": "Le sujet voit chez autrui des idées qui lui sont propres => mécanisme de défense",
+            "term": "Projection"
+          },
+          {
+            "definition": "Maladie mentale affectant de manière essentielle le comportement = malade inconscient de son trouble",
+            "term": "Psychose"
+          },
+          {
+            "definition": "Réponse qui se situe entre le réflexe et la volonté",
+            "term": "Raptus"
+          },
+          {
+            "definition": "Logique incompréhensible ne reposant pas sur la réalité",
+            "term": "Rationalisme morbide"
+          },
+          {
+            "definition": "Action de rejeter le désir dans l’inconscient",
+            "term": "Refoulement"
+          },
+          {
+            "definition": "Piétinement des idées",
+            "term": "Rumination"
+          },
+          {
+            "definition": "Langage hermétique incohérent",
+            "term": "Schizophasie"
+          },
+          {
+            "definition": "Personne relatant seule ses pensées/sentiments à haute voix",
+            "term": "Soliloquie"
+          },
+          {
+            "definition": "Sentiment d’être dépossédé de sa vie intérieure, d’être entièrement dirigé de l’extérieur",
+            "term": "Syndrome d’influence"
+          },
+          {
+            "definition": "Déambulation anxieuse avec besoin irrésistible de mouvement",
+            "term": "Tachykinésie"
+          },
+          {
+            "definition": "Accélération des processus intellectuels",
+            "term": "Tachypsychie"
+          },
+          {
+            "definition": "Désigne les maladies du psychisme = altération des processus chez l’individu. Altération de la perception que la personne a d’elle même et de son environnement entraînant des conséquences dans son rapport à elle même et au monde",
+            "term": "Psychopathologie"
+          },
+          {
+            "definition": "Groupe de symptômes et/ou de signes cliniques permettant d’identifier un trouble",
+            "term": "Syndrome"
+          },
+          {
+            "definition": "positifs, négatifs, troubles cognitifs",
+            "term": "Classification des symptômes"
+          },
+          {
+            "definition": "Hallucinations, délires… = s’ajoute à la vie du sujet et dans une certaine limite ne vient pas entraver le quotidien, impact limité sur le quotidien.",
+            "term": "Symptômes positifs"
+          },
+          {
+            "definition": "Apathie, aboulie… = perte ou baisse des fonctions et des comportements, impacte le quotidien.",
+            "term": "Symptômes négatifs"
+          },
+          {
+            "definition": "Déficits de la mémoire, de l’attention, délirium (confusion aiguë, trouble de l’attention)",
+            "term": "Troubles cognitifs et neurocognitifs"
+          },
+          {
+            "definition": "Modification des pensées / croyances (= psychique) ou des perceptions (= psychosensorielle). Également délires, dissociations",
+            "term": "Troubles psychotiques"
+          },
+          {
+            "definition": "dépression, anhédonie, bipolaire",
+            "term": "Troubles de l’humeur"
+          },
+          {
+            "definition": "anxiété, crise de panique, phobies",
+            "term": "Troubles anxieux"
+          },
+          {
+            "definition": "trouble borderline (instabilité émotionnelle, impulsivité), antisocial (mépris de règles, absence de remords), narcissique (besoin d’admiration, manque d’empathie)",
+            "term": "Troubles de la personnalité"
+          },
+          {
+            "definition": "liées au comportement et aux activités psychomotrices (maniérisme, TOC...) + apparence générale (allure, tenue vestimentaire, coiffure, ongles...)",
+            "term": "Anomalies de la présentation et de l’expression"
+          },
+          {
+            "definition": "liées au rythme et à la forme du discours, au cours et au contenu de la pensée et enfin à la distorsion du jugement",
+            "term": "Anomalies du discours et des pensées"
+          },
+          {
+            "definition": "liées à l’état de vigilance, de l’attention, de la conscience, de la mémoire",
+            "term": "Anomalies de la cognition"
+          },
+          {
+            "definition": "liées aux hallucinations intrapsychique, sensorielle et autres",
+            "term": "Anomalies de la perception"
+          },
+          {
+            "definition": "liées à l’humeur, aux émotions et une variabilité de la physiologie (= comportement) associées aux affects (alimentation, sommeil, sexualité, transit…)",
+            "term": "Anomalie de l’affect et des fonctions instinctuelles"
+          },
+          {
+            "definition": "liées au comportement regroupant les fugues, les passages à l’acte (auto / hétéro), le contrôle des impulsions et du fonctionnement interpersonnel et à l’insight (recul relatif du patient vis a vis de son trouble permettant souvent une meilleure adhésion au traitement)",
+            "term": "Anomalie des conduites"
+          }
+        ],
+        "filename": "Sémiologie en santé mentale.odt"
+      }
+    ],
+    [
+      "ue_4_2_s3_la_communication",
+      {
+        "title": "La communication",
+        "date": "02/09/2026",
+        "ue": "4.2.S3",
+        "author": "CCR",
+        "definitions": [
+          {
+            "definition": "concept obsolète, transmission linéaire d’information entre deux individus via un canal pouvant être parasité",
+            "term": "Modèle émetteur-récepteur"
+          },
+          {
+            "definition": "processus d’influence comportant un leader d’opinion. 1er niveau : la source transmet le message aux leaders d’opinion. 2e niveau : les leaders l’expliquent et le transmettent à leur groupe",
+            "term": "Modèle de diffusion à 2 niveaux"
+          },
+          {
+            "definition": "consiste à identifier un problème dans une organisation et à mettre en place une stratégie de communication adaptée pour le résoudre. (diagnostic de la situation => définition des objectifs => élaboration d’une stratégie => mise en œuvre d’actions ciblées => évaluation des résultats)",
+            "term": "Modèle du marketing positiviste"
+          },
+          {
+            "definition": "Échange d’informations verbales et non-verbales (mimiques, ton de voix, vitesse d’élocution, gestuelle…) où les interlocuteurs ne sont pas au même niveau (meneur/suiveur) et où chacun y trouve un intérêt",
+            "term": "Modèle transactionnel"
+          },
+          {
+            "definition": "Adaptation du soignant en fonction de la personne, du contexte, et de la situation clinique",
+            "term": "Modèle situationnel"
+          },
+          {
+            "definition": "échange hiérarchisé qui fait intervenir un intermédiaire afin d’éviter le face à face. L’intermédiaire centralise la demande et le transmet de manière majorée à sa hiérarchie (message amplifié) afin d’obtenir ce qu’il demandait à la base",
+            "term": "Modèle interactionniste/systémique de Palo Alto"
+          },
+          {
+            "definition": "Production collective d’un groupe qui travaille sous la conduite d’un leader",
+            "term": "Modèle de l’Orchestre"
+          }
+        ],
+        "filename": "La communication.odt"
+      }
+    ],
+    [
+      "ue_4_4_s2_antibiotiques",
+      {
+        "title": "antibiotiques",
+        "date": "07/05/2026",
+        "ue": "4.4.S2",
+        "author": "ext",
+        "definitions": [
+          {
+            "definition": "mode d’action, spectre, profil pharmacocinétique, effets indésirables communs…",
+            "term": "famille d’antibiotique"
+          },
+          {
+            "definition": "penicillines, cephalosporines, céphamycines, cabapénèmes, monobactames",
+            "term": "beta-lactamines"
+          },
+          {
+            "definition": "biodispo identique en per os et IV // ± acide clavulanique (inhibiteur beta lactamase) // IM amox + allopurinol, amox + methotrexate",
+            "term": "penicilline A"
+          },
+          {
+            "definition": "spectre etroit",
+            "term": "penicilline V"
+          },
+          {
+            "definition": "spectre etroit",
+            "term": "penicilline G"
+          },
+          {
+            "definition": "plusieurs générations de 1 à 5 = modification structurelle pour élargir le spectre d’action",
+            "term": "cephalosporines"
+          },
+          {
+            "definition": "Ceftriaxone IV mais ne pas administrer Calcium simultanément ⇒ forme un complexe en solution",
+            "term": "C3G"
+          },
+          {
+            "definition": "Céfépime IV ou IM",
+            "term": "C4G"
+          },
+          {
+            "definition": "spectre le plus étendu des betalactamines,",
+            "term": "Carbapénème"
+          },
+          {
+            "definition": "toujours associée à Cilastatine (enzyme rénale",
+            "term": "Imipénème"
+          },
+          {
+            "definition": "trouble digestifs, diarrhées, déséquilibre INR, réaction à la pénicilline (seulement 1 à 2 % d’allergie vraie).",
+            "term": "Effets indésirables"
+          },
+          {
+            "definition": "action par inhibition de la synthèse protéique, large spectre d’activité",
+            "term": "Tetracyclines"
+          },
+          {
+            "definition": "nombreux effets indésirables, CI enfants <8ans, femme enceinte, ne pas administrer avec du calcium",
+            "term": "Doxycycline IV ou per os"
+          },
+          {
+            "definition": "action par inhibition de la synthèse de la paroi bactérienne, large spectre d’activité, peut être associé avec betalactamines.",
+            "term": "Fosfomycine"
+          },
+          {
+            "definition": "action par inhibition de la synthèse protéique, marge thérapeutique étroite, toujours associé avec un autre ATB, EI = néphrotoxique, ototoxique, dosage à réaliser « au pic » et « en vallée » cad 30min après administration (c°mesurée = c° efficace) et 1h avant la nouvelle injection (c° mesurée = c° résiduelle ⇒ permet d’éviter un sur-dosage).",
+            "term": "Aminosides"
+          },
+          {
+            "definition": "action par inhibition de la réplication de l’ADN, spectre large, bonne biodisponibilité, utilisation limitée pour limiter les résistances et les nombreux EI (photosensibilisation, allongement QT). CI = tendinopathie. IM = augmentation INR si associé AVK",
+            "term": "Fluoroquinolones"
+          },
+          {
+            "definition": "action par inhibition de la biosynthèse de la paroi, EI = néphrotoxique, ototoxique, dosage nécessaire pour vérifier l’efficacité et le risque de toxicité",
+            "term": "Glycopeptides"
+          },
+          {
+            "definition": "inhibiteur du cytochrome CYP3A4 (métabolisation du médicament) = potentielles interactions médicamenteuses, risque de sur-sous dosage",
+            "term": "Macrolides"
+          },
+          {
+            "definition": "concentration minimale inhibitrice en complément de l’antibiogramme pour connaître la concentration minimale efficace",
+            "term": "CMI"
+          }
+        ],
+        "filename": "antibiotiques.odt"
+      }
+    ],
+    [
+      "ue_5_9_s2_conduites_addictives_et_les_risques",
+      {
+        "title": "conduites addictives et les risques",
+        "date": "05/02/2026",
+        "ue": "5.9.S2",
+        "author": "CCR",
+        "definitions": [
+          {
+            "definition": "centre consulte anonyme addictologie",
+            "term": "CSAPA"
+          },
+          {
+            "definition": "equipe de liaison en addictologie",
+            "term": "ELSA"
+          },
+          {
+            "definition": "antenne medico-psychiatrique (équipe psychiatre + ide)",
+            "term": "AMP"
+          },
+          {
+            "definition": "consultation individuelle, consultation opiacés, jeunes consommateurs (début de conso), guichet unique (éradication hépatite C), accueil de jour (permanence), formation",
+            "term": "Role IDE"
+          },
+          {
+            "definition": "sevrage physique du produit (alcool et benzo = risque de décès) + restauration physique",
+            "term": "service précure"
+          },
+          {
+            "definition": "prise en soins après sevrage",
+            "term": "service cure"
+          },
+          {
+            "definition": "verbaliser le problème pour la première fois avec IDE, explorer parcours de vie, environnement ⇒ création d’une relation de confiance, évaluation des répercutions, recueillir les objectifs du patient",
+            "term": "entretien de première intention"
+          }
+        ],
+        "filename": "conduites addictives et les risques.odt"
+      }
+    ],
+    [
+      "ue_5_9_s2_approche_de_la_gestion_des_risques",
+      {
+        "title": "approche de la gestion des risques",
+        "date": "06/02/2026",
+        "ue": "5.9.S2",
+        "author": "ext",
+        "definitions": [
+          {
+            "definition": "probabilité qu’un événement indésirable se produise",
+            "term": "Risque"
+          },
+          {
+            "definition": "évènement indésirable grave associé aux soins, inattendu et pouvant aboutir au décès (= never events)",
+            "term": "EIGAS"
+          },
+          {
+            "definition": "liés aux soins, liés aux activités de soutien (RH, gestion des compétences...), liés à la vie hospitalière et à l’environnement (sécurité)",
+            "term": "Catégories de risques"
+          },
+          {
+            "definition": "dangereux, sûrs, de qualité, optimaux (prendre en compte l’entourage)",
+            "term": "Niveaux de qualité des soins"
+          },
+          {
+            "definition": "attendue, prévue, fournie, perçue",
+            "term": "Approche qualité (4)"
+          },
+          {
+            "definition": "efficacité, sécurité, réactivité/pertinence",
+            "term": "Qualité des soins (3 composantes)"
+          },
+          {
+            "definition": "âge, polypatho, multi-dépendance, vie en collectivité, dénutrition...",
+            "term": "Facteurs de risque"
+          }
+        ],
+        "filename": "approche de la gestion des risques.odt"
+      }
+    ],
+    [
+      "ue_2_8_s3_cardiopathie_ischmique_mvte_et_athromateuse",
+      {
+        "title": "Cardiopathie ischémique, MVTE et athéromateuse",
+        "date": "02/09/2026",
+        "ue": "2.8.S3",
+        "author": "Dr",
+        "definitions": [
+          {
+            "definition": "Obstruction d’une veine profonde par un thrombus, le plus souvent au niveau de la jambe. TVP distale = en amont de la veine poplitée",
+            "term": "TVP - définition"
+          },
+          {
+            "definition": "Formation d’un thrombus favorisée par la",
+            "term": "TVP - physiopathologie"
+          },
+          {
+            "definition": "1/ Stase veineuse (immobilisation, insuffisance cardiaque, plâtre, long voyage), 2/ Lésion endothéliale (chirurgie, traumatisme, cathéter). 3/ Hypercoagulabilité (cancer, thrombophilies, grossesse)",
+            "term": "Triade de Virchow"
+          },
+          {
+            "definition": "1/ chirurgie, traumatisme, grossesse ou post-partum, immobilisation). 2/ âge, obésité, antécédent de MVTE, thrombophilie constitutionnelle ou acquise, cancer, etc)",
+            "term": "TVP – FDR principaux"
+          },
+          {
+            "definition": "thrombophilie, cancer, chirurgie",
+            "term": "TVP – étiologie"
+          },
+          {
+            "definition": "Peut être asymptomatique. Douleur spontanée ou à la palpation d’un trajet veineux, signe de Homans (douleur mollet provoquée par flexion dorsale du pied), œdème blanc ou inflammatoire, ne prenant pas le godet, perte du ballant du mollet, inflammation.",
+            "term": "TVP – tableau clinique"
+          },
+          {
+            "definition": "Erysipèle, TV superficielle, rupture d’un kyste poplité, etc.",
+            "term": "TVP – diag différentiels principaux"
+          },
+          {
+            "definition": "Clinique ++ (douleur, chaleur, inflammation, perte du ballant du mollet...)",
+            "term": "TVP – Diagnostic"
+          },
+          {
+            "definition": "écho-doppler verineux des MI, dosage D-dimères, angioscanner, bilan pré-thérapeutique (NFS, plaquettes, TP, TCA, fonction rénale)",
+            "term": "TVP - Examens complémentaires et marqueurs"
+          },
+          {
+            "definition": "Anticoagulation efficace (AOD, AVK, parentérale si nécessaire puis relais AVK) pendant minimum 3 mois et non limitée si récidive, SAPL ou néoplasie. Majoritairement en ambulatoire.",
+            "term": "TVP – Traitements"
+          },
+          {
+            "definition": "embolie pulmonaire.  récidive de TVP ou d’EP, syndrome post-thrombotique (= insuffisance veineuse des MI par destruction ou dommages causées aux valves)",
+            "term": "TVP – Complications"
+          },
+          {
+            "definition": "Obstruction d’une artère pulmonaire le plus souvent causée par la migration d’un thrombus originaire d’une TVP",
+            "term": "EP – définition"
+          },
+          {
+            "definition": "Migration d’un thrombus, généralement issu d’une TVP, vers les artères pulmonaires",
+            "term": "EP – Physiopathologie"
+          },
+          {
+            "definition": "1/ chirurgie, traumatisme, grossesse ou post-partum, immobilisation). 2/ âge, obésité, antécédent de MVTE, thrombophilie constitutionnelle ou acquise, cancer, etc)",
+            "term": "EP – FDR principaux"
+          },
+          {
+            "definition": "Secondaire à la migration d’un thrombus constitué lors d’une TVP",
+            "term": "EP – étiologie"
+          },
+          {
+            "definition": "Présentation très variable, va d’asymptomatique à une dyspnée importante en passant par des douleurs pleurales, toux, tachycardie, hyperthermie, TVP…",
+            "term": "EP – tableau clinique"
+          },
+          {
+            "definition": "pathologie thoracique ou cardiaque (pneumonie, pneumothorax, infarctus du myocarde, IC aiguë…)",
+            "term": "EP – diag différentiels principaux"
+          },
+          {
+            "definition": "Clinique ++ (score de Wells) puis confirmation par angioscanner pulmonaire. A défaut, une scintigraphie ventilation-perfusion est une alternative ne permettant pas toutefois de poser le diagnostic.",
+            "term": "EP – Diagnostic"
+          },
+          {
+            "definition": "D-dimères uniquement en vas de probabilité faible ou intermédiaire (seuil à adapter à l’âge), GDS (rechercher effet shunt = PO2 + PCO2 < 120) , ECG, RT, ETT, Echodoppler veineux des MI, biologie (NFS, plaquettes, TP, TCA, fonction rénale, troponine)",
+            "term": "EP - Examens complémentaires et marqueurs"
+          },
+          {
+            "definition": "Anticoagulation efficace (AOD, AVK, HBPM, anti-Xa, thrombolyse, thrombectomie, thrombo-aspiration percutanée (en fort développement)) pendant minimum 3 mois et non limitée si idiopathique, récidive, SAPL, néoplasie, FDR permanent ou transitoire.",
+            "term": "EP – Traitements"
+          },
+          {
+            "definition": "infarctus pulmonaire, infection pulmonaire, choc cardiogénique, hypotension, décès.  cœur pulmonaire chronique et récidive de TVP ou d’EP.",
+            "term": "EP – Complications"
+          },
+          {
+            "definition": "Douleur thoracique d’effort, reproductible dans des circonstances relativement constantes, cédant à l’arrêt de l’effort ou à la trinitrine",
+            "term": "Angor stable - définition"
+          },
+          {
+            "definition": "Inadéquation entre la consommation de O2​ du myocarde et les apports. Athérosclérose réduisant la lumière coronaire",
+            "term": "Angor stable - Physiopathologie"
+          },
+          {
+            "definition": "Âge, sexe masculin, hérédité ; tabagisme, hypercholestérolémie, HTA, diabète, obésité et stress",
+            "term": "Angor stable - FDR"
+          },
+          {
+            "definition": "Athérosclérose coronaire => rupture de plaque (90% des cas)",
+            "term": "Angor stable – étiologie"
+          },
+          {
+            "definition": "Douleur thoracique rétrosternale ou précordiale gauche, constrictive, parfois en barre, irradiant vers le membre supérieur — surtout gauche —, le cou, la mâchoire ou le dos",
+            "term": "Angor stable – tableau clinique"
+          },
+          {
+            "definition": "Reflux gastro-œsophagien ou œsophagite, pneumopathie, pneumothorax...",
+            "term": "Angor stable – diag différentiels principaux"
+          },
+          {
+            "definition": "Clinique compatible, puis mise en évidence d’une ischémie ou d’une maladie coronaire par examen fonctionnel ou anatomique",
+            "term": "Angor stable – Diagnostic"
+          },
+          {
+            "definition": "echographie / IRM / scintigraphie de stress, coroscanner",
+            "term": "Angor stable – Examens complémentaires et marqueurs"
+          },
+          {
+            "definition": "bêtabloquant, antiagrégant plaquettaire simple, statine, IEC selon indication et correction des facteurs de risque (mémo = BASIC)",
+            "term": "Angor stable - Traitements"
+          },
+          {
+            "definition": "SCA ou un infarctus, insuffisance cardiaque, troubles du rythme et décès",
+            "term": "Angor stable – Complications"
+          },
+          {
+            "definition": "Angor nouvellement apparu, crescendo ou survenant au repos. Traduit une ischémie aiguë. Comprend l’angor instable, le NSTEMI (IDM non Q) et le STEMI typique (IDM Q)",
+            "term": "Angor instable – définition"
+          },
+          {
+            "definition": "Obstruction partielle ou transitoire causée par rupture / érosion d’une plaque, activation de la coagulation et formation d’un thrombus plaquettaire et/ou fibrino-cruorique (= formé à l’intérieur du coeur via fibrine + éléments sanguins)",
+            "term": "Angor instable – Physiopathologie"
+          },
+          {
+            "definition": "idem Angor + dyslipidémie",
+            "term": "Angor instable – FDR principaux"
+          },
+          {
+            "definition": "rupture ou érosion d’une plaque d’athérome avec thrombus non occlusif le plus souvent",
+            "term": "Angor instable – étiologie"
+          },
+          {
+            "definition": "Douleur plus récente, plus intense, plus fréquente, prolongée, apparaissant pour un effort moindre ou au repos. Peut s’accompagner de dyspnée, sueurs, pâleur, nausées",
+            "term": "Angor instable - tableau clinique"
+          },
+          {
+            "definition": "IDM, EP, DA",
+            "term": "Angor instable – diag différentiels principaux"
+          },
+          {
+            "definition": "Clinique, ECG, ± coronarographie",
+            "term": "Angor instable – Diagnostic"
+          },
+          {
+            "definition": "dosage répété des troponines, coronarographie selon le risque.",
+            "term": "Angor instable – Examens complémentaires et marqueurs"
+          },
+          {
+            "definition": "bêtabloquant, antiagrégant plaquettaire double, statine, IEC selon indication et correction des facteurs de risque (mémo = BASIC) ± réadaptation cardiaque",
+            "term": "Angor instable – Traitements"
+          },
+          {
+            "definition": "IDM, troubles du rythme, insuffisance cardiaque, choc cardiogénique et décès.",
+            "term": "Angor instable – Complications"
+          },
+          {
+            "definition": "Ensemble des manifestations aiguës liées à une ischémie myocardique, provoquées pas le rétrécissement ou l’obstruction d’artères coronaires (=angor instable, infarctus non Q ou NSTEMI et Q ou STEMI)",
+            "term": "SCA – définition"
+          },
+          {
+            "definition": "Rupture de plaque, plus rarement érosion endothéliale, activation plaquettaire et coagulation. S’en suit une réduction de la lumière (SCA ST-) ou une occlusion complète (SCA ST+)",
+            "term": "SCA – Physiopathologie"
+          },
+          {
+            "definition": "Âge, sexe masculin, hérédité ; tabagisme, hypercholestérolémie, HTA, diabète, obésité et stress + dyslipidémie",
+            "term": "SCA – FDR principaux"
+          },
+          {
+            "definition": "Athérosclérose coronaire avec rupture de plaque majoritairement.",
+            "term": "SCA – étiologie"
+          },
+          {
+            "definition": "Douleur thoracique typique ou atypique, dyspnée, syncope, troubles du rythme ou mort subite. Les symptômes peuvent être atypiques, notamment chez la femme",
+            "term": "SCA – tableau clinique"
+          },
+          {
+            "definition": "Embolie pulmonaire, dissection aortique, péricardite ou myocardite",
+            "term": "SCA – diag différentiels"
+          },
+          {
+            "definition": "Clinique, ECG, Coronarographie",
+            "term": "SCA – Diagnostic"
+          },
+          {
+            "definition": "dosage troponine (très sensible mais peu spécifique), ETT, autres bilans biologiques",
+            "term": "SCA – Examens complémentaires"
+          },
+          {
+            "definition": "bêtabloquant, antiagrégant plaquettaire double, statine, IEC selon indication et correction des facteurs de risque (mémo = BASIC) + réadaptation cardiaque. Parfois une désobstruction médicamenteuse ou mécanique est nécessaire (en cas de SCA ST+)",
+            "term": "SCA – Traitements"
+          },
+          {
+            "definition": "Insuffisance cardiaque aiguë, OAP, choc cardiogénique, complications rythmiques, complications mécaniques, récidive et décès",
+            "term": "SCA – Complications"
+          },
+          {
+            "definition": "fragments de protéines issus de la dégradation d'un caillot sanguin. Très sensible et peu spéficique.",
+            "term": "D-dimères"
+          },
+          {
+            "definition": "syndrome des anti-phospholipides, maladie auto-immune rare caractérisée par une tendance anormale du sang à coaguler. Favorise fortement la formation de caillots sanguins.",
+            "term": "SAPL"
+          },
+          {
+            "definition": "Maladie Veineuse Thrombo-Embolique, nécessitant principalement une anticoagulation efficace préventive ou curative et le port de bas de compression veineuse de classe II",
+            "term": "MVTE"
+          },
+          {
+            "definition": "infarctus du myocarde",
+            "term": "IDM"
+          },
+          {
+            "definition": "dissection aortique",
+            "term": "DA"
+          },
+          {
+            "definition": "syndrome coronarien aigu",
+            "term": "SCA"
+          },
+          {
+            "definition": "épaississement et rigidification vasculaire liée au vieillissement",
+            "term": "Artériosclérose"
+          },
+          {
+            "definition": "formation de plaque d’athérome dans les vaisseaux sanguins",
+            "term": "Athérosclérose"
+          }
+        ],
+        "filename": "Cardiopathie ischémique, MVTE et athéromateuse.odt"
+      }
+    ],
+    [
+      "ue_2_8_s3_troubles_du_rythme_et_de_la_conduction",
+      {
+        "title": "Troubles du rythme et de la conduction",
+        "date": "02/09/2026",
+        "ue": "2.8.S3",
+        "author": "Dr",
+        "definitions": [
+          {
+            "definition": "accélération du rythme sinusal (origine nœud sinusal), souvent physiologique ou réactionnelle (effort, stress, anémie, hyperthyroïdie).",
+            "term": "Tachycardie sinusale"
+          },
+          {
+            "definition": "arythmie atriale rapide et désorganisée, avec perte de la contraction atriale efficace ; risque embolique important.",
+            "term": "Fibrillation atriale (FA)"
+          },
+          {
+            "definition": "arythmie atriale rapide et organisée, avec conduction variable aux ventricules.",
+            "term": "Flutter atrial"
+          },
+          {
+            "definition": "tachycardie issue d’un foyer électrique ectopique situé dans l’oreillette.",
+            "term": "Tachycardie atriale"
+          },
+          {
+            "definition": "tachycardie liée à un circuit impliquant la jonction AV",
+            "term": "Tachycardie jonctionnelle"
+          },
+          {
+            "definition": "rythme ventriculaire ectopique rapide, régulier, à QRS larges (> 140 ms), souvent sur cœur pathologique.",
+            "term": "Tachycardie ventriculaire (TV)"
+          },
+          {
+            "definition": "tachycardie ventriculaire polymorphe avec alternance régulière du sens des QRS, associée à un QT anormal et/ou une hypokaliémie.",
+            "term": "Torsade de pointe"
+          },
+          {
+            "definition": "activité électrique ventriculaire rapide et anarchique, entraînant une dissociation électromécanique = arrêt cardio-circulatoire.",
+            "term": "Fibrillation ventriculaire (FV)"
+          },
+          {
+            "definition": "ensemble des troubles du nœud sinusal (bradycardie sinusale, pauses, blocs sino-atriaux).",
+            "term": "Dysfonction sinusale"
+          },
+          {
+            "definition": "trouble de conduction entre oreillettes et ventricules, classé en I, II (Mobitz 1 et 2) et III.NB :FA/flutter → anticoagulation + contrôle fréquence/rythme + ablation fréquente.",
+            "term": "Bloc atrio-ventriculaire (BAV)"
+          }
+        ],
+        "filename": "Troubles du rythme et de la conduction.odt"
+      }
+    ],
+    [
+      "ue_2_6_s3_soins_sans_consentement",
+      {
+        "title": "Soins sans consentement",
+        "date": "04/09/2026",
+        "ue": "2.6.S3",
+        "author": "CCR",
+        "definitions": [
+          {
+            "definition": "2 modalités = placement volontaire ou d’office",
+            "term": "Loi de 1838"
+          },
+          {
+            "definition": "2 modalités = HDT (à la demande d’un tiers) et HO (hospitalisation d’office)",
+            "term": "Loi de 1990"
+          },
+          {
+            "definition": "Arrivée du JLD (juge des libertés et de la détention) + apparition du programme de soin + nouvelles nouvelles modalités = SPL (soins psychiatrique libre), SPDT (= emande d’un Tiers), SPDT Urgence, SPPI (Peril Imminent), SPDRE (Représentant de l’État). Pose le principe de consentement aux soins des personnes atteintes de troubles mentaux. Pas de restriction complète comme mode de prise en charge des malades.",
+            "term": "Loi de 2011"
+          },
+          {
+            "definition": "mesure de prise en charge extra-hospitalière (ambulatoire) qui organise le suivi d'un patient faisant l'objet de",
+            "term": "Programme de soin"
+          },
+          {
+            "definition": "à privilégier +++ (consentement du patient, conserve son libre arbitre), information obligatoire concernant les soins et les alternatives thérapeutiques. Sortie = accord patient/médecin ou contre avis médical",
+            "term": "SPL"
+          },
+          {
+            "definition": "article L.3212-1 du CSP. Nécessite l’état du patient rendant impossible le consentement + une demande par un tiers pouvant justifier l’existence de relation avec le malade + 2 certificats médicaux (1 Dr externe au CH + 1 Dr interne au CH)",
+            "term": "SPDT - formalités"
+          },
+          {
+            "definition": "article L.3212-3 du CSP. Nécessite l’état du patient rendant impossible le consentement + une demande par un tiers pouvant justifier l’existence de relation avec le malade + 1 certificat médical (Dr interne au CH)",
+            "term": "SPDTU - formalités"
+          },
+          {
+            "definition": "article L.3212-1, II 2° du CSP. Nécessite l’état du patient rendant impossible le consentement + souvent absence d’un tiers + 1 certificat médical (Dr extérieur au CH)",
+            "term": "SPPI - formalités"
+          },
+          {
+            "definition": "étape obligatoire d'une  sous forme d'hospitalisation complète, qui s'applique lors d'une admission en soins sans consentement",
+            "term": "Période d’observation"
+          },
+          {
+            "definition": "peut être demandée par : psychiatre, curateur, conjoints, ascendants/descendants, la personne qui a signé la demande d’hospitalisation, le JLD en cas de vice de forme.",
+            "term": "Levée des mesures"
+          },
+          {
+            "definition": "article de référence diffère selon rang du RE (préfet, maire, juge)",
+            "term": "SPDRE - formalités"
+          },
+          {
+            "definition": "Unité pour Malades Difficiles - unité fermée = pathologies psychiatriques lourdes",
+            "term": "UMD"
+          },
+          {
+            "definition": "Commissions Départementales des Soins Psychiatriques, recentrées sur les situations les plus sensibles. Doit être informée des hospit sans consentement, des réclamations, d’examiner la situation de ces personnes, peut saisir le JLD, etc.",
+            "term": "CDSP"
+          }
+        ],
+        "filename": "Soins sans consentement.odt"
+      }
+    ],
+    [
+      "ue_1_1_s3_vulnrabilits_et_facteurs_de_risque_de_protection_rsilience",
+      {
+        "title": "Vulnérabilités et facteurs de risque, de protection, résilience",
+        "date": "04/09/2026",
+        "ue": "1.1.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "agit comme une  car elle force le système psychologique, cognitif ou moteur de l'individu à se réorganiser pour inventer des solutions plus complexes et adaptées. Peut être biologique, physique ou environnementale",
+            "term": "Contraintes"
+          },
+          {
+            "definition": "désigne les  à un moment précis de sa croissance",
+            "term": "Opportunités"
+          },
+          {
+            "definition": "prendre en compte l’individu et ses environnements dans une relation dynamique (micro < méso < exo < macrosystème)",
+            "term": "Modèle écosystémique"
+          },
+          {
+            "definition": "série d’embranchements successifs qui vont conduire à des trajectoires différentes (= non linéaire, toujours complexes). Ces trajectoires mettent en jeu des facteurs de protection (optimisation du développement) et des facteurs de vulnérabilité (fragiliser/ralentir) le développement",
+            "term": "Trajectoire développementale"
+          },
+          {
+            "definition": "fondateur de la Théorie de l’attachement (= besoin social primaire, établir un lien privilégié avec une personne de l’entourage de l’enfant ⇒ expériences précoces ont un rôle important mais la trajectoire peut évoluer tout au long de la vie = pas de déterminisme",
+            "term": "Bowlby"
+          },
+          {
+            "definition": "différents facteurs peuvent conduire au même résultat",
+            "term": "Equifinalité"
+          },
+          {
+            "definition": "un même facteur peut avoir différentes conséquences",
+            "term": "Multifinalité"
+          },
+          {
+            "definition": "favorisent ou maintiennent le développement optimal / harmonieux (bonne santé, image de soi, cercle familial/social, environnement social, accès aux soins…)",
+            "term": "Facteurs de protection"
+          },
+          {
+            "definition": "fragilité consécutive à la diminution de la capacité de résistance (endogène et/ou facteurs extérieurs à l’individu)",
+            "term": "Vulnérabilité"
+          },
+          {
+            "definition": "augmentent la probabilité de survenue d’un évènement troublant le développement de l’individu (individuel, familial, environnemental…) + acucumulation de certains facteurs ⇒ garder en tête la variabilité interindividuelle par rapport à un FDR donné.",
+            "term": "Facteurs de risque"
+          },
+          {
+            "definition": "processus dynamique a dimension développementale ⇒ ensemble des ressources disponibles à un moment donné + résultats d’expériences individuelles",
+            "term": "Résilience"
+          },
+          {
+            "definition": "outil majeur dans la recherche clinique permettant un suivi longitudinal individuel d’un vaste groupe de personnes",
+            "term": "Étude de cohorte"
+          }
+        ],
+        "filename": "Vulnérabilités et facteurs de risque, de protection, résilience.odt"
+      }
+    ],
+    [
+      "ue_1_1_s3_troubles_neurodveloppementaux",
+      {
+        "title": "Troubles neurodéveloppementaux",
+        "date": "05/09/2026",
+        "ue": "1.1.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "ensemble des mécanismes qui guident le développement du cerveau. Processus dynamique influencé par des facteurs biologiques, génétiques, socioculturels, affectifs et environnementaux de la période anténatale à l’âge adulte",
+            "term": "Neurodéveloppement"
+          },
+          {
+            "definition": "défaut de développement d’une ou plusieurs compétences cognitives. Ils sont durables et ont un retentissement important sur l’individu . On retrouve les suivant selon le DSM-5 = trouble du spectre autistique, de la communication, du développement intellectuel, spécifiques des apprentissages, moteurs, du déficit de l’attention / hyperactivité, autres.",
+            "term": "Trouble du neurodéveloppement (TND)"
+          },
+          {
+            "definition": "ne nécessitant habituellement pas un effort volontaire pour apprendre = langage oral, programmation motrice, attention, raisonnement, etc.",
+            "term": "Apprentissage implicite"
+          },
+          {
+            "definition": "nécessitant un effort volontaire pour apprendre = écriture, lecture, calcul, etc.",
+            "term": "Apprentissage explicite"
+          },
+          {
+            "definition": "impact sur le fonctionnement de la personne dans la vie quotidienne (scolaire, familiale, professionnelle, sociale)",
+            "term": "Degré de retentissement"
+          },
+          {
+            "definition": "valoriser les parents dans leurs sentiments de compétence et de les placer au cœur de la PEC et de l’éducation de leur enfant",
+            "term": "Guidance parentale"
+          },
+          {
+            "definition": "évaluation clinique, fonctionnelle, développementale individualisée afin de caractériser les secteurs de développement atteints",
+            "term": "Intervention précoce"
+          }
+        ],
+        "filename": "Troubles neurodéveloppementaux.odt"
+      }
+    ],
+    [
+      "ue_2_8_s3_avc_ait",
+      {
+        "title": "AVC - AIT",
+        "date": "04/09/2026",
+        "ue": "2.8.S3",
+        "author": "Dr",
+        "definitions": [
+          {
+            "definition": "Accident vasculaire cérébral = déficit neurologique focal d’apparition brutale, d’origine vasculaire, avec lésion cérébrale (ischémique ou hémorragique)",
+            "term": "AVC - définition"
+          },
+          {
+            "definition": "1/ ischémique (80%) = occlusion artérielle avec nécrose + zone de pénombre. 2/ hémorragique (20%) = rupture artériole + épanchement + œdème",
+            "term": "AVC - physiopathologie"
+          },
+          {
+            "definition": "1/ Permanents âge, sexe masculin, antécédents familiaux. 2/ TransitoiresHTA (principal), tabac, diabète, dyslipidémie, FA, obésité, sédentarité, alcool, alimentation déséquilibrée",
+            "term": "AVC – FDR principaux"
+          },
+          {
+            "definition": "1/ Ischémique = athérosclérose des gros troncs, cardiopathie emboligène (FA principalement), valvulopathie, MVTE états prothrombotiques, microangiopathie (= maladie des petits vaisseaux), dissection. 2/ Hémorragique = HTA chronique, angiopathie amyloïde (= maladie des petits et moyens vaisseaux), anticoagulants ou trouble de la coagulation, malformations vasculaires (anévrisme)",
+            "term": "AVC – étiologie"
+          },
+          {
+            "definition": "Déficit neurologique focal soudain : hémiplégie/hémiparésie, troubles sensitifs, aphasie, cécité uni-bilatérale, hémianopsie latérale homonyme, troubles de l’équilibre",
+            "term": "AVC – tableau clinique"
+          },
+          {
+            "definition": "tous les tableaux qui peuvent donner un changement brutal d’un tableau antérieur ⇒ migraine avec aura visuelle, aura sensitive (engourdissement de membre), tumeur cérébrale, crise d’épilepsie",
+            "term": "AVC – diag différentiels principaux"
+          },
+          {
+            "definition": "Clinique + IRM/scanner TDM pour confirmer ischémie vs hémorragie et localisation",
+            "term": "AVC – Diagnostic"
+          },
+          {
+            "definition": "echodoppler des TSA, angio-IRM, angioscanner, ECG pour rechercher une arythmie",
+            "term": "AVC - Examens complémentaires et marqueurs"
+          },
+          {
+            "definition": "1/ ischémique en phase aiguë = thrombolyse (seulement dan un intervalle de 4h30 après 1ers symptômes) sinon thrombectomie (chirurgical). En préventif = anticoagulation ± chirurgie vasculaire (= endartériectomie) 2/ hémorragique :",
+            "term": "AVC – Traitements"
+          },
+          {
+            "definition": "Décès, handicap moteur/cognitif, troubles du langage, troubles de la déglutition, épilepsie post-AVC, œdème cérébral (ischémie étendue/hémorragie), récidive d’AVC, complications du décubitus",
+            "term": "AVC – Complications"
+          },
+          {
+            "definition": "Accident ischémique transitoire = épisode bref (<1h de déficit neurologique focal d’origine ischémique sans lésion cérébrale en imagerie)",
+            "term": "AIT – définition"
+          },
+          {
+            "definition": "Ischémie focale cérébrale transitoire, sans nécrose tissulaire persistante",
+            "term": "AIT – physiopathologie"
+          },
+          {
+            "definition": "1/ Permanents âge, sexe masculin, antécédents familiaux. 2/ Transitoires HTA, tabac, diabète, dyslipidémie, FA, obésité, sédentarité, alcool, alimentation déséquilibrée",
+            "term": "AIT – FDR principaux"
+          },
+          {
+            "definition": "Idem AVC hémorragique (= athérosclérose, microangiopathie, cardiopathie emboligène, dissection, etc.)",
+            "term": "AIT – étiologie"
+          },
+          {
+            "definition": "Déficit neurologique focal transitoire : amaurose fugace, diplopie binoculaire, aphasie, déficit moteur/sensitif unilatéral face/membre, hémianopsie latérale homonyme",
+            "term": "AIT – tableau clinique"
+          },
+          {
+            "definition": "tous les tableaux qui peuvent donner un changement brutal d’un tableau antérieur ⇒ migraine avec aura visuelle, aura sensitive (engourdissement de membre), tumeur cérébrale, crise d’épilepsie",
+            "term": "AIT – diag différentiels principaux"
+          },
+          {
+            "definition": "Clinique + TDM/IRM pour éliminer un infarctus constitué (= nécrose des tissus)",
+            "term": "AIT – Diagnostic"
+          },
+          {
+            "definition": "bilan étiologique",
+            "term": "AIT - Examens complémentaires et marqueurs"
+          },
+          {
+            "definition": "selon le bilan étiologique et les pathologies pré-existantes",
+            "term": "AIT – Traitements"
+          },
+          {
+            "definition": "dans les jours/semaines suivants (≈ 10% dans le mois sans traitement), récidive d’AIT/AVC",
+            "term": "AIT – Complications"
+          },
+          {
+            "definition": "obstruction d’une artère par un caillot",
+            "term": "AVC ischémique"
+          },
+          {
+            "definition": "rupture d’une artère provocant un saignement dans la zone",
+            "term": "AVC hémorragique"
+          },
+          {
+            "definition": "touchant l’artère sylvienne (artère cérébrale moyenne) ⇒ zones motrice + langage",
+            "term": "AVC sylvien"
+          },
+          {
+            "definition": "trouble du langage acquis entraînant une perte partielle ou totale de la capacité à s’exprimer. Par exemple de Wernicke (lobe temporal = aphasie réceptive, difficulté de compréhension) ou de Broca (lobe frontal gauche = compréhension mais difficulté à la formation du langage)",
+            "term": "Aphasie"
+          }
+        ],
+        "filename": "AVC - AIT.odt"
+      }
+    ],
+    [
+      "ue_4_2_s3_facteurs_influenant_la_communication",
+      {
+        "title": "Facteurs influençant la communication",
+        "date": "07/09/2026",
+        "ue": "4.2.S3",
+        "author": "CCR",
+        "definitions": [
+          {
+            "definition": "1/ psychologiques (= implication personnelle, émotionnelle), 2/ cognitifs (= réalité reconstruite par l’individu dans son système de représentation de soi/des autres/d’une tâche qui va jouer un filtre interprétatif), 3/ sociaux (= filtres induits par les préjugés, les stéréotypes) 3/ systémique (=état de santé, âge...)",
+            "term": "Facteurs intrinsèques"
+          },
+          {
+            "definition": "1/ psychologiques (= poids des mots par exemple) 2/ sociaux (= groupe social et ses codes) 3/ environnementaux (éclairage, bruit…) 4/ autres (différences culturelles, éducation)",
+            "term": "Facteurs extrinsèque"
+          }
+        ],
+        "filename": "Facteurs influençant la communication.odt"
+      }
+    ],
+    [
+      "ue_1_3_s3_droit_dontologie_morale_thique",
+      {
+        "title": "Droit, déontologie, morale, éthique",
+        "date": "07/09/2026",
+        "ue": "1.3.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "ce qui est, décrit un état qui peut être observé",
+            "term": "Fait"
+          },
+          {
+            "definition": "ce qui devrait être ; jugement normatif ou évaluatif",
+            "term": "Valeur"
+          },
+          {
+            "definition": "ensemble des normes juridiques fondamentales et inaliénables (règles fixées par la lois)",
+            "term": "Droit"
+          },
+          {
+            "definition": "règles et prescriptions restreintes à un corps professionnel souvent codifiées dans un code",
+            "term": "Déontologie professionnelle"
+          },
+          {
+            "definition": "ensemble de normes sur le , partagées par une société ou un groupe",
+            "term": "Morale"
+          },
+          {
+            "definition": "sur ce qu’il est  dans une situation donnée, à partir de valeurs et de principes",
+            "term": "Éthique"
+          },
+          {
+            "definition": "chemin entre une incertitude et une décision",
+            "term": "Réflexion éthique"
+          }
+        ],
+        "filename": "Droit, déontologie, morale, éthique.odt"
+      }
+    ],
+    [
+      "ue_1_3_s3_rgle_de_droit_sources_du_droit",
+      {
+        "title": "Règle de droit – Sources du droit",
+        "date": "07/09/2026",
+        "ue": "1.3.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "ensemble de règles de droit – droit «objectif» ou «positif». S’applique en tous lieux indistinctement ou uniformément dans un espace géographique donné et dans un espace temps donné. Elle est impersonnelle (= s’applique à tous les citoyens). Seul l’État a le pouvoir d’instituer ou de déléguer d’instituer des règles de droit.",
+            "term": "le Droit"
+          },
+          {
+            "definition": "relatifs aux individuels – droits «subjectifs»",
+            "term": "Les droits"
+          },
+          {
+            "definition": "règle de droit d’origine populaire forgée par le temps, toujours appliquée aujourd’hui, sans que la volonté de l’État n’intervienne",
+            "term": "Coutume"
+          },
+          {
+            "definition": "obligation de se conformer aux prescriptions de la règle de droit ou s’expose à une sanction",
+            "term": "Force contraignante"
+          },
+          {
+            "definition": "Constitution de 1958 + Assises de la Constitution (DDHC 1789, préambule Constitution 1946, Charte de l’environnement, etc), Droit supranational (droit européen, traités internationaux, jurisprudentiel européen), lois constitutionnelles, organiques et ordinaires (=Parlement), ordonnances (=mesure d’urgence), règlement (décrets, arrêtés qu’ils soient du PM > ministériels > préfectoraux > municipaux)",
+            "term": "Sources du droit"
+          },
+          {
+            "definition": "le Droit français ne reconnaît pas la jurisprudence comme source du Droit. Elle peut guider, aider à l’interprétation le juge.",
+            "term": "Jurisprudence"
+          },
+          {
+            "definition": "écris émanant de juristes, universitaires, praticiens qui permettent d’interpréter le Droit, d’en effectuer des synthèses qui vont assurer les progrès du Droit.",
+            "term": "Doctrine"
+          }
+        ],
+        "filename": "Règle de droit – Sources du droit.odt"
+      }
+    ],
+    [
+      "ue_1_3_s3_organisation_juridictionnelle",
+      {
+        "title": "Organisation juridictionnelle",
+        "date": "07/09/2026",
+        "ue": "1.3.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "Administratif et Judiciaire",
+            "term": "Ordres de juridictions"
+          },
+          {
+            "definition": "étudie les litiges mettant en jeu une règle de droit public opposant les particuliers à l’État ou collectivités (=l’administration est toujours en défense)",
+            "term": "Ordre administratif"
+          },
+          {
+            "definition": "juridiction pénale ou civile.",
+            "term": "Ordre judiciaire"
+          },
+          {
+            "definition": "maintenir l’ordre public et punir les infractions prévues par la loi (contraventions = tribunal de police, délits = tribunal correctionnel, crimes = crimes). Appel possible pour les délits et les crimes.",
+            "term": "Pénal"
+          },
+          {
+            "definition": "réparer un préjudice entre des personnes privées",
+            "term": "Civil"
+          },
+          {
+            "definition": "1er degré = Tribunal judiciaire, prud’hommes, tribunal de commerce / 2e degré = Cour d’appel, 3e degré = Conseil d’État (= pouvoir de cassation sur le fond = étude de conformité) + notamment les juridictions disciplinaires ordinales (Ordres professionnels)",
+            "term": "Juridictions civiles"
+          },
+          {
+            "definition": "1er degré = Tribunal correctionnel, Cour d’assises, 2e degré = Cour d’appel correctionnelle ou d’assises, 3e degré = Cour de cassation",
+            "term": "Juridictions pénales"
+          }
+        ],
+        "filename": "Organisation juridictionnelle.odt"
+      }
+    ],
+    [
+      "ue_1_3_s3_responsabilit_des_professionnels_et_tablissements_de_sant",
+      {
+        "title": "Responsabilité des professionnels et établissements de santé",
+        "date": "07/09/2026",
+        "ue": "1.3.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "engagée du fait d’un acte médical de diagnostic, de traitement, de prévention par un usager ou ses ayants droits",
+            "term": "Responsabilité médicale"
+          },
+          {
+            "definition": "pour les praticiens libéraux, les établissements publics et privés, les salariés",
+            "term": "Obligation d’assurance de resp civile professionnelle"
+          },
+          {
+            "definition": "obligation d’assurance de resp civile professionnelle",
+            "term": "Loi du 4 mars 2002 (Kouchner)"
+          },
+          {
+            "definition": "peut être multiple = pénale, disciplinaire ordinale, disciplinaire statutaire",
+            "term": "Sanction"
+          },
+          {
+            "definition": "selon le préjudice subit = civile, administrative, procédure amiable",
+            "term": "Indemnisation"
+          },
+          {
+            "definition": "elle est toujours personnelle, non assurable, concerne les personnes physiques et morales (sauf l’État). Le comportement reproché doit constituer une infraction prévue (ex : violation secret pro, défaut d’assistance à personne en péril, homicide involontaire…). A une fonction répressive. Possibilité de la victime de demander une indemnisation de son dommage en se constituant partie civile",
+            "term": "Responsabilité pénale"
+          },
+          {
+            "definition": "engagée et jugée suite à une/des plaintes reçues par le conseil départemental de l’Ordre). Si échec de la conciliation ⇒ chambre disciplinaire de 1ere instance (conseil régional) ⇒ appel possible devant la chambre disciplinaire nationale (conseil national de l’Ordre) ⇒ pourvoi en cassation devant le Conseil d’État",
+            "term": "Responsabilité disciplinaire ordinale"
+          },
+          {
+            "definition": "usager apporte la preuve d’un fait générateur (= une faute dans le cas des prof de santé) + de son dommage (atteinte à l’intégrité phy ou psy du patient, perte de chance de guérison, etc) + du lien de cause à effet (qui doit être certain)",
+            "term": "Conditions d’engagement de la responsabilité (3 éléments)"
+          },
+          {
+            "definition": "1/ Voie contentieuse ⇒ resp civile ou administrative engagée selon le statut du professionnel ou de l’établissement 2/ Voie amiable ⇒ repose sur les Commissions de Conciliation et d’Indemnisation (CCI)",
+            "term": "Responsabilité indemnitaire"
+          }
+        ],
+        "filename": "Responsabilité des professionnels et établissements de santé.odt"
+      }
+    ],
+    [
+      "ue_2_6_s3_sectorisation_en_sant_mentale",
+      {
+        "title": "Sectorisation en santé mentale",
+        "date": "04/09/2026",
+        "ue": "2.6.S3",
+        "author": "CCR",
+        "definitions": [
+          {
+            "definition": "dite « des aliénés «  = impose la présence d’un asile d’aliéné par département",
+            "term": "Loi de 1938"
+          },
+          {
+            "definition": "relative à la sectorisation psychiatrique (découpage territoriale)",
+            "term": "Loi de 1985"
+          },
+          {
+            "definition": "aire géo-démographique à l’intérieur duquel une équipe soignante pluri-disciplinaire dont les missions sont : la prévention, le diag précoce, le ttmt intra/extra-hospitalier, le ttmt post-cure des malades. Objectif = garantir la continuité de la PEC. Distinction entre psychiatrie adulte, infanto-juvénile, pénitentiaire.",
+            "term": "Secteur"
+          },
+          {
+            "definition": "CMP (= pivot du soin), UHP, CATTP, HDJ, équipe attachée au SAU, équipes mobiles, hébergements thérapeutiques, réseau (structure d’aval), psychiatrie de liaison (équipe inter service)",
+            "term": "Composition du secteur"
+          },
+          {
+            "definition": "centre médico psychologique (pluridisciplinaire) = accueil, prévention, consultation ⇒ à domicile, consult médecin, entretiens d’accueil et d’orientation, acompagnement social.",
+            "term": "CMP"
+          },
+          {
+            "definition": "Unité d’hospitalisation psychiatrique = accueil, placement, soins (techniques, somatiques, relationnels, d’hygiène et de confort, entretiens, accompagnement)",
+            "term": "UHP"
+          },
+          {
+            "definition": "favoriser l’existence autonome ⇒ activités thérapeutiques, accueil, réseau",
+            "term": "HDJ"
+          },
+          {
+            "definition": "Centre d‘accueil thérapeutique à temps partiel = favoriser les liens sociaux ⇒ accueil, activités thérapeutiques, espace de liberté / de convivialité",
+            "term": "CATTP"
+          },
+          {
+            "definition": "répondre aux besoins des services d’hôpitaux généraux",
+            "term": "Psychiatrie de liaison"
+          },
+          {
+            "definition": "pour les situations d’urgence, rattaché au SAU",
+            "term": "Equipe attachée au SAU"
+          },
+          {
+            "definition": "maison communautaire, hôtel ou appartement associatif dont le suivi est assuré par le CMP",
+            "term": "Hébergements thérapeutiques"
+          },
+          {
+            "definition": "relation, interaction avec les partenaires de la municipalité et du département (sécurité, logement, loisirs, écoles, santé…)",
+            "term": "Réseau"
+          },
+          {
+            "definition": "CAC (centre d’accueil et de crise), structure d’accueil adolescents, unité mère-enfant, équipe mobile de soins, unité de thérapie familiale, centre d’aide et de soins aux toxicomanes ou autres addictions, inter secteur pédopsychiatrie",
+            "term": "Autres structures spécifiques"
+          }
+        ],
+        "filename": "Sectorisation en santé mentale.odt"
+      }
+    ],
+    [
+      "ue_2_6_s3_isolement_soins_sans_consentement",
+      {
+        "title": "Isolement – soins sans consentement",
+        "date": "07/09/2026",
+        "ue": "2.6.S3",
+        "author": "CCR",
+        "definitions": [
+          {
+            "definition": "évolution des reco de 1960 à 2017 ⇒ « Placement du patient à visée de protection lors d’une phase critique de sa PEC dans un espace dont il ne peut sortir librement et qui est séparé des autres patients. Tout isolement ne peut se faire que dans un lieu dédié et adapté »",
+            "term": "Isolement - Réglementation"
+          },
+          {
+            "definition": "Prévention d’une violence imminente avec un risque grave pour l’intégrité du patient ou celle d’autrui. Uniquement lorsque les alternatives on été inefficaces. En dernier recours, pour une durée limitée et proportionnée au risque après une évaluation du patient. Justification clinique.",
+            "term": "Isolement - Indications"
+          },
+          {
+            "definition": "Punition, humiliation. En aucun cas pour résoudre un problème administratif, organisationnel (manque de lit…) . Si inadapté à l’état clinique. Si balance bénéfice-risque désavantageuse (état somatique précaire…)",
+            "term": "Isolement - Contre-indications"
+          },
+          {
+            "definition": "uniquement pour les patients faisant l’objet de soins psychiatriques sans consentement, sur avis du psychiatre (d’emblée ou secondairement = indisponibilité du psy immédiatement), après entretien et examen médical au moment de l’isolement. Si fait sur avis d’un interne ou d’un médecin non psychiatre, cette décision doit être confirmée par un psychiatre. Limitée à 12h, renouvellement possible.",
+            "term": "Isolement - Mise en œuvre"
+          },
+          {
+            "definition": "explications au patient et les critères permettant la levée de l’isolement + sécurité suffisante pour le patient",
+            "term": "Isolement - Conditions de mise en œuvre"
+          },
+          {
+            "definition": "sur décision médicale dès que son maintien n’est plus cliniquement justifié. Proposer au patient de reprendre l’épisode pour en faire l’analyse",
+            "term": "Isolement - Levée de la mesure"
+          },
+          {
+            "definition": "date, heure, nom du psychiatre, nom des professionnels ayant surveillé le patient",
+            "term": "Isolement - Traçabilité de l’épisode"
+          },
+          {
+            "definition": "1/ physique = à l’aide d’une force physique 2/ mécanique = matériel, vêtements (exceptionnel, sur décision médicale, surveillance adaptée, souvent associé à une contention chimique = médicaments car traumatisant) pour une durée max de 6h. Mesure ultime dont les indications, contre-indications, etc sont identiques à l’isolement",
+            "term": "Contentions – Mise en œuvre"
+          },
+          {
+            "definition": "lieu porte ouverte conçu pour procurer un espace de faible stimulation afin de permettre une diminution de la tension interne d’un patient. Utilisation volontaire du patient",
+            "term": "Espace d’apaisement"
+          },
+          {
+            "definition": "« Toute personne a droit à la liberté et à la sûreté, nul ne peut être privé de sa liberté sauf dans les cas décrit par les voies légales »",
+            "term": "Liberté d’aller et venir – principe"
+          },
+          {
+            "definition": "Contrôleur Général des Lieux de Privation de Liberté = autorité administrative veillant à la protection de l’ensemble de droits fondamentaux des personnes privées de liberté",
+            "term": "CGLPL"
+          },
+          {
+            "definition": "énergie, pulsion, force nécessaire à la survie",
+            "term": "Agressivité"
+          },
+          {
+            "definition": "actes ou gestes qui ont pour conséquence de provoquer de l’inconfort ou de la crainte pour soi même ou pour l’entourage",
+            "term": "Agression"
+          },
+          {
+            "definition": "comportement impulsif en rupture avec le comportement général habituel, relativement isolable",
+            "term": "Violence"
+          }
+        ],
+        "filename": "Isolement – soins sans consentement.odt"
+      }
+    ],
+    [
+      "ue_2_6_s3_traitements_non_mdicamenteux",
+      {
+        "title": "Traitements non médicamenteux",
+        "date": "07/09/2026",
+        "ue": "2.6.S3",
+        "author": "CCR",
+        "definitions": [
+          {
+            "definition": "entretiens réguliers avec un psychothérapeute. Elle vise à améliorer l’état de la personne et/ou prévenir des rechutes",
+            "term": "Psychoéducation"
+          },
+          {
+            "definition": "vise à remplacer les idées négatives et les comportements inadaptés (stress, évitements, réactions agressives, phobie, schizophrénie, etc) par des pensées et des réactions en adéquation avec la réalité",
+            "term": "TCC (thérapie comportementale et cognitive)"
+          },
+          {
+            "definition": "faire revenir au niveau conscient les conflits et traumatismes liés au développement de la personne (passé individuel et familial) qui ont été enfouis dans l’inconscient. Objectif = soulager la souffrance psychique et permettre de récupérer la capacité de l’individu à agir et à jouir de l’existence",
+            "term": "Thérapie analytique (Freud)"
+          },
+          {
+            "definition": "méthode de PEC où le patient participe, au sein d’une institution, à sa propre prise en charge et est intégré au tissu social environnant, lui offrant ainsi un meilleur pronostic",
+            "term": "Psychothérapie institutionnelle"
+          },
+          {
+            "definition": "outil de prévention des rechutes, consiste à enseigner au patient à méditer pour « être dans l’instant présent » et ne pas partir dans ses pensées / ruminer",
+            "term": "Médiation de pleine conscience (mindfullness)"
+          },
+          {
+            "definition": "favoriser les échanges entre les membres d’une famille pour dépasser une situation de crise, faire évoluer vers un fonctionnement plus souple",
+            "term": "Thérapie familiale systémique"
+          },
+          {
+            "definition": "stimulation cérébrale par électrochocs, se fait sous AG sous forme de cures répétées",
+            "term": "Sismothérapie / électro-convulsivothérapie"
+          },
+          {
+            "definition": "enveloppement humide, réminiscence, concept Snoezelen, jardin d’agrément, toucher-relationnel, aromathérapie, art-thérapie / musicothérapie, etc.",
+            "term": "Autres techniques"
+          }
+        ],
+        "filename": "Traitements non médicamenteux.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 1215,
+    "totalTerms": 1586,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0

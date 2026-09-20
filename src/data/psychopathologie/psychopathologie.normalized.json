@@ -8,7 +8,8 @@
       "méfiance et suspicion envahissantes",
       "interprétation malveillante des intentions d’autrui",
       "rancune tenace",
-      "sensibilité",
+      "hypersensibilité aux critiques",
+      "émoussement affectif",
       "détachement des relations sociales",
       "restriction de l’expression émotionnelle",
       "indifférence aux éloges/critiques",
@@ -20,7 +21,8 @@
       "croyances magiques/perceptions inhabituelles",
       "discours vague ou métaphorique",
       "comportement/excentricité",
-      "anxiété sociale intense liée à des idées paranoïdes"
+      "anxiété sociale intense liée à des idées paranoïdes",
+      "aboulie"
     ]
   },
   {
@@ -43,6 +45,7 @@
       "théâtralité",
       "expressivité émotionnelle excessive",
       "recherche d’attention",
+      "malaise hors centre d’attention",
       "suggestibilité",
       "séduction inappropriée",
       "émotion labile et superficielle",
@@ -51,7 +54,8 @@
       "manque d’empathie",
       "fantasmes de succès/puissance",
       "sentiment d’être « spécial »",
-      "exploitation d’autrui"
+      "exploitation d’autrui",
+      "autolyse"
     ]
   },
   {
@@ -83,7 +87,8 @@
     "sousCategorie": "Troubles du spectre de l’autisme",
     "prevalence": "",
     "symptomes": [
-      "déficits persistants de la communication sociale (réciprocité, communication non verbale, relations) et comportements/intérêts restreints et répétitifs (stéréotypies, routines, intérêts absorbants, hyper/hyporéactivité sensorielle)"
+      "déficits persistants de la communication sociale (réciprocité, communication non verbale, relations) et comportements/intérêts restreints et répétitifs (stéréotypies, routines, intérêts absorbants, hyper/hyporéactivité sensorielle)",
+      "écholalie"
     ]
   },
   {
@@ -93,7 +98,8 @@
     "prevalence": "",
     "symptomes": [
       "inattention (difficultés de concentration, oublis, désorganisation)",
-      "hyperactivité (agitation, besoin de bouger) et impulsivité (agir sans réfléchir, interruptions)"
+      "hyperactivité (agitation, besoin de bouger) et impulsivité (agir sans réfléchir, interruptions)",
+      "logorrhée"
     ]
   },
   {
@@ -125,85 +131,151 @@
   },
   {
     "id": "psy-008",
-    "categorie": "Troubles psychotiques (altération du contact à la réalité)",
+    "categorie": "Troubles psychotiques",
     "sousCategorie": "Schizophrénie et formes limites",
     "prevalence": "1,50%",
     "symptomes": [
       "délire (persécution, référence, contrôle, grandeur)",
-      "hallucinations (souvent auditives)",
+      "hallucinations",
       "désorganisation du discours et du comportement",
       "symptômes négatifs (émoussement affectif, alogie, aboulie, anhédonie)",
-      "troubles cognitifs"
-    ]
+      "troubles cognitifs",
+      "aboulie",
+      "barrage",
+      "catatonie",
+      "écholalie",
+      "hallucination",
+      "incurie",
+      "inhibition psychomotrice",
+      "néologisme",
+      "négativisme",
+      "paralogisme",
+      "syndrome d’influence",
+      "tachypsychie"
+    ],
+    "sousTitre": "altération du contact à la réalité"
   },
   {
     "id": "psy-009",
-    "categorie": "Troubles psychotiques (altération du contact à la réalité)",
-    "sousCategorie": "Trouble délirant persistant",
+    "categorie": "Troubles psychotiques",
+    "sousCategorie": "Trouble délirant",
     "prevalence": "",
     "symptomes": [
-      "délire(s) systématisé(s) non bizarres (persécution, jalousie, érotomanie, somatique, mégalomanie) durant ≥ 1 mois sans autres symptômes schizophréniques majeurs"
-    ]
+      "délire(s) systématisé(s) non bizarres (persécution, jalousie, érotomanie, somatique, mégalomanie) durant ≥ 1 mois sans autres symptômes schizophréniques majeurs",
+      "délire",
+      "hallucination"
+    ],
+    "sousTitre": "altération du contact à la réalité"
   },
   {
     "id": "psy-010",
-    "categorie": "Troubles de l’humeur (perturbation de l’humeur avec modifications cognitives et physiologiques)",
+    "categorie": "Troubles de l’humeur",
     "sousCategorie": "Trouble bipolaire",
     "prevalence": "1,50%",
     "symptomes": [
-      "alternance d’épisodes maniaques/hypomaniaques (humeur exaltée/irritable, augmentation de l’énergie, idées de grandeur, diminution du sommeil, logorrhée, impulsivité) et d’épisodes dépressifs majeurs"
-    ]
+      "alternance d’épisodes maniaques/hypomaniaques (humeur exaltée/irritable, augmentation de l’énergie, idées de grandeur, diminution du sommeil, logorrhée, impulsivité) et d’épisodes dépressifs majeurs",
+      "agitation",
+      "anhédonie",
+      "asthénie",
+      "autolyse",
+      "catatonie",
+      "écholalie",
+      "hallucination",
+      "impulsivité",
+      "inhibition psychomotrice",
+      "irritabilité",
+      "logorrhée",
+      "manie",
+      "mélancolie",
+      "négativisme",
+      "tachypsychie"
+    ],
+    "sousTitre": "perturbation de l’humeur avec modifications cognitives et physiologiques"
   },
   {
     "id": "psy-011",
-    "categorie": "Troubles de l’humeur (perturbation de l’humeur avec modifications cognitives et physiologiques)",
+    "categorie": "Troubles de l’humeur",
     "sousCategorie": "Trouble dépressif caractérisé",
     "prevalence": "10%",
     "symptomes": [
-      "humeur dépressive et/ou anhédonie persistante avec symptômes cognitifs (culpabilité, dévalorisation, idées de mort)",
+      "humeur dépressive",
+      "culpabilité",
+      "dévalorisation",
+      "idées de mort",
       "neurovégétatifs (sommeil, appétit, libido)",
-      "psychomoteurs (ralentissement/agitation) et asthénie"
-    ]
+      "psychomoteurs (ralentissement/agitation) et asthénie",
+      "aboulie",
+      "agitation",
+      "anhédonie",
+      "apathie",
+      "asthénie",
+      "autolyse",
+      "bradyphémie",
+      "bradypsychie",
+      "catatonie",
+      "écholalie",
+      "hallucination",
+      "incurie",
+      "inhibition psychomotrice",
+      "irritabilité",
+      "mélancolie",
+      "négativisme",
+      "rumination"
+    ],
+    "sousTitre": "perturbation de l’humeur avec modifications cognitives et physiologiques"
   },
   {
     "id": "psy-012",
-    "categorie": "Troubles anxieux (anxiété excessive et perturbations comportementales associées)",
+    "categorie": "Troubles anxieux",
     "sousCategorie": "Trouble anxieux généralisé",
     "prevalence": "8%",
     "symptomes": [
       "inquiétude excessive et difficile à contrôler",
       "sur plusieurs thèmes",
-      "≥ 6 mois",
-      "associée à tension musculaire",
+      "tension musculaire",
       "agitation",
       "fatigue",
       "troubles du sommeil",
       "irritabilité",
-      "difficultés de concentration"
-    ]
+      "difficultés de concentration",
+      "anxiété",
+      "asthénie",
+      "hypervigilance",
+      "irritabilité",
+      "rumination"
+    ],
+    "sousTitre": "anxiété excessive et perturbations comportementales associées"
   },
   {
     "id": "psy-013",
-    "categorie": "Troubles anxieux (anxiété excessive et perturbations comportementales associées)",
-    "sousCategorie": "Trouble panique et agoraphobie",
+    "categorie": "Troubles anxieux",
+    "sousCategorie": "Trouble panique",
     "prevalence": "",
     "symptomes": [
-      "attaques de panique récurrentes (pic de peur intense avec symptômes autonomiques : tachycardie, dyspnée, sueurs, tremblements, peur de mourir/de perdre le contrôle) et/ou évitement de situations par crainte de faire une attaque (agoraphobie)"
-    ]
+      "attaques de panique (pic de peur intense avec symptômes autonomiques : tachycardie, dyspnée, sueurs, tremblements, peur de mourir/de perdre le contrôle)",
+      "évitement de situations",
+      "anxiété anticipatoire",
+      "anxiété"
+    ],
+    "sousTitre": "anxiété excessive et perturbations comportementales associées"
   },
   {
     "id": "psy-014",
-    "categorie": "Troubles anxieux (anxiété excessive et perturbations comportementales associées)",
+    "categorie": "Troubles anxieux",
     "sousCategorie": "Troubles phobiques",
     "prevalence": "15%",
     "symptomes": [
       "peur marquée",
-      "excessive et persistante d’un objet/situation spécifique (animaux, sang, hauteurs, avion, etc.) entraînant évitement et détresse"
-    ]
+      "anxiété paroxystique réactionnelle",
+      "évitement de situations",
+      "agoraphobie",
+      "anxiété"
+    ],
+    "sousTitre": "anxiété excessive et perturbations comportementales associées"
   },
   {
     "id": "psy-015",
-    "categorie": "Troubles anxieux (anxiété excessive et perturbations comportementales associées)",
+    "categorie": "Troubles anxieux",
     "sousCategorie": "Trouble stress post-traumatique (TSPT)",
     "prevalence": "",
     "symptomes": [
@@ -211,19 +283,29 @@
       "intrusion (reviviscences, cauchemars)",
       "évitement",
       "altérations cognitives/émotionnelles négatives",
-      "hyperactivation neurovégétative (hypervigilance, sursaut)"
-    ]
+      "hyperactivation neurovégétative (hypervigilance, sursaut)",
+      "amnésie",
+      "anhédonie",
+      "anxiété",
+      "dépersonnalisation",
+      "dissociation",
+      "hypervigilance",
+      "irritabilité"
+    ],
+    "sousTitre": "anxiété excessive et perturbations comportementales associées"
   },
   {
     "id": "psy-016",
-    "categorie": "Troubles anxieux (anxiété excessive et perturbations comportementales associées)",
+    "categorie": "Troubles anxieux",
     "sousCategorie": "Trouble de l’adaptation",
     "prevalence": "",
     "symptomes": [
       "symptômes émotionnels/comportementaux en réponse à un facteur de stress identifiable",
       "survenant dans les 3 mois",
-      "avec détresse ou altération fonctionnelle."
-    ]
+      "avec détresse ou altération fonctionnelle.",
+      "anxiété"
+    ],
+    "sousTitre": "anxiété excessive et perturbations comportementales associées"
   },
   {
     "id": "psy-017",
@@ -232,82 +314,95 @@
     "prevalence": "",
     "symptomes": [
       "obsessions (pensées/impulsions/images intrusives, anxiogènes, reconnues comme excessives) et compulsions (comportements/actes mentels répétés visant à réduire l’anxiété)",
-      "chronophages et invalidant"
+      "chronophages et invalidant",
+      "rumination"
     ]
   },
   {
     "id": "psy-018",
-    "categorie": "Troubles somatomorphes (signes physiques prédominants avec détresse ou handicap significatif)",
+    "categorie": "Troubles somatomorphes",
     "sousCategorie": "Trouble de somatisation",
     "prevalence": "",
     "symptomes": [
       "multiples symptômes somatiques variés et persistants",
       "avec pensées/angoisses/comportements excessifs liés à ces symptômes"
-    ]
+    ],
+    "sousTitre": "signes physiques prédominants avec détresse ou handicap significatif"
   },
   {
     "id": "psy-019",
-    "categorie": "Troubles somatomorphes (signes physiques prédominants avec détresse ou handicap significatif)",
+    "categorie": "Troubles somatomorphes",
     "sousCategorie": "Trouble de conversion",
     "prevalence": "",
     "symptomes": [
       "symptômes neurologiques (moteurs/sensitifs, crises non épileptiques, cécité, paralysie) incompatibles avec les maladies neurologiques",
       "liés à des facteurs psychologiques"
-    ]
+    ],
+    "sousTitre": "signes physiques prédominants avec détresse ou handicap significatif"
   },
   {
     "id": "psy-020",
-    "categorie": "Troubles somatomorphes (signes physiques prédominants avec détresse ou handicap significatif)",
+    "categorie": "Troubles somatomorphes",
     "sousCategorie": "Trouble douloureux",
     "prevalence": "",
     "symptomes": [
       "douleur prédominante",
       "persistante",
       "avec détresse/altération fonctionnelle et facteurs psychologiques contributifs"
-    ]
+    ],
+    "sousTitre": "signes physiques prédominants avec détresse ou handicap significatif"
   },
   {
     "id": "psy-021",
-    "categorie": "Troubles somatomorphes (signes physiques prédominants avec détresse ou handicap significatif)",
-    "sousCategorie": "Hypochondrie",
+    "categorie": "Troubles somatomorphes",
+    "sousCategorie": "Trouble d’anxiété lié à la maladie",
     "prevalence": "",
     "symptomes": [
       "préoccupation excessive d’avoir une maladie grave",
       "interprétation catastrophiste de symptômes bénins",
       "comportements de vérification/évitement"
-    ]
+    ],
+    "sousTitre": "signes physiques prédominants avec détresse ou handicap significatif"
   },
   {
     "id": "psy-022",
-    "categorie": "Troubles somatomorphes (signes physiques prédominants avec détresse ou handicap significatif)",
+    "categorie": "Troubles somatomorphes",
     "sousCategorie": "Dysmorphophobies",
     "prevalence": "",
     "symptomes": [
       "préoccupation centrée sur un défaut perçu de l’apparence",
-      "mineur ou imaginaire",
-      "avec comportements répétitifs (miroir, camouflages) et détresse"
-    ]
+      "symptôme mineur ou imaginaire",
+      "avec comportements répétitifs (miroir, camouflages) et détresse",
+      "dysmorphophobie"
+    ],
+    "sousTitre": "signes physiques prédominants avec détresse ou handicap significatif"
   },
   {
     "id": "psy-023",
-    "categorie": "Troubles dissociatifs (perturbation / discontinuité dans l’intégration de la conscience, mémoire, identité, émotions, perception, représentation du corps, contrôle moteur et du comportement)",
+    "categorie": "Troubles dissociatifs",
     "sousCategorie": "Dépersonnalisation, déréalisation",
     "prevalence": "",
     "symptomes": [
       "sentiment persistant/récurrent d’être détaché de soi (dépersonnalisation) et/ou de son environnement (déréalisation)",
-      "avec conservation du sens de la réalité"
-    ]
+      "avec conservation du sens de la réalité",
+      "dépersonnalisation",
+      "dissociation"
+    ],
+    "sousTitre": "perturbation / discontinuité dans l’intégration de la conscience, mémoire, identité, émotions, perception, représentation du corps, contrôle moteur et du comportement"
   },
   {
     "id": "psy-024",
-    "categorie": "Troubles dissociatifs (perturbation / discontinuité dans l’intégration de la conscience, mémoire, identité, émotions, perception, représentation du corps, contrôle moteur et du comportement)",
+    "categorie": "Troubles dissociatifs",
     "sousCategorie": "Amnésies dissociatives avec ou sans fugue",
     "prevalence": "",
     "symptomes": [
       "incapacité à se souvenir d’informations personnelles importantes (souvent traumatiques)",
       "non expliquée par une cause organique",
-      "la fugue ajoute un déplacement inattendu avec amnésie de l’identité"
-    ]
+      "la fugue ajoute un déplacement inattendu avec amnésie de l’identité",
+      "amnésie",
+      "dissociation"
+    ],
+    "sousTitre": "perturbation / discontinuité dans l’intégration de la conscience, mémoire, identité, émotions, perception, représentation du corps, contrôle moteur et du comportement"
   },
   {
     "id": "psy-025",
@@ -337,7 +432,7 @@
       "tolérance",
       "sevrage",
       "poursuite malgré conséquences négatives",
-      "temps important consacré à la substance",
+      "temps important consacré à l’activité",
       "abandon d’activités."
     ]
   }
