@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-09-07T20:26:03.892187",
+  "exportDate": "2026-09-14T13:27:46.273840",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -6862,7 +6862,7 @@
             "term": "Anhédonie"
           },
           {
-            "definition": "État de désorientation psychologique et de détresse lié à une perte de repères normatifs, de règles ou de valeurs sociales partagées",
+            "definition": "Trouble du langage ou état de désorientation psychologique et de détresse lié à une perte de repères normatifs, de règles ou de valeurs sociales partagées",
             "term": "Anomie"
           },
           {
@@ -7156,6 +7156,10 @@
           {
             "definition": "liées au comportement regroupant les fugues, les passages à l’acte (auto / hétéro), le contrôle des impulsions et du fonctionnement interpersonnel et à l’insight (recul relatif du patient vis a vis de son trouble permettant souvent une meilleure adhésion au traitement)",
             "term": "Anomalie des conduites"
+          },
+          {
+            "definition": "humeur changeante sans raison fixe, instable, fragile",
+            "term": "Labile"
           }
         ],
         "filename": "Sémiologie en santé mentale.odt"
@@ -7170,7 +7174,7 @@
         "author": "CCR",
         "definitions": [
           {
-            "definition": "concept obsolète, transmission linéaire d’information entre deux individus via un canal pouvant être parasité",
+            "definition": "concept obsolète, transmission linéaire d’information entre deux individus via un canal pouvant être parasité – Shannon & Weaver (1949) + Wiener (1948)",
             "term": "Modèle émetteur-récepteur"
           },
           {
@@ -7190,12 +7194,84 @@
             "term": "Modèle situationnel"
           },
           {
-            "definition": "échange hiérarchisé qui fait intervenir un intermédiaire afin d’éviter le face à face. L’intermédiaire centralise la demande et le transmet de manière majorée à sa hiérarchie (message amplifié) afin d’obtenir ce qu’il demandait à la base",
+            "definition": "échange hiérarchisé qui fait intervenir un intermédiaire afin d’éviter le face à face. L’intermédiaire centralise la demande et le transmet de manière majorée à sa hiérarchie (message amplifié) afin d’obtenir ce qu’il demandait à la base -",
             "term": "Modèle interactionniste/systémique de Palo Alto"
           },
           {
             "definition": "Production collective d’un groupe qui travaille sous la conduite d’un leader",
             "term": "Modèle de l’Orchestre"
+          },
+          {
+            "definition": "l'attitude choisie influence directement la relation = évaluation, interprétation, support, investigation, décision, empathie - Porter (1950)",
+            "term": "Modèle des attitudes"
+          },
+          {
+            "definition": "=  (transmettre une information objective).  =  (exprimer les émotions du locuteur).  =  (agir sur le destinataire, donner un ordre).  =  (établir ou maintenir le contact).  =  - Jakobson (1960)",
+            "term": "Théorie des 6 fonctions du langage"
+          },
+          {
+            "definition": "impact des différents canaux lors de l'expression d'un sentiment ou d'une opinion =  Le sens des mots employés.  L'intonation, le ton et le rythme de la voix.  - Mehrabian (1967)",
+            "term": "Théorie des 3V"
+          },
+          {
+            "definition": "message reformulé = message (décoder le non-verbal, clarifier les intentions, résoudre un conflit en analysant un blocage)",
+            "term": "Métacommunication"
+          },
+          {
+            "definition": "piège psychologique où une personne reçoit 2 ordres contradictoires, rendant toute action impossible - Bateson (1956)",
+            "term": "Double contrainte"
+          },
+          {
+            "definition": "tout comportement est un message = on ne peut pas ne pas communiquer Watzlawick (1967)",
+            "term": "Théorie de la communication humaine"
+          },
+          {
+            "definition": "où chacun de nous est un acteur qui joue un rôle pour donner une bonne impression aux autres Goffman (1956)",
+            "term": "Sociologie dramaturgique"
+          },
+          {
+            "definition": "Concerne tout professionnel entrant en communication avec un patient. Méthode de recueil de données dont l’objectif est d’aller faire verbaliser à la personne prise en soin l’intégralité des sujets qu’elle souhaite aborder, sans limite. Renforce l’alliance thérapeutique, diminue la souffrance psychique et permet d’établir un récit bio-psycho-social.",
+            "term": "Médecine narrative"
+          },
+          {
+            "definition": "mécanisme de la pensée qui entraîne une déviation du jugement",
+            "term": "Biais cognitif"
+          },
+          {
+            "definition": "biais cognitif où l’on sélectionne certaines informations plutôt que d’autres",
+            "term": "Effet de halo"
+          },
+          {
+            "definition": "se souvenir plus facilement des dernières informations",
+            "term": "Effet de récense"
+          },
+          {
+            "definition": "tendance à considérer certaines informations comme suffisantes pour prendre une décision",
+            "term": "Effet de généralisation excessive"
+          },
+          {
+            "definition": "tendance à penser que la plupart des individus pensent et raisonnent comme vous",
+            "term": "Effet de projection"
+          },
+          {
+            "definition": "avoir une idée bien précise de ce qu’il attend d’un échange et besoin de se conforter dans ses préjugés ; induire fortement la réponse attendue",
+            "term": "Biais de cadrage"
+          },
+          {
+            "definition": "tendance naturelle à vouloir tout comparer comme base du jugement (ex : avoir 1 candidat validé, les autres ne soutiendront pas la comparaison)",
+            "term": "Effet de contraste"
+          },
+          {
+            "definition": "tendance à donner plus de valeur à qqun qui possède une caractéristique extraordinaire",
+            "term": "Biais d’extraordinaireté"
+          },
+          {
+            "definition": "lorsque les émotions prennent le pas sur le jugement",
+            "term": "Biais de la naïveté"
+          },
+          {
+            "definition": "accepter, se questionner, se cultiver, douter, maintenir sa motivation (inconfort initial), se méfier de la 1ere impression, préserver ses ressources physiques, alléger sa charge mentale, gérer ses émotions, prendre son temps",
+            "term": "Déjouer les biais cognitifs"
           }
         ],
         "filename": "La communication.odt"
@@ -7956,6 +8032,30 @@
           {
             "definition": "1/ psychologiques (= poids des mots par exemple) 2/ sociaux (= groupe social et ses codes) 3/ environnementaux (éclairage, bruit…) 4/ autres (différences culturelles, éducation)",
             "term": "Facteurs extrinsèque"
+          },
+          {
+            "definition": "idée/croyance/forme de  qui permet aux individus de comprendre, d'interpréter et de donner un sens à leur réalité quotidienne",
+            "term": "Représentation"
+          },
+          {
+            "definition": "de la société, partagée par toute la population. Fixe",
+            "term": "Représentation collective"
+          },
+          {
+            "definition": "socioprofessionnelles + professionnelles, représentation modifiées par le cercle familial, amical, professionnel, etc. Non fixe",
+            "term": "Représentation sociale"
+          },
+          {
+            "definition": "⇒ étudiant non diplômé, stagiaire. A la frontière entre collectives et sociales (± personnelles), confrontée par le cercle professionnel",
+            "term": "Représentation socioprofessionnelle"
+          },
+          {
+            "definition": "construites à travers le cercle professionnel",
+            "term": "Représentation professionnelle"
+          },
+          {
+            "definition": "1/ opinion < 2/ attitude/comportement < 3/ représentations sociales < 4/ idéologie/sociétal = croyances, valeurs culturelles, normes (sphère personnelle) – Flament (XXe)",
+            "term": "Niveaux de représentation"
           }
         ],
         "filename": "Facteurs influençant la communication.odt"
@@ -8304,10 +8404,678 @@
         ],
         "filename": "Traitements non médicamenteux.odt"
       }
+    ],
+    [
+      "ue_1_2_s3_entretien_motivationnel_em",
+      {
+        "title": "Entretien motivationnel (EM)",
+        "date": "13/09/2026",
+        "ue": "1.2.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "Façon particulière de discuter avec les gens de leur changement afin de renforcer leur propre motivation et leur engagement à les effectuer. On parle de « changement choisi » car il émane de la personne",
+            "term": "EM - Définition"
+          },
+          {
+            "definition": "partenariat (= pied d’égalité), acceptation (= non-jugement), altruisme (= intérêt de la personne), empowerment (= ressources de la personne)",
+            "term": "EM - Concepts"
+          },
+          {
+            "definition": "1/ engagement dans la relation = établir une relation sur la confiance mutuelle. 2/ focalisation = direction visée par l’accompagnement. 3/ évocation = amener la personne à verbaliser ses propres motivations à changer. 4/ planification = mobilisation de la personne, plan d’action",
+            "term": "EM – Principes"
+          },
+          {
+            "definition": "questions ouvertes, valoriser (= sincère, authentique), écoute réflective (= réponse verbale/non verbale pour signifier l’écoute), résumer (reformulation synthétique, vue d’ensemble)",
+            "term": "EM – compétences"
+          }
+        ],
+        "filename": "Entretien motivationnel (EM).odt"
+      }
+    ],
+    [
+      "ue_1_2_s3_ingalits_de_sant",
+      {
+        "title": "Inégalités de santé",
+        "date": "09/09/2026",
+        "ue": "1.2.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "Traitement identique de tous, avec les mêmes ressources ou opportunités, sans tenir compte des différences de situation de départ",
+            "term": "Égalité"
+          },
+          {
+            "definition": "Traitement ajusté aux besoins et aux désavantages pour que chacun ait les mêmes chances d’atteindre un état de santé (ou un résultat) comparable.",
+            "term": "Équité"
+          },
+          {
+            "definition": "Situation dans laquelle des différences de santé (ou d’accès aux ressources) sont jugées moralement inacceptables",
+            "term": "Injustice"
+          },
+          {
+            "definition": "Différences systématiques et évitables de santé liées à la position sociale (genre, biens matériels, revenu, éducation, profession, territoire, etc.)",
+            "term": "Inégalités de santé"
+          },
+          {
+            "definition": "Relation continue entre position socio-économique et santé : plus on descend dans la hiérarchie sociale, plus l’état de santé se dégrade, et ce à chaque « marche » de l’échelle sociale",
+            "term": "Gradient social"
+          },
+          {
+            "definition": "Champ ou dimension de la vie sociale dans lequel on observe des inégalités",
+            "term": "Domaine d’inégalité"
+          },
+          {
+            "definition": "Groupe de personnes défini par des caractéristiques sociales, démographiques ou économiques partagées (ex. : niveau de revenu, profession, niveau d’études, genre, origine, territoire)",
+            "term": "Catégorie de population"
+          },
+          {
+            "definition": "État de plus grande susceptibilité à des problèmes de santé ou à des difficultés d’accès aux soins, lié à une accumulation de désavantages sociaux, économiques, environnementaux ou individuels, et à une capacité réduite à y faire face",
+            "term": "Vulnérabilité"
+          },
+          {
+            "definition": "Stratégie de santé publique qui propose des actions universelles (pour tous) mais avec une intensité et des modalités proportionnées au niveau de désavantage, afin de réduire les inégalités et « aplanir » le gradient social (hybride entre approche universelle et ciblée)",
+            "term": "Universalisme proportionné"
+          },
+          {
+            "definition": "concernent indifféremment l’ensemble de la population, quels que soient les besoins ou la position sociale de chacun",
+            "term": "Approches universelles"
+          },
+          {
+            "definition": "concernent seulement une fraction de la population, considérée comme prioritaire, souvent précarisée",
+            "term": "Approches ciblées"
+          },
+          {
+            "definition": "Phénomène territorial caractérisé par une diminution importante et durable de l’offre de soins",
+            "term": "Désertification médicale"
+          }
+        ],
+        "filename": "Inégalités de santé.odt"
+      }
+    ],
+    [
+      "ue_1_3_s3_biothique",
+      {
+        "title": "Bioéthique",
+        "date": "08/09/2026",
+        "ue": "1.3.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "médecine ne doit pas entraîner de douleur ni risque(Claude Bernard – XIXe s.), information au patient (Prusse, 1900), interdiction des expérimentations sur l’homme en dehors de son consentement (Allemagne, 1931)",
+            "term": "Premiers concepts"
+          },
+          {
+            "definition": "accélérateur majeur de la bioéthique. Conclusions = expériences sur l’homme sont nécessaires mais interdiction de toute déviation. Il y a des obligations morales qui s’appliquent dans le champ des expériences sur l’Homme",
+            "term": "Procès du Nuremberg (1945)"
+          },
+          {
+            "definition": "code de déontologie concerne les questions éthiques liées à l’expérimentation sur l’Homme (10 règles = consentement volontaire, résultats utiles, précédés d’expériencess sur l’animal, sans effets physique/mentaux indésirables, interdits si risque de décès ou d’infirmité, balance bénéfice/risque, éviter les effets secondaires, mené par un scientifique reconnu, liberté d’arrêter à tout moment, interruption immédiate si un risque apparaît)",
+            "term": "Code de Nuremberg"
+          },
+          {
+            "definition": "Principe directeur fondamental pour l’éthique biomédicale. Est ce qu’il y a d’humain en l’Homme, est inhérente à l’Homme, devoir d’en prendre soin.",
+            "term": "Dignité"
+          },
+          {
+            "definition": "DHDC (préambule), Acte constitutif de l’UNESCO (préambule)",
+            "term": "Textes importants"
+          },
+          {
+            "definition": "éthique des sciences de la vie et de la recherche biomédicale (Van Potter, 1971) ⇒ nécessité d’ouverture aux autres champs comme les sciences humaines et autres disciplines hors champ médical/scientifique pour mener une réflexion fondée sur les principes éthiques",
+            "term": "Naissance/définition de la bioéthique"
+          },
+          {
+            "definition": "« La bioéthique a pour objet les problèmes nés de la recherche dans les sciences de la vie et de la santé et des pratiques nouvelles qui en résultent (Lucien Sève, 1994) » - réflexion sur les essais cliniques, les expérimentations, les soins rares ou d’exception par opposition à l’éthique médicale/clinique (au chevet du patient)",
+            "term": "Bioéthique (définition)"
+          },
+          {
+            "definition": "Défense de la dignité humaine, Respect des libertés fondamentales, Respect des droits des personnes",
+            "term": "Objectifs"
+          },
+          {
+            "definition": "dilemmes et réflexion sur les comportements et décisions touchant à l’exercice de la médecine, au service du patient – notion de « soins quotidiens »",
+            "term": "Éthique médicale/clinique"
+          }
+        ],
+        "filename": "Bioéthique.odt"
+      }
+    ],
+    [
+      "ue_1_3_s3_thique_en_sant",
+      {
+        "title": "Éthique en santé",
+        "date": "09/09/2026",
+        "ue": "1.3.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "Questionnement dont l’objectif est de s’orienter dans un contexte d’incertitude. Surgit lors d’une tension des principes ou d’un conflit entre des valeurs = dilemme éthique",
+            "term": "Réflexion éthique"
+          },
+          {
+            "definition": "cas de conscience, de déchirement intérieur face à une situation qui paraît inextricable. Nécessité de choisir après délibération entre 2 termes contradictoires et insatisfaisants dans des circonstances toujours particulières",
+            "term": "Dilemme"
+          },
+          {
+            "definition": "1/ de la vertu (Aristote). 2/ déontologique (Kant), 3/ conséquentialiste (Bentham / Mill)",
+            "term": "Éthique normative (courants)"
+          },
+          {
+            "definition": "approche qui tient compte des enjeux démocratiques (Habermas) ⇒ discussion collégiale",
+            "term": "Éthique de la discussion"
+          },
+          {
+            "definition": "1/ de la sollicitude (Pelluchon). 2/ courant du « care » (Tronto)",
+            "term": "Éthique des vulnérabilités"
+          },
+          {
+            "definition": "très pratiquée en santé = autonomie, bienfaisance, justice par répartition, non malfaisance",
+            "term": "Éthique principiste (pragmatique)"
+          }
+        ],
+        "filename": "Éthique en santé.odt"
+      }
+    ],
+    [
+      "ue_1_3_s3_organisation_du_systme_de_sant",
+      {
+        "title": "Organisation du système de santé",
+        "date": "09/09/2026",
+        "ue": "1.3.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "pilotage national et mise en œuvre des politiques de santé publique + supervision des établissements de soins et la formation des professionnels de santé + soutien financier aux établissements sanitaires et médico-sociaux + fixation des tarifs de prestation + maîtrise des coûts en santé",
+            "term": "Ministère de la Santé"
+          },
+          {
+            "definition": "1/ Coordination de la prévention des soins et accompagnement. 2/ Gestion de ressource pour garantir un accès égal aux soins. 3/ Garantir la qualité et la sécurité des soins (sécurité sanitaire, fonctionnement des établissements et services, actes médicaux et pratiques des professionnels) . 4/ Améliorer la répartition de l’offre de soins et médico-sociale. 5/ Décliner les politiques nationales en établissant des PRS (Plans Régionaux de Santé).",
+            "term": "ARS (Agence Régionale de Santé)"
+          },
+          {
+            "definition": "déclinaison des politiques nationales à l’échelle régionale par l’ARS (=prévention, organisation des soins de ville et hospitaliers, etc)",
+            "term": "PRS (Plan Régional de Santé)"
+          },
+          {
+            "definition": "agence publique étatique. Missionnée dans les domaines du prélèvement/greffe d’organe, de tissus, de cellule + domaines de la procréation, embryologie, génétique humaine",
+            "term": "Agence de biomédecine"
+          },
+          {
+            "definition": "opérateur civil de la transfusion sanguine. Mission d’autosuffisance nationale en produits sanguins + analyses biomédicales/biologiques + thérapie cellulaire et la recherche",
+            "term": "Établissement Français du Sang (EFS)"
+          },
+          {
+            "definition": "Personnes morales / organismes corporatif institués par la loi. Mission de représentation de la profession. Participent à la réglementation de l’activité (code de déontologie) + rôle de juridiction disciplinaire pour ses membres. Appartenance à l’Ordre est obligatoire pour exercer (infirmiers, médecins, pharmaciens, etc)",
+            "term": "Ordres professionnels"
+          },
+          {
+            "definition": "négociation avec Assurance Maladie concernant les honoraires et toutes les questions relatives à la pratique médicale",
+            "term": "Syndicats"
+          },
+          {
+            "definition": "Participent au conseil de surveillance des établissements de santé (orientation stratégique, contrôle permanent, gestion des établissements)",
+            "term": "Association de patient"
+          },
+          {
+            "definition": "centre de référence national en santé publique regroupant des experts scientifiques sous tutelle de l’État. Missions d’amélioration/protection de la santé des populations ⇒ système de veille sanitaire + connaissances sur l’état de santé de la population + promouvoir la santé",
+            "term": "Santé Publique France"
+          },
+          {
+            "definition": "légalement responsables de la qualité de l’eau et approvisionnement, contrôle de la pollution atmosphérique et sonore, élimination des déchets, protection contre les radiations, etc.",
+            "term": "Municipalités"
+          },
+          {
+            "definition": "soins effectués en cabinets de ville lors de consultations externes d’hôpitaux, en cure thermale ou les actes d’analyse en laboratoire (professions médicales, paramédicales, pharmaceutiques, réseaux de santé pluridisciplinaires)",
+            "term": "Soins ambulatoires / Soins de ville"
+          },
+          {
+            "definition": "soins délivrés (généraux ou spécialisés) à but de diagnostic/de surveillance/de traitement dans des établissements publics ou privés d’intérêt collectif conventionnés (=dialyse, centre de lutte contre le cancer, etc).",
+            "term": "Soins hospitaliers ou médico-social"
+          },
+          {
+            "definition": "dispositif conventionnel obligatoire (depuis 2016) entre établissements publics de santé d’un même territoire par lequel ils s’engagent à se coordonner autour d’une stratégie de prise en charge commune et graduée du patient",
+            "term": "Groupement Hospitalier de Territoire (GHT)"
+          },
+          {
+            "definition": "depuis 2023 ⇒ Service d’Accès aux Soins (SAS) = dispositif d’orientation de la population dans leur parcours de soins lorsque le médecin traitant n’est pas accessible. Garantit l’accès à toute heure et à distance à un professionnel de santé pour qu’il soit orienté",
+            "term": "Soins d’urgence / Soins non-programmés"
+          },
+          {
+            "definition": "1/ En établissement médico-social (EHPAD, handicap…) = accompagnement, prise en charge, réadaptation, insertion/réinsertion du public « fragile ». 2/ Soins résidentiels ou temporaires pour les personnes âgées (EHPAD, foyer logement, USLD) = pas de soins médicaux . 3/ Soins à domicile (SSIAD, SAAD) = soins et accompagnement, maintient de l’autonomie 4/ Service Polyvalents d’Aide et Soins A Domicile (SPASAD) = coordination des intervention SSIAD et SAAD + autres acteurs du secteur",
+            "term": "Soins de longue durée"
+          },
+          {
+            "definition": "monopole de distribution des médicaments délivrés sur ordonnance médicale",
+            "term": "Pharmacie"
+          },
+          {
+            "definition": "Financeurs du système de santé répartis entre régimes obligatoires et complémentaires",
+            "term": "Régimes d’Assurance Maladie"
+          },
+          {
+            "definition": "Financeurs du système de santé. Obligation d’adhésion et de cotisation = solidarité large basée sur des contributions prélevées sur les revenus (= régime général, régime agricole). Ces régimes concentrent leur intervention sur les « gros risques » = risque santé ayant le plus de conséquences (soins de longue durée, plateau technique conséquent et coûteux…)",
+            "term": "Régimes obligatoires"
+          },
+          {
+            "definition": "Financeurs du système de santé. Aucune obligation d’adhésion = solidarité restreinte au champ des adhérents et offrent des charges variables. Couvrent les dépenses de soins de santé non pris en charge par le régime obligatoire",
+            "term": "Régimes complémentaires"
+          },
+          {
+            "definition": "Financeurs du système de santé. Dépenses de prévention, de recherche médicale et pharmaceutique, de formation des professionnels de santé, de Complémentaire Santé Solidaire (CSS), de soins d’urgence, prestations versées aux bénéficiaires de l’Aide Médicale de l’État (AME)",
+            "term": "Financeur public (= État)"
+          },
+          {
+            "definition": "Financeurs du système de santé. Paient le reste à charge",
+            "term": "Ménages"
+          },
+          {
+            "definition": "Mission de l’ARS - Ensemble des risques liés aux activités de soins, aux produits consommés (alimentaires, produits de soins) et milieux de vie (= DASRI, tatoueurs, amiante, niveau sonore, monoxyde de carbone, captage de l’eau…) + fonctionnement des établissements de santé et médico-sociaux (= effectifs et formation du personnel…)",
+            "term": "Sécurité sanitaire"
+          },
+          {
+            "definition": "Mission de l’ARS -mène des actions de contrôle et de sensibilisation des professionnels de santé autour de thématiques liées à la sécurité, la qualité et la pertinence des soins",
+            "term": "Contrôle des actes médicaux et des pratiques des professionnels"
+          },
+          {
+            "definition": "Accréditation des médecins/équipes médicales au regard des référentiels de qualité des soins et des pratiques professionnelles, élaboration de méthodes scientifiquement reconnues ou de valider des référentiels, veiller à la validation des méthodes relatives à l’amélioration de la qualité. «Certification» nécessaire pour garantir la qualité des soins (procédure interne sanctionnée par la HAS)",
+            "term": "Haute Autorité de Santé (HAS)"
+          },
+          {
+            "definition": "Autorité compétente pour les décisions de sécurité concernant les produits de santé, de leur fabrication à leur commercialisation",
+            "term": "Agence Nationale de Sécurité du Médicament et des produits de santé (ANSM)"
+          },
+          {
+            "definition": "évaluation des risques, alerte, recherche et investigation. Responsable de la sécurité au travail. Réalise l’évaluation des produits chimiques",
+            "term": "Agence Nationale de la Sécurité Sanitaire de l’Alimentation, de l’Environnement et du Travail (ANSES)"
+          },
+          {
+            "definition": "expertise sur l’ensemble de rayonnement ionisant utilisés dans l’industrie, la médecine et les rayonnements naturels",
+            "term": "Institut de Radioprotection et de Sûreté Nucléaire (IRSN)"
+          }
+        ],
+        "filename": "Organisation du système de santé.odt"
+      }
+    ],
+    [
+      "ue_1_3_s3_structures_de_lexercice_coordonn",
+      {
+        "title": "Structures de l'exercice coordonné",
+        "date": "11/09/2026",
+        "ue": "1.3.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "personne morale constituée par une équipe pluridisciplinaire de professionnels de santé regroupés en associés qui sont les gérants de la structure. Statut libéral (et non salarié). Propose des soins sans hébergement et de premier et de second recours. Peut participer à des actions de santé publique. Critère légal = au moins 2 médecins + 1 paramédical pour constituer une MSP.",
+            "term": "Maisons de Santé pluridisciplinaire (MSP)"
+          },
+          {
+            "definition": "structure sanitaire dispensant des soins de premiers recours sans hébergements. Contribuent à la permanence des soins ambulatoires. Constituent des lieux de stages pour la formation des professions médicales/paramédicales. Soins dispensés dans la structure ou à domicile. Peuvent être géré par des collectifs, des organismes (but lucratif ou non), des établissements publics ou privés. Statut des professionnels = salariés",
+            "term": "Centre de santé"
+          },
+          {
+            "definition": "ensemble de professionnels de santé constitué autour d’au moins un médecin généraliste, réunis autour d’un projet de santé qu’ils élaborent autour d’une ou plusieurs thématiques",
+            "term": "Équipe de Soin Primaire (ESP)"
+          },
+          {
+            "definition": "ensemble de professionnels de santé constitué autour de médecins spécialistes hors médecine générale, réunis autour d’un projet de santé qu’ils élaborent autour d’une ou plusieurs thématiques",
+            "term": "Équipe de Soin Spécialisé (ESS)"
+          },
+          {
+            "definition": "Ensemble constitué de professionnels de santé, d’établissement de santé et des professionnels du secteur social et médico-social d’un territoire qu’ils définissent. Dispositif de coordination et d’accompagnement des professionnels de santé. Permet de coordonner les professionnels de santé acteurs de terrain, approche populationnelle.",
+            "term": "Communauté Professionnelle Territoriale de Santé (CPTS)"
+          }
+        ],
+        "filename": "Structures de l'exercice coordonné.odt"
+      }
+    ],
+    [
+      "ue_2_6_s3_classification_des_pathologies",
+      {
+        "title": "Classification des pathologies",
+        "date": "10/09/2026",
+        "ue": "2.6.S3",
+        "author": "KM",
+        "definitions": [
+          {
+            "definition": "patient conscient de son trouble et est en contact avec la réalité (anxiété, phobie, TOC,...)",
+            "term": "Névrose"
+          },
+          {
+            "definition": "patient inconscient de son trouble et perd le contact avec la réalité (schizophrénie, bouffée délirantes aiguës, paranoïa,…)",
+            "term": "Psychose"
+          },
+          {
+            "definition": "addictions, affection somatique, affection psychiatrique ⇒ importance de faire des diagnostics différentiels",
+            "term": "Comorbidités"
+          },
+          {
+            "definition": "permet de savoir si un trouble est présent ou absent et si oui à quel degré. En découle une uniformité de langage entre spécialistes et de PEC (critères de traitement, critères de diagnostic, etc)",
+            "term": "Classification des troubles"
+          },
+          {
+            "definition": "classification internationale (OMS) spécifique à la santé mentale, publié par l’APA (Association Américaine de Psychiatrie), méthode a-théorique et descriptive (= neutre)",
+            "term": "DSM-5 (2013)"
+          },
+          {
+            "definition": "Classification Internationale des Maladies",
+            "term": "CIM-11 (2022)"
+          },
+          {
+            "definition": "état de complet bien-être qui permet d’affronter les stress de la vie et de s’épanouir, d’apprendre, de contribuer à la vie de la communauté",
+            "term": "Santé mentale"
+          },
+          {
+            "definition": "modification/écart quantitatif de l’état normal, rupture d’un continuum « normal ». Doit tenir compte des variabilités culturelles, religieuses, temporelles, sociétales",
+            "term": "Trouble mental - définition"
+          },
+          {
+            "definition": "désigne une réaction psychologique/émotionnelle mesurée face à un stress ou à une épreuve de la vie sans sombrer dans la détresse chronique (= non pathologique)",
+            "term": "Souffrance adaptée"
+          },
+          {
+            "definition": "décrit un ensemble de symptômes ou de comportement anormaux qui perturbent la vie quotidienne (par opposition à « maladie » qui sous-entend une affection physiopathologique / somatique)",
+            "term": "Trouble"
+          },
+          {
+            "definition": "altération majeure sur le plan clinique de l’état cognitif, de la régulation des émotions ou du comportement. S’accompagne d’un sentiment de détresse ou de défaillances fonctionnelles dans des domaines importants jusqu’à un impact physiologique. Il implique d’avoir éliminé une cause organique, intoxication, sevrage, etc.",
+            "term": "Trouble mental"
+          },
+          {
+            "definition": "désorganisation, positifs (psychose), négatifs névroses), maniaques, dépressifs",
+            "term": "Dimensions psychiatriques (type de troubles)"
+          }
+        ],
+        "filename": "Classification des pathologies.odt"
+      }
+    ],
+    [
+      "ue_2_6_s3_du_normal_au_pathologique",
+      {
+        "title": "Du normal au pathologique",
+        "date": "14/09/2026",
+        "ue": "2.6.S3",
+        "author": "Sophie",
+        "definitions": [
+          {
+            "definition": "représente un ensemble objectif et subjectif d’éléments environnants une personne = culturel, social, fonctionnel, clinique, etc",
+            "term": "Normalité"
+          },
+          {
+            "definition": "inhabituel, durable, source de souffrance, source de souffrance pour l’entourage, associé à une perte d’autonomie, rupture avec le quotidien, dangerosité pour le patient ou pour autrui",
+            "term": "Critères du pathologique"
+          }
+        ],
+        "filename": "Du normal au pathologique.odt"
+      }
+    ],
+    [
+      "ue_2_8_s3_asthme",
+      {
+        "title": "Asthme",
+        "date": "08/09/2026",
+        "ue": "2.8.S3",
+        "author": "Dr",
+        "definitions": [
+          {
+            "definition": "maladie inflammatoire chronique des bronches, caractérisée par une , une  et une  présentant des périodes de crise. Prédominant chez les jeunes présentant un terrain atopique.",
+            "term": "Asthme - définition"
+          },
+          {
+            "definition": "1/ inflammation chronique de la paroi bronchique 2/ bronchoconstriction = rétrécissement du calibre des bronches 3/ hypersécrétion bronchique",
+            "term": "Asthme - physiopathologie"
+          },
+          {
+            "definition": "1/ personnels = atcd familiaux, allergies, prématurité, obésité. 2/ environnementaux = tabagisme actif/passif, qualité de l’air, exposition aux allergènes",
+            "term": "Asthme – FDR principaux"
+          },
+          {
+            "definition": "effort physique, air froid/sec, irritants (fumée), stress / émotions fortes, allergènes inhalés, moisissures",
+            "term": "Asthme – facteurs déclenchants"
+          },
+          {
+            "definition": "terrain atopique, atcd familial",
+            "term": "Asthme – étiologie"
+          },
+          {
+            "definition": "1/ signes de lutte = parle avec des phrases, non agité, FR <30, SpO2 <95 %. 2/ signes de défaillance = parle avec des mots, agité, FR>30, SpO2 <90 %, troubles de la conscience",
+            "term": "Asthme – critères de gravité"
+          },
+          {
+            "definition": "toux, sifflement à l’expiration, sécrétions bronchiques, sifflement, essoufflement, tirage (intercostal / sus claviculaire), sensation d’oppression thoracique, cyanose, symptôme plutôt le soir le matin au réveil",
+            "term": "Asthme – tableau clinique"
+          },
+          {
+            "definition": "insuffisance cardiaque gauche, corps étranger, EP, tumeurs trachéo-bronchiques, anxiété, mucoviscidose",
+            "term": "Asthme – diag différentiels principaux"
+          },
+          {
+            "definition": "clinique/anamnèse ++ et réversibilité des symptômes soit spontanée soit sous médicament",
+            "term": "Asthme – Diagnostic"
+          },
+          {
+            "definition": "EFR avec test de réversibilité (spirométrie = mesure des volumes pulmonaires, DEP (débit expiratoire de pointe)), si spirométrie normale ⇒ test à la metacholine ⇒ VEMS doit diminuer, RT voire scanner thoracique si asthme non contrôlé",
+            "term": "Asthme - Examens complémentaires et marqueurs"
+          },
+          {
+            "definition": "1/ de fond = corticoïdes inhalés. 2/ en phase aiguë = bronchodilatateurs + corticoïdes inhalés (beta-2 sympathomimétiques ou agoniste, anti-cholinergique) biothérapie (= anti-IgE, anti-IL5, anti-TSLP), antileucotriènes",
+            "term": "Asthme – Traitements"
+          },
+          {
+            "definition": "impact sur la qualité de vie / vie socioprofessionnelle, exacerbation (au moins 2 jours pour qualifier), insuffisance respiratoire, décès",
+            "term": "Asthme – Complications"
+          },
+          {
+            "definition": "enfant, très inflammatoire, allergique et non allergique,",
+            "term": "Asthme T2"
+          },
+          {
+            "definition": "adulte, peu bruyant, non allergique strict",
+            "term": "Asthme non T2"
+          },
+          {
+            "definition": "bronchoconstriction induite par l’exercice",
+            "term": "Asthme d’effort"
+          },
+          {
+            "definition": "pratique sportive, traiter les allergies, vaccination (éviter infection), assainir l’environnement (pas d’huiles essentielle,…), éviter les irritants (tabac, cannabis, cigarette électronique, etc)",
+            "term": "Asthme – prévention"
+          }
+        ],
+        "filename": "Asthme.odt"
+      }
+    ],
+    [
+      "ue_2_8_s3_bpco",
+      {
+        "title": "BPCO",
+        "date": "14/09/2026",
+        "ue": "2.8.S3",
+        "author": "Dr",
+        "definitions": [
+          {
+            "definition": "Maladie respiratoire chronique caractérisée par des symptômes respiratoires persistants et une obstruction bronchique permanente, non complètement réversible, liée à une inflammation chronique des voies aériennes et du parenchyme pulmonaire (bronchite chronique (=toux/expectoration >3mois / an pendant au moins 2 ans) et/ou emphysème)",
+            "term": "BPCO – définition"
+          },
+          {
+            "definition": "augmentation des résistances bronchiques surtout à l’expiration avec trouble ventilatoire obstructif fixe (=peu/pas réversible) avec 1/ inflammation chronique des bronches et du parenchyme pulmonaire 2/ bronchite chronique (hypersécrétion de mucus, épaississement de la paroi, obstruction des petites voies aériennes, paralysie et section des cils) 3/ emphysème (perte d’élasticité alvéolaire ⇒ diminution de la surface d’échange)",
+            "term": "BPCO – physiopathologie"
+          },
+          {
+            "definition": "tabagisme actif et passif (80-90 % des cas), exposition professionnelle, pollution de l’air, âge (>40a), atcd d’infections respi sévères dans l’enfance/prématurité, asthme, génétique (déficit en alpha -1 antitrypsine)",
+            "term": "BPCO – FDR principaux"
+          },
+          {
+            "definition": "infection bronchique, pneumonie, médicament, IC gauche...",
+            "term": "BPCO – facteurs déclenchants"
+          },
+          {
+            "definition": "tabagisme chronique >> exposition professionnelle, pollution intérieure, etc.",
+            "term": "BPCO – étiologie"
+          },
+          {
+            "definition": "selon sévérité de l’obstruction (VEMS en % de la valeur théorique), selon symptômes et impact (dyspnée importante, limitation des activités, etc), selon risque d’exacerbation, selon insuffisance respiratoire chronique",
+            "term": "BPCO – critères de gravité"
+          },
+          {
+            "definition": "toux chronique, expectorations matinales, infections respiratoires répétées, dyspnée d’effort progressive (à l’effort important, puis modéré, puis au repos selon le stade)",
+            "term": "BPCO – tableau clinique"
+          },
+          {
+            "definition": "asthme, mucoviscidose, bronchectasies",
+            "term": "BPCO – diagnostics différentiels principaux"
+          },
+          {
+            "definition": "clinique (râles bronchiques, frein expiratoire, distension du thorax, cyanose des extrémités) + EFR + rapport de Tiffeneau (diag + classification)",
+            "term": "BPCO - Diagnostic"
+          },
+          {
+            "definition": "spirométrie (=VEMS sur 1 sec), pléthysmographie (=permet de mesurer le volume résiduel), distension pulmonaire, capacité de diffusion (DLCO, inhalation de monoxyde de carbone), GDS, oxymétrie nocturne voire polygraphie nocturne, test de marche de 6 min (distance, besoin en O2), scanner thoracique",
+            "term": "BPCO - examens complémentaires et marqueurs"
+          },
+          {
+            "definition": "sevrage tabagique, activité physique adaptée régulière, vaccination (grippe, covid, penumocoque, VRS ⇒ bronchiolite, DTP ⇒ coqueluche), bronchodilatateur (association B2 mimétique et anticholinergique) ± corticostéroïdes inhalés, réadaptation respiratoire, oxygénothérapie, VNI, biothérapie",
+            "term": "BPCO - traitements"
+          },
+          {
+            "definition": "exacerbation, insuffisance respiratoire aiguë ou chronique (IRCO), embolie pulmonaire, surinfection bronchique, pneumothorax, insuffisance cardiaque droite, dénutrition, syndrome anxio-dépressif",
+            "term": "BPCO – complications"
+          },
+          {
+            "definition": "déconditionnement (perte d’habitude à l’activité physique), MVTE, SAS, dénutrition, sd dépressif ou anxio-dépressif",
+            "term": "BPCO – comorbidités"
+          },
+          {
+            "definition": "perte d’élasticité / destruction alvéolaire ⇒ diminution de la surface d’échange. 2 types = pan-lobulaire ou centro-lobulaire",
+            "term": "Emphysème"
+          },
+          {
+            "definition": "insuffisance respiratoire chronique obstructive.",
+            "term": "IRCO – définition"
+          },
+          {
+            "definition": "1/ purulence de l’expectoration. 2/ augmentation du volume des expectoration. 3/ augmentation de la dyspnée. Si 2/3 alors exacerbation",
+            "term": "Exacerbation - critères"
+          },
+          {
+            "definition": "VEMS / CVF (=capacité ventilatoire). Si < 70 % = BPCO",
+            "term": "Rapport de Tiffeneau"
+          },
+          {
+            "definition": "BPCO ⇒ dyspnée ⇒ anxiété ⇒ amyotrophie ⇒ dépression ⇒ effondrement capacité sportive",
+            "term": "Déconditionnement"
+          },
+          {
+            "definition": "PEC environ 20 séances ⇒ changer les habitudes/comportement pour maintenir un meilleur état de santé, atelier d’éducation thérapeutique. Nécessité de renforcement musculaire et d’une PEC globale (anxiété, dénutrition…). Améliore qualité de vie, réduction du nombre d’hospitalisation et de la survie",
+            "term": "Réadaptation respiratoire (RR)"
+          }
+        ],
+        "filename": "BPCO.odt"
+      }
+    ],
+    [
+      "ue_3_4_s3_statistiques",
+      {
+        "title": "Statistiques",
+        "date": "14/09/2026",
+        "ue": "3.4.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "transformer, résumer, condenser des données en valeurs qui ont du sens",
+            "term": "Statistiques descriptives"
+          },
+          {
+            "definition": "généraliser les résultats obtenus sur un échantillon à une population de référence",
+            "term": "Statistiques inférentielles"
+          },
+          {
+            "definition": "caractéristique des participants.",
+            "term": "Variable"
+          },
+          {
+            "definition": "représentée par des niveau, des groupes, des catégories (nominale = sans hiérarchisation, ordinale = classement, ordre logique)",
+            "term": "Variable qualitative"
+          },
+          {
+            "definition": "représentée par un/des chiffres avec un intervalle régulier sur lequel on peut réaliser des calculs simple",
+            "term": "Variable quantitative"
+          },
+          {
+            "definition": "répartition des valeurs d’une variable dans un groupe d’individus",
+            "term": "Distribution"
+          },
+          {
+            "definition": "Somme de toutes les valeurs divisée par leur nombre",
+            "term": "Moyenne"
+          },
+          {
+            "definition": "Valeur qui coupe les données exactement en deux parties égales",
+            "term": "Médiane"
+          },
+          {
+            "definition": "Valeur la plus fréquente dans une série de données (ex : score MMSE de 30 dans une série)",
+            "term": "Mode"
+          },
+          {
+            "definition": "Écart entre la plus grande et la plus petite valeur",
+            "term": "Étendue"
+          },
+          {
+            "definition": "Mesure mathématique de l'écart moyen des données par rapport à la moyenne",
+            "term": "Variance"
+          },
+          {
+            "definition": "Il exprime la dispersion dans la même unité que les données (Racine carrée de la variance.)",
+            "term": "Écart-type"
+          },
+          {
+            "definition": "Trois repères (Q1, Q2/Médiane, Q3) qui partagent les données en quatre parts égales",
+            "term": "Quartiles"
+          },
+          {
+            "definition": "Différence entre le 3e et le 1er quartile. Il contient les 50 % centraux des données",
+            "term": "Écart interquartile"
+          },
+          {
+            "definition": "Ensemble complet du groupe que l'on étudie (ex: tous les Français)",
+            "term": "Population"
+          },
+          {
+            "definition": "Groupe de participants, sous-ensemble représentatif de la population choisie pour l'étude (ex: 1000 Français)",
+            "term": "Échantillon"
+          },
+          {
+            "definition": "variation entre plusieurs échantillons d’une même population (ex : pop. Cible = 30 % de malade, éch. 1 = 40 % de malades, éch 2 = 25 % de malades, etc.)",
+            "term": "Fluctuations d’échantillonnage"
+          },
+          {
+            "definition": "Un seul élément de la population ou de l'échantillon",
+            "term": "Individu"
+          },
+          {
+            "definition": "Nombre total d'individus dans un groupe ou une catégorie",
+            "term": "Effectif"
+          },
+          {
+            "definition": "Proportion que représente une catégorie par rapport au total (souvent en %)",
+            "term": "Fréquence"
+          },
+          {
+            "definition": "indicateur permettant d’estimer dans les tests d’hypothèses dans quelle mesure nos conclusions basées sur les observations dans un échantillon pourraient être extrapolés à la population ciblée",
+            "term": "p-value"
+          },
+          {
+            "definition": "1/ qualitatif x qualitatif ⇒ risk ratio et odds ratio (mesures d’association de variables). 2/ qualitatif x quantitatif ⇒ différence de moyennes . 3/ quantitatif x quantitatif ⇒ coefficient de corrélation",
+            "term": "Analyses bivariées"
+          }
+        ],
+        "filename": "Statistiques.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 1586,
+    "totalTerms": 1745,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0

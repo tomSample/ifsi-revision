@@ -41,6 +41,15 @@ let spacedRepetition = null;
 let userProgress = {};
 let currentSemester = 'ALL'; // Semestre actuellement sélectionné
 
+// API consommée par le gestionnaire de rappels quotidien.
+window.getRevisionReminderSnapshot = function () {
+    return {
+        terms: allTerms,
+        progress: userProgress,
+        termKey: generateTermKey
+    };
+};
+
 const SEMESTER_COLORS = {
     ALL: '#2563EB',
     S1: '#0cb2afff',
@@ -502,6 +511,15 @@ async function loadCoursesData() {
         initUEFilter();
         updateModeCounters(); // Mettre à jour les compteurs d'indicateurs
         updateStatsDisplay();
+
+        // Une notification ouvre directement une session centrée sur le S3.
+        if (new URLSearchParams(window.location.search).get('reminder') === '1') {
+            const semesterButton = document.querySelector('[data-semester="S3"]');
+            if (semesterButton) semesterButton.click();
+            const reminderCount = document.getElementById('termCount');
+            if (reminderCount) reminderCount.value = '10';
+            if (typeof setTermCount === 'function') setTermCount(10);
+        }
         
         console.log(`${allTerms.length} termes chargés depuis ${coursesData.courses.length} cours`);
         console.log(`${availableUEs.length} UE disponibles:`, availableUEs);

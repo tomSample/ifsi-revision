@@ -1,0 +1,81 @@
+{
+  "titre": "Questionnaire - Asthme",
+  "description": "15 questions basees sur les notes de cours : elements essentiels et prise en charge infirmiere",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Definis l'asthme.",
+      "reponse": "Maladie inflammatoire chronique des bronches, caracterisee par une obstruction bronchique variable et reversible, une hyperreactivite bronchique et une inflammation de la muqueuse presentant des periodes de crise. Predominant chez les jeunes presentant un terrain atopique."
+    },
+    {
+      "id": 2,
+      "question": "Cite les 3 mecanismes physiopathologiques de l'asthme.",
+      "reponse": "1/ Inflammation chronique de la paroi bronchique ; 2/ Bronchoconstriction = retrecissement du calibre des bronches ; 3/ Hypersecretion bronchique."
+    },
+    {
+      "id": 3,
+      "question": "Nomme 2 facteurs de risque personnels et 2 facteurs de risque environnementaux.",
+      "reponse": "Personnels : antecedents familiaux, allergies, prematurite, obesite. Environnementaux : tabagisme actif/passif, qualite de l'air, exposition aux allergenes."
+    },
+    {
+      "id": 4,
+      "question": "Cite 4 facteurs declenchants d'une crise d'asthme.",
+      "reponse": "Effort physique, air froid/sec, irritants (fumee), stress/emotions fortes, allergenes inhales, moisissures."
+    },
+    {
+      "id": 5,
+      "question": "Quels sont les signes cliniques typiques de l'asthme ?",
+      "reponse": "Toux, sifflement a l'expiration, secretions bronchiques, essoufflement, tirage (intercostal / sus-claviculaire), sensation d'oppression thoracique, cyanose ; symptome plutot le soir ou le matin au reveil."
+    },
+    {
+      "id": 6,
+      "question": "Cite 3 diagnostics differentiels principaux de l'asthme.",
+      "reponse": "Insuffisance cardiaque gauche, corps etranger, embolie pulmonaire (EP), tumeurs tracheo-bronchiques, anxiete, mucoviscidose."
+    },
+    {
+      "id": 7,
+      "question": "Sur quoi repose le diagnostic de l'asthme ?",
+      "reponse": "Clinique/anamnese ++ et reversibilite des symptomes soit spontanee soit sous medicament."
+    },
+    {
+      "id": 8,
+      "question": "Quels examens complementaires et marqueurs sont utilises pour explorer l'asthme ?",
+      "reponse": "EFR avec test de reversibilite (spirometrie = mesure des volumes pulmonaires, DEP = debit expiratoire de pointe) ; si spirometrie normale => test a la metacholine => VEMS doit diminuer ; RT voire scanner thoracique si asthme non controle."
+    },
+    {
+      "id": 9,
+      "question": "Cite les 2 grandes categories de traitements de l'asthme et donne un exemple pour chacune.",
+      "reponse": "1/ Traitement de fond = corticoides inhales. 2/ Traitement en phase aigue = bronchodilatateurs + corticoides inhales (beta-2 sympathomimetiques/agonistes, anti-cholinergiques) ; biotherapie (anti-IgE, anti-IL5, anti-TSLP), antileucotrienes."
+    },
+    {
+      "id": 10,
+      "question": "Cite 4 complications possibles de l'asthme.",
+      "reponse": "Impact sur la qualite de vie / vie socioprofessionnelle, exacerbation (au moins 2 jours pour qualifier), insuffisance respiratoire, deces."
+    },
+    {
+      "id": 11,
+      "question": "Quels sont les criteres de gravite (signes de lutte vs signes de defaillance) ?",
+      "reponse": "Signes de lutte : parle avec des phrases, non agite, FR <30, SpO2 <95 %. Signes de defaillance : parle avec des mots, agite, FR>30, SpO2 <90 %, troubles de la conscience."
+    },
+    {
+      "id": 12,
+      "question": "Quelles sont les mesures de prevention de l'asthme ?",
+      "reponse": "Pratique sportive, traiter les allergies, vaccination (eviter infection), assainir l'environnement (pas d'huiles essentielles, ...), eviter les irritants (tabac, cannabis, cigarette electronique, etc)."
+    },
+    {
+      "id": 13,
+      "question": "Lors de la surveillance d'un patient asthmatique, quels parametres cliniques l'infirmier doit-il evaluer pour identifier les signes de gravite (lutte vs defaillance) ?",
+      "reponse": "L'infirmier doit evaluer : la capacite a parler (phrases vs mots), l'agitation (non agite vs agite), la frequence respiratoire (FR <30 vs >30), la saturation en oxygene (SpO2 <95 % vs <90 %) et l'etat de conscience (troubles de la conscience)."
+    },
+    {
+      "id": 14,
+      "question": "Quels signes cliniques l'infirmier doit-il rechercher a l'examen du patient pour suspecter une crise d'asthme ?",
+      "reponse": "Toux, sifflement a l'expiration, secretions bronchiques, essoufflement, tirage (intercostal / sus-claviculaire), sensation d'oppression thoracique, cyanose ; noter que les symptomes sont plutot le soir ou le matin au reveil."
+    },
+    {
+      "id": 15,
+      "question": "Quels conseils de prevention l'infirmier doit-il transmettre au patient asthmatique dans le cadre de l'education therapeutique ?",
+      "reponse": "Encourager la pratique sportive, rappeler l'importance de traiter les allergies et de se faire vacciner (pour eviter les infections), conseiller d'assainir l'environnement (pas d'huiles essentielles, etc.) et d'eviter les irritants (tabac, cannabis, cigarette electronique, etc)."
+    }
+  ]
+}
