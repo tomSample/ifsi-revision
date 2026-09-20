@@ -15,16 +15,26 @@
 <body class="psychopathologie-page psychopathologie-recap-page">
     <header class="app-header">
         <div class="header-content">
-            <a href="./psychopathologie.html" class="header-brand">
-                <span class="header-brand-icon">🧠</span>
-                <span class="header-brand-text">
+            <a href="#" class="header-brand">
+                <span class="header-brand-icon">📚</span>
+                <div class="header-brand-text">
                     <h1>IFSI Lannion</h1>
-                    <p>Révisions en soins infirmiers</p>
-                </span>
+                    <p>Promo 2025-2028</p>
+                </div>
             </a>
-            <a href="./psychopathologie.html" class="btn btn-outline">Psychopathologie</a>
+            <div class="header-actions">
+                <div class="user-badge" id="userBadge">
+                    <span id="userInitials">👤</span>
+                    <span id="userEmail" class="user-email">Utilisateur</span>
+                </div>
+            </div>
         </div>
     </header>
+
+    <div class="admin-status-badge" id="adminStatusBadge">
+        <span>🔓 ADMINISTRATEUR</span>
+        <button onclick="authManager.logout()">Déconnexion</button>
+    </div>
 
     <main class="psychopathologie-recap-main">
         <aside class="psychopathologie-sidebar" aria-label="Catégories de troubles">
@@ -57,10 +67,15 @@
     </main>
 
     <footer class="app-footer">
-        <div class="footer-links"><a href="./psychopathologie.html">Psychopathologie</a></div>
-        <p>IFSI Lannion 2025 - Plateforme de révision</p>
+        <div class="footer-links">
+            <a href="#privacy">Confidentialité</a>
+            <a href="#terms">Conditions</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p id="versionInfo">IFSI Lannion 2025 - Plateforme v3.0</p>
     </footer>
 
+    <script src="../assets/scripts/auth/auth.js"></script>
     <script src="../assets/scripts/modules/psychopathologie-recap.js"></script>
 </body>
 </html>
