@@ -1,0 +1,888 @@
+{
+  "version": 1,
+  "statut": "matrice_de_travail_validee_humainement",
+  "note": "Cette matrice ne modifie pas encore les donnees applicatives. Les rattachements conditionnels doivent conserver leur contexte clinique dans le dictionnaire.",
+  "sources": {
+    "DSM": "https://www.psychiatry.org/psychiatrists/practice/dsm",
+    "NHS-schizophrenia": "https://www.nhs.uk/mental-health/conditions/schizophrenia/symptoms/",
+    "NHS-bipolar": "https://www.nhs.uk/mental-health/conditions/bipolar-disorder/",
+    "NHS-depression": "https://www.nhs.uk/mental-health/conditions/depression-in-adults/symptoms/",
+    "NHS-gad": "https://www.nhs.uk/mental-health/conditions/generalised-anxiety-disorder-gad/",
+    "NHS-ptsd": "https://www.nhs.uk/mental-health/conditions/ptsd-post-traumatic-stress-disorder/",
+    "NHS-dissociation": "https://www.nhs.uk/mental-health/conditions/dissociative-disorders/",
+    "NHS-body-dysmorphia": "https://www.nhs.uk/mental-health/conditions/body-dysmorphia/",
+    "NHS-ocd": "https://www.nhs.uk/mental-health/conditions/obsessive-compulsive-disorder-ocd/overview/",
+    "NHS-adhd": "https://www.nhs.uk/conditions/adhd-adults/",
+    "CDC-autism": "https://www.cdc.gov/autism/signs-symptoms/index.html",
+    "NCBI-catatonia": "https://www.ncbi.nlm.nih.gov/books/NBK430842/"
+  },
+  "termes": [
+    {
+      "terme": "aboulie / avolition",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "forte",
+          "source": "DSM; NHS-schizophrenia"
+        },
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "moderee",
+          "contexte": "perte de motivation, d'interet ou d'energie",
+          "source": "DSM; NHS-depression"
+        }
+      ],
+      "formulations": [
+        "avolition",
+        "diminution de la volonte",
+        "manque de volonte",
+        "difficulte a initier une action"
+      ]
+    },
+    {
+      "terme": "agitation",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "forte",
+          "contexte": "agitation ou ralentissement psychomoteur",
+          "source": "DSM; NHS-depression"
+        },
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "forte",
+          "contexte": "augmentation de l'activite ou agitation pendant la manie",
+          "source": "DSM; NHS-bipolar"
+        },
+        {
+          "sousCategorie": "Trouble anxieux generalise",
+          "solidite": "forte",
+          "contexte": "agitation ou sensation d'etre survolte; symptome non specifique",
+          "source": "DSM; NHS-gad"
+        }
+      ],
+      "formulations": [
+        "agitation psychomotrice",
+        "sensation d'etre survolte",
+        "besoin de bouger"
+      ]
+    },
+    {
+      "terme": "agoraphobie",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Troubles phobiques",
+          "solidite": "forte",
+          "source": "DSM; NHS-phobias"
+        },
+        {
+          "sousCategorie": "Trouble panique",
+          "solidite": "conditionnelle",
+          "contexte": "association possible, mais non obligatoire",
+          "source": "DSM; NHS-panic"
+        }
+      ],
+      "formulations": [
+        "peur des espaces ouverts",
+        "peur de la foule",
+        "peur de ne pas pouvoir s'echapper"
+      ]
+    },
+    {
+      "terme": "amnésie",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Amnesies dissociatives avec ou sans fugue",
+          "solidite": "forte",
+          "contexte": "oubli d'informations autobiographiques importantes",
+          "source": "DSM; NHS-dissociation"
+        },
+        {
+          "sousCategorie": "Trouble stress post-traumatique",
+          "solidite": "conditionnelle",
+          "contexte": "oubli d'elements importants du traumatisme uniquement",
+          "source": "DSM; NHS-ptsd"
+        }
+      ],
+      "formulations": [
+        "trou de memoire",
+        "oubli d'informations autobiographiques",
+        "amnésie dissociative"
+      ]
+    },
+    {
+      "terme": "anhédonie",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "forte",
+          "source": "DSM; NHS-depression"
+        },
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "forte",
+          "contexte": "episode depressif bipolaire",
+          "source": "DSM; NHS-bipolar"
+        },
+        {
+          "sousCategorie": "Trouble stress post-traumatique",
+          "solidite": "moderee",
+          "contexte": "diminution de l'interet ou de la participation",
+          "source": "DSM; NHS-ptsd"
+        }
+      ],
+      "formulations": [
+        "perte de plaisir",
+        "absence de plaisir",
+        "incapacite a ressentir du plaisir",
+        "perte d'interet pour les activites plaisantes"
+      ]
+    },
+    {
+      "terme": "anxiété",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble anxieux generalise",
+          "solidite": "moderee",
+          "contexte": "inquietude excessive et difficile a controler",
+          "source": "DSM; NHS-gad"
+        },
+        {
+          "sousCategorie": "Trouble panique",
+          "solidite": "moderee",
+          "contexte": "anxiete paroxystique ou anxiete anticipatoire",
+          "source": "DSM; NHS-panic"
+        },
+        {
+          "sousCategorie": "Troubles phobiques",
+          "solidite": "moderee",
+          "contexte": "peur liee a un objet ou une situation",
+          "source": "DSM; NHS-phobias"
+        },
+        {
+          "sousCategorie": "Trouble stress post-traumatique",
+          "solidite": "moderee",
+          "source": "DSM; NHS-ptsd"
+        },
+        {
+          "sousCategorie": "Trouble de l'adaptation",
+          "solidite": "moderee",
+          "contexte": "symptomes en reponse a un facteur de stress identifiable",
+          "source": "DSM"
+        }
+      ],
+      "formulations": [
+        "inquietude",
+        "apprehension",
+        "angoisse",
+        "peur diffuse"
+      ]
+    },
+    {
+      "terme": "apathie",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "moderee",
+          "contexte": "symptomes negatifs",
+          "source": "DSM; NHS-schizophrenia"
+        },
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "moderee",
+          "source": "DSM; NHS-depression"
+        }
+      ],
+      "formulations": [
+        "indifference",
+        "impassibilite",
+        "manque d'interet"
+      ]
+    },
+    {
+      "terme": "asthénie",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "forte",
+          "contexte": "fatigue ou perte d'energie",
+          "source": "DSM; NHS-depression"
+        },
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "moderee",
+          "contexte": "phase depressive",
+          "source": "DSM; NHS-bipolar"
+        },
+        {
+          "sousCategorie": "Trouble anxieux generalise",
+          "solidite": "forte",
+          "contexte": "fatigabilite incluse dans les criteres, non specifique",
+          "source": "DSM; NHS-gad"
+        }
+      ],
+      "formulations": [
+        "fatigabilite",
+        "fatigue",
+        "manque d'energie",
+        "epuisement"
+      ]
+    },
+    {
+      "terme": "autolyse",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "forte",
+          "contexte": "idees de mort, ideation suicidaire ou tentative",
+          "source": "DSM; NHS-depression"
+        },
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "conditionnelle",
+          "contexte": "selon la phase et le tableau clinique",
+          "source": "DSM; NHS-bipolar"
+        },
+        {
+          "sousCategorie": "Emotionnelles : antisociale, borderline, histrionique, narcissique",
+          "solidite": "forte",
+          "contexte": "conduites auto-agressives ou suicidaires repetées, surtout borderline",
+          "source": "DSM"
+        }
+      ],
+      "formulations": [
+        "conduite suicidaire",
+        "tentative de suicide",
+        "auto-agression",
+        "passage a l'acte suicidaire"
+      ]
+    },
+    {
+      "terme": "barrage",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "moderee",
+          "contexte": "blocage de la pensee ou interruption du discours dans une desorganisation psychotique",
+          "source": "DSM; NHS-schizophrenia"
+        }
+      ],
+      "formulations": [
+        "blocage de la pensee",
+        "interruption brusque du discours",
+        "thought blocking"
+      ]
+    },
+    {
+      "terme": "bradykinésie",
+      "statut": "lexique_seul",
+      "rattachements": [],
+      "note": "Signe neurologique ou extrapyramidal; ne pas l'ajouter comme symptome psychiatrique sans contexte etiologique.",
+      "formulations": [
+        "lenteur des mouvements",
+        "ralentissement moteur"
+      ]
+    },
+    {
+      "terme": "bradyphémie",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "moderee",
+          "contexte": "expression indirecte du ralentissement psychomoteur",
+          "source": "DSM; NHS-depression"
+        }
+      ],
+      "formulations": [
+        "parole lente",
+        "discours ralenti",
+        "ralentissement de la parole"
+      ]
+    },
+    {
+      "terme": "bradypsychie",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "moderee",
+          "contexte": "ralentissement de la pensee et du fonctionnement psychomoteur",
+          "source": "DSM; NHS-depression"
+        }
+      ],
+      "formulations": [
+        "ralentissement de la pensee",
+        "lenteur intellectuelle",
+        "pensee ralentie"
+      ]
+    },
+    {
+      "terme": "catatonie",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "conditionnelle",
+          "contexte": "syndrome ou specificateur catatonique constitue",
+          "source": "DSM; NCBI-catatonia"
+        },
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "conditionnelle",
+          "contexte": "syndrome ou specificateur catatonique constitue",
+          "source": "DSM; NCBI-catatonia"
+        },
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "conditionnelle",
+          "contexte": "syndrome ou specificateur catatonique constitue",
+          "source": "DSM; NCBI-catatonia"
+        }
+      ],
+      "formulations": [
+        "syndrome catatonique",
+        "stupeur catatonique",
+        "mutisme et immobilite catatoniques"
+      ]
+    },
+    {
+      "terme": "délire",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "forte",
+          "source": "DSM; NHS-schizophrenia"
+        },
+        {
+          "sousCategorie": "Trouble delitant persistant",
+          "solidite": "forte",
+          "note": "Intitule a harmoniser ulterieurement en « Trouble delirant ».",
+          "source": "DSM"
+        },
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "conditionnelle",
+          "contexte": "episode avec caracteristiques psychotiques",
+          "source": "DSM; NHS-bipolar"
+        },
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "conditionnelle",
+          "contexte": "episode avec caracteristiques psychotiques",
+          "source": "DSM; NHS-depression"
+        }
+      ],
+      "formulations": [
+        "idee delirante",
+        "conviction delirante",
+        "croyance fausse et fixe"
+      ]
+    },
+    {
+      "terme": "dépersonnalisation",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Depersonnalisation, derealisation",
+          "solidite": "forte",
+          "source": "DSM; NHS-dissociation"
+        },
+        {
+          "sousCategorie": "Trouble stress post-traumatique",
+          "solidite": "conditionnelle",
+          "contexte": "specificateur dissociatif",
+          "source": "DSM; NHS-ptsd"
+        }
+      ],
+      "formulations": [
+        "sentiment d'etre detache de soi",
+        "impression d'etre spectateur de soi",
+        "etrangete de soi"
+      ]
+    },
+    {
+      "terme": "dissociation",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Depersonnalisation, derealisation",
+          "solidite": "forte",
+          "contexte": "si elle correspond a une depersonnalisation ou une derealisation",
+          "source": "DSM; NHS-dissociation"
+        },
+        {
+          "sousCategorie": "Amnesies dissociatives avec ou sans fugue",
+          "solidite": "forte",
+          "contexte": "si elle correspond a une amnesie dissociative ou une fugue",
+          "source": "DSM; NHS-dissociation"
+        },
+        {
+          "sousCategorie": "Trouble stress post-traumatique",
+          "solidite": "conditionnelle",
+          "contexte": "symptomes dissociatifs post-traumatiques",
+          "source": "DSM; NHS-ptsd"
+        }
+      ],
+      "formulations": [
+        "sentiment de detachement",
+        "deconnexion de soi ou de l'environnement",
+        "etat dissociatif"
+      ]
+    },
+    {
+      "terme": "dysmorphophobie",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Dysmorphophobies",
+          "solidite": "forte",
+          "source": "DSM; NHS-body-dysmorphia"
+        }
+      ],
+      "formulations": [
+        "preoccupation par un defaut physique",
+        "peur d'etre laid",
+        "preoccupation excessive de l'apparence"
+      ]
+    },
+    {
+      "terme": "écholalie",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Troubles du spectre de l'autisme",
+          "solidite": "moderee",
+          "contexte": "comportement verbal repetitif, non specifique",
+          "source": "DSM; CDC-autism"
+        },
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "conditionnelle",
+          "contexte": "uniquement si elle s'inscrit dans un syndrome catatonique constitue",
+          "source": "DSM; NCBI-catatonia"
+        },
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "conditionnelle",
+          "contexte": "uniquement si elle s'inscrit dans un syndrome catatonique constitue",
+          "source": "DSM; NCBI-catatonia"
+        },
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "conditionnelle",
+          "contexte": "uniquement si elle s'inscrit dans un syndrome catatonique constitue",
+          "source": "DSM; NCBI-catatonia"
+        }
+      ],
+      "formulations": [
+        "repetition des paroles",
+        "repete les mots entendus",
+        "imitation verbale"
+      ]
+    },
+    {
+      "terme": "hallucination",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "forte",
+          "source": "DSM; NHS-schizophrenia"
+        },
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "conditionnelle",
+          "contexte": "episode avec caracteristiques psychotiques",
+          "source": "DSM; NHS-bipolar"
+        },
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "conditionnelle",
+          "contexte": "episode avec caracteristiques psychotiques",
+          "source": "DSM; NHS-depression"
+        },
+        {
+          "sousCategorie": "Trouble delirant persistant",
+          "solidite": "tres_conditionnelle",
+          "contexte": "hallucinations non proeminentes et directement liees au theme delirant",
+          "source": "DSM"
+        }
+      ],
+      "formulations": [
+        "perception sans objet",
+        "entendre des voix",
+        "voir ou entendre des choses inexistantes"
+      ]
+    },
+    {
+      "terme": "hypervigilance",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble stress post-traumatique",
+          "solidite": "forte",
+          "contexte": "cluster d'hyperactivation et de reactivite",
+          "source": "DSM; NHS-ptsd"
+        },
+        {
+          "sousCategorie": "Trouble anxieux generalise",
+          "solidite": "moderee",
+          "contexte": "manifestation anxieuse possible, non critere autonome",
+          "source": "DSM; NHS-gad"
+        }
+      ],
+      "formulations": [
+        "vigilance excessive",
+        "surveillance constante",
+        "etat d'alerte permanent"
+      ]
+    },
+    {
+      "terme": "impulsivité",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "TDAH et apparentés",
+          "solidite": "forte",
+          "contexte": "agir sans reflechir, interruptions",
+          "source": "DSM; NHS-adhd"
+        },
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "forte",
+          "contexte": "activites potentiellement dommageables pendant la manie",
+          "source": "DSM; NHS-bipolar"
+        },
+        {
+          "sousCategorie": "Emotionnelles : antisociale, borderline, histrionique, narcissique",
+          "solidite": "forte",
+          "contexte": "plusieurs domaines pour le borderline; conduite irresponsable pour l'antisociale",
+          "source": "DSM"
+        }
+      ],
+      "formulations": [
+        "agir sans reflechir",
+        "difficulte a controler ses impulsions",
+        "passage a l'acte impulsif"
+      ]
+    },
+    {
+      "terme": "incurie",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "moderee",
+          "contexte": "negligence des soins personnels",
+          "source": "DSM; NHS-schizophrenia"
+        },
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "moderee",
+          "contexte": "negligence des soins personnels dans les formes severes",
+          "source": "DSM; NHS-depression"
+        }
+      ],
+      "formulations": [
+        "negligence de l'hygiene",
+        "negligence des soins personnels",
+        "laisser-aller"
+      ]
+    },
+    {
+      "terme": "inhibition psychomotrice",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "forte",
+          "source": "DSM; NHS-depression"
+        },
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "conditionnelle",
+          "contexte": "uniquement si elle s'inscrit dans un syndrome catatonique constitue",
+          "source": "DSM; NCBI-catatonia"
+        },
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "conditionnelle",
+          "contexte": "uniquement si elle s'inscrit dans un syndrome catatonique constitue",
+          "source": "DSM; NCBI-catatonia"
+        },
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "conditionnelle",
+          "contexte": "uniquement si elle s'inscrit dans un syndrome catatonique constitue",
+          "source": "DSM; NCBI-catatonia"
+        }
+      ],
+      "formulations": [
+        "ralentissement psychomoteur",
+        "lenteur des gestes",
+        "ralentissement de l'activite"
+      ]
+    },
+    {
+      "terme": "irritabilité",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "forte",
+          "contexte": "humeur irritable pendant la manie",
+          "source": "DSM; NHS-bipolar"
+        },
+        {
+          "sousCategorie": "Trouble anxieux generalise",
+          "solidite": "moderee",
+          "source": "DSM; NHS-gad"
+        },
+        {
+          "sousCategorie": "Trouble stress post-traumatique",
+          "solidite": "forte",
+          "contexte": "alteration de l'activation et de la reactivite",
+          "source": "DSM; NHS-ptsd"
+        },
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "moderee",
+          "contexte": "notamment chez l'enfant ou l'adolescent",
+          "source": "DSM; NHS-depression"
+        }
+      ],
+      "formulations": [
+        "humeur irritable",
+        "nervosite",
+        "susceptibilite",
+        "agacement"
+      ]
+    },
+    {
+      "terme": "logorrhée",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "forte",
+          "contexte": "pression du discours pendant la manie",
+          "source": "DSM; NHS-bipolar"
+        },
+        {
+          "sousCategorie": "TDAH et apparentés",
+          "solidite": "forte",
+          "contexte": "parle excessivement",
+          "source": "DSM; NHS-adhd"
+        },
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "conditionnelle",
+          "contexte": "si elle s'inscrit dans une desorganisation du discours",
+          "source": "DSM; NHS-schizophrenia"
+        }
+      ],
+      "formulations": [
+        "parole abondante",
+        "pression du discours",
+        "parle beaucoup",
+        "debit de parole accelere"
+      ]
+    },
+    {
+      "terme": "manie",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "tres_forte",
+          "contexte": "episode maniaque central dans le trouble bipolaire de type I",
+          "source": "DSM; NHS-bipolar"
+        }
+      ],
+      "formulations": [
+        "episode maniaque",
+        "phase d'excitation",
+        "surexcitation psychique et physique"
+      ]
+    },
+    {
+      "terme": "mélancolie",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "forte",
+          "contexte": "specificateur de caracteristiques melancholiques",
+          "source": "DSM; NHS-depression"
+        },
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "forte",
+          "contexte": "specificateur d'un episode depressif bipolaire",
+          "source": "DSM; NHS-bipolar"
+        }
+      ],
+      "formulations": [
+        "caracteristiques melancholiques",
+        "depression melancholique",
+        "etat melancholique"
+      ]
+    },
+    {
+      "terme": "néologisme",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "moderee",
+          "contexte": "manifestation possible d'un langage ou d'une pensee desorganises dans les troubles psychotiques; non specifique",
+          "source": "DSM; NHS-schizophrenia"
+        }
+      ],
+      "formulations": [
+        "invention de mots",
+        "mots nouveaux incomprehensibles",
+        "langage neologique"
+      ]
+    },
+    {
+      "terme": "négativisme",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "conditionnelle",
+          "contexte": "uniquement dans un syndrome catatonique constitue",
+          "source": "DSM; NCBI-catatonia"
+        },
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "conditionnelle",
+          "contexte": "uniquement dans un syndrome catatonique constitue",
+          "source": "DSM; NCBI-catatonia"
+        },
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "conditionnelle",
+          "contexte": "uniquement dans un syndrome catatonique constitue",
+          "source": "DSM; NCBI-catatonia"
+        }
+      ],
+      "formulations": [
+        "refus de contact",
+        "opposition systematique",
+        "resistance passive"
+      ]
+    },
+    {
+      "terme": "paralogisme",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "faible_a_moderee",
+          "contexte": "manifestation indirecte d'un raisonnement ou d'un discours desorganise dans les troubles psychotiques",
+          "source": "DSM; NHS-schizophrenia"
+        }
+      ],
+      "formulations": [
+        "raisonnement illogique",
+        "logique pathologique",
+        "raisonnement incoherent"
+      ]
+    },
+    {
+      "terme": "rumination",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble anxieux generalise",
+          "solidite": "moderee",
+          "contexte": "inquietude excessive, repetitive et difficile a controler",
+          "source": "DSM; NHS-gad"
+        },
+        {
+          "sousCategorie": "Trouble depressif caracterise",
+          "solidite": "moderee",
+          "contexte": "rumination depressive associee, sans critere autonome",
+          "source": "DSM; NHS-depression"
+        },
+        {
+          "sousCategorie": "TOC et apparentés",
+          "solidite": "conditionnelle",
+          "contexte": "uniquement si le terme designe une obsession intrusive; rumination et obsession ne sont pas synonymes",
+          "source": "DSM; NHS-ocd"
+        }
+      ],
+      "formulations": [
+        "pensees repetitives",
+        "preoccupation persistante",
+        "tourner une idee en boucle",
+        "inquietude repetitive"
+      ]
+    },
+    {
+      "terme": "syndrome d’influence",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "moderee",
+          "contexte": "phenomenes psychotiques de controle ou d'influence; non critere DSM autonome",
+          "source": "DSM; NHS-schizophrenia"
+        }
+      ],
+      "formulations": [
+        "sentiment d'etre controle",
+        "pensee imposee",
+        "impression d'etre dirige de l'exterieur"
+      ]
+    },
+    {
+      "terme": "tachykinésie",
+      "statut": "lexique_seul",
+      "rattachements": [],
+      "note": "Terme semiologique descriptif. Ne pas le rattacher automatiquement a la manie, au TDAH ou a l'agitation depressive sans contexte clinique.",
+      "formulations": [
+        "deambulation anxieuse",
+        "besoin irrepressible de bouger",
+        "agitation motrice"
+      ]
+    },
+    {
+      "terme": "tachypsychie",
+      "statut": "a_integrer",
+      "rattachements": [
+        {
+          "sousCategorie": "Trouble bipolaire",
+          "solidite": "moderee",
+          "contexte": "acceleration de la pensee ou fuite des idees pendant la manie",
+          "source": "DSM; NHS-bipolar"
+        },
+        {
+          "sousCategorie": "Schizophrenie et formes limites",
+          "solidite": "conditionnelle",
+          "contexte": "uniquement si elle s'inscrit dans une desorganisation plus large",
+          "source": "DSM; NHS-schizophrenia"
+        }
+      ],
+      "formulations": [
+        "pensee acceleree",
+        "acceleration ideique",
+        "fuite des idees"
+      ]
+    }
+  ]
+}
