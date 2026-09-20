@@ -450,7 +450,6 @@
     transition: all var(--transition-base);
 }
 
-.psychopathologie-category-item:hover,
 .psychopathologie-category-item.active {
     border-color: currentColor;
     box-shadow: var(--shadow-sm);
