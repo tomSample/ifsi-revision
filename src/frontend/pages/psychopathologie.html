@@ -28,35 +28,25 @@
 
     <main>
         <section class="psychopathologie-hero">
-            <h1>Recherche en psychopathologie</h1>
-            <p>Saisissez un symptôme pour retrouver les catégories et sous-catégories qui lui sont associées.</p>
+            <h1>Psychopathologie</h1>
+            <p>Choisissez un outil pour explorer les troubles, les symptômes et leurs correspondances.</p>
         </section>
 
         <div class="psychopathologie-container">
-            <section class="search-panel" aria-labelledby="searchTitle">
-                <label id="searchTitle" for="symptomSearch">Rechercher un symptôme</label>
-                <div class="psychopathologie-search-wrapper">
-                    <input id="symptomSearch" class="psychopathologie-search" type="search"
-                        placeholder="Ex. hallucinations, perte de plaisir, agitation..."
-                        autocomplete="off" aria-autocomplete="list" aria-controls="symptomSuggestions">
-                    <div id="symptomSuggestions" class="symptom-suggestions" role="listbox"></div>
-                </div>
-                <p class="notice" style="margin: var(--space-4) 0 0;">La recherche utilise les symptômes du tableau et un dictionnaire local de termes associés. Elle ne constitue pas un diagnostic.</p>
-            </section>
-
-            <section class="selected-panel" aria-labelledby="selectedTitle">
-                <div class="selected-actions">
-                    <h2 id="selectedTitle" class="panel-heading">Symptômes sélectionnés</h2>
-                    <button id="clearSymptoms" class="btn btn-secondary" type="button">Effacer tout</button>
-                </div>
-                <div id="selectedSymptoms" class="selected-symptoms"></div>
-            </section>
-
-            <section class="results-panel" aria-labelledby="resultsTitle">
-                <h2 id="resultsTitle" class="panel-heading">Correspondances</h2>
-                <p id="resultsSummary" class="results-summary"></p>
-                <div id="psychopathologyResults"></div>
-            </section>
+            <div class="psychopathologie-choice-grid">
+                <a class="psychopathologie-choice-card" href="./psychopathologie-recherche.html">
+                    <span class="choice-icon">🔎</span>
+                    <h2>Des symptômes vers les syndromes</h2>
+                    <p>Saisissez et sélectionnez un ou plusieurs symptômes pour retrouver les catégories et sous-catégories correspondantes.</p>
+                    <span class="btn btn-primary">Ouvrir le moteur de recherche →</span>
+                </a>
+                <a class="psychopathologie-choice-card" href="./psychopathologie-recap.html">
+                    <span class="choice-icon">📚</span>
+                    <h2>Récapitulatif des troubles</h2>
+                    <p>Parcourez le JSON normalisé par catégorie, sous-catégorie et symptôme, avec une barre de recherche.</p>
+                    <span class="btn btn-primary">Voir le récapitulatif →</span>
+                </a>
+            </div>
         </div>
     </main>
 
@@ -64,8 +54,5 @@
         <div class="footer-links"><a href="./home.html">Accueil</a></div>
         <p>IFSI Lannion 2025 - Plateforme de révision</p>
     </footer>
-
-    <script src="../assets/scripts/auth/auth.js"></script>
-    <script src="../assets/scripts/modules/psychopathologie-search.js"></script>
 </body>
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Récapitulatif des troubles et symptômes en psychopathologie">
+    <title>Récapitulatif psychopathologie - IFSI Lannion</title>
+    <link rel="manifest" href="../../../public/manifest.json">
+    <link rel="stylesheet" href="../assets/styles/theme.css">
+    <link rel="stylesheet" href="../assets/styles/design-system.css">
+    <link rel="stylesheet" href="../assets/styles/animations.css">
+    <link rel="stylesheet" href="../assets/styles/layout.css">
+    <link rel="stylesheet" href="../assets/styles/psychopathologie.css">
+</head>
+<body class="psychopathologie-page">
+    <header class="app-header">
+        <div class="header-content">
+            <a href="./psychopathologie.html" class="header-brand">
+                <span class="header-brand-icon">🧠</span>
+                <span class="header-brand-text">
+                    <h1>IFSI Lannion</h1>
+                    <p>Révisions en soins infirmiers</p>
+                </span>
+            </a>
+            <a href="./psychopathologie.html" class="btn btn-outline">Psychopathologie</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="psychopathologie-hero">
+            <h1>Récapitulatif des troubles</h1>
+            <p>Parcourez les catégories, sous-catégories et symptômes du tableau de psychopathologie.</p>
+        </section>
+
+        <div class="psychopathologie-container recap-container">
+            <section class="search-panel" aria-labelledby="recapSearchTitle">
+                <label id="recapSearchTitle" for="psychopathologieRecapSearch">Rechercher dans le récapitulatif</label>
+                <div class="psychopathologie-search-wrapper">
+                    <input id="psychopathologieRecapSearch" class="psychopathologie-search" type="search"
+                        placeholder="Ex. psychotique, hallucination, anxiété..."
+                        autocomplete="off">
+                </div>
+                <p id="psychopathologieRecapCount" class="results-summary"></p>
+            </section>
+            <div id="psychopathologieRecapResults"></div>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-links"><a href="./psychopathologie.html">Psychopathologie</a></div>
+        <p>IFSI Lannion 2025 - Plateforme de révision</p>
+    </footer>
+
+    <script src="../assets/scripts/modules/psychopathologie-recap.js"></script>
+</body>
+</html>
