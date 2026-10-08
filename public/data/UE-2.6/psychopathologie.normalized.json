@@ -264,8 +264,8 @@
     "categorie": "Troubles anxieux",
     "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
     "motsClesCategorie": [],
-    "sousCategorie": "",
-    "formeClinique": "Trouble anxieux généralisé (TAG)",
+    "sousCategorie": "Trouble anxieux généralisé (TAG)",
+    "formeClinique": "",
     "definitionForme": "Anxiété et soucis excessifs non justifiés et non contrôlables = maladie des inquiétudes",
     "criteresDiagnostic": [
       "Durée > 6 mois"
@@ -289,7 +289,205 @@
     "traitements": [
       "Psycho-éducation",
       "TCC",
-      "Médicamenteux : 1ere intention = antidépresseurs (ISRS / 2e intention = anxiolytique (benzodiazépine ou hydroxyzine)"
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS) / 2e intention = anxiolytique (benzodiazépine ou hydroxyzine)"
+    ]
+  },
+  {
+    "id": "forme-012",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble panique",
+    "formeClinique": "",
+    "definitionForme": "Répétition d'attaque de panique",
+    "criteresDiagnostic": [
+      "Durée > 1 mois"
+    ],
+    "semiologie": [
+      "Anxiété anticipatoire",
+      "Peur de mourir - Peur de devenir fou (dépersonnalisation) - Déréalisation",
+      "+/- Agoraphobie",
+      "Comportements d'évitement"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "risque élevé de développer un EDC",
+      "Chronicisation"
+    ],
+    "traitements": [
+      "Psycho-éducation",
+      "TCC",
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS) / 2e intention = anxiolytique (benzodiazépine ou hydroxyzine)"
+    ]
+  },
+  {
+    "id": "forme-013",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble phobique",
+    "formeClinique": "Phobie spécifique",
+    "definitionForme": "Phobie limitée à un seul objet / une seule situation",
+    "criteresDiagnostic": [
+      "Durée > 6 mois"
+    ],
+    "semiologie": [
+      "Evitement",
+      "Anticipation anxieuse",
+      "Angoisse si confrontation +/- attaque de panique",
+      "Répercussions socio-professionnelles"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Rémission spontanée à l'âge adulte",
+      "Chronicisation si persiste à l'âge adulte"
+    ],
+    "traitements": [
+      "TCC"
+    ]
+  },
+  {
+    "id": "forme-014",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble phobique",
+    "formeClinique": "Phobie sociale",
+    "definitionForme": "Peur d'agir de façon embarrassante ou humiliante\nPeur du jugement d'autrui",
+    "criteresDiagnostic": [
+      "Durée > 6 mois"
+    ],
+    "semiologie": [
+      "Evitement",
+      "Anticipation anxieuse",
+      "Angoisse si confrontation +/- attaque de panique",
+      "Répercussions socio-professionnelles"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Désinsertion professionnelle",
+      "Isolement"
+    ],
+    "traitements": [
+      "TCC",
+      "Médicamenteux : ISRS"
+    ]
+  },
+  {
+    "id": "forme-015",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble phobique",
+    "formeClinique": "Agoraphobie",
+    "definitionForme": "Peur intense et irrationnelle de se retrouver dans des situations ou des lieux d'où il serait difficile de s'échapper ou de recevoir de l'aide",
+    "criteresDiagnostic": [
+      "Durée > 6 mois"
+    ],
+    "semiologie": [
+      "Evitement",
+      "Anticipation anxieuse",
+      "Angoisse si confrontation +/- attaque de panique",
+      "Répercussions socio-professionnelles"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Isolement"
+    ],
+    "traitements": [
+      "TCC"
+    ]
+  },
+  {
+    "id": "forme-016",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble obsessionnel et compulsif (TOC)",
+    "formeClinique": "Obsessions",
+    "definitionForme": "Irruptions de pensées en désaccord avec la pensée consciente du sujet (insight faible dans 5 à 25% des cas)",
+    "criteresDiagnostic": [
+      "Perte de temps > 1h/jour ou souffrance clinique"
+    ],
+    "semiologie": [
+      "Réccurrence et persistance des pensées",
+      "Pensées de contamination => lavage des mains",
+      "Pensées interdites (catastrophe, aggressive, sexuelle, religieuse...)"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "EDC",
+      "Risque suicidaire",
+      "Addictions",
+      "Evolution péjorative le plus souvent"
+    ],
+    "traitements": [
+      "Psycho-éducation",
+      "TCC",
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS)",
+      "Stimulation profonde (expérimental"
+    ]
+  },
+  {
+    "id": "forme-017",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble obsessionnel et compulsif (TOC)",
+    "formeClinique": "Compulsions et rituels",
+    "definitionForme": "Action longuement réfléchie permettant de diminuer l'anxiété",
+    "criteresDiagnostic": [
+      "Perte de temps > 1h/jour ou souffrance clinique"
+    ],
+    "semiologie": [
+      "Symétrie recherchée",
+      "Erreur => Vérification"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "EDC",
+      "Risque suicidaire",
+      "Addictions",
+      "Evolution péjorative le plus souvent"
+    ],
+    "traitements": [
+      "Psycho-éducation",
+      "TCC",
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS)",
+      "Stimulation profonde (expérimental"
+    ]
+  },
+  {
+    "id": "forme-018",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble obsessionnel et compulsif (TOC)",
+    "formeClinique": "Evitemens",
+    "definitionForme": "",
+    "criteresDiagnostic": [
+      "Perte de temps > 1h/jour ou souffrance clinique"
+    ],
+    "semiologie": [],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "EDC",
+      "Risque suicidaire",
+      "Addictions",
+      "Evolution péjorative le plus souvent"
+    ],
+    "traitements": [
+      "Psycho-éducation",
+      "TCC",
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS)",
+      "Stimulation profonde (expérimental"
     ]
   }
 ]

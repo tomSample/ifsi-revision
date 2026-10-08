@@ -186,8 +186,8 @@
 
     async function loadData() {
         const [dataResponse, synonymsResponse] = await Promise.all([
-            fetch(DATA_URL),
-            fetch(SYNONYMS_URL)
+            fetch(DATA_URL, { cache: 'no-store' }),
+            fetch(SYNONYMS_URL, { cache: 'no-store' })
         ]);
         if (!dataResponse.ok || !synonymsResponse.ok) {
             throw new Error('Impossible de charger les données de psychopathologie.');

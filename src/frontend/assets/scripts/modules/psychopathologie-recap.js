@@ -118,32 +118,55 @@
         elements.content.innerHTML = [...grouped.entries()].map(([category, rows]) => {
             const categoryIndex = state.categories.indexOf(category) % 6 + 1;
             const categoryDefinition = rows[0];
+            const subcategories = new Map();
+            rows.forEach(row => {
+                const subcategory = row.sousCategorie || '';
+                if (!subcategories.has(subcategory)) subcategories.set(subcategory, []);
+                subcategories.get(subcategory).push(row);
+            });
+            let rowIndex = 0;
             return `
                 ${renderCategorySummary(categoryDefinition)}
-                ${rows.map((row, index) => `
-                <article class="psychopathologie-accordion category-border-${categoryIndex}">
-                    <button type="button" class="psychopathologie-accordion-header"
-                        aria-expanded="${index === 0 && grouped.size === 1 ? 'true' : 'false'}">
-                        <span class="psychopathologie-accordion-title">
-                            <span class="psychopathologie-category-label category-color-${categoryIndex}">${escapeHtml(category)}</span>
-                            <strong>${escapeHtml(row.formeClinique || row.sousCategorie || 'Trouble')}</strong>
-                        </span>
-                        <span class="psychopathologie-accordion-toggle" aria-hidden="true">▼</span>
-                    </button>
-                    <div class="psychopathologie-accordion-body" ${index === 0 && grouped.size === 1 ? '' : 'hidden'}>
-                        <div class="psychopathologie-detail">
-                            ${row.sousCategorie ? `<div class="recap-context"><strong>Sous-catégorie :</strong> ${escapeHtml(row.sousCategorie)}</div>` : ''}
-                            ${renderListSection('Définition de la forme clinique', row.definitionForme ? [row.definitionForme] : [])}
-                            ${renderListSection('Critères diagnostiques', row.criteresDiagnostic)}
-                            ${renderListSection('Sémiologie', row.semiologie)}
-                            ${renderListSection('Facteurs de risque', row.facteursRisque)}
-                            ${renderListSection('Évolution / complications', row.evolutionComplication)}
-                            ${renderListSection('Mots-clés', row.motsCles)}
-                            ${renderListSection('Traitements', row.traitements)}
+                ${[...subcategories.entries()].map(([subcategory, subcategoryRows]) => {
+                    const isSingleFormSubcategory = Boolean(subcategory) && subcategoryRows.length === 1;
+                    const subcategoryTitle = isSingleFormSubcategory
+                        ? ''
+                        : (subcategory ? `<h3 class="psychopathologie-subcategory-title">${escapeHtml(subcategory)}</h3>` : '');
+                    return `
+                    <section class="${subcategory && !isSingleFormSubcategory ? 'psychopathologie-subcategory' : 'psychopathologie-subcategory psychopathologie-subcategory-without-title'}">
+                        ${subcategoryTitle}
+                        <div class="psychopathologie-subcategory-forms">
+                            ${subcategoryRows.map(row => {
+                                const isInitiallyOpen = rowIndex++ === 0 && grouped.size === 1;
+                                return `
+                                <article class="psychopathologie-accordion category-border-${categoryIndex}">
+                                    <button type="button" class="psychopathologie-accordion-header"
+                                        aria-expanded="${isInitiallyOpen ? 'true' : 'false'}">
+                                        <span class="psychopathologie-accordion-title">
+                                            <span class="psychopathologie-category-label category-color-${categoryIndex}">${escapeHtml(category)}</span>
+                                            ${isSingleFormSubcategory ? `<span class="psychopathologie-subcategory-label">${escapeHtml(subcategory)}</span>` : ''}
+                                            ${row.formeClinique ? `<strong>${escapeHtml(row.formeClinique)}</strong>` : ''}
+                                        </span>
+                                        <span class="psychopathologie-accordion-toggle" aria-hidden="true">▼</span>
+                                    </button>
+                                    <div class="psychopathologie-accordion-body" ${isInitiallyOpen ? '' : 'hidden'}>
+                                        <div class="psychopathologie-detail">
+                                            ${renderListSection('Définition', row.definitionForme ? [row.definitionForme] : [])}
+                                            ${renderListSection('Critères diagnostiques', row.criteresDiagnostic)}
+                                            ${renderListSection('Sémiologie', row.semiologie)}
+                                            ${renderListSection('Facteurs de risque', row.facteursRisque)}
+                                            ${renderListSection('Évolution / complications', row.evolutionComplication)}
+                                            ${renderListSection('Mots-clés', row.motsCles)}
+                                            ${renderListSection('Traitements', row.traitements)}
+                                        </div>
+                                    </div>
+                                </article>
+                                `;
+                            }).join('')}
                         </div>
-                    </div>
-                </article>
-                `).join('')}
+                    </section>
+                    `;
+                }).join('')}
             `;
         }).join('');
 
@@ -175,7 +198,9 @@
             row.definitionCategorie
                 ? `<p>${escapeHtml(row.definitionCategorie)}</p>`
                 : '',
-            renderListSection('Mots-clés de la catégorie', row.motsClesCategorie)
+            row.motsClesCategorie && row.motsClesCategorie.length
+                ? `<div class="recap-category-keywords"><strong>Mots-clés :</strong> ${row.motsClesCategorie.map(escapeHtml).join(' · ')}</div>`
+                : ''
         ].join('');
         if (!content) return '';
         return `
@@ -192,7 +217,7 @@
     }
 
     async function load() {
-        const response = await fetch(DATA_URL);
+        const response = await fetch(DATA_URL, { cache: 'no-store' });
         if (!response.ok) throw new Error('Impossible de charger le récapitulatif.');
         state.rows = await response.json();
         state.categories = getCategories();
