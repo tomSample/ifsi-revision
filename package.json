@@ -4,7 +4,8 @@
   "description": "Application de révision IFSI avec répétition espacée",
   "main": "src/backend/app.py",
   "scripts": {
-    "sync-data": "node scripts/sync-data.js",
+    "generate:td-questions": "python scripts/generate-td-questions.py",
+    "sync-data": "npm run generate:td-questions && node scripts/sync-data.js",
     "build": "npm run sync-data && npm run minify",
     "minify": "node minify.js",
     "dev": "npm run sync-data && python src/backend/app.py",

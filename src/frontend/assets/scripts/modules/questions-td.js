@@ -25,7 +25,11 @@
 
     async function init() {
         try {
-            const response = await fetch(`${basePath}/api/data/td-questions`, { cache: 'no-store' });
+            const isGitHubPages = window.location.hostname.includes('github.io');
+            const dataUrl = isGitHubPages
+                ? '../../data/UE-2.8/td-questions.json'
+                : `${basePath}/api/data/td-questions`;
+            const response = await fetch(dataUrl, { cache: 'no-store' });
             if (!response.ok) throw new Error('Impossible de charger le tableau des questions TD.');
             const data = await response.json();
             state.questionnaires = Array.isArray(data.questionnaires) ? data.questionnaires : [];
