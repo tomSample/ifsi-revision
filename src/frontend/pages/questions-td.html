@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Questions de type TD par UE et par pathologie">
+    <title>Questions format TD - Pitch in 2025</title>
+    <link rel="manifest" href="../../../public/manifest.json">
+    <link rel="icon" type="image/png" href="../../../public/images/icon-192.png">
+    <link rel="stylesheet" href="../assets/styles/theme.css">
+    <link rel="stylesheet" href="../assets/styles/design-system.css">
+    <link rel="stylesheet" href="../assets/styles/animations.css">
+    <link rel="stylesheet" href="../assets/styles/layout.css">
+    <style>
+        html, body { min-height: 100%; }
+        body { display: flex; flex-direction: column; background: var(--color-bg-light); }
+        main { flex: 1; }
+        .app-header { background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1280px; margin: auto; padding: var(--space-4); width: 100%; }
+        .header-brand { display: flex; align-items: center; gap: var(--space-2); color: var(--color-text-dark); text-decoration: none; }
+        .header-brand-icon { font-size: 1.5rem; }
+        .header-brand-text h1, .header-brand-text p { margin: 0; }
+        .header-brand-text h1 { color: var(--color-primary); font-size: var(--font-size-base); }
+        .header-brand-text p { color: var(--color-text-muted); font-size: var(--font-size-xs); }
+        .page-container { max-width: 1000px; margin: auto; padding: var(--space-6) var(--space-4); width: 100%; }
+        .hero { background: var(--gradient-primary); color: white; padding: var(--space-8) var(--space-4); text-align: center; }
+        .hero h2 { color: white; margin: 0 0 var(--space-2); }
+        .hero p { margin: 0; color: rgba(255,255,255,.9); }
+        .panel { background: var(--color-bg); border-radius: var(--radius-xl); padding: var(--space-6); box-shadow: var(--shadow-md); }
+        .panel h3 { margin-top: 0; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-4); }
+        .choice-card {
+            width: 100%;
+            min-height: 160px;
+            box-sizing: border-box;
+            padding: var(--space-6);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--space-3);
+            text-align: left;
+            font-family: var(--font-family-base);
+            color: inherit;
+            background: var(--color-bg);
+            border: 2px solid transparent;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            appearance: none;
+        }
+        .choice-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-lg);
+        }
+        .choice-card:active { transform: translateY(-2px); }
+        .choice-card:focus-visible {
+            outline: var(--focus-outline);
+            outline-offset: var(--focus-outline-offset);
+        }
+        .choice-card h4 {
+            margin: 0;
+            color: var(--color-text-dark);
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+        }
+        .choice-card p {
+            margin: 0;
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-relaxed);
+        }
+        .question-card { border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-5); margin-top: var(--space-4); }
+        .question-number { color: var(--color-primary); font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); }
+        .question-card h4 { margin: var(--space-2) 0; color: var(--color-text-dark); }
+        .answer { margin-top: var(--space-3); padding: var(--space-4); background: var(--color-bg-lighter); border-radius: var(--radius-md); }
+        .answer p { margin: var(--space-1) 0 0; white-space: pre-line; line-height: var(--line-height-relaxed); }
+        .status { color: var(--color-text-muted); }
+        .error { color: var(--color-danger); }
+        .hidden { display: none !important; }
+        .app-footer { text-align: center; color: var(--color-text-muted); padding: var(--space-6); font-size: var(--font-size-xs); }
+        @media (min-width: 641px) { .header-content, .page-container { padding-left: var(--space-6); padding-right: var(--space-6); } }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-content">
+            <a href="./home.html" class="header-brand">
+                <span class="header-brand-icon">📚</span>
+                <div class="header-brand-text"><h1>Pitch in 2025</h1><p>Plateforme de révisions</p></div>
+            </a>
+        </div>
+    </header>
+    <main>
+        <section class="hero"><h2>📋 Questions format TD</h2><p>Choisissez d'abord une UE, puis la pathologie à réviser.</p></section>
+        <div class="page-container">
+            <section id="uePanel" class="panel">
+                <h3>Choisissez une UE</h3>
+                <div id="ueCards" class="cards"><p class="status">Chargement des UE…</p></div>
+            </section>
+            <section id="pathologyPanel" class="panel hidden">
+                <button id="backToUes" class="btn btn-secondary" type="button">← Choisir une autre UE</button>
+                <h3 id="pathologyTitle">Choisissez une pathologie</h3>
+                <div id="pathologyCards" class="cards"></div>
+            </section>
+            <section id="quizPanel" class="panel hidden">
+                <button id="backToPathologies" class="btn btn-secondary" type="button">← Choisir une autre pathologie</button>
+                <h3 id="quizTitle"></h3>
+                <p id="quizDescription" class="status"></p>
+                <div id="questions"></div>
+            </section>
+        </div>
+    </main>
+    <footer class="app-footer">Pitch in 2025 - Plateforme v3.0</footer>
+    <script src="../assets/scripts/modules/questions-td.js"></script>
+</body>
+</html>
