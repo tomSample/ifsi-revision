@@ -1,0 +1,35 @@
+name: Generate TD questions
+
+on:
+  push:
+    branches:
+      - main
+      - to_v3
+      - 'feature/**'
+    paths:
+      - 'src/data/UE-2.8/UE 2.8 - processus obstructifs.xlsx'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate static questionnaires
+        run: python scripts/generate-td-questions.py
+
+      - name: Commit generated data
+        run: |
+          if git diff --quiet -- src/data/UE-2.8/td-questions.json; then
+            echo "td-questions.json is already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/UE-2.8/td-questions.json
+          git commit -m "chore: regenerate TD questions"
+          git push
