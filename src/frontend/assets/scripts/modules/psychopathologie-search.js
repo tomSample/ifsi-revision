@@ -1,8 +1,8 @@
 (() => {
     'use strict';
 
-    const DATA_URL = '../../data/psychopathologie/psychopathologie.normalized.json';
-    const SYNONYMS_URL = '../../data/psychopathologie/synonymes.json';
+    const DATA_URL = '../../data/UE-2.6/psychopathologie.normalized.json';
+    const SYNONYMS_URL = '../../data/UE-2.6/synonymes.json';
     const state = {
         rows: [],
         synonyms: {},

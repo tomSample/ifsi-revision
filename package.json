@@ -5,7 +5,8 @@
   "main": "src/backend/app.py",
   "scripts": {
     "generate:td-questions": "python scripts/generate-td-questions.py",
-    "sync-data": "npm run generate:td-questions && node scripts/sync-data.js",
+    "generate:ue26": "python scripts/generate-ue26-json.py",
+    "sync-data": "npm run generate:td-questions && npm run generate:ue26 && node scripts/sync-data.js",
     "build": "npm run sync-data && npm run minify",
     "minify": "node minify.js",
     "dev": "npm run sync-data && python src/backend/app.py",
