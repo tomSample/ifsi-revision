@@ -1,0 +1,942 @@
+[
+  {
+    "id": "forme-001",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Psychotiques",
+    "formeClinique": "Paranoïaque",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Méfiance généralisée",
+      "Intentions d'autrui percues comme malveillantes",
+      "Hypertrohpie du Moi",
+      "Altération du jugement, rigidité"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Trouble délirant persistant"
+    ],
+    "traitements": []
+  },
+  {
+    "id": "forme-002",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Psychotiques",
+    "formeClinique": "Schizoïde",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Schizophrénie a minima avec symptômes négatifs dominants",
+      "Absence d'hallucination ou délire",
+      "Solitude",
+      "Absence d'intérêt",
+      "Peu de plaisir à la participation aux activités sociales"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": []
+  },
+  {
+    "id": "forme-003",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Psychotiques",
+    "formeClinique": "Schizotypique",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Schizophrénie a minima mais avec symptôme POSITIFS dominants",
+      "Symptômes psychotiques transitoires et brefs",
+      "Compétences sociales altérées",
+      "Vie psychique riche",
+      "Excentricité marquée / champs d'intérêts originaux",
+      "Affects pauvres"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Stable ou rarement schizophrénie"
+    ],
+    "traitements": []
+  },
+  {
+    "id": "forme-004",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Emotionnelle",
+    "formeClinique": "Antisociale",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Impulsivité",
+      "Tendance au passage à l'acte",
+      "Absence d'empathie / de culpabilité",
+      "Mépris et transgressions répétées des droits d'autrui",
+      "Manipulateur"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Instabilité",
+      "Troubles des conduites avant 15 ans",
+      "Addiction - Suicide - Dépression",
+      "Diminution de l'impulsivité avec l'âge"
+    ],
+    "traitements": []
+  },
+  {
+    "id": "forme-005",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Emotionnelle",
+    "formeClinique": "Borderline / Etat limite",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Instabilité émotionnelle",
+      "Instabilité interpersonnelle majeure (relations intenses et chaotiques alternant entre idéalisation et rejet)",
+      "Peur intene de l'abandon",
+      "Instabilité de l'identité et de l'image de soi",
+      "Troubles du comportement (automutilation, conduites à risque, tentative de suicide)"
+    ],
+    "facteursRisque": [
+      "ATCD de violence",
+      "Négligence dans l'enfance"
+    ],
+    "evolutionComplication": [
+      "Favorable après 50 ans",
+      "Addiction - Abus - Trouble de l'humeur - Troubles anxieux - Trouble des conduites alimentaires",
+      "Suicide (10%)"
+    ],
+    "traitements": []
+  },
+  {
+    "id": "forme-006",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Emotionnelle",
+    "formeClinique": "Histrionique",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Labilité émotionnelle - Quête affective - Hyper-expressivité des affects",
+      "Théâtralisme",
+      "Désir d'être continuellement vu ou remarqué"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": []
+  },
+  {
+    "id": "forme-007",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Emotionnelle",
+    "formeClinique": "Narcissique",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Sens grandiose de leur propre importance",
+      "Dévalorise et sous-estime l'Autre, manque d'empathie",
+      "Prétentieux, arrogants, méprisants",
+      "+/- isolement social"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": []
+  },
+  {
+    "id": "forme-008",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Anxieuse",
+    "formeClinique": "Evitante",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Inhibition relationnelle et sociale avec conduites d'évitement",
+      "Mésestime de soi",
+      "Sensibilité exacerbée au jugement négatif d'autrui"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Diminution avec l'âge"
+    ],
+    "traitements": []
+  },
+  {
+    "id": "forme-009",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Anxieuse",
+    "formeClinique": "Dépendante",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [],
+    "facteursRisque": [
+      "Besoin excessif d'être pris en charge par autrui",
+      "Se dévalorise",
+      "Relations sociales déséquilibrées"
+    ],
+    "evolutionComplication": [],
+    "traitements": []
+  },
+  {
+    "id": "forme-010",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Anxieuse",
+    "formeClinique": "Obsessionnelle-compulsive (différent de TOC)",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [],
+    "facteursRisque": [
+      "Méticulosité - rigidité - perfectionnisme",
+      "Tendance à la prudence excessive, à la procrastination",
+      "Patient consciencieux et scrupuleux"
+    ],
+    "evolutionComplication": [],
+    "traitements": []
+  },
+  {
+    "id": "forme-011",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble anxieux généralisé (TAG)",
+    "formeClinique": "",
+    "definitionForme": "Anxiété et soucis excessifs non justifiés et non contrôlables = maladie des inquiétudes",
+    "criteresDiagnostic": [
+      "Durée > 6 mois"
+    ],
+    "semiologie": [
+      "Appréhension continue non-associée à un évènement déclencheur",
+      "Inquiétude - Hypervigilance",
+      "Myalgies - Tensions musculaires",
+      "Troubles cognitifs - Troubles digestifs",
+      "Asthénie - Irritabilité- Agitation",
+      "Pas de conduite d'évitement"
+    ],
+    "facteursRisque": [
+      "Personnalité anxieuse"
+    ],
+    "evolutionComplication": [
+      "EDC (65%) => risque suicidaire",
+      "Addiction (30%)",
+      "Répercussions socio-professionnelles"
+    ],
+    "traitements": [
+      "Psycho-éducation",
+      "TCC",
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS) / 2e intention = anxiolytique (benzodiazépine ou hydroxyzine)"
+    ]
+  },
+  {
+    "id": "forme-012",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble panique",
+    "formeClinique": "",
+    "definitionForme": "Répétition d'attaque de panique",
+    "criteresDiagnostic": [
+      "Durée > 1 mois"
+    ],
+    "semiologie": [
+      "Anxiété anticipatoire",
+      "Peur de mourir - Peur de devenir fou (dépersonnalisation) - Déréalisation",
+      "+/- Agoraphobie",
+      "Comportements d'évitement"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "risque élevé de développer un EDC",
+      "Chronicisation"
+    ],
+    "traitements": [
+      "Psycho-éducation",
+      "TCC",
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS) / 2e intention = anxiolytique (benzodiazépine ou hydroxyzine)"
+    ]
+  },
+  {
+    "id": "forme-013",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble phobique",
+    "formeClinique": "Phobie spécifique",
+    "definitionForme": "Phobie limitée à un seul objet / une seule situation",
+    "criteresDiagnostic": [
+      "Durée > 6 mois"
+    ],
+    "semiologie": [
+      "Evitement",
+      "Anticipation anxieuse",
+      "Angoisse si confrontation +/- attaque de panique",
+      "Répercussions socio-professionnelles"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Rémission spontanée à l'âge adulte",
+      "Chronicisation si persiste à l'âge adulte"
+    ],
+    "traitements": [
+      "TCC"
+    ]
+  },
+  {
+    "id": "forme-014",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble phobique",
+    "formeClinique": "Phobie sociale",
+    "definitionForme": "Peur d'agir de façon embarrassante ou humiliante\nPeur du jugement d'autrui",
+    "criteresDiagnostic": [
+      "Durée > 6 mois"
+    ],
+    "semiologie": [
+      "Evitement",
+      "Anticipation anxieuse",
+      "Angoisse si confrontation +/- attaque de panique",
+      "Répercussions socio-professionnelles"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Désinsertion professionnelle",
+      "Isolement"
+    ],
+    "traitements": [
+      "TCC",
+      "Médicamenteux : ISRS"
+    ]
+  },
+  {
+    "id": "forme-015",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble phobique",
+    "formeClinique": "Agoraphobie",
+    "definitionForme": "Peur intense et irrationnelle de se retrouver dans des situations ou des lieux d'où il serait difficile de s'échapper ou de recevoir de l'aide",
+    "criteresDiagnostic": [
+      "Durée > 6 mois"
+    ],
+    "semiologie": [
+      "Evitement",
+      "Anticipation anxieuse",
+      "Angoisse si confrontation +/- attaque de panique",
+      "Répercussions socio-professionnelles"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Isolement"
+    ],
+    "traitements": [
+      "TCC"
+    ]
+  },
+  {
+    "id": "forme-016",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble obsessionnel et compulsif (TOC)",
+    "formeClinique": "Obsessions",
+    "definitionForme": "Irruptions de pensées en désaccord avec la pensée consciente du sujet (insight faible dans 5 à 25% des cas)",
+    "criteresDiagnostic": [
+      "Perte de temps > 1h/jour ou souffrance clinique"
+    ],
+    "semiologie": [
+      "Réccurrence et persistance des pensées",
+      "Pensées de contamination => lavage des mains",
+      "Pensées interdites (catastrophe, aggressive, sexuelle, religieuse...)"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "EDC",
+      "Risque suicidaire",
+      "Addictions",
+      "Evolution péjorative le plus souvent"
+    ],
+    "traitements": [
+      "Psycho-éducation",
+      "TCC",
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS)",
+      "Stimulation profonde (expérimental)"
+    ]
+  },
+  {
+    "id": "forme-017",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble obsessionnel et compulsif (TOC)",
+    "formeClinique": "Compulsions et rituels",
+    "definitionForme": "Action longuement réfléchie permettant de diminuer l'anxiété",
+    "criteresDiagnostic": [
+      "Perte de temps > 1h/jour ou souffrance clinique"
+    ],
+    "semiologie": [
+      "Symétrie recherchée",
+      "Erreur => Vérification"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "EDC",
+      "Risque suicidaire",
+      "Addictions",
+      "Evolution péjorative le plus souvent"
+    ],
+    "traitements": [
+      "Psycho-éducation",
+      "TCC",
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS)",
+      "Stimulation profonde (expérimental)"
+    ]
+  },
+  {
+    "id": "forme-018",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble obsessionnel et compulsif (TOC)",
+    "formeClinique": "Evitements",
+    "definitionForme": "",
+    "criteresDiagnostic": [
+      "Perte de temps > 1h/jour ou souffrance clinique"
+    ],
+    "semiologie": [],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "EDC",
+      "Risque suicidaire",
+      "Addictions",
+      "Evolution péjorative le plus souvent"
+    ],
+    "traitements": [
+      "Psycho-éducation",
+      "TCC",
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS)",
+      "Stimulation profonde (expérimental)"
+    ]
+  },
+  {
+    "id": "forme-019",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble de stress post-traumatique (TSPT)",
+    "formeClinique": "",
+    "definitionForme": "Exposition ou témoin direct d'un évênement traumatique",
+    "criteresDiagnostic": [
+      "Durée > 1 mois après l'évênement"
+    ],
+    "semiologie": [
+      "Souffrance cliniquement significative ou altération du fonctionnement social ou professionnel",
+      "Syndrome de répétition = reviviscences (ou  flashback), cauchemars",
+      "Syndrome d'évitement",
+      "Hypervigilance - Réactions de sursaut exagérées",
+      "Troubles du sommeil",
+      "Irritabilité ou accès de colère",
+      "Syndrome dépressif"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Addictions",
+      "EDC",
+      "Autres troubles anxieux",
+      "Chronicisation",
+      "Guérison complète en 3 mois : 50%"
+    ],
+    "traitements": [
+      "Prévention débriefing = déchocage psychologique = intervention unique et urgente",
+      "TCC",
+      "Thérapie d'Exposition Prolongée (TEP)",
+      "Médicamenteux : phase aigu = hypnotique, éviter benzodizépine (aggravation cauchemars, addictions...) / si constitué = ISRS"
+    ]
+  },
+  {
+    "id": "forme-020",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble de l'adaptation",
+    "formeClinique": "",
+    "definitionForme": "Trouble en réaction à un évênement de vie auquel le sujet n'arrive pas à s'adapter",
+    "criteresDiagnostic": [
+      "Transitoire (apparaît dans les 3 mois post-stress et disparaît dans les 6 mois après l'arrêt de celui-ci"
+    ],
+    "semiologie": [
+      "Evênements stressants identifiables imposant une adaptation (rupture, changement de métier...)",
+      "Symptômes anxieux, dépressifs, comportementaux",
+      "Isolement, absentéisme, abus médicamenteux, fugue",
+      "Altération du fonctionnement psychosocial"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Transitoire et favorable : 75%",
+      "Trouble de la personnalité",
+      "Usage de substance",
+      "Tentative de suicide",
+      "EDC"
+    ],
+    "traitements": [
+      "TCC",
+      "Thérapie d'Intervention Brêve",
+      "Médicamenteux : anxiolytique (benzodiazépine) ou hypnotique"
+    ]
+  },
+  {
+    "id": "forme-021",
+    "idCategorie": "cat-005",
+    "categorie": "Troubles de l'humeur",
+    "definitionCategorie": "Troubles provquant des perturbations émotionnelles intenses et durables altérant profondément la capacité de la personne à fonctionner au quotidien",
+    "motsClesCategorie": [
+      "Trouble bipolaire type 1 - 2 - 3 / Virage maniaque / Cyclothymie / EDC / Trouble unipolaire / syndrome maniaque / syndrome hypomaniaque / dépressif"
+    ],
+    "sousCategorie": "Syndrome maniaque",
+    "formeClinique": "",
+    "definitionForme": "Période nettement délimité dans le temps d’une augmentation pathologique de l’humeur et de l’énergie ou\nde l’activité pendant au moins 7 jours. Maladie de spectre bipolaire. Urgence médicale",
+    "criteresDiagnostic": [
+      "Rupture avec l'état antérieur > 7 jours",
+      "Symptômes > 3 (4 si humeur seulement irritable)",
+      "Altération du fonctionnement socio-professionnel",
+      "Hors consommation de substance"
+    ],
+    "semiologie": [
+      "Perturbation de l'affectivité (gaie, euphorie, haute estime de soi, ludisme, désinhibition, labilité émotionnelle, hypersynthonie...)",
+      "Accélération psychomotrice (tachypsychie, fuite des idées, passe du coq à l'âne, logorrhée, hyperactivité motrice, tachyphémie...)",
+      "Signes associés = insomnie partielle ou totale, baisse du besoin de sommeil, anosognosie totale ou partielle, hypervigilance, hypersexualité, déshydratation, amaigrissement, comportements à risque, actes médico-légaux,...)",
+      "NB : formes cliniques = Psychotique - Mixte - Anxieuse - Péri-partum - Catatonique"
+    ],
+    "facteursRisque": [
+      "Caractère saisonnier"
+    ],
+    "evolutionComplication": [
+      "Trouble bipolaire",
+      "Récurrence",
+      "Addictions",
+      "Troubles anxieux",
+      "Suicide",
+      "Pronostic sévère si cycles rapides"
+    ],
+    "traitements": [
+      "1ere intention (phase aigüe) : hospitalisation en général / réhydratation / arrêt ttmt antidépresseur / prévention du risque suicidaire + thymorégulateur et/ou antipsychotique 2e generation",
+      "consolidation (4-6mois) : thymorégulateur et arrêt anxiolytique/hypnotique si possible",
+      "prophylactique (>2ans) : thymorégulateur et arrêt anxiolytique/hypnotique si possible"
+    ]
+  },
+  {
+    "id": "forme-022",
+    "idCategorie": "cat-005",
+    "categorie": "Troubles de l'humeur",
+    "definitionCategorie": "Troubles provquant des perturbations émotionnelles intenses et durables altérant profondément la capacité de la personne à fonctionner au quotidien",
+    "motsClesCategorie": [
+      "Trouble bipolaire type 1 - 2 - 3 / Virage maniaque / Cyclothymie / EDC / Trouble unipolaire / syndrome maniaque / syndrome hypomaniaque / dépressif"
+    ],
+    "sousCategorie": "Syndrome hypomaniaque",
+    "formeClinique": "",
+    "definitionForme": "Période nettement délimité dans le temps d’une augmentation pathologique de l’humeur et de l’énergie ou\nde l’activité pendant au moins 4 jours. Maladie de spectre bipolaire.",
+    "criteresDiagnostic": [
+      "Rupture avec l'état antérieur > 4 jours",
+      "Symptômes > 3 (4 si humeur seulement irritable)",
+      "Altération du fonctionnement socio-professionnel",
+      "Hors consommation de substance"
+    ],
+    "semiologie": [
+      "Perturbation de l'affectivité (gaie, euphorie, haute estime de soi, ludisme, désinhibition, labilité émotionnelle, hypersynthonie...)",
+      "Accélération psychomotrice (tachypsychie, fuite des idées, passe du coq à l'âne, logorrhée, hyperactivité motrice, tachyphémie...)",
+      "Signes associés = insomnie partielle ou totale, baisse du besoin de sommeil, anosognosie totale ou partielle, hypervigilance, hypersexualité, déshydratation, amaigrissement, comportements à risque, actes médico-légaux,...)",
+      "NB : formes cliniques = Psychotique - Mixte - Anxieuse - Péri-partum - Catatonique"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Trouble bipolaire",
+      "Syndrome maniaque",
+      "Récurrence",
+      "Addictions",
+      "Troubles anxieux",
+      "Suicide",
+      "Pronostic sévère si cycles rapides"
+    ],
+    "traitements": [
+      "1ere intention (phase aigüe) : hospitalisation si retentissement clinique + thymorégulateur et/ou antipsychotique 2e generation + arrêt des antidépresseurs",
+      "consolidation (4-6mois) : thymorégulateur et arrêt anxiolytique/hypnotique si possible",
+      "prophylactique (>2ans) : thymorégulateur et arrêt anxiolytique/hypnotique si possible"
+    ]
+  },
+  {
+    "id": "forme-023",
+    "idCategorie": "cat-005",
+    "categorie": "Troubles de l'humeur",
+    "definitionCategorie": "Troubles provquant des perturbations émotionnelles intenses et durables altérant profondément la capacité de la personne à fonctionner au quotidien",
+    "motsClesCategorie": [
+      "Trouble bipolaire type 1 - 2 - 3 / Virage maniaque / Cyclothymie / EDC / Trouble unipolaire / syndrome maniaque / syndrome hypomaniaque / dépressif"
+    ],
+    "sousCategorie": "Episode dépressif Caractérisé (EDC)",
+    "formeClinique": "Mélancolique",
+    "definitionForme": "Etat dépressif caractéristique sévère avec risque suicidaire élevé",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Anhédonie - Sentiment de déteresse et d'incurabilité",
+      "Aboulie sévère",
+      "Troubles du sommeil avec réveils matinaux précoces",
+      "Culpabilité excessive",
+      "Anesthésie affective",
+      "Apragmatisme",
+      "Insomnie avec réveil précoce = signe de gravité",
+      "Asthénie",
+      "Diminution de la libido"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": [
+      "Hospitalisation = selon critères et consentement",
+      "Prévention du risque suicidaire, d'acte hétéro-agressif et recherche d'idées délirantes",
+      "ECT",
+      "Psychothérapie (de soutien, TCC, systémique...)",
+      "Stratégie de réhabilitation / réinsertion",
+      "Médicamenteuse : antidépresseurs (ISRS) ou IRSNa et selon la forme clinique +/- anxiolytique (benzodiazépine) +/- antipsychotique"
+    ]
+  },
+  {
+    "id": "forme-024",
+    "idCategorie": "cat-005",
+    "categorie": "Troubles de l'humeur",
+    "definitionCategorie": "Troubles provquant des perturbations émotionnelles intenses et durables altérant profondément la capacité de la personne à fonctionner au quotidien",
+    "motsClesCategorie": [
+      "Trouble bipolaire type 1 - 2 - 3 / Virage maniaque / Cyclothymie / EDC / Trouble unipolaire / syndrome maniaque / syndrome hypomaniaque / dépressif"
+    ],
+    "sousCategorie": "Episode dépressif Caractérisé (EDC)",
+    "formeClinique": "Psychotique ou Mélancolie délirante",
+    "definitionForme": "Présence d'idées délirantes et / ou hallucinations",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Idées de ruine - Incapacité - Maladie - Mort - Indignité - Culpabilité",
+      "Syndrome de Cotard (négation d'organe, du temps (immortel) ou du monde",
+      "Apragmatisme",
+      "Insomnie avec réveil précoce = signe de gravité",
+      "Asthénie",
+      "Diminution de la libido"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": [
+      "Hospitalisation = selon critères et consentement",
+      "Prévention du risque suicidaire, d'acte hétéro-agressif et recherche d'idées délirantes",
+      "ECT",
+      "Psychothérapie (de soutien, TCC, systémique...)",
+      "Stratégie de réhabilitation / réinsertion",
+      "Médicamenteuse : antidépresseurs (ISRS) ou IRSNa et selon la forme clinique +/- anxiolytique (benzodiazépine) +/- antipsychotique"
+    ]
+  },
+  {
+    "id": "forme-025",
+    "idCategorie": "cat-005",
+    "categorie": "Troubles de l'humeur",
+    "definitionCategorie": "Troubles provquant des perturbations émotionnelles intenses et durables altérant profondément la capacité de la personne à fonctionner au quotidien",
+    "motsClesCategorie": [
+      "Trouble bipolaire type 1 - 2 - 3 / Virage maniaque / Cyclothymie / EDC / Trouble unipolaire / syndrome maniaque / syndrome hypomaniaque / dépressif"
+    ],
+    "sousCategorie": "Episode dépressif Caractérisé (EDC)",
+    "formeClinique": "Mixte",
+    "definitionForme": "Etat dépressif caractérisé avec au moins 3 symptômes maniaques ou hypomaniaques",
+    "criteresDiagnostic": [],
+    "semiologie": [],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": [
+      "Hospitalisation = selon critères et consentement",
+      "Prévention du risque suicidaire, d'acte hétéro-agressif et recherche d'idées délirantes",
+      "ECT",
+      "Psychothérapie (de soutien, TCC, systémique...)",
+      "Stratégie de réhabilitation / réinsertion",
+      "Médicamenteuse : antidépresseurs (ISRS) ou IRSNa et selon la forme clinique +/- anxiolytique (benzodiazépine) +/- antipsychotique"
+    ]
+  },
+  {
+    "id": "forme-026",
+    "idCategorie": "cat-005",
+    "categorie": "Troubles de l'humeur",
+    "definitionCategorie": "Troubles provquant des perturbations émotionnelles intenses et durables altérant profondément la capacité de la personne à fonctionner au quotidien",
+    "motsClesCategorie": [
+      "Trouble bipolaire type 1 - 2 - 3 / Virage maniaque / Cyclothymie / EDC / Trouble unipolaire / syndrome maniaque / syndrome hypomaniaque / dépressif"
+    ],
+    "sousCategorie": "Episode dépressif Caractérisé (EDC)",
+    "formeClinique": "Catatonique",
+    "definitionForme": "Se manifestant par un mutisme, une perte de contrôle des mouvements, une immobilité totale",
+    "criteresDiagnostic": [],
+    "semiologie": [],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": [
+      "Hospitalisation = selon critères et consentement",
+      "Prévention du risque suicidaire, d'acte hétéro-agressif et recherche d'idées délirantes",
+      "ECT",
+      "Psychothérapie (de soutien, TCC, systémique...)",
+      "Stratégie de réhabilitation / réinsertion",
+      "Médicamenteuse : antidépresseurs (ISRS) ou IRSNa et selon la forme clinique +/- anxiolytique (benzodiazépine) +/- antipsychotique"
+    ]
+  },
+  {
+    "id": "forme-027",
+    "idCategorie": "cat-005",
+    "categorie": "Troubles de l'humeur",
+    "definitionCategorie": "Troubles provquant des perturbations émotionnelles intenses et durables altérant profondément la capacité de la personne à fonctionner au quotidien",
+    "motsClesCategorie": [
+      "Trouble bipolaire type 1 - 2 - 3 / Virage maniaque / Cyclothymie / EDC / Trouble unipolaire / syndrome maniaque / syndrome hypomaniaque / dépressif"
+    ],
+    "sousCategorie": "Episode dépressif Caractérisé (EDC)",
+    "formeClinique": "Détresse anxieuse",
+    "definitionForme": "Signes d'anxiété au premier plan",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Risque majeur de passage à l'acte",
+      "Raptus anxieux",
+      "Enervement, tension intérieure, agitation inhabituelle, impression de perte de contrôle",
+      "Apragmatisme",
+      "Insomnie avec réveil précoce = signe de gravité",
+      "Asthénie",
+      "Diminution de la libido"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": [
+      "Hospitalisation = selon critères et consentement",
+      "Prévention du risque suicidaire, d'acte hétéro-agressif et recherche d'idées délirantes",
+      "ECT",
+      "Psychothérapie (de soutien, TCC, systémique...)",
+      "Stratégie de réhabilitation / réinsertion",
+      "Médicamenteuse : antidépresseurs (ISRS) ou IRSNa et selon la forme clinique +/- anxiolytique (benzodiazépine) +/- antipsychotique"
+    ]
+  },
+  {
+    "id": "forme-028",
+    "idCategorie": "cat-005",
+    "categorie": "Troubles de l'humeur",
+    "definitionCategorie": "Troubles provquant des perturbations émotionnelles intenses et durables altérant profondément la capacité de la personne à fonctionner au quotidien",
+    "motsClesCategorie": [
+      "Trouble bipolaire type 1 - 2 - 3 / Virage maniaque / Cyclothymie / EDC / Trouble unipolaire / syndrome maniaque / syndrome hypomaniaque / dépressif"
+    ],
+    "sousCategorie": "Episode dépressif Caractérisé (EDC)",
+    "formeClinique": "Péri-partum",
+    "definitionForme": "Au cours de la grossesse et jusqu'à 1 mois du post-partum",
+    "criteresDiagnostic": [],
+    "semiologie": [],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": [
+      "Hospitalisation = selon critères et consentement",
+      "Prévention du risque suicidaire, d'acte hétéro-agressif et recherche d'idées délirantes",
+      "ECT",
+      "Psychothérapie (de soutien, TCC, systémique...)",
+      "Stratégie de réhabilitation / réinsertion",
+      "Médicamenteuse : antidépresseurs (ISRS) ou IRSNa et selon la forme clinique +/- anxiolytique (benzodiazépine) +/- antipsychotique"
+    ]
+  },
+  {
+    "id": "forme-029",
+    "idCategorie": "cat-005",
+    "categorie": "Troubles de l'humeur",
+    "definitionCategorie": "Troubles provquant des perturbations émotionnelles intenses et durables altérant profondément la capacité de la personne à fonctionner au quotidien",
+    "motsClesCategorie": [
+      "Trouble bipolaire type 1 - 2 - 3 / Virage maniaque / Cyclothymie / EDC / Trouble unipolaire / syndrome maniaque / syndrome hypomaniaque / dépressif"
+    ],
+    "sousCategorie": "Episode dépressif Caractérisé (EDC)",
+    "formeClinique": "Saisonnière",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": [
+      "Hospitalisation = selon critères et consentement",
+      "Prévention du risque suicidaire, d'acte hétéro-agressif et recherche d'idées délirantes",
+      "ECT",
+      "Psychothérapie (de soutien, TCC, systémique...)",
+      "Stratégie de réhabilitation / réinsertion",
+      "Médicamenteuse : antidépresseurs (ISRS) ou IRSNa et selon la forme clinique +/- anxiolytique (benzodiazépine) +/- antipsychotique"
+    ]
+  },
+  {
+    "id": "forme-030",
+    "idCategorie": "cat-005",
+    "categorie": "Troubles de l'humeur",
+    "definitionCategorie": "Troubles provquant des perturbations émotionnelles intenses et durables altérant profondément la capacité de la personne à fonctionner au quotidien",
+    "motsClesCategorie": [
+      "Trouble bipolaire type 1 - 2 - 3 / Virage maniaque / Cyclothymie / EDC / Trouble unipolaire / syndrome maniaque / syndrome hypomaniaque / dépressif"
+    ],
+    "sousCategorie": "Episode dépressif Caractérisé (EDC)",
+    "formeClinique": "Dépression anaclictique",
+    "definitionForme": "Survient chez l'enfant dans un contexte d'abandon réel ou ressenti\nRupture du lien mère-enfant (survient en général entre 6 et 12 mois)\nPeut être présent chez les personnalités \"borderline\" d'âge adulte",
+    "criteresDiagnostic": [],
+    "semiologie": [],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": [
+      "Hospitalisation = selon critères et consentement",
+      "Prévention du risque suicidaire, d'acte hétéro-agressif et recherche d'idées délirantes",
+      "ECT",
+      "Psychothérapie (de soutien, TCC, systémique...)",
+      "Stratégie de réhabilitation / réinsertion",
+      "Médicamenteuse : antidépresseurs (ISRS) ou IRSNa et selon la forme clinique +/- anxiolytique (benzodiazépine) +/- antipsychotique"
+    ]
+  },
+  {
+    "id": "forme-031",
+    "idCategorie": "cat-005",
+    "categorie": "Troubles de l'humeur",
+    "definitionCategorie": "Troubles provquant des perturbations émotionnelles intenses et durables altérant profondément la capacité de la personne à fonctionner au quotidien",
+    "motsClesCategorie": [
+      "Trouble bipolaire type 1 - 2 - 3 / Virage maniaque / Cyclothymie / EDC / Trouble unipolaire / syndrome maniaque / syndrome hypomaniaque / dépressif"
+    ],
+    "sousCategorie": "Trouble bipolaire",
+    "formeClinique": "Type 1",
+    "definitionForme": "Un ou plusieurs episodes maniaques +/- épisode dépressif (le diagnostic peut être posé même\nen l’absence d’épisode dépressif caractérisé)",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Voire syndrome maniaque et EDC"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Cycles rapides",
+      "Troubles addictifs",
+      "Troublex anxieux",
+      "Troubles du sommeil",
+      "Pathologie somatique associée",
+      "Suicide (15%)",
+      "Actes médico-légaux",
+      "Désinsertion familaile"
+    ],
+    "traitements": [
+      "Médicamenteux : thymorégulateurs ou antipsychotique +/-  antidépresseur ISRS (vigilance risque de virage maniaque)"
+    ]
+  },
+  {
+    "id": "forme-032",
+    "idCategorie": "cat-005",
+    "categorie": "Troubles de l'humeur",
+    "definitionCategorie": "Troubles provquant des perturbations émotionnelles intenses et durables altérant profondément la capacité de la personne à fonctionner au quotidien",
+    "motsClesCategorie": [
+      "Trouble bipolaire type 1 - 2 - 3 / Virage maniaque / Cyclothymie / EDC / Trouble unipolaire / syndrome maniaque / syndrome hypomaniaque / dépressif"
+    ],
+    "sousCategorie": "Trouble bipolaire",
+    "formeClinique": "Type 2",
+    "definitionForme": "Un ou plusieurs episodes hypomaniaques + un ou plusieurs épisodes dépressifs caractérisés. Il ne doit jamais y\navoir eu d’épisode maniaque.",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Voire syndrome hypomaniaque et EDC"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Cycles rapides",
+      "Troubles addictifs",
+      "Troublex anxieux",
+      "Troubles du sommeil",
+      "Pathologie somatique associée",
+      "Suicide (15%)",
+      "Actes médico-légaux",
+      "Désinsertion familaile"
+    ],
+    "traitements": [
+      "Médicamenteux : thymorégulateurs ou antipsychotique +/-  antidépresseur ISRS (vigilance risque de virage maniaque)"
+    ]
+  },
+  {
+    "id": "forme-033",
+    "idCategorie": "cat-005",
+    "categorie": "Troubles de l'humeur",
+    "definitionCategorie": "Troubles provquant des perturbations émotionnelles intenses et durables altérant profondément la capacité de la personne à fonctionner au quotidien",
+    "motsClesCategorie": [
+      "Trouble bipolaire type 1 - 2 - 3 / Virage maniaque / Cyclothymie / EDC / Trouble unipolaire / syndrome maniaque / syndrome hypomaniaque / dépressif"
+    ],
+    "sousCategorie": "Trouble bipolaire",
+    "formeClinique": "Type 3",
+    "definitionForme": "Virage maniaque d'origine iatrogène (antidépresseurs, corticoïdes,...)",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Voire syndrome maniaque/hypomaniaque"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Récidive",
+      "Evolution vers type 1 ou 2"
+    ],
+    "traitements": [
+      "Médicamenteux : thymorégulateurs ou antipsychotique",
+      "Arrêt antidépresseurs"
+    ]
+  }
+]

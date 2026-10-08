@@ -1,0 +1,493 @@
+[
+  {
+    "id": "forme-001",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Psychotiques",
+    "formeClinique": "Paranoïaque",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Méfiance généralisée",
+      "Intentions d'autrui percues comme malveillantes",
+      "Hypertrohpie du Moi",
+      "Altération du jugement, rigidité"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Trouble délirant persistant"
+    ],
+    "traitements": []
+  },
+  {
+    "id": "forme-002",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Psychotiques",
+    "formeClinique": "Schizoïde",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Schizophrénie a minima avec symptômes négatifs dominants",
+      "Absence d'hallucination ou délire",
+      "Solitude",
+      "Absence d'intérêt",
+      "Peu de plaisir à la participation aux activités sociales"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": []
+  },
+  {
+    "id": "forme-003",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Psychotiques",
+    "formeClinique": "Schizotypique",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Schizophrénie a minima mais avec symptôme POSITIFS dominants",
+      "Symptômes psychotiques transitoires et brefs",
+      "Compétences sociales altérées",
+      "Vie psychique riche",
+      "Excentricité marquée / champs d'intérêts originaux",
+      "Affects pauvres"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Stable ou rarement schizophrénie"
+    ],
+    "traitements": []
+  },
+  {
+    "id": "forme-004",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Emotionnelle",
+    "formeClinique": "Antisociale",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Impulsivité",
+      "Tendance au passage à l'acte",
+      "Absence d'empathie / de culpabilité",
+      "Mépris et transgressions répétées des droits d'autrui",
+      "Manipulateur"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Instabilité",
+      "Troubles des conduites avant 15 ans",
+      "Addiction - Suicide - Dépression",
+      "Diminution de l'impulsivité avec l'âge"
+    ],
+    "traitements": []
+  },
+  {
+    "id": "forme-005",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Emotionnelle",
+    "formeClinique": "Borderline / Etat limite",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Instabilité émotionnelle",
+      "Instabilité interpersonnelle majeure (relations intenses et chaotiques alternant entre idéalisation et rejet)",
+      "Peur intene de l'abandon",
+      "Instabilité de l'identité et de l'image de soi",
+      "Troubles du comportement (automutilation, conduites à risque, tentative de suicide)"
+    ],
+    "facteursRisque": [
+      "ATCD de violence",
+      "Négligence dans l'enfance"
+    ],
+    "evolutionComplication": [
+      "Favorable après 50 ans",
+      "Addiction - Abus - Trouble de l'humeur - Troubles anxieux - Trouble des conduites alimentaires",
+      "Suicide (10%)"
+    ],
+    "traitements": []
+  },
+  {
+    "id": "forme-006",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Emotionnelle",
+    "formeClinique": "Histrionique",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Labilité émotionnelle - Quête affective - Hyper-expressivité des affects",
+      "Théâtralisme",
+      "Désir d'être continuellement vu ou remarqué"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": []
+  },
+  {
+    "id": "forme-007",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Emotionnelle",
+    "formeClinique": "Narcissique",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Sens grandiose de leur propre importance",
+      "Dévalorise et sous-estime l'Autre, manque d'empathie",
+      "Prétentieux, arrogants, méprisants",
+      "+/- isolement social"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": []
+  },
+  {
+    "id": "forme-008",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Anxieuse",
+    "formeClinique": "Evitante",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [
+      "Inhibition relationnelle et sociale avec conduites d'évitement",
+      "Mésestime de soi",
+      "Sensibilité exacerbée au jugement négatif d'autrui"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Diminution avec l'âge"
+    ],
+    "traitements": []
+  },
+  {
+    "id": "forme-009",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Anxieuse",
+    "formeClinique": "Dépendante",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [],
+    "facteursRisque": [
+      "Besoin excessif d'être pris en charge par autrui",
+      "Se dévalorise",
+      "Relations sociales déséquilibrées"
+    ],
+    "evolutionComplication": [],
+    "traitements": []
+  },
+  {
+    "id": "forme-010",
+    "idCategorie": "cat-001",
+    "categorie": "Troubles de la personnalité",
+    "definitionCategorie": "Altération du fonctionnement social et incapacité à s'adapter aux différentes situations de la vie",
+    "motsClesCategorie": [
+      "Personnalité / signature psychologique : ce qu'il y a de stable et uniquedans le fonctionnement psychologique d'un individu. Résulte de l'intégration de facteurs cognitifs et émotionnels",
+      "Tempérament : biologique, inné et stable vis-à-vis de la personnalité",
+      "Caractère : déterminé par l'apprentissage et l'expérience, variable au cours du temps"
+    ],
+    "sousCategorie": "Anxieuse",
+    "formeClinique": "Obsessionnelle-compulsive (différent de TOC)",
+    "definitionForme": "",
+    "criteresDiagnostic": [],
+    "semiologie": [],
+    "facteursRisque": [
+      "Méticulosité - rigidité - perfectionnisme",
+      "Tendance à la prudence excessive, à la procrastination",
+      "Patient consciencieux et scrupuleux"
+    ],
+    "evolutionComplication": [],
+    "traitements": []
+  },
+  {
+    "id": "forme-011",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble anxieux généralisé (TAG)",
+    "formeClinique": "",
+    "definitionForme": "Anxiété et soucis excessifs non justifiés et non contrôlables = maladie des inquiétudes",
+    "criteresDiagnostic": [
+      "Durée > 6 mois"
+    ],
+    "semiologie": [
+      "Appréhension continue non-associée à un évènement déclencheur",
+      "Inquiétude - Hypervigilance",
+      "Myalgies - Tensions musculaires",
+      "Troubles cognitifs - Troubles digestifs",
+      "Asthénie - Irritabilité- Agitation",
+      "Pas de conduite d'évitement"
+    ],
+    "facteursRisque": [
+      "Personnalité anxieuse"
+    ],
+    "evolutionComplication": [
+      "EDC (65%) => risque suicidaire",
+      "Addiction (30%)",
+      "Répercussions socio-professionnelles"
+    ],
+    "traitements": [
+      "Psycho-éducation",
+      "TCC",
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS) / 2e intention = anxiolytique (benzodiazépine ou hydroxyzine)"
+    ]
+  },
+  {
+    "id": "forme-012",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble panique",
+    "formeClinique": "",
+    "definitionForme": "Répétition d'attaque de panique",
+    "criteresDiagnostic": [
+      "Durée > 1 mois"
+    ],
+    "semiologie": [
+      "Anxiété anticipatoire",
+      "Peur de mourir - Peur de devenir fou (dépersonnalisation) - Déréalisation",
+      "+/- Agoraphobie",
+      "Comportements d'évitement"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "risque élevé de développer un EDC",
+      "Chronicisation"
+    ],
+    "traitements": [
+      "Psycho-éducation",
+      "TCC",
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS) / 2e intention = anxiolytique (benzodiazépine ou hydroxyzine)"
+    ]
+  },
+  {
+    "id": "forme-013",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble phobique",
+    "formeClinique": "Phobie spécifique",
+    "definitionForme": "Phobie limitée à un seul objet / une seule situation",
+    "criteresDiagnostic": [
+      "Durée > 6 mois"
+    ],
+    "semiologie": [
+      "Evitement",
+      "Anticipation anxieuse",
+      "Angoisse si confrontation +/- attaque de panique",
+      "Répercussions socio-professionnelles"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Rémission spontanée à l'âge adulte",
+      "Chronicisation si persiste à l'âge adulte"
+    ],
+    "traitements": [
+      "TCC"
+    ]
+  },
+  {
+    "id": "forme-014",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble phobique",
+    "formeClinique": "Phobie sociale",
+    "definitionForme": "Peur d'agir de façon embarrassante ou humiliante\nPeur du jugement d'autrui",
+    "criteresDiagnostic": [
+      "Durée > 6 mois"
+    ],
+    "semiologie": [
+      "Evitement",
+      "Anticipation anxieuse",
+      "Angoisse si confrontation +/- attaque de panique",
+      "Répercussions socio-professionnelles"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Désinsertion professionnelle",
+      "Isolement"
+    ],
+    "traitements": [
+      "TCC",
+      "Médicamenteux : ISRS"
+    ]
+  },
+  {
+    "id": "forme-015",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble phobique",
+    "formeClinique": "Agoraphobie",
+    "definitionForme": "Peur intense et irrationnelle de se retrouver dans des situations ou des lieux d'où il serait difficile de s'échapper ou de recevoir de l'aide",
+    "criteresDiagnostic": [
+      "Durée > 6 mois"
+    ],
+    "semiologie": [
+      "Evitement",
+      "Anticipation anxieuse",
+      "Angoisse si confrontation +/- attaque de panique",
+      "Répercussions socio-professionnelles"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "Isolement"
+    ],
+    "traitements": [
+      "TCC"
+    ]
+  },
+  {
+    "id": "forme-016",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble obsessionnel et compulsif (TOC)",
+    "formeClinique": "Obsessions",
+    "definitionForme": "Irruptions de pensées en désaccord avec la pensée consciente du sujet (insight faible dans 5 à 25% des cas)",
+    "criteresDiagnostic": [
+      "Perte de temps > 1h/jour ou souffrance clinique"
+    ],
+    "semiologie": [
+      "Réccurrence et persistance des pensées",
+      "Pensées de contamination => lavage des mains",
+      "Pensées interdites (catastrophe, aggressive, sexuelle, religieuse...)"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "EDC",
+      "Risque suicidaire",
+      "Addictions",
+      "Evolution péjorative le plus souvent"
+    ],
+    "traitements": [
+      "Psycho-éducation",
+      "TCC",
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS)",
+      "Stimulation profonde (expérimental"
+    ]
+  },
+  {
+    "id": "forme-017",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble obsessionnel et compulsif (TOC)",
+    "formeClinique": "Compulsions et rituels",
+    "definitionForme": "Action longuement réfléchie permettant de diminuer l'anxiété",
+    "criteresDiagnostic": [
+      "Perte de temps > 1h/jour ou souffrance clinique"
+    ],
+    "semiologie": [
+      "Symétrie recherchée",
+      "Erreur => Vérification"
+    ],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "EDC",
+      "Risque suicidaire",
+      "Addictions",
+      "Evolution péjorative le plus souvent"
+    ],
+    "traitements": [
+      "Psycho-éducation",
+      "TCC",
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS)",
+      "Stimulation profonde (expérimental"
+    ]
+  },
+  {
+    "id": "forme-018",
+    "idCategorie": "cat-002",
+    "categorie": "Troubles anxieux",
+    "definitionCategorie": "Maladies psychiques dans lesquelles l’anxiété est le symptôme principal",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble obsessionnel et compulsif (TOC)",
+    "formeClinique": "Evitemens",
+    "definitionForme": "",
+    "criteresDiagnostic": [
+      "Perte de temps > 1h/jour ou souffrance clinique"
+    ],
+    "semiologie": [],
+    "facteursRisque": [],
+    "evolutionComplication": [
+      "EDC",
+      "Risque suicidaire",
+      "Addictions",
+      "Evolution péjorative le plus souvent"
+    ],
+    "traitements": [
+      "Psycho-éducation",
+      "TCC",
+      "Médicamenteux : 1ere intention = antidépresseurs (ISRS)",
+      "Stimulation profonde (expérimental"
+    ]
+  }
+]

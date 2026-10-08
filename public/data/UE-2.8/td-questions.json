@@ -1,0 +1,1313 @@
+{
+  "ue": "UE 2.8",
+  "questionnaires": [
+    {
+      "titre": "Lithiase urinaire",
+      "description": "14 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « Lithiase urinaire » ?",
+          "reponse": "Formation de calculs dans l'arbre urinaire pouvant bloquer le flux (= uretères, vessie, urètre, bassinet)",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Epidémiologie pour la pathologie « Lithiase urinaire » ?",
+          "reponse": "H entre 30 et 50 ans\nF ménauposée\nobésité / diabète",
+          "categorie": "Epidémiologie"
+        },
+        {
+          "id": 3,
+          "question": "Physiopathologie pour la pathologie « Lithiase urinaire » ?",
+          "reponse": "précipitation de :\nmasse minérale (oxalate de calcium, phosphate de calcium) = 70-80% des cas\nmasse organique (acide urique) = 5-10% des cas\nstruvite (magnésium) = 10% des cas\nRarement cystine = maladie génétique rare.\n7 étapes jusqu'à formation du calcul ( REINS = sursaturation urinaire, germination cristalline, croissance cristalline, rétention des particules cristallines, croissance du calcul // MIGRATION)",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 4,
+          "question": "Etiologie pour la pathologie « Lithiase urinaire » ?",
+          "reponse": "Hydration insuffisante, alimentation déséquilibré",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 5,
+          "question": "Facteurs de risque pour la pathologie « Lithiase urinaire » ?",
+          "reponse": "Hydratation insuffisante, alimentation déséquilibré (excès de sel, protéines animales, oxalate), antécédents de calculs urinaires, manque d’exercice, obésité, médicaments",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 6,
+          "question": "Tableau clinique pour la pathologie « Lithiase urinaire » ?",
+          "reponse": "pollakiurie, hyperthermie si infection associée, douleur aiguë de colique néphrétique (violente, spasmodique, fosse lombaire irradiant vers organes génitaux externes), nausées, vomissement, évolution par « crise », hématurie, dysurie, nycturie",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 7,
+          "question": "Critères de gravité pour la pathologie « Lithiase urinaire » ?",
+          "reponse": "anurie (rein unique)\nhyperthermie",
+          "categorie": "Critères de gravité"
+        },
+        {
+          "id": 8,
+          "question": "Diagnostic pour la pathologie « Lithiase urinaire » ?",
+          "reponse": "clinique\nbiologie urinaire (bilan métabolique complet des urines = volume urinaire sur 24h + créatinine urinaire + calci/oxal/uric-urie)\nbiologie sanguin (créat, calcémie, uricémie, glycémie a jeun) \nimagerie rénale (ASP, scanner abdomino-pelvien, échographie rénale / urétérine, uro-scanner",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 9,
+          "question": "Examens complémentaires pour la pathologie « Lithiase urinaire » ?",
+          "reponse": "tamissage des urines => examen SPIR (spectrophotométrie infrarouge), bandelette urinaire (pH urinaire, ECBU",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 10,
+          "question": "Biologie pour la pathologie « Lithiase urinaire » ?",
+          "reponse": "calciurie\nuricémie = éliminé par les reins (70%) + intestin (30%)",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 11,
+          "question": "Traitements pour la pathologie « Lithiase urinaire » ?",
+          "reponse": "Immédiat : Antalgiques, antispasmodiques, AINS, antalgiques de palier 1 ± titration morphine.  hyperalgique résistante au traitement / colique néphrétique fébrile (= pyélonéphrite obstructive) / anurie / vigilance si rein unique. \nTemporaire : drainage des urines par dérivation (sonde JJ ou néphrostomie percutanée).\nChirugical = si calcul non évacué",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 12,
+          "question": "Complications pour la pathologie « Lithiase urinaire » ?",
+          "reponse": "rupture voie excrétrice, récidive, colique néphrétique colique ou pyélonéphrite obstructive, anurie, hyperalgie, infection urinaire chronique, hydronéphrose (gonflement d'un rein causé par accumulation d'urine), insuffisance rénale aiguë secondaire",
+          "categorie": "Complications"
+        },
+        {
+          "id": 13,
+          "question": "Prévention pour la pathologie « Lithiase urinaire » ?",
+          "reponse": "hydratation, enquête alimentaire, ttmt des trbles métaboliques...",
+          "categorie": "Prévention"
+        },
+        {
+          "id": 14,
+          "question": "Rôle IDE pour la pathologie « Lithiase urinaire » ?",
+          "reponse": "soulager la douleur\nprévenir complications et récidives (hydratation adaptée, diurèse, éducation)\nsurveillance de la douleur\nsurveillance liée pharmacothérapie (AINS, antiémétique, ATB)\ninformer le patient (gestes, intervention chirurgicale)\ndétection précoce des complications\ncoordination pluridisciplinaire",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "Lithiase biliaire ou vésiculaire",
+      "description": "12 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « Lithiase biliaire ou vésiculaire » ?",
+          "reponse": "Formation de calculs dans l'arbre biliaire pouvant bloquer le flux soit au niveau du conduit cystique (colique hépatique CH, cholécystite aiguë CA) soit au niveau du cholédoque (angiocholite aiguë AA, pancréatite aiguë PA)",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Epidémiologie pour la pathologie « Lithiase biliaire ou vésiculaire » ?",
+          "reponse": "60% > 80 ans",
+          "categorie": "Epidémiologie"
+        },
+        {
+          "id": 3,
+          "question": "Physiopathologie pour la pathologie « Lithiase biliaire ou vésiculaire » ?",
+          "reponse": "précipitation favorisée par une augmentation de la teneur en cholestérol ou en sels biliaires de la bile.\n\ncalculs formés de :\ncholestéroliques = 80%\n\"pigmentaires\" (bilirubine) = 20%\nmixtes",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 4,
+          "question": "Etiologie pour la pathologie « Lithiase biliaire ou vésiculaire » ?",
+          "reponse": "hypercholestérolémie\nhyperbilirubinémie (hémolyse, obstacle voies biliaires,etc)\nstase biliaire (manque de contraction empêchant vidange complète)",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 5,
+          "question": "Facteurs de risque pour la pathologie « Lithiase biliaire ou vésiculaire » ?",
+          "reponse": "cholestéroliques = âge, sexe F, obésité, surpoids\npigmentaires = drépanocytose, thalassémie",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 6,
+          "question": "Tableau clinique pour la pathologie « Lithiase biliaire ou vésiculaire » ?",
+          "reponse": "CH = douleur brutale intense continue (type crampe) localisée épigastre ou hypochondre D, douleur à l'inspiration forcée par palpation (donc inhibant l'inspiration forcée)\nCA = douleur CH + sd infectieux (hyperthermie, frissons), nausées vomissements, signe de Murphy = douleur à la pression. Absence d'ictère\nAA = douleur CH + sd infectieux + ictère en 48h",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 7,
+          "question": "Diagnostic pour la pathologie « Lithiase biliaire ou vésiculaire » ?",
+          "reponse": "CH = clinique + echographie\nCA = clinique + echographie => épaississement paroi vésiculaire\nAA = clinique + biologie + echographie => dilatation voie bilaire principale",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 8,
+          "question": "Examens complémentaires pour la pathologie « Lithiase biliaire ou vésiculaire » ?",
+          "reponse": "CH = bilan hépatique\nCA = biologie hyperleucocytose à PNN, augmentation CRP +/- PCT (Procalcitonine = sensible infection bactérienne)\nAA = biologique (cholestase & cytolyse avec hyper-bilirubinémie conjuguée)",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 9,
+          "question": "Biologie pour la pathologie « Lithiase biliaire ou vésiculaire » ?",
+          "reponse": "NFS, CRP, bilan hépatique",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 10,
+          "question": "Traitements pour la pathologie « Lithiase biliaire ou vésiculaire » ?",
+          "reponse": "CH = cholécystectomie post crise et délai < 1 mois\nCA = antalgique + ATB spectre large puis ciblée + cholécystectomie en urgence\nAA = antalgique + ATB spectre large puis ciblée + désobstruction voie biliaire en urgence",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 11,
+          "question": "Complications pour la pathologie « Lithiase biliaire ou vésiculaire » ?",
+          "reponse": "CA = abcès péri-vésiculaire, péritonite biliaire, fistule bilio-digestive\nAA = choc septique, abcès hépatique, défaillance multiviscérale pouvant conduire au décès",
+          "categorie": "Complications"
+        },
+        {
+          "id": 12,
+          "question": "Rôle IDE pour la pathologie « Lithiase biliaire ou vésiculaire » ?",
+          "reponse": "Surveiller la douleur abdominale.\nSurveiller les signes infectieux.\nRechercher l’apparition d’un ictère.\nAdministrer et surveiller les traitements prescrits. \nSurveiller les bilans biologiques.\nPréparer le patient aux examens ou à la cholécystectomie.",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "Asthme",
+      "description": "14 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « Asthme » ?",
+          "reponse": "maladie chronique réversible, évoluant par crise entraînant une difficulté respiratoire aiguë et un sifflement expiratoire, se manifestant plutôt le matin au réveil ou le soir.",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Epidémiologie pour la pathologie « Asthme » ?",
+          "reponse": "10-12% des enfants (1ere maladie chronique chez l'enfant)\n5-7% des adultes",
+          "categorie": "Epidémiologie"
+        },
+        {
+          "id": 3,
+          "question": "Physiopathologie pour la pathologie « Asthme » ?",
+          "reponse": "Triade\n\nbronchospasme\ninflammation/oedème\nhyperécrétion bronchique",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 4,
+          "question": "Etiologie pour la pathologie « Asthme » ?",
+          "reponse": "terrain atopique\nantécédent familial",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 5,
+          "question": "Facteurs de risque pour la pathologie « Asthme » ?",
+          "reponse": "personnels : \natcd familiaux, allergies, prématurité, obésité\n\nenvironnementaux  :\ntabagisme actif/passif, qualité de l'air, exposition aux allergènes",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 6,
+          "question": "Tableau clinique pour la pathologie « Asthme » ?",
+          "reponse": "toux, essouflement, signes de lutte, sécrétions bronchiques, sifflement expiratoire, sensation d'oppression thoracique, cyanose",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 7,
+          "question": "Critères de gravité pour la pathologie « Asthme » ?",
+          "reponse": "polypnée (FR > 30), incapacité à parler, agitation, désaturation (<90%), perte de connaissance, coma",
+          "categorie": "Critères de gravité"
+        },
+        {
+          "id": 8,
+          "question": "Diagnostic pour la pathologie « Asthme » ?",
+          "reponse": "clinique / anamnèse et réversibilité des symptômes spontanée ou médicamenteuse",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 9,
+          "question": "Examens complémentaires pour la pathologie « Asthme » ?",
+          "reponse": "EFR avec test de réversibilité\nDEP si spirométrie normale\nVEMS (test à la metacholine)\nRT / scanner thoracique si asthme non contrôlé",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 10,
+          "question": "Traitements pour la pathologie « Asthme » ?",
+          "reponse": "Phase aiguë :\nbronchodilatateurs (SABA ex: salbutamol / SAMA ex: ipratropium) + corticoïdes oraux / IV / inhalés (ex: Solupred)\n\nTtmt de fond : \ncorticoïdes inhalés, biothérapie (= anti-IgE, anti-IL5, anti-TSLP), antileucotriènes",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 11,
+          "question": "Complications pour la pathologie « Asthme » ?",
+          "reponse": "impact sur la qualité de vie / vie socioprofessionnelle, exacerbation (au moins 2 jours pour qualifier), insuffisance respiratoire, décès",
+          "categorie": "Complications"
+        },
+        {
+          "id": 12,
+          "question": "Prévention pour la pathologie « Asthme » ?",
+          "reponse": "pratique sportive, traiter les allergies, vaccination, assainir l’environnement, éviter les irritants",
+          "categorie": "Prévention"
+        },
+        {
+          "id": 13,
+          "question": "Diagnostic différentiel pour la pathologie « Asthme » ?",
+          "reponse": "insuffisance cardiaque gauche, corps étranger, EP, tumeurs trachéo-bronchiques, anxiété, mucoviscidose",
+          "categorie": "Diagnostic différentiel"
+        },
+        {
+          "id": 14,
+          "question": "Rôle IDE pour la pathologie « Asthme » ?",
+          "reponse": "Évaluer rapidement la gravité de la crise.\nInstaller en position demi-assise, rassurer et limiter les efforts.\nSurveiller la réponse au traitement.\nContrôler régulièrement SpO₂, FR, FC, +/-DEP si réalisable et état de conscience.\nRepérer les signes d’asthme aigu grave. \nVérifier la technique d’utilisation des dispositifs d’inhalation et corriger les erreurs.\nÉduquer sur le traitement de fond, le traitement de secours, les facteurs déclenchants, le plan d’action et la conduite à tenir en cas de crise.",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "BPCO",
+      "description": "15 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « BPCO » ?",
+          "reponse": "Maladie respiratoire chronique caractérisée par des symptômes respiratoires persistants et une obstruction bronchique permanente, non complètement réversible. 4 stades : léger, modéré, sévère, très sévère",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Epidémiologie pour la pathologie « BPCO » ?",
+          "reponse": "7-10% des adultes",
+          "categorie": "Epidémiologie"
+        },
+        {
+          "id": 3,
+          "question": "Physiopathologie pour la pathologie « BPCO » ?",
+          "reponse": "inflammation chronique des bronches et du parenchyme pulmonaire, bronchite chronique (hypersécrétion de mucus, épaississement de la paroi, obstruction des petites voies aériennes, paralysie et section des cils), emphysème",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 4,
+          "question": "Etiologie pour la pathologie « BPCO » ?",
+          "reponse": "tabagisme chronique >> exposition professionnelle, pollution",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 5,
+          "question": "Facteurs de risque pour la pathologie « BPCO » ?",
+          "reponse": "tabagisme actif et passif (80-90 % des cas), exposition professionnelle, pollution de l’air, âge (>40a), atcd d’infections respi sévères dans l’enfance/prématurité, asthme, génétique",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 6,
+          "question": "Tableau clinique pour la pathologie « BPCO » ?",
+          "reponse": "toux chronique, expectorations matinales, infections respiratoires répétées, dyspnée d’effort progressive (à l’effort important, puis modéré, puis au repos selon le stade)\nDéconditionnement : BPCO ⇒ dyspnée ⇒ anxiété ⇒ amyotrophie ⇒ dépression ⇒ effondrement capacité sportive",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 7,
+          "question": "Critères de gravité pour la pathologie « BPCO » ?",
+          "reponse": "selon sévérité de l’obstruction (VEMS en % de la valeur théorique), selon symptômes et impact (dyspnée importante, limitation des activités, etc), selon risque d’exacerbation, selon insuffisance respiratoire chronique",
+          "categorie": "Critères de gravité"
+        },
+        {
+          "id": 8,
+          "question": "Diagnostic pour la pathologie « BPCO » ?",
+          "reponse": "clinique (râles bronchiques, frein expiratoire, distension du thorax, cyanose des extrémités)\nEFR\nrapport de Tiffeneau (VEMS / CVF (=capacité ventilatoire). Si < 70 % = BPCO)",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 9,
+          "question": "Examens complémentaires pour la pathologie « BPCO » ?",
+          "reponse": "spirométrie (=VEMS sur 1 sec), pléthysmographie (=permet de mesurer le volume résiduel), distension pulmonaire, capacité de diffusion (DLCO = capacité de diffusion du monoxyde de carbone), oxymétrie nocturne voire polygraphie nocturne, test de marche de 6 min (distance, besoin en O2), scanner thoracique",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 10,
+          "question": "Biologie pour la pathologie « BPCO » ?",
+          "reponse": "GDS",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 11,
+          "question": "Traitements pour la pathologie « BPCO » ?",
+          "reponse": "sevrage tabagique, activité physique adaptée régulière, réhabilitation respiratoire, bronchodilatateur (association B2 mimétique et anticholinergique) ± corticostéroïdes inhalés, réadaptation respiratoire, oxygénothérapie, VNI, biothérapie",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 12,
+          "question": "Complications pour la pathologie « BPCO » ?",
+          "reponse": "Déconditionnement : BPCO ⇒ dyspnée ⇒ anxiété ⇒ amyotrophie ⇒ dépression ⇒ effondrement capacité sportive\nexacerbation, insuffisance respiratoire aiguë ou chronique (IRCO), embolie pulmonaire, surinfection bronchique, pneumothorax, insuffisance cardiaque droite, dénutrition, syndrome anxio-dépressif",
+          "categorie": "Complications"
+        },
+        {
+          "id": 13,
+          "question": "Prévention pour la pathologie « BPCO » ?",
+          "reponse": "vaccination (grippe, covid, penumocoque, VRS ⇒ bronchiolite,  DTP ⇒ coqueluche),",
+          "categorie": "Prévention"
+        },
+        {
+          "id": 14,
+          "question": "Diagnostic différentiel pour la pathologie « BPCO » ?",
+          "reponse": "asthme, mucoviscidose, bronchectasies",
+          "categorie": "Diagnostic différentiel"
+        },
+        {
+          "id": 15,
+          "question": "Rôle IDE pour la pathologie « BPCO » ?",
+          "reponse": "Surveiller la respiration. \nAdministrer l’oxygène avec prudence selon prescription.\nSurveiller les gaz du sang et la réponse à la ventilation non invasive lorsqu’elle est prescrite.\nAdministrer et évaluer l’efficacité des bronchodilatateurs, corticoïdes et antibiotiques prescrits.\nRepérer les signes d’exacerbation ou de décompensation.\nFavoriser une position adaptée, la respiration à lèvres pincées, l’expectoration et la mobilisation progressive. Éduquer sur les inhalateurs, le sevrage tabagique, les vaccinations, l’activité physique, la réhabilitation respiratoire.",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "AVC ischémique",
+      "description": "14 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « AVC ischémique » ?",
+          "reponse": "déficit neurologique focal d'apparition brutale durant plus de 24h, d'origine vasculaire, avec lésion cérébrale.",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Epidémiologie pour la pathologie « AVC ischémique » ?",
+          "reponse": "plus fréquent chez l'homme\nplus létal chez la femme\nrisque majoré avec l'âge\nischémique = 80% des cas",
+          "categorie": "Epidémiologie"
+        },
+        {
+          "id": 3,
+          "question": "Physiopathologie pour la pathologie « AVC ischémique » ?",
+          "reponse": "obstruction vx => ischémie => nécrose",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 4,
+          "question": "Etiologie pour la pathologie « AVC ischémique » ?",
+          "reponse": "athérobrombose (athérome cérébral ou carotidien), embolie cardiogénique sur FA), microangiopathie, valvulopathie, MVTE, états prothrombotiques",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 5,
+          "question": "Facteurs de risque pour la pathologie « AVC ischémique » ?",
+          "reponse": "non-modifiables : \nâge, sexe masculin, atcd familiaux\n\nmodifiables : HTA, tabagisme, diabète, obésité, surpoids, sédentarité, hypercholestérolémie, trouble du rythme (FA), atcd d'AIT",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 6,
+          "question": "Tableau clinique pour la pathologie « AVC ischémique » ?",
+          "reponse": "hémiplégie, hémiparésie, hémiparesthésie, aphasie, amaurose unilatérale, hémianopsie latérale homonyme, troubles de l'équilibre",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 7,
+          "question": "Diagnostic pour la pathologie « AVC ischémique » ?",
+          "reponse": "Clinique + IRM/scanner TDM pour distinguer ischémie vs hémorragie + localisation",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 8,
+          "question": "Examens complémentaires pour la pathologie « AVC ischémique » ?",
+          "reponse": "echodoppler des TSA, angio-IRM, angioscanner, Holter-ECG pour rechercher une arythmie",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 9,
+          "question": "Biologie pour la pathologie « AVC ischémique » ?",
+          "reponse": "NFS, iono, urée, créat, glycémie, bilan lipidique",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 10,
+          "question": "Traitements pour la pathologie « AVC ischémique » ?",
+          "reponse": "phase aiguë : \nthrombolyse (intervalle de 4h30 max après 1ers symptômes) sinon thrombectomie\n\npréventif :\nanticoagulation, AAP\n+/- endartériectomie (chirurgie vasculaire)",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 11,
+          "question": "Complications pour la pathologie « AVC ischémique » ?",
+          "reponse": "Décès, handicap moteur/cognitif, troubles du langage, troubles de la déglutition, épilepsie post-AVC, œdème cérébral (ischémie étendue/hémorragie), récidive d’AVC, complications du décubitus",
+          "categorie": "Complications"
+        },
+        {
+          "id": 12,
+          "question": "Prévention pour la pathologie « AVC ischémique » ?",
+          "reponse": "contrôle HTA, éviter hyperlipidémie, arrêt tabac, éviter surpoids/obésité, activité sportive",
+          "categorie": "Prévention"
+        },
+        {
+          "id": 13,
+          "question": "Diagnostic différentiel pour la pathologie « AVC ischémique » ?",
+          "reponse": "tous les tableaux pouvant donner un changement brutal d'un tableau antérieur (crise d'épilepsie, migraine avec aura visuelle, aura sensitive...)\nparalysie de Todd",
+          "categorie": "Diagnostic différentiel"
+        },
+        {
+          "id": 14,
+          "question": "Rôle IDE pour la pathologie « AVC ischémique » ?",
+          "reponse": "Déclencher et participer à la prise en charge urgente.\nSurveiller les fonctions vitales et neurologiques.\nMaintenir la liberté des voies aériennes et prévenir l’inhalation.\nMaintenir à jeun jusqu’à l’évaluation de la déglutition.\nPoser une voie veineuse et réaliser les prélèvements prescrits.\nPréparer et accompagner rapidement à l’IRM.\nSurveiller les effets et complications de la thrombolyse ou de la thrombectomie.\nPrévenir les complications du décubitus.",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "AVC hémorragique",
+      "description": "14 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « AVC hémorragique » ?",
+          "reponse": "déficit neurologique focal d'apparition brutale, d'origine vasculaire, avec lésion cérébrale.",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Epidémiologie pour la pathologie « AVC hémorragique » ?",
+          "reponse": "plus fréquent chez l'homme\nplus létal chez la femme\nrisque majoré avec l'âge\nischémique = 20% des cas",
+          "categorie": "Epidémiologie"
+        },
+        {
+          "id": 3,
+          "question": "Physiopathologie pour la pathologie « AVC hémorragique » ?",
+          "reponse": "rupture paroi vx => HTIC + toxicité cérébrale => oedème vasogénique",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 4,
+          "question": "Etiologie pour la pathologie « AVC hémorragique » ?",
+          "reponse": "hgie intracérébrale (HTA) ou hgie méningée (rupture d'anévrisme /malformation vasculaire), angiopathie amyloïde (= maladie des petits et moyens vaisseaux), anticoagulants ou trouble de la coagulation",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 5,
+          "question": "Facteurs de risque pour la pathologie « AVC hémorragique » ?",
+          "reponse": "non-modifiables : \nâge, sexe masculin, atcd familiaux\n\nmodifiables : HTA, tabagisme, diabète, obésité, surpoids, sédentarité, ttmt anticoagulants, malformations vasulaires (anévrisme)",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 6,
+          "question": "Tableau clinique pour la pathologie « AVC hémorragique » ?",
+          "reponse": "hémiplégie, hémiparésie, hémiparesthésie, aphasie, amaurose unilatérale, hémianopsie latérale homonyme, troubles de l'équilibre",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 7,
+          "question": "Diagnostic pour la pathologie « AVC hémorragique » ?",
+          "reponse": "Clinique + IRM/scanner TDM pour distinguer ischémie vs hémorragie + localisation",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 8,
+          "question": "Examens complémentaires pour la pathologie « AVC hémorragique » ?",
+          "reponse": "echodoppler des TSA, angio-IRM, angioscanner",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 9,
+          "question": "Biologie pour la pathologie « AVC hémorragique » ?",
+          "reponse": "NFS, iono, urée, créat, glycémie, bilan lipidique\n\nrecherche trouble de la coagulation (iatrogène, maladie, tumeur)",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 10,
+          "question": "Traitements pour la pathologie « AVC hémorragique » ?",
+          "reponse": "phase aiguë :\nsi anévrisme = neurochirugie\nsinon selon critères et contre-indication\n\ncontrole HTA, ttmt anti-oedémateux, antalgiques (+ antipyrétiques, anti-épileptiques, ATB si besoin)",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 11,
+          "question": "Complications pour la pathologie « AVC hémorragique » ?",
+          "reponse": "Décès, handicap moteur/cognitif, troubles du langage, troubles de la déglutition, épilepsie post-AVC, œdème cérébral (ischémie étendue/hémorragie), récidive d’AVC, complications du décubitus",
+          "categorie": "Complications"
+        },
+        {
+          "id": 12,
+          "question": "Prévention pour la pathologie « AVC hémorragique » ?",
+          "reponse": "contrôle HTA, éviter hyperlipidémie, arrêt tabac, éviter surpoids/obésité, activité sportive",
+          "categorie": "Prévention"
+        },
+        {
+          "id": 13,
+          "question": "Diagnostic différentiel pour la pathologie « AVC hémorragique » ?",
+          "reponse": "tous les tableaux pouvant donner un changement brutal d'un tableau antérieur (crise d'épilepsie, migraine avec aura visuelle, aura sensitive...)\nparalysie de Todd",
+          "categorie": "Diagnostic différentiel"
+        },
+        {
+          "id": 14,
+          "question": "Rôle IDE pour la pathologie « AVC hémorragique » ?",
+          "reponse": "Assurer une surveillance neurologique et hémodynamique rapprochée.\nRepérer une aggravation évoquant une hypertension intracrânienne. (céphalées intenses, nausées/vomissements, troubles visuels, diplopie, mydriase, convulsions, triade de Cushing = HTA + bradycardie + troubles respiratoires)\nMaintenir les voies aériennes libres et prévenir l'inhalation.\nMaintenir le patient à jeun si troubles de la vigilance ou de la déglutition.\nSurveiller les risques hémorragiques et rechercher tout saignement.\nPréparer le patient à une éventuelle intervention neurochirurgicale.\nPrévenir les complications du decubitus.",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "AIT",
+      "description": "12 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « AIT » ?",
+          "reponse": "épisode bref (souvent <1h et max 24h de déficit neurologique focal d’origine ischémique sans lésion cérébrale en imagerie)",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Physiopathologie pour la pathologie « AIT » ?",
+          "reponse": "obstruction temporaire d'un vx",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 3,
+          "question": "Etiologie pour la pathologie « AIT » ?",
+          "reponse": "athérobrombose (athérome cérébral ou carotidien), embolie cardiogénique sur FA), microangiopathie, valvulopathie, MVTE, états prothrombotiques",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 4,
+          "question": "Facteurs de risque pour la pathologie « AIT » ?",
+          "reponse": "non-modifiables : \nâge, sexe masculin, atcd familiaux\n\nmodifiables : HTA, tabagisme, diabète, obésité, surpoids, sédentarité, hypercholestérolémie, trouble du rythme (FA), atcd d'AIT",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 5,
+          "question": "Tableau clinique pour la pathologie « AIT » ?",
+          "reponse": "Déficit neurologique focal transitoire : amaurose fugace, diplopie binoculaire, aphasie, déficit moteur/sensitif unilatéral face/membre, hémianopsie latérale homonyme",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 6,
+          "question": "Examens complémentaires pour la pathologie « AIT » ?",
+          "reponse": "echodoppler des TSA, angio-IRM, angioscanner, Holter-ECG pour rechercher une arythmie",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 7,
+          "question": "Biologie pour la pathologie « AIT » ?",
+          "reponse": "NFS, iono, urée, créat, glycémie, bilan lipidique",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 8,
+          "question": "Traitements pour la pathologie « AIT » ?",
+          "reponse": "préventif :\nanticoagulation, AAP\n+/- endartériectomie (chirurgie vasculaire)",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 9,
+          "question": "Complications pour la pathologie « AIT » ?",
+          "reponse": "AVC ischémique\nrécidive d'AIT",
+          "categorie": "Complications"
+        },
+        {
+          "id": 10,
+          "question": "Prévention pour la pathologie « AIT » ?",
+          "reponse": "contrôle HTA, éviter hyperlipidémie, arrêt tabac, éviter surpoids/obésité, activité sportive",
+          "categorie": "Prévention"
+        },
+        {
+          "id": 11,
+          "question": "Diagnostic différentiel pour la pathologie « AIT » ?",
+          "reponse": "paralysie de Todd",
+          "categorie": "Diagnostic différentiel"
+        },
+        {
+          "id": 12,
+          "question": "Rôle IDE pour la pathologie « AIT » ?",
+          "reponse": "Considérer l’AIT comme une urgence (= AVC).\nRecueillir précisément l’heure de début, la durée, les symptômes et leur résolution.\nRéaliser une surveillance neurologique et des fonctions vitales.\nRechercher une fibrillation atriale ou un autre trouble du rythme selon le monitorage prescrit (ECG).\nPréparer rapidement les examens.\nSurveiller toute récidive de déficit neurologique.\nÉduquer sur les signes d’alerte, l’observance, le contrôle de la tension artérielle, le tabac, le diabète et les facteurs cardiovasculaires.",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "Occlusion intestinale fonctionnelle",
+      "description": "12 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « Occlusion intestinale fonctionnelle » ?",
+          "reponse": "Arrêt temporaire ou définitif, total ou partiel, du transit intestinal normal des matières et des gaz au niveau de l'intestin grêle ou du côlon. Peut être haute (jéjunum) ou basse (iléon, colon, rectum) ⇒ la localisation permet de cibler les causes probables",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Epidémiologie pour la pathologie « Occlusion intestinale fonctionnelle » ?",
+          "reponse": "3e urgence digestive\n10 000 cas/an",
+          "categorie": "Epidémiologie"
+        },
+        {
+          "id": 3,
+          "question": "Physiopathologie pour la pathologie « Occlusion intestinale fonctionnelle » ?",
+          "reponse": "arrêt du péristaltisme\ndilatation aiguë du colon sans obstacle",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 4,
+          "question": "Etiologie pour la pathologie « Occlusion intestinale fonctionnelle » ?",
+          "reponse": "Syndrome d'Ogilvie = déséquilibre dans l'innervation de la paroi colique",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 5,
+          "question": "Facteurs de risque pour la pathologie « Occlusion intestinale fonctionnelle » ?",
+          "reponse": "terrain de constipation, maladie inflammatoire de l'intestion, terrain vasculaire, diverticule du colon, cancer du colon, antécédents de chirurgie abdominale, médicaments pouvant ralentir le transit",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 6,
+          "question": "Tableau clinique pour la pathologie « Occlusion intestinale fonctionnelle » ?",
+          "reponse": "douleur abdominale\nvomissements\nchoc hyovolémique (tachycardie, hypotension, polypnée)\nsignes de déshydratation\nhyperthermie\ntympanisme à la percussion\narrêt des matières et des gaz\ndistension abdominale ou météorisme\n\nrechercher hernie, marbrures abdominales, cicatrices pariétales, éventration",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 7,
+          "question": "Diagnostic pour la pathologie « Occlusion intestinale fonctionnelle » ?",
+          "reponse": "Clinique via Carré de Mondor = \n\n1/ arrêt des gaz et des matières (apparition tardive, faussses diarrhées)\n2/ distension et météorisme (=traduit la distention des anses en amont)\n3/ douleurs abdominales (inaugurales dans 80% des cas)\n4/ vomissements (présents dans 80% des cas)",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 8,
+          "question": "Examens complémentaires pour la pathologie « Occlusion intestinale fonctionnelle » ?",
+          "reponse": "imagerie :\nscanner TDM abdomino-pelvien injecté",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 9,
+          "question": "Biologie pour la pathologie « Occlusion intestinale fonctionnelle » ?",
+          "reponse": "ionograme sanguin  (fct rénale, hypoNa, hypoK)\nenzymes pancréatiques (éliminer pancréatite aiguë)\nNFS / CRP (éliminer sd inflammatoire)\nGDS (éliminer acidose métabolique)\nbilan préopératoire (grpe sanguin + RAI + bilan hémostase)",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 10,
+          "question": "Traitements pour la pathologie « Occlusion intestinale fonctionnelle » ?",
+          "reponse": "1/ traitement étiologique\n\n2/ épargne morphinique en post opératoire pour limiter l'occlusion fonctionnelle\n\n3/ Sd Ogilvie = ttmt médical, coloscopie d'exsufflation, Prostigmine (stimulant musculaire transit), si échec => ttmt chirurgical",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 11,
+          "question": "Complications pour la pathologie « Occlusion intestinale fonctionnelle » ?",
+          "reponse": "Distension abdominale\n- accumulation de gaz/liquides en amont de l’obstacle\n\nDéshydratation et troubles hydroélectrolytiques\n- séquestration liquidienne dans la lumière digestive + troubles hydroélectrolytiques\n- hypovolémie → choc hypovolémique si non corrigé\n\nIschémie intestinale\n- compression vasculaire par distension\n- progression vers nécrose pariétale\n\nPerforation digestive\n- rupture de la paroi nécrosée.\n - péritonite secondaire.\n\n Translocation bactérienne\n- passage des bactéries à travers la muqueuse fragilisée\n- septicémie et choc septique",
+          "categorie": "Complications"
+        },
+        {
+          "id": 12,
+          "question": "Rôle IDE pour la pathologie « Occlusion intestinale fonctionnelle » ?",
+          "reponse": "Mesurer et tracer les entrées-sorties.\nSurveiller l’état d’hydratation et les signes de choc.\n+/- Maintenir à jeun selon prescription, administrer les perfusions et corriger les troubles hydroélectrolytiques. \nSurveiller la sonde nasogastrique si elle est posée.\nAdministrer les traitements prescrits et surveiller leur efficacité et leurs effets indésirables.\nFavoriser la mobilisation précoce si elle est autorisée",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "Occlusion intestinale par obstruction",
+      "description": "13 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « Occlusion intestinale par obstruction » ?",
+          "reponse": "Arrêt temporaire ou définitif, total ou partiel, du transit intestinal normal des matières et des gaz au niveau de l'intestin grêle ou du côlon. Peut être haute (jéjunum) ou basse (iléon, colon, rectum) ⇒ la localisation permet de cibler les causes probables",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Epidémiologie pour la pathologie « Occlusion intestinale par obstruction » ?",
+          "reponse": "\"3e urgence digestive\n10 000 cas/an\"",
+          "categorie": "Epidémiologie"
+        },
+        {
+          "id": 3,
+          "question": "Physiopathologie pour la pathologie « Occlusion intestinale par obstruction » ?",
+          "reponse": "obstacle intra-luminal / extra-luminal / pariétale ⇒ distension progressive en amont (liquide et gaz) ⇒ hypovolémie, troubles électrolytiques. Souffrance pariétale tardive",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 4,
+          "question": "Etiologie pour la pathologie « Occlusion intestinale par obstruction » ?",
+          "reponse": "grêle:\nmaladie de Crohn / tumeur (intra, pariétale, extra) / corps étranger / phytobézoard / carcinose \n\ncolon : \ndiverticulose, fécalome / corps étranger / carcinose /  tumeur (intra, pariétale, extra)",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 5,
+          "question": "Facteurs de risque pour la pathologie « Occlusion intestinale par obstruction » ?",
+          "reponse": "terrain de constipation, maladie inflammatoire de l'intestion, terrain vasculaire, diverticule du colon, cancer du colon, antécédents de chirurgie abdominale, médicaments pouvant ralentir le transit",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 6,
+          "question": "Tableau clinique pour la pathologie « Occlusion intestinale par obstruction » ?",
+          "reponse": "douleur abdominale\nvomissements\nchoc hyovolémique (tachycardie, hypotension, polypnée)\nsignes de déshydratation\nhyperthermie\ntympanisme à la percussion\narrêt des matières et des gaz\ndistension abdominale ou météorisme\n\nrechercher hernie, marbrures abdominales, cicatrices pariétales, éventration",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 7,
+          "question": "Critères de gravité pour la pathologie « Occlusion intestinale par obstruction » ?",
+          "reponse": "défense ou une contracture\nsignes de choc\nhernie étranglée\nsuspicion de péritonite",
+          "categorie": "Critères de gravité"
+        },
+        {
+          "id": 8,
+          "question": "Diagnostic pour la pathologie « Occlusion intestinale par obstruction » ?",
+          "reponse": "Clinique via Carré de Mondor = \n\n1/ arrêt des gaz et des matières (apparition tardive, faussses diarrhées)\n2/ distension et météorisme (=traduit la distention des anses en amont)\n3/ douleurs abdominales (inaugurales dans 80% des cas)\n4/ vomissements (présents dans 80% des cas)",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 9,
+          "question": "Examens complémentaires pour la pathologie « Occlusion intestinale par obstruction » ?",
+          "reponse": "imagerie :\nscanner TDM abdomino-pelvien injecté",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 10,
+          "question": "Biologie pour la pathologie « Occlusion intestinale par obstruction » ?",
+          "reponse": "ionograme sanguin  (fct rénale, hypoNa, hypoK)\nenzymes pancréatiques (éliminer pancréatite aiguë)\nNFS / CRP (éliminer sd inflammatoire)\nGDS (éliminer acidose métabolique)\nbilan préopératoire (grpe sanguin + RAI + bilan hémostase)",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 11,
+          "question": "Traitements pour la pathologie « Occlusion intestinale par obstruction » ?",
+          "reponse": "1/ médical en urgence:\n- mise a jeun\n- SNG aspiration douce\n- VVP\n- réhydratation + équilibre électrolytique\n- antalgiques, antispasmodiques, antiémétique\n- bilan biologique préop\n\n2/ chirurgical\n- exploration\n- levée d'obstacle\n- résection si nécrose",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 12,
+          "question": "Complications pour la pathologie « Occlusion intestinale par obstruction » ?",
+          "reponse": "Distension abdominale\n- accumulation de gaz/liquides en amont de l’obstacle\n\nDéshydratation et troubles hydroélectrolytiques\n- séquestration liquidienne dans la lumière digestive + troubles hydroélectrolytiques\n- hypovolémie → choc hypovolémique si non corrigé\n\nIschémie intestinale\n- compression vasculaire par distension\n- progression vers nécrose pariétale\n\nPerforation digestive\n- rupture de la paroi nécrosée.\n - péritonite secondaire.\n\n Translocation bactérienne\n- passage des bactéries à travers la muqueuse fragilisée\n- septicémie et choc septique",
+          "categorie": "Complications"
+        },
+        {
+          "id": 13,
+          "question": "Rôle IDE pour la pathologie « Occlusion intestinale par obstruction » ?",
+          "reponse": "Soins post-opératoires :\n1/ SNG :\n- Maintenue en place, position vérifiée avant fermeture pariétale.\n- Débit journalier quantifié et compensé >500 ml (Ringer Lactate® ou sérum salé 9 ‰).\n- Retrait le plus précoce possible pour limiter : reflux, ulcérations gastriques/nasales, complications respiratoires.\n- Débit >1000 ml/24 h → réaliser ASP pour vérifier position.\n\n2/ SNG (drain:\n- Surveillance du débit et de l’aspect.\n- Retrait précoce (idéal avant J5) pour éviter : érosions digestives, douleurs, iléus.\n\n3/ Mobilisation et réalimentation :\n- Mobilisation précoce et mise au fauteuil dès le lendemain si possible.\n- Prévention thromboembolique : HBPM + bas de contention.\n- Réalimentation débutée après retrait de la sonde nasogastrique",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "Occlusion intestinale par strangulation",
+      "description": "13 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « Occlusion intestinale par strangulation » ?",
+          "reponse": "Arrêt temporaire ou définitif, total ou partiel, du transit intestinal normal des matières et des gaz au niveau de l'intestin grêle ou du côlon. Peut être haute (jéjunum) ou basse (iléon, colon, rectum) ⇒ la localisation permet de cibler les causes probables",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Epidémiologie pour la pathologie « Occlusion intestinale par strangulation » ?",
+          "reponse": "\"3e urgence digestive\n10 000 cas/an\"",
+          "categorie": "Epidémiologie"
+        },
+        {
+          "id": 3,
+          "question": "Physiopathologie pour la pathologie « Occlusion intestinale par strangulation » ?",
+          "reponse": "compression vasculaire, souffrance pariétale précoce, stase digestive => déshydratation et troubles électrolytiques",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 4,
+          "question": "Etiologie pour la pathologie « Occlusion intestinale par strangulation » ?",
+          "reponse": "grêle:\nocclusion sur bride / volvulus du grêle / invagination intestinale aiguë / hernie étranglée\n\ncolon:\nvolvulus du sigmoïde / volvulus du caecum / hernie étranglée",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 5,
+          "question": "Facteurs de risque pour la pathologie « Occlusion intestinale par strangulation » ?",
+          "reponse": "terrain de constipation, maladie inflammatoire de l'intestion, terrain vasculaire, diverticule du colon, cancer du colon, antécédents de chirurgie abdominale, médicaments pouvant ralentir le transit",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 6,
+          "question": "Tableau clinique pour la pathologie « Occlusion intestinale par strangulation » ?",
+          "reponse": "douleur abdominale\nvomissements\nchoc hyovolémique (tachycardie, hypotension, polypnée)\nsignes de déshydratation\nhyperthermie\ntympanisme à la percussion\narrêt des matières et des gaz\ndistension abdominale ou météorisme\n\nrechercher hernie, marbrures abdominales, cicatrices pariétales, éventration",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 7,
+          "question": "Critères de gravité pour la pathologie « Occlusion intestinale par strangulation » ?",
+          "reponse": "défense ou une contracture\nsignes de choc\nhernie étranglée\nsuspicion de péritonite",
+          "categorie": "Critères de gravité"
+        },
+        {
+          "id": 8,
+          "question": "Diagnostic pour la pathologie « Occlusion intestinale par strangulation » ?",
+          "reponse": "Clinique via Carré de Mondor = \n\n1/ arrêt des gaz et des matières (apparition tardive, faussses diarrhées)\n2/ distension et météorisme (=traduit la distention des anses en amont)\n3/ douleurs abdominales (inaugurales dans 80% des cas)\n4/ vomissements (présents dans 80% des cas)",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 9,
+          "question": "Examens complémentaires pour la pathologie « Occlusion intestinale par strangulation » ?",
+          "reponse": "imagerie :\nscanner TDM abdomino-pelvien injecté",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 10,
+          "question": "Biologie pour la pathologie « Occlusion intestinale par strangulation » ?",
+          "reponse": "ionograme sanguin  (fct rénale, hypoNa, hypoK)\nenzymes pancréatiques (éliminer pancréatite aiguë)\nNFS / CRP (éliminer sd inflammatoire)\nGDS (éliminer acidose métabolique)\nbilan préopératoire (grpe sanguin + RAI + bilan hémostase)",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 11,
+          "question": "Traitements pour la pathologie « Occlusion intestinale par strangulation » ?",
+          "reponse": "\"1/ médical en urgence:\n- mise a jeun\n- SNG aspiration douce\n- VVP\n- réhydratation + équilibre électrolytique\n- antalgiques, antispasmodiques, antiémétique\n- bilan biologique préop\n\n2/ chirurgical\n- exploration\n- levée d'obstacle\n- résection si nécrose\"",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 12,
+          "question": "Complications pour la pathologie « Occlusion intestinale par strangulation » ?",
+          "reponse": "Distension abdominale\n- accumulation de gaz/liquides en amont de l’obstacle\n\nDéshydratation et troubles hydroélectrolytiques\n- séquestration liquidienne dans la lumière digestive + troubles hydroélectrolytiques\n- hypovolémie → choc hypovolémique si non corrigé\n\nIschémie intestinale\n- compression vasculaire par distension\n- progression vers nécrose pariétale\n\nPerforation digestive\n- rupture de la paroi nécrosée.\n - péritonite secondaire.\n\n Translocation bactérienne\n- passage des bactéries à travers la muqueuse fragilisée\n- septicémie et choc septique",
+          "categorie": "Complications"
+        },
+        {
+          "id": 13,
+          "question": "Rôle IDE pour la pathologie « Occlusion intestinale par strangulation » ?",
+          "reponse": "Soins post-opératoires :\n1/ SNG :\n- Maintenue en place, position vérifiée avant fermeture pariétale.\n- Débit journalier quantifié et compensé >500 ml (Ringer Lactate® ou sérum salé 9 ‰).\n- Retrait le plus précoce possible pour limiter : reflux, ulcérations gastriques/nasales, complications respiratoires.\n- Débit >1000 ml/24 h → réaliser ASP pour vérifier position.\n\n2/ SNG (drain:\n- Surveillance du débit et de l’aspect.\n- Retrait précoce (idéal avant J5) pour éviter : érosions digestives, douleurs, iléus.\n\n3/ Mobilisation et réalimentation :\n- Mobilisation précoce et mise au fauteuil dès le lendemain si possible.\n- Prévention thromboembolique : HBPM + bas de contention.\n- Réalimentation débutée après retrait de la sonde nasogastrique",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "TVP",
+      "description": "14 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « TVP » ?",
+          "reponse": "Obstruction d’une veine profonde par un thrombus, le plus souvent au niveau de la jambe. TVP distale : en amont de la veine poplitée.",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Physiopathologie pour la pathologie « TVP » ?",
+          "reponse": "Formation d’un thrombus favorisée par la triade de Virchow : stase veineuse, lésion endothéliale et hypercoagulabilité.",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 3,
+          "question": "Etiologie pour la pathologie « TVP » ?",
+          "reponse": "Thrombophilie, cancer, chirurgie.",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 4,
+          "question": "Facteurs de risque pour la pathologie « TVP » ?",
+          "reponse": "Transitoires : chirurgie, traumatisme, grossesse ou post-partum, immobilisation. Permanents : âge, obésité, antécédent de MVTE, thrombophilie constitutionnelle ou acquise, cancer.",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 5,
+          "question": "Tableau clinique pour la pathologie « TVP » ?",
+          "reponse": "Peut être asymptomatique. Douleur spontanée ou à la palpation d’un trajet veineux, œdème blanc ou inflammatoire, perte du ballant du mollet, inflammation. Signe de Homans : douleur du mollet à la flexion dorsale du pied.",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 6,
+          "question": "Critères de gravité pour la pathologie « TVP » ?",
+          "reponse": "Risque d’embolie pulmonaire, extension de la thrombose, localisation proximale ou ilio-cave, instabilité clinique.",
+          "categorie": "Critères de gravité"
+        },
+        {
+          "id": 7,
+          "question": "Diagnostic pour la pathologie « TVP » ?",
+          "reponse": "Clinique puis écho-Doppler veineux des membres inférieurs ; les D-dimères orientent selon la probabilité clinique.",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 8,
+          "question": "Examens complémentaires pour la pathologie « TVP » ?",
+          "reponse": "Écho-Doppler veineux des membres inférieurs ; angioscanner dans certaines situations ; bilan pré-thérapeutique.",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 9,
+          "question": "Biologie pour la pathologie « TVP » ?",
+          "reponse": "D-dimères ; NFS, plaquettes, TP, TCA et fonction rénale avant traitement.",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 10,
+          "question": "Traitements pour la pathologie « TVP » ?",
+          "reponse": "Anticoagulation efficace : AOD, AVK, ou traitement parentéral si nécessaire puis relais AVK. Durée minimale de 3 mois ; prolongée en cas de récidive, SAPL (sd des anti-phospholipides) ou néoplasie. Traitement majoritairement ambulatoire.",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 11,
+          "question": "Complications pour la pathologie « TVP » ?",
+          "reponse": "Précoces : embolie pulmonaire. Tardives : récidive de TVP ou d’EP, syndrome post-thrombotique.",
+          "categorie": "Complications"
+        },
+        {
+          "id": 12,
+          "question": "Prévention pour la pathologie « TVP » ?",
+          "reponse": "Prévention de la stase et de l’immobilisation, mobilisation précoce, anticoagulation préventive selon le risque et bas de compression veineuse de classe II selon indication.",
+          "categorie": "Prévention"
+        },
+        {
+          "id": 13,
+          "question": "Diagnostic différentiel pour la pathologie « TVP » ?",
+          "reponse": "Érysipèle, thrombose veineuse superficielle, rupture d’un kyste poplité.",
+          "categorie": "Diagnostic différentiel"
+        },
+        {
+          "id": 14,
+          "question": "Rôle IDE pour la pathologie « TVP » ?",
+          "reponse": "Rechercher systématiquement des signes d’embolie pulmonaire.\nSurveiller les paramètres vitaux et la saturation.\nAdministrer et surveiller le traitement anticoagulant prescrit.\nÉduquer sur l’intérêt de l’anticoagulation, les signes hémorragiques et les signes d’EP, les interactions médicamenteuses et le suivi biologique lorsqu’il est nécessaire.\nS'assurer du port des bas de contention.\nPas de repos strict au lit.",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "EP",
+      "description": "14 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « EP » ?",
+          "reponse": "Obstruction d’une artère pulmonaire, le plus souvent causée par la migration d’un thrombus originaire d’une TVP.",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Physiopathologie pour la pathologie « EP » ?",
+          "reponse": "Migration d’un thrombus, généralement issu d’une TVP, vers les artères pulmonaires.",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 3,
+          "question": "Etiologie pour la pathologie « EP » ?",
+          "reponse": "Migration d’un thrombus constitué lors d’une TVP.",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 4,
+          "question": "Facteurs de risque pour la pathologie « EP » ?",
+          "reponse": "Transitoires : chirurgie, traumatisme, grossesse ou post-partum, immobilisation. Permanents : âge, obésité, antécédent de MVTE, thrombophilie constitutionnelle ou acquise, cancer.",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 5,
+          "question": "Tableau clinique pour la pathologie « EP » ?",
+          "reponse": "Présentation variable : asymptomatique, dyspnée importante, douleurs pleurales, toux, tachycardie, hyperthermie et signes de TVP.",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 6,
+          "question": "Critères de gravité pour la pathologie « EP » ?",
+          "reponse": "Hypotension, choc cardiogénique, défaillance ventriculaire droite, hypoxémie importante, syncope ou arrêt cardiaque.",
+          "categorie": "Critères de gravité"
+        },
+        {
+          "id": 7,
+          "question": "Diagnostic pour la pathologie « EP » ?",
+          "reponse": "Clinique avec score de Wells, puis confirmation par angioscanner pulmonaire. La scintigraphie ventilation-perfusion est une alternative.",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 8,
+          "question": "Examens complémentaires pour la pathologie « EP » ?",
+          "reponse": "Angioscanner pulmonaire ; scintigraphie ventilation-perfusion si nécessaire ; ECG, radiographie thoracique, échocardiographie transthoracique et écho-Doppler veineux des membres inférieurs.",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 9,
+          "question": "Biologie pour la pathologie « EP » ?",
+          "reponse": "D-dimères seulement si probabilité faible ou intermédiaire, avec seuil adapté à l’âge ; gaz du sang ; NFS, plaquettes, TP, TCA, fonction rénale et troponine.",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 10,
+          "question": "Traitements pour la pathologie « EP » ?",
+          "reponse": "Anticoagulation efficace : AOD, AVK, HBPM ou anti-Xa. Thrombolyse, thrombectomie ou thrombo-aspiration percutanée selon la gravité. Durée minimale de 3 mois et prolongée selon le contexte.",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 11,
+          "question": "Complications pour la pathologie « EP » ?",
+          "reponse": "Précoces : infarctus pulmonaire, infection pulmonaire, choc cardiogénique, hypotension, décès. Tardives : cœur pulmonaire chronique et récidive de TVP ou d’EP.",
+          "categorie": "Complications"
+        },
+        {
+          "id": 12,
+          "question": "Prévention pour la pathologie « EP » ?",
+          "reponse": "Prévention de la TVP : mobilisation précoce, anticoagulation préventive selon le risque et bas de compression selon indication.",
+          "categorie": "Prévention"
+        },
+        {
+          "id": 13,
+          "question": "Diagnostic différentiel pour la pathologie « EP » ?",
+          "reponse": "Pneumonie, pneumothorax, infarctus du myocarde, insuffisance cardiaque aiguë.",
+          "categorie": "Diagnostic différentiel"
+        },
+        {
+          "id": 14,
+          "question": "Rôle IDE pour la pathologie « EP » ?",
+          "reponse": "Installer au repos en position demi-assise, rassurer et administrer l’oxygène selon prescription ou protocole.\nMettre en place une surveillance cardiorespiratoire et une voie veineuse.\nAdministrer et surveiller l’anticoagulation, la thrombolyse ou les autres traitements prescrits.\nRepérer une défaillance hémodynamique.\nSurveiller les complications hémorragiques.\nÉduquer après stabilisation sur l’observance de l’anticoagulant, les signes d’alerte, la mobilisation progressive et la prévention des récidives.",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "Angor stable",
+      "description": "14 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « Angor stable » ?",
+          "reponse": "Douleur thoracique d’effort, reproductible dans des circonstances relativement constantes, cédant à l’arrêt de l’effort ou à la trinitrine.",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Physiopathologie pour la pathologie « Angor stable » ?",
+          "reponse": "Inadéquation entre la consommation d’O₂ du myocarde et les apports, liée à une réduction de la lumière coronaire par athérosclérose.",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 3,
+          "question": "Etiologie pour la pathologie « Angor stable » ?",
+          "reponse": "Athérosclérose coronaire",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 4,
+          "question": "Facteurs de risque pour la pathologie « Angor stable » ?",
+          "reponse": "Âge, sexe masculin, hérédité, tabagisme, hypercholestérolémie, HTA, diabète, obésité, stress.",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 5,
+          "question": "Tableau clinique pour la pathologie « Angor stable » ?",
+          "reponse": "Douleur thoracique rétrosternale ou précordiale gauche, constrictive, parfois en barre, irradiant vers le membre supérieur, le cou, la mâchoire ou le dos. Survient à l’effort et cède au repos ou à la trinitrine.",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 6,
+          "question": "Critères de gravité pour la pathologie « Angor stable » ?",
+          "reponse": "Douleur à faible seuil d’effort, signes d’insuffisance cardiaque, troubles du rythme ou aggravation vers un SCA.",
+          "categorie": "Critères de gravité"
+        },
+        {
+          "id": 7,
+          "question": "Diagnostic pour la pathologie « Angor stable » ?",
+          "reponse": "Clinique compatible, puis mise en évidence d’une ischémie ou d’une maladie coronaire par examen fonctionnel ou anatomique.",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 8,
+          "question": "Examens complémentaires pour la pathologie « Angor stable » ?",
+          "reponse": "Échographie, IRM ou scintigraphie de stress ; coroscanner.",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 9,
+          "question": "Biologie pour la pathologie « Angor stable » ?",
+          "reponse": "Non précisée dans le cours.",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 10,
+          "question": "Traitements pour la pathologie « Angor stable » ?",
+          "reponse": "Bêtabloquant, antiagrégant plaquettaire simple, statine, IEC selon indication, correction des facteurs de risque et réadaptation si nécessaire. Mémo : BASIC.",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 11,
+          "question": "Complications pour la pathologie « Angor stable » ?",
+          "reponse": "SCA ou infarctus du myocarde, insuffisance cardiaque, troubles du rythme et décès.",
+          "categorie": "Complications"
+        },
+        {
+          "id": 12,
+          "question": "Prévention pour la pathologie « Angor stable » ?",
+          "reponse": "Correction des facteurs de risque cardiovasculaire : arrêt du tabac, activité physique, alimentation adaptée, contrôle de la TA, du diabète et des lipides.",
+          "categorie": "Prévention"
+        },
+        {
+          "id": 13,
+          "question": "Diagnostic différentiel pour la pathologie « Angor stable » ?",
+          "reponse": "Reflux gastro-œsophagien, œsophagite, pneumopathie, pneumothorax.",
+          "categorie": "Diagnostic différentiel"
+        },
+        {
+          "id": 14,
+          "question": "Rôle IDE pour la pathologie « Angor stable » ?",
+          "reponse": "Évaluer les caractéristiques de la douleur (contexte d'apparition, localisation, intensité, durée)\nMesurer les paramètres vitaux et réaliser un ECG.\nInstaller au repos et limiter l’effort.\nMesurer la TA et les autres paramètres vitaux.\nRepérer une modification du tableau ; dans ce cas, rechercher un SCA et alerter.\nÉduquer sur le traitement, l’utilisation de la trinitrine si prescrit, l’arrêt du tabac, l’activité physique adaptée, l’alimentation et les signes nécessitant un appel au 15.",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "Angor instable",
+      "description": "14 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « Angor instable » ?",
+          "reponse": "Angor nouvellement apparu, crescendo ou survenant au repos. Traduit une ischémie aiguë.",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Physiopathologie pour la pathologie « Angor instable » ?",
+          "reponse": "Obstruction partielle ou transitoire par rupture ou érosion d’une plaque, avec activation de la coagulation et formation d’un thrombus plaquettaire et/ou fibrino-cruorique.",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 3,
+          "question": "Etiologie pour la pathologie « Angor instable » ?",
+          "reponse": "Rupture ou érosion d’une plaque d’athérome avec thrombus le plus souvent non occlusif.",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 4,
+          "question": "Facteurs de risque pour la pathologie « Angor instable » ?",
+          "reponse": "Même facteurs de risque que l’angor stable, avec dyslipidémie.",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 5,
+          "question": "Tableau clinique pour la pathologie « Angor instable » ?",
+          "reponse": "Douleur plus récente, intense, fréquente, prolongée, apparaissant pour un effort moindre ou au repos. Dyspnée, sueurs, pâleur, nausées possibles.",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 6,
+          "question": "Critères de gravité pour la pathologie « Angor instable » ?",
+          "reponse": "Douleur au repos, modifications ECG, troponines élevées, instabilité hémodynamique, insuffisance cardiaque ou troubles du rythme.",
+          "categorie": "Critères de gravité"
+        },
+        {
+          "id": 7,
+          "question": "Diagnostic pour la pathologie « Angor instable » ?",
+          "reponse": "Clinique, ECG et dosage répété des troponines ; coronarographie selon le risque.",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 8,
+          "question": "Examens complémentaires pour la pathologie « Angor instable » ?",
+          "reponse": "ECG ; coronarographie selon le risque.",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 9,
+          "question": "Biologie pour la pathologie « Angor instable » ?",
+          "reponse": "Troponines répétées (très sensible mais peu spécifique)",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 10,
+          "question": "Traitements pour la pathologie « Angor instable » ?",
+          "reponse": "Bêtabloquant, double antiagrégation plaquettaire, statine, IEC selon indication, correction des facteurs de risque et réadaptation cardiaque. Mémo : BASIC.",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 11,
+          "question": "Complications pour la pathologie « Angor instable » ?",
+          "reponse": "Infarctus du myocarde, troubles du rythme, insuffisance cardiaque, choc cardiogénique et décès.",
+          "categorie": "Complications"
+        },
+        {
+          "id": 12,
+          "question": "Prévention pour la pathologie « Angor instable » ?",
+          "reponse": "Correction des facteurs de risque cardiovasculaire et observance du traitement anti-ischémique et antithrombotique.",
+          "categorie": "Prévention"
+        },
+        {
+          "id": 13,
+          "question": "Diagnostic différentiel pour la pathologie « Angor instable » ?",
+          "reponse": "Infarctus du myocarde, embolie pulmonaire, dissection aortique.",
+          "categorie": "Diagnostic différentiel"
+        },
+        {
+          "id": 14,
+          "question": "Rôle IDE pour la pathologie « Angor instable » ?",
+          "reponse": "Considérer la situation comme une urgence coronarienne.\nInstaller au repos, réaliser rapidement un ECG et surveiller les paramètres vitaux.\nÉvaluer la douleur de façon répétée et rechercher dyspnée, sueurs, pâleur, nausées, malaise ou syncope.\nMettre en place une voie veineuse et réaliser les prélèvements prescrits, notamment les troponines répétées. Administrer les traitements prescrits.\nSurveiller le rythme cardiaque et l’apparition d’une instabilité hémodynamique.\nPréparer le patient à une coronarographie éventuelle.\nAlerter immédiatement en cas de douleur persistante, modification ECG, troubles du rythme, hypotension, signes d'OAP ou aggravation clinique.",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "SCA",
+      "description": "14 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définiftion pour la pathologie « SCA » ?",
+          "reponse": "Ensemble des manifestations aiguës liées à une ischémie myocardique, provoquées par le rétrécissement ou l’obstruction d’artères coronaires : angor instable, NSTEMI et STEMI.",
+          "categorie": "Définiftion"
+        },
+        {
+          "id": 2,
+          "question": "Physiopathologie pour la pathologie « SCA » ?",
+          "reponse": "Rupture de plaque, plus rarement érosion endothéliale, avec activation plaquettaire et de la coagulation. Réduction de la lumière dans le SCA ST− ou occlusion complète dans le SCA ST+.",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 3,
+          "question": "Etiologie pour la pathologie « SCA » ?",
+          "reponse": "Athérosclérose coronaire avec rupture de plaque majoritairement.",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 4,
+          "question": "Facteurs de risque pour la pathologie « SCA » ?",
+          "reponse": "Âge, sexe masculin, hérédité, tabagisme, hypercholestérolémie, HTA, diabète, obésité, stress et dyslipidémie.",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 5,
+          "question": "Tableau clinique pour la pathologie « SCA » ?",
+          "reponse": "Douleur thoracique typique ou atypique, dyspnée, syncope, troubles du rythme ou mort subite. Symptômes parfois atypiques, notamment chez la femme.",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 6,
+          "question": "Critères de gravité pour la pathologie « SCA » ?",
+          "reponse": "SCA ST+, instabilité hémodynamique, choc cardiogénique, OAP, troubles du rythme ou complications mécaniques.",
+          "categorie": "Critères de gravité"
+        },
+        {
+          "id": 7,
+          "question": "Diagnostic pour la pathologie « SCA » ?",
+          "reponse": "Clinique, ECG et coronarographie, avec dosage des troponines.",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 8,
+          "question": "Examens complémentaires pour la pathologie « SCA » ?",
+          "reponse": "ECG ; coronarographie ; échocardiographie transthoracique ; autres bilans biologiques.",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 9,
+          "question": "Biologie pour la pathologie « SCA » ?",
+          "reponse": "Troponines répétées (très sensible mais peu spécifique)",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 10,
+          "question": "Traitements pour la pathologie « SCA » ?",
+          "reponse": "Bêtabloquant, double antiagrégation plaquettaire, statine, IEC selon indication, correction des facteurs de risque et réadaptation cardiaque. Désobstruction médicamenteuse ou mécanique parfois nécessaire, notamment dans le SCA ST+.",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 11,
+          "question": "Complications pour la pathologie « SCA » ?",
+          "reponse": "Insuffisance cardiaque aiguë, OAP, choc cardiogénique, complications rythmiques ou mécaniques, récidive et décès.",
+          "categorie": "Complications"
+        },
+        {
+          "id": 12,
+          "question": "Prévention pour la pathologie « SCA » ?",
+          "reponse": "Correction des facteurs de risque cardiovasculaire, observance thérapeutique et réadaptation cardiaque.",
+          "categorie": "Prévention"
+        },
+        {
+          "id": 13,
+          "question": "Diagnostic différentiel pour la pathologie « SCA » ?",
+          "reponse": "Embolie pulmonaire, dissection aortique, péricardite, myocardite.",
+          "categorie": "Diagnostic différentiel"
+        },
+        {
+          "id": 14,
+          "question": "Rôle IDE pour la pathologie « SCA » ?",
+          "reponse": "Déclencher et participer à la prise en charge urgente.\nÉvaluer la douleur et l’état hémodynamique, avec ECG précoce puis répété selon protocole.\nInstaller au repos et sous monitorage.\nPoser une voie veineuse et effectuer les prélèvements prescrits, dont troponines sériées, NFS, ionogramme, fonction rénale et bilan de coagulation.\nAdministrer rapidement les traitements prescrits. \nSurveiller les signes de complications.\nPréparer et accompagner le patient vers la coronarographie +/- l’angioplastie.\nAprès stabilisation, participer à l’éducation thérapeutique et à la prévention secondaire.",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    }
+  ]
+}
