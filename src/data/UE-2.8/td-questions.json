@@ -7,9 +7,9 @@
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « Lithiase urinaire » ?",
+          "question": "Définition pour la pathologie « Lithiase urinaire » ?",
           "reponse": "Formation de calculs dans l'arbre urinaire pouvant bloquer le flux (= uretères, vessie, urètre, bassinet)",
-          "categorie": "Définiftion"
+          "categorie": "Définition"
         },
         {
           "id": 2,
@@ -97,9 +97,9 @@
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « Lithiase biliaire ou vésiculaire » ?",
+          "question": "Définition pour la pathologie « Lithiase biliaire ou vésiculaire » ?",
           "reponse": "Formation de calculs dans l'arbre biliaire pouvant bloquer le flux soit au niveau du conduit cystique (colique hépatique CH, cholécystite aiguë CA) soit au niveau du cholédoque (angiocholite aiguë AA, pancréatite aiguë PA)",
-          "categorie": "Définiftion"
+          "categorie": "Définition"
         },
         {
           "id": 2,
@@ -175,9 +175,9 @@
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « Asthme » ?",
+          "question": "Définition pour la pathologie « Asthme » ?",
           "reponse": "maladie chronique réversible, évoluant par crise entraînant une difficulté respiratoire aiguë et un sifflement expiratoire, se manifestant plutôt le matin au réveil ou le soir.",
-          "categorie": "Définiftion"
+          "categorie": "Définition"
         },
         {
           "id": 2,
@@ -265,9 +265,9 @@
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « BPCO » ?",
+          "question": "Définition pour la pathologie « BPCO » ?",
           "reponse": "Maladie respiratoire chronique caractérisée par des symptômes respiratoires persistants et une obstruction bronchique permanente, non complètement réversible. 4 stades : léger, modéré, sévère, très sévère",
-          "categorie": "Définiftion"
+          "categorie": "Définition"
         },
         {
           "id": 2,
@@ -361,9 +361,9 @@
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « AVC ischémique » ?",
+          "question": "Définition pour la pathologie « AVC ischémique » ?",
           "reponse": "déficit neurologique focal d'apparition brutale durant plus de 24h, d'origine vasculaire, avec lésion cérébrale.",
-          "categorie": "Définiftion"
+          "categorie": "Définition"
         },
         {
           "id": 2,
@@ -451,9 +451,9 @@
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « AVC hémorragique » ?",
+          "question": "Définition pour la pathologie « AVC hémorragique » ?",
           "reponse": "déficit neurologique focal d'apparition brutale, d'origine vasculaire, avec lésion cérébrale.",
-          "categorie": "Définiftion"
+          "categorie": "Définition"
         },
         {
           "id": 2,
@@ -541,9 +541,9 @@
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « AIT » ?",
+          "question": "Définition pour la pathologie « AIT » ?",
           "reponse": "épisode bref (souvent <1h et max 24h de déficit neurologique focal d’origine ischémique sans lésion cérébrale en imagerie)",
-          "categorie": "Définiftion"
+          "categorie": "Définition"
         },
         {
           "id": 2,
@@ -615,13 +615,13 @@
     },
     {
       "titre": "Occlusion intestinale fonctionnelle",
-      "description": "12 questions de type TD",
+      "description": "13 questions de type TD",
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « Occlusion intestinale fonctionnelle » ?",
-          "reponse": "Arrêt temporaire ou définitif, total ou partiel, du transit intestinal normal des matières et des gaz au niveau de l'intestin grêle ou du côlon. Peut être haute (jéjunum) ou basse (iléon, colon, rectum) ⇒ la localisation permet de cibler les causes probables",
-          "categorie": "Définiftion"
+          "question": "Définition pour la pathologie « Occlusion intestinale fonctionnelle » ?",
+          "reponse": "Arrêt du transit intestinal, complet ou incomplet, lié à une absence de péristaltisme sans obstacle physique. Aussi appelée occlusion paralytique.",
+          "categorie": "Définition"
         },
         {
           "id": 2,
@@ -632,13 +632,13 @@
         {
           "id": 3,
           "question": "Physiopathologie pour la pathologie « Occlusion intestinale fonctionnelle » ?",
-          "reponse": "arrêt du péristaltisme\ndilatation aiguë du colon sans obstacle",
+          "reponse": "Paralysie/absence de motricité intestinale.\nDilatation aiguë du colon sans obstacle",
           "categorie": "Physiopathologie"
         },
         {
           "id": 4,
           "question": "Etiologie pour la pathologie « Occlusion intestinale fonctionnelle » ?",
-          "reponse": "Syndrome d'Ogilvie = déséquilibre dans l'innervation de la paroi colique",
+          "reponse": "Syndrome d'Ogilvie = déséquilibre dans l'innervation de la paroi colique\nIléus post-opératoire, péritonite, troubles ioniques (notamment hypokaliémie) et médicaments, (notamment opioïdes)",
           "categorie": "Etiologie"
         },
         {
@@ -650,13 +650,13 @@
         {
           "id": 6,
           "question": "Tableau clinique pour la pathologie « Occlusion intestinale fonctionnelle » ?",
-          "reponse": "douleur abdominale\nvomissements\nchoc hyovolémique (tachycardie, hypotension, polypnée)\nsignes de déshydratation\nhyperthermie\ntympanisme à la percussion\narrêt des matières et des gaz\ndistension abdominale ou météorisme\n\nrechercher hernie, marbrures abdominales, cicatrices pariétales, éventration",
+          "reponse": "douleur abdominale\nvomissements\narrêt des matières et des gaz\ndistension abdominale ou météorisme\nchoc hypovolémique (tachycardie, hypotension, polypnée)\nsignes de déshydratation\nhyperthermie\ntympanisme à la percussion\n\nrechercher hernie, marbrures abdominales, cicatrices pariétales, éventration",
           "categorie": "Tableau clinique"
         },
         {
           "id": 7,
           "question": "Diagnostic pour la pathologie « Occlusion intestinale fonctionnelle » ?",
-          "reponse": "Clinique via Carré de Mondor = \n\n1/ arrêt des gaz et des matières (apparition tardive, faussses diarrhées)\n2/ distension et météorisme (=traduit la distention des anses en amont)\n3/ douleurs abdominales (inaugurales dans 80% des cas)\n4/ vomissements (présents dans 80% des cas)",
+          "reponse": "Clinique via Carré de Mondor\n\n1/ arrêt des gaz et des matières (apparition tardive, faussses diarrhées)\n2/ distension et météorisme (=traduit la distention des anses en amont)\n3/ douleurs abdominales (inaugurales dans 80% des cas)\n4/ vomissements (présents dans 80% des cas)",
           "categorie": "Diagnostic"
         },
         {
@@ -685,6 +685,12 @@
         },
         {
           "id": 12,
+          "question": "Diagnostic différentiel pour la pathologie « Occlusion intestinale fonctionnelle » ?",
+          "reponse": "occlusion mécanique",
+          "categorie": "Diagnostic différentiel"
+        },
+        {
+          "id": 13,
           "question": "Rôle IDE pour la pathologie « Occlusion intestinale fonctionnelle » ?",
           "reponse": "Mesurer et tracer les entrées-sorties.\nSurveiller l’état d’hydratation et les signes de choc.\n+/- Maintenir à jeun selon prescription, administrer les perfusions et corriger les troubles hydroélectrolytiques. \nSurveiller la sonde nasogastrique si elle est posée.\nAdministrer les traitements prescrits et surveiller leur efficacité et leurs effets indésirables.\nFavoriser la mobilisation précoce si elle est autorisée",
           "categorie": "Rôle IDE"
@@ -697,20 +703,20 @@
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « Occlusion intestinale par obstruction » ?",
-          "reponse": "Arrêt temporaire ou définitif, total ou partiel, du transit intestinal normal des matières et des gaz au niveau de l'intestin grêle ou du côlon. Peut être haute (jéjunum) ou basse (iléon, colon, rectum) ⇒ la localisation permet de cibler les causes probables",
-          "categorie": "Définiftion"
+          "question": "Définition pour la pathologie « Occlusion intestinale par obstruction » ?",
+          "reponse": "Arrêt du transit intestinal — gaz et matières — provoqué par un obstacle physique qui empêche la progression du contenu intestinal.",
+          "categorie": "Définition"
         },
         {
           "id": 2,
           "question": "Epidémiologie pour la pathologie « Occlusion intestinale par obstruction » ?",
-          "reponse": "\"3e urgence digestive\n10 000 cas/an\"",
+          "reponse": "3e urgence digestive\n10 000 cas/an\nBrides/adhérences post-opératoires : cause n°1 des occlusions du grêle.\nCancer colorectal : cause n°1 des occlusions coliques chez le sujet âgé.",
           "categorie": "Epidémiologie"
         },
         {
           "id": 3,
           "question": "Physiopathologie pour la pathologie « Occlusion intestinale par obstruction » ?",
-          "reponse": "obstacle intra-luminal / extra-luminal / pariétale ⇒ distension progressive en amont (liquide et gaz) ⇒ hypovolémie, troubles électrolytiques. Souffrance pariétale tardive",
+          "reponse": "obstacle intra-luminal / extra-luminal / pariétale ⇒ distension progressive en amont (liquide et gaz) ⇒ hypovolémie, troubles électrolytiques.\nSouffrance pariétale tardive",
           "categorie": "Physiopathologie"
         },
         {
@@ -728,13 +734,13 @@
         {
           "id": 6,
           "question": "Tableau clinique pour la pathologie « Occlusion intestinale par obstruction » ?",
-          "reponse": "douleur abdominale\nvomissements\nchoc hyovolémique (tachycardie, hypotension, polypnée)\nsignes de déshydratation\nhyperthermie\ntympanisme à la percussion\narrêt des matières et des gaz\ndistension abdominale ou météorisme\n\nrechercher hernie, marbrures abdominales, cicatrices pariétales, éventration",
+          "reponse": "Syndrome occlusif : douleur abdominale, vomissements, arrêt des matières et des gaz (AMG) et météorisme abdominal.\nLes douleurs sont volontiers coliques dans l’occlusion mécanique.\nLes vomissements peuvent évoluer : alimentaires → bilieux → fécaloïdes.\nHaute — grêle : vomissements précoces et abondants, AMG tardif, météorisme discret.\nBasse — côlon : vomissements tardifs, AMG précoce, météorisme important.",
           "categorie": "Tableau clinique"
         },
         {
           "id": 7,
           "question": "Critères de gravité pour la pathologie « Occlusion intestinale par obstruction » ?",
-          "reponse": "défense ou une contracture\nsignes de choc\nhernie étranglée\nsuspicion de péritonite",
+          "reponse": "douleur intense + persistante + retentissement général doit faire suspecter une occlusion par strangulation",
           "categorie": "Critères de gravité"
         },
         {
@@ -758,7 +764,7 @@
         {
           "id": 11,
           "question": "Traitements pour la pathologie « Occlusion intestinale par obstruction » ?",
-          "reponse": "1/ médical en urgence:\n- mise a jeun\n- SNG aspiration douce\n- VVP\n- réhydratation + équilibre électrolytique\n- antalgiques, antispasmodiques, antiémétique\n- bilan biologique préop\n\n2/ chirurgical\n- exploration\n- levée d'obstacle\n- résection si nécrose",
+          "reponse": "1/ médical en urgence:\n- mise a jeun\n- SNG aspiration douce\n- VVP\n- réhydratation + équilibre électrolytique\n- antalgiques, antispasmodiques, antiémétique\n- bilan biologique préop\n\n2/ chirurgical si nécessaire\n- exploration\n- levée d'obstacle\n- résection si nécrose",
           "categorie": "Traitements"
         },
         {
@@ -781,14 +787,14 @@
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « Occlusion intestinale par strangulation » ?",
-          "reponse": "Arrêt temporaire ou définitif, total ou partiel, du transit intestinal normal des matières et des gaz au niveau de l'intestin grêle ou du côlon. Peut être haute (jéjunum) ou basse (iléon, colon, rectum) ⇒ la localisation permet de cibler les causes probables",
-          "categorie": "Définiftion"
+          "question": "Définition pour la pathologie « Occlusion intestinale par strangulation » ?",
+          "reponse": "Forme grave d’occlusion mécanique dans laquelle l’obstacle s’accompagne de signes de souffrance intestinale. Urgence médicale",
+          "categorie": "Définition"
         },
         {
           "id": 2,
           "question": "Epidémiologie pour la pathologie « Occlusion intestinale par strangulation » ?",
-          "reponse": "\"3e urgence digestive\n10 000 cas/an\"",
+          "reponse": "3e urgence digestive\n10 000 cas/an",
           "categorie": "Epidémiologie"
         },
         {
@@ -812,7 +818,7 @@
         {
           "id": 6,
           "question": "Tableau clinique pour la pathologie « Occlusion intestinale par strangulation » ?",
-          "reponse": "douleur abdominale\nvomissements\nchoc hyovolémique (tachycardie, hypotension, polypnée)\nsignes de déshydratation\nhyperthermie\ntympanisme à la percussion\narrêt des matières et des gaz\ndistension abdominale ou météorisme\n\nrechercher hernie, marbrures abdominales, cicatrices pariétales, éventration",
+          "reponse": "Même syndrome que dans l'occlusion par obstruction, mais avec apparition ou association de signes de souffrance : douleur plus intense, persistante et retentissement général.",
           "categorie": "Tableau clinique"
         },
         {
@@ -842,7 +848,7 @@
         {
           "id": 11,
           "question": "Traitements pour la pathologie « Occlusion intestinale par strangulation » ?",
-          "reponse": "\"1/ médical en urgence:\n- mise a jeun\n- SNG aspiration douce\n- VVP\n- réhydratation + équilibre électrolytique\n- antalgiques, antispasmodiques, antiémétique\n- bilan biologique préop\n\n2/ chirurgical\n- exploration\n- levée d'obstacle\n- résection si nécrose\"",
+          "reponse": "1/ médical en urgence:\n- mise a jeun\n- SNG aspiration douce\n- VVP\n- réhydratation + équilibre électrolytique\n- antalgiques, antispasmodiques, antiémétique\n- bilan biologique préop\n\n2/ chirurgical\n- exploration\n- levée d'obstacle\n- résection si nécrose\"",
           "categorie": "Traitements"
         },
         {
@@ -865,9 +871,9 @@
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « TVP » ?",
+          "question": "Définition pour la pathologie « TVP » ?",
           "reponse": "Obstruction d’une veine profonde par un thrombus, le plus souvent au niveau de la jambe. TVP distale : en amont de la veine poplitée.",
-          "categorie": "Définiftion"
+          "categorie": "Définition"
         },
         {
           "id": 2,
@@ -955,9 +961,9 @@
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « EP » ?",
+          "question": "Définition pour la pathologie « EP » ?",
           "reponse": "Obstruction d’une artère pulmonaire, le plus souvent causée par la migration d’un thrombus originaire d’une TVP.",
-          "categorie": "Définiftion"
+          "categorie": "Définition"
         },
         {
           "id": 2,
@@ -1045,9 +1051,9 @@
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « Angor stable » ?",
+          "question": "Définition pour la pathologie « Angor stable » ?",
           "reponse": "Douleur thoracique d’effort, reproductible dans des circonstances relativement constantes, cédant à l’arrêt de l’effort ou à la trinitrine.",
-          "categorie": "Définiftion"
+          "categorie": "Définition"
         },
         {
           "id": 2,
@@ -1135,9 +1141,9 @@
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « Angor instable » ?",
+          "question": "Définition pour la pathologie « Angor instable » ?",
           "reponse": "Angor nouvellement apparu, crescendo ou survenant au repos. Traduit une ischémie aiguë.",
-          "categorie": "Définiftion"
+          "categorie": "Définition"
         },
         {
           "id": 2,
@@ -1225,9 +1231,9 @@
       "questions": [
         {
           "id": 1,
-          "question": "Définiftion pour la pathologie « SCA » ?",
+          "question": "Définition pour la pathologie « SCA » ?",
           "reponse": "Ensemble des manifestations aiguës liées à une ischémie myocardique, provoquées par le rétrécissement ou l’obstruction d’artères coronaires : angor instable, NSTEMI et STEMI.",
-          "categorie": "Définiftion"
+          "categorie": "Définition"
         },
         {
           "id": 2,
