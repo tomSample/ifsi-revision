@@ -938,5 +938,244 @@
       "Médicamenteux : thymorégulateurs ou antipsychotique",
       "Arrêt antidépresseurs"
     ]
+  },
+  {
+    "id": "forme-034",
+    "idCategorie": "cat-006",
+    "categorie": "Troubles somatomorphes",
+    "definitionCategorie": "",
+    "motsClesCategorie": [],
+    "sousCategorie": "Anorexie mentale",
+    "formeClinique": "Type restrictif",
+    "definitionForme": "Conduite active de restriction alimentaire volontaire, recherche incessante de minceur, image corporelle déformée et restriction de l’apport par rapport aux besoins.\nLa perte de poids est essentiellement obtenue par le régime, le jeûne et/ou l’exercice physique excessif.\n\nL’anorexie mentale commence dans la majorité des cas entre 15 et 25 ans, mais il existe des formes à début précoce à partir de l’âge de 6-7 ans.\nC’est la maladie psychiatrique qui a le taux de mortalité le plus élevé",
+    "criteresDiagnostic": [
+      "Dépistage (non diagnostic) = Echelles de SCOFF/EAT - EDE/EDI permettents d'orienter vers un TCA",
+      "Durée > 3 mois",
+      "Inflexibilité => restriction, peur de prendre du poids (pesée ou vérification de la silhouette plusieurs fois par jour)",
+      "Dysmorphophobie",
+      "Anosognosie (déni de la maigreur)",
+      "IMC < 17,5 ou amaigrissement significatif",
+      "comportement d'évitement +/- aménorrhée"
+    ],
+    "semiologie": [
+      "Perte de poids liées à un régime, le jeûne et/ou exercice physique excessif",
+      "Exposition accrue au froid",
+      "Pas de comportement de purge",
+      "aménorrhée d'origine hypothalamique (diminution des pics pulsatiles de la GnRH et de FSH) = absence d'ovulation théorique (risque de grossess non désirée malgré tout)",
+      "ostéoporose",
+      "retard de croissance"
+    ],
+    "facteursRisque": [
+      "Adolescentes",
+      "Pratique sportive avec contrôle de poids (danse, gymnastique, boxe)",
+      "Mannequinat",
+      "Maladie chronique avec régime particulier",
+      "atcd de TCA",
+      "atcd de violences sexuelles"
+    ],
+    "evolutionComplication": [
+      "Mauvais pronostic si :",
+      "retard de PEC important",
+      "vomissements associés",
+      "déni de la maladie (>4ans)",
+      "comorbidité psychiatrique (dépression, TOC, phobie sociale, TAG...)",
+      "mauvaise qualité de vie relationnelle / socio-familiale / sexuelle"
+    ],
+    "traitements": [
+      "Multidisciplinaire - Ininterrompue - Prolongée (>1an après la rémission)",
+      "Objectifs pondéraux \"contractualisés\" => renutrition, rééducation nutritionnelle et diététique",
+      "Programme de soins (3 à 4 mois)",
+      "TCC >1an",
+      "Thérapie analytique",
+      "Corriger les dystorsions cognitives et les attitudes dysfonctionnelles, renfocer le \"Moi\""
+    ]
+  },
+  {
+    "id": "forme-035",
+    "idCategorie": "cat-006",
+    "categorie": "Troubles somatomorphes",
+    "definitionCategorie": "",
+    "motsClesCategorie": [],
+    "sousCategorie": "Anorexie mentale",
+    "formeClinique": "Type accès hyperphagique-purgatifs",
+    "definitionForme": "Conduite active de restriction alimentaire volontaire, recherche incessante de minceur, image corporelle déformée et restriction de l’apport par rapport aux besoins.\nLa perte de poids est essentiellement obtenue par la présence de crises d’hyperphagie récurrentes et/ou a recouru à des vomissements provoqués ou à des comportements purgatifs.\n\nL’anorexie mentale commence dans la majorité des cas entre 15 et 25 ans, mais il existe des formes à début précoce à partir de l’âge de 6-7 ans.\nC’est la maladie psychiatrique qui a le taux de mortalité le plus élevé",
+    "criteresDiagnostic": [
+      "Dépistage (non diagnostic) = Echelles de SCOFF/EAT - EDE/EDI permettents d'orienter vers un TCA",
+      "Durée > 3 mois"
+    ],
+    "semiologie": [
+      "Présence de crises hyperphagiques réccurrentes et/ou recours à des vomissements provoqués ou à des comportements purgatifs (laxatifs, diurétiques, homrones thyroïdiennes, dérivés d'amphétamines, potomanie)",
+      "Inflexibilité => restriction, peur de prendre du poids (pesée ou vérification de la silhouette plusieurs fois par jour)",
+      "Dysmorphophobie",
+      "Anosognosie (déni de la maigreur)",
+      "IMC < 17,5 ou amaigrissement significatif",
+      "Comportement d'évitement +/- aménorrhée",
+      "OMI",
+      "Troubles digestifs = RGO, retard de la vidange gastrique",
+      "Erosions dentaires (émail)",
+      "Amyotrophie",
+      "Anémie",
+      "Hyponatrémie / Hypocalcémie / Hypokaliémie"
+    ],
+    "facteursRisque": [
+      "Adolescentes",
+      "Pratique sportive avec contrôle de poids (danse, gymnastique, boxe)",
+      "Mannequinat",
+      "Maladie chronique avec régime particulier",
+      "atcd de TCA",
+      "atcd de violences sexuelles"
+    ],
+    "evolutionComplication": [
+      "Mauvais pronostic si :",
+      "retard de PEC important",
+      "vomissements associés",
+      "Court terme : dénutrition extrême",
+      "Long terme : retentissement sur la croissance et ostéopénie, troubles de la fertilité, aggravations de troubles psychiatriques, addictions",
+      "Modifications endocrines"
+    ],
+    "traitements": [
+      "Multidisciplinaire - Ininterrompue - Prolongée (>1an après la rémission)",
+      "Objectifs pondéraux \"contractualisés\" => renutrition, rééducation nutritionnelle et diététique",
+      "Programme de soins (3 à 4 mois)",
+      "TCC >1an",
+      "Thérapie analytique",
+      "Corriger les dystorsions cognitives et les attitudes dysfonctionnelles, renfocer le \"Moi\""
+    ]
+  },
+  {
+    "id": "forme-036",
+    "idCategorie": "cat-006",
+    "categorie": "Troubles somatomorphes",
+    "definitionCategorie": "",
+    "motsClesCategorie": [],
+    "sousCategorie": "Boulimie mentale",
+    "formeClinique": "",
+    "definitionForme": "Episodes récurrents d'hyperphagie incontrôlée suivis de purges (vomissements auto-induits, mésusage de laxatifs ou diurétiques), d'un jeûne ou d'exercice physique excessif",
+    "criteresDiagnostic": [
+      "Dépistage (non-diagnostic) = Echelles de SCOFF, BULIT-R ou BITE",
+      "Fréquence >1fois / semaine pendant plus de 3 mois"
+    ],
+    "semiologie": [
+      "Hyperphagie incontrôlée / \"Craving\" / hypercalorique = absorptions de nourriture largement supérieures à la moyenne en peu de temps (<2h)",
+      "Impression de perte de contrôle",
+      "Comportements compensatoires visant à éviter la prise de poids (vomissements, jeûnes, laxatifs, diurétiques, restriction alimentaire \"inter-crises\", etc",
+      "Fluctuations pondérales rapides (2 à 5kg)",
+      "Altération de la perception du poids de forme / dysmorphophobie",
+      "Patient conscient de son trouble => culpabilité"
+    ],
+    "facteursRisque": [
+      "Adolescentes",
+      "Pratique sportive avec contrôle de poids (danse, gymnastique, boxe)",
+      "Mannequinat",
+      "Maladie chronique avec régime particulier",
+      "atcd de TCA",
+      "atcd de violences sexuelles"
+    ],
+    "evolutionComplication": [
+      "Mauvais pronostic si :",
+      "sévérité initiale du trouble",
+      "poids bas ou différent du physiologique",
+      "comorbidité psychiatrique",
+      "existence de vomissements",
+      "obésité prémorbide"
+    ],
+    "traitements": [
+      "Multidisciplinaire (somaticien, psychiatre, patient)",
+      "TCC",
+      "antidépresseur",
+      "psychothérapie systémique",
+      "corriger les attitudes dysfonctionnelles et les distorsions cognitives",
+      "renforcer le Moi",
+      "psychoéducation : affirmation de soi"
+    ]
+  },
+  {
+    "id": "forme-037",
+    "idCategorie": "cat-006",
+    "categorie": "Troubles somatomorphes",
+    "definitionCategorie": "",
+    "motsClesCategorie": [],
+    "sousCategorie": "Hyperphagie boulimique ou Accès hyperphagique",
+    "formeClinique": "",
+    "definitionForme": "Episodes récurrents d'hyperphagie incontrôlée non suivis de purges",
+    "criteresDiagnostic": [
+      "Fréquence >1fois / semaine pendant plus de 3 mois"
+    ],
+    "semiologie": [
+      "Hyperphagie incontrôlée / \"Craving\" / hypercalorique",
+      "Impression de perte de contrôle",
+      "Pas de comportement compensatoire = surpoids / obésité",
+      "associés à au moins 3 éléments :",
+      "tachyphagie (<20min)",
+      "prise alimentaire jusqu'à la sensation de trop-plein",
+      "hyperphagie (absorption de grandes quantités sans sensation de faim)",
+      "prise alimentaire solitaire du fait de la gêne occasionnée",
+      "dégoût de soi - dépression - culpabilité (gnosie)"
+    ],
+    "facteursRisque": [
+      "femme > homme",
+      "obésité",
+      "traumatisme",
+      "atcd de violences sexuelles"
+    ],
+    "evolutionComplication": [],
+    "traitements": [
+      "Multidisciplinaire (somaticien, psychiatre, patient)",
+      "TCC",
+      "antidépresseur",
+      "psychothérapie systémique",
+      "corriger les attitudes dysfonctionnelles et les distorsions cognitives",
+      "renforcer le Moi",
+      "psychoéducation : affirmation de soi"
+    ]
+  },
+  {
+    "id": "forme-038",
+    "idCategorie": "cat-006",
+    "categorie": "Troubles somatomorphes",
+    "definitionCategorie": "",
+    "motsClesCategorie": [],
+    "sousCategorie": "PICA",
+    "formeClinique": "",
+    "definitionForme": "Ingestion répétée de substances non nutritives",
+    "criteresDiagnostic": [
+      "durée >1mois"
+    ],
+    "semiologie": [],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": []
+  },
+  {
+    "id": "forme-039",
+    "idCategorie": "cat-006",
+    "categorie": "Troubles somatomorphes",
+    "definitionCategorie": "",
+    "motsClesCategorie": [],
+    "sousCategorie": "Mérycisme",
+    "formeClinique": "",
+    "definitionForme": "Régurgitations répétée de nourriture",
+    "criteresDiagnostic": [
+      "durée >1mois"
+    ],
+    "semiologie": [],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": []
+  },
+  {
+    "id": "forme-040",
+    "idCategorie": "cat-006",
+    "categorie": "Troubles somatomorphes",
+    "definitionCategorie": "",
+    "motsClesCategorie": [],
+    "sousCategorie": "Trouble de restriction / évitement de l'ingestion d'aliments",
+    "formeClinique": "",
+    "definitionForme": "Aliments récusés pour leur aspect physique, leur couleur, leur caractéristique gustative",
+    "criteresDiagnostic": [],
+    "semiologie": [],
+    "facteursRisque": [],
+    "evolutionComplication": [],
+    "traitements": []
   }
 ]

@@ -1314,6 +1314,144 @@
           "categorie": "Rôle IDE"
         }
       ]
+    },
+    {
+      "titre": "OAP cardiogénique",
+      "description": "8 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définition pour la pathologie « OAP cardiogénique » ?",
+          "reponse": "Détresse respiratoire aiguë par inondation alvéolaire.\nUrgence médicale",
+          "categorie": "Définition"
+        },
+        {
+          "id": 2,
+          "question": "Physiopathologie pour la pathologie « OAP cardiogénique » ?",
+          "reponse": "Augmentation de la pression capillaire => transsudat passant des capillaires vers les alvéoles => inondation pulmonaire",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 3,
+          "question": "Tableau clinique pour la pathologie « OAP cardiogénique » ?",
+          "reponse": "polypnée\northopnée\ngrésillement laryngé\ntoux avec expectorations \"mousseuse saumoné\"\ncyanose\nsignes de lutte respiratoire\nanxiété\n+/- poussée hypertensive\nauscultation pulmonaire = \"marée montante de râles crépitants\"",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 4,
+          "question": "Diagnostic pour la pathologie « OAP cardiogénique » ?",
+          "reponse": "clinique\nRT",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 5,
+          "question": "Examens complémentaires pour la pathologie « OAP cardiogénique » ?",
+          "reponse": "ECG\nbiologie",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 6,
+          "question": "Biologie pour la pathologie « OAP cardiogénique » ?",
+          "reponse": "BNP ou NTproBNP (analyse des peptides natriurétiques)",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 7,
+          "question": "Traitements pour la pathologie « OAP cardiogénique » ?",
+          "reponse": "Oxygène\nVNI mode CPAP (=pression unique et constante)\nPosition semi-assise\nDiurétique de l'anse\nDérivés nitrés\nIntubation + ventilation mécanique exceptionnelle",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 8,
+          "question": "Rôle IDE pour la pathologie « OAP cardiogénique » ?",
+          "reponse": "Installer le patient en position demi-assise\nPoser une VVP\nScoper le patient\nAdministrer les dérivés nitrés en sub-lingual ou IV\nAdministrer les diurétiques en IV\nPréparer la VNI mode CPAP\nAnticoagulation préventive (prévention MVTE, immobilisation forcée du patient, risque cardioemboligène de l'IC",
+          "categorie": "Rôle IDE"
+        }
+      ]
+    },
+    {
+      "titre": "Insuffisance cardiaque",
+      "description": "13 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Définition pour la pathologie « Insuffisance cardiaque » ?",
+          "reponse": "Incapacité du coeur à délivrer un débit suffisant aux besoins de l'organisme, à un niveau normal de pression de remplissage\n(4 stades NYHA 1 à 4)",
+          "categorie": "Définition"
+        },
+        {
+          "id": 2,
+          "question": "Epidémiologie pour la pathologie « Insuffisance cardiaque » ?",
+          "reponse": "1ere cause d'hospitalisation en urgence pour les adultes (>1M d'hospitalisation/an en France",
+          "categorie": "Epidémiologie"
+        },
+        {
+          "id": 3,
+          "question": "Physiopathologie pour la pathologie « Insuffisance cardiaque » ?",
+          "reponse": "Dysfonctionnement cardiaque (systolique = éjection insuffisante / diastolique = remplissage insuffisant) => diminution du débit en aval (FE) + augmentation des pressions en amont (congestion).\nOn distingue l'IC à FE réduite (= FE ventricule G < 40%) et l'IC à FE préservée (= FE ventricule G > 50%)\nDégradation aiguë de la fonction cardiaque (= infarctus, bradycardie, tachycardie...) ou dégradation sur un coeur altéré (= stress infectieux, effort intense, transfusion, apport en sel...)",
+          "categorie": "Physiopathologie"
+        },
+        {
+          "id": 4,
+          "question": "Etiologie pour la pathologie « Insuffisance cardiaque » ?",
+          "reponse": "A/ FEVG altérée (dysfonction systolique) :\n- cardiopathie ischémique (infarctus du myocarde => myocarde fibreux, absence de contraction cardiaque)\n- chimiothérapie\n- toxicité (alcool)\n- valvulopathies\n- cardiomyopathie (héréditaire)\n- myocardites (viral)\n- rythmiques (atriale, ventriculaire)\n\nB/ FEVG préservée (dysfonction diastolique)\n- âge\n- HTA\n- cardiomyopathie hypertonique",
+          "categorie": "Etiologie"
+        },
+        {
+          "id": 5,
+          "question": "Facteurs de risque pour la pathologie « Insuffisance cardiaque » ?",
+          "reponse": "prédominance masculine\nâge\npoussée hypertensive\narythmie\natcd d'IDM\nsédentarité\nrétention hydro-sodée",
+          "categorie": "Facteurs de risque"
+        },
+        {
+          "id": 6,
+          "question": "Tableau clinique pour la pathologie « Insuffisance cardiaque » ?",
+          "reponse": "Pauvre en dehors d'une poussée aiguë\nSignes EPOF (=essoufflement, prise de poids, oedèmes, fatigue)\n\nSignes gauches :\n- congestion oreillette G => hypertension pulmonaire => essoufflement / dyspnée\n- orthopnée (essoufflement en position allongée)\n- hypotension artérielle (hTA)\n- bas débit rénal (insuffisance), cérébral (malaises d'effort), digestif, musculaire (fatigabilité)\n\nSignes droits : \n- congestion oreillette gauche => dilatation veineuse => OMI / ascite\n- hépatomégalie\n- reflux hépato-jugulaire\n- turgescence veineuse jugulaire",
+          "categorie": "Tableau clinique"
+        },
+        {
+          "id": 7,
+          "question": "Diagnostic pour la pathologie « Insuffisance cardiaque » ?",
+          "reponse": "clinique\néchographie cardiaque (ETT)",
+          "categorie": "Diagnostic"
+        },
+        {
+          "id": 8,
+          "question": "Examens complémentaires pour la pathologie « Insuffisance cardiaque » ?",
+          "reponse": "ECG (étiologique)\nRT\nbiologie",
+          "categorie": "Examens complémentaires"
+        },
+        {
+          "id": 9,
+          "question": "Biologie pour la pathologie « Insuffisance cardiaque » ?",
+          "reponse": "BNP ou NTproBNP (analyse des peptides natriurétiques)\nFer sérique, ferritine, CFT (Capacité Totale de Fixation)",
+          "categorie": "Biologie"
+        },
+        {
+          "id": 10,
+          "question": "Traitements pour la pathologie « Insuffisance cardiaque » ?",
+          "reponse": "A/ FEVG altérée (dysonction systolique)\n1/ Médicaments 1ere intention\n- inhibiteurs du SRAA = IEC ou ARA2 ou INRA (Entresto => inhibiteur de la néprilysine et des récepteurs de l'angiotensine II) \n- beta-bloquantss\n- inhibiteurs des SGLP 2 (Forxiga)\n- MRA ( antagonistes des récepteurs des mineralocorticoïdes) = diurétiques épargneur de potassium (spironolactone, éplérénone) => ttmt court terme si possible\n- +/- diurétiques de l'anse => ttmt court terme si possible, peut cohabiter avec MRA\n\n2/ Médicaments 2e intention (si symptomes persistants)\n- dérivés nitrés (vasodilatateurs)\n- ivabradine (si dose maxi b-bloquants ou si intolérant)\n- digoxine (dernier recours si symptomes malgré ttmt optimal)\n\n3/ Dispositifs\n- pacemaker (si bloc de branche gauche = QRS allongé >120ms)\n- défribrilateur automatique implantable (DAI)\n- pacemaker + DAI\n\n4/ Mesures hygiéno-diététiques + exercice phyisique régulier\n5/ Rédaptation cardiaque\n6/ Assistance circulatoire (pompe cardiaque implantée)\n7/ Transplantation cardiaque\n8/ Supplémentation en fer par IV\n\nB/ FEVG préservée (dysfonction diastolique)\n1/ Médicaments = but d'éviter les facteurs déclenchants (HTA, FA, surchage volémique...\n- inhibiteurs du SRAA = IEC ou ARA2 ou INRA (Entresto => inhibiteur de la néprilysine et des récepteurs de l'angiotensine II) \n- beta-bloquantss\n- inhibiteurs des SGLP 2 (Forxiga)\n- MRA ( antagonistes des récepteurs des mineralocorticoïdes) = diurétiques épargneur de potassium (spironolactone, éplérénone) => ttmt court terme si possible\n- +/- diurétiques de l'anse => ttmt court terme si possible, peut cohabiter avec MRA\n- ttmt anti-hypertenseur\n\n2/ Mesures hygiéno-diététiques + exercice phyisique régulier\n3/ Rédaptation cardiaque\n4/ Supplémentation en fer par IV",
+          "categorie": "Traitements"
+        },
+        {
+          "id": 11,
+          "question": "Complications pour la pathologie « Insuffisance cardiaque » ?",
+          "reponse": "OAP\nMort subite par arythmie ventriculaire (= tachycardie ou fibrillation ventriculaire)",
+          "categorie": "Complications"
+        },
+        {
+          "id": 12,
+          "question": "Prévention pour la pathologie « Insuffisance cardiaque » ?",
+          "reponse": "activité physique régulière\nréduire / contrôler sa consommation de sel\npesée pluri-hebdomadaire\nPRADO (dispositif post-hospit pour IC => objectif éviter les réhospitaisations précoces)\nTélémédecine",
+          "categorie": "Prévention"
+        },
+        {
+          "id": 13,
+          "question": "Rôle IDE pour la pathologie « Insuffisance cardiaque » ?",
+          "reponse": "Repérer les signes EPOF\nRéaliser un ECG\nPoser une VVP\nScoper le patient\nPréparer le patient à une ETT\nRéaliser les bilans biologiques\nEduquer sur les signes EPOF aux patients\nEduquer sur la réadaptation cardiaque",
+          "categorie": "Rôle IDE"
+        }
+      ]
     }
   ]
 }
