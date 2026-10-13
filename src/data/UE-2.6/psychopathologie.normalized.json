@@ -942,9 +942,11 @@
   {
     "id": "forme-034",
     "idCategorie": "cat-006",
-    "categorie": "Troubles somatomorphes",
-    "definitionCategorie": "",
-    "motsClesCategorie": [],
+    "categorie": "Troubles des conduites alimentaires (adolescent/adulte)",
+    "definitionCategorie": "Perturbations significatives et durables de l’alimentation ou du comportement lié à l’alimentation qui entrave la santé physique et/ou le fonctionnement psychosocial",
+    "motsClesCategorie": [
+      "Anorexie mentale / boulimie mentale / hyperphagie boulimique / multifactoriel / purge"
+    ],
     "sousCategorie": "Anorexie mentale",
     "formeClinique": "Type restrictif",
     "definitionForme": "Conduite active de restriction alimentaire volontaire, recherche incessante de minceur, image corporelle déformée et restriction de l’apport par rapport aux besoins.\nLa perte de poids est essentiellement obtenue par le régime, le jeûne et/ou l’exercice physique excessif.\n\nL’anorexie mentale commence dans la majorité des cas entre 15 et 25 ans, mais il existe des formes à début précoce à partir de l’âge de 6-7 ans.\nC’est la maladie psychiatrique qui a le taux de mortalité le plus élevé",
@@ -993,9 +995,11 @@
   {
     "id": "forme-035",
     "idCategorie": "cat-006",
-    "categorie": "Troubles somatomorphes",
-    "definitionCategorie": "",
-    "motsClesCategorie": [],
+    "categorie": "Troubles des conduites alimentaires (adolescent/adulte)",
+    "definitionCategorie": "Perturbations significatives et durables de l’alimentation ou du comportement lié à l’alimentation qui entrave la santé physique et/ou le fonctionnement psychosocial",
+    "motsClesCategorie": [
+      "Anorexie mentale / boulimie mentale / hyperphagie boulimique / multifactoriel / purge"
+    ],
     "sousCategorie": "Anorexie mentale",
     "formeClinique": "Type accès hyperphagique-purgatifs",
     "definitionForme": "Conduite active de restriction alimentaire volontaire, recherche incessante de minceur, image corporelle déformée et restriction de l’apport par rapport aux besoins.\nLa perte de poids est essentiellement obtenue par la présence de crises d’hyperphagie récurrentes et/ou a recouru à des vomissements provoqués ou à des comportements purgatifs.\n\nL’anorexie mentale commence dans la majorité des cas entre 15 et 25 ans, mais il existe des formes à début précoce à partir de l’âge de 6-7 ans.\nC’est la maladie psychiatrique qui a le taux de mortalité le plus élevé",
@@ -1045,9 +1049,11 @@
   {
     "id": "forme-036",
     "idCategorie": "cat-006",
-    "categorie": "Troubles somatomorphes",
-    "definitionCategorie": "",
-    "motsClesCategorie": [],
+    "categorie": "Troubles des conduites alimentaires (adolescent/adulte)",
+    "definitionCategorie": "Perturbations significatives et durables de l’alimentation ou du comportement lié à l’alimentation qui entrave la santé physique et/ou le fonctionnement psychosocial",
+    "motsClesCategorie": [
+      "Anorexie mentale / boulimie mentale / hyperphagie boulimique / multifactoriel / purge"
+    ],
     "sousCategorie": "Boulimie mentale",
     "formeClinique": "",
     "definitionForme": "Episodes récurrents d'hyperphagie incontrôlée suivis de purges (vomissements auto-induits, mésusage de laxatifs ou diurétiques), d'un jeûne ou d'exercice physique excessif",
@@ -1092,9 +1098,11 @@
   {
     "id": "forme-037",
     "idCategorie": "cat-006",
-    "categorie": "Troubles somatomorphes",
-    "definitionCategorie": "",
-    "motsClesCategorie": [],
+    "categorie": "Troubles des conduites alimentaires (adolescent/adulte)",
+    "definitionCategorie": "Perturbations significatives et durables de l’alimentation ou du comportement lié à l’alimentation qui entrave la santé physique et/ou le fonctionnement psychosocial",
+    "motsClesCategorie": [
+      "Anorexie mentale / boulimie mentale / hyperphagie boulimique / multifactoriel / purge"
+    ],
     "sousCategorie": "Hyperphagie boulimique ou Accès hyperphagique",
     "formeClinique": "",
     "definitionForme": "Episodes récurrents d'hyperphagie incontrôlée non suivis de purges",
@@ -1132,9 +1140,11 @@
   {
     "id": "forme-038",
     "idCategorie": "cat-006",
-    "categorie": "Troubles somatomorphes",
-    "definitionCategorie": "",
-    "motsClesCategorie": [],
+    "categorie": "Troubles des conduites alimentaires (adolescent/adulte)",
+    "definitionCategorie": "Perturbations significatives et durables de l’alimentation ou du comportement lié à l’alimentation qui entrave la santé physique et/ou le fonctionnement psychosocial",
+    "motsClesCategorie": [
+      "Anorexie mentale / boulimie mentale / hyperphagie boulimique / multifactoriel / purge"
+    ],
     "sousCategorie": "PICA",
     "formeClinique": "",
     "definitionForme": "Ingestion répétée de substances non nutritives",
@@ -1149,9 +1159,11 @@
   {
     "id": "forme-039",
     "idCategorie": "cat-006",
-    "categorie": "Troubles somatomorphes",
-    "definitionCategorie": "",
-    "motsClesCategorie": [],
+    "categorie": "Troubles des conduites alimentaires (adolescent/adulte)",
+    "definitionCategorie": "Perturbations significatives et durables de l’alimentation ou du comportement lié à l’alimentation qui entrave la santé physique et/ou le fonctionnement psychosocial",
+    "motsClesCategorie": [
+      "Anorexie mentale / boulimie mentale / hyperphagie boulimique / multifactoriel / purge"
+    ],
     "sousCategorie": "Mérycisme",
     "formeClinique": "",
     "definitionForme": "Régurgitations répétée de nourriture",
@@ -1166,9 +1178,11 @@
   {
     "id": "forme-040",
     "idCategorie": "cat-006",
-    "categorie": "Troubles somatomorphes",
-    "definitionCategorie": "",
-    "motsClesCategorie": [],
+    "categorie": "Troubles des conduites alimentaires (adolescent/adulte)",
+    "definitionCategorie": "Perturbations significatives et durables de l’alimentation ou du comportement lié à l’alimentation qui entrave la santé physique et/ou le fonctionnement psychosocial",
+    "motsClesCategorie": [
+      "Anorexie mentale / boulimie mentale / hyperphagie boulimique / multifactoriel / purge"
+    ],
     "sousCategorie": "Trouble de restriction / évitement de l'ingestion d'aliments",
     "formeClinique": "",
     "definitionForme": "Aliments récusés pour leur aspect physique, leur couleur, leur caractéristique gustative",
