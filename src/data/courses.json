@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-10-07T13:14:03.595259",
+  "exportDate": "2026-10-20T14:28:21.047371",
   "courses": [
     [
       "ue_2_2_s1_organisation_de_la_cellule_au_tissu",
@@ -8630,7 +8630,7 @@
         "author": "capsule",
         "definitions": [
           {
-            "definition": "stockage très éphémère. font intervenir les sens = visuelle, auditive",
+            "definition": "stockage très éphémère. Font intervenir les sens = visuelle, auditive",
             "term": "Mémoires sensorielles"
           },
           {
@@ -8814,20 +8814,20 @@
         "author": "capsule",
         "definitions": [
           {
-            "definition": "Façon particulière de discuter avec les gens de leur changement afin de renforcer leur propre motivation et leur engagement à les effectuer. On parle de « changement choisi » car il émane de la personne. (Créé par Millner et Rollnick - 1980)",
+            "definition": "Façon particulière de discuter avec les gens de leur changement afin de renforcer leur propre motivation et leur engagement à les effectuer. On parle de « changement choisi » car il émane de la personne. (Créé par Miller et Rollnick - 1980)",
             "term": "EM - Définition"
           },
           {
-            "definition": "partenariat (= pied d’égalité), acceptation (= non-jugement), altruisme (= intérêt de la personne), empowerment (= ressources de la personne)",
+            "definition": "partenariat (= pied d’égalité, patient auteur et acteur), acceptation inconditionnelle (= non-jugement), altruisme (= intérêt de la personne), empowerment (= ressources de la personne), motivation au changement, explorer les résistances au changement, ambivalence du patient",
             "term": "EM - Concepts"
           },
           {
-            "definition": "1/ engagement dans la relation = établir une relation sur la confiance mutuelle. 2/ focalisation = direction visée par l’accompagnement. 3/ évocation = amener la personne à verbaliser ses propres motivations à changer. 4/ planification = mobilisation de la personne, plan d’action",
+            "definition": "1/ engagement dans la relation = établir une relation sur la confiance mutuelle. 2/ focalisation = objectifs du patient / direction visée par l’accompagnement. 3/ évocation = amener la personne à verbaliser ses propres motivations à changer. 4/ planification = mobilisation de la personne, plan d’action",
             "term": "EM – Principes"
           },
           {
             "definition": "questions ouvertes, valoriser (= sincère, authentique), écoute réflective (= réponse verbale/non verbale pour signifier l’écoute), résumer (reformulation synthétique, vue d’ensemble)",
-            "term": "EM – compétences"
+            "term": "EM – outils"
           }
         ],
         "filename": "Entretien motivationnel (EM).odt"
@@ -10682,10 +10682,102 @@
         ],
         "filename": "Soins relationnels.odt"
       }
+    ],
+    [
+      "ue_1_1_s3_ducation_nouvelle",
+      {
+        "title": "Éducation Nouvelle",
+        "date": "18/10/2026",
+        "ue": "1.1.S3",
+        "author": "capsule",
+        "definitions": [
+          {
+            "definition": "modèle pédagogique où l’apprenant construit lui-même ses connaissances à partir de l’activité, de l’expérience et de la réflexion du sujet qui apprend.",
+            "term": "Modèle d’acquisition"
+          },
+          {
+            "definition": "courant pédagogique international qui s’est développé surtout entre les deux guerres mondiales. Il vise à aider l’apprenant à se transformer par lui-même, en mettant son action, ses besoins, ses intérêts et son adaptation au centre des apprentissages.",
+            "term": "Éducation Nouvelle"
+          },
+          {
+            "definition": "initiateur en France de la pédagogie expérimentale et l’un des fondateurs de la l’éducation nouvelle. Il est à l’origine des tests scolaires fondés sur des échelles métriques mesurant la réussite scolaire et contribuant au repérage des enfants en difficulté.",
+            "term": "Alfred Binet (1857-1911)"
+          },
+          {
+            "definition": "Son approche pédagogique s’attache à respecter le développement de l’enfant et les lois de la nature. L’individualisation et l’auto évaluation y sont au centre. L’enseignant, le formateur aide, suggère mais ne guide pas et n’impose pas. Il organise le milieu dans lequel évolue l’apprenant.",
+            "term": "Maria Montessori (1870-1952)"
+          },
+          {
+            "definition": "Pour Freinet l’apprenant est autodidacte. La dynamique de son activité s’appuie sur sa curiosité et est guidée par des besoins physiologiques et de connaissances",
+            "term": "Célestin Freinet (1896-1966)"
+          }
+        ],
+        "filename": "Éducation Nouvelle.odt"
+      }
+    ],
+    [
+      "ue_4_2_s3_attitudes_et_postures_dans_la_communication",
+      {
+        "title": "Attitudes et postures dans la communication",
+        "date": "15/10/2026",
+        "ue": "4.2.S3",
+        "author": "CCR",
+        "definitions": [
+          {
+            "definition": "psychologue américain ayant travaillé sur les relations d’aides et de l’entretien. 6 attitudes = Évaluation (juger une situation/porter une appréciation), Interprétation (donner une explication), Soutien (rassurer, encourager), Investigation (questionner, obtenir des informations), Solution (conseiller, proposer, suggérer), Compréhension (reformuler). Ces attitudes produisent des effets sur la relation.",
+            "term": "Elias Porter"
+          },
+          {
+            "definition": "échange reposant sur du verbal et du non verbal",
+            "term": "Communication"
+          },
+          {
+            "definition": "contenu verbal d’un échange",
+            "term": "Attitude"
+          },
+          {
+            "definition": "contenu non verbal d’un échange, manière d’être et d’agir (regard, orientation du corps, position des bras, expressions faciales, gestes, distance et disponibilité)",
+            "term": "Posture"
+          },
+          {
+            "definition": "doivent être cohérents pour que mon message soit clair, crédible et authentique",
+            "term": "Alignement attitude et posture"
+          },
+          {
+            "definition": "anthropologue américain ayant travaillé sur la dimension culturelle, la communication non verbale et la proxémie",
+            "term": "Edward T. Hall"
+          },
+          {
+            "definition": "Théorie émise par E.Hall s’intéressant à la manière dont nous utilisons l’espace dans nos interactions. Définit 4 distances = intime, personnelle, sociale, publique. Cette distance s’ajuste en fonction de la situation, de la culture, des habitudes.",
+            "term": "Proxémie"
+          }
+        ],
+        "filename": "Attitudes et postures dans la communication.odt"
+      }
+    ],
+    [
+      "ue_1_1_s3_mmoire_et_concurrence_cognitive",
+      {
+        "title": "Mémoire et concurrence cognitive",
+        "date": "12/10/2026",
+        "ue": "1.1.S3",
+        "author": "TD",
+        "definitions": [
+          {
+            "definition": "rendues compliquées par les parasitages (musique, paroles…)",
+            "term": "Mémorisation/compréhension/production"
+          },
+          {
+            "definition": "processus phonologique ou sémantique qui entre en compétition avec la boucle phonologique ou le processus de compréhension et donc l’encodage/la récupération",
+            "term": "Bruit de fond"
+          }
+        ],
+        "filename": "Mémoire et concurrence cognitive.odt"
+      }
     ]
   ],
   "stats": {
-    "totalTerms": 2061,
+    "totalTerms": 2075,
     "studiedTerms": 0,
     "correctAnswers": 0,
     "wrongAnswers": 0

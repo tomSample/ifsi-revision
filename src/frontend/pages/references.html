@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Références scientifiques - IFSI Révision</title>
+    <link rel="stylesheet" href="../assets/styles/theme.css">
+    <link rel="stylesheet" href="../assets/styles/design-system.css">
+    <style>
+        body{background:var(--color-bg-light);color:var(--color-text-dark)}.shell{max-width:1050px;margin:auto;padding:1rem}
+        header{display:flex;justify-content:space-between;margin-bottom:1.5rem}a{color:var(--color-primary)}
+        .panel,.article{background:#fff;border:1px solid var(--color-border);border-radius:1rem;padding:1.2rem;margin-bottom:1rem}
+        form{display:flex;gap:.75rem}input{flex:1;padding:.8rem;border:1px solid var(--color-border);border-radius:.5rem;font:inherit}
+        .article h2{font-size:1.1rem;margin-top:0}.meta,.status{color:var(--color-text-muted)}.abstract{line-height:1.55}
+        @media(max-width:600px){form,header{flex-direction:column;align-items:stretch}}
+    </style>
+</head>
+<body>
+<main class="shell">
+    <header><strong>🔬 Références scientifiques</strong><a href="./ressources.html">← Ressources</a></header>
+    <section class="panel">
+        <h1>Approfondir un thème</h1>
+        <p>Les résultats proviennent d’Europe PMC. Ils sont proposés comme ressources pédagogiques et ne remplacent pas les recommandations professionnelles.</p>
+        <form id="referenceForm"><input id="referenceInput" placeholder="Ex. escarre, morphine, diabète" aria-label="Rechercher des articles"><button class="btn btn-primary">Rechercher</button></form>
+        <div id="referenceStatus" class="status"></div>
+    </section>
+    <section id="referenceResults"></section>
+</main>
+<script src="../assets/scripts/integrations/references.js"></script>
+</body>
+</html>

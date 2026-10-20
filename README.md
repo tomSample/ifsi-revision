@@ -27,6 +27,8 @@ Application web pour étudiants IFSI permettant une révision efficace grâce à
 | 🔐 **Auth Firebase** | Inscription, connexion, reset password |
 | ☁️ **Sync Cloud** | Progression multi-devices temps réel |
 | 🖼️ **Galerie Médicale** | Images anatomie/systèmes/normes |
+| 📚 **Ressources médicales** | Médicaments, références, études cliniques, indicateurs OMS et concepts MeSH externes |
+| 💊 **Pharmacologie IDE** | Bibliothèque locale indépendante avec fiches médicaments, surveillances infirmières et tableaux comparatifs |
 | ⚙️ **Admin** | Upload ODT, gestion cours |
 
 ---
@@ -83,6 +85,20 @@ révision 6/
 | [**Ajouter des cours**](docs/AJOUT_COURS.md) | Upload fichiers ODT |
 | [**Google Form**](docs/GOOGLE_FORM.md) | Config signalements (optionnel) |
 
+### Base médicaments officielle
+
+Le module [`pharmacologie-ide.html`](src/frontend/pages/pharmacologie-ide.html)
+est distinct du quiz de pharmacologie et de la recherche externe de médicaments.
+Il affiche localement un export en français de la
+[Base de données publique des médicaments](https://base-donnees-publique.medicaments.gouv.fr/),
+mise en œuvre par l'ANSM, la HAS et l'Assurance Maladie.
+
+Les fichiers officiels et leur provenance sont conservés dans
+[`src/data/pharmacologie-ide/bdpm/`](src/data/pharmacologie-ide/bdpm/). Le module
+n'ajoute aucune synthèse médicale, surveillance infirmière ou recommandation
+non présente dans l'export. La date de récupération et les limites de l'export
+sont décrites dans `source.json`.
+
 ---
 
 ## 🎯 Utilisation
@@ -117,6 +133,15 @@ révision 6/
 **Base de données**
 - Firestore (progression utilisateur)
 - JSON local (cours + cache)
+
+**Intégrations externes**
+- Routes Flask isolées sous `/api/integrations`
+- OpenFDA pour les libellés de médicaments
+- Europe PMC pour les références scientifiques
+- ClinicalTrials.gov pour les études cliniques
+- WHO GHO pour le catalogue d'indicateurs de santé publique
+- NCBI MeSH pour les concepts médicaux
+- Cache technique des réponses réseau et gestion explicite des indisponibilités
 
 ---
 

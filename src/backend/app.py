@@ -74,12 +74,14 @@ from routes.courses import bp as courses_bp
 from routes.images import bp as images_bp
 from routes.data import bp as data_bp
 from routes.api import bp as api_bp
+from routes.integrations import bp as integrations_bp
 
 app.register_blueprint(static_bp)
 app.register_blueprint(courses_bp)
 app.register_blueprint(images_bp)
 app.register_blueprint(data_bp)
 app.register_blueprint(api_bp)
+app.register_blueprint(integrations_bp)
 
 # Keep the course upload API compatible with the admin interface. These
 # handlers are loaded from the last complete implementation preserved during

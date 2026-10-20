@@ -498,7 +498,12 @@ function displayResults() {
     document.getElementById('feedback').className = `results-feedback ${className}`;
     
     let reviewHtml = '';
-    results.forEach((result, index) => {
+    const reviewResults = Array.isArray(results) ? results : results.questions.map((question, index) => ({
+        ...question,
+        userAnswer: quizInstance.userAnswers ? quizInstance.userAnswers[index] : question.userAnswer,
+        isCorrect: String(quizInstance.userAnswers ? quizInstance.userAnswers[index] : question.userAnswer).toLowerCase() === String(question.correctAnswer).toLowerCase()
+    }));
+    reviewResults.forEach((result, index) => {
         reviewHtml += `
             <div class="review-question ${result.isCorrect ? 'correct' : 'incorrect'}">
                 <div class="review-q-number">Question ${index + 1} ${result.isCorrect ? '✓' : '✗'}</div>
@@ -509,6 +514,9 @@ function displayResults() {
                     </div>
                     ${!result.isCorrect ? `<div class="review-answer-correct">Bonne réponse: <strong>${result.correctAnswer}</strong></div>` : ''}
                 </div>
+                ${!result.isCorrect && result.medicament ? `
+                    <p><a class="resource-link" href="./medications.html?name=${encodeURIComponent(result.medicament)}">💊 Voir la fiche de ${result.medicament}</a></p>
+                    <p><a class="resource-link" href="./references.html?q=${encodeURIComponent(result.medicament)}">🔬 Voir des références scientifiques</a></p>` : ''}
             </div>
         `;
     });

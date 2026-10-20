@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santé publique - IFSI Révision</title>
+    <link rel="stylesheet" href="../assets/styles/theme.css"><link rel="stylesheet" href="../assets/styles/design-system.css">
+    <style>
+        body{background:var(--color-bg-light);color:var(--color-text-dark)}.shell{max-width:1050px;margin:auto;padding:1rem}
+        header{display:flex;justify-content:space-between;margin-bottom:1.5rem}a{color:var(--color-primary)}
+        .panel,.indicator{background:#fff;border:1px solid var(--color-border);border-radius:1rem;padding:1.2rem;margin-bottom:1rem}
+        form{display:flex;gap:.75rem}input{flex:1;padding:.8rem;border:1px solid var(--color-border);border-radius:.5rem;font:inherit}
+        .indicator h2{margin-top:0}.meta,.status{color:var(--color-text-muted)}.indicator-row{padding:.65rem 0;border-top:1px solid var(--color-border)}
+        @media(max-width:600px){form,header{flex-direction:column;align-items:stretch}}
+    </style>
+</head>
+<body><main class="shell">
+    <header><strong>📊 Santé publique</strong><a href="./ressources.html">← Ressources</a></header>
+    <section class="panel"><h1>Indicateurs externes</h1><p>Recherche dans le catalogue d’indicateurs de l’OMS. Les résultats affichent les indicateurs disponibles ; ouvre la source officielle pour consulter les valeurs et séries actualisées.</p>
+        <form id="healthForm"><input id="healthInput" placeholder="Ex. diabète, infections respiratoires" aria-label="Filtrer les indicateurs"><button class="btn btn-primary">Filtrer</button></form><div id="healthStatus" class="status"></div>
+    </section><section id="healthResults"></section>
+</main><script src="../assets/scripts/integrations/public-health.js"></script></body>
+</html>

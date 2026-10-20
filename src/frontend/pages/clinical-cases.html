@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Études cliniques externes - IFSI Révision</title>
+    <link rel="stylesheet" href="../assets/styles/theme.css"><link rel="stylesheet" href="../assets/styles/design-system.css">
+    <style>
+        body{background:var(--color-bg-light);color:var(--color-text-dark)}.shell{max-width:900px;margin:auto;padding:1rem}
+        header{display:flex;justify-content:space-between;margin-bottom:1.5rem}a{color:var(--color-primary)}
+        .panel,.step{background:#fff;border:1px solid var(--color-border);border-radius:1rem;padding:1.25rem;margin-bottom:1rem}
+        .case-card{cursor:pointer}.case-card:hover{box-shadow:var(--shadow-md)}.option{display:block;border:1px solid var(--color-border);border-radius:.6rem;padding:.8rem;margin:.6rem 0;cursor:pointer}
+        .option input{margin-right:.5rem}.feedback{padding:1rem;border-radius:.6rem;background:var(--color-bg-light);margin-top:1rem}.actions{display:flex;justify-content:space-between;gap:1rem}
+        .muted{color:var(--color-text-muted)}@media(max-width:600px){header,.actions{flex-direction:column;align-items:stretch}}
+    </style>
+</head>
+<body>
+<main class="shell">
+    <header><strong>🩺 Études cliniques externes</strong><a href="./ressources.html">← Ressources</a></header>
+    <section id="caseList" class="panel"><h1>Rechercher une étude clinique</h1><p class="muted">Les résultats proviennent de ClinicalTrials.gov. Ils ne constituent pas des cas cliniques pédagogiques validés.</p></section>
+</main>
+<script src="../assets/scripts/integrations/clinical-cases.js"></script>
+</body>
+</html>

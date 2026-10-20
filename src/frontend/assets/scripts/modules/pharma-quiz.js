@@ -208,6 +208,7 @@ class PharmaQuiz {
         return {
             type: 'qcu',
             famille: data.famille,
+            medicament: data.medicamentPrincipal,
             question: chosen.question,
             correctAnswer: chosen.answer,
             explanation: this.generateExplanation(data, chosen.field),

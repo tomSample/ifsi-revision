@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ressources médicales et cas cliniques simulés pour les révisions IFSI">
+    <title>Ressources & cas cliniques - IFSI Révision</title>
+    <link rel="stylesheet" href="../assets/styles/theme.css">
+    <link rel="stylesheet" href="../assets/styles/design-system.css">
+    <link rel="stylesheet" href="../assets/styles/layout.css">
+    <style>
+        body { background: var(--color-bg-light); color: var(--color-text-dark); }
+        .resources-shell { max-width: 1180px; margin: 0 auto; padding: 1rem; }
+        .resources-header { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:1.5rem; }
+        .resources-header a { color: var(--color-primary); text-decoration:none; font-weight:600; }
+        .hero { background: var(--gradient-primary); color:#fff; border-radius:1rem; padding:2rem; margin-bottom:1.5rem; }
+        .hero h1 { margin:0 0 .5rem; color:#fff; }
+        .hero p { margin:0; max-width:720px; }
+        .search-panel, .resource-card, .results-panel { background:#fff; border:1px solid var(--color-border); border-radius:1rem; padding:1.25rem; box-shadow:var(--shadow-xs); }
+        .search-panel { margin-bottom:1.5rem; }
+        .search-row { display:flex; gap:.75rem; }
+        .search-row input { flex:1; min-width:0; padding:.8rem 1rem; border:1px solid var(--color-border); border-radius:.6rem; font:inherit; }
+        .resource-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
+        .resource-card { text-decoration:none; color:inherit; transition:transform .15s ease, box-shadow .15s ease; }
+        .resource-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-md); }
+        .resource-card .icon { font-size:2rem; }
+        .resource-card h2 { font-size:1.1rem; margin:.65rem 0 .35rem; }
+        .resource-card p { color:var(--color-text-muted); margin:0; line-height:1.5; }
+        .results-panel { margin-top:1.5rem; }
+        .result { display:flex; justify-content:space-between; gap:1rem; padding:.85rem 0; border-bottom:1px solid var(--color-border); }
+        .result:last-child { border-bottom:0; }
+        .result a { color:var(--color-primary); font-weight:600; }
+        .muted { color:var(--color-text-muted); }
+        .status { margin-top:.75rem; min-height:1.4rem; color:var(--color-text-muted); }
+        @media (max-width: 600px) { .resources-header, .search-row, .result { flex-direction:column; align-items:stretch; } }
+    </style>
+</head>
+<body>
+    <main class="resources-shell">
+        <header class="resources-header">
+            <strong>📚 IFSI Révision</strong>
+            <a href="./home.html">← Retour à l'accueil</a>
+        </header>
+        <section class="hero">
+            <h1>Ressources & cas cliniques</h1>
+            <p>Un espace complémentaire pour comprendre, approfondir et raisonner, sans modifier tes sessions de révision habituelles.</p>
+        </section>
+        <section class="search-panel" aria-labelledby="resource-search-title">
+            <h2 id="resource-search-title">Recherche transversale</h2>
+            <p class="muted">Recherche dans les cours, la pharmacologie, les indicateurs de santé publique et les concepts MeSH locaux.</p>
+            <form id="resourceSearchForm" class="search-row">
+                <input id="resourceSearchInput" minlength="2" placeholder="Ex. paracétamol, cellule, insuffisance respiratoire" aria-label="Rechercher une ressource">
+                <button class="btn btn-primary" type="submit">Rechercher</button>
+            </form>
+            <div id="resourceSearchStatus" class="status" role="status"></div>
+        </section>
+        <section class="resource-grid" aria-label="Types de ressources">
+            <a class="resource-card" href="./medications.html">
+                <div class="icon">💊</div><h2>Fiches médicaments</h2>
+                <p>Données locales, surveillance infirmière et accès aux sources officielles.</p>
+            </a>
+            <a class="resource-card" href="./references.html">
+                <div class="icon">🔬</div><h2>Références scientifiques</h2>
+                <p>Articles et résumés Europe PMC pour aller plus loin après une erreur.</p>
+            </a>
+            <a class="resource-card" href="./clinical-cases.html">
+                <div class="icon">🩺</div><h2>Études cliniques externes</h2>
+                <p>Études réelles issues de ClinicalTrials.gov, avec statut, phase et lien officiel.</p>
+            </a>
+            <a class="resource-card" href="./public-health.html">
+                <div class="icon">📊</div><h2>Santé publique</h2>
+                <p>Indicateurs documentés et questions de contextualisation.</p>
+            </a>
+        </section>
+        <section id="resourceResults" class="results-panel" hidden>
+            <h2>Résultats locaux</h2>
+            <div id="resourceResultsList"></div>
+        </section>
+    </main>
+    <script src="../assets/scripts/integrations/resource-hub.js"></script>
+</body>
+</html>

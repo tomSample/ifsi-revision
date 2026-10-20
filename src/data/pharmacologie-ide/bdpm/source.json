@@ -1,0 +1,61 @@
+{
+  "name": "Base de données publique des médicaments",
+  "organization": "ANSM, HAS et Assurance Maladie",
+  "language": "fr",
+  "sourceUrl": "https://base-donnees-publique.medicaments.gouv.fr/",
+  "downloadUrl": "https://base-donnees-publique.medicaments.gouv.fr/telechargement",
+  "licenseUrl": "https://base-donnees-publique.medicaments.gouv.fr/docs/telechargement/licence_bdpm.pdf",
+  "retrievedAt": "2026-10-18",
+  "notice": "Données officielles téléchargées depuis la BDPM. Ne pas altérer les données, ne pas en dénaturer le sens et mentionner la source et la date de mise à jour.",
+  "files": {
+    "specialties": {
+      "file": "CIS_bdpm.txt",
+      "description": "Spécialités, forme, voie, statut administratif et commercialisation"
+    },
+    "presentations": {
+      "file": "CIS_CIP_bdpm.txt",
+      "description": "Présentations et codes CIP"
+    },
+    "compositions": {
+      "file": "CIS_COMPO_bdpm.txt",
+      "description": "Composition et substances"
+    },
+    "atc": {
+      "file": "CIS_MITM.txt",
+      "description": "Classe ATC et lien d'extrait BDPM"
+    },
+    "smr": {
+      "file": "CIS_HAS_SMR_bdpm.txt",
+      "description": "Avis HAS et service médical rendu"
+    },
+    "asmr": {
+      "file": "CIS_HAS_ASMR_bdpm.txt",
+      "description": "Avis HAS et amélioration du service médical rendu"
+    },
+    "genericNames": {
+      "file": "CIS_GENER_bdpm.txt",
+      "description": "Dénominations génériques et relations entre spécialités"
+    },
+    "conditions": {
+      "file": "CIS_CPD_bdpm.txt",
+      "description": "Conditions particulières de dispensation"
+    },
+    "availability": {
+      "file": "CIS_CIP_Dispo_Spec.txt",
+      "description": "Situations de disponibilité signalées"
+    },
+    "additionalInformation": {
+      "file": "CIS_InfoImportantes.txt",
+      "description": "Informations importantes publiées avec l'export"
+    },
+    "hasPages": {
+      "file": "HAS_LiensPageCT_bdpm.txt",
+      "description": "Liens des pages de la Commission de la Transparence"
+    }
+  },
+  "limitations": [
+    "Cet export ne constitue pas une base de surveillance infirmière.",
+    "Les RCP et notices ne sont pas reproduits dans ces fichiers.",
+    "Aucune information pédagogique ou clinique n'est ajoutée localement."
+  ]
+}
