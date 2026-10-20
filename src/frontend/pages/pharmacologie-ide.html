@@ -23,6 +23,17 @@
         .control-row input, .control-row select { min-height: 44px; padding: 0 var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-md); font: inherit; color: var(--color-text-dark); background: var(--color-bg); }
         .control-row input { flex: 1 1 280px; }
         .control-row select { flex: 0 1 260px; }
+        .filter-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-3); }
+        .filter-row select { flex: 1 1 180px; min-height: 44px; padding: 0 var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-md); font: inherit; color: var(--color-text-dark); background: var(--color-bg); }
+        .filter-actions { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-3); }
+        .filter-actions button { min-height: 40px; }
+        .result-group { padding: var(--space-5); }
+        .result-group h2 { margin: 0; color: var(--color-primary-dark); }
+        .result-group summary { cursor: pointer; list-style-position: inside; }
+        .result-group summary::-webkit-details-marker { color: var(--color-primary); }
+        .variant-list { display: grid; gap: var(--space-2); margin-top: var(--space-4); }
+        .variant { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); padding: var(--space-3); border: 1px solid var(--color-border-light); border-radius: var(--radius-md); background: var(--color-bg-light); }
+        .variant button { flex: 0 0 auto; margin-top: 0; }
         .tabs { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-5); }
         .tab { border: 1px solid var(--color-border); background: var(--color-bg); color: var(--color-text-body); border-radius: var(--radius-md); padding: var(--space-3) var(--space-4); cursor: pointer; font: inherit; font-weight: 600; }
         .tab.active, .tab:hover { background: var(--color-primary); color: white; border-color: var(--color-primary); }
@@ -68,6 +79,22 @@
     <section id="controls" class="controls">
         <div class="control-row">
             <input id="searchInput" type="search" placeholder="Rechercher une spécialité, une substance ou un laboratoire" aria-label="Rechercher dans la base officielle">
+        </div>
+        <div class="filter-row" aria-label="Filtres de recherche">
+            <select id="formFilter" aria-label="Filtrer par type de forme">
+                <option value="">Toutes les formes</option>
+            </select>
+            <select id="routeFilter" aria-label="Filtrer par grande voie">
+                <option value="">Toutes les voies</option>
+            </select>
+            <select id="authorizationFilter" aria-label="Filtrer par autorisation active">
+                <option value="">Toutes les autorisations</option>
+                <option value="active">Autorisation active : oui</option>
+                <option value="inactive">Autorisation active : non</option>
+            </select>
+        </div>
+        <div class="filter-actions">
+            <button id="resetFilters" class="btn btn-secondary" type="button">Réinitialiser les filtres</button>
         </div>
         <p id="status" class="muted" role="status"></p>
     </section>

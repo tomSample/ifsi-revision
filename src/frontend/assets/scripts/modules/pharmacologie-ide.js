@@ -15,7 +15,12 @@
 
     const content = document.getElementById('content');
     const search = document.getElementById('searchInput');
+    const formFilter = document.getElementById('formFilter');
+    const routeFilter = document.getElementById('routeFilter');
+    const authorizationFilter = document.getElementById('authorizationFilter');
+    const resetFilters = document.getElementById('resetFilters');
     const status = document.getElementById('status');
+    const visibleLimit = 100;
     const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
     }[character]));
@@ -38,6 +43,49 @@
             if (value) index.set(columns[0], value);
         });
         return index;
+    }
+
+    function normalized(value) {
+        return String(value || '').trim().toLocaleLowerCase('fr-FR').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function dosage(item) {
+        const composition = state.compositions.get(item.cis);
+        return [composition?.strength, composition?.unit].filter(Boolean).join(' ').trim();
+    }
+
+    function addOptions(select, values, emptyLabel) {
+        select.innerHTML = `<option value="">${emptyLabel}</option>${values
+            .sort((a, b) => a.localeCompare(b, 'fr-FR'))
+            .map((value) => `<option value="${esc(value)}">${esc(value)}</option>`)
+            .join('')}`;
+    }
+
+    function formCategory(form) {
+        const value = normalized(form);
+        if (value.includes('comprime') || value.includes('gelule') || value.includes('capsule')) return 'Solide oral';
+        if (value.includes('injectable') || value.includes('perfusion') || value.includes('inject')) return 'Injectable';
+        if (value.includes('buvable') || value.includes('sirop') || value.includes('solution')) return 'Liquide';
+        if (value.includes('pommade') || value.includes('creme') || value.includes('gel') || value.includes('patch')) return 'Cutané';
+        if (value.includes('collyre') || value.includes('ophtalm')) return 'Ophtalmique';
+        if (value.includes('poudre') || value.includes('granule') || value.includes('suppositoire')) return 'Autre';
+        return 'Autre';
+    }
+
+    function routeCategory(routes) {
+        const value = normalized(routes);
+        if (value.includes('orale') || value.includes('sublinguale') || value.includes('buccale')) return 'Orale';
+        if (value.includes('intraveineuse') || value.includes('intramusculaire') || value.includes('sous-cutanee')) return 'Injectable';
+        if (value.includes('cutanee') || value.includes('transdermique')) return 'Cutanée';
+        if (value.includes('inhalee') || value.includes('nasale')) return 'Respiratoire / nasale';
+        if (value.includes('ophtalmique')) return 'Ophtalmique';
+        if (value.includes('rectale') || value.includes('vaginale')) return 'Autre muqueuse';
+        return 'Autre';
+    }
+
+    function populateFilters() {
+        addOptions(formFilter, [...new Set(state.specialties.map((item) => formCategory(item.form)))] , 'Toutes les formes');
+        addOptions(routeFilter, [...new Set(state.specialties.map((item) => routeCategory(item.routes)))] , 'Toutes les voies');
     }
 
     async function load() {
@@ -86,21 +134,30 @@
         state.smr = indexByCis(data.smr, (columns) => ({ code: columns[1], level: columns[4], text: columns[5] }));
         state.asmr = indexByCis(data.asmr, (columns) => ({ code: columns[1], level: columns[4], text: columns[5] }));
         state.availability = indexByCis(data.availability, (columns) => ({ status: columns[2], start: columns[3], end: columns[4] }));
+        populateFilters();
         render();
     }
 
     function render() {
         if (state.selected) return renderDetail(state.selected);
-        const query = search.value.trim().toLocaleLowerCase('fr-FR');
+        const query = normalized(search.value);
+        const selectedForm = normalized(formFilter.value);
+        const selectedRoute = normalized(routeFilter.value);
+        const selectedAuthorization = authorizationFilter.value;
         const results = state.specialties.filter((item) => {
             const composition = state.compositions.get(item.cis);
             const atc = state.atc.get(item.cis);
             const searchable = [item.name, item.form, item.routes, item.laboratory, composition?.substance, atc?.code]
                 .filter(Boolean).join(' ').toLocaleLowerCase('fr-FR');
-            return !query || searchable.includes(query);
-        }).slice(0, 100);
-        status.textContent = `${results.length} résultat(s) affiché(s), maximum 100. Export BDPM récupéré le ${state.source.retrievedAt}.`;
-        content.innerHTML = results.length ? `<div class="grid">${results.map(card).join('')}</div>` :
+            const isActive = normalized(item.administrativeStatus) === 'autorisation active';
+            return (!query || searchable.includes(query))
+                && (!selectedForm || normalized(formCategory(item.form)) === selectedForm)
+                && (!selectedRoute || normalized(routeCategory(item.routes)) === selectedRoute)
+                && (!selectedAuthorization || (selectedAuthorization === 'active' ? isActive : !isActive));
+        });
+        const groups = groupBySubstance(results).slice(0, visibleLimit);
+        status.textContent = `${results.length} spécialité(s) regroupée(s) en ${groupBySubstance(results).length} substance(s). Export BDPM récupéré le ${state.source.retrievedAt}.`;
+        content.innerHTML = groups.length ? `<div class="grid">${groups.map(groupCard).join('')}</div>` :
             '<div class="panel empty">Saisis un nom, une substance, un laboratoire ou un code ATC.</div>';
         content.querySelectorAll('[data-cis]').forEach((button) => button.addEventListener('click', () => {
             state.selected = state.specialties.find((item) => item.cis === button.dataset.cis);
@@ -108,16 +165,26 @@
         }));
     }
 
-    function card(item) {
-        const composition = state.compositions.get(item.cis);
-        const atc = state.atc.get(item.cis);
-        return `<article class="card">
-            <h2>${esc(item.name)}</h2>
-            <p><strong>Forme :</strong> ${esc(item.form)}<br><strong>Voie :</strong> ${esc(item.routes || 'Non renseignée')}</p>
-            <p><strong>Substance :</strong> ${esc(composition?.substance || 'Non renseignée')} ${esc(composition?.strength || '')}</p>
-            <p class="muted"><strong>Code ATC :</strong> ${esc(atc?.code || 'Non renseigné')}</p>
-            <button class="btn btn-primary" type="button" data-cis="${esc(item.cis)}">Voir les données officielles</button>
-        </article>`;
+    function groupBySubstance(items) {
+        const groups = new Map();
+        items.forEach((item) => {
+            const substance = state.compositions.get(item.cis)?.substance || 'Substance non renseignée';
+            const key = normalized(substance);
+            if (!groups.has(key)) groups.set(key, { substance, items: [] });
+            groups.get(key).items.push(item);
+        });
+        return [...groups.values()].sort((a, b) => a.substance.localeCompare(b.substance, 'fr-FR'));
+    }
+
+    function groupCard(group) {
+        const variants = group.items.map((item) => `<div class="variant">
+            <span><strong>${esc(item.name)}</strong><br><span class="muted">${esc(item.form || 'Forme non renseignée')} · ${esc(dosage(item) || 'Dosage non renseigné')} · ${esc(item.routes || 'Voie non renseignée')}</span></span>
+            <button class="btn btn-primary" type="button" data-cis="${esc(item.cis)}">Voir</button>
+        </div>`).join('');
+        return `<details class="card result-group">
+            <summary><h2>${esc(group.substance)}</h2><span class="muted">${group.items.length} spécialité(s)</span></summary>
+            <div class="variant-list">${variants}</div>
+        </details>`;
     }
 
     function renderDetail(item) {
@@ -180,6 +247,14 @@
     }
 
     search.addEventListener('input', render);
+    [formFilter, routeFilter, authorizationFilter].forEach((filter) => filter.addEventListener('change', render));
+    resetFilters.addEventListener('click', () => {
+        search.value = '';
+        formFilter.value = '';
+        routeFilter.value = '';
+        authorizationFilter.value = '';
+        render();
+    });
     load().catch((error) => {
         status.textContent = 'La base officielle locale est indisponible.';
         content.innerHTML = `<div class="panel empty">${esc(error.message)}</div>`;
