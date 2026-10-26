@@ -1,7 +1,7 @@
 (() => {
     'use strict';
 
-    const state = { questionnaires: [], selectedUE: null };
+    const state = { datasets: [], selectedDataset: null };
     const elements = {
         uePanel: document.getElementById('uePanel'),
         ueCards: document.getElementById('ueCards'),
@@ -26,14 +26,24 @@
     async function init() {
         try {
             const isGitHubPages = window.location.hostname.includes('github.io');
-            const dataUrl = isGitHubPages
-                ? '../../data/UE-2.8/td-questions.json'
-                : `${basePath}/api/data/td-questions`;
-            const response = await fetch(dataUrl, { cache: 'no-store' });
-            if (!response.ok) throw new Error('Impossible de charger le tableau des questions TD.');
-            const data = await response.json();
-            state.questionnaires = Array.isArray(data.questionnaires) ? data.questionnaires : [];
-            renderUEs(data.ue || 'UE');
+            if (isGitHubPages) {
+                const responses = await Promise.all([
+                    fetch('../../data/UE-2.8/td-questions.json', { cache: 'no-store' }),
+                    fetch('../../data/UE-2.6/td-questions.json', { cache: 'no-store' })
+                ]);
+                if (responses.some((response) => !response.ok)) {
+                    throw new Error('Impossible de charger le tableau des questions TD.');
+                }
+                state.datasets = await Promise.all(responses.map((response) => response.json()));
+            } else {
+                const response = await fetch(`${basePath}/api/data/td-questions`, { cache: 'no-store' });
+                if (!response.ok) throw new Error('Impossible de charger le tableau des questions TD.');
+                const data = await response.json();
+                state.datasets = Array.isArray(data.datasets)
+                    ? data.datasets
+                    : [{ ue: data.ue, questionnaires: data.questionnaires }];
+            }
+            renderUEs();
         } catch (error) {
             elements.ueCards.innerHTML = `<p class="status error">${escapeHtml(error.message)}</p>`;
         }
@@ -41,29 +51,34 @@
         document.getElementById('backToPathologies').addEventListener('click', showPathologies);
     }
 
-    function renderUEs(ue) {
-        elements.ueCards.innerHTML = `
-            <button type="button" class="action-card choice-card" data-ue="${escapeHtml(ue)}">
+    function renderUEs() {
+        elements.ueCards.innerHTML = state.datasets.map((dataset, index) => `
+            <button type="button" class="action-card choice-card" data-ue-index="${index}">
                 <span class="action-card-icon">🎓</span>
-                <h4>${escapeHtml(ue)}</h4>
-                <p>${state.questionnaires.length} pathologies disponibles</p>
-            </button>`;
-        elements.ueCards.querySelector('[data-ue]').addEventListener('click', () => {
-            state.selectedUE = ue;
-            renderPathologies();
+                <h4>${escapeHtml(dataset.ue || 'UE')}</h4>
+                <p>${Array.isArray(dataset.questionnaires) ? dataset.questionnaires.length : 0} fiches disponibles</p>
+            </button>`).join('');
+        elements.ueCards.querySelectorAll('[data-ue-index]').forEach((card) => {
+            card.addEventListener('click', () => {
+                state.selectedDataset = state.datasets[Number(card.dataset.ueIndex)];
+                renderPathologies();
+            });
         });
     }
 
     function renderPathologies() {
-        elements.pathologyTitle.textContent = `Pathologies de ${state.selectedUE}`;
-        elements.pathologyCards.innerHTML = state.questionnaires.map((item, index) => `
+        const questionnaires = Array.isArray(state.selectedDataset.questionnaires)
+            ? state.selectedDataset.questionnaires
+            : [];
+        elements.pathologyTitle.textContent = `Fiches de ${state.selectedDataset.ue}`;
+        elements.pathologyCards.innerHTML = questionnaires.map((item, index) => `
             <button type="button" class="action-card choice-card" data-pathology-index="${index}">
                 <span class="action-card-icon">🩺</span>
                 <h4>${escapeHtml(item.titre)}</h4>
                 <p>${escapeHtml(item.description)}</p>
             </button>`).join('');
         elements.pathologyCards.querySelectorAll('[data-pathology-index]').forEach((card) => {
-            card.addEventListener('click', () => renderQuiz(state.questionnaires[Number(card.dataset.pathologyIndex)]));
+            card.addEventListener('click', () => renderQuiz(questionnaires[Number(card.dataset.pathologyIndex)]));
         });
         elements.uePanel.classList.add('hidden');
         elements.quizPanel.classList.add('hidden');

@@ -2,7 +2,7 @@
 Data API routes
 """
 from pathlib import Path
-from zipfile import ZipFile
+from zipfile import BadZipFile, ZipFile
 from xml.etree import ElementTree
 
 from flask import Blueprint, jsonify
@@ -12,7 +12,16 @@ from utils.logger import setup_logger
 logger = setup_logger(__name__)
 bp = Blueprint('data', __name__, url_prefix='/api/data')
 
-XLSX_PATH = PROJECT_ROOT / 'src' / 'data' / 'UE-2.8' / 'UE 2.8 - processus obstructifs.xlsx'
+TD_WORKBOOKS = (
+    (
+        'UE 2.8',
+        PROJECT_ROOT / 'src' / 'data' / 'UE-2.8' / 'UE 2.8 - processus obstructifs.xlsx',
+    ),
+    (
+        'UE 2.6 - psychotropes',
+        PROJECT_ROOT / 'src' / 'data' / 'UE-2.6' / 'UE 2.6 - psychotropes.xlsx',
+    ),
+)
 XLSX_NAMESPACE = {'main': 'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
 
 @bp.route('/', methods=['GET'])
@@ -66,12 +75,12 @@ def _column_number(reference):
     return number - 1
 
 
-def _load_td_questions():
-    """Convert the UE 2.8 workbook into questionnaires grouped by pathology."""
-    if not XLSX_PATH.is_file():
-        raise FileNotFoundError(f'Workbook not found: {XLSX_PATH}')
+def _load_td_questions(workbook_path):
+    """Convert a TD workbook into questionnaires grouped by column."""
+    if not workbook_path.is_file():
+        raise FileNotFoundError(f'Workbook not found: {workbook_path}')
 
-    with ZipFile(XLSX_PATH) as workbook:
+    with ZipFile(workbook_path) as workbook:
         shared_strings = _read_shared_strings(workbook)
         sheet = ElementTree.fromstring(workbook.read('xl/worksheets/sheet1.xml'))
         rows = []
@@ -111,12 +120,20 @@ def _load_td_questions():
 
 @bp.route('/td-questions', methods=['GET'])
 def get_td_questions():
-    """Return the UE 2.8 questionnaires generated from the Excel workbook."""
+    """Return the questionnaires generated from the supported Excel workbooks."""
     try:
+        datasets = [
+            {
+                'ue': ue,
+                'questionnaires': _load_td_questions(workbook_path),
+            }
+            for ue, workbook_path in TD_WORKBOOKS
+        ]
         return jsonify({
-            'ue': 'UE 2.8',
-            'questionnaires': _load_td_questions(),
+            'ue': datasets[0]['ue'],
+            'questionnaires': datasets[0]['questionnaires'],
+            'datasets': datasets,
         })
-    except (FileNotFoundError, KeyError, ElementTree.ParseError) as error:
+    except (FileNotFoundError, KeyError, ElementTree.ParseError, BadZipFile) as error:
         logger.error(f"Unable to parse TD questions workbook: {error}")
         return jsonify({'error': 'Le tableau des questions TD est indisponible.'}), 500

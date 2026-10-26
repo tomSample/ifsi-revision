@@ -1,0 +1,539 @@
+{
+  "ue": "UE 2.6 - psychotropes",
+  "questionnaires": [
+    {
+      "titre": "Neuroleptiques",
+      "description": "7 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Mode d'action pour la pathologie « Neuroleptiques » ?",
+          "reponse": "antagoniste dopaminergique\n- 1ere génération = dopamine\n- 2eme génération = dopamine + sérotonine",
+          "categorie": "Mode d'action"
+        },
+        {
+          "id": 2,
+          "question": "Indication pour la pathologie « Neuroleptiques » ?",
+          "reponse": "schizophrénie\népisode maniaque modéré/sévère\nanxiété\nEDM (en association avec un anidépresseur",
+          "categorie": "Indication"
+        },
+        {
+          "id": 3,
+          "question": "Contre indication pour la pathologie « Neuroleptiques » ?",
+          "reponse": "QT long\nglaucome\nadénome prostatique",
+          "categorie": "Contre indication"
+        },
+        {
+          "id": 4,
+          "question": "Effets secondaires pour la pathologie « Neuroleptiques » ?",
+          "reponse": "sd extrapyramidal / parkinsonien (mvt involontaires)\nanticholinergique (sécheresse buccale, constipation, rétention urinaire)\nsd malin des neuroleptiques (hyperthermie, raideur musculaire, rhabdomyolyse,etc)\nhypergycémie, prise de poids\ntrouble sexuel\nphotosensibilisation cutanée\ntrouble accommodatif\nconfusion\nagranulocytose (clozapine)",
+          "categorie": "Effets secondaires"
+        },
+        {
+          "id": 5,
+          "question": "Bilan d'instauration pour la pathologie « Neuroleptiques » ?",
+          "reponse": "ECG => éliminer allongement QT\néliminer bradycardie / hypoK\néliminer association ttmt entrainant allongement QT ou bradycardie",
+          "categorie": "Bilan d'instauration"
+        },
+        {
+          "id": 6,
+          "question": "Surveillances pour la pathologie « Neuroleptiques » ?",
+          "reponse": "cardiovasculaire (ECG)\npoids / lipidique / glycémie\ntempérature\nhémogramme (clozapine)\n\nrech dyskinésie précoce/tardive\nrech symptômes d'hyperprolactinémie\nrech effets anticholinergique (rét° vésicale, constipation, trble accommodatif, sécheresse buccale)",
+          "categorie": "Surveillances"
+        },
+        {
+          "id": 7,
+          "question": "Hygiène de vie pour la pathologie « Neuroleptiques » ?",
+          "reponse": "attention exposition au soleil => protection (crème solaire...)\nallaitement déconseillé (molécule dépendant)",
+          "categorie": "Hygiène de vie"
+        }
+      ]
+    },
+    {
+      "titre": "Antidépresseur - tricycliques = imipraminiques",
+      "description": "7 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Mode d'action pour la pathologie « Antidépresseur - tricycliques = imipraminiques » ?",
+          "reponse": "inhibition recapture noradrénaline + sérotonine (+ autres récepteurs = ATD moins ciblés que IRSNa)",
+          "categorie": "Mode d'action"
+        },
+        {
+          "id": 2,
+          "question": "Indication pour la pathologie « Antidépresseur - tricycliques = imipraminiques » ?",
+          "reponse": "épisode dépressif majeur\n+/- état dépressif lors de schizophrénie\nTOC\nprévention d'attaque de panique\nalgie rebelle\ndouleurs neuropathiques\nénurésie nocturne enfant",
+          "categorie": "Indication"
+        },
+        {
+          "id": 3,
+          "question": "Contre indication pour la pathologie « Antidépresseur - tricycliques = imipraminiques » ?",
+          "reponse": "glaucome\nrétention urinaire\ntrouble du rythme",
+          "categorie": "Contre indication"
+        },
+        {
+          "id": 4,
+          "question": "Effets secondaires pour la pathologie « Antidépresseur - tricycliques = imipraminiques » ?",
+          "reponse": "effet sédatif (effet anti H1)\nhTAo (effet adrénolytique)\nanticholinergique (sécheresse buccale, constipation, rétention urinaire)",
+          "categorie": "Effets secondaires"
+        },
+        {
+          "id": 5,
+          "question": "Bilan d'instauration pour la pathologie « Antidépresseur - tricycliques = imipraminiques » ?",
+          "reponse": "corriger hypoK\nbilan cardiovasculaire\nbilan urologique\nbilan ophtalmologique",
+          "categorie": "Bilan d'instauration"
+        },
+        {
+          "id": 6,
+          "question": "Surveillances pour la pathologie « Antidépresseur - tricycliques = imipraminiques » ?",
+          "reponse": "Somatiques :\n- effets anticholinergiques\n- poids\n- somnolence / épilepsie / confusion / hTAo\n- sd sérotoninergique (agitation, tachycardie...)\n- hygiène buccale\n\nPsychiques :\n- risque suicidaire\n- rique de virage maniaque",
+          "categorie": "Surveillances"
+        },
+        {
+          "id": 7,
+          "question": "Hygiène de vie pour la pathologie « Antidépresseur - tricycliques = imipraminiques » ?",
+          "reponse": "hygiène buccale",
+          "categorie": "Hygiène de vie"
+        }
+      ]
+    },
+    {
+      "titre": "Antidépresseur - ISRS",
+      "description": "5 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Mode d'action pour la pathologie « Antidépresseur - ISRS » ?",
+          "reponse": "inihibition sélective de la recapture de la sérotonine\n\nefficacité à 2 semaines\nlimite de ttmt : 6 mois",
+          "categorie": "Mode d'action"
+        },
+        {
+          "id": 2,
+          "question": "Indication pour la pathologie « Antidépresseur - ISRS » ?",
+          "reponse": "épisode dépressif majeur\nTOC\nTAG + anxiété sociale (phobie)\ntrouble panique et prévention d'attaque de panique",
+          "categorie": "Indication"
+        },
+        {
+          "id": 3,
+          "question": "Contre indication pour la pathologie « Antidépresseur - ISRS » ?",
+          "reponse": "QT long\nIMAO non sélectif",
+          "categorie": "Contre indication"
+        },
+        {
+          "id": 4,
+          "question": "Effets secondaires pour la pathologie « Antidépresseur - ISRS » ?",
+          "reponse": "hypoNa\nsudation\ntroubles digestifs\ninversion de l'humeur\ninsomnie",
+          "categorie": "Effets secondaires"
+        },
+        {
+          "id": 5,
+          "question": "Surveillances pour la pathologie « Antidépresseur - ISRS » ?",
+          "reponse": "Somatiques :\n- natrémie\n- effets anticholinergiques\n- poids (perte)\n- hypoglycémie chez le diabétique\n- sd sérotoninergique (agitation, tachycardie...)\n- apparition de convulsions\n\nPsychiques :\n- risque suicidaire\n- rique de virage maniaque",
+          "categorie": "Surveillances"
+        }
+      ]
+    },
+    {
+      "titre": "Antidépresseur - IRSNa",
+      "description": "4 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Mode d'action pour la pathologie « Antidépresseur - IRSNa » ?",
+          "reponse": "inhibition sélective recapture noradrénaline + sérotonine\n\nefficacité à 2 semaines\nlimite de ttmt : 6 mois",
+          "categorie": "Mode d'action"
+        },
+        {
+          "id": 2,
+          "question": "Contre indication pour la pathologie « Antidépresseur - IRSNa » ?",
+          "reponse": "adénome prostate\nhypertrophie bénigne prostate\nIMAO non sélectif",
+          "categorie": "Contre indication"
+        },
+        {
+          "id": 3,
+          "question": "Effets secondaires pour la pathologie « Antidépresseur - IRSNa » ?",
+          "reponse": "diahrées\nHTA",
+          "categorie": "Effets secondaires"
+        },
+        {
+          "id": 4,
+          "question": "Surveillances pour la pathologie « Antidépresseur - IRSNa » ?",
+          "reponse": "Somatiques :\n- natrémie\n- effets anticholinergiques (mydriase...)\n- cardiaque (TA, FR, arythmie)\n- hépatique\n- poids (perte)\n- cholestérolémie\n- hypoglycémie chez le diabétique\n- sd sérotoninergique (agitation, tachycardie...)\n- apparittion trouble mictionnel\n- apparition de convulsions\n\nPsychiques :\n- risque suicidaire\n- rique de virage maniaque",
+          "categorie": "Surveillances"
+        }
+      ]
+    },
+    {
+      "titre": "Antidépresseur - IMAO",
+      "description": "4 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Mode d'action pour la pathologie « Antidépresseur - IMAO » ?",
+          "reponse": "inhibiteurs de la monoamine oxydase (bloque destruction de neurotransmetteurs = sérotonine, dopamine, noradrénaline)\n\nefficacité à 2 semaines\nlimite de ttmt : 6 mois",
+          "categorie": "Mode d'action"
+        },
+        {
+          "id": 2,
+          "question": "Contre indication pour la pathologie « Antidépresseur - IMAO » ?",
+          "reponse": "médicaments sérotoninergiques\ntriptans",
+          "categorie": "Contre indication"
+        },
+        {
+          "id": 3,
+          "question": "Effets secondaires pour la pathologie « Antidépresseur - IMAO » ?",
+          "reponse": "agitation\ninsomnie\nirritabilité\nvertiges\ncéphalées\ntroubles digestifs",
+          "categorie": "Effets secondaires"
+        },
+        {
+          "id": 4,
+          "question": "Surveillances pour la pathologie « Antidépresseur - IMAO » ?",
+          "reponse": "Somatiques :\n- glycémie\n- prise de poids\n- convulsions\n- TA\n- natrémie\n- sd sérotoninergique\n- NFS si sd infectieux\n\nPsychiques :\n- risque suicidaire\n- rique de virage maniaque",
+          "categorie": "Surveillances"
+        }
+      ]
+    },
+    {
+      "titre": "Thymorégulateur - Sels de lithium",
+      "description": "5 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Mode d'action pour la pathologie « Thymorégulateur - Sels de lithium » ?",
+          "reponse": "mal connu\n=> freine les systèmes excitateurs (dopamine, glutamate)\n=> renforce les systèmes stabilisateurs (GABA)\n\nefficacité entre 4 et 15 jours\nposologie à individualiser\n\nforme immédiate : lithiémie entre 0,5 - 0,8 mEq/L\nforme retard : lithémie entre 0,8 - 1,2 mEq/L",
+          "categorie": "Mode d'action"
+        },
+        {
+          "id": 2,
+          "question": "Indication pour la pathologie « Thymorégulateur - Sels de lithium » ?",
+          "reponse": "trouble bipolaire",
+          "categorie": "Indication"
+        },
+        {
+          "id": 3,
+          "question": "Contre indication pour la pathologie « Thymorégulateur - Sels de lithium » ?",
+          "reponse": "régime hyposodé / désodé\nconso d'alcool\ninsuffisance rénale\ninsuffisance cardiaque\ninsuffisance surrénalienne (maladie d'Addison)\ngrossesse (effet tératogène",
+          "categorie": "Contre indication"
+        },
+        {
+          "id": 4,
+          "question": "Effets secondaires pour la pathologie « Thymorégulateur - Sels de lithium » ?",
+          "reponse": "digestifs (goûts métalique, sécheresse buccale...)\ncutanés (chute de cheveux, acné, psoriasis...)\nneuropsychique (tremblement digital, trouble mnésique...)\nendocrinien (prise de poids, diabète insipide, goître...)\ntoxicité cardiaque\ntoxicité thyroïdienne\ninsuffisance rénale à long terme",
+          "categorie": "Effets secondaires"
+        },
+        {
+          "id": 5,
+          "question": "Surveillances pour la pathologie « Thymorégulateur - Sels de lithium » ?",
+          "reponse": "- poids\n- diarrhées, nausées\n- interactions (AINS, IEC, ARA2, diurétiques, cabamazépine)\n- créatinine 1f/an\n- TSH 1f/an",
+          "categorie": "Surveillances"
+        }
+      ]
+    },
+    {
+      "titre": "Thymorégulateur - divalproate et valpromide",
+      "description": "4 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Mode d'action pour la pathologie « Thymorégulateur - divalproate et valpromide » ?",
+          "reponse": "action anti-maniaque\naction anti-convulsivante\n=> stabilisation de l'humeur",
+          "categorie": "Mode d'action"
+        },
+        {
+          "id": 2,
+          "question": "Indication pour la pathologie « Thymorégulateur - divalproate et valpromide » ?",
+          "reponse": "trouble bipolaire si contre-indication lithium",
+          "categorie": "Indication"
+        },
+        {
+          "id": 3,
+          "question": "Effets secondaires pour la pathologie « Thymorégulateur - divalproate et valpromide » ?",
+          "reponse": "grossesse : effets tératogène et neurodéveloppementaux (femme et homme)\nsédation / hypotonie / confusion\ntroubles digestifs\nthrombopénie",
+          "categorie": "Effets secondaires"
+        },
+        {
+          "id": 4,
+          "question": "Surveillances pour la pathologie « Thymorégulateur - divalproate et valpromide » ?",
+          "reponse": "- taux de thrombocytes\n- efficacité contraceptive",
+          "categorie": "Surveillances"
+        }
+      ]
+    },
+    {
+      "titre": "Thymorégulateur - carbamazépine",
+      "description": "3 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Indication pour la pathologie « Thymorégulateur - carbamazépine » ?",
+          "reponse": "trouble bipolaire si contre-indication lithium",
+          "categorie": "Indication"
+        },
+        {
+          "id": 2,
+          "question": "Contre indication pour la pathologie « Thymorégulateur - carbamazépine » ?",
+          "reponse": "grossesse : effets neurodéveloppementaux\nallaitement",
+          "categorie": "Contre indication"
+        },
+        {
+          "id": 3,
+          "question": "Effets secondaires pour la pathologie « Thymorégulateur - carbamazépine » ?",
+          "reponse": "hépatiques\ninteractions médicamenteuses\nsomnolence\nnausées\nrares réactions cutanés",
+          "categorie": "Effets secondaires"
+        }
+      ]
+    },
+    {
+      "titre": "Thymorégulateur - lamotrigine",
+      "description": "3 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Indication pour la pathologie « Thymorégulateur - lamotrigine » ?",
+          "reponse": "trouble bipolaire si contre-indication lithium\nprévention épisode dépressif\n\nutilisable chez la femme enceinte",
+          "categorie": "Indication"
+        },
+        {
+          "id": 2,
+          "question": "Effets secondaires pour la pathologie « Thymorégulateur - lamotrigine » ?",
+          "reponse": "réactions cutanées\ninteractions médicamenteuses peuvent réduire l'efficacité de la lamotrigine",
+          "categorie": "Effets secondaires"
+        },
+        {
+          "id": 3,
+          "question": "Surveillances pour la pathologie « Thymorégulateur - lamotrigine » ?",
+          "reponse": "sd Lyell et de Stevens Johnson = brûlure cutané au 3e degré sur l'ensemble du corps (rare",
+          "categorie": "Surveillances"
+        }
+      ]
+    },
+    {
+      "titre": "Anxiolytique - anti H1 (hydroxyzine)",
+      "description": "4 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Indication pour la pathologie « Anxiolytique - anti H1 (hydroxyzine) » ?",
+          "reponse": "anxiété\ninsomnie",
+          "categorie": "Indication"
+        },
+        {
+          "id": 2,
+          "question": "Contre indication pour la pathologie « Anxiolytique - anti H1 (hydroxyzine) » ?",
+          "reponse": "allergie vraie\nglaucome a angle fermé\nadénome prostate\nrétention d'urine",
+          "categorie": "Contre indication"
+        },
+        {
+          "id": 3,
+          "question": "Effets secondaires pour la pathologie « Anxiolytique - anti H1 (hydroxyzine) » ?",
+          "reponse": "somnolence / vertige\nallergie\nanticholinergique\ntrouble du rythme (allongement QT)",
+          "categorie": "Effets secondaires"
+        },
+        {
+          "id": 4,
+          "question": "Surveillances pour la pathologie « Anxiolytique - anti H1 (hydroxyzine) » ?",
+          "reponse": "-absence d'effets secondaires\n-efficacité du traitement",
+          "categorie": "Surveillances"
+        }
+      ]
+    },
+    {
+      "titre": "Anxiolytique - BZD anxio",
+      "description": "6 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Mode d'action pour la pathologie « Anxiolytique - BZD anxio » ?",
+          "reponse": "agoniste R GABA => inhibition SNC\n\n5 effets : \n- anticonvulsivant\n- anxiolytique\n- sédatif\n- amnésiant\n- myorelaxant",
+          "categorie": "Mode d'action"
+        },
+        {
+          "id": 2,
+          "question": "Indication pour la pathologie « Anxiolytique - BZD anxio » ?",
+          "reponse": "anxiété\nsevrage OH\népilepsie\ncrise d'angoisse aiguë\ninsomnie",
+          "categorie": "Indication"
+        },
+        {
+          "id": 3,
+          "question": "Contre indication pour la pathologie « Anxiolytique - BZD anxio » ?",
+          "reponse": "allergie vraie\ninsuffisance respiratoire\nSAS\nmyasthénie\ninsuffisance hépatique sévère\ntoxicomanie",
+          "categorie": "Contre indication"
+        },
+        {
+          "id": 4,
+          "question": "Effets secondaires pour la pathologie « Anxiolytique - BZD anxio » ?",
+          "reponse": "somnolence\namnésie antérograde\ntrouble de coordination\nréactions paradoxales\nallergie\ntolérance / dépendance en utilisation prolongée\nsd de sevrage avec rebond de l'anxiété\nintoxication aiguë (coma, détresse respiratoire...)",
+          "categorie": "Effets secondaires"
+        },
+        {
+          "id": 5,
+          "question": "Surveillances pour la pathologie « Anxiolytique - BZD anxio » ?",
+          "reponse": "Somatiques :\n- fonction respiratoire\n- apnée du sommeil\n- risque de chute chez PA\n\nPsychiques :\n- effet rebond\n- amnésie antérograde\n- trouble du comportement\n- signes de dépendance",
+          "categorie": "Surveillances"
+        },
+        {
+          "id": 6,
+          "question": "Règles de prescription pour la pathologie « Anxiolytique - BZD anxio » ?",
+          "reponse": "- la plus faible posologie efficace\n- arrêt ttmt progressif\n- pas d'association de 2 BZD pour 1 ttmt anxiolytique\n- Rx limitée à 12 semaines\n- privilégier 1/2 vie courte chez PA",
+          "categorie": "Règles de prescription"
+        }
+      ]
+    },
+    {
+      "titre": "Hypnotique - BZD hypno",
+      "description": "6 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Mode d'action pour la pathologie « Hypnotique - BZD hypno » ?",
+          "reponse": "agoniste R GABA => inhibition SNC\n\n5 effets : \n- anticonvulsivant\n- anxiolytique\n- sédatif\n- amnésiant\n- myorelaxant",
+          "categorie": "Mode d'action"
+        },
+        {
+          "id": 2,
+          "question": "Indication pour la pathologie « Hypnotique - BZD hypno » ?",
+          "reponse": "insomnie",
+          "categorie": "Indication"
+        },
+        {
+          "id": 3,
+          "question": "Contre indication pour la pathologie « Hypnotique - BZD hypno » ?",
+          "reponse": "allergie vraie\ninsuffisance respiratoire\nSAS\nmyasthénie\ninsuffisance hépatique sévère\ntoxicomanie",
+          "categorie": "Contre indication"
+        },
+        {
+          "id": 4,
+          "question": "Effets secondaires pour la pathologie « Hypnotique - BZD hypno » ?",
+          "reponse": "somnolence\namnésie antérograde\ntrouble de coordination\nréactions paradoxales\nallergie\ntolérance / dépendance en utilisation prolongée\nsd de sevrage avec rebond de l'anxiété\nintoxication aiguë (coma, détresse respiratoire...)",
+          "categorie": "Effets secondaires"
+        },
+        {
+          "id": 5,
+          "question": "Surveillances pour la pathologie « Hypnotique - BZD hypno » ?",
+          "reponse": "- constater la prise du ttmt\n- tracer la durée + qualité du sommeil\n- rech somnolence diurne",
+          "categorie": "Surveillances"
+        },
+        {
+          "id": 6,
+          "question": "Règles de prescription pour la pathologie « Hypnotique - BZD hypno » ?",
+          "reponse": "- la plus faible posologie efficace\n- arrêt ttmt progressif\n- pas d'association de 2 BZD pour 1 ttmt anxiolytique\n- Rx limitée à 4 semaines (en principe)\n- privilégier 1/2 vie courte chez PA",
+          "categorie": "Règles de prescription"
+        }
+      ]
+    },
+    {
+      "titre": "Hypnotique - anti H1",
+      "description": "4 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Indication pour la pathologie « Hypnotique - anti H1 » ?",
+          "reponse": "anxiété\ninsomnie",
+          "categorie": "Indication"
+        },
+        {
+          "id": 2,
+          "question": "Contre indication pour la pathologie « Hypnotique - anti H1 » ?",
+          "reponse": "allergie vraie\nglaucome a angle fermé\nadénome prostate\nrétention d'urine",
+          "categorie": "Contre indication"
+        },
+        {
+          "id": 3,
+          "question": "Effets secondaires pour la pathologie « Hypnotique - anti H1 » ?",
+          "reponse": "somnolence / vertige\nallergie\nanticholinergique\ntrouble du rythme (allongement QT)",
+          "categorie": "Effets secondaires"
+        },
+        {
+          "id": 4,
+          "question": "Surveillances pour la pathologie « Hypnotique - anti H1 » ?",
+          "reponse": "-absence d'effets secondaires\n-efficacité du traitement",
+          "categorie": "Surveillances"
+        }
+      ]
+    },
+    {
+      "titre": "Hypnotique - neuroleptique sédatif",
+      "description": "3 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Indication pour la pathologie « Hypnotique - neuroleptique sédatif » ?",
+          "reponse": "insomnie occasionnelle / transitoire",
+          "categorie": "Indication"
+        },
+        {
+          "id": 2,
+          "question": "Contre indication pour la pathologie « Hypnotique - neuroleptique sédatif » ?",
+          "reponse": "QT long\nglaucome\nadénome prostatique",
+          "categorie": "Contre indication"
+        },
+        {
+          "id": 3,
+          "question": "Effets secondaires pour la pathologie « Hypnotique - neuroleptique sédatif » ?",
+          "reponse": "sd extrapyramidal / parkinsonien (mvt involontaires)\nanticholinergique (sécheresse buccale, constipation, rétention urinaire)\nsd malin des neuroleptiques (hyperthermie, raideur musculaire, rhabdomyolyse,etc)",
+          "categorie": "Effets secondaires"
+        }
+      ]
+    },
+    {
+      "titre": "Hypnotique - doxylamine",
+      "description": "1 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Indication pour la pathologie « Hypnotique - doxylamine » ?",
+          "reponse": "insomnie occasionnelle / transitoire\n\nutilisable chez femme enceinte",
+          "categorie": "Indication"
+        }
+      ]
+    },
+    {
+      "titre": "Hypnotique - mélatonine",
+      "description": "2 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Indication pour la pathologie « Hypnotique - mélatonine » ?",
+          "reponse": "insomnie chez PA de 55a+\ntrouble du rythme veille/sommeil chez l'enfant de 6a+",
+          "categorie": "Indication"
+        },
+        {
+          "id": 2,
+          "question": "Effets secondaires pour la pathologie « Hypnotique - mélatonine » ?",
+          "reponse": "douleurs abdominales\nnausées",
+          "categorie": "Effets secondaires"
+        }
+      ]
+    },
+    {
+      "titre": "Hypnotique - antagoniste récepteur orexine",
+      "description": "4 questions de type TD",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Mode d'action pour la pathologie « Hypnotique - antagoniste récepteur orexine » ?",
+          "reponse": "diminut l'état d'éveil intra-sommeil (réveil nocturne)",
+          "categorie": "Mode d'action"
+        },
+        {
+          "id": 2,
+          "question": "Indication pour la pathologie « Hypnotique - antagoniste récepteur orexine » ?",
+          "reponse": "insomnie >3mois avec impact pendant la journée",
+          "categorie": "Indication"
+        },
+        {
+          "id": 3,
+          "question": "Contre indication pour la pathologie « Hypnotique - antagoniste récepteur orexine » ?",
+          "reponse": "narcolepsie\nhypersensibilité / allergie vraie",
+          "categorie": "Contre indication"
+        },
+        {
+          "id": 4,
+          "question": "Effets secondaires pour la pathologie « Hypnotique - antagoniste récepteur orexine » ?",
+          "reponse": "céphalées\nrêves anormaux",
+          "categorie": "Effets secondaires"
+        }
+      ]
+    }
+  ]
+}

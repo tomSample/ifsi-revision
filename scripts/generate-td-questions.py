@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the static TD questionnaires from the UE 2.8 workbook."""
+"""Generate static TD questionnaires from the supported Excel workbooks."""
 
 import json
 import sys
@@ -9,8 +9,18 @@ from xml.etree import ElementTree
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-WORKBOOK_PATH = PROJECT_ROOT / "src" / "data" / "UE-2.8" / "UE 2.8 - processus obstructifs.xlsx"
-OUTPUT_PATH = PROJECT_ROOT / "src" / "data" / "UE-2.8" / "td-questions.json"
+WORKBOOKS = (
+    (
+        "UE 2.8",
+        PROJECT_ROOT / "src" / "data" / "UE-2.8" / "UE 2.8 - processus obstructifs.xlsx",
+        PROJECT_ROOT / "src" / "data" / "UE-2.8" / "td-questions.json",
+    ),
+    (
+        "UE 2.6 - psychotropes",
+        PROJECT_ROOT / "src" / "data" / "UE-2.6" / "UE 2.6 - psychotropes.xlsx",
+        PROJECT_ROOT / "src" / "data" / "UE-2.6" / "td-questions.json",
+    ),
+)
 NAMESPACE = {"main": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 
 
@@ -53,11 +63,11 @@ def column_number(reference):
     return number - 1
 
 
-def load_rows():
-    if not WORKBOOK_PATH.is_file():
-        raise FileNotFoundError(f"Workbook not found: {WORKBOOK_PATH}")
+def load_rows(workbook_path):
+    if not workbook_path.is_file():
+        raise FileNotFoundError(f"Workbook not found: {workbook_path}")
 
-    with zipfile.ZipFile(WORKBOOK_PATH) as workbook:
+    with zipfile.ZipFile(workbook_path) as workbook:
         shared_strings = read_shared_strings(workbook)
         sheet = ElementTree.fromstring(workbook.read("xl/worksheets/sheet1.xml"))
         rows = []
@@ -71,10 +81,10 @@ def load_rows():
     return rows
 
 
-def build_data():
-    rows = load_rows()
+def build_data(ue, workbook_path):
+    rows = load_rows(workbook_path)
     if not rows:
-        return {"ue": "UE 2.8", "questionnaires": []}
+        return {"ue": ue, "questionnaires": []}
 
     questionnaires = []
     for column, title in rows[0].items():
@@ -104,24 +114,28 @@ def build_data():
                 }
             )
 
-    return {"ue": "UE 2.8", "questionnaires": questionnaires}
+    return {"ue": ue, "questionnaires": questionnaires}
 
 
 def main():
     try:
-        data = build_data()
-        OUTPUT_PATH.write_text(
-            json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-        )
+        generated = []
+        for ue, workbook_path, output_path in WORKBOOKS:
+            data = build_data(ue, workbook_path)
+            output_path.write_text(
+                json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+            )
+            generated.append((output_path, data))
     except (FileNotFoundError, KeyError, ElementTree.ParseError, zipfile.BadZipFile) as error:
         print(f"Unable to generate TD questions: {error}", file=sys.stderr)
         return 1
 
-    question_count = sum(len(item["questions"]) for item in data["questionnaires"])
-    print(
-        f"Generated {OUTPUT_PATH} "
-        f"({len(data['questionnaires'])} questionnaires, {question_count} questions)"
-    )
+    for output_path, data in generated:
+        question_count = sum(len(item["questions"]) for item in data["questionnaires"])
+        print(
+            f"Generated {output_path} "
+            f"({len(data['questionnaires'])} questionnaires, {question_count} questions)"
+        )
     return 0
 
 
